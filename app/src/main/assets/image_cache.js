@@ -1,0 +1,120 @@
+/**
+ * Offline-First Local Image Caching Engine
+ * Caches images in localStorage as Base64 data URLs for instant zero-latency loading
+ * and 100% offline rendering (including html2canvas exports and WebView sandbox).
+ */
+
+const IMAGE_CACHE_PREFIX = "cache_img_";
+
+/**
+ * Retrieves an image as Base64 from local cache or fetches, converts, and saves it.
+ * @param {string} key Unique identifier for the cached image
+ * @param {string} remoteUrl URL to fetch if not cached
+ * @returns {Promise<string>} Base64 data URL or original URL as fallback
+ */
+async function getOfflineImage(key, remoteUrl) {
+    if (!remoteUrl) return "";
+
+    // 1. यदि रिमोट URL पहले से ही Base64 डेटा है तो सीधे रिटर्न करें
+    if (remoteUrl.startsWith("data:image/")) {
+        return remoteUrl;
+    }
+
+    const storageKey = IMAGE_CACHE_PREFIX + key;
+
+    // 2. लोकल स्टोरेज में पहले से सेव Base64 चेक करें (Instant 0-second offline return)
+    try {
+        const cached = localStorage.getItem(storageKey);
+        if (cached && cached.startsWith("data:image/")) {
+            return cached;
+        }
+    } catch (e) {
+        console.warn("[ImageCache] Storage read error:", e);
+    }
+
+    // 3. यदि कैश में नहीं है, तो रिमोट से फ़ेच करके Base64 में बदलें
+    try {
+        const response = await fetch(remoteUrl, { mode: "cors" });
+        if (!response.ok) {
+            throw new Error(`Fetch failed with status: ${response.status}`);
+        }
+        const blob = await response.blob();
+        
+        return await new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                const base64data = reader.result;
+                try {
+                    localStorage.setItem(storageKey, base64data);
+                } catch (quotaErr) {
+                    console.warn("[ImageCache] LocalStorage quota exceeded or error:", quotaErr);
+                }
+                resolve(base64data);
+            };
+            reader.onerror = () => {
+                resolve(remoteUrl);
+            };
+            reader.readAsDataURL(blob);
+        });
+    } catch (err) {
+        // नेटवर्क न होने या CORS एरर की स्थिति में फ़ॉलबैक
+        console.warn(`[ImageCache] Could not pre-cache ${key}:`, err);
+        return remoteUrl;
+    }
+}
+
+/**
+ * Pre-cache all essential images in background upon login or profile sync
+ * @param {object} user User object containing seva_kshetra, profile_photo, etc.
+ */
+async function preCacheUserAssets(user) {
+    if (!user) return;
+
+    try {
+        const promises = [];
+
+        // 1. मुख्य समिति लोगो
+        promises.push(
+            getOfflineImage("samiti_main_logo", "https://sanatansevasamiti.org/Images/jpg/logo.jpg")
+        );
+
+        // 2. राष्ट्रीय अध्यक्ष हस्ताक्षर (आईडी कार्ड के लिए आवश्यक)
+        promises.push(
+            getOfflineImage("samiti_signature", "https://sanatansevasamiti.org/uploads/signature.jpg")
+        );
+
+        // 3. यूज़र प्रोफ़ाइल फोटो
+        if (user.profile_photo) {
+            const userPhotoUrl = user.profile_photo.startsWith("http")
+                ? user.profile_photo
+                : "https://sanatansevasamiti.org/" + user.profile_photo.replace(/^\/+/, '');
+            promises.push(getOfflineImage("user_profile_dp", userPhotoUrl));
+        }
+
+        // 4. सेवा क्षेत्र डीपी एवं कवर
+        const sevaKshetra = (user.seva_kshetra || "").trim();
+        if (sevaKshetra) {
+            promises.push(
+                getOfflineImage(
+                    `kshetra_dp_${sevaKshetra}`,
+                    `https://sanatansevasamiti.org/public_html/Images/ss/${sevaKshetra}_dp.jpg`
+                )
+            );
+            promises.push(
+                getOfflineImage(
+                    `kshetra_cover_${sevaKshetra}`,
+                    `https://sanatansevasamiti.org/public_html/Images/ss/${sevaKshetra}_cover.jpg`
+                )
+            );
+        }
+
+        if (user.cover_photo) {
+            promises.push(getOfflineImage("user_cover_dp", user.cover_photo));
+        }
+
+        await Promise.allSettled(promises);
+        console.log("[ImageCache] Pre-caching completed successfully.");
+    } catch (e) {
+        console.warn("[ImageCache] Pre-caching batch error:", e);
+    }
+}

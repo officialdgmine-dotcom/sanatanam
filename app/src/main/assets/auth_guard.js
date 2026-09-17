@@ -1,20 +1,47 @@
 // Auth guard script for SANATANAM App
-(function() {
+function checkAuth() {
     try {
-        const raw = localStorage.getItem("sss_user_data");
-        const currentPage = window.location.pathname.split('/').pop() || "";
-        
-        // If user is on protected screen without authentication
-        const protectedPages = ["home.html", "app_home.html", "app_dashboard.html", "app_wallet.html", "id_card.html"];
-        const authPages = ["app_login.html", "app_register.html", "index.html"];
-
-        if (protectedPages.includes(currentPage)) {
-            if (!raw) {
-                console.log("[AuthGuard] No session found. Redirecting to app_login.html");
-                window.location.replace("app_login.html");
-            }
+        const userData = localStorage.getItem("sss_user_data");
+        if (!userData) {
+            window.location.replace("welcome_flow.html");
+            return false;
         }
-    } catch(e) {
-        console.warn("[AuthGuard] Execution error handled gracefully:", e);
+        const u = JSON.parse(userData);
+        if (!u || (!u.id && !u.unique_id)) {
+            window.location.replace("welcome_flow.html");
+            return false;
+        }
+        return true;
+    } catch (e) {
+        window.location.replace("welcome_flow.html");
+        return false;
     }
-})();
+}
+
+// ग्लोबल लॉगआउट फंक्शन जो हर पेज से काम करेगा
+function logoutUser() {
+    try {
+        localStorage.removeItem("sss_user_token");
+        localStorage.removeItem("sss_user_data");
+        localStorage.removeItem("sss_wallet_balance");
+        localStorage.clear();
+        sessionStorage.clear();
+    } catch (e) {}
+    // लॉगआउट के बाद सीधे वेलकम फ्लो स्क्रीन पर भेजें
+    window.location.replace("welcome_flow.html");
+}
+
+// सुरक्षित कॉल ताकि पुराने कोड में handleLogout भी logoutUser को कॉल करे
+function handleLogout() {
+    if (confirm("क्या आप लॉगआउट करना चाहते हैं?")) {
+        logoutUser();
+    }
+}
+
+// संरक्षित पेजों पर तुरंत जांचें (सिवाय welcome और login पेजों के)
+const currentPath = window.location.pathname.toLowerCase();
+if (!currentPath.includes("welcome_flow") && 
+    !currentPath.includes("app_login") && 
+    !currentPath.includes("register")) {
+    checkAuth();
+}

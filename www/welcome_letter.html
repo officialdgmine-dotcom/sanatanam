@@ -176,8 +176,11 @@ function logoutUser() {
     try {
         localStorage.removeItem("sss_user_token");
         localStorage.removeItem("sss_user_data");
+        localStorage.removeItem("sss_wallet_balance");
+        localStorage.clear();
+        sessionStorage.clear();
     } catch(e) {}
-    window.location.href = "app_login.html";
+    window.location.href = "welcome_flow.html";
 }
 </script>
 <script src="footer_nav.js"></script>

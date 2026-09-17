@@ -233,6 +233,10 @@ async function handleAppLogin(e) {
             try {
                 localStorage.setItem("sss_user_token", data.token);
                 localStorage.setItem("sss_user_data", JSON.stringify(data.user));
+                // बैकग्राउंड में सभी आवश्यक इमेजेस को बेस64 में प्री-कैश करें
+                if (typeof preCacheUserAssets === "function") {
+                    preCacheUserAssets(data.user);
+                }
             } catch(storageErr) {}
 
             if (window.AndroidBridge && window.AndroidBridge.onAuthSuccess) {
@@ -311,6 +315,6 @@ async function searchUserId() {
     }
 }
 </script>
-
+<script src="image_cache.js"></script>
 </body>
 </html>

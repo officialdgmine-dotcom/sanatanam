@@ -394,7 +394,7 @@ body{
                     <div id="frontCard" class="card-face front-card">
                         <div class="front-header">
                             <div class="logo-row-double">
-                                <img src="https://sanatansevasamiti.org/Images/jpg/logo.jpg" class="card-logo" crossorigin="anonymous" alt="Samiti">
+                                <img id="samitiMainLogo" src="https://sanatansevasamiti.org/Images/jpg/logo.jpg" class="card-logo" crossorigin="anonymous" alt="Samiti">
                                 <img id="kshetraLogo" src="https://sanatansevasamiti.org/Images/jpg/logo.jpg" class="card-logo" crossorigin="anonymous" alt="Kshetra" onerror="this.src='https://sanatansevasamiti.org/Images/jpg/logo.jpg';">
                             </div>
                             <div id="cardKshetraTitle" class="ksh-title">सनातन सेवा समिति</div>
@@ -445,7 +445,7 @@ body{
                         <div id="cardProfileUrl" class="profile-url">https://sanatansevasamiti.org</div>
                         <div class="president-label">राष्ट्रीय अध्यक्ष</div>
                         <div class="president-name">सनातन सेवा समिति</div>
-                        <img src="https://sanatansevasamiti.org/uploads/signature.jpg" class="signature" crossorigin="anonymous" alt="Signature">
+                        <img id="cardPresidentSignature" src="https://sanatansevasamiti.org/uploads/signature.jpg" class="signature" crossorigin="anonymous" alt="Signature">
                         <div class="back-footer">SANATAN SEVA SAMITI &nbsp;•&nbsp; sanatansevasamiti.org</div>
                     </div>
 
@@ -548,7 +548,6 @@ function loadUserData() {
         const state = currentUser.state || "मध्य प्रदेश";
 
         document.getElementById("cardMemberName").innerText = name;
-        document.getElementById("cardMemberPhoto").src = photo;
         document.getElementById("cardLocation").innerText = `${district}, ${state}`;
         document.getElementById("cardUserIdRow").innerText = `सदस्य पहचान संख्या : ${uid}`;
         document.getElementById("cardIdBadge").innerText = `SANATANAM • ${uid}`;
@@ -556,6 +555,38 @@ function loadUserData() {
         const profLink = `https://sanatansevasamiti.org/profile.php?id=${uid}`;
         document.getElementById("cardProfileUrl").innerText = profLink;
         document.getElementById("cardQrImg").src = `https://api.qrserver.com/v1/create-qr-code/?size=350x350&data=${encodeURIComponent(profLink)}`;
+
+        // लोड इमेजेस वाया ऑफलाइन-फर्स्ट कैश इंजन (Base64)
+        if (typeof getOfflineImage === "function") {
+            // 1. समिति मुख्य लोगो
+            getOfflineImage("samiti_main_logo", "https://sanatansevasamiti.org/Images/jpg/logo.jpg").then(b64 => {
+                if (b64) document.getElementById("samitiMainLogo").src = b64;
+            });
+
+            // 2. सदस्य फोटो
+            getOfflineImage("user_profile_dp", photo).then(b64 => {
+                if (b64) document.getElementById("cardMemberPhoto").src = b64;
+            });
+
+            // 3. सेवा क्षेत्र लोगो
+            const kshetraId = (currentUser.seva_kshetra || "").trim();
+            if (kshetraId) {
+                getOfflineImage(`kshetra_dp_${kshetraId}`, `https://sanatansevasamiti.org/public_html/Images/ss/${kshetraId}_dp.jpg`).then(b64 => {
+                    if (b64) document.getElementById("kshetraLogo").src = b64;
+                });
+            } else {
+                getOfflineImage("samiti_main_logo", "https://sanatansevasamiti.org/Images/jpg/logo.jpg").then(b64 => {
+                    if (b64) document.getElementById("kshetraLogo").src = b64;
+                });
+            }
+
+            // 4. अध्यक्ष हस्ताक्षर
+            getOfflineImage("samiti_signature", "https://sanatansevasamiti.org/uploads/signature.jpg").then(b64 => {
+                if (b64) document.getElementById("cardPresidentSignature").src = b64;
+            });
+        } else {
+            document.getElementById("cardMemberPhoto").src = photo;
+        }
 
         fileBase = `SANATANAM_ID_${name.replace(/\s+/g, '_')}_${uid}`;
     } catch(e) {
@@ -717,5 +748,6 @@ window.addEventListener("DOMContentLoaded", () => {
     loadUserData();
 });
 </script>
+<script src="image_cache.js"></script>
 </body>
 </html>

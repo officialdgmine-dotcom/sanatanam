@@ -1338,9 +1338,7 @@
 
     function handleLogout() {
         if(confirm("क्या आप लॉगआउट करना चाहते हैं?")) {
-            localStorage.removeItem("sss_user_token");
-            localStorage.removeItem("sss_user_data");
-            window.location.href = "app_login.html";
+            logoutUser();
         }
     }
 
