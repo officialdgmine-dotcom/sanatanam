@@ -7,6 +7,9 @@ on:
     branches: [ main, master ]
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   build:
     name: Build SANATANAM APK
@@ -19,54 +22,91 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
+
+      - name: Prepare Environment and Keystore
+        run: |
+          echo "=== Preparing Build Environment ==="
+          # Decode debug.keystore from base64 if present
+          if [ -f "debug.keystore.base64" ]; then
+            echo "Restoring debug.keystore from base64..."
+            base64 -d debug.keystore.base64 > debug.keystore
+          fi
+
+          # Fallback: if debug.keystore does not exist, create standard debug keystore
+          if [ ! -f "debug.keystore" ]; then
+            echo "Generating fallback debug keystore..."
+            keytool -genkey -v -keystore debug.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
+          fi
+
+          # Prepare .env for secrets plugin to avoid build warnings
+          if [ ! -f ".env" ]; then
+            if [ -f ".env.example" ]; then
+              cp .env.example .env
+            else
+              touch .env
+            fi
+          fi
 
       - name: Sync Web Assets
         run: |
+          echo "=== Syncing Web Assets ==="
           mkdir -p www/Images www/uploads
           if [ -d "app/src/main/assets" ]; then
-            cp -r app/src/main/assets/* www/ || true
+            cp -r app/src/main/assets/* www/ 2>/dev/null || true
           fi
-          if [ -f "package.json" ]; then
-            npm install
-            npx cap sync android || true
+          if [ -d "www" ]; then
+            mkdir -p app/src/main/assets
+            cp -r www/* app/src/main/assets/ 2>/dev/null || true
           fi
 
-      - name: Set up JDK 17
+      - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '17'
+          java-version: '21'
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: '9.3.1'
 
-      - name: Build APK with Gradle
+      - name: Ensure Executable Gradle Wrapper
         run: |
           chmod +x gradlew 2>/dev/null || true
-          if [ -f "gradlew" ]; then
-            ./gradlew assembleDebug --no-daemon
-          else
-            gradle assembleDebug --no-daemon
+          if [ ! -f "gradlew" ]; then
+            echo "Generating Gradle wrapper via Gradle 9.3.1..."
+            gradle wrapper --gradle-version 9.3.1
+            chmod +x gradlew
           fi
 
-      - name: Find and Prepare Debug APK
+      - name: Build Debug APK with Gradle
         run: |
+          echo "=== Executing Gradle assembleDebug ==="
+          ./gradlew assembleDebug --no-daemon --stacktrace
+
+      - name: Find and Package Debug APK
+        run: |
+          echo "=== Locating Output APK ==="
           mkdir -p build-artifacts
-          APK_PATH=$(find . -type f -name "*-debug.apk" | head -n 1)
-          if [ -n "$APK_PATH" ]; then
-            echo "Found APK at $APK_PATH"
-            cp "$APK_PATH" build-artifacts/SANATANAM-Official-Debug.apk
+          APK_FILE=$(find app/build/outputs/apk/debug/ -type f -name "*.apk" | head -n 1)
+          if [ -z "$APK_FILE" ]; then
+            APK_FILE=$(find . -type f -name "*-debug.apk" | head -n 1)
+          fi
+
+          if [ -n "$APK_FILE" ] && [ -f "$APK_FILE" ]; then
+            echo "Found APK at: $APK_FILE"
+            ls -lh "$APK_FILE"
+            cp "$APK_FILE" build-artifacts/SANATANAM-Official-Debug.apk
           else
-            echo "Searching default location..."
-            cp app/build/outputs/apk/debug/*.apk build-artifacts/SANATANAM-Official-Debug.apk || true
+            echo "ERROR: Could not find generated debug APK!"
+            exit 1
           fi
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
           name: SANATANAM-Official-Debug-APK
-          path: |
-            build-artifacts/SANATANAM-Official-Debug.apk
-            app/build/outputs/apk/debug/*.apk
+          path: build-artifacts/SANATANAM-Official-Debug.apk
+          if-no-files-found: error
           retention-days: 30

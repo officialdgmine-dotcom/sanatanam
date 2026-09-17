@@ -8,6 +8,7 @@
 <!-- External Scripts for Canvas & Zip -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -30,14 +31,21 @@ body {
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border: 2px solid #ecd580;
 }
-.cover { height: 185px; width: 100%; background: #2b0000; overflow: hidden; position: relative; }
-.cover img { width: 100%; height: 100%; object-fit: cover; }
+.cover { 
+    height: 185px; 
+    width: 100%; 
+    background: linear-gradient(135deg, #42040c, #700a18); 
+    overflow: hidden; 
+    position: relative; 
+}
+.cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .profile-body { padding: 0 20px 20px 20px; text-align: center; }
 .avatar-wrapper { margin-top: -65px; position: relative; display: inline-block; }
 .avatar {
-    width: 175px; height: 175px;
-    border: 5px solid #fff;
+    width: 145px; height: 145px;
+    border: 4px solid #fff;
     border-radius: 50%;
     object-fit: cover;
     background: #fff;
@@ -259,6 +267,10 @@ body {
     position: absolute; top: 10px; left: 0; width: 360px; height: 68px;
     display: flex; justify-content: space-between; align-items: center; padding: 0 24px;
 }
+.logo-row-single {
+    position: absolute; top: 10px; left: 0; width: 360px; height: 68px;
+    display: flex; justify-content: center; align-items: center;
+}
 .card-logo { width: 61px; height: 61px; border-radius: 50%; object-fit: cover; background: #fff; border: 3px solid #f1cd62; box-shadow: 0 4px 14px rgba(0,0,0,.45); }
 .single-logo { width: 65px; height: 65px; }
 .ksh-title {
@@ -384,7 +396,7 @@ body {
             <h2 id="dashUserName" class="user-name">सनातन सेवक</h2>
             
             <div class="user-id-text" id="dashUserIdContainer">
-                ID: PRO1781011172
+                ID: ---
             </div>
             
             <!-- मुख्य बैज: यदि पद है तो पद, अन्यथा सदस्यता -->
@@ -487,9 +499,12 @@ body {
                     <!-- FRONT SIDE -->
                     <div id="frontCard" class="card-face front-card">
                         <div class="front-header">
-                            <div class="logo-row-double" id="idLogoRow">
-                                <img src="https://sanatansevasamiti.org/Images/jpg/logo.jpg" class="card-logo" crossorigin="anonymous" alt="Samiti">
+                            <div class="logo-row-double" id="idLogoRowDouble">
                                 <img id="idKshetraLogo" src="https://sanatansevasamiti.org/Images/jpg/logo.jpg" class="card-logo" crossorigin="anonymous" alt="Kshetra" onerror="this.src='https://sanatansevasamiti.org/Images/jpg/logo.jpg';">
+                                <img src="https://sanatansevasamiti.org/Images/jpg/logo.jpg" class="card-logo" crossorigin="anonymous" alt="Samiti">
+                            </div>
+                            <div class="logo-row-single" id="idLogoRowSingle" style="display:none;">
+                                <img src="https://sanatansevasamiti.org/Images/jpg/logo.jpg" class="card-logo single-logo" crossorigin="anonymous" alt="Samiti">
                             </div>
                             <div class="ksh-title" id="cardKshetraTitle">सनातन सेवा समिति</div>
                         </div>
@@ -538,7 +553,7 @@ body {
                         </div>
 
                         <div class="profile-url" id="cardProfileUrl">https://sanatansevasamiti.org</div>
-                        <div class="president-label">राष्ट्रीय अध्यक्ष</div>
+                        <div class="president-label">संस्थापक एवं राष्ट्रीय अध्यक्ष</div>
                         <div class="president-name">सनातन सेवा समिति</div>
                         <img src="https://sanatansevasamiti.org/uploads/signature.jpg" class="signature" crossorigin="anonymous" alt="Signature">
                         <div class="back-footer">SANATAN SEVA SAMITI • sanatansevasamiti.org</div>
@@ -600,6 +615,7 @@ let fileBase = "SANATANAM_ID_CARD";
 
 const ROLE_EXPLANATIONS = {
     'Admin': 'आप एडमिन हैं। आपके पास समिति के प्रबंधन, संचालन और महत्वपूर्ण निर्णयों के विशेष अधिकार हैं।',
+    'Sanatan Seva Samiti': 'आप एडमिन हैं। आपके पास समिति के प्रबंधन, संचालन और महत्वपूर्ण निर्णयों के विशेष अधिकार हैं।',
     'Sanrakshan Sadasya': 'इस सदस्यता पर होने से आपको कार्यों को देखकर पद मिलने की प्रबल संभावना है। पदाधिकारी हमेशा संरक्षण सदस्यों में से ही चुने जाते हैं।',
     'Aajiwan Sadasya': 'आप समिति के आजीवन सदस्य हैं। आप समिति की हर गतिविधि को देख पाएंगे, उनमें भाग ले पाएंगे और समिति के साथ स्थाई रूप से जुड़े हैं।',
     'Sammaniya Sadasya': 'समिति के किसी भी सम्मेलन या विशेष कार्यक्रमों में आपको सम्मान के लिए विशेष रूप से आमंत्रित किया जाता है।',
@@ -608,6 +624,7 @@ const ROLE_EXPLANATIONS = {
 
 const ROLE_HINDI_MAP = {
     'Admin': 'एडमिन',
+    'Sanatan Seva Samiti': 'एडमिन',
     'Sanrakshan Sadasya': 'संरक्षण सदस्य',
     'Aajiwan Sadasya': 'आजीवन सदस्य',
     'Sammaniya Sadasya': 'सम्मानित सदस्य',
@@ -649,77 +666,101 @@ function loadDashboardUserData() {
         if (!raw) return;
 
         const u = JSON.parse(raw);
-        const name = u.full_name || "सनातन सेवक";
-        const uid = u.unique_id || "";
-        const photo = u.profile_photo ? ("https://sanatansevasamiti.org/" + u.profile_photo.replace(/^\/+/, '')) : "https://sanatansevasamiti.org/Images/jpg/logo.jpg";
-        const dist = u.district || "मुरैना";
-        const state = u.state || "मध्य प्रदेश";
-        const rawRole = u.role || "Sadharan Sadasya";
-        const hindiRole = ROLE_HINDI_MAP[rawRole] || rawRole;
-        const isApproved = (u.status === 'approved' && Boolean(uid));
-        
-        // चेक करें कि क्या यूजर के पास कोई पद (Designation) है
-        const designation = (u.pad_naam || u.designation || "").trim();
-        
-        // यदि पद है तो मुख्य बैज और ID कार्ड पर पद दिखाएँ, अन्यथा सदस्यता
-        const displayPostOrRole = designation ? designation : (isApproved ? hindiRole : 'पंजीकृत सदस्य (स्वीकृति प्रतीक्षारत)');
+        renderUserInterface(u);
 
-        // 1. प्रोफाइल कार्ड डेटा सेट
-        document.getElementById("dashUserName").innerText = name;
-        document.getElementById("dashAvatarImg").src = photo;
-        document.getElementById("dashUserIdContainer").innerText = isApproved ? ("ID: " + uid) : "⏳ स्थिति: स्वीकृति प्रतीक्षारत (Pending)";
-        document.getElementById("dashDisplayBadge").innerText = displayPostOrRole;
-
-        // सेवा क्षेत्र के अनुसार कवर फोटो सेट करना
-        if (u.seva_kshetra) {
-            document.getElementById("dashCoverImg").src = "https://sanatansevasamiti.org/public_html/Images/ss/" + u.seva_kshetra + "_cover.jpg";
-            document.getElementById("idKshetraLogo").src = "https://sanatansevasamiti.org/public_html/Images/ss/" + u.seva_kshetra + "_dp.jpg";
-        }
-
-        // सेवा क्षेत्र नाम
-        if (u.seva_kshetra_name) {
-            document.getElementById("cardKshetraTitle").innerText = u.seva_kshetra_name;
-        }
-
-        // पेंडिंग नोटिस व ID कार्ड प्रदर्शन
-        if (!isApproved) {
-            document.getElementById("dashPendingNotice").style.display = "block";
-            document.getElementById("idCardSection").style.display = "none";
-        } else {
-            document.getElementById("dashPendingNotice").style.display = "none";
-            document.getElementById("idCardSection").style.display = "flex";
-        }
-
-        // 2. सदस्यता विवरण कार्ड (यहाँ हमेशा मूल सदस्यता दिखाई जाएगी)
-        document.getElementById("boxRoleTitle").innerText = "मेरी सदस्यता: " + hindiRole;
-        document.getElementById("boxRoleDesc").innerText = ROLE_EXPLANATIONS[rawRole] || "आप सनातन सेवा समिति के पंजीकृत सदस्य हैं।";
-
-        // 3. डिजिटल वॉलेट एवं लाइव मेट्रिक्स
-        document.getElementById("lwUserId").innerText = uid || "---";
-        if (u.wallet_balance !== undefined) {
-            document.getElementById("liveWalletAmount").innerText = "₹" + parseFloat(u.wallet_balance).toFixed(2);
-        }
-
-        // 4. ID Card फ़ील्ड्स बाइंडिंग
-        document.getElementById("cardMemberName").innerText = name;
-        document.getElementById("cardMemberPhoto").src = photo;
-        document.getElementById("cardMemberRole").innerText = displayPostOrRole;
-        document.getElementById("cardLocation").innerText = `${dist}, ${state}`;
-        document.getElementById("cardUserIdRow").innerText = `सदस्य पहचान संख्या : ${uid}`;
-        document.getElementById("cardIdBadge").innerText = `SANATANAM • ${uid}`;
-
-        const profLink = `https://sanatansevasamiti.org/profile.php?id=${uid}`;
-        document.getElementById("cardProfileUrl").innerText = profLink;
-        document.getElementById("cardQrImg").src = `https://api.qrserver.com/v1/create-qr-code/?size=350x350&data=${encodeURIComponent(profLink)}`;
-
-        fileBase = `SANATANAM_ID_${name.replace(/\s+/g, '_')}_${uid}`;
-
-        // 5. सर्वर से ताज़ा दान मेट्रिक्स व ट्रांज़ैक्शन लोड करें
-        fetchLiveUserData(uid);
+        // लाइव बैकएंड से नवीनतम डेटा फेच करें
+        fetchLiveUserData(u.unique_id || u.id);
 
     } catch(e) {
         console.log("Local session check error:", e);
     }
+}
+
+function renderUserInterface(u) {
+    const name = u.full_name || "सनातन सेवक";
+    const uid = u.unique_id || "";
+    
+    // प्रोफ़ाइल फोटो रिज़ॉल्यूशन
+    let photo = "https://sanatansevasamiti.org/Images/jpg/logo.jpg";
+    if (u.profile_photo) {
+        photo = u.profile_photo.startsWith("http") 
+            ? u.profile_photo 
+            : "https://sanatansevasamiti.org/" + u.profile_photo.replace(/^\/+/, '');
+    }
+
+    const dist = u.district || "मुरैना";
+    const state = u.state || "मध्य प्रदेश";
+    const rawRole = u.role || "Sadharan Sadasya";
+    const hindiRole = ROLE_HINDI_MAP[rawRole] || rawRole;
+    const isApproved = (u.status === 'approved' && Boolean(uid));
+    
+    // -------------------------------------------------------------
+    // पद (Designation) प्राथमिकता नियम
+    // -------------------------------------------------------------
+    const designation = (u.pad_naam || u.display_designation || u.designation || "").trim();
+    
+    // यदि व्यक्ति को पद प्राप्त है तो वही दिखेगा, अन्यथा सामान्य सदस्यता
+    const displayPostOrRole = designation ? designation : (isApproved ? hindiRole : 'पंजीकृत सदस्य (स्वीकृति प्रतीक्षारत)');
+
+    // 1. प्रोफाइल कार्ड डेटा सेट
+    document.getElementById("dashUserName").innerText = name;
+    document.getElementById("dashAvatarImg").src = photo;
+    document.getElementById("dashUserIdContainer").innerText = isApproved ? ("ID: " + uid) : "⏳ स्थिति: स्वीकृति प्रतीक्षारत (Pending)";
+    document.getElementById("dashDisplayBadge").innerText = displayPostOrRole;
+
+    // कवर फ़ोटो एवं सेवा क्षेत्र लोगो सेट करना
+    const sevaKshetra = (u.seva_kshetra || "").trim();
+    const isMainSamiti = (!sevaKshetra || sevaKshetra === 'PRO1781011172');
+
+    if (u.cover_photo) {
+        document.getElementById("dashCoverImg").src = u.cover_photo;
+    } else if (sevaKshetra) {
+        document.getElementById("dashCoverImg").src = `https://sanatansevasamiti.org/public_html/Images/ss/${sevaKshetra}_cover.jpg`;
+    }
+
+    if (isMainSamiti) {
+        document.getElementById("idLogoRowDouble").style.display = "none";
+        document.getElementById("idLogoRowSingle").style.display = "flex";
+        document.getElementById("cardKshetraTitle").innerText = "⚜️ सनातन सेवा समिति ⚜️";
+    } else {
+        document.getElementById("idLogoRowSingle").style.display = "none";
+        document.getElementById("idLogoRowDouble").style.display = "flex";
+        document.getElementById("idKshetraLogo").src = `https://sanatansevasamiti.org/public_html/Images/ss/${sevaKshetra}_dp.jpg`;
+        document.getElementById("cardKshetraTitle").innerText = u.seva_kshetra_name || "सनातन सेवा समिति";
+    }
+
+    // पेंडिंग नोटिस व ID कार्ड दृश्यता
+    if (!isApproved) {
+        document.getElementById("dashPendingNotice").style.display = "block";
+        document.getElementById("idCardSection").style.display = "none";
+    } else {
+        document.getElementById("dashPendingNotice").style.display = "none";
+        document.getElementById("idCardSection").style.display = "flex";
+    }
+
+    // 2. सदस्यता विवरण कार्ड (यहाँ मूल सदस्यता दिखेगी)
+    document.getElementById("boxRoleTitle").innerText = "मेरी सदस्यता: " + hindiRole;
+    document.getElementById("boxRoleDesc").innerText = ROLE_EXPLANATIONS[rawRole] || "आप सनातन सेवा समिति के पंजीकृत सदस्य हैं।";
+
+    // 3. डिजिटल वॉलेट
+    document.getElementById("lwUserId").innerText = uid || "---";
+    if (u.wallet_balance !== undefined) {
+        document.getElementById("liveWalletAmount").innerText = "₹" + parseFloat(u.wallet_balance).toFixed(2);
+    }
+
+    // 4. ID Card फ़ील्ड्स बाइंडिंग
+    document.getElementById("cardMemberName").innerText = name;
+    document.getElementById("cardMemberPhoto").src = photo;
+    document.getElementById("cardMemberRole").innerText = displayPostOrRole;
+    document.getElementById("cardLocation").innerText = `${dist}, ${state}`;
+    document.getElementById("cardUserIdRow").innerText = `सदस्य पहचान संख्या : ${uid}`;
+    document.getElementById("cardIdBadge").innerText = `SANATANAM • ${uid}`;
+
+    const profLink = `https://sanatansevasamiti.org/profile.php?id=${encodeURIComponent(uid)}`;
+    document.getElementById("cardProfileUrl").innerText = profLink;
+    document.getElementById("cardQrImg").src = `https://api.qrserver.com/v1/create-qr-code/?size=350x350&data=${encodeURIComponent(profLink)}`;
+
+    fileBase = `SANATANAM_ID_${name.replace(/\s+/g, '_')}_${uid}`;
 }
 
 // -------------------------------------------------------------
@@ -730,7 +771,14 @@ async function fetchLiveUserData(uid) {
     try {
         const res = await fetch(`https://sanatansevasamiti.org/api/get_user_dashboard.php?user_id=${encodeURIComponent(uid)}`);
         const data = await res.json();
-        if (data && (data.status || data.success || data.transactions)) {
+        
+        if (data && data.status) {
+            // यदि बैकएंड से ताज़ा यूज़र डेटा मिला है तो री-रेंडर करें
+            if (data.user) {
+                renderUserInterface(data.user);
+                localStorage.setItem("sss_user_data", JSON.stringify(data.user));
+            }
+
             if (data.wallet_balance !== undefined) {
                 document.getElementById("liveWalletAmount").innerText = "₹" + parseFloat(data.wallet_balance).toFixed(2);
                 localStorage.setItem("sss_wallet_balance", data.wallet_balance);
@@ -745,13 +793,13 @@ async function fetchLiveUserData(uid) {
                 document.getElementById("statSeva").innerText = data.total_seva + " बार";
             }
 
-            // रसीद व ट्रांज़ैक्शन लिस्ट रेंडर करना
+            // रसीद व लेन-देन सूची
             if (Array.isArray(data.transactions) && data.transactions.length > 0) {
                 document.getElementById("txnCountBadge").innerText = `कुल: ${data.transactions.length} लेन-देन`;
                 let txHtml = "";
                 data.transactions.forEach(t => {
                     const isPending = (t.status === 'pending');
-                    let amtStr = "+ ₹" + parseFloat(t.amount || 0).toFixed(2);
+                    let amtStr = "+ ₹" + parseFloat(t.amount).toFixed(2);
                     let amtStyle = "color: #158146;";
                     if (t.amount_type === 'ann') {
                         amtStr = "🌾 " + t.amount + " Kg";
@@ -761,7 +809,7 @@ async function fetchLiveUserData(uid) {
                         amtStyle = "color: #c62828;";
                     }
 
-                    const recUrl = `https://sanatansevasamiti.org/samiti/view_receipt.php?tx_id=${encodeURIComponent(t.tx_id || '')}`;
+                    const recUrl = `https://sanatansevasamiti.org/samiti/view_receipt.php?tx_id=${encodeURIComponent(t.tx_id)}`;
                     txHtml += `
                         <div class="txn-item">
                             <div class="txn-row-top">
@@ -785,31 +833,10 @@ async function fetchLiveUserData(uid) {
                     `;
                 });
                 document.getElementById("txnListContainer").innerHTML = txHtml;
-            } else {
-                document.getElementById("txnCountBadge").innerText = "कुल: 0 लेन-देन";
-                document.getElementById("txnListContainer").innerHTML = `
-                    <div style="text-align:center; padding:15px; color:#888; font-size:12px;">
-                        कोई पूर्व लेन-देन रिकॉर्ड उपलब्ध नहीं है।
-                    </div>
-                `;
             }
-        } else {
-            document.getElementById("txnListContainer").innerHTML = `
-                <div style="text-align:center; padding:15px; color:#888; font-size:12px;">
-                    कोई पूर्व लेन-देन रिकॉर्ड उपलब्ध नहीं है।
-                </div>
-            `;
         }
     } catch(err) {
-        console.log("Live dashboard polling offline / fallback active:", err);
-        const container = document.getElementById("txnListContainer");
-        if (container) {
-            container.innerHTML = `
-                <div style="text-align:center; padding:15px; color:#888; font-size:12px;">
-                    स्थानीय ऑफलाइन मोड सक्रिय है।
-                </div>
-            `;
-        }
+        console.log("Live dashboard polling offline / fallback active.");
     }
 }
 
