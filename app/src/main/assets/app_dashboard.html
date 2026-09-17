@@ -386,11 +386,11 @@ body {
     <!-- 1. प्रोफाइल कार्ड (डायनामिक कवर, फोटो, नाम व पद/रोल) -->
     <div class="profile-container">
         <div class="cover">
-            <img id="dashCoverImg" src="https://sanatansevasamiti.org/Images/jpg/logo.jpg" alt="Cover" onerror="this.src='https://sanatansevasamiti.org/Images/jpg/logo.jpg';">
+            <img id="dashCoverImg" src="https://sanatansevasamiti.org/Images/jpg/logo.jpg" crossorigin="anonymous" alt="Cover" onerror="this.src='https://sanatansevasamiti.org/Images/jpg/logo.jpg';">
         </div>
         <div class="profile-body">
             <div class="avatar-wrapper">
-                <img id="dashAvatarImg" src="https://sanatansevasamiti.org/Images/jpg/logo.jpg" class="avatar" alt="Profile Photo" onerror="this.src='https://sanatansevasamiti.org/Images/jpg/logo.jpg';">
+                <img id="dashAvatarImg" src="https://sanatansevasamiti.org/Images/jpg/logo.jpg" class="avatar" crossorigin="anonymous" alt="Profile Photo" onerror="this.src='https://sanatansevasamiti.org/Images/jpg/logo.jpg';">
             </div>
             
             <h2 id="dashUserName" class="user-name">सनातन सेवक</h2>
@@ -681,12 +681,15 @@ function renderUserInterface(u) {
     const name = u.full_name || "सनातन सेवक";
     const uid = u.unique_id || "";
     
-    // प्रोफ़ाइल फोटो रिज़ॉल्यूशन
+    // प्रोफ़ाइल फोटो रिज़ॉल्यूशन (via api/get_media.php)
     let photo = "https://sanatansevasamiti.org/Images/jpg/logo.jpg";
     if (u.profile_photo) {
-        photo = u.profile_photo.startsWith("http") 
-            ? u.profile_photo 
-            : "https://sanatansevasamiti.org/" + u.profile_photo.replace(/^\/+/, '');
+        if (typeof getUserProfileMediaUrl === "function") {
+            photo = getUserProfileMediaUrl(u.profile_photo);
+        } else {
+            const clean = u.profile_photo.replace(/^.*[\\\/]/, '').trim();
+            photo = clean ? `https://sanatansevasamiti.org/api/get_media.php?file=${encodeURIComponent(clean)}` : "https://sanatansevasamiti.org/Images/jpg/logo.jpg";
+        }
     }
 
     const dist = u.district || "मुरैना";
@@ -708,12 +711,18 @@ function renderUserInterface(u) {
     document.getElementById("dashUserIdContainer").innerText = isApproved ? ("ID: " + uid) : "⏳ स्थिति: स्वीकृति प्रतीक्षारत (Pending)";
     document.getElementById("dashDisplayBadge").innerText = displayPostOrRole;
 
-    // कवर फ़ोटो एवं सेवा क्षेत्र लोगो सेट करना
+    // कवर फ़ोटो एवं सेवा क्षेत्र लोगो सेट करना (via api/get_media.php)
     const sevaKshetra = (u.seva_kshetra || "").trim();
     const isMainSamiti = (!sevaKshetra || sevaKshetra === 'PRO1781011172');
 
-    const coverUrl = u.cover_photo ? u.cover_photo : (sevaKshetra ? `https://sanatansevasamiti.org/public_html/Images/ss/${sevaKshetra}_cover.jpg` : "https://sanatansevasamiti.org/Images/jpg/logo.jpg");
-    const kshetraDpUrl = sevaKshetra ? `https://sanatansevasamiti.org/public_html/Images/ss/${sevaKshetra}_dp.jpg` : "https://sanatansevasamiti.org/Images/jpg/logo.jpg";
+    const coverUrl = (typeof getCoverMediaUrl === "function") 
+        ? getCoverMediaUrl(sevaKshetra, u.cover_photo)
+        : (sevaKshetra ? `https://sanatansevasamiti.org/api/get_media.php?pid=${encodeURIComponent(sevaKshetra)}&type=cover` : "https://sanatansevasamiti.org/Images/jpg/logo.jpg");
+
+    const kshetraDpUrl = (typeof getKshetraDpMediaUrl === "function")
+        ? getKshetraDpMediaUrl(sevaKshetra)
+        : (sevaKshetra ? `https://sanatansevasamiti.org/api/get_media.php?pid=${encodeURIComponent(sevaKshetra)}&type=dp` : "https://sanatansevasamiti.org/Images/jpg/logo.jpg");
+
     const samitiMainLogoUrl = "https://sanatansevasamiti.org/Images/jpg/logo.jpg";
     const signatureUrl = "https://sanatansevasamiti.org/uploads/signature.jpg";
 

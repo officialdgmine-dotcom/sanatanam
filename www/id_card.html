@@ -543,7 +543,17 @@ function loadUserData() {
         currentUser = JSON.parse(raw);
         const name = currentUser.full_name || "सदस्य";
         const uid = currentUser.unique_id || "PRO1781";
-        const photo = currentUser.profile_photo ? ("https://sanatansevasamiti.org/" + currentUser.profile_photo) : "https://sanatansevasamiti.org/Images/jpg/logo.jpg";
+        
+        let photo = "https://sanatansevasamiti.org/Images/jpg/logo.jpg";
+        if (currentUser.profile_photo) {
+            if (typeof getUserProfileMediaUrl === "function") {
+                photo = getUserProfileMediaUrl(currentUser.profile_photo);
+            } else {
+                const clean = currentUser.profile_photo.replace(/^.*[\\\/]/, '').trim();
+                photo = clean ? `https://sanatansevasamiti.org/api/get_media.php?file=${encodeURIComponent(clean)}` : "https://sanatansevasamiti.org/Images/jpg/logo.jpg";
+            }
+        }
+
         const district = currentUser.district || "मुरैना";
         const state = currentUser.state || "मध्य प्रदेश";
 
@@ -563,15 +573,19 @@ function loadUserData() {
                 if (b64) document.getElementById("samitiMainLogo").src = b64;
             });
 
-            // 2. सदस्य फोटो
+            // 2. सदस्य फोटो (via get_media.php)
             getOfflineImage("user_profile_dp", photo).then(b64 => {
                 if (b64) document.getElementById("cardMemberPhoto").src = b64;
             });
 
-            // 3. सेवा क्षेत्र लोगो
+            // 3. सेवा क्षेत्र लोगो (via get_media.php)
             const kshetraId = (currentUser.seva_kshetra || "").trim();
-            if (kshetraId) {
-                getOfflineImage(`kshetra_dp_${kshetraId}`, `https://sanatansevasamiti.org/public_html/Images/ss/${kshetraId}_dp.jpg`).then(b64 => {
+            const kshetraDpUrl = (typeof getKshetraDpMediaUrl === "function") 
+                ? getKshetraDpMediaUrl(kshetraId)
+                : (kshetraId ? `https://sanatansevasamiti.org/api/get_media.php?pid=${encodeURIComponent(kshetraId)}&type=dp` : "https://sanatansevasamiti.org/Images/jpg/logo.jpg");
+
+            if (kshetraId && kshetraId !== 'PRO1781011172') {
+                getOfflineImage(`kshetra_dp_${kshetraId}`, kshetraDpUrl).then(b64 => {
                     if (b64) document.getElementById("kshetraLogo").src = b64;
                 });
             } else {

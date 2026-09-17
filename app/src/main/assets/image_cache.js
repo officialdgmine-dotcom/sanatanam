@@ -2,9 +2,66 @@
  * Offline-First Local Image Caching Engine
  * Caches images in localStorage as Base64 data URLs for instant zero-latency loading
  * and 100% offline rendering (including html2canvas exports and WebView sandbox).
+ * 
+ * Supports centralized Media Proxy API: api/get_media.php
+ * - DP: https://sanatansevasamiti.org/api/get_media.php?file={filename}
+ * - Kshetra DP: https://sanatansevasamiti.org/api/get_media.php?pid={seva_kshetra}&type=dp
+ * - Cover: https://sanatansevasamiti.org/api/get_media.php?pid={seva_kshetra}&type=cover
  */
 
 const IMAGE_CACHE_PREFIX = "cache_img_";
+
+/**
+ * Helper to build get_media.php URL for user profile photo
+ * @param {string} photoPath 
+ * @returns {string}
+ */
+function getUserProfileMediaUrl(photoPath) {
+    if (!photoPath) return "https://sanatansevasamiti.org/Images/jpg/logo.jpg";
+    if (photoPath.startsWith("data:image/")) return photoPath;
+
+    // यदि पहले से ही get_media.php या पूरी URL है तो फ़ाइल का नाम निकालें या उपयोग करें
+    if (photoPath.includes("get_media.php")) return photoPath;
+    
+    // फ़ाइलनेम एक्सट्रेक्ट करें
+    const cleanName = photoPath.replace(/^.*[\\\/]/, '').trim();
+    if (!cleanName) return "https://sanatansevasamiti.org/Images/jpg/logo.jpg";
+    return `https://sanatansevasamiti.org/api/get_media.php?file=${encodeURIComponent(cleanName)}`;
+}
+
+/**
+ * Helper to build get_media.php URL for Kshetra DP
+ * @param {string} sevaKshetra 
+ * @returns {string}
+ */
+function getKshetraDpMediaUrl(sevaKshetra) {
+    const k = (sevaKshetra || "").trim();
+    if (!k || k === 'PRO1781011172') {
+        return "https://sanatansevasamiti.org/Images/jpg/logo.jpg";
+    }
+    return `https://sanatansevasamiti.org/api/get_media.php?pid=${encodeURIComponent(k)}&type=dp`;
+}
+
+/**
+ * Helper to build get_media.php URL for Cover Photo
+ * @param {string} sevaKshetra 
+ * @param {string} customCover 
+ * @returns {string}
+ */
+function getCoverMediaUrl(sevaKshetra, customCover) {
+    if (customCover) {
+        if (customCover.startsWith("data:image/") || customCover.includes("get_media.php")) return customCover;
+        const cleanName = customCover.replace(/^.*[\\\/]/, '').trim();
+        if (cleanName) {
+            return `https://sanatansevasamiti.org/api/get_media.php?file=${encodeURIComponent(cleanName)}`;
+        }
+    }
+    const k = (sevaKshetra || "").trim();
+    if (k) {
+        return `https://sanatansevasamiti.org/api/get_media.php?pid=${encodeURIComponent(k)}&type=cover`;
+    }
+    return "https://sanatansevasamiti.org/Images/jpg/logo.jpg";
+}
 
 /**
  * Retrieves an image as Base64 from local cache or fetches, converts, and saves it.
@@ -83,37 +140,33 @@ async function preCacheUserAssets(user) {
             getOfflineImage("samiti_signature", "https://sanatansevasamiti.org/uploads/signature.jpg")
         );
 
-        // 3. यूज़र प्रोफ़ाइल फोटो
+        // 3. यूज़र प्रोफ़ाइल फोटो (via api/get_media.php)
         if (user.profile_photo) {
-            const userPhotoUrl = user.profile_photo.startsWith("http")
-                ? user.profile_photo
-                : "https://sanatansevasamiti.org/" + user.profile_photo.replace(/^\/+/, '');
+            const userPhotoUrl = getUserProfileMediaUrl(user.profile_photo);
             promises.push(getOfflineImage("user_profile_dp", userPhotoUrl));
         }
 
-        // 4. सेवा क्षेत्र डीपी एवं कवर
+        // 4. सेवा क्षेत्र डीपी एवं कवर (via api/get_media.php)
         const sevaKshetra = (user.seva_kshetra || "").trim();
         if (sevaKshetra) {
             promises.push(
                 getOfflineImage(
                     `kshetra_dp_${sevaKshetra}`,
-                    `https://sanatansevasamiti.org/public_html/Images/ss/${sevaKshetra}_dp.jpg`
+                    getKshetraDpMediaUrl(sevaKshetra)
                 )
             );
             promises.push(
                 getOfflineImage(
                     `kshetra_cover_${sevaKshetra}`,
-                    `https://sanatansevasamiti.org/public_html/Images/ss/${sevaKshetra}_cover.jpg`
+                    getCoverMediaUrl(sevaKshetra, user.cover_photo)
                 )
             );
-        }
-
-        if (user.cover_photo) {
-            promises.push(getOfflineImage("user_cover_dp", user.cover_photo));
+        } else if (user.cover_photo) {
+            promises.push(getOfflineImage("user_cover_dp", getCoverMediaUrl("", user.cover_photo)));
         }
 
         await Promise.allSettled(promises);
-        console.log("[ImageCache] Pre-caching completed successfully.");
+        console.log("[ImageCache] Pre-caching with get_media.php completed successfully.");
     } catch (e) {
         console.warn("[ImageCache] Pre-caching batch error:", e);
     }
