@@ -502,16 +502,16 @@ body {
                         <div class="front-header">
                             <div class="logo-row-double" id="idLogoRowDouble">
                                 <img id="idKshetraLogo" src="Images/jpg/logo.jpg" class="card-logo" crossorigin="anonymous" alt="Kshetra" onerror="this.src='Images/jpg/logo.jpg';">
-                                <img id="idSamitiLogoDouble" src="Images/jpg/logo.jpg" class="card-logo" crossorigin="anonymous" alt="Samiti">
+                                <img id="idSamitiLogoDouble" src="Images/jpg/logo.jpg" class="card-logo" crossorigin="anonymous" alt="Samiti" onerror="this.src='Images/jpg/logo.jpg';">
                             </div>
                             <div class="logo-row-single" id="idLogoRowSingle" style="display:none;">
-                                <img id="idSamitiLogoSingle" src="Images/jpg/logo.jpg" class="card-logo single-logo" crossorigin="anonymous" alt="Samiti">
+                                <img id="idSamitiLogoSingle" src="Images/jpg/logo.jpg" class="card-logo single-logo" crossorigin="anonymous" alt="Samiti" onerror="this.src='Images/jpg/logo.jpg';">
                             </div>
                             <div class="ksh-title" id="cardKshetraTitle">सनातन सेवा समिति</div>
                         </div>
 
                         <div class="member-photo-wrap">
-                            <img id="cardMemberPhoto" src="Images/jpg/logo.jpg" class="member-photo" crossorigin="anonymous" alt="Member Photo">
+                            <img id="cardMemberPhoto" src="Images/jpg/logo.jpg" class="member-photo" crossorigin="anonymous" alt="Member Photo" onerror="this.src='Images/jpg/logo.jpg';">
                         </div>
 
                         <div class="member-name" id="cardMemberName">सदस्य नाम</div>
@@ -681,14 +681,14 @@ function renderUserInterface(u) {
     const name = u.full_name || "सनातन सेवक";
     const uid = u.unique_id || "";
     
-    // प्रोफ़ाइल फोटो रिज़ॉल्यूशन (via api/get_media.php)
+    // 1. यूज़र प्रोफ़ाइल फ़ोटो रिज़ॉल्यूशन (पहले लोकल uploads/ फिर fallback API)
     let photo = "Images/jpg/logo.jpg";
+    let photoOnlineFallback = "Images/jpg/logo.jpg";
     if (u.profile_photo) {
-        if (typeof getUserProfileMediaUrl === "function") {
-            photo = getUserProfileMediaUrl(u.profile_photo);
-        } else {
-            const clean = u.profile_photo.replace(/^.*[\\\/]/, '').trim();
-            photo = clean ? `https://sanatansevasamiti.org/api/get_media.php?file=${encodeURIComponent(clean)}` : "Images/jpg/logo.jpg";
+        const cleanPhoto = u.profile_photo.replace(/^.*[\\\/]/, '').trim();
+        if (cleanPhoto) {
+            photo = "uploads/" + cleanPhoto;
+            photoOnlineFallback = `https://sanatansevasamiti.org/api/get_media.php?file=${encodeURIComponent(cleanPhoto)}`;
         }
     }
 
@@ -698,30 +698,26 @@ function renderUserInterface(u) {
     const hindiRole = ROLE_HINDI_MAP[rawRole] || rawRole;
     const isApproved = (u.status === 'approved' && Boolean(uid));
     
-    // -------------------------------------------------------------
     // पद (Designation) प्राथमिकता नियम
-    // -------------------------------------------------------------
     const designation = (u.pad_naam || u.display_designation || u.designation || "").trim();
-    
-    // यदि व्यक्ति को पद प्राप्त है तो वही दिखेगा, अन्यथा सामान्य सदस्यता
     const displayPostOrRole = designation ? designation : (isApproved ? hindiRole : 'पंजीकृत सदस्य (स्वीकृति प्रतीक्षारत)');
 
-    // 1. प्रोफाइल कार्ड डेटा सेट
+    // प्रोफाइल कार्ड टेक्स्ट डेटा
     document.getElementById("dashUserName").innerText = name;
     document.getElementById("dashUserIdContainer").innerText = isApproved ? ("ID: " + uid) : "⏳ स्थिति: स्वीकृति प्रतीक्षारत (Pending)";
     document.getElementById("dashDisplayBadge").innerText = displayPostOrRole;
 
-    // कवर फ़ोटो एवं सेवा क्षेत्र लोगो सेट करना (via api/get_media.php)
+    // 2. सेवा क्षेत्र DP और Cover फ़ोटो (लोकल Assets/Images/ss/ प्राथमिकता)
     const sevaKshetra = (u.seva_kshetra || "").trim();
     const isMainSamiti = (!sevaKshetra || sevaKshetra === 'PRO1781011172');
 
-    const coverUrl = (typeof getCoverMediaUrl === "function") 
-        ? getCoverMediaUrl(sevaKshetra, u.cover_photo)
-        : (typeof LOCAL_SS_MAP !== "undefined" && LOCAL_SS_MAP[sevaKshetra] ? LOCAL_SS_MAP[sevaKshetra].cover : "uploads/pc.jpg");
+    // कवर फ़ोटो: पहले लोकल 'Images/ss/{id}_cover.jpg', फ़ॉलबैक get_media API या pc.jpg
+    const localCover = sevaKshetra ? `Images/ss/${sevaKshetra}_cover.jpg` : "uploads/pc.jpg";
+    const fallbackCover = sevaKshetra ? `https://sanatansevasamiti.org/api/get_media.php?pid=${encodeURIComponent(sevaKshetra)}&type=cover` : "uploads/pc.jpg";
 
-    const kshetraDpUrl = (typeof getKshetraDpMediaUrl === "function")
-        ? getKshetraDpMediaUrl(sevaKshetra)
-        : (sevaKshetra ? `https://sanatansevasamiti.org/api/get_media.php?pid=${encodeURIComponent(sevaKshetra)}&type=dp` : "Images/jpg/logo.jpg");
+    // सेवा क्षेत्र लोगो/DP: पहले लोकल 'Images/ss/{id}_dp.jpg', फ़ॉलबैक get_media API
+    const localKshetraDp = sevaKshetra ? `Images/ss/${sevaKshetra}_dp.jpg` : "Images/jpg/logo.jpg";
+    const fallbackKshetraDp = sevaKshetra ? `https://sanatansevasamiti.org/api/get_media.php?pid=${encodeURIComponent(sevaKshetra)}&type=dp` : "Images/jpg/logo.jpg";
 
     const samitiMainLogoUrl = "Images/jpg/logo.jpg";
     const signatureUrl = "https://sanatansevasamiti.org/uploads/signature.jpg";
@@ -736,35 +732,33 @@ function renderUserInterface(u) {
         document.getElementById("cardKshetraTitle").innerText = u.seva_kshetra_name || "सनातन सेवा समिति";
     }
 
-    // ऑफलाइन-फर्स्ट कैश इंजन द्वारा इमेजेस लोड करना (Instant Zero-Latency Base64)
+    // 3. इमेजेस बाइंडिंग (ऑफ़लाइन कैशिंग या डायरेक्ट सुरक्षित लोडिंग)
     if (typeof getOfflineImage === "function") {
-        // डैशबोर्ड अवतार एवं आईडी कार्ड फोटो
-        getOfflineImage("user_profile_dp", photo).then(b64 => {
-            if (b64) {
-                document.getElementById("dashAvatarImg").src = b64;
-                document.getElementById("cardMemberPhoto").src = b64;
-            }
+        // यूज़र फ़ोटो
+        getOfflineImage("user_profile_dp", photo, photoOnlineFallback).then(b64 => {
+            const finalImg = b64 || photo;
+            document.getElementById("dashAvatarImg").src = finalImg;
+            document.getElementById("cardMemberPhoto").src = finalImg;
         });
 
-        // डैशबोर्ड कवर फोटो
-        getOfflineImage(sevaKshetra ? `kshetra_cover_${sevaKshetra}` : "user_cover_dp", coverUrl).then(b64 => {
-            if (b64) document.getElementById("dashCoverImg").src = b64;
+        // डैशबोर्ड कवर फ़ोटो
+        getOfflineImage(sevaKshetra ? `cover_${sevaKshetra}` : "default_cover", localCover, fallbackCover).then(b64 => {
+            document.getElementById("dashCoverImg").src = b64 || localCover;
         });
 
-        // मुख्य समिति लोगो (Single & Double)
+        // समिति मुख्य लोगो
         getOfflineImage("samiti_main_logo", samitiMainLogoUrl).then(b64 => {
-            if (b64) {
-                const s1 = document.getElementById("idSamitiLogoSingle");
-                const s2 = document.getElementById("idSamitiLogoDouble");
-                if (s1) s1.src = b64;
-                if (s2) s2.src = b64;
-            }
+            const finalLogo = b64 || samitiMainLogoUrl;
+            const s1 = document.getElementById("idSamitiLogoSingle");
+            const s2 = document.getElementById("idSamitiLogoDouble");
+            if (s1) s1.src = finalLogo;
+            if (s2) s2.src = finalLogo;
         });
 
-        // सेवा क्षेत्र डीपी (लोगो)
+        // सेवा क्षेत्र लोगो
         if (!isMainSamiti && sevaKshetra) {
-            getOfflineImage(`kshetra_dp_${sevaKshetra}`, kshetraDpUrl).then(b64 => {
-                if (b64) document.getElementById("idKshetraLogo").src = b64;
+            getOfflineImage(`kshetra_dp_${sevaKshetra}`, localKshetraDp, fallbackKshetraDp).then(b64 => {
+                document.getElementById("idKshetraLogo").src = b64 || localKshetraDp;
             });
         }
 
@@ -773,10 +767,23 @@ function renderUserInterface(u) {
             if (b64) document.getElementById("cardPresidentSig").src = b64;
         });
     } else {
-        document.getElementById("dashAvatarImg").src = photo;
-        document.getElementById("cardMemberPhoto").src = photo;
-        document.getElementById("dashCoverImg").src = coverUrl;
-        if (!isMainSamiti) document.getElementById("idKshetraLogo").src = kshetraDpUrl;
+        // सामान्य डायरेक्ट लोडिंग व onerror फ़ॉलबैक
+        const avatarEl = document.getElementById("dashAvatarImg");
+        const cardMemEl = document.getElementById("cardMemberPhoto");
+        avatarEl.src = photo;
+        cardMemEl.src = photo;
+        avatarEl.onerror = () => { avatarEl.src = photoOnlineFallback; };
+        cardMemEl.onerror = () => { cardMemEl.src = photoOnlineFallback; };
+
+        const coverEl = document.getElementById("dashCoverImg");
+        coverEl.src = localCover;
+        coverEl.onerror = () => { coverEl.src = fallbackCover; };
+
+        if (!isMainSamiti) {
+            const kshEl = document.getElementById("idKshetraLogo");
+            kshEl.src = localKshetraDp;
+            kshEl.onerror = () => { kshEl.src = fallbackKshetraDp; };
+        }
     }
 
     // पेंडिंग नोटिस व ID कार्ड दृश्यता
@@ -788,7 +795,7 @@ function renderUserInterface(u) {
         document.getElementById("idCardSection").style.display = "flex";
     }
 
-    // 2. सदस्यता विवरण कार्ड (यहाँ मूल सदस्यता दिखेगी)
+    // 2. सदस्यता विवरण कार्ड
     document.getElementById("boxRoleTitle").innerText = "मेरी सदस्यता: " + hindiRole;
     document.getElementById("boxRoleDesc").innerText = ROLE_EXPLANATIONS[rawRole] || "आप सनातन सेवा समिति के पंजीकृत सदस्य हैं।";
 
@@ -822,7 +829,6 @@ async function fetchLiveUserData(uid) {
         const data = await res.json();
         
         if (data && data.status) {
-            // यदि बैकएंड से ताज़ा यूज़र डेटा मिला है तो री-रेंडर करें
             if (data.user) {
                 renderUserInterface(data.user);
                 localStorage.setItem("sss_user_data", JSON.stringify(data.user));
