@@ -1,6 +1,6 @@
 {
-  "name": "",
-  "description": "",
+  "name": "SANATANAM",
+  "description": "Sanatan Seva Samiti official digital portal welcome and onboarding flow.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

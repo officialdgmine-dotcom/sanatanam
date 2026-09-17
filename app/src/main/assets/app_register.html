@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>SANATANAM — नया सदस्य पंजीकरण</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --bhagwa: #FF7700;
+        --bhagwa-deep: #D44000;
+        --lava: #8A0000;
+        --gold: #FFD54F;
+        --gold-border: #D4A017;
+        --bg-grad: radial-gradient(circle at top, #FF8800 0%, #B82E00 45%, #4A0000 100%);
+    }
+
+    * { 
+        box-sizing: border-box; 
+        -webkit-tap-highlight-color: transparent; 
+    }
+    
+    html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        min-height: 100%;
+        background: var(--bg-grad);
+        font-family: 'Noto Sans Devanagari', sans-serif;
+        color: #222;
+    }
+
+    body {
+        padding: 16px 12px 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .app-card {
+        width: 100%;
+        max-width: 440px;
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        border-radius: 28px;
+        border: 2px solid var(--gold-border);
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+        padding: 24px 18px;
+        position: relative;
+    }
+
+    .app-card::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 6px;
+        border-radius: 28px 28px 0 0;
+        background: linear-gradient(90deg, var(--bhagwa), var(--gold), var(--lava));
+    }
+
+    .brand-box { text-align: center; margin-bottom: 18px; }
+    .brand-logo-wrap {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 8px;
+        border-radius: 50%;
+        padding: 3px;
+        background: linear-gradient(135deg, var(--gold), var(--bhagwa));
+        box-shadow: 0 8px 20px rgba(138, 0, 0, 0.3);
+    }
+    .brand-logo {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+        background: #fff;
+        display: block;
+    }
+    .brand-title {
+        color: var(--lava);
+        font-size: 20px;
+        font-weight: 900;
+        margin: 0;
+    }
+    .brand-sub {
+        color: #6d4c41;
+        font-size: 12px;
+        font-weight: 700;
+        margin-top: 2px;
+    }
+
+    .sec-title {
+        font-size: 13px;
+        font-weight: 800;
+        color: var(--lava);
+        background: #fff7e6;
+        padding: 6px 12px;
+        border-radius: 10px;
+        border-left: 4px solid var(--bhagwa);
+        margin: 16px 0 10px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .form-group { margin-bottom: 12px; }
+    .field-label {
+        display: block;
+        font-size: 12px;
+        font-weight: 800;
+        color: #4a2c00;
+        margin-bottom: 4px;
+    }
+    .input-box, .select-box, .textarea-box {
+        width: 100%;
+        padding: 0 12px;
+        height: 46px;
+        border: 1.5px solid #e0c9a6;
+        background: #fffdf9;
+        border-radius: 12px;
+        font-size: 14px;
+        font-weight: 600;
+        font-family: inherit;
+        outline: none;
+        transition: 0.2s ease;
+    }
+    .textarea-box {
+        height: 68px;
+        padding: 8px 12px;
+        resize: none;
+    }
+    .input-box:focus, .select-box:focus, .textarea-box:focus {
+        border-color: var(--bhagwa);
+        background: #ffffff;
+        box-shadow: 0 0 0 3px rgba(255, 119, 0, 0.15);
+    }
+    .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .photo-upload-wrap {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: #fffbf2;
+        border: 1.5px dashed var(--gold-border);
+        padding: 8px 12px;
+        border-radius: 12px;
+    }
+    .preview-avatar {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid var(--bhagwa);
+        background: #eee;
+    }
+    .upload-info { flex: 1; font-size: 11.5px; }
+    .upload-btn-label {
+        display: inline-block;
+        padding: 5px 10px;
+        background: linear-gradient(135deg, var(--bhagwa), var(--bhagwa-deep));
+        color: #fff;
+        border-radius: 8px;
+        font-size: 11px;
+        font-weight: 800;
+        cursor: pointer;
+        margin-top: 3px;
+    }
+
+    .btn-register-main {
+        width: 100%;
+        height: 50px;
+        margin-top: 18px;
+        background: linear-gradient(135deg, var(--bhagwa), var(--lava));
+        border: none;
+        border-radius: 14px;
+        color: #fff;
+        font-size: 15px;
+        font-weight: 900;
+        font-family: inherit;
+        cursor: pointer;
+        box-shadow: 0 6px 20px rgba(184, 46, 0, 0.35);
+        transition: 0.2s ease;
+    }
+    .btn-register-main:active { transform: scale(0.98); }
+
+    .btn-login-footer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 44px;
+        width: 100%;
+        margin-top: 12px;
+        background: #fff8e1;
+        border: 1.5px solid var(--gold-border);
+        color: #7a3e00;
+        font-size: 13px;
+        font-weight: 800;
+        text-decoration: none;
+        border-radius: 12px;
+    }
+
+    .alert-box {
+        display: none;
+        padding: 10px 12px;
+        border-radius: 10px;
+        font-size: 12.5px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        text-align: center;
+    }
+    .alert-error {
+        background: #ffebee;
+        color: var(--lava);
+        border: 1px solid #ffcdd2;
+    }
+</style>
+</head>
+<body>
+
+<div class="app-card">
+    <div class="brand-box">
+        <div class="brand-logo-wrap">
+            <img src="https://sanatansevasamiti.org/Images/logo.jpg" alt="Logo" class="brand-logo" onerror="this.src='https://via.placeholder.com/84';">
+        </div>
+        <h1 class="brand-title">सनातन सेवा समिति</h1>
+        <div class="brand-sub">SANATANAM • नया सदस्य पंजीकरण</div>
+    </div>
+
+    <div id="alertMsg" class="alert-box alert-error"></div>
+
+    <form id="registerForm" onsubmit="handleRegistration(event)">
+        
+        <!-- SECTION 1: सेवा क्षेत्र व नाम -->
+        <div class="sec-title">🚩 1. सेवा क्षेत्र एवं नाम</div>
+
+        <div class="form-group">
+            <label class="field-label">सेवा क्षेत्र चुनें *</label>
+            <select id="seva_kshetra" class="select-box" required>
+                <option value="">-- सेवा क्षेत्र लोड हो रहा है... --</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="field-label">पूरा नाम (Full Name) *</label>
+            <input type="text" id="full_name" class="input-box" placeholder="उदा. राहुल शर्मा" required>
+        </div>
+
+        <div class="grid-2">
+            <div class="form-group">
+                <label class="field-label">लिंग (Gender)</label>
+                <select id="gender" class="select-box">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="field-label">जन्म तिथि (DOB)</label>
+                <input type="date" id="dob" class="input-box">
+            </div>
+        </div>
+
+        <!-- SECTION 2: संपर्क एवं स्थान -->
+        <div class="sec-title">📍 2. संपर्क एवं निवास विवरण</div>
+
+        <div class="grid-2">
+            <div class="form-group">
+                <label class="field-label">देश (Country)</label>
+                <select id="country" class="select-box">
+                    <option value="India">India</option>
+                    <option value="Nepal">Nepal</option>
+                    <option value="Bangladesh">Bangladesh</option>
+                    <option value="Sri Lanka">Sri Lanka</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="field-label">मोबाइल नंबर *</label>
+                <input type="tel" id="mobile" class="input-box" placeholder="10 अंकों का मोबाइल" maxlength="10" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="field-label">ईमेल पता (Email)</label>
+            <input type="email" id="email" class="input-box" placeholder="name@example.com">
+        </div>
+
+        <div class="grid-2">
+            <div class="form-group">
+                <label class="field-label">राज्य (State)</label>
+                <input type="text" id="state" class="input-box" placeholder="उदा. मध्य प्रदेश">
+            </div>
+            <div class="form-group">
+                <label class="field-label">जिला (District)</label>
+                <input type="text" id="district" class="input-box" placeholder="उदा. मुरैना">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="field-label">स्थायी पता (Full Address)</label>
+            <textarea id="address" class="textarea-box" placeholder="गाँव / वार्ड, पोस्ट, पिन कोड..."></textarea>
+        </div>
+
+        <!-- SECTION 3: फोटो एवं पासवर्ड -->
+        <div class="sec-title">📸 3. प्रोफाइल फोटो व सुरक्षा</div>
+
+        <div class="form-group">
+            <label class="field-label">प्रोफाइल फोटो</label>
+            <div class="photo-upload-wrap">
+                <img id="avatarPreview" src="https://via.placeholder.com/55?text=Photo" class="preview-avatar" alt="Avatar">
+                <div class="upload-info">
+                    <span style="color:#666; font-weight:700;">स्पष्ट पासपोर्ट साइज़ फोटो चुनें</span><br>
+                    <label for="profile_photo" class="upload-btn-label">📁 फोटो गैलरी खोलें</label>
+                    <input type="file" id="profile_photo" accept="image/*" style="display:none;" onchange="previewUserPhoto(event)">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="field-label">लॉगिन पासवर्ड बनाएं *</label>
+            <input type="password" id="password" class="input-box" placeholder="कम से कम 6 अक्षरों का पासवर्ड" minlength="6" required>
+        </div>
+
+        <button type="submit" id="btnSubmit" class="btn-register-main">।। सदस्य पंजीकरण पूर्ण करें ।।</button>
+    </form>
+
+    <a href="app_login.html" class="btn-login-footer">🚀 पहले से खाता है? लॉगिन करें</a>
+</div>
+
+<script>
+const API_URL = "https://sanatansevasamiti.org/api/register.php";
+let photoBase64 = "";
+
+window.addEventListener("load", loadSevaKshetra);
+
+async function loadSevaKshetra() {
+    const sel = document.getElementById("seva_kshetra");
+    try {
+        const res = await fetch(API_URL);
+        const data = await res.json();
+        if (data.status && data.profiles && data.profiles.length > 0) {
+            sel.innerHTML = '<option value="">-- अपना सेवा क्षेत्र चुनें --</option>';
+            data.profiles.forEach(p => {
+                const opt = document.createElement("option");
+                opt.value = p.profile_id;
+                opt.textContent = p.name;
+                sel.appendChild(opt);
+            });
+        } else {
+            sel.innerHTML = '<option value="">कोई सेवा क्षेत्र उपलब्ध नहीं</option>';
+        }
+    } catch(err) {
+        sel.innerHTML = '<option value="">सेवा क्षेत्र लोड करने में त्रुटि</option>';
+    }
+}
+
+function previewUserPhoto(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(evt) {
+        photoBase64 = evt.target.result;
+        document.getElementById("avatarPreview").src = photoBase64;
+    };
+    reader.readAsDataURL(file);
+}
+
+async function handleRegistration(e) {
+    e.preventDefault();
+    const btn = document.getElementById("btnSubmit");
+    const alertBox = document.getElementById("alertMsg");
+    alertBox.style.display = "none";
+
+    const payload = {
+        full_name: document.getElementById("full_name").value.trim(),
+        seva_kshetra: document.getElementById("seva_kshetra").value,
+        gender: document.getElementById("gender").value,
+        dob: document.getElementById("dob").value,
+        country: document.getElementById("country").value,
+        mobile: document.getElementById("mobile").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        state: document.getElementById("state").value.trim(),
+        district: document.getElementById("district").value.trim(),
+        address: document.getElementById("address").value.trim(),
+        pass: document.getElementById("password").value,
+        profile_photo_base64: photoBase64
+    };
+
+    if (payload.mobile.length !== 10) {
+        alertBox.innerText = "कृपया सही 10 अंकों का मोबाइल नंबर दर्ज करें!";
+        alertBox.style.display = "block";
+        return;
+    }
+
+    btn.innerText = "⏳ पंजीकरण हो रहा है...";
+    btn.disabled = true;
+
+    try {
+        const res = await fetch(API_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+
+        if (data.status) {
+            try {
+                localStorage.setItem("sss_user_token", data.token);
+                localStorage.setItem("sss_user_data", JSON.stringify(data.user));
+            } catch(storageErr) {}
+
+            if (window.AndroidBridge && window.AndroidBridge.onAuthSuccess) {
+                window.AndroidBridge.onAuthSuccess(data.token, JSON.stringify(data.user));
+            }
+
+            alert("✅ " + data.message);
+            if (window.AndroidBridge && window.AndroidBridge.openNativeScreen) {
+                window.AndroidBridge.openNativeScreen("app_home");
+            } else {
+                window.location.href = "app_home.html";
+            }
+        } else {
+            alertBox.innerText = data.message;
+            alertBox.style.display = "block";
+        }
+    } catch(err) {
+        alertBox.innerText = "सर्वर से कनेक्ट नहीं हो सका। कृपया इंटरनेट जांचें।";
+        alertBox.style.display = "block";
+    } finally {
+        btn.innerText = "।। सदस्य पंजीकरण पूर्ण करें ।।";
+        btn.disabled = false;
+    }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>SANATANAM App Login</title>
+<style>
+    :root {
+        --bhagwa: #FF7700;
+        --bhagwa-deep: #D44000;
+        --lava: #8A0000;
+        --gold: #FFD54F;
+        --gold-border: #D4A017;
+        --white: #FFFFFF;
+        --bg-grad: radial-gradient(circle at top, #FF8800 0%, #B82E00 45%, #570000 100%);
+    }
+    
+    * { 
+        box-sizing: border-box; 
+        -webkit-tap-highlight-color: transparent; 
+    }
+    
+    html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        min-height: 100%;
+        background: var(--bg-grad);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    
+    body {
+        padding: 16px;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .app-card {
+        width: 100%;
+        max-width: 400px;
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border-radius: 28px;
+        border: 2px solid var(--gold-border);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+        padding: 26px 20px;
+        position: relative;
+    }
+    
+    .app-card::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 6px;
+        border-radius: 28px 28px 0 0;
+        background: linear-gradient(90deg, var(--bhagwa), var(--gold), var(--lava));
+    }
+    
+    .logo-box { text-align: center; margin-bottom: 18px; }
+    .logo-img {
+        width: 85px;
+        height: 85px;
+        border-radius: 50%;
+        border: 3px solid var(--gold);
+        object-fit: cover;
+        box-shadow: 0 6px 16px rgba(138, 0, 0, 0.25);
+    }
+    h2 { text-align: center; color: var(--lava); margin: 8px 0 2px; font-size: 21px; font-weight: 900; }
+    .sub { text-align: center; color: #6d4c41; font-size: 12.5px; font-weight: 700; margin-bottom: 16px; }
+    
+    .input-box {
+        width: 100%;
+        height: 48px;
+        padding: 0 14px;
+        margin-bottom: 12px;
+        border: 1.5px solid #e0c9a6;
+        border-radius: 12px;
+        background: #fffdf9;
+        font-size: 14.5px;
+        outline: none;
+        transition: 0.2s ease;
+    }
+    .input-box:focus { 
+        border-color: var(--bhagwa); 
+        background: #fff;
+    }
+    
+    .btn-login {
+        width: 100%;
+        height: 50px;
+        background: linear-gradient(135deg, var(--bhagwa), var(--lava));
+        border: none;
+        border-radius: 12px;
+        color: var(--white);
+        font-size: 15.5px;
+        font-weight: 800;
+        cursor: pointer;
+        box-shadow: 0 6px 18px rgba(184, 46, 0, 0.3);
+        transition: transform 0.2s ease;
+    }
+    .btn-login:active { transform: scale(0.98); }
+    
+    .links-row { display: flex; justify-content: space-between; margin-top: 14px; font-size: 12.5px; }
+    .q-link { color: #795548; font-weight: 700; text-decoration: underline; cursor: pointer; }
+    
+    .btn-reg {
+        display: block;
+        text-align: center;
+        width: 100%;
+        padding: 13px 0;
+        margin-top: 16px;
+        background: #fff8e1;
+        border: 1.5px solid var(--gold-border);
+        color: #7a3e00;
+        text-decoration: none;
+        border-radius: 12px;
+        font-weight: 800;
+        font-size: 13.5px;
+    }
+    
+    .msg-box { display: none; padding: 10px; border-radius: 10px; margin-bottom: 12px; font-size: 12.5px; font-weight: bold; text-align: center; }
+    .msg-error { background: #ffebee; color: var(--lava); border: 1px solid #ffcdd2; }
+
+    /* Modal */
+    .modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.65);
+        backdrop-filter: blur(4px);
+        align-items: flex-end;
+        justify-content: center;
+        z-index: 999;
+    }
+    .modal-box {
+        background: #fff;
+        width: 100%;
+        max-width: 400px;
+        border-radius: 20px 20px 0 0;
+        border-top: 3px solid var(--gold);
+        padding: 20px;
+    }
+</style>
+</head>
+<body>
+
+<div class="app-card">
+    <div class="logo-box">
+        <img src="https://sanatansevasamiti.org/Images/logo.jpg" class="logo-img" alt="Logo" onerror="this.src='https://via.placeholder.com/90';">
+        <h2>सनातन सेवा समिति</h2>
+        <div class="sub">SANATANAM APP LOGIN</div>
+    </div>
+
+    <div id="alertBox" class="msg-box msg-error"></div>
+
+    <form id="appLoginForm" onsubmit="handleAppLogin(event)">
+        <input type="text" id="loginId" class="input-box" placeholder="Unique ID या मोबाइल नंबर" required autofocus>
+        <input type="password" id="loginPass" class="input-box" placeholder="Password" required>
+        <button type="submit" id="btnSubmit" class="btn-login">LOGIN</button>
+    </form>
+
+    <div class="links-row">
+        <span class="q-link" onclick="openModal('fidModal')">🔍 Forgot ID?</span>
+        <span class="q-link" onclick="openModal('fpModal')">🔐 Forgot Password?</span>
+    </div>
+
+    <a href="app_register.html" class="btn-reg">🚀 Register Now</a>
+</div>
+
+<!-- Modal: Forgot Password (WhatsApp) -->
+<div id="fpModal" class="modal">
+    <div class="modal-box">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <h3 style="margin:0; color:var(--lava);">🔐 Password Reset</h3>
+            <span onclick="closeModal('fpModal')" style="cursor:pointer; font-weight:bold; font-size:18px;">✕</span>
+        </div>
+        <input type="text" id="fpName" class="input-box" placeholder="पूरा नाम" required>
+        <input type="tel" id="fpMobile" class="input-box" placeholder="मोबाइल नंबर" required>
+        <button class="btn-login" style="background:#25D366; margin-top:5px;" onclick="sendWhatsAppReset()">📲 WhatsApp पर भेजें</button>
+    </div>
+</div>
+
+<!-- Modal: Forgot ID -->
+<div id="fidModal" class="modal">
+    <div class="modal-box">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <h3 style="margin:0; color:var(--lava);">🔍 Find Your ID</h3>
+            <span onclick="closeModal('fidModal')" style="cursor:pointer; font-weight:bold; font-size:18px;">✕</span>
+        </div>
+        <input type="text" id="fidKeyword" class="input-box" placeholder="नाम या मोबाइल नंबर">
+        <button class="btn-login" style="margin-top:5px;" onclick="searchUserId()">खोजें</button>
+        <div id="fidResult" style="margin-top:12px; text-align:center;"></div>
+    </div>
+</div>
+
+<script>
+const API_URL = "https://sanatansevasamiti.org/api/login.php";
+
+async function handleAppLogin(e) {
+    e.preventDefault();
+    const btn = document.getElementById("btnSubmit");
+    const alertBox = document.getElementById("alertBox");
+    alertBox.style.display = "none";
+    btn.innerText = "⏳ सत्यापन हो रहा है...";
+    btn.disabled = true;
+
+    try {
+        const res = await fetch(API_URL, {
+            method: "POST",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({
+                action: "login",
+                unique_id: document.getElementById("loginId").value.trim(),
+                password: document.getElementById("loginPass").value
+            })
+        });
+
+        if (!res.ok) {
+            const errText = await res.text();
+            throw new Error(`सर्वर रिस्पॉन्स त्रुटि (${res.status}): ${errText.substring(0, 100)}`);
+        }
+
+        const data = await res.json();
+
+        if (data.status) {
+            try {
+                localStorage.setItem("sss_user_token", data.token);
+                localStorage.setItem("sss_user_data", JSON.stringify(data.user));
+            } catch(storageErr) {}
+
+            if (window.AndroidBridge && window.AndroidBridge.onAuthSuccess) {
+                window.AndroidBridge.onAuthSuccess(data.token, JSON.stringify(data.user));
+            }
+
+            alert("लॉगिन सफल!");
+            if (window.AndroidBridge && window.AndroidBridge.openNativeScreen) {
+                window.AndroidBridge.openNativeScreen("app_home");
+            } else {
+                window.location.href = "app_home.html";
+            }
+        } else {
+            alertBox.innerText = data.message;
+            alertBox.style.display = "block";
+        }
+    } catch (err) {
+        console.error("Login Error:", err);
+        alertBox.innerText = "कनेक्शन समस्या: " + err.message;
+        alertBox.style.display = "block";
+    } finally {
+        btn.innerText = "LOGIN";
+        btn.disabled = false;
+    }
+}
+
+function openModal(id) { document.getElementById(id).style.display = "flex"; }
+function closeModal(id) { document.getElementById(id).style.display = "none"; }
+
+function sendWhatsAppReset() {
+    const name = document.getElementById("fpName").value.trim();
+    const mobile = document.getElementById("fpMobile").value.trim();
+    if (!name || !mobile) { alert("कृपया दोनों फ़ील्ड भरें!"); return; }
+    const msg = `🔐 PASSWORD RESET REQUEST\n\n👤 Name: ${name}\n📱 Mobile: ${mobile}\n\n⚡ System: Sanatan Seva Samiti App`;
+    if (window.AndroidBridge && window.AndroidBridge.openExternalUrl) {
+        window.AndroidBridge.openExternalUrl("https://wa.me/917509524802?text=" + encodeURIComponent(msg));
+    } else {
+        window.open("https://wa.me/917509524802?text=" + encodeURIComponent(msg), "_blank");
+    }
+}
+
+async function searchUserId() {
+    const kw = document.getElementById("fidKeyword").value.trim();
+    const box = document.getElementById("fidResult");
+    if (!kw) { alert("कृपया नाम या मोबाइल लिखें!"); return; }
+    box.innerHTML = "⏳ खोज जारी है...";
+
+    try {
+        const res = await fetch(API_URL, {
+            method: "POST",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({ action: "find_id", keyword: kw })
+        });
+        const data = await res.json();
+
+        if (data.status) {
+            const u = data.data;
+            const photo = u.profile_photo ? ("https://sanatansevasamiti.org/" + u.profile_photo) : "https://via.placeholder.com/60";
+            box.innerHTML = `
+                <div style="background:#fff8e8; border:1.5px dashed #D4A017; border-radius:14px; padding:10px; display:flex; align-items:center; gap:10px; margin-top:8px;">
+                    <img src="${photo}" style="width:48px; height:48px; border-radius:50%; object-fit:cover;" onerror="this.src='https://via.placeholder.com/50';">
+                    <div style="text-align:left;">
+                        <b>${u.full_name}</b><br>
+                        <span style="color:#8A0000; font-weight:bold;">ID: ${u.unique_id}</span>
+                    </div>
+                </div>`;
+        } else {
+            box.innerHTML = `<span style="color:red; font-size:12px;">${data.message}</span>`;
+        }
+    } catch(err) {
+        box.innerHTML = `<span style="color:red; font-size:12px;">खोजने में समस्या आई: ${err.message}</span>`;
+    }
+}
+</script>
+
+</body>
+</html>

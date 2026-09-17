@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>सनातन सेवा समिति — होम</title>
+
+    <!-- Google Fonts & FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <style>
+        :root {
+            --bhagwa: #FF6600;
+            --bhagwa-deep: #800000;
+            --lava: #B30000;
+            --gold: #FFD700;
+            --gold-light: #FFF9E6;
+            --bg-page: #FBF8F4;
+            --card-bg: #FFFFFF;
+            --text-dark: #222222;
+            --text-muted: #666666;
+            --radius-lg: 20px;
+            --radius-md: 14px;
+            --shadow-soft: 0 8px 24px rgba(128, 0, 0, 0.08);
+            --shadow-hover: 0 12px 28px rgba(179, 0, 0, 0.16);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            font-family: 'Noto Sans Devanagari', 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #EAE2D9;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            color: var(--text-dark);
+            padding-bottom: 90px !important;
+        }
+
+        /* Mobile App Frame */
+        .app-screen {
+            width: 100%;
+            max-width: 480px;
+            background: var(--bg-page);
+            min-height: 100vh;
+            position: relative;
+            box-shadow: 0 0 40px rgba(0,0,0,0.22);
+            overflow-x: hidden;
+        }
+
+        /* ---------------- 1. TRANSLUCENT APP HEADER ---------------- */
+        .app-header {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 480px;
+            z-index: 10000;
+            padding: 12px 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(180deg, rgba(128, 0, 0, 0.9) 0%, rgba(255, 102, 0, 0.4) 65%, transparent 100%);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            transition: all 0.35s ease;
+        }
+
+        .app-header.scrolled {
+            background: linear-gradient(180deg, #ff4500, #800000);
+            box-shadow: 0 4px 18px rgba(0,0,0,0.3);
+        }
+
+        .search-bar {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: 25px;
+            padding: 7px 14px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+            border: 1px solid var(--gold);
+        }
+
+        .search-bar i {
+            color: var(--lava);
+            font-size: 14px;
+            margin-right: 8px;
+        }
+
+        .search-bar input {
+            border: none;
+            outline: none;
+            background: transparent;
+            width: 100%;
+            font-size: 13px;
+            color: #222;
+            font-weight: 500;
+        }
+
+        .user-avatar-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 2px solid var(--gold);
+            overflow: hidden;
+            cursor: pointer;
+            flex-shrink: 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.25);
+            background: #fff;
+        }
+
+        .user-avatar-btn img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ---------------- 2. 2-SIDE FLIP HERO BANNER ---------------- */
+        .hero-container {
+            perspective: 1200px;
+            width: 100%;
+            height: 260px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-flip {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.85s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+
+        .hero-flip.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .hero-poster, .hero-back {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            backface-visibility: hidden;
+            overflow: hidden;
+        }
+
+        .hero-poster img, .hero-back img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero-back {
+            transform: rotateY(180deg);
+            background: #800000;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(128, 0, 0, 0.35) 0%, rgba(251, 248, 244, 1) 97%);
+        }
+
+        .hero-badge {
+            position: absolute;
+            bottom: 20px;
+            left: 16px;
+            background: linear-gradient(135deg, #B30000, #FF6600);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 11.5px;
+            font-weight: 700;
+            box-shadow: 0 4px 10px rgba(179, 0, 0, 0.35);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            z-index: 2;
+        }
+
+        .flip-btn-icon {
+            position: absolute;
+            bottom: 20px;
+            right: 16px;
+            background: rgba(0, 0, 0, 0.65);
+            color: #FFD700;
+            border: 1px solid #FFD700;
+            border-radius: 50%;
+            width: 34px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 13px;
+            z-index: 5;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+        }
+
+        /* ---------------- 3. ABOUT SAMITI CARD ---------------- */
+        .about-samiti-card {
+            margin: -10px 14px 18px;
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            padding: 14px;
+            box-shadow: var(--shadow-soft);
+            border: 1.5px solid rgba(255, 215, 0, 0.5);
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .samiti-logo {
+            width: 54px;
+            height: 54px;
+            border-radius: 14px;
+            background: #8b0000;
+            border: 2px solid #ffd700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .samiti-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .samiti-info {
+            flex: 1;
+        }
+
+        .samiti-info h2 {
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--lava);
+            margin-bottom: 2px;
+        }
+
+        .samiti-info p {
+            font-size: 11px;
+            color: var(--text-muted);
+            line-height: 1.35;
+        }
+
+        .samiti-action-btn {
+            background: linear-gradient(135deg, #FFF8E1, #FFE082);
+            color: var(--lava);
+            border: 1px solid #FFD54F;
+            padding: 7px 11px;
+            border-radius: 10px;
+            font-size: 11.5px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        /* ---------------- 4. 5 BUTTONS IN A SINGLE LINE ---------------- */
+        .action-strip-wrapper {
+            padding: 0 14px 20px;
+        }
+
+        .action-strip {
+            display: flex;
+            justify-content: space-between;
+            align-items: stretch;
+            gap: 6px;
+        }
+
+        .action-pill {
+            flex: 1;
+            background: #ffffff;
+            border: 1.5px solid #FFE0B2;
+            border-radius: 12px;
+            padding: 8px 3px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            text-decoration: none;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.04);
+            transition: all 0.2s ease;
+        }
+
+        .action-pill:active {
+            transform: scale(0.94);
+            background: #FFF3E0;
+        }
+
+        .pill-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FFF3E0, #FFE0B2);
+            color: #B30000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            border: 1px solid #FFD580;
+        }
+
+        .action-pill:nth-child(4) .pill-icon {
+            background: linear-gradient(135deg, #FFD700, #FFA000);
+            color: #800000;
+        }
+
+        .pill-title {
+            font-size: 9.5px;
+            font-weight: 700;
+            color: #2a2a2a;
+            text-align: center;
+            line-height: 1.2;
+            white-space: normal;
+        }
+
+        /* ---------------- 5. COMPACT LATEST POSTS SECTION ---------------- */
+        .posts-section-wrapper {
+            padding: 0 14px 22px;
+        }
+
+        .compact-post-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px;
+            margin-bottom: 11px;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid rgba(255, 153, 51, 0.25);
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .compact-post-card:active {
+            transform: scale(0.98);
+            background: #FFFDF9;
+        }
+
+        .compact-post-cover {
+            width: 82px;
+            height: 82px;
+            border-radius: 10px;
+            object-fit: cover;
+            flex-shrink: 0;
+            background: #f0f0f0;
+            border: 1px solid #FFE0B2;
+        }
+
+        .compact-post-details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
+            min-height: 80px;
+        }
+
+        .compact-post-user {
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--lava);
+            margin-bottom: 3px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .compact-post-bio {
+            font-size: 12px;
+            color: #333333;
+            line-height: 1.38;
+            font-weight: 600;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .compact-post-footer {
+            margin-top: 4px;
+            font-size: 10.5px;
+            color: var(--bhagwa);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .view-all-posts-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 11px;
+            background: linear-gradient(135deg, #FFF3E0, #FFE0B2);
+            border: 1.5px dashed var(--lava);
+            color: var(--lava);
+            border-radius: var(--radius-md);
+            font-size: 13px;
+            font-weight: 800;
+            text-decoration: none;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+            margin-top: 4px;
+        }
+
+        /* ---------------- 6. ALL SECTIONS CAROUSEL ---------------- */
+        .section-wrapper {
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            padding: 0 16px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-title h2 {
+            font-size: 16px;
+            font-weight: 800;
+            color: #1a1a1a;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-title h2::before {
+            content: "";
+            width: 4px;
+            height: 17px;
+            background: linear-gradient(180deg, var(--lava), var(--bhagwa));
+            border-radius: 3px;
+        }
+
+        .view-btn {
+            background: linear-gradient(135deg, #FFF3E0, #FFE0B2);
+            color: var(--lava);
+            border: 1px solid #FFCC80;
+            padding: 6px 12px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .scroll-box {
+            display: flex;
+            overflow-x: auto;
+            padding: 4px 16px 14px;
+            gap: 14px;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+        }
+
+        .scroll-box::-webkit-scrollbar {
+            display: none;
+        }
+
+        .item-card {
+            min-width: 200px;
+            max-width: 200px;
+            background: var(--card-bg);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid rgba(255, 153, 51, 0.2);
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 10px;
+            transition: transform 0.2s ease;
+        }
+
+        .item-card:active {
+            transform: scale(0.97);
+        }
+
+        .item-card img {
+            width: 100%;
+            height: 125px;
+            border-radius: 10px;
+            object-fit: cover;
+            margin-bottom: 8px;
+            background: #f4efe9;
+        }
+
+        .item-card h3 {
+            font-size: 13px;
+            font-weight: 700;
+            color: #222;
+            line-height: 1.35;
+            margin-bottom: 10px;
+            min-height: 34px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .btn-view {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            background: linear-gradient(135deg, var(--bhagwa), var(--lava));
+            color: white;
+            padding: 8px 10px;
+            border-radius: 9px;
+            text-decoration: none;
+            font-size: 11.5px;
+            font-weight: 700;
+            box-shadow: 0 3px 8px rgba(179,0,0,0.22);
+        }
+
+        /* ---------------- 7. SIDEBAR DRAWER ---------------- */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -310px;
+            width: 295px;
+            height: 100%;
+            background: linear-gradient(180deg, #2b0000, #ff3d00);
+            color: white;
+            padding: 20px;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 100000;
+            overflow-y: auto;
+            box-shadow: -5px 0 25px rgba(0,0,0,0.5);
+        }
+
+        .sidebar.open { right: 0; }
+
+        .sidebar-user-box {
+            background: rgba(0,0,0,0.3);
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,215,0,0.4);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .sidebar-user-box img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 2px solid #FFD700;
+            object-fit: cover;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 11px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+            font-size: 13.5px;
+        }
+
+        .sidebar a:hover { color: #fff700; }
+        .close-btn { text-align: right; font-size: 22px; cursor: pointer; margin-bottom: 10px; color: #fff; }
+        .submenu { display: none; padding-left: 16px; background: rgba(0,0,0,0.25); border-radius: 8px; }
+        .submenu a { border-bottom: none; font-size: 12.5px; padding: 9px 0; }
+
+        .overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.55);
+            backdrop-filter: blur(3px);
+            display: none;
+            z-index: 99999;
+        }
+
+        /* ---------------- 8. MOBILE FOOTER BAR ---------------- */
+        #sss-nav {
+            position: fixed;
+            bottom: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 480px;
+            height: 75px;
+            background: linear-gradient(180deg, #ff4500, #800000);
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            border-top: 4px solid #ffcc00;
+            border-radius: 20px 20px 0 0;
+            z-index: 99999;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.4);
+        }
+
+        .sss-item {
+            flex: 1;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+        .sss-item img {
+            width: 28px;
+            height: 28px;
+            display: block;
+            margin: auto;
+        }
+
+        .sss-dash-wrap { margin-top: -30px; }
+
+        .sss-gold-circle {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #ffd700, #ffcc00, #b8860b);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid #800000;
+            box-shadow: 0 0 15px rgba(255,215,0,0.6);
+        }
+
+        .sss-gold-circle img { width: 35px; height: 35px; }
+    </style>
+</head>
+<body>
+
+<div class="app-screen">
+
+    <!-- 1. APP HEADER (PhonePe Style Translucent Sticky Header) -->
+    <header class="app-header" id="mainHeader">
+        <form action="https://sanatansevasamiti.org/feed.php" method="get" class="search-bar" style="margin: 0;">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" name="search" placeholder="समिति में खोजें (सेवा, पोस्ट, आदि)..." />
+        </form>
+
+        <div class="user-avatar-btn" onclick="openMenu()" title="मेनू व प्रोफ़ाइल खोलें">
+            <img id="headerUserAvatar" src="https://sanatansevasamiti.org/Images/jpg/logo.jpg" 
+                 onerror="this.src='https://sanatansevasamiti.org/Images/jpg/logo.jpg';" 
+                 alt="यूज़र प्रोफ़ाइल" />
+        </div>
+    </header>
+
+    <!-- 2. 2-SIDE FLIP HERO BANNER -->
+    <div class="hero-container" onclick="toggleHeroFlip()">
+        <div class="hero-flip" id="heroFlipper">
+            <!-- फ्रंट इमेज -->
+            <div class="hero-poster">
+                <img src="https://sanatansevasamiti.org/uploads/file_00000000b5447207af241f52a9137425.png" alt="Front Banner">
+                <div class="hero-overlay"></div>
+                <div class="hero-badge">
+                    <i class="fa-solid fa-om"></i> धर्मो रक्षति रक्षितः
+                </div>
+            </div>
+            
+            <!-- बैक इमेज -->
+            <div class="hero-back">
+                <img src="https://sanatansevasamiti.org/uploads/pc.jpg" alt="Back Banner">
+                <div class="hero-overlay"></div>
+                <div class="hero-badge">
+                    <i class="fa-solid fa-hands-praying"></i> सर्वे भवन्तु सुखिनः
+                </div>
+            </div>
+        </div>
+
+        <div class="flip-btn-icon" title="बैनर पलटें">
+            <i class="fa-solid fa-repeat"></i>
+        </div>
+    </div>
+
+    <!-- 3. ABOUT SAMITI CARD (समिति के बारे में जानें) -->
+    <div class="about-samiti-card">
+        <div class="samiti-logo">
+            <img src="https://sanatansevasamiti.org/Images/jpg/logo.jpg" onerror="this.src='https://via.placeholder.com/60';" alt="समिति लोगो" />
+        </div>
+        <div class="samiti-info">
+            <h2>सनातन सेवा समिति</h2>
+            <p>समस्त सनातन समाज की सेवा, सुरक्षा एवं सर्वांगीण विकास हेतु समर्पित</p>
+        </div>
+        <a href="https://sanatansevasamiti.org/about.php" class="samiti-action-btn">
+            जानें <i class="fa-solid fa-chevron-right"></i>
+        </a>
+    </div>
+
+    <!-- 4. 5 BUTTONS IN A SINGLE LINE -->
+    <div class="action-strip-wrapper">
+        <div class="action-strip">
+            <!-- 1. दैनिक पोस्ट -->
+            <a href="https://sanatansevasamiti.org/feed.php" class="action-pill">
+                <div class="pill-icon"><i class="fa-solid fa-newspaper"></i></div>
+                <span class="pill-title">दैनिक पोस्ट</span>
+            </a>
+
+            <!-- 2. दैनिक स्टेटस -->
+            <a href="https://sanatansevasamiti.org/status.php" class="action-pill">
+                <div class="pill-icon"><i class="fa-solid fa-circle-notch"></i></div>
+                <span class="pill-title">दैनिक स्टेटस</span>
+            </a>
+
+            <!-- 3. दान प्रगति -->
+            <a href="https://sanatansevasamiti.org/samiti" class="action-pill">
+                <div class="pill-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+                <span class="pill-title">दान प्रगति</span>
+            </a>
+
+            <!-- 4. i card -->
+            <a href="id_card.html" class="action-pill">
+                <div class="pill-icon"><i class="fa-solid fa-id-card"></i></div>
+                <span class="pill-title">i card</span>
+            </a>
+
+            <!-- 5. स्वागत पत्र + नियुक्ति पत्र -->
+            <a href="https://sanatansevasamiti.org/dashboard.php" class="action-pill">
+                <div class="pill-icon"><i class="fa-solid fa-file-signature"></i></div>
+                <span class="pill-title">स्वागत + नियुक्ति</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- 5. LATEST 2 POSTS COMPACT SECTION -->
+    <div class="posts-section-wrapper">
+        <div class="section-title" style="padding: 0 0 10px 0;">
+            <h2>ताज़ा पोस्ट एवं गतिविधियाँ</h2>
+            <a href="https://sanatansevasamiti.org/feed.php" class="view-btn">फीड पेज</a>
+        </div>
+
+        <div id="latestPostsContainer">
+            <!-- पोस्ट 1 -->
+            <a href="https://sanatansevasamiti.org/feed.php" class="compact-post-card">
+                <img class="compact-post-cover" src="https://sanatansevasamiti.org/Images/jpg/logo.jpg" alt="कवर इमेज" />
+                <div class="compact-post-details">
+                    <div class="compact-post-user">
+                        <i class="fa-solid fa-om"></i> सनातन सेवा समिति
+                    </div>
+                    <div class="compact-post-bio">
+                        सनातन धर्म, संस्कृति एवं समाज सेवा के पावन कार्यों से जुड़ें। समिति की दैनिक गतिविधियाँ व विचार...
+                    </div>
+                    <div class="compact-post-footer">
+                        <span>पूरा पढ़ें <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- पोस्ट 2 -->
+            <a href="https://sanatansevasamiti.org/feed.php" class="compact-post-card">
+                <img class="compact-post-cover" src="https://sanatansevasamiti.org/uploads/file_00000000b5447207af241f52a9137425.png" alt="कवर इमेज" />
+                <div class="compact-post-details">
+                    <div class="compact-post-user">
+                        <i class="fa-solid fa-om"></i> धर्म रक्षा एवं सेवा
+                    </div>
+                    <div class="compact-post-bio">
+                        समस्त सनातन समाज की एकता, गौ सेवा एवं वैदिक संस्कृति के संरक्षण हेतु संकल्पित...
+                    </div>
+                    <div class="compact-post-footer">
+                        <span>पूरा पढ़ें <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- सभी पोस्ट देखें बटन -->
+        <a href="https://sanatansevasamiti.org/feed.php" class="view-all-posts-btn">
+            और पढ़ें / सभी पोस्ट देखें <i class="fa-solid fa-arrow-right-long"></i>
+        </a>
+    </div>
+
+    <!-- 6. ALL 16 DATA SECTIONS -->
+    <div id="allSectionsWrapper"></div>
+
+    <!-- 7. SIDEBAR DRAWER -->
+    <div class="overlay" id="overlay" onclick="closeMenu()"></div>
+    <div class="sidebar" id="sidebar">
+        <div class="close-btn" onclick="closeMenu()">✖</div>
+
+        <div id="sidebarUserContainer">
+            <!-- डायनामिक यूजर कार्ड या लॉगिन बटन -->
+            <div class="sidebar-user-box" style="justify-content:center; text-align:center;">
+                <a href="app_login.html" style="background:#ffd700; color:#8b0000; padding:8px 16px; border-radius:8px; font-weight:bold; text-decoration:none;">🔐 लॉगिन / पंजीकरण</a>
+            </div>
+        </div>
+
+        <a href="https://sanatansevasamiti.org/ss.php">🏠 ग्रहम् </a>
+        <a href="https://sanatansevasamiti.org/feed.php">📃 फीड पेज</a>
+        <a href="https://sanatansevasamiti.org/dashboard.php">🪪 डैशबोर्ड</a>
+        <a href="app_register.html">📝 नया पंजीकरण करें</a>
+
+        <!-- Submenu -->
+        <div class="menu-item">
+            <a href="javascript:void(0)" onclick="toggleSubmenu(this)">🛕 सनातन सेवा समिति ▼</a>
+            <div class="submenu">
+                <a href="https://sanatansevasamiti.org/samiti">सभी सेवाएँ</a>
+                <a href="https://sanatansevasamiti.org/samiti/sss.php">⚜️ सनातन सेवा समिति ⚜️</a>            
+                <a href="https://sanatansevasamiti.org/samiti/aanand.php">🪇 आनंद लहरी 🪇</a>
+                <a href="https://sanatansevasamiti.org/samiti/ssm.php">🛣️ सत्य सनातन मार्ग 🛣️</a>
+                <a href="https://sanatansevasamiti.org/samiti/sda.php">🕉️ सनातन धर्म आश्रम 🕉️</a>            
+                <a href="https://sanatansevasamiti.org/samiti/ssvg.php">⛳ श्री शिव शक्ति वैदिक गुरुकुलम् ⛳</a>
+                <a href="https://sanatansevasamiti.org/samiti/sssk.php">🏫 श्री शिव शक्ति शिक्षा केंद्र 🏫</a>
+                <a href="https://sanatansevasamiti.org/samiti/ps.php">🌿 प्रकृति संरक्षण 🌿</a>            
+                <a href="https://sanatansevasamiti.org/samiti/jv.php">🐄 जीव सेवा 🐄</a>
+                <a href="https://sanatansevasamiti.org/samiti/nss.php">🩺 निःशुल्क स्वास्थ्य सेवा 🩺</a>
+                <a href="https://sanatansevasamiti.org/samiti/njs.php">🚹 निराश्रित जन सेवा 🚹</a>            
+                <a href="https://sanatansevasamiti.org/samiti/vjs.php">👴 वृद्धजन सेवा 👴</a>
+                <a href="https://sanatansevasamiti.org/samiti/rsrs.php">⚔️ राष्ट्रीय सनातन रक्षा सेना ⚔️</a>
+                <a href="https://sanatansevasamiti.org/samiti/ss.php">🚩 संत सेना 🚩</a>            
+                <a href="https://sanatansevasamiti.org/samiti/bs.php">🔱 भवानी सेना 🔱</a>
+                <a href="https://sanatansevasamiti.org/samiti/vs.php">📜 वेद सेना 📜</a>
+            </div>
+        </div>
+
+        <a href="https://sanatansevasamiti.org/astro">🔮 सनातन ज्योतिष</a>
+        <a href="https://sanatansevasamiti.org/books">📚 सनातन पुस्तक संग्रह</a>
+        <a href="https://sanatansevasamiti.org/guru">🙌 गुरु परंपरा</a>
+        <a href="https://sanatansevasamiti.org/shop">🛒 सनातन सामग्री</a>
+        <a href="https://sanatansevasamiti.org/vansh">🌳 वंश वृक्ष</a>
+        <a href="https://sanatansevasamiti.org/about.php">❕ हमारे बारे में</a>
+        <a href="https://sanatansevasamiti.org/about-maharaj-ji.php">👑 महाराज जी के बारे में</a>
+        <a href="https://sanatansevasamiti.org/contect.php">☎️ हमसे संपर्क करें</a>
+        <a href="https://sanatansevasamiti.org/share.php">📨 ऐप साझा करें</a>
+        <a href="https://sanatansevasamiti.org/app">📥 ऐप डाउनलोड करें</a>
+        <a href="javascript:void(0)" onclick="handleLogout()" id="logoutBtn" style="color:#ffb3b3; display:none;">🚪 लॉगआउट</a>
+    </div>
+
+    <!-- 8. FOOTER NAVIGATION BAR -->
+    <div id="sss-nav">
+        <a href="https://sanatansevasamiti.org/ss.php" class="sss-item">
+            <img src="https://sanatansevasamiti.org/uploads/footer/1780341771file_00000000145071fab7ea2e7e30f9dfaa-e1776295057951.png" alt="गृह">
+            <span>गृह</span>
+        </a>
+
+        <a href="https://sanatansevasamiti.org/shri-sachchidanand-sampraday/" class="sss-item">
+            <img src="https://sanatansevasamiti.org/uploads/footer/1780341317ci.jpg" alt="गुरु">
+            <span>गुरु परंपरा</span>
+        </a>
+
+        <a href="https://sanatansevasamiti.org/feed.php" class="sss-item sss-dash-wrap">
+            <div class="sss-gold-circle">
+                <img src="https://sanatansevasamiti.org/uploads/footer/1780341218logo.jpg" alt="फीड">
+            </div>
+            <span></span>
+        </a>
+
+        <a href="https://sanatansevasamiti.org/books" class="sss-item">
+            <img src="https://sanatansevasamiti.org/uploads/footer/1780341270bi.jpg" alt="पुस्तकें">
+            <span>पुस्तकें</span>
+        </a>
+
+        <a href="https://sanatansevasamiti.org/dashboard.php" class="sss-item">
+            <img src="https://sanatansevasamiti.org/uploads/footer/1780341144ai.jpg" alt="अकाउंट">
+            <span>अकाउंट</span>
+        </a>
+    </div>
+
+</div>
+
+<!-- DATA AND INTERACTION SCRIPT -->
+<script>
+    // 16 Sections Data (100% Preserved)
+    const SECTIONS_DATA = [
+        {
+            heading: 'सनातन सेवा समिति की सेवाएँ',
+            link: 'https://sanatansevasamiti.org/anand-lahari/',
+            items: [
+                {title:'आनंद लहरी', img:'https://sanatansevasamiti.org/public_html/Images/ss/PRO1781011341_dp.jpg', url:'https://sanatansevasamiti.org/aanand-lahari/'},
+                {title:'सत्य सनातन मार्ग', img:'https://sanatansevasamiti.org/public_html/Images/ss/PRO1781285901_dp.jpg', url:'https://sanatansevasamiti.org/saty-sanatan-marg/'},
+                {title:'सनातन धर्म आश्रम', img:'https://sanatansevasamiti.org/public_html/Images/ss/PRO1781287765_dp.jpg', url:'https://sanatansevasamiti.org/sanatan-dharm-aashram/'},
+                {title:'श्री शिवशक्ति वैदिक गुरुकुलम', img:'https://sanatansevasamiti.org/public_html/Images/ss/PRO1781288688_dp.jpg', url:'https://sanatansevasamiti.org/shri-shiv-shakti-vaidic-gurukulam/'},
+                {title:'प्रकृति संरक्षण', img:'https://sanatansevasamiti.org/public_html/Images/ss/PRO1781289469_dp.jpg', url:'https://sanatansevasamiti.org/prakriti-sanrakshan/'},
+                {title:'शिवशक्ति शिक्षा केंद्र', img:'https://sanatansevasamiti.org/public_html/Images/ss/PRO1781367447_dp.jpg', url:'https://sanatansevasamiti.org/shri-shiv-shakti-siksha-kendra/'},
+                {title:'जीव सेवा', img:'https://sanatansevasamiti.org/public_html/Images/ss/PRO1781289610_dp.jpg', url:'https://sanatansevasamiti.org/jeev-seva/'},
+                {title:'निःशुल्क स्वास्थ्य सेवा', img:'https://sanatansevasamiti.org/public_html/Images/ss/PRO1781290640_dp.jpg', url:'https://sanatansevasamiti.org/nishulk-swasthy-seva/'},
+                {title:'निराश्रित जन सेवा', img:'https://sanatansevasamiti.org/public_html/Images/ss/PRO1781291019_dp.jpg', url:'https://sanatansevasamiti.org/nirashrit-jan-seva/'},
+                {title:'वृद्ध जन सेवा', img:'https://sanatansevasamiti.org/public_html/Images/ss/PRO1781313938_dp.jpg', url:'https://sanatansevasamiti.org/vriddh-jan-seva/'}
+            ]
+        },
+        {
+            heading: 'सनातन सेवा समिति की सेनाएँ',
+            link: 'https://sanatansevasamiti.org/rashtry-sanatan-raksha-sena/',
+            items: [
+                {title:'राष्ट्रीय सनातन रक्षा सेना', img:'https://sanatansevasamiti.org/public_html/Images/ss/PRO1781318323_dp.jpg', url:'https://sanatansevasamiti.org/rashtry-sanatan-raksha-sena/'},
+                {title:'संत सेना', img:'https://sanatansevasamiti.org/public_html/Images/ss/PRO1781368186_dp.jpg', url:'https://sanatansevasamiti.org/sant-sena/'},
+                {title:'भवानी सेना', img:'https://sanatansevasamiti.org/public_html/Images/ss/PRO1781318500_dp.jpg', url:'https://sanatansevasamiti.org/bhawani-sena/'},
+                {title:'वेद सेना', img:'https://sanatansevasamiti.org/public_html/Images/ss/PRO1781319711_dp.jpg', url:'https://sanatansevasamiti.org/ved-sena/'}
+            ]
+        },
+        {
+            heading: 'SANATANAM | Vedic Astrology & Guidance',
+            link: 'https://sanatansevasamiti.org/vedic-astrology-&-guidance/',
+            items: [
+                {title:'जन्म कुंडली विश्लेषण', img:'https://sanatansevasamiti.org/public_html/Images/file_0000000034a8720bb8a4015fcb6d5050.png', url:'https://sanatansevasamiti.org/vedic-astrology-&-guidance/kundali/'},
+                {title:'सनातन पंचांग', img:'https://sanatansevasamiti.org/public_html/Images/file_0000000042348207a31036a10c91f7b1.png', url:'https://sanatansevasamiti.org/vedic-astrology-&-guidance/panchang/'},
+                {title:'प्रश्न कुंडली', img:'https://sanatansevasamiti.org/public_html/Images/file_00000000f2c88211b17cdcfd3da44f23.png', url:'https://sanatansevasamiti.org/vedic-astrology-&-guidance/prashna-kundali/'},
+                {title:'अंक ज्योतिष', img:'https://sanatansevasamiti.org/public_html/Images/file_0000000046188208894d37afa5d7d2c0.png', url:'https://sanatansevasamiti.org/vedic-astrology-&-guidance/ank-jyotish/'},
+                {title:'मुहूर्त दिखवाएं', img:'https://sanatansevasamiti.org/public_html/Images/file_0000000075bc8211b80281facc345309.png', url:'https://sanatansevasamiti.org/vedic-astrology-&-guidance/muhurat/'},
+                {title:'पूजा एवं उपाय', img:'https://sanatansevasamiti.org/public_html/Images/file_000000005a4482088c71b074055a4827.png', url:'https://sanatansevasamiti.org/vedic-astrology-&-guidance/puja-upay/'},
+                {title:'रत्न परामर्श', img:'https://sanatansevasamiti.org/public_html/Images/file_000000004da882118d876d134768db83.png', url:'https://sanatansevasamiti.org/vedic-astrology-&-guidance/ratna-paramarsh/'},
+                {title:'कुण्डली बनवाएं', img:'https://sanatansevasamiti.org/public_html/Images/file_0000000070c0821198cd99e3e7a00be4.png', url:'https://sanatansevasamiti.org/vedic-astrology-&-guidance/make-kundali/'},
+                {title:'ज्योतिष परामर्श बुकिंग', img:'https://sanatansevasamiti.org/public_html/Images/file_00000000ff588211a90294b780f04be9.png', url:'https://sanatansevasamiti.org/vedic-astrology-&-guidance/booking/'}
+            ]
+        },
+        {
+            heading: 'SANATANAM | Vastu & Spatial Harmony',
+            link: 'https://sanatansevasamiti.org/vastu-&-spatial-harmony/',
+            items: [
+                {title:'घर का वास्तु', img:'https://sanatansevasamiti.org/public_html/Images/home.png', url:'https://sanatansevasamiti.org/vastu-&-spatial-harmony/ghar/'},
+                {title:'वास्तु नक्शा सेवा', img:'https://sanatansevasamiti.org/public_html/Images/map.png', url:'https://sanatansevasamiti.org/vastu-&-spatial-harmony/map/'},
+                {title:'प्लॉट एवं भूमि वास्तु', img:'https://sanatansevasamiti.org/public_html/Images/land.png', url:'https://sanatansevasamiti.org/vastu-&-spatial-harmony/land/'},
+                {title:'व्यावसायिक वास्तु', img:'https://sanatansevasamiti.org/public_html/Images/business.png', url:'https://sanatansevasamiti.org/vastu-&-spatial-harmony/business/'},
+                {title:'मुख्य द्वार एवं कक्ष वास्तु', img:'https://sanatansevasamiti.org/public_html/Images/room.png', url:'https://sanatansevasamiti.org/vastu-&-spatial-harmony/rooms/'},
+                {title:'दिशा परीक्षण', img:'https://sanatansevasamiti.org/public_html/Images/disha.png', url:'https://sanatansevasamiti.org/vastu-&-spatial-harmony/direction-test/'},
+                {title:'वास्तु दोष जांच', img:'https://sanatansevasamiti.org/public_html/Images/janch.png', url:'https://sanatansevasamiti.org/vastu-&-spatial-harmony/dosh-janch/'},
+                {title:'वास्तु दोष निवारण', img:'https://sanatansevasamiti.org/public_html/Images/dosh.png', url:'https://sanatansevasamiti.org/vastu-&-spatial-harmony/dosh-nivaran/'},
+                {title:'वास्तु पूजा', img:'https://sanatansevasamiti.org/public_html/Images/puja.png', url:'https://sanatansevasamiti.org/vastu-&-spatial-harmony/puja/'},
+                {title:'वास्तु शुभ मुहूर्त', img:'https://sanatansevasamiti.org/public_html/Images/muhurt.png', url:'https://sanatansevasamiti.org/vastu-&-spatial-harmony/muhurat/'},
+                {title:'वास्तु रिपोर्ट', img:'https://sanatansevasamiti.org/public_html/Images/report.png', url:'https://sanatansevasamiti.org/vastu-&-spatial-harmony/report/'},
+                {title:'वास्तु परामर्श बुकिंग', img:'https://sanatansevasamiti.org/public_html/Images/contact.png', url:'https://sanatansevasamiti.org/vastu-&-spatial-harmony/booking/'}
+            ]
+        },
+        {
+            heading: 'SANATANAM | Books & Publications',
+            link: 'https://sanatansevasamiti.org/books-&-publications/',
+            items: [
+                {title:'सनातन प्रश्नोत्तरी', img:'https://sanatansevasamiti.org/uploads/books/prasn.jpg', url:'https://sanatansevasamiti.org/books-&-publications/prasnottari/'},
+                {title:'सनातन व्रत कथा', img:'https://sanatansevasamiti.org/uploads/books/vrat.jpg', url:'https://sanatansevasamiti.org/books-&-publications/vrat-katha/'},
+                {title:'स्वप्न सरोवर', img:'https://sanatansevasamiti.org/uploads/books/swapn.jpg', url:'https://sanatansevasamiti.org/books-&-publications/swapna-sarovar/'},
+                {title:'सनातन पूजन पद्धति', img:'https://sanatansevasamiti.org/uploads/books/poojan.jpg', url:'https://sanatansevasamiti.org/books-&-publications/poojan-paddhati/'},
+                {title:'सनातन आरती संग्रह', img:'https://sanatansevasamiti.org/uploads/books/aarti.jpg', url:'https://sanatansevasamiti.org/books-&-publications/aarti-sangrah/'},
+                {title:'और देखें', img:'https://sanatansevasamiti.org/uploads/books/aur.jpg', url:'https://sanatansevasamiti.org/books-&-publications/'}
+            ]
+        },
+        {
+            heading: 'SANATANAM | Vedic Essentials',
+            link: 'https://sanatansevasamiti.org/vedic-essentials/',
+            items: [
+                {title:'प्रामाणिक रत्न', img:'https://sanatansevasamiti.org/Images/pramanik-ratna.png', url:'https://sanatansevasamiti.org/vedic-essentials/pramanik-ratna/'},
+                {title:'रुद्राक्ष, मालाएँ एवं जप सामग्री', img:'https://sanatansevasamiti.org/Images/rudraksha-mala-jap.png', url:'https://sanatansevasamiti.org/vedic-essentials/rudraksha-mala-jap/'},
+                {title:'पवित्र जड़ी-बूटियाँ एवं प्राकृतिक सामग्री', img:'https://sanatansevasamiti.org/Images/jadibooti-prakritik-samagri.png', url:'https://sanatansevasamiti.org/vedic-essentials/jadibooti-prakritik-samagri/'},
+                {title:'ज्योतिषीय उत्पाद', img:'https://sanatansevasamiti.org/Images/jyotishiya-utpad.png', url:'https://sanatansevasamiti.org/vedic-essentials/jyotishiya-utpad/'},
+                {title:'वास्तु उत्पाद', img:'https://sanatansevasamiti.org/Images/vastu-utpad.png', url:'https://sanatansevasamiti.org/vedic-essentials/vastu-utpad/'},
+                {title:'पूजन एवं हवन सामग्री', img:'https://sanatansevasamiti.org/Images/pujan-havan-samagri.png', url:'https://sanatansevasamiti.org/vedic-essentials/pujan-havan-samagri/'},
+                {title:'धार्मिक वस्त्र एवं पूजन परिधान', img:'https://sanatansevasamiti.org/Images/dharmik-vastra.png', url:'https://sanatansevasamiti.org/vedic-essentials/dharmik-vastra/'},
+                {title:'धूप, दीप एवं सुगंधित धार्मिक सामग्री', img:'https://sanatansevasamiti.org/Images/dhoop-deep-sugandh.png', url:'https://sanatansevasamiti.org/vedic-essentials/dhoop-deep-sugandh/'}
+            ]
+        },
+        {
+            heading: 'SANATANAM | Drishti & Pravah',
+            link: 'https://sanatansevasamiti.org/drishti-&-pravah/',
+            items: [
+                {title:'लाइव धार्मिक टीवी', img:'https://sanatansevasamiti.org/Images/live-dharmik-tv.png', url:'https://sanatansevasamiti.org/drishti-&-pravah/live-tv/'},
+                {title:'लाइव आयोजन एवं प्रसारण', img:'https://sanatansevasamiti.org/Images/live-ayojan-prasaran.png', url:'https://sanatansevasamiti.org/drishti-&-pravah/live-ayojan/'},
+                {title:'धार्मिक कथाएँ एवं धारावाहिक', img:'https://sanatansevasamiti.org/Images/dharmik-katha-dharavahik.png', url:'https://sanatansevasamiti.org/drishti-&-pravah/katha-dharavahik/'},
+                {title:'धार्मिक सिनेमा', img:'https://sanatansevasamiti.org/Images/dharmik-cinema.png', url:'https://sanatansevasamiti.org/drishti-&-pravah/dharmik-cinema/'},
+                {title:'भजन एवं संगीत', img:'https://sanatansevasamiti.org/Images/bhajan-sangeet.png', url:'https://sanatansevasamiti.org/drishti-&-pravah/bhajan-sangeet/'},
+                {title:'कथा एवं प्रवचन', img:'https://sanatansevasamiti.org/Images/katha-pravachan.png', url:'https://sanatansevasamiti.org/drishti-&-pravah/katha-pravachan/'},
+                {title:'ऑडियो कथाएँ एवं धार्मिक श्रवण', img:'https://sanatansevasamiti.org/Images/audio-katha-shravan.png', url:'https://sanatansevasamiti.org/drishti-&-pravah/audio-katha/'},
+                {title:'धार्मिक कहानियाँ पढ़ें', img:'https://sanatansevasamiti.org/Images/dharmik-kahaniyan.png', url:'https://sanatansevasamiti.org/drishti-&-pravah/dharmik-kahaniyan/'},
+                {title:'बाल धार्मिक मनोरंजन', img:'https://sanatansevasamiti.org/Images/bal-dharmik-manoranjan.png', url:'https://sanatansevasamiti.org/drishti-&-pravah/bal-manoranjan/'},
+                {title:'लोकप्रिय एवं विशेष सामग्री', img:'https://sanatansevasamiti.org/Images/lokpriya-vishesh-samagri.png', url:'https://sanatansevasamiti.org/drishti-&-pravah/vishesh-samagri/'}
+            ]
+        },
+        {
+            heading: 'SANATANAM | Katha & Granth Vani',
+            link: 'https://sanatansevasamiti.org/katha-&-granth-vani/',
+            items: [
+                {title:'सभी कथावाचकों की कथाएँ', img:'https://sanatansevasamiti.org/Images/kathavachak-katha.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/kathavachak/'},
+                {title:'श्रीमद्भागवत कथा', img:'https://sanatansevasamiti.org/Images/shrimad-bhagwat-katha.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/bhagwat-katha/'},
+                {title:'राम कथा', img:'https://sanatansevasamiti.org/Images/ram-katha.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/ram-katha/'},
+                {title:'श्रीकृष्ण कथा', img:'https://sanatansevasamiti.org/Images/shri-krishna-katha.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/krishna-katha/'},
+                {title:'शिव कथा', img:'https://sanatansevasamiti.org/Images/shiv-katha.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/shiv-katha/'},
+                {title:'देवी कथा', img:'https://sanatansevasamiti.org/Images/devi-katha.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/devi-katha/'},
+                {title:'श्रीगणेश कथा', img:'https://sanatansevasamiti.org/Images/ganesh-katha.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/ganesh-katha/'},
+                {title:'भक्त चरित्र एवं भक्तमाल', img:'https://sanatansevasamiti.org/Images/bhakt-charitra-bhaktmaal.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/bhakt-charitra/'},
+                {title:'संत एवं महापुरुष चरित्र', img:'https://sanatansevasamiti.org/Images/sant-mahapurush-charitra.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/sant-charitra/'},
+                {title:'अन्य पौराणिक एवं धार्मिक कथाएँ', img:'https://sanatansevasamiti.org/Images/pauranik-dharmik-katha.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/anya-katha/'},
+                {title:'सभी लिखित कथाएँ', img:'https://sanatansevasamiti.org/Images/likhit-katha.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/likhit-katha/'},
+                {title:'सभी ऑडियो कथाएँ', img:'https://sanatansevasamiti.org/Images/audio-katha.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/audio-katha/'},
+                {title:'सभी वीडियो कथाएँ', img:'https://sanatansevasamiti.org/Images/video-katha.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/video-katha/'},
+                {title:'सभी धार्मिक भजन एवं संगीत', img:'https://sanatansevasamiti.org/Images/dharmik-bhajan-sangeet.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/bhajan-sangeet/'},
+                {title:'अखंड भजन एवं संगीत', img:'https://sanatansevasamiti.org/Images/akhand-bhajan.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/akhand-bhajan/'},
+                {title:'देवी-देवताओं के भजन', img:'https://sanatansevasamiti.org/Images/devi-devta-bhajan.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/devi-devta-bhajan/'},
+                {title:'कीर्तन एवं संकीर्तन', img:'https://sanatansevasamiti.org/Images/kirtan-sankirtan.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/kirtan/'},
+                {title:'मंत्र एवं स्तोत्र श्रवण', img:'https://sanatansevasamiti.org/Images/mantra-stotra-shravan.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/mantra-stotra/'},
+                {title:'ध्यान एवं मनःशांति संगीत', img:'https://sanatansevasamiti.org/Images/dhyan-manshanti-sangeet.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/dhyan-sangeet/'},
+                {title:'ऊर्जा एवं प्रेरणा संगीत', img:'https://sanatansevasamiti.org/Images/urja-prerna-sangeet.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/prerna-sangeet/'},
+                {title:'भक्ति वाद्य संगीत', img:'https://sanatansevasamiti.org/Images/bhakti-vadya-sangeet.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/bhakti-vadya/'},
+                {title:'आरती एवं मंगल गीत', img:'https://sanatansevasamiti.org/Images/aarti-mangal-geet.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/aarti-mangal-geet/'},
+                {title:'लोक भक्ति एवं क्षेत्रीय संगीत', img:'https://sanatansevasamiti.org/Images/lok-bhakti-sangeet.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/lok-bhakti-sangeet/'}
+            ]
+        },
+        {
+            heading: 'SANATANAM | Sangeet & Bhakti Audio',
+            link: 'https://sanatansevasamiti.org/sangeet-&-bhakti-audio/',
+            items: [
+                {title:'सभी धार्मिक भजन एवं संगीत', img:'https://sanatansevasamiti.org/Images/dharmik-bhajan.png', url:'https://sanatansevasamiti.org/sangeet-&-bhakti-audio/bhajan/'},
+                {title:'अखंड भजन एवं संगीत', img:'https://sanatansevasamiti.org/Images/akhand-bhajan-sangeet.png', url:'https://sanatansevasamiti.org/sangeet-&-bhakti-audio/akhand-bhajan/'},
+                {title:'देवी-देवताओं के भजन', img:'https://sanatansevasamiti.org/Images/devi-devta-bhajan.png', url:'https://sanatansevasamiti.org/sangeet-&-bhakti-audio/devi-devta-bhajan/'},
+                {title:'कीर्तन एवं संकीर्तन', img:'https://sanatansevasamiti.org/Images/kirtan-sankirtan.png', url:'https://sanatansevasamiti.org/sangeet-&-bhakti-audio/kirtan/'},
+                {title:'मंत्र एवं स्तोत्र श्रवण', img:'https://sanatansevasamiti.org/Images/mantra-stotra.png', url:'https://sanatansevasamiti.org/sangeet-&-bhakti-audio/mantra-stotra/'},
+                {title:'ध्यान एवं मनःशांति संगीत', img:'https://sanatansevasamiti.org/Images/dhyan-shanti-sangeet.png', url:'https://sanatansevasamiti.org/sangeet-&-bhakti-audio/dhyan-sangeet/'},
+                {title:'ऊर्जा एवं प्रेरणा संगीत', img:'https://sanatansevasamiti.org/Images/urja-prerna-sangeet.png', url:'https://sanatansevasamiti.org/sangeet-&-bhakti-audio/prerna-sangeet/'},
+                {title:'भक्ति वाद्य संगीत', img:'https://sanatansevasamiti.org/Images/bhakti-vadya.png', url:'https://sanatansevasamiti.org/sangeet-&-bhakti-audio/vadya-sangeet/'},
+                {title:'आरती एवं मंगल गीत', img:'https://sanatansevasamiti.org/Images/aarti-mangal-geet.png', url:'https://sanatansevasamiti.org/sangeet-&-bhakti-audio/aarti-mangal-geet/'},
+                {title:'लोक भक्ति एवं क्षेत्रीय संगीत', img:'https://sanatansevasamiti.org/Images/lok-bhakti-geet.png', url:'https://sanatansevasamiti.org/sangeet-&-bhakti-audio/lok-bhakti/'}
+            ]
+        },
+        {
+            heading: 'SANATANAM | Sadhana & Upasana',
+            link: 'https://sanatansevasamiti.org/sadhana-&-upasana/',
+            items: [
+                {title:'मेरी दैनिक साधना', img:'https://sanatansevasamiti.org/Images/dainik-sadhana.png', url:'https://sanatansevasamiti.org/sadhana-&-upasana/dainik-sadhana/'},
+                {title:'मेरे संकल्प एवं साधना लक्ष्य', img:'https://sanatansevasamiti.org/Images/sadhana-sankalp-lakshya.png', url:'https://sanatansevasamiti.org/sadhana-&-upasana/sankalp-lakshya/'},
+                {title:'डिजिटल जप माला', img:'https://sanatansevasamiti.org/Images/digital-jap-mala.png', url:'https://sanatansevasamiti.org/sadhana-&-upasana/digital-jap-mala/'},
+                {title:'मंत्र एवं स्तोत्र पाठ', img:'https://sanatansevasamiti.org/Images/mantra-stotra-path.png', url:'https://sanatansevasamiti.org/sadhana-&-upasana/mantra-stotra/'},
+                {title:'श्रवण के साथ पाठ', img:'https://sanatansevasamiti.org/Images/shravan-ke-sath-path.png', url:'https://sanatansevasamiti.org/sadhana-&-upasana/shravan-path/'},
+                {title:'साधना नियम एवं दिनचर्या', img:'https://sanatansevasamiti.org/Images/sadhana-niyam-dincharya.png', url:'https://sanatansevasamiti.org/sadhana-&-upasana/niyam-dincharya/'},
+                {title:'मेरी साधना प्रगति', img:'https://sanatansevasamiti.org/Images/sadhana-pragati.png', url:'https://sanatansevasamiti.org/sadhana-&-upasana/sadhana-pragati/'}
+            ]
+        },
+        {
+            heading: 'SANATANAM | Purohit & Rituals',
+            link: 'https://sanatansevasamiti.org/purohit-&-rituals/',
+            items: [
+                {title:'घर एवं स्थान पर पूजा-अनुष्ठान', img:'https://sanatansevasamiti.org/Images/ghar-puja-anushthan.png', url:'https://sanatansevasamiti.org/purohit-&-rituals/ghar-puja/'},
+                {title:'तीर्थ एवं विशेष स्थल अनुष्ठान', img:'https://sanatansevasamiti.org/Images/tirth-vishesh-sthal-anushthan.png', url:'https://sanatansevasamiti.org/purohit-&-rituals/tirth-anushthan/'},
+                {title:'ऑनलाइन पूजा एवं सहभागिता', img:'https://sanatansevasamiti.org/Images/online-puja-sahbhagita.png', url:'https://sanatansevasamiti.org/purohit-&-rituals/online-puja/'},
+                {title:'योग्य पुरोहित एवं ब्राह्मण बुकिंग', img:'https://sanatansevasamiti.org/Images/purohit-brahman-booking.png', url:'https://sanatansevasamiti.org/purohit-&-rituals/purohit-booking/'},
+                {title:'पंडित जी से परामर्श करें', img:'https://sanatansevasamiti.org/Images/pandit-paramarsh.png', url:'https://sanatansevasamiti.org/purohit-&-rituals/pandit-paramarsh/'},
+                {title:'पूजा की विधि एवं रूपरेखा (वैदिक रीति)', img:'https://sanatansevasamiti.org/Images/vaidik-puja-vidhi.png', url:'https://sanatansevasamiti.org/purohit-&-rituals/vaidik-puja-vidhi/'},
+                {title:'पूजा की विधि एवं रूपरेखा (लोक एवं क्षेत्रीय रीति)', img:'https://sanatansevasamiti.org/Images/lok-kshetriya-puja-vidhi.png', url:'https://sanatansevasamiti.org/purohit-&-rituals/lok-puja-vidhi/'},
+                {title:'विशेष धार्मिक सेवा अनुरोध', img:'https://sanatansevasamiti.org/Images/vishesh-dharmik-seva.png', url:'https://sanatansevasamiti.org/purohit-&-rituals/vishesh-seva/'}
+            ]
+        },
+        {
+            heading: 'SANATANAM | Tark & Satya',
+            link: 'https://sanatansevasamiti.org/tark-&-satya/',
+            items: [
+                {title:'सभी तर्क एवं सत्य देखें', img:'https://sanatansevasamiti.org/Images/sabhi-tark-satya.png', url:'https://sanatansevasamiti.org/tark-&-satya/'},
+                {title:'नया तर्क एवं विषय रखें', img:'https://sanatansevasamiti.org/Images/naya-tark-vishay.png', url:'https://sanatansevasamiti.org/tark-&-satya/naya-vishay/'},
+                {title:'जिज्ञासा एवं प्रश्नोत्तर', img:'https://sanatansevasamiti.org/Images/jigyasa-prashnottar.png', url:'https://sanatansevasamiti.org/tark-&-satya/prashnottar/'},
+                {title:'प्रमाण एवं संदर्भ', img:'https://sanatansevasamiti.org/Images/praman-sandarbh.png', url:'https://sanatansevasamiti.org/tark-&-satya/praman-sandarbh/'},
+                {title:'दावों की सत्यता जांचें', img:'https://sanatansevasamiti.org/Images/davon-ki-satyata.png', url:'https://sanatansevasamiti.org/tark-&-satya/fact-check/'},
+                {title:'तर्क एवं शास्त्रार्थ', img:'https://sanatansevasamiti.org/Images/tark-shastrarth.png', url:'https://sanatansevasamiti.org/tark-&-satya/shastrarth/'},
+                {title:'“तर्क एवं सत्य” पुस्तक पढ़ें', img:'https://sanatansevasamiti.org/Images/tark-evam-satya-pustak.png', url:'https://sanatansevasamiti.org/tark-&-satya/pustak/'}
+            ]
+        },
+        {
+            heading: 'SANATANAM | Darshan & Dhwani',
+            link: 'https://sanatansevasamiti.org/darshan-&-dhwani/',
+            items: [
+                {title:'धार्मिक वॉलपेपर', img:'https://sanatansevasamiti.org/Images/dharmik-wallpaper.png', url:'https://sanatansevasamiti.org/darshan-&-dhwani/wallpaper/'},
+                {title:'वैदिक रिंगटोन', img:'https://sanatansevasamiti.org/Images/vaidik-ringtone.png', url:'https://sanatansevasamiti.org/darshan-dhwani/ringtone/'},
+                {title:'धार्मिक स्टेटस क्लिप्स', img:'https://sanatansevasamiti.org/Images/dharmik-status-clips.png', url:'https://sanatansevasamiti.org/darshan-&-dhwani/status-clips/'},
+                {title:'अखंड भजन एवं धार्मिक ऑडियो', img:'https://sanatansevasamiti.org/Images/akhand-dharmik-audio.png', url:'https://sanatansevasamiti.org/darshan-&-dhwani/akhand-audio/'},
+                {title:'मंत्र एवं स्तोत्र ऑडियो', img:'https://sanatansevasamiti.org/Images/mantra-stotra-audio.png', url:'https://sanatansevasamiti.org/darshan-&-dhwani/mantra-stotra-audio/'},
+                {title:'धार्मिक अलार्म एवं जागरण ध्वनियाँ', img:'https://sanatansevasamiti.org/Images/dharmik-alarm-jagran.png', url:'https://sanatansevasamiti.org/darshan-&-dhwani/alarm-jagran/'}
+            ]
+        },
+        {
+            heading: 'SANATANAM | Mandir & Heritage',
+            link: 'https://sanatansevasamiti.org/mandir-&-heritage/',
+            items: [
+                {title:'मंदिर एवं तीर्थ खोजें', img:'https://sanatansevasamiti.org/Images/mandir-tirth-khojen.png', url:'https://sanatansevasamiti.org/mandir-&-heritage/search/'},
+                {title:'प्राकृतिक एवं ऐतिहासिक धरोहर', img:'https://sanatansevasamiti.org/Images/prakritik-aitihasik-dharohar.png', url:'https://sanatansevasamiti.org/mandir-&-heritage/dharohar/'},
+                {title:'मानचित्र पर मंदिर एवं तीर्थ', img:'https://sanatansevasamiti.org/Images/map-mandir-tirth.png', url:'https://sanatansevasamiti.org/mandir-&-heritage/map/'},
+                {title:'मेरे आसपास के मंदिर', img:'https://sanatansevasamiti.org/Images/nearby-mandir.png', url:'https://sanatansevasamiti.org/mandir-&-heritage/nearby-mandir/'},
+                {title:'मेरे आसपास की प्राकृतिक एवं ऐतिहासिक धरोहर', img:'https://sanatansevasamiti.org/Images/nearby-dharohar.png', url:'https://sanatansevasamiti.org/mandir-&-heritage/nearby-dharohar/'},
+                {title:'मंदिर का डेटा जोड़ें', img:'https://sanatansevasamiti.org/Images/mandir-data-joden.png', url:'https://sanatansevasamiti.org/mandir-&-heritage/add-mandir/'},
+                {title:'तीर्थ एवं धरोहर का डेटा जोड़ें', img:'https://sanatansevasamiti.org/Images/tirth-dharohar-data.png', url:'https://sanatansevasamiti.org/mandir-&-heritage/add-dharohar/'},
+                {title:'जानकारी में सुधार एवं सुझाव दें', img:'https://sanatansevasamiti.org/Images/jankari-sudhar-sujhav.png', url:'https://sanatansevasamiti.org/mandir-&-heritage/suggestion/'},
+                {title:'मंदिर एवं धरोहर की तस्वीरें साझा करें', img:'https://sanatansevasamiti.org/Images/mandir-dharohar-photo.png', url:'https://sanatansevasamiti.org/mandir-&-heritage/share-photos/'}
+            ]
+        },
+        {
+            heading: 'SANATANAM | Gurukul & Vidya',
+            link: 'https://sanatansevasamiti.org/gurukul-&-vidya/',
+            items: [
+                {title:'ऑनलाइन वैदिक शिक्षा', img:'https://sanatansevasamiti.org/Images/online-vaidik-shiksha.png', url:'https://sanatansevasamiti.org/gurukul-&-vidya/vaidik-shiksha/'},
+                {title:'ऑनलाइन आध्यात्मिक शिक्षा', img:'https://sanatansevasamiti.org/Images/adhyatmik-shiksha.png', url:'https://sanatansevasamiti.org/gurukul-&-vidya/adhyatmik-shiksha/'},
+                {title:'ऑनलाइन साधना शिक्षा', img:'https://sanatansevasamiti.org/Images/sadhana-shiksha.png', url:'https://sanatansevasamiti.org/gurukul-&-vidya/sadhana-shiksha/'},
+                {title:'बाल संस्कार एवं धार्मिक शिक्षा', img:'https://sanatansevasamiti.org/Images/bal-sanskar-shiksha.png', url:'https://sanatansevasamiti.org/gurukul-&-vidya/bal-sanskar/'},
+                {title:'शिक्षा हेतु पुस्तकालय', img:'https://sanatansevasamiti.org/Images/shiksha-pustakalaya.png', url:'https://sanatansevasamiti.org/gurukul-&-vidya/pustakalaya/'},
+                {title:'साधना एवं अध्ययन मार्गदर्शन', img:'https://sanatansevasamiti.org/Images/sadhana-adhyayan-margdarshan.png', url:'https://sanatansevasamiti.org/gurukul-&-vidya/margdarshan/'},
+                {title:'व्यक्तिगत मार्गदर्शन एवं परामर्श', img:'https://sanatansevasamiti.org/Images/vyaktigat-margdarshan.png', url:'https://sanatansevasamiti.org/gurukul-&-vidya/vyaktigat-paramarsh/'},
+                {title:'ऑनलाइन एवं ऑफलाइन कक्षाएँ', img:'https://sanatansevasamiti.org/Images/online-offline-classes.png', url:'https://sanatansevasamiti.org/gurukul-&-vidya/classes/'},
+                {title:'पाठ्यक्रम एवं अध्ययन पथ', img:'https://sanatansevasamiti.org/Images/pathyakram-adhyayan-path.png', url:'https://sanatansevasamiti.org/gurukul-&-vidya/pathyakram/'}
+            ]
+        },
+        {
+            heading: 'SANATANAM | Vivah & Sanskar',
+            link: 'https://sanatansevasamiti.org/vivah-&-sanskar/',
+            items: [
+                {title:'वर खोजें', img:'https://sanatansevasamiti.org/Images/var-khojen.png', url:'https://sanatansevasamiti.org/vivah-&-sanskar/var-khojen/'},
+                {title:'वधू खोजें', img:'https://sanatansevasamiti.org/Images/vadhu-khojen.png', url:'https://sanatansevasamiti.org/vivah-&-sanskar/vadhu-khojen/'},
+                {title:'अपना वैवाहिक प्रोफाइल बनाएं', img:'https://sanatansevasamiti.org/Images/vaivahik-profile.png', url:'https://sanatansevasamiti.org/vivah-&-sanskar/profile/'},
+                {title:'पारिवारिक बायोडाटा', img:'https://sanatansevasamiti.org/Images/parivarik-biodata.png', url:'https://sanatansevasamiti.org/vivah-&-sanskar/biodata/'},
+                {title:'कुंडली मिलान', img:'https://sanatansevasamiti.org/Images/kundali-milan.png', url:'https://sanatansevasamiti.org/vivah-&-sanskar/kundali-milan/'},
+                {title:'परिवारों के बीच संपर्क', img:'https://sanatansevasamiti.org/Images/parivar-sampark.png', url:'https://sanatansevasamiti.org/vivah-&-sanskar/parivar-sampark/'},
+                {title:'मेरी वैवाहिक गतिविधियाँ', img:'https://sanatansevasamiti.org/Images/vaivahik-gatividhiyan.png', url:'https://sanatansevasamiti.org/vivah-&-sanskar/meri-gatividhiyan/'}
+            ]
+        },
+        {
+            heading: 'SANATANAM | Vansh & Kul Vriksha',
+            link: 'https://sanatansevasamiti.org/vansh-&-kul-vriksha/',
+            items: [
+                {title:'मेरा कुल वृक्ष', img:'https://sanatansevasamiti.org/Images/mera-kul-vriksha.png', url:'https://sanatansevasamiti.org/vansh-&-kul-vriksha/kul-vriksha/'},
+                {title:'वंशावली', img:'https://sanatansevasamiti.org/Images/vanshavali.png', url:'https://sanatansevasamiti.org/vansh-&-kul-vriksha/vanshavali/'},
+                {title:'सभी सदस्य', img:'https://sanatansevasamiti.org/Images/sabhi-sadasya.png', url:'https://sanatansevasamiti.org/vansh-&-kul-vriksha/sadasya/'},
+                {title:'मेरा कुल', img:'https://sanatansevasamiti.org/Images/mera-kul.png', url:'https://sanatansevasamiti.org/vansh-&-kul-vriksha/mera-kul/'},
+                {title:'नया सदस्य जोड़ें', img:'https://sanatansevasamiti.org/Images/naya-sadasya.png', url:'https://sanatansevasamiti.org/vansh-&-kul-vriksha/naya-sadasya/'},
+                {title:'रिश्तेदार', img:'https://sanatansevasamiti.org/Images/rishtedaar.png', url:'https://sanatansevasamiti.org/vansh-&-kul-vriksha/rishtedaar/'},
+                {title:'परिवार के अवसर', img:'https://sanatansevasamiti.org/Images/parivar-avsar.png', url:'https://sanatansevasamiti.org/vansh-&-kul-vriksha/parivar-avsar/'},
+                {title:'कुल सूचना', img:'https://sanatansevasamiti.org/Images/kul-soochna.png', url:'https://sanatansevasamiti.org/vansh-&-kul-vriksha/kul-soochna/'},
+                {title:'कुल परिचय', img:'https://sanatansevasamiti.org/Images/kul-parichay.png', url:'https://sanatansevasamiti.org/vansh-&-kul-vriksha/kul-parichay/'},
+                {title:'मेरी प्रोफ़ाइल', img:'https://sanatansevasamiti.org/Images/meri-profile.png', url:'https://sanatansevasamiti.org/vansh-&-kul-vriksha/profile/'}
+            ]
+        },
+        {
+            heading: 'SANATANAM | Sant & Sampradaya',
+            link: 'https://sanatansevasamiti.org/sant-&-sampradaya/',
+            items: [
+                {title:'संत परंपरा', img:'https://sanatansevasamiti.org/Images/sant-parampara.png', url:'https://sanatansevasamiti.org/sant-&-sampradaya/sant-parampara/'},
+                {title:'गुरु-शिष्य परंपरा', img:'https://sanatansevasamiti.org/Images/guru-shishya-parampara.png', url:'https://sanatansevasamiti.org/sant-&-sampradaya/guru-shishya-parampara/'},
+                {title:'संप्रदाय', img:'https://sanatansevasamiti.org/Images/sampradaya.png', url:'https://sanatansevasamiti.org/sant-&-sampradaya/sampradaya/'},
+                {title:'संत प्रोफ़ाइल', img:'https://sanatansevasamiti.org/Images/sant-profile.png', url:'https://sanatansevasamiti.org/sant-&-sampradaya/sant-profile/'},
+                {title:'गुरु परंपरा वृक्ष', img:'https://sanatansevasamiti.org/Images/guru-parampara-vriksha.png', url:'https://sanatansevasamiti.org/sant-&-sampradaya/guru-vriksha/'},
+                {title:'संत जीवन चरित्र', img:'https://sanatansevasamiti.org/Images/sant-jeevan-charitra.png', url:'https://sanatansevasamiti.org/sant-&-sampradaya/jeevan-charitra/'},
+                {title:'ग्रंथ एवं रचनाएँ', img:'https://sanatansevasamiti.org/Images/granth-rachnayein.png', url:'https://sanatansevasamiti.org/sant-&-sampradaya/granth-rachnayein/'},
+                {title:'मठ एवं पीठ', img:'https://sanatansevasamiti.org/Images/math-peeth.png', url:'https://sanatansevasamiti.org/sant-&-sampradaya/math-peeth/'},
+                {title:'अखाड़ा एवं परंपरा', img:'https://sanatansevasamiti.org/Images/akhada-parampara.png', url:'https://sanatansevasamiti.org/sant-&-sampradaya/akhada-parampara/'},
+                {title:'संत स्थल', img:'https://sanatansevasamiti.org/Images/sant-sthal.png', url:'https://sanatansevasamiti.org/sant-&-sampradaya/sant-sthal/'},
+                {title:'संत खोजें', img:'https://sanatansevasamiti.org/Images/sant-khojen.png', url:'https://sanatansevasamiti.org/sant-&-sampradaya/sant-search/'},
+                {title:'संप्रदाय खोजें', img:'https://sanatansevasamiti.org/Images/sampradaya-khojen.png', url:'https://sanatansevasamiti.org/sant-&-sampradaya/sampradaya-search/'},
+                {title:'प्रमुख संत', img:'https://sanatansevasamiti.org/Images/pramukh-sant.png', url:'https://sanatansevasamiti.org/sant-&-sampradaya/pramukh-sant/'}
+            ]
+        }
+    ];
+
+    // Render All Sections dynamically into App
+    function renderAppSections() {
+        const container = document.getElementById("allSectionsWrapper");
+        if(!container) return;
+
+        let html = "";
+        SECTIONS_DATA.forEach(sec => {
+            html += `
+                <div class="section-wrapper">
+                    <div class="section-title">
+                        <h2>${sec.heading}</h2>
+                        <a href="${sec.link}" class="view-btn">सब देखें <i class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                    <div class="scroll-box">
+            `;
+            sec.items.forEach(item => {
+                html += `
+                    <div class="item-card">
+                        ${item.img ? `<img src="${item.img}" alt="${item.title}" loading="lazy" onerror="this.src='https://sanatansevasamiti.org/Images/jpg/logo.jpg';">` : ''}
+                        <h3>${item.title}</h3>
+                        <a href="${item.url}" class="btn-view">अभी देखें <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                `;
+            });
+            html += `
+                    </div>
+                </div>
+            `;
+        });
+        container.innerHTML = html;
+    }
+
+    // Header Scroll Effect
+    const header = document.getElementById('mainHeader');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 35) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+
+    // 2-Side Flip Banner Toggle
+    function toggleHeroFlip() {
+        document.getElementById('heroFlipper').classList.toggle('flipped');
+    }
+
+    // Sidebar Controls
+    function openMenu() {
+        document.getElementById("sidebar").classList.add("open");
+        document.getElementById("overlay").style.display = "block";
+        document.body.style.overflow = "hidden";
+    }
+
+    function closeMenu() {
+        document.getElementById("sidebar").classList.remove("open");
+        document.getElementById("overlay").style.display = "none";
+        document.body.style.overflow = "auto";
+    }
+
+    function toggleSubmenu(elem) {
+        let submenu = elem.nextElementSibling;
+        submenu.style.display = (submenu.style.display === "block") ? "none" : "block";
+    }
+
+    // Local Session Profile Loader
+    function loadLocalUserSession() {
+        try {
+            const rawUser = localStorage.getItem("sss_user_data");
+            const sideBox = document.getElementById("sidebarUserContainer");
+            const logoutBtn = document.getElementById("logoutBtn");
+            const headerAvatar = document.getElementById("headerUserAvatar");
+
+            if (rawUser) {
+                const user = JSON.parse(rawUser);
+                const photo = user.profile_photo ? ("https://sanatansevasamiti.org/" + user.profile_photo) : "https://sanatansevasamiti.org/Images/jpg/logo.jpg";
+                
+                headerAvatar.src = photo;
+
+                sideBox.innerHTML = `
+                    <div class="sidebar-user-box">
+                        <img src="${photo}" onerror="this.src='https://sanatansevasamiti.org/Images/jpg/logo.jpg';" />
+                        <div>
+                            <h4 style="color:#FFD700; font-size:14px;">${user.full_name || 'सनातन सेवक'}</h4>
+                            <p style="font-size:11px; color:#eee;">ID: <b>${user.unique_id || 'सत्यापित'}</b></p>
+                            <p style="font-size:10px; color:#FFD580; text-transform:uppercase;">${user.status || 'Active'}</p>
+                        </div>
+                    </div>
+                `;
+                logoutBtn.style.display = "block";
+            }
+        } catch (e) {
+            console.log("Session load bypass", e);
+        }
+    }
+
+    function handleLogout() {
+        if(confirm("क्या आप लॉगआउट करना चाहते हैं?")) {
+            localStorage.removeItem("sss_user_token");
+            localStorage.removeItem("sss_user_data");
+            window.location.href = "app_login.html";
+        }
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+        renderAppSections();
+        loadLocalUserSession();
+    });
+</script>
+
+</body>
+</html>
