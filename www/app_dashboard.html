@@ -386,11 +386,11 @@ body {
     <!-- 1. प्रोफाइल कार्ड (डायनामिक कवर, फोटो, नाम व पद/रोल) -->
     <div class="profile-container">
         <div class="cover">
-            <img id="dashCoverImg" src="Images/jpg/logo.jpg" crossorigin="anonymous" alt="Cover" onerror="this.src='Images/jpg/logo.jpg';">
+            <img id="dashCoverImg" src="uploads/pc.jpg" alt="Cover" onerror="this.src='Images/jpg/logo.jpg';">
         </div>
         <div class="profile-body">
             <div class="avatar-wrapper">
-                <img id="dashAvatarImg" src="Images/jpg/logo.jpg" class="avatar" crossorigin="anonymous" alt="Profile Photo" onerror="this.src='Images/jpg/logo.jpg';">
+                <img id="dashAvatarImg" src="Images/jpg/logo.jpg" class="avatar" alt="Profile Photo" onerror="this.src='Images/jpg/logo.jpg';">
             </div>
             
             <h2 id="dashUserName" class="user-name">सनातन सेवक</h2>
@@ -410,8 +410,8 @@ body {
             </div>
 
             <div class="actions">
-                <a href="javascript:void(0)" onclick="alert('Profile sync active')" class="btn-action">Edit Profile</a>
-                <a href="welcome_letter.html" class="btn-action btn-welcome">📜 Welcome Letter</a>
+                <a href="profile.html" class="btn-action">Edit Profile</a>
+                <a href="https://sanatansevasamiti.org/welcome_letter.php" class="btn-action btn-welcome">📜 Welcome Letter</a>
                 <a href="feed.html" class="btn-action">गतिविधियाँ</a>
                 <button type="button" onclick="logoutUser()" class="btn-action" style="background:#b71c1c; color:#fff;">🚪 लॉगआउट</button>
             </div>
@@ -571,7 +571,7 @@ body {
                 <button type="button" id="frontDownload" class="btn-card">⬇️ Front Download</button>
                 <button type="button" id="backDownload" class="btn-card">⬇️ Back Download</button>
                 <button type="button" id="bothDownload" class="btn-card">📦 Both Download</button>
-                <a href="welcome_letter.html" class="btn-card btn-card-orange">📜 Welcome Letter खोलें</a>
+                <a href="https://sanatansevasamiti.org/welcome_letter.php" class="btn-card btn-card-orange">📜 Welcome Letter खोलें</a>
             </div>
             <div id="statusText" class="status-text"></div>
         </div>
@@ -585,7 +585,7 @@ body {
         <img src="https://sanatansevasamiti.org/uploads/footer/1780341771file_00000000145071fab7ea2e7e30f9dfaa-e1776295057951.png" alt="गृह">
         <span>गृह</span>
     </a>
-    <a href="javascript:void(0);" onclick="alert('गुरु परंपरा — यह अनुभाग शीघ्र ही स्थानीय रूप से उपलब्ध होगा।');" class="sss-item">
+    <a href="https://sanatansevasamiti.org/shri-sachchidanand-sampraday/" class="sss-item">
         <img src="https://sanatansevasamiti.org/uploads/footer/1780341317ci.jpg" alt="गुरु">
         <span>गुरु परंपरा</span>
     </a>
@@ -595,7 +595,7 @@ body {
         </div>
         <span></span>
     </a>
-    <a href="javascript:void(0);" onclick="alert('पुस्तकें — यह अनुभाग शीघ्र ही स्थानीय रूप से उपलब्ध होगा।');" class="sss-item">
+    <a href="https://sanatansevasamiti.org/books" class="sss-item">
         <img src="https://sanatansevasamiti.org/uploads/footer/1780341270bi.jpg" alt="पुस्तकें">
         <span>पुस्तकें</span>
     </a>
@@ -658,9 +658,6 @@ if (flipBtn) {
     });
 }
 
-// -------------------------------------------------------------
-// USER DATA, ROLE VS DESIGNATION & PROFILE PARSER
-// -------------------------------------------------------------
 function loadDashboardUserData() {
     try {
         const raw = localStorage.getItem("sss_user_data");
@@ -669,11 +666,33 @@ function loadDashboardUserData() {
         const u = JSON.parse(raw);
         renderUserInterface(u);
 
-        // लाइव बैकएंड से नवीनतम डेटा फेच करें
-        fetchLiveUserData(u.unique_id || u.id);
+        // Load cached metrics if available
+        const cachedMetrics = localStorage.getItem("sss_user_metrics");
+        if (cachedMetrics) {
+            try {
+                const m = JSON.parse(cachedMetrics);
+                if (m.wallet_balance !== undefined) document.getElementById("liveWalletAmount").innerText = "₹" + parseFloat(m.wallet_balance).toFixed(2);
+                if (m.total_dhan !== undefined) document.getElementById("statDhan").innerText = "₹" + parseFloat(m.total_dhan).toFixed(2);
+                if (m.total_ann !== undefined) document.getElementById("statAnn").innerText = parseFloat(m.total_ann).toFixed(1) + " Kg";
+                if (m.total_seva !== undefined) document.getElementById("statSeva").innerText = m.total_seva + " बार";
+            } catch(e) {}
+        }
 
+        // Load cached transactions if available
+        const cachedTxns = localStorage.getItem("sss_user_txns");
+        if (cachedTxns) {
+            try {
+                const txns = JSON.parse(cachedTxns);
+                if (Array.isArray(txns) && txns.length > 0) {
+                    renderTransactionsList(txns);
+                }
+            } catch(e) {}
+        }
+
+        // लाइव बैकएंड से डेटा व हिसाब-किताब सिंक करें
+        fetchLiveUserData(u.unique_id || u.id);
     } catch(e) {
-        console.log("Local session check error:", e);
+        console.log("Local session parse error:", e);
     }
 }
 
@@ -681,14 +700,19 @@ function renderUserInterface(u) {
     const name = u.full_name || "सनातन सेवक";
     const uid = u.unique_id || "";
     
-    // 1. यूज़र प्रोफ़ाइल फ़ोटो रिज़ॉल्यूशन (पहले लोकल uploads/ फिर fallback API)
+    // 1. फोटो पाथ रिज़ॉल्यूशन (पहले लोकल Assets/uploads/ फिर Online fallback)
     let photo = "Images/jpg/logo.jpg";
-    let photoOnlineFallback = "Images/jpg/logo.jpg";
+    let photoFallback = "https://sanatansevasamiti.org/Images/jpg/logo.jpg";
     if (u.profile_photo) {
-        const cleanPhoto = u.profile_photo.replace(/^.*[\\\/]/, '').trim();
-        if (cleanPhoto) {
-            photo = "uploads/" + cleanPhoto;
-            photoOnlineFallback = `https://sanatansevasamiti.org/api/get_media.php?file=${encodeURIComponent(cleanPhoto)}`;
+        if (u.profile_photo.startsWith("http") || u.profile_photo.startsWith("data:image/")) {
+            photo = u.profile_photo;
+            photoFallback = u.profile_photo;
+        } else {
+            const clean = u.profile_photo.replace(/^.*[\\\/]/, '').trim();
+            if (clean) {
+                photo = "uploads/" + clean;
+                photoFallback = `https://sanatansevasamiti.org/api/get_media.php?file=${encodeURIComponent(clean)}`;
+            }
         }
     }
 
@@ -702,25 +726,61 @@ function renderUserInterface(u) {
     const designation = (u.pad_naam || u.display_designation || u.designation || "").trim();
     const displayPostOrRole = designation ? designation : (isApproved ? hindiRole : 'पंजीकृत सदस्य (स्वीकृति प्रतीक्षारत)');
 
-    // प्रोफाइल कार्ड टेक्स्ट डेटा
+    // 2. यूज़र कार्ड फ़ील्ड्स
     document.getElementById("dashUserName").innerText = name;
+    
+    const avatarEl = document.getElementById("dashAvatarImg");
+    const memberPhotoEl = document.getElementById("cardMemberPhoto");
+    avatarEl.src = photo;
+    avatarEl.onerror = function() { this.src = photoFallback; };
+    memberPhotoEl.src = photo;
+    memberPhotoEl.onerror = function() { this.src = photoFallback; };
+
     document.getElementById("dashUserIdContainer").innerText = isApproved ? ("ID: " + uid) : "⏳ स्थिति: स्वीकृति प्रतीक्षारत (Pending)";
     document.getElementById("dashDisplayBadge").innerText = displayPostOrRole;
 
-    // 2. सेवा क्षेत्र DP और Cover फ़ोटो (लोकल Assets/Images/ss/ प्राथमिकता)
+    // 3. सेवा क्षेत्र DP और Cover फोटो (लोकल 'Images/ss/' प्राथमिकता के साथ डायनामिक रिज़ॉल्यूशन)
     const sevaKshetra = (u.seva_kshetra || "").trim();
     const isMainSamiti = (!sevaKshetra || sevaKshetra === 'PRO1781011172');
 
-    // कवर फ़ोटो: पहले लोकल 'Images/ss/{id}_cover.jpg', फ़ॉलबैक get_media API या pc.jpg
-    const localCover = sevaKshetra ? `Images/ss/${sevaKshetra}_cover.jpg` : "uploads/pc.jpg";
-    const fallbackCover = sevaKshetra ? `https://sanatansevasamiti.org/api/get_media.php?pid=${encodeURIComponent(sevaKshetra)}&type=cover` : "uploads/pc.jpg";
+    const coverEl = document.getElementById("dashCoverImg");
+    if (sevaKshetra) {
+        const localCover = `Images/ss/${sevaKshetra}_cover.jpg`;
+        const onlineCover = `https://sanatansevasamiti.org/public_html/Images/ss/${sevaKshetra}_cover.jpg`;
+        const apiCover = `https://sanatansevasamiti.org/api/get_media.php?pid=${encodeURIComponent(sevaKshetra)}&type=cover`;
+        coverEl.src = localCover;
+        coverEl.onerror = function() {
+            if (!this.dataset.fallbackTried) {
+                this.dataset.fallbackTried = "1";
+                this.src = onlineCover;
+            } else if (this.dataset.fallbackTried === "1") {
+                this.dataset.fallbackTried = "2";
+                this.src = apiCover;
+            } else {
+                this.src = "uploads/pc.jpg";
+            }
+        };
 
-    // सेवा क्षेत्र लोगो/DP: पहले लोकल 'Images/ss/{id}_dp.jpg', फ़ॉलबैक get_media API
-    const localKshetraDp = sevaKshetra ? `Images/ss/${sevaKshetra}_dp.jpg` : "Images/jpg/logo.jpg";
-    const fallbackKshetraDp = sevaKshetra ? `https://sanatansevasamiti.org/api/get_media.php?pid=${encodeURIComponent(sevaKshetra)}&type=dp` : "Images/jpg/logo.jpg";
-
-    const samitiMainLogoUrl = "Images/jpg/logo.jpg";
-    const signatureUrl = "https://sanatansevasamiti.org/uploads/signature.jpg";
+        const kshLogoEl = document.getElementById("idKshetraLogo");
+        const localDp = `Images/ss/${sevaKshetra}_dp.jpg`;
+        const onlineDp = `https://sanatansevasamiti.org/public_html/Images/ss/${sevaKshetra}_dp.jpg`;
+        const apiDp = `https://sanatansevasamiti.org/api/get_media.php?pid=${encodeURIComponent(sevaKshetra)}&type=dp`;
+        kshLogoEl.src = localDp;
+        kshLogoEl.onerror = function() {
+            if (!this.dataset.fallbackTried) {
+                this.dataset.fallbackTried = "1";
+                this.src = onlineDp;
+            } else if (this.dataset.fallbackTried === "1") {
+                this.dataset.fallbackTried = "2";
+                this.src = apiDp;
+            } else {
+                this.src = "Images/jpg/logo.jpg";
+            }
+        };
+    } else {
+        coverEl.src = "uploads/pc.jpg";
+        coverEl.onerror = function() { this.src = "Images/jpg/logo.jpg"; };
+    }
 
     if (isMainSamiti) {
         document.getElementById("idLogoRowDouble").style.display = "none";
@@ -732,61 +792,7 @@ function renderUserInterface(u) {
         document.getElementById("cardKshetraTitle").innerText = u.seva_kshetra_name || "सनातन सेवा समिति";
     }
 
-    // 3. इमेजेस बाइंडिंग (ऑफ़लाइन कैशिंग या डायरेक्ट सुरक्षित लोडिंग)
-    if (typeof getOfflineImage === "function") {
-        // यूज़र फ़ोटो
-        getOfflineImage("user_profile_dp", photo, photoOnlineFallback).then(b64 => {
-            const finalImg = b64 || photo;
-            document.getElementById("dashAvatarImg").src = finalImg;
-            document.getElementById("cardMemberPhoto").src = finalImg;
-        });
-
-        // डैशबोर्ड कवर फ़ोटो
-        getOfflineImage(sevaKshetra ? `cover_${sevaKshetra}` : "default_cover", localCover, fallbackCover).then(b64 => {
-            document.getElementById("dashCoverImg").src = b64 || localCover;
-        });
-
-        // समिति मुख्य लोगो
-        getOfflineImage("samiti_main_logo", samitiMainLogoUrl).then(b64 => {
-            const finalLogo = b64 || samitiMainLogoUrl;
-            const s1 = document.getElementById("idSamitiLogoSingle");
-            const s2 = document.getElementById("idSamitiLogoDouble");
-            if (s1) s1.src = finalLogo;
-            if (s2) s2.src = finalLogo;
-        });
-
-        // सेवा क्षेत्र लोगो
-        if (!isMainSamiti && sevaKshetra) {
-            getOfflineImage(`kshetra_dp_${sevaKshetra}`, localKshetraDp, fallbackKshetraDp).then(b64 => {
-                document.getElementById("idKshetraLogo").src = b64 || localKshetraDp;
-            });
-        }
-
-        // अध्यक्ष हस्ताक्षर
-        getOfflineImage("samiti_signature", signatureUrl).then(b64 => {
-            if (b64) document.getElementById("cardPresidentSig").src = b64;
-        });
-    } else {
-        // सामान्य डायरेक्ट लोडिंग व onerror फ़ॉलबैक
-        const avatarEl = document.getElementById("dashAvatarImg");
-        const cardMemEl = document.getElementById("cardMemberPhoto");
-        avatarEl.src = photo;
-        cardMemEl.src = photo;
-        avatarEl.onerror = () => { avatarEl.src = photoOnlineFallback; };
-        cardMemEl.onerror = () => { cardMemEl.src = photoOnlineFallback; };
-
-        const coverEl = document.getElementById("dashCoverImg");
-        coverEl.src = localCover;
-        coverEl.onerror = () => { coverEl.src = fallbackCover; };
-
-        if (!isMainSamiti) {
-            const kshEl = document.getElementById("idKshetraLogo");
-            kshEl.src = localKshetraDp;
-            kshEl.onerror = () => { kshEl.src = fallbackKshetraDp; };
-        }
-    }
-
-    // पेंडिंग नोटिस व ID कार्ड दृश्यता
+    // 4. पेंडिंग नोटिस व ID कार्ड दृश्यता
     if (!isApproved) {
         document.getElementById("dashPendingNotice").style.display = "block";
         document.getElementById("idCardSection").style.display = "none";
@@ -795,17 +801,17 @@ function renderUserInterface(u) {
         document.getElementById("idCardSection").style.display = "flex";
     }
 
-    // 2. सदस्यता विवरण कार्ड
+    // 5. सदस्यता विवरण (मूल सदस्यता)
     document.getElementById("boxRoleTitle").innerText = "मेरी सदस्यता: " + hindiRole;
     document.getElementById("boxRoleDesc").innerText = ROLE_EXPLANATIONS[rawRole] || "आप सनातन सेवा समिति के पंजीकृत सदस्य हैं।";
 
-    // 3. डिजिटल वॉलेट
+    // 6. डिजिटल वॉलेट बैलेंस
     document.getElementById("lwUserId").innerText = uid || "---";
     if (u.wallet_balance !== undefined) {
         document.getElementById("liveWalletAmount").innerText = "₹" + parseFloat(u.wallet_balance).toFixed(2);
     }
 
-    // 4. ID Card फ़ील्ड्स बाइंडिंग
+    // 7. ID Card फ़ील्ड्स
     document.getElementById("cardMemberName").innerText = name;
     document.getElementById("cardMemberRole").innerText = displayPostOrRole;
     document.getElementById("cardLocation").innerText = `${dist}, ${state}`;
@@ -819,8 +825,63 @@ function renderUserInterface(u) {
     fileBase = `SANATANAM_ID_${name.replace(/\s+/g, '_')}_${uid}`;
 }
 
+// लेन-देन सूची रेंडरिंग हेल्पर (Parity & WhatsApp share formatting)
+function renderTransactionsList(transactions) {
+    const listEl = document.getElementById("txnListContainer");
+    if (!listEl) return;
+    if (Array.isArray(transactions) && transactions.length > 0) {
+        document.getElementById("txnCountBadge").innerText = `कुल: ${transactions.length} लेन-देन`;
+        let txHtml = "";
+        transactions.forEach(t => {
+            const isPending = (t.status === 'pending');
+            const amtVal = parseFloat(t.amount) || 0;
+            let amtStr = "+ ₹" + amtVal.toFixed(2);
+            let amtStyle = "color: #158146;";
+            if (t.amount_type === 'ann') {
+                amtStr = "🌾 " + t.amount + " Kg";
+                amtStyle = "color: #2e7d32;";
+            } else if (t.amount_type === 'seva') {
+                amtStr = "🚩 प्रत्यक्ष सेवा";
+                amtStyle = "color: #c62828;";
+            }
+
+            const recUrl = `https://sanatansevasamiti.org/samiti/view_receipt.php?tx_id=${encodeURIComponent(t.tx_id)}`;
+            const shareText = `सनातन सेवा समर्पण रसीद:\n${recUrl}\nसमिति: सनातन सेवा समिति`;
+            txHtml += `
+                <div class="txn-item">
+                    <div class="txn-row-top">
+                        <span class="txn-profile">🚩 ${t.profile_name || 'सनातन सेवा समिति'}</span>
+                        <span class="txn-date">${t.tx_date || 'हाल ही में'}</span>
+                    </div>
+                    <div class="txn-desc"><b>विवरण:</b> ${t.seva_desc || 'सेवा समर्पण'}</div>
+                    <div class="txn-row-bot">
+                        <div>
+                            <span style="${amtStyle} font-weight:900; font-size:13px;">${amtStr}</span>
+                            <span class="txn-badge ${isPending ? 'txn-pending' : 'txn-approved'}" style="margin-left:4px;">
+                                ${isPending ? '⏳ पेंडिंग' : '✓ स्वीकृत'}
+                            </span>
+                        </div>
+                        <div class="txn-btn-group">
+                            <a href="${recUrl}" target="_blank" class="btn-receipt">📄 रसीद देखें</a>
+                            <a href="https://wa.me/?text=${encodeURIComponent(shareText)}" target="_blank" class="btn-share">📲 शेयर</a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        listEl.innerHTML = txHtml;
+    } else {
+        listEl.innerHTML = `
+            <div style="text-align:center; padding:20px 10px; color:#8d7967; font-size:12.5px; line-height:1.6;">
+                📜 आपके खाते द्वारा अभी तक कोई दान दर्ज नहीं हुआ है।<br>
+                🙏 आपके पहले सेवा समर्पण का स्वागत है।
+            </div>
+        `;
+    }
+}
+
 // -------------------------------------------------------------
-// LIVE METRICS & TRANSACTIONS POLLING
+// LIVE METRICS & TRANSACTIONS POLLING (दान का लेन-देन)
 // -------------------------------------------------------------
 async function fetchLiveUserData(uid) {
     if (!uid) return;
@@ -834,64 +895,58 @@ async function fetchLiveUserData(uid) {
                 localStorage.setItem("sss_user_data", JSON.stringify(data.user));
             }
 
+            // वॉलेट बैलेंस
             if (data.wallet_balance !== undefined) {
                 document.getElementById("liveWalletAmount").innerText = "₹" + parseFloat(data.wallet_balance).toFixed(2);
-                localStorage.setItem("sss_wallet_balance", data.wallet_balance);
-            }
-            if (data.total_dhan !== undefined) {
-                document.getElementById("statDhan").innerText = "₹" + parseFloat(data.total_dhan).toFixed(2);
-            }
-            if (data.total_ann !== undefined) {
-                document.getElementById("statAnn").innerText = parseFloat(data.total_ann).toFixed(1) + " Kg";
-            }
-            if (data.total_seva !== undefined) {
-                document.getElementById("statSeva").innerText = data.total_seva + " बार";
             }
 
-            // रसीद व लेन-देन सूची
+            // तीन स्वतंत्र दान गणनाएं (Dhan, Ann, Seva)
+            let calcDhan = (data.total_dhan !== undefined) ? parseFloat(data.total_dhan) : 0;
+            let calcAnn = (data.total_ann !== undefined) ? parseFloat(data.total_ann) : 0;
+            let calcSeva = (data.total_seva !== undefined) ? parseInt(data.total_seva) : 0;
+
             if (Array.isArray(data.transactions) && data.transactions.length > 0) {
-                document.getElementById("txnCountBadge").innerText = `कुल: ${data.transactions.length} लेन-देन`;
-                let txHtml = "";
-                data.transactions.forEach(t => {
-                    const isPending = (t.status === 'pending');
-                    let amtStr = "+ ₹" + parseFloat(t.amount).toFixed(2);
-                    let amtStyle = "color: #158146;";
-                    if (t.amount_type === 'ann') {
-                        amtStr = "🌾 " + t.amount + " Kg";
-                        amtStyle = "color: #2e7d32;";
-                    } else if (t.amount_type === 'seva') {
-                        amtStr = "🚩 प्रत्यक्ष सेवा";
-                        amtStyle = "color: #c62828;";
-                    }
+                let sumDhan = 0, sumAnn = 0, sumSeva = 0;
+                let hasTypeTransactions = false;
 
-                    const recUrl = `https://sanatansevasamiti.org/samiti/view_receipt.php?tx_id=${encodeURIComponent(t.tx_id)}`;
-                    txHtml += `
-                        <div class="txn-item">
-                            <div class="txn-row-top">
-                                <span class="txn-profile">🚩 ${t.profile_name || 'सनातन सेवा समिति'}</span>
-                                <span class="txn-date">${t.tx_date || 'हाल ही में'}</span>
-                            </div>
-                            <div class="txn-desc"><b>विवरण:</b> ${t.seva_desc || 'सेवा समर्पण'}</div>
-                            <div class="txn-row-bot">
-                                <div>
-                                    <span style="${amtStyle} font-weight:900; font-size:13px;">${amtStr}</span>
-                                    <span class="txn-badge ${isPending ? 'txn-pending' : 'txn-approved'}" style="margin-left:4px;">
-                                        ${isPending ? '⏳ पेंडिंग' : '✓ स्वीकृत'}
-                                    </span>
-                                </div>
-                                <div class="txn-btn-group">
-                                    <a href="${recUrl}" target="_blank" class="btn-receipt">📄 रसीद देखें</a>
-                                    <a href="https://wa.me/?text=${encodeURIComponent('सनातन सेवा समर्पण रसीद:\n' + recUrl)}" target="_blank" class="btn-share">📲 शेयर</a>
-                                </div>
-                            </div>
-                        </div>
-                    `;
+                data.transactions.forEach(t => {
+                    const amtVal = parseFloat(t.amount) || 0;
+                    if (t.amount_type === 'ann') {
+                        sumAnn += amtVal;
+                        hasTypeTransactions = true;
+                    } else if (t.amount_type === 'seva') {
+                        sumSeva += 1;
+                        hasTypeTransactions = true;
+                    } else {
+                        sumDhan += amtVal;
+                        if (amtVal > 0) hasTypeTransactions = true;
+                    }
                 });
-                document.getElementById("txnListContainer").innerHTML = txHtml;
+
+                if (data.total_dhan === undefined && hasTypeTransactions) calcDhan = sumDhan;
+                if (data.total_ann === undefined && hasTypeTransactions) calcAnn = sumAnn;
+                if (data.total_seva === undefined && hasTypeTransactions) calcSeva = sumSeva;
+
+                renderTransactionsList(data.transactions);
+                localStorage.setItem("sss_user_txns", JSON.stringify(data.transactions));
+            } else {
+                renderTransactionsList([]);
             }
+
+            document.getElementById("statDhan").innerText = "₹" + calcDhan.toFixed(2);
+            document.getElementById("statAnn").innerText = calcAnn.toFixed(1) + " Kg";
+            document.getElementById("statSeva").innerText = calcSeva + " बार";
+
+            // Local cache to retain fallback metrics seamlessly without clearing UI
+            localStorage.setItem("sss_user_metrics", JSON.stringify({
+                wallet_balance: data.wallet_balance,
+                total_dhan: calcDhan,
+                total_ann: calcAnn,
+                total_seva: calcSeva
+            }));
         }
     } catch(err) {
-        console.log("Live dashboard polling offline / fallback active.");
+        console.log("Live dashboard polling fallback active (retaining cached UI metrics).");
     }
 }
 
@@ -1015,11 +1070,17 @@ if(document.getElementById('frontDownload')) {
     });
 }
 
+function logoutUser() {
+    if (confirm("क्या आप वाकई लॉगआउट करना चाहते हैं?")) {
+        localStorage.removeItem("sss_user_token");
+        localStorage.removeItem("sss_user_data");
+        window.location.href = "app_login.html";
+    }
+}
+
 window.addEventListener("DOMContentLoaded", () => {
     loadDashboardUserData();
 });
 </script>
-<script src="image_cache.js"></script>
-<script src="auth_guard.js"></script>
 </body>
 </html>
