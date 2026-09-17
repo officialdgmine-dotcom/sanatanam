@@ -31,7 +31,7 @@
     }
 
     body {
-        padding: 16px 12px 30px;
+        padding: 16px 12px 35px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -119,7 +119,7 @@
         border: 1.5px solid #e0c9a6;
         background: #fffdf9;
         border-radius: 12px;
-        font-size: 14px;
+        font-size: 13.5px;
         font-weight: 600;
         font-family: inherit;
         outline: none;
@@ -140,6 +140,16 @@
         grid-template-columns: 1fr 1fr;
         gap: 10px;
     }
+
+    .pincode-status {
+        font-size: 11px;
+        font-weight: 700;
+        margin-top: 3px;
+        display: none;
+    }
+    .pincode-success { color: #2e7d32; display: block; }
+    .pincode-loading { color: var(--bhagwa-deep); display: block; }
+    .pincode-error { color: var(--lava); display: block; }
 
     .photo-upload-wrap {
         display: flex;
@@ -236,7 +246,7 @@
     <form id="registerForm" onsubmit="handleRegistration(event)">
         
         <!-- SECTION 1: सेवा क्षेत्र व नाम -->
-        <div class="sec-title">🚩 1. सेवा क्षेत्र एवं नाम</div>
+        <div class="sec-title">🚩 1. सेवा क्षेत्र एवं व्यक्तिगत विवरण</div>
 
         <div class="form-group">
             <label class="field-label">सेवा क्षेत्र चुनें *</label>
@@ -256,6 +266,7 @@
                 <select id="gender" class="select-box">
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
+                    <option value="Other">Other</option>
                 </select>
             </div>
             <div class="form-group">
@@ -264,17 +275,29 @@
             </div>
         </div>
 
-        <!-- SECTION 2: संपर्क एवं स्थान -->
-        <div class="sec-title">📍 2. संपर्क एवं निवास विवरण</div>
+        <!-- SECTION 2: संपर्क, देश व ऑटोमैटिक पिनकोड स्थान -->
+        <div class="sec-title">📍 2. संपर्क एवं निवास (ऑटोमैटिक स्थान)</div>
 
         <div class="grid-2">
             <div class="form-group">
-                <label class="field-label">देश (Country)</label>
-                <select id="country" class="select-box">
-                    <option value="India">India</option>
-                    <option value="Nepal">Nepal</option>
-                    <option value="Bangladesh">Bangladesh</option>
-                    <option value="Sri Lanka">Sri Lanka</option>
+                <label class="field-label">देश (Country) *</label>
+                <select id="country" class="select-box" onchange="handleCountryChange(this.value)">
+                    <!-- विश्व के प्रमुख देश -->
+                    <option value="India" selected>🇮🇳 India</option>
+                    <option value="Nepal">🇳🇵 Nepal</option>
+                    <option value="Bangladesh">🇧🇩 Bangladesh</option>
+                    <option value="Sri Lanka">🇱🇰 Sri Lanka</option>
+                    <option value="Bhutan">🇧🇹 Bhutan</option>
+                    <option value="Mauritius">🇲🇺 Mauritius</option>
+                    <option value="United States">🇺🇸 United States</option>
+                    <option value="United Kingdom">🇬🇧 United Kingdom</option>
+                    <option value="Canada">🇨🇦 Canada</option>
+                    <option value="Australia">🇦🇺 Australia</option>
+                    <option value="United Arab Emirates">🇦🇪 UAE</option>
+                    <option value="Singapore">🇸🇬 Singapore</option>
+                    <option value="Fiji">🇫🇯 Fiji</option>
+                    <option value="Malaysia">🇲🇾 Malaysia</option>
+                    <option value="Other">🌐 Other Country</option>
                 </select>
             </div>
             <div class="form-group">
@@ -288,20 +311,31 @@
             <input type="email" id="email" class="input-box" placeholder="name@example.com">
         </div>
 
+        <!-- पिनकोड आधारित ऑटो लोकेशन -->
+        <div class="form-group" id="pincodeGroup">
+            <label class="field-label">पिनकोड (Pincode दर्ज करते ही राज्य व जिला स्वतः भर जाएगा) *</label>
+            <input type="number" id="pincode" class="input-box" placeholder="6 अंकों का पिनकोड (उदा. 476001)" oninput="handlePincodeAutoFetch(this.value)">
+            <div id="pincodeStatus" class="pincode-status"></div>
+        </div>
+
         <div class="grid-2">
             <div class="form-group">
-                <label class="field-label">राज्य (State)</label>
-                <input type="text" id="state" class="input-box" placeholder="उदा. मध्य प्रदेश">
+                <label class="field-label">राज्य (State) *</label>
+                <select id="state" class="select-box" onchange="handleStateSelection(this.value)">
+                    <option value="">-- राज्य चुनें --</option>
+                </select>
             </div>
             <div class="form-group">
-                <label class="field-label">जिला (District)</label>
-                <input type="text" id="district" class="input-box" placeholder="उदा. मुरैना">
+                <label class="field-label">जिला (District) *</label>
+                <select id="district" class="select-box">
+                    <option value="">-- जिला चुनें --</option>
+                </select>
             </div>
         </div>
 
         <div class="form-group">
-            <label class="field-label">स्थायी पता (Full Address)</label>
-            <textarea id="address" class="textarea-box" placeholder="गाँव / वार्ड, पोस्ट, पिन कोड..."></textarea>
+            <label class="field-label">स्थायी पता (Village / Ward / Street)</label>
+            <textarea id="address" class="textarea-box" placeholder="मकान नं, मोहल्ला, गाँव / वार्ड दर्ज करें..."></textarea>
         </div>
 
         <!-- SECTION 3: फोटो एवं पासवर्ड -->
@@ -331,32 +365,191 @@
 </div>
 
 <script>
-const API_URL = "https://sanatansevasamiti.org/api/register.php";
+const REGISTER_API = "https://sanatansevasamiti.org/api/register.php";
 let photoBase64 = "";
 
-window.addEventListener("load", loadSevaKshetra);
+// भारत के सभी राज्य
+const INDIA_STATES = [
+    "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", 
+    "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", 
+    "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", 
+    "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab", 
+    "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", 
+    "Uttar Pradesh", "Uttarakhand", "West Bengal", "Andaman and Nicobar Islands", 
+    "Chandigarh", "Dadra and Nagar Haveli and Daman and Diu", "Delhi", 
+    "Jammu and Kashmir", "Ladakh", "Lakshadweep", "Puducherry"
+];
 
-async function loadSevaKshetra() {
-    const sel = document.getElementById("seva_kshetra");
-    try {
-        const res = await fetch(API_URL);
-        const data = await res.json();
-        if (data.status && data.profiles && data.profiles.length > 0) {
-            sel.innerHTML = '<option value="">-- अपना सेवा क्षेत्र चुनें --</option>';
-            data.profiles.forEach(p => {
-                const opt = document.createElement("option");
-                opt.value = p.profile_id;
-                opt.textContent = p.name;
-                sel.appendChild(opt);
-            });
-        } else {
-            sel.innerHTML = '<option value="">कोई सेवा क्षेत्र उपलब्ध नहीं</option>';
-        }
-    } catch(err) {
-        sel.innerHTML = '<option value="">सेवा क्षेत्र लोड करने में त्रुटि</option>';
+// प्रमुख जिलों की सूची
+const STATE_DISTRICTS_DATA = {
+    "Madhya Pradesh": ["मुरैना", "ग्वालियर", "भिंड", "श्योपुर", "दतिया", "शिवपुरी", "इंदौर", "भोपाल", "उज्जैन", "जबलपुर", "रीवा", "सतना", "सागर", "बैतूल", "होशंगाबाद", "खंडवा", "खरगोन", "विदिशा", "सीहोर", "रतलाम", "मंदसौर", "नीमच"],
+    "Uttar Pradesh": ["आगरा", "मथुरा", "वाराणसी", "अयोध्या", "लखनऊ", "कानपुर", "प्रयागराज", "गोरखपुर", "झाँसी", "अलीगढ़", "मेरठ", "बरेली", "मुरादाबाद", "गाजियाबाद", "नोएडा", "इटावा", "मैनपुरी", "फिरोजाबाद"],
+    "Rajasthan": ["जयपुर", "जोधपुर", "कोटा", "बीकानेर", "अजमेर", "उदयपुर", "भरतपुर", "धौलपुर", "अलवर", "सीकर", "दौसा", "सवाई माधोपुर"],
+    "Delhi": ["नई दिल्ली", "उत्तर दिल्ली", "दक्षिण दिल्ली", "पूर्व दिल्ली", "पश्चिम दिल्ली", "मध्य दिल्ली"],
+    "Bihar": ["पटना", "गया", "मुजफ्फरपुर", "भागलपुर", "दरभंगा", "पूर्णिया", "नालंदा", "आरा"]
+};
+
+// फॉलबैक सेवा क्षेत्र सूची
+const DEFAULT_SEVA_KSHETRA = [
+    { profile_id: "PRO1781011172", name: "सनातन सेवा समिति (मुख्य)" },
+    { profile_id: "PRO1781011341", name: "आनंद लहरी" },
+    { profile_id: "PRO1781285901", name: "सत्य सनातन मार्ग" },
+    { profile_id: "PRO1781287765", name: "सनातन धर्म आश्रम" },
+    { profile_id: "PRO1781288688", name: "श्री शिवशक्ति वैदिक गुरुकुलम" },
+    { profile_id: "PRO1781289469", name: "प्रकृति संरक्षण" },
+    { profile_id: "PRO1781367447", name: "श्री शिव शक्ति शिक्षा केंद्र" },
+    { profile_id: "PRO1781289610", name: "जीव सेवा" },
+    { profile_id: "PRO1781290640", name: "निःशुल्क स्वास्थ्य सेवा" },
+    { profile_id: "PRO1781291019", name: "निराश्रित जन सेवा" },
+    { profile_id: "PRO1781313938", name: "वृद्ध जन सेवा" },
+    { profile_id: "PRO1781318323", name: "राष्ट्रीय सनातन रक्षा सेना" },
+    { profile_id: "PRO1781368186", name: "संत सेना" },
+    { profile_id: "PRO1781318500", name: "भवानी सेना" },
+    { profile_id: "PRO1781319711", name: "वेद सेना" }
+];
+
+window.addEventListener("DOMContentLoaded", () => {
+    loadStatesDropdown();
+    loadSevaKshetraList();
+});
+
+// 1. राज्यों का ड्रॉपडाउन तैयार करना
+function loadStatesDropdown() {
+    const stateSel = document.getElementById("state");
+    stateSel.innerHTML = '<option value="">-- राज्य चुनें --</option>';
+    INDIA_STATES.forEach(st => {
+        const opt = document.createElement("option");
+        opt.value = st;
+        opt.textContent = st;
+        stateSel.appendChild(opt);
+    });
+}
+
+// 2. राज्य चुनने पर जिलों का स्वतः अपडेट
+function handleStateSelection(selectedState, autoDistrict = "") {
+    const distSel = document.getElementById("district");
+    distSel.innerHTML = '<option value="">-- जिला चुनें --</option>';
+
+    const distList = STATE_DISTRICTS_DATA[selectedState] || [];
+    
+    if (autoDistrict && !distList.includes(autoDistrict)) {
+        distList.unshift(autoDistrict);
+    }
+
+    if (distList.length > 0) {
+        distList.forEach(d => {
+            const opt = document.createElement("option");
+            opt.value = d;
+            opt.textContent = d;
+            if (autoDistrict && autoDistrict.toLowerCase().includes(d.toLowerCase())) {
+                opt.selected = true;
+            }
+            distSel.appendChild(opt);
+        });
+    } else {
+        const opt = document.createElement("option");
+        opt.value = autoDistrict || selectedState;
+        opt.textContent = autoDistrict || selectedState;
+        opt.selected = true;
+        distSel.appendChild(opt);
     }
 }
 
+// 3. भारत के पिनकोड से राज्य व जिला स्वतः प्राप्त करना
+async function handlePincodeAutoFetch(pin) {
+    const statusBox = document.getElementById("pincodeStatus");
+    pin = pin.trim();
+
+    if (pin.length !== 6) {
+        statusBox.style.display = "none";
+        return;
+    }
+
+    statusBox.className = "pincode-status pincode-loading";
+    statusBox.innerText = "⏳ पिनकोड से स्थान खोजा जा रहा है...";
+
+    try {
+        const res = await fetch(`https://api.postalpincode.in/pincode/${pin}`);
+        const data = await res.json();
+
+        if (data && data[0] && data[0].Status === "Success") {
+            const postOffice = data[0].PostOffice[0];
+            const detectedState = postOffice.State;
+            const detectedDistrict = postOffice.District;
+
+            // राज्य सेलेक्ट करना
+            const stateSel = document.getElementById("state");
+            let stateMatched = false;
+            for (let i = 0; i < stateSel.options.length; i++) {
+                if (stateSel.options[i].value.toLowerCase() === detectedState.toLowerCase()) {
+                    stateSel.selectedIndex = i;
+                    stateMatched = true;
+                    break;
+                }
+            }
+            if (!stateMatched) {
+                const newOpt = new Option(detectedState, detectedState, true, true);
+                stateSel.add(newOpt);
+            }
+
+            // जिले का स्वतः चयन
+            handleStateSelection(detectedState, detectedDistrict);
+
+            statusBox.className = "pincode-status pincode-success";
+            statusBox.innerText = `✓ स्थान मिला: ${detectedDistrict}, ${detectedState}`;
+        } else {
+            statusBox.className = "pincode-status pincode-error";
+            statusBox.innerText = "⚠️ पिनकोड का विवरण नहीं मिला, कृपया ड्रॉपडाउन से चुनें।";
+        }
+    } catch (e) {
+        statusBox.className = "pincode-status pincode-error";
+        statusBox.innerText = "स्थान स्वतः लोड नहीं हो सका, कृपया सीधे चुनें।";
+    }
+}
+
+// 4. देश बदलने पर व्यवहार
+function handleCountryChange(country) {
+    const pinGroup = document.getElementById("pincodeGroup");
+    if (country !== "India") {
+        pinGroup.style.display = "none";
+        const stateSel = document.getElementById("state");
+        const distSel = document.getElementById("district");
+        stateSel.innerHTML = `<option value="${country}" selected>${country} Region</option>`;
+        distSel.innerHTML = `<option value="${country}" selected>${country} District</option>`;
+    } else {
+        pinGroup.style.display = "block";
+        loadStatesDropdown();
+    }
+}
+
+// 5. सेवा क्षेत्र सूची लोड करना
+async function loadSevaKshetraList() {
+    const sel = document.getElementById("seva_kshetra");
+    try {
+        const res = await fetch(REGISTER_API);
+        const data = await res.json();
+        if (data.status && data.profiles && data.profiles.length > 0) {
+            renderProfiles(data.profiles);
+            return;
+        }
+    } catch(err) {
+        console.log("Using fallback seva kshetra list");
+    }
+    renderProfiles(DEFAULT_SEVA_KSHETRA);
+}
+
+function renderProfiles(list) {
+    const sel = document.getElementById("seva_kshetra");
+    sel.innerHTML = '<option value="">-- अपना सेवा क्षेत्र चुनें --</option>';
+    list.forEach(p => {
+        const opt = document.createElement("option");
+        opt.value = p.profile_id;
+        opt.textContent = p.name;
+        sel.appendChild(opt);
+    });
+}
+
+// 6. फोटो चयन व प्रीव्यू
 function previewUserPhoto(e) {
     const file = e.target.files[0];
     if (!file) return;
@@ -368,11 +561,19 @@ function previewUserPhoto(e) {
     reader.readAsDataURL(file);
 }
 
+// 7. रजिस्ट्रेशन सबमिशन
 async function handleRegistration(e) {
     e.preventDefault();
     const btn = document.getElementById("btnSubmit");
     const alertBox = document.getElementById("alertMsg");
     alertBox.style.display = "none";
+
+    const mobileVal = document.getElementById("mobile").value.trim();
+    if (mobileVal.length !== 10) {
+        alertBox.innerText = "कृपया सही 10 अंकों का मोबाइल नंबर दर्ज करें!";
+        alertBox.style.display = "block";
+        return;
+    }
 
     const payload = {
         full_name: document.getElementById("full_name").value.trim(),
@@ -380,26 +581,20 @@ async function handleRegistration(e) {
         gender: document.getElementById("gender").value,
         dob: document.getElementById("dob").value,
         country: document.getElementById("country").value,
-        mobile: document.getElementById("mobile").value.trim(),
+        mobile: mobileVal,
         email: document.getElementById("email").value.trim(),
         state: document.getElementById("state").value.trim(),
         district: document.getElementById("district").value.trim(),
-        address: document.getElementById("address").value.trim(),
+        address: document.getElementById("address").value.trim() + (document.getElementById("pincode").value ? " - " + document.getElementById("pincode").value : ""),
         pass: document.getElementById("password").value,
         profile_photo_base64: photoBase64
     };
-
-    if (payload.mobile.length !== 10) {
-        alertBox.innerText = "कृपया सही 10 अंकों का मोबाइल नंबर दर्ज करें!";
-        alertBox.style.display = "block";
-        return;
-    }
 
     btn.innerText = "⏳ पंजीकरण हो रहा है...";
     btn.disabled = true;
 
     try {
-        const res = await fetch(API_URL, {
+        const res = await fetch(REGISTER_API, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload)
@@ -417,13 +612,14 @@ async function handleRegistration(e) {
             }
 
             alert("✅ " + data.message);
+            
             if (window.AndroidBridge && window.AndroidBridge.openNativeScreen) {
                 window.AndroidBridge.openNativeScreen("app_home");
             } else {
                 window.location.href = "app_home.html";
             }
         } else {
-            alertBox.innerText = data.message;
+            alertBox.innerText = data.message || "पंजीकरण विफल रहा!";
             alertBox.style.display = "block";
         }
     } catch(err) {
