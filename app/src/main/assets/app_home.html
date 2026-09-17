@@ -657,6 +657,28 @@
         }
 
         .sss-gold-circle img { width: 35px; height: 35px; }
+
+        /* Notification Toast for Offline Feedback */
+        #noticeToast {
+            position: fixed;
+            bottom: 85px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #800000, #4a0000);
+            color: #ffd700;
+            padding: 11px 22px;
+            border-radius: 25px;
+            font-size: 12.5px;
+            font-weight: bold;
+            display: none;
+            z-index: 1000000;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.45);
+            border: 1px solid #ffd700;
+            text-align: center;
+            max-width: 88vw;
+            white-space: normal;
+            line-height: 1.4;
+        }
     </style>
 </head>
 <body>
@@ -665,9 +687,9 @@
 
     <!-- 1. APP HEADER (PhonePe Style Translucent Sticky Header) -->
     <header class="app-header" id="mainHeader">
-        <form action="https://sanatansevasamiti.org/feed.php" method="get" class="search-bar" style="margin: 0;">
+        <form action="feed.html" method="get" class="search-bar" style="margin: 0;" onsubmit="handleHeaderSearch(event)">
             <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" name="search" placeholder="समिति में खोजें (सेवा, पोस्ट, आदि)..." />
+            <input type="text" id="searchInput" name="search" placeholder="समिति में खोजें (सेवा, पोस्ट, आदि)..." />
         </form>
 
         <div class="user-avatar-btn" onclick="openMenu()" title="मेनू व प्रोफ़ाइल खोलें">
@@ -713,7 +735,7 @@
             <h2>सनातन सेवा समिति</h2>
             <p>समस्त सनातन समाज की सेवा, सुरक्षा एवं सर्वांगीण विकास हेतु समर्पित</p>
         </div>
-        <a href="https://sanatansevasamiti.org/about.php" class="samiti-action-btn">
+        <a href="javascript:void(0);" onclick="openSectionModal('सनातन सेवा समिति परिचय')" class="samiti-action-btn">
             जानें <i class="fa-solid fa-chevron-right"></i>
         </a>
     </div>
@@ -722,19 +744,19 @@
     <div class="action-strip-wrapper">
         <div class="action-strip">
             <!-- 1. दैनिक पोस्ट -->
-            <a href="https://sanatansevasamiti.org/feed.php" class="action-pill">
+            <a href="feed.html" class="action-pill">
                 <div class="pill-icon"><i class="fa-solid fa-newspaper"></i></div>
                 <span class="pill-title">दैनिक पोस्ट</span>
             </a>
 
             <!-- 2. दैनिक स्टेटस -->
-            <a href="https://sanatansevasamiti.org/status.php" class="action-pill">
+            <a href="javascript:void(0);" onclick="openSectionModal('दैनिक स्टेटस')" class="action-pill">
                 <div class="pill-icon"><i class="fa-solid fa-circle-notch"></i></div>
                 <span class="pill-title">दैनिक स्टेटस</span>
             </a>
 
             <!-- 3. दान प्रगति -->
-            <a href="https://sanatansevasamiti.org/samiti" class="action-pill">
+            <a href="javascript:void(0);" onclick="openSectionModal('दान प्रगति')" class="action-pill">
                 <div class="pill-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
                 <span class="pill-title">दान प्रगति</span>
             </a>
@@ -746,7 +768,7 @@
             </a>
 
             <!-- 5. स्वागत पत्र + नियुक्ति पत्र -->
-            <a href="https://sanatansevasamiti.org/dashboard.php" class="action-pill">
+            <a href="welcome_letter.html" class="action-pill">
                 <div class="pill-icon"><i class="fa-solid fa-file-signature"></i></div>
                 <span class="pill-title">स्वागत + नियुक्ति</span>
             </a>
@@ -757,12 +779,12 @@
     <div class="posts-section-wrapper">
         <div class="section-title" style="padding: 0 0 10px 0;">
             <h2>ताज़ा पोस्ट एवं गतिविधियाँ</h2>
-            <a href="https://sanatansevasamiti.org/feed.php" class="view-btn">फीड पेज</a>
+            <a href="feed.html" class="view-btn">फीड पेज</a>
         </div>
 
         <div id="latestPostsContainer">
             <!-- पोस्ट 1 -->
-            <a href="https://sanatansevasamiti.org/feed.php" class="compact-post-card">
+            <a href="feed.html" class="compact-post-card">
                 <img class="compact-post-cover" src="https://sanatansevasamiti.org/Images/jpg/logo.jpg" alt="कवर इमेज" />
                 <div class="compact-post-details">
                     <div class="compact-post-user">
@@ -778,7 +800,7 @@
             </a>
 
             <!-- पोस्ट 2 -->
-            <a href="https://sanatansevasamiti.org/feed.php" class="compact-post-card">
+            <a href="feed.html" class="compact-post-card">
                 <img class="compact-post-cover" src="https://sanatansevasamiti.org/uploads/file_00000000b5447207af241f52a9137425.png" alt="कवर इमेज" />
                 <div class="compact-post-details">
                     <div class="compact-post-user">
@@ -795,7 +817,7 @@
         </div>
 
         <!-- सभी पोस्ट देखें बटन -->
-        <a href="https://sanatansevasamiti.org/feed.php" class="view-all-posts-btn">
+        <a href="feed.html" class="view-all-posts-btn">
             और पढ़ें / सभी पोस्ट देखें <i class="fa-solid fa-arrow-right-long"></i>
         </a>
     </div>
@@ -815,74 +837,74 @@
             </div>
         </div>
 
-        <a href="https://sanatansevasamiti.org/ss.php">🏠 ग्रहम् </a>
-        <a href="https://sanatansevasamiti.org/feed.php">📃 फीड पेज</a>
-        <a href="https://sanatansevasamiti.org/dashboard.php">🪪 डैशबोर्ड</a>
+        <a href="app_home.html">🏠 ग्रहम् </a>
+        <a href="feed.html">📃 फीड पेज</a>
+        <a href="id_card.html">🪪 डिजिटल पहचान पत्र (i Card)</a>
+        <a href="welcome_letter.html">📜 स्वागत पत्र व नियुक्ति</a>
         <a href="app_register.html">📝 नया पंजीकरण करें</a>
 
         <!-- Submenu -->
         <div class="menu-item">
-            <a href="javascript:void(0)" onclick="toggleSubmenu(this)">🛕 सनातन सेवा समिति ▼</a>
+            <a href="javascript:void(0)" onclick="toggleSubmenu(this)">🛕 सनातन सेवा समिति सेवाएँ ▼</a>
             <div class="submenu">
-                <a href="https://sanatansevasamiti.org/samiti">सभी सेवाएँ</a>
-                <a href="https://sanatansevasamiti.org/samiti/sss.php">⚜️ सनातन सेवा समिति ⚜️</a>            
-                <a href="https://sanatansevasamiti.org/samiti/aanand.php">🪇 आनंद लहरी 🪇</a>
-                <a href="https://sanatansevasamiti.org/samiti/ssm.php">🛣️ सत्य सनातन मार्ग 🛣️</a>
-                <a href="https://sanatansevasamiti.org/samiti/sda.php">🕉️ सनातन धर्म आश्रम 🕉️</a>            
-                <a href="https://sanatansevasamiti.org/samiti/ssvg.php">⛳ श्री शिव शक्ति वैदिक गुरुकुलम् ⛳</a>
-                <a href="https://sanatansevasamiti.org/samiti/sssk.php">🏫 श्री शिव शक्ति शिक्षा केंद्र 🏫</a>
-                <a href="https://sanatansevasamiti.org/samiti/ps.php">🌿 प्रकृति संरक्षण 🌿</a>            
-                <a href="https://sanatansevasamiti.org/samiti/jv.php">🐄 जीव सेवा 🐄</a>
-                <a href="https://sanatansevasamiti.org/samiti/nss.php">🩺 निःशुल्क स्वास्थ्य सेवा 🩺</a>
-                <a href="https://sanatansevasamiti.org/samiti/njs.php">🚹 निराश्रित जन सेवा 🚹</a>            
-                <a href="https://sanatansevasamiti.org/samiti/vjs.php">👴 वृद्धजन सेवा 👴</a>
-                <a href="https://sanatansevasamiti.org/samiti/rsrs.php">⚔️ राष्ट्रीय सनातन रक्षा सेना ⚔️</a>
-                <a href="https://sanatansevasamiti.org/samiti/ss.php">🚩 संत सेना 🚩</a>            
-                <a href="https://sanatansevasamiti.org/samiti/bs.php">🔱 भवानी सेना 🔱</a>
-                <a href="https://sanatansevasamiti.org/samiti/vs.php">📜 वेद सेना 📜</a>
+                <a href="javascript:void(0)" onclick="openSectionModal('सभी सेवाएँ')">सभी सेवाएँ</a>
+                <a href="javascript:void(0)" onclick="openSectionModal('सनातन सेवा समिति')">⚜️ सनातन सेवा समिति ⚜️</a>            
+                <a href="javascript:void(0)" onclick="openSectionModal('आनंद लहरी')">🪇 आनंद लहरी 🪇</a>
+                <a href="javascript:void(0)" onclick="openSectionModal('सत्य सनातन मार्ग')">🛣️ सत्य सनातन मार्ग 🛣️</a>
+                <a href="javascript:void(0)" onclick="openSectionModal('सनातन धर्म आश्रम')">🕉️ सनातन धर्म आश्रम 🕉️</a>            
+                <a href="javascript:void(0)" onclick="openSectionModal('श्री शिव शक्ति वैदिक गुरुकुलम्')">⛳ श्री शिव शक्ति वैदिक गुरुकुलम् ⛳</a>
+                <a href="javascript:void(0)" onclick="openSectionModal('श्री शिव शक्ति शिक्षा केंद्र')">🏫 श्री शिव शक्ति शिक्षा केंद्र 🏫</a>
+                <a href="javascript:void(0)" onclick="openSectionModal('प्रकृति संरक्षण')">🌿 प्रकृति संरक्षण 🌿</a>            
+                <a href="javascript:void(0)" onclick="openSectionModal('जीव सेवा')">🐄 जीव सेवा 🐄</a>
+                <a href="javascript:void(0)" onclick="openSectionModal('निःशुल्क स्वास्थ्य सेवा')">🩺 निःशुल्क स्वास्थ्य सेवा 🩺</a>
+                <a href="javascript:void(0)" onclick="openSectionModal('निराश्रित जन सेवा')">🚹 निराश्रित जन सेवा 🚹</a>            
+                <a href="javascript:void(0)" onclick="openSectionModal('वृद्धजन सेवा')">👴 वृद्धजन सेवा 👴</a>
+                <a href="javascript:void(0)" onclick="openSectionModal('राष्ट्रीय सनातन रक्षा सेना')">⚔️ राष्ट्रीय सनातन रक्षा सेना ⚔️</a>
+                <a href="javascript:void(0)" onclick="openSectionModal('संत सेना')">🚩 संत सेना 🚩</a>            
+                <a href="javascript:void(0)" onclick="openSectionModal('भवानी सेना')">🔱 भवानी सेना 🔱</a>
+                <a href="javascript:void(0)" onclick="openSectionModal('वेद सेना')">📜 वेद सेना 📜</a>
             </div>
         </div>
 
-        <a href="https://sanatansevasamiti.org/astro">🔮 सनातन ज्योतिष</a>
-        <a href="https://sanatansevasamiti.org/books">📚 सनातन पुस्तक संग्रह</a>
-        <a href="https://sanatansevasamiti.org/guru">🙌 गुरु परंपरा</a>
-        <a href="https://sanatansevasamiti.org/shop">🛒 सनातन सामग्री</a>
-        <a href="https://sanatansevasamiti.org/vansh">🌳 वंश वृक्ष</a>
-        <a href="https://sanatansevasamiti.org/about.php">❕ हमारे बारे में</a>
-        <a href="https://sanatansevasamiti.org/about-maharaj-ji.php">👑 महाराज जी के बारे में</a>
-        <a href="https://sanatansevasamiti.org/contect.php">☎️ हमसे संपर्क करें</a>
-        <a href="https://sanatansevasamiti.org/share.php">📨 ऐप साझा करें</a>
-        <a href="https://sanatansevasamiti.org/app">📥 ऐप डाउनलोड करें</a>
+        <a href="javascript:void(0)" onclick="openSectionModal('सनातन ज्योतिष')">🔮 सनातन ज्योतिष</a>
+        <a href="javascript:void(0)" onclick="openSectionModal('सनातन पुस्तक संग्रह')">📚 सनातन पुस्तक संग्रह</a>
+        <a href="javascript:void(0)" onclick="openSectionModal('गुरु परंपरा')">🙌 गुरु परंपरा</a>
+        <a href="javascript:void(0)" onclick="openSectionModal('सनातन सामग्री')">🛒 सनातन सामग्री</a>
+        <a href="javascript:void(0)" onclick="openSectionModal('वंश वृक्ष')">🌳 वंश वृक्ष</a>
+        <a href="javascript:void(0)" onclick="openSectionModal('हमारे बारे में')">❕ हमारे बारे में</a>
+        <a href="javascript:void(0)" onclick="openSectionModal('महाराज जी के बारे में')">👑 महाराज जी के बारे में</a>
+        <a href="javascript:void(0)" onclick="openSectionModal('संपर्क सेवा')">☎️ हमसे संपर्क करें</a>
+        <a href="javascript:void(0)" onclick="shareSanatanamApp()">📨 ऐप साझा करें</a>
         <a href="javascript:void(0)" onclick="handleLogout()" id="logoutBtn" style="color:#ffb3b3; display:none;">🚪 लॉगआउट</a>
     </div>
 
-    <!-- 8. FOOTER NAVIGATION BAR -->
+    <!-- 8. FOOTER NAVIGATION BAR (Pure Local Offline Routing) -->
     <div id="sss-nav">
-        <a href="https://sanatansevasamiti.org/ss.php" class="sss-item">
+        <a href="app_home.html" class="sss-item">
             <img src="https://sanatansevasamiti.org/uploads/footer/1780341771file_00000000145071fab7ea2e7e30f9dfaa-e1776295057951.png" alt="गृह">
             <span>गृह</span>
         </a>
 
-        <a href="https://sanatansevasamiti.org/shri-sachchidanand-sampraday/" class="sss-item">
+        <a href="javascript:void(0);" onclick="openSectionModal('गुरु परंपरा')" class="sss-item">
             <img src="https://sanatansevasamiti.org/uploads/footer/1780341317ci.jpg" alt="गुरु">
             <span>गुरु परंपरा</span>
         </a>
 
-        <a href="https://sanatansevasamiti.org/feed.php" class="sss-item sss-dash-wrap">
+        <a href="feed.html" class="sss-item sss-dash-wrap">
             <div class="sss-gold-circle">
                 <img src="https://sanatansevasamiti.org/uploads/footer/1780341218logo.jpg" alt="फीड">
             </div>
             <span></span>
         </a>
 
-        <a href="https://sanatansevasamiti.org/books" class="sss-item">
+        <a href="javascript:void(0);" onclick="openSectionModal('सनातन पुस्तकें')" class="sss-item">
             <img src="https://sanatansevasamiti.org/uploads/footer/1780341270bi.jpg" alt="पुस्तकें">
             <span>पुस्तकें</span>
         </a>
 
-        <a href="https://sanatansevasamiti.org/dashboard.php" class="sss-item">
-            <img src="https://sanatansevasamiti.org/uploads/footer/1780341144ai.jpg" alt="अकाउंट">
-            <span>अकाउंट</span>
+        <a href="id_card.html" class="sss-item">
+            <img src="https://sanatansevasamiti.org/uploads/footer/1780341144ai.jpg" alt="पहचान पत्र">
+            <span>पहचान पत्र</span>
         </a>
     </div>
 
@@ -1170,27 +1192,29 @@
         }
     ];
 
-    // Render All Sections dynamically into App
+    // Render All Sections dynamically into App (100% Local Routing)
     function renderAppSections() {
         const container = document.getElementById("allSectionsWrapper");
         if(!container) return;
 
         let html = "";
         SECTIONS_DATA.forEach(sec => {
+            const escapedHeading = sec.heading.replace(/'/g, "\\'");
             html += `
                 <div class="section-wrapper">
                     <div class="section-title">
                         <h2>${sec.heading}</h2>
-                        <a href="${sec.link}" class="view-btn">सब देखें <i class="fa-solid fa-chevron-right"></i></a>
+                        <a href="javascript:void(0);" onclick="openSectionModal('${escapedHeading}')" class="view-btn">सब देखें <i class="fa-solid fa-chevron-right"></i></a>
                     </div>
                     <div class="scroll-box">
             `;
             sec.items.forEach(item => {
+                const escapedTitle = item.title.replace(/'/g, "\\'");
                 html += `
                     <div class="item-card">
                         ${item.img ? `<img src="${item.img}" alt="${item.title}" loading="lazy" onerror="this.src='https://sanatansevasamiti.org/Images/jpg/logo.jpg';">` : ''}
                         <h3>${item.title}</h3>
-                        <a href="${item.url}" class="btn-view">अभी देखें <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="javascript:void(0);" onclick="openSectionModal('${escapedTitle}')" class="btn-view">अभी देखें <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 `;
             });
@@ -1200,6 +1224,50 @@
             `;
         });
         container.innerHTML = html;
+    }
+
+    // Interactive Toast Notification
+    function showNotice(msg) {
+        const toast = document.getElementById("noticeToast");
+        if(!toast) return;
+        toast.innerText = msg;
+        toast.style.display = "block";
+        setTimeout(() => {
+            toast.style.display = "none";
+        }, 3000);
+    }
+
+    // Section Click Feedback Modal/Toast
+    function openSectionModal(title) {
+        showNotice(`'${title}' — यह पावन सेवा शीघ्र ही स्थानीय रूप से उपलब्ध होगी।`);
+    }
+
+    window.showAppNotice = function(secName) {
+        openSectionModal(secName);
+    };
+
+    // Header Search Handler
+    function handleHeaderSearch(e) {
+        if(e) e.preventDefault();
+        const query = document.getElementById("searchInput").value.trim();
+        if(query) {
+            window.location.href = `feed.html?q=${encodeURIComponent(query)}`;
+        } else {
+            window.location.href = "feed.html";
+        }
+    }
+
+    // App Sharing
+    function shareSanatanamApp() {
+        if (navigator.share) {
+            navigator.share({
+                title: 'SANATANAM',
+                text: 'सनातन सेवा समिति आधिकारिक मोबाइल ऐप — धर्म, संस्कृति एवं सेवा संगम।',
+                url: 'https://sanatansevasamiti.org'
+            }).catch(() => {});
+        } else {
+            showNotice("सनातन सेवा समिति ऐप विवरण कॉपी किया गया।");
+        }
     }
 
     // Header Scroll Effect
