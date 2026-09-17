@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.util.Base64
+import android.view.View
 import android.view.ViewGroup
 import android.webkit.JavascriptInterface
 import android.webkit.SslErrorHandler
@@ -248,6 +249,13 @@ fun SanatanamWebViewScreen(
           )
 
           setBackgroundColor(android.graphics.Color.parseColor("#4A0000"))
+
+          // Use software rendering if hardware rendernode is unavailable on virtualized devices/emulators
+          try {
+            setLayerType(View.LAYER_TYPE_HARDWARE, null)
+          } catch (_: Exception) {
+            setLayerType(View.LAYER_TYPE_SOFTWARE, null)
+          }
 
           settings.apply {
             javaScriptEnabled = true
