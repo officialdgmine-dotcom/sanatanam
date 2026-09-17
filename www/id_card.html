@@ -8,6 +8,8 @@
 <!-- HTML2CANVAS & JSZIP -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="image_cache.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 /* GLOBAL */
@@ -105,6 +107,14 @@ body{
     align-items:center;
     padding:0 24px;
 }
+.logo-row-single{
+    position:absolute;
+    top:10px; left:0;
+    width:360px; height:68px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
 .card-logo{
     width:61px; height:61px;
     border-radius:50%;
@@ -113,6 +123,7 @@ body{
     border:3px solid #f1cd62;
     box-shadow: 0 4px 14px rgba(0,0,0,.45);
 }
+.single-logo{ width:65px; height:65px; }
 
 .ksh-title{
     position:absolute;
@@ -337,7 +348,7 @@ body{
 .gate p{ margin:0 0 16px; font-size:13px; line-height:20px; font-weight:700; }
 .gate-btn{ display:inline-block; padding:10px 22px; background:#4b0712; color:#ffe8a0; border-radius:12px; text-decoration:none; font-weight:800; font-size:13px; }
 
-/* ---------------- FOOTER NAVIGATION BAR ---------------- */
+/* FOOTER NAVIGATION BAR */
 #sss-nav {
     position: fixed;
     bottom: 0; left: 50%;
@@ -372,11 +383,11 @@ body{
 
 <div class="id-page">
 
-    <!-- नॉट-लॉगिन या अप्रूव्ड न होने पर स्टेट -->
+    <!-- नॉट-लॉगिन या अप्रूव्ड न होने पर गेट -->
     <div id="unauthGate" class="gate" style="display:none;">
-        <h2>🔐 लॉगिन आवश्यक है</h2>
-        <p>अपना डिजिटल पहचान पत्र देखने के लिए कृपया पहले लॉगिन करें।</p>
-        <a href="app_login.html" class="gate-btn">लॉगिन पेज पर जाएँ</a>
+        <h2>🔐 सत्यापन आवश्यक है</h2>
+        <p id="unauthGateMsg">अपना डिजिटल पहचान पत्र देखने के लिए कृपया पहले लॉगिन करें।</p>
+        <a href="app_login.html" class="gate-btn" id="unauthGateBtn">लॉगिन पेज पर जाएँ</a>
     </div>
 
     <!-- मुख्य कार्ड व्यू -->
@@ -393,18 +404,27 @@ body{
                     <!-- FRONT SIDE -->
                     <div id="frontCard" class="card-face front-card">
                         <div class="front-header">
-                            <div class="logo-row-double">
-                                <img id="samitiMainLogo" src="Images/jpg/logo.jpg" class="card-logo" crossorigin="anonymous" alt="Samiti">
-                                <img id="kshetraLogo" src="Images/jpg/logo.jpg" class="card-logo" crossorigin="anonymous" alt="Kshetra" onerror="this.src='Images/jpg/logo.jpg';">
+                            <!-- डबल लोगो रो (सहयोगी विंग्स हेतु: बाएँ क्षेत्र लोगो, दाएँ समिति लोगो) -->
+                            <div class="logo-row-double" id="idLogoRowDouble">
+                                <img id="kshetraLogo" src="Images/jpg/logo.jpg" class="card-logo" crossorigin="anonymous" alt="Kshetra" onerror="this.src='https://sanatansevasamiti.org/Images/jpg/logo.jpg';">
+                                <img id="samitiMainLogoDouble" src="Images/jpg/logo.jpg" class="card-logo" crossorigin="anonymous" alt="Samiti" onerror="this.src='https://sanatansevasamiti.org/Images/jpg/logo.jpg';">
                             </div>
+
+                            <!-- सिंगल लोगो रो (मुख्य समिति PRO1781011172 हेतु केंद्र में) -->
+                            <div class="logo-row-single" id="idLogoRowSingle" style="display:none;">
+                                <img id="samitiMainLogoSingle" src="Images/jpg/logo.jpg" class="card-logo single-logo" crossorigin="anonymous" alt="Samiti" onerror="this.src='https://sanatansevasamiti.org/Images/jpg/logo.jpg';">
+                            </div>
+
                             <div id="cardKshetraTitle" class="ksh-title">सनातन सेवा समिति</div>
                         </div>
 
                         <div class="member-photo-wrap">
-                            <img id="cardMemberPhoto" src="https://via.placeholder.com/130?text=Photo" class="member-photo" crossorigin="anonymous" alt="Member Photo">
+                            <img id="cardMemberPhoto" src="https://sanatansevasamiti.org/Images/jpg/logo.jpg" class="member-photo" crossorigin="anonymous" alt="Member Photo" onerror="this.src='https://sanatansevasamiti.org/Images/jpg/logo.jpg';">
                         </div>
 
                         <div id="cardMemberName" class="member-name">सदस्य नाम</div>
+                        
+                        <!-- ID कार्ड पर पद या सदस्यता -->
                         <div id="cardMemberRole" class="role-badge">पंजीकृत सदस्य</div>
 
                         <div class="info-panel">
@@ -443,7 +463,7 @@ body{
                         </div>
 
                         <div id="cardProfileUrl" class="profile-url">https://sanatansevasamiti.org</div>
-                        <div class="president-label">राष्ट्रीय अध्यक्ष</div>
+                        <div class="president-label">संस्थापक एवं राष्ट्रीय अध्यक्ष</div>
                         <div class="president-name">सनातन सेवा समिति</div>
                         <img id="cardPresidentSignature" src="https://sanatansevasamiti.org/uploads/signature.jpg" class="signature" crossorigin="anonymous" alt="Signature">
                         <div class="back-footer">SANATAN SEVA SAMITI &nbsp;•&nbsp; sanatansevasamiti.org</div>
@@ -473,7 +493,7 @@ body{
         <img src="https://sanatansevasamiti.org/uploads/footer/1780341771file_00000000145071fab7ea2e7e30f9dfaa-e1776295057951.png" alt="गृह">
         <span>गृह</span>
     </a>
-    <a href="javascript:void(0);" onclick="alert('गुरु परंपरा — यह अनुभाग शीघ्र ही स्थानीय रूप से उपलब्ध होगा।');" class="sss-item">
+    <a href="javascript:void(0);" onclick="alert('गुरु परंपरा अनुभाग शीघ्र उपलब्ध होगा।');" class="sss-item">
         <img src="https://sanatansevasamiti.org/uploads/footer/1780341317ci.jpg" alt="गुरु">
         <span>गुरु परंपरा</span>
     </a>
@@ -483,7 +503,7 @@ body{
         </div>
         <span></span>
     </a>
-    <a href="javascript:void(0);" onclick="alert('पुस्तकें — यह अनुभाग शीघ्र ही स्थानीय रूप से उपलब्ध होगा।');" class="sss-item">
+    <a href="javascript:void(0);" onclick="alert('पुस्तकें अनुभाग शीघ्र उपलब्ध होगा।');" class="sss-item">
         <img src="https://sanatansevasamiti.org/uploads/footer/1780341270bi.jpg" alt="पुस्तकें">
         <span>पुस्तकें</span>
     </a>
@@ -504,6 +524,15 @@ const statusText = document.getElementById('statusText');
 
 let fileBase = "SANATANAM_ID_CARD";
 let currentUser = null;
+
+const ROLE_HINDI_MAP = {
+    'Admin': 'एडमिन',
+    'Sanatan Seva Samiti': 'एडमिन',
+    'Sanrakshan Sadasya': 'संरक्षण सदस्य',
+    'Aajiwan Sadasya': 'आजीवन सदस्य',
+    'Sammaniya Sadasya': 'सम्मानित सदस्य',
+    'Sadharan Sadasya': 'साधारण सदस्य'
+};
 
 // कार्ड रिस्पॉन्सिव स्केलिंग
 function fitCard(){
@@ -530,7 +559,7 @@ flipBtn.addEventListener('click', function(){
     setTimeout(() => { flipping = false; }, 1150);
 });
 
-// यूज़र सत्र लोड करें
+// यूज़र सत्र एवं लोकल एसेट लोड करें
 function loadUserData() {
     try {
         const raw = localStorage.getItem("sss_user_data");
@@ -541,65 +570,111 @@ function loadUserData() {
         }
 
         currentUser = JSON.parse(raw);
-        const name = currentUser.full_name || "सदस्य";
-        const uid = currentUser.unique_id || "PRO1781";
-        
-        let photo = "Images/jpg/logo.jpg";
-        if (currentUser.profile_photo) {
-            if (typeof getUserProfileMediaUrl === "function") {
-                photo = getUserProfileMediaUrl(currentUser.profile_photo);
-            } else {
-                const clean = currentUser.profile_photo.replace(/^.*[\\\/]/, '').trim();
-                photo = clean ? `https://sanatansevasamiti.org/api/get_media.php?file=${encodeURIComponent(clean)}` : "Images/jpg/logo.jpg";
-            }
+        const isApproved = (currentUser.status === 'approved' && Boolean(currentUser.unique_id));
+
+        // यदि खाता अप्रूव्ड नहीं है तो गेट दिखाएं
+        if (!isApproved) {
+            document.getElementById("cardMainSection").style.display = "none";
+            document.getElementById("unauthGate").style.display = "block";
+            document.getElementById("unauthGateMsg").innerText = "⚠️ आपका खाता सत्यापन प्रक्रिया में है। एडमिन अनुमोदन के बाद ही स्थायी डिजिटल पहचान पत्र उपलब्ध होगा।";
+            document.getElementById("unauthGateBtn").innerText = "डैशबोर्ड पर जाएँ";
+            document.getElementById("unauthGateBtn").href = "app_dashboard.html";
+            return;
         }
 
+        const name = currentUser.full_name || "सदस्य";
+        const uid = currentUser.unique_id || "PRO1781";
         const district = currentUser.district || "मुरैना";
         const state = currentUser.state || "मध्य प्रदेश";
+        const rawRole = currentUser.role || "Sadharan Sadasya";
+        const hindiRole = ROLE_HINDI_MAP[rawRole] || rawRole;
 
+        // पद (Designation) प्राथमिकता नियम
+        const designation = (currentUser.pad_naam || currentUser.display_designation || currentUser.designation || "").trim();
+        const displayRoleOrPost = designation ? designation : hindiRole;
+
+        // 1. टेक्स्ट फ़ील्ड्स
         document.getElementById("cardMemberName").innerText = name;
+        document.getElementById("cardMemberRole").innerText = displayRoleOrPost;
         document.getElementById("cardLocation").innerText = `${district}, ${state}`;
         document.getElementById("cardUserIdRow").innerText = `सदस्य पहचान संख्या : ${uid}`;
         document.getElementById("cardIdBadge").innerText = `SANATANAM • ${uid}`;
 
-        const profLink = `https://sanatansevasamiti.org/profile.php?id=${uid}`;
+        const profLink = `https://sanatansevasamiti.org/profile.php?id=${encodeURIComponent(uid)}`;
         document.getElementById("cardProfileUrl").innerText = profLink;
-        document.getElementById("cardQrImg").src = `https://api.qrserver.com/v1/create-qr-code/?size=350x350&data=${encodeURIComponent(profLink)}`;
-
-        // लोड इमेजेस वाया ऑफलाइन-फर्स्ट कैश इंजन (Base64)
-        if (typeof getOfflineImage === "function") {
-            // 1. समिति मुख्य लोगो
-            getOfflineImage("samiti_main_logo", "Images/jpg/logo.jpg").then(b64 => {
-                if (b64) document.getElementById("samitiMainLogo").src = b64;
+        const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=350x350&data=${encodeURIComponent(profLink)}`;
+        const qrImgEl = document.getElementById("cardQrImg");
+        qrImgEl.src = qrUrl;
+        if (typeof getOfflineImage === 'function') {
+            getOfflineImage(`user_qr_${uid}`, qrUrl).then(cached => {
+                if (cached && qrImgEl) qrImgEl.src = cached;
             });
+        }
 
-            // 2. सदस्य फोटो (via get_media.php)
-            getOfflineImage("user_profile_dp", photo).then(b64 => {
-                if (b64) document.getElementById("cardMemberPhoto").src = b64;
+        // 2. सदस्य फोटो रिज़ॉल्यूशन (Offline-First via cache)
+        let photo = "Images/jpg/logo.jpg";
+        if (currentUser.profile_photo) {
+            photo = typeof getUserProfileMediaUrl === 'function'
+                ? getUserProfileMediaUrl(currentUser.profile_photo)
+                : (currentUser.profile_photo.startsWith("http")
+                    ? currentUser.profile_photo
+                    : "https://sanatansevasamiti.org/" + currentUser.profile_photo.replace(/^\/+/, ""));
+        }
+        const memberPhotoEl = document.getElementById("cardMemberPhoto");
+        memberPhotoEl.src = photo;
+        if (typeof getOfflineImage === 'function') {
+            getOfflineImage('user_profile_dp', photo).then(cached => {
+                if (cached && memberPhotoEl) memberPhotoEl.src = cached;
             });
+        }
 
-            // 3. सेवा क्षेत्र लोगो (via get_media.php)
-            const kshetraId = (currentUser.seva_kshetra || "").trim();
-            const kshetraDpUrl = (typeof getKshetraDpMediaUrl === "function") 
-                ? getKshetraDpMediaUrl(kshetraId)
-                : (kshetraId ? `https://sanatansevasamiti.org/api/get_media.php?pid=${encodeURIComponent(kshetraId)}&type=dp` : "Images/jpg/logo.jpg");
+        // हस्ताक्षर (Signature) ऑफलाइन कैश
+        const sigEl = document.getElementById("cardPresidentSignature");
+        if (sigEl && typeof getOfflineImage === 'function') {
+            getOfflineImage('samiti_signature', 'https://sanatansevasamiti.org/uploads/signature.jpg').then(cached => {
+                if (cached && sigEl) sigEl.src = cached;
+            });
+        }
 
-            if (kshetraId && kshetraId !== 'PRO1781011172') {
-                getOfflineImage(`kshetra_dp_${kshetraId}`, kshetraDpUrl).then(b64 => {
-                    if (b64) document.getElementById("kshetraLogo").src = b64;
-                });
-            } else {
-                getOfflineImage("samiti_main_logo", "Images/jpg/logo.jpg").then(b64 => {
-                    if (b64) document.getElementById("kshetraLogo").src = b64;
+        // 3. सेवा क्षेत्र और समिति लोगो (लोकल एसेट प्राथमिकता एवं ऑफलाइन कैश)
+        const sevaKshetra = (currentUser.seva_kshetra || "").trim();
+        const isMainSamiti = (!sevaKshetra || sevaKshetra === 'PRO1781011172');
+
+        if (isMainSamiti) {
+            document.getElementById("idLogoRowDouble").style.display = "none";
+            document.getElementById("idLogoRowSingle").style.display = "flex";
+            document.getElementById("cardKshetraTitle").innerText = "⚜️ सनातन सेवा समिति ⚜️";
+            
+            const singleLogoEl = document.getElementById("samitiMainLogoSingle");
+            singleLogoEl.src = "Images/jpg/logo.jpg";
+            singleLogoEl.onerror = () => { singleLogoEl.src = "https://sanatansevasamiti.org/Images/jpg/logo.jpg"; };
+        } else {
+            document.getElementById("idLogoRowSingle").style.display = "none";
+            document.getElementById("idLogoRowDouble").style.display = "flex";
+            document.getElementById("cardKshetraTitle").innerText = currentUser.seva_kshetra_name || "सनातन सेवा समिति";
+
+            // बाएँ: क्षेत्र लोगो, दाएँ: मुख्य समिति लोगो
+            const kshetraLogoEl = document.getElementById("kshetraLogo");
+            const doubleSamitiEl = document.getElementById("samitiMainLogoDouble");
+
+            // लोकल 'Images/ss/{sevaKshetra}_dp.jpg' से लोड करें, फ़ॉलबैक ऑनलाइन
+            const kUrl = typeof getKshetraDpMediaUrl === 'function'
+                ? getKshetraDpMediaUrl(sevaKshetra)
+                : `Images/ss/${sevaKshetra}_dp.jpg`;
+
+            kshetraLogoEl.src = kUrl;
+            kshetraLogoEl.onerror = () => {
+                kshetraLogoEl.src = `https://sanatansevasamiti.org/public_html/Images/ss/${sevaKshetra}_dp.jpg`;
+            };
+
+            if (typeof getOfflineImage === 'function') {
+                getOfflineImage(`kshetra_dp_${sevaKshetra}`, kUrl).then(cached => {
+                    if (cached && kshetraLogoEl) kshetraLogoEl.src = cached;
                 });
             }
 
-            // 4. अध्यक्ष हस्ताक्षर
-            getOfflineImage("samiti_signature", "https://sanatansevasamiti.org/uploads/signature.jpg").then(b64 => {
-                if (b64) document.getElementById("cardPresidentSignature").src = b64;
-            });
-        } else {
-            document.getElementById("cardMemberPhoto").src = photo;
+            doubleSamitiEl.src = "Images/jpg/logo.jpg";
+            doubleSamitiEl.onerror = () => { doubleSamitiEl.src = "https://sanatansevasamiti.org/Images/jpg/logo.jpg"; };
         }
 
         fileBase = `SANATANAM_ID_${name.replace(/\s+/g, '_')}_${uid}`;
@@ -622,7 +697,7 @@ function waitForImages(element){
     }));
 }
 
-// कार्ड कैप्चर (html2canvas)
+// कार्ड कैप्चर (html2canvas - 3X स्केल)
 async function captureCard(cardId){
     const face = document.getElementById(cardId);
     const flip = document.getElementById('flipCard');
@@ -672,11 +747,11 @@ async function captureCard(cardId){
     return canvas;
 }
 
-// डाउनलोड हैंडलर (WebView व Web दोनों के लिए सुरक्षित)
+// डाउनलोड हैंडलर (WebView व Web दोनों के लिए)
 function saveCanvas(canvas, filename){
     const base64Data = canvas.toDataURL('image/png', 1.0);
     
-    // यदि Android Studio Bridge उपलब्ध है तो सीधे ऐप स्टोरेज में भेजें
+    // यदि Android Native Bridge उपलब्ध है
     if (window.AndroidBridge && window.AndroidBridge.saveBase64File) {
         window.AndroidBridge.saveBase64File(base64Data, filename, "image/png");
         return;
@@ -732,7 +807,6 @@ document.getElementById('bothDownload').addEventListener('click', async function
 
         const blob = await zip.generateAsync({ type: 'blob' });
         
-        // यदि Android Bridge है तो Base64 बनाकर भेजें
         if (window.AndroidBridge && window.AndroidBridge.saveBase64File) {
             const reader = new FileReader();
             reader.onloadend = function() {
@@ -758,10 +832,25 @@ document.getElementById('bothDownload').addEventListener('click', async function
     }
 });
 
+// सर्विस वर्कर पंजीकरण (Service Worker Registration for Offline ID Card)
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('id_card_sw.js')
+            .then((reg) => {
+                console.log('[ServiceWorker] registered successfully for ID Card scope:', reg.scope);
+            })
+            .catch((err) => {
+                console.log('[ServiceWorker] registration skipped or failed:', err);
+            });
+    });
+}
+
 window.addEventListener("DOMContentLoaded", () => {
     loadUserData();
+    if (typeof preCacheUserAssets === 'function' && currentUser) {
+        preCacheUserAssets(currentUser);
+    }
 });
 </script>
-<script src="image_cache.js"></script>
 </body>
 </html>
