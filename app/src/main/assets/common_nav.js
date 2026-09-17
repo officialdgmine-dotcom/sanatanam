@@ -127,9 +127,9 @@
             <span>पुस्तकें</span>
         </a>
 
-        <a href="id_card.html" class="sss-item">
+        <a href="app_dashboard.html" class="sss-item">
             <img src="https://sanatansevasamiti.org/uploads/footer/1780341144ai.jpg" alt="अकाउंट">
-            <span>पहचान पत्र</span>
+            <span>अकाउंट</span>
         </a>
     `;
 
