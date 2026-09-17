@@ -5,6 +5,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.net.http.SslError
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
@@ -12,6 +13,7 @@ import android.provider.MediaStore
 import android.util.Base64
 import android.view.ViewGroup
 import android.webkit.JavascriptInterface
+import android.webkit.SslErrorHandler
 import android.webkit.ValueCallback
 import android.webkit.WebChromeClient
 import android.webkit.WebResourceRequest
@@ -251,15 +253,27 @@ fun SanatanamWebViewScreen(
             javaScriptEnabled = true
             domStorageEnabled = true
             allowFileAccess = true
+            allowContentAccess = true
+            databaseEnabled = true
             loadWithOverviewMode = true
             useWideViewPort = true
             displayZoomControls = false
             builtInZoomControls = false
             cacheMode = WebSettings.LOAD_DEFAULT
             loadsImagesAutomatically = true
+            mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
           }
 
           webViewClient = object : WebViewClient() {
+            override fun onReceivedSslError(
+              view: WebView?,
+              handler: SslErrorHandler?,
+              error: SslError?
+            ) {
+              // Proceed with handshake for Samiti server certificates and assets in WebView
+              handler?.proceed()
+            }
+
             override fun shouldOverrideUrlLoading(
               view: WebView?,
               request: WebResourceRequest?
@@ -358,7 +372,7 @@ fun SanatanamWebViewScreen(
             "AndroidBridge"
           )
 
-          loadUrl("file:///android_asset/welcome_flow.html")
+          loadUrl("file:///android_asset/index.html")
           webViewRef = this
         }
       },

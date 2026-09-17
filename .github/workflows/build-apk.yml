@@ -1,0 +1,72 @@
+name: Build and Release Android APK
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build SANATANAM APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Sync Web Assets
+        run: |
+          mkdir -p www/Images www/uploads
+          if [ -d "app/src/main/assets" ]; then
+            cp -r app/src/main/assets/* www/ || true
+          fi
+          if [ -f "package.json" ]; then
+            npm install
+            npx cap sync android || true
+          fi
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Build APK with Gradle
+        run: |
+          chmod +x gradlew 2>/dev/null || true
+          if [ -f "gradlew" ]; then
+            ./gradlew assembleDebug --no-daemon
+          else
+            gradle assembleDebug --no-daemon
+          fi
+
+      - name: Find and Prepare Debug APK
+        run: |
+          mkdir -p build-artifacts
+          APK_PATH=$(find . -type f -name "*-debug.apk" | head -n 1)
+          if [ -n "$APK_PATH" ]; then
+            echo "Found APK at $APK_PATH"
+            cp "$APK_PATH" build-artifacts/SANATANAM-Official-Debug.apk
+          else
+            echo "Searching default location..."
+            cp app/build/outputs/apk/debug/*.apk build-artifacts/SANATANAM-Official-Debug.apk || true
+          fi
+
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: SANATANAM-Official-Debug-APK
+          path: |
+            build-artifacts/SANATANAM-Official-Debug.apk
+            app/build/outputs/apk/debug/*.apk
+          retention-days: 30

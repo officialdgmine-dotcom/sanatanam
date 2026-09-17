@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>सनातन सेवा समिति — Digital ID Card</title>
+
+<!-- HTML2CANVAS & JSZIP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+<style>
+/* GLOBAL */
+*{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html, body{ margin:0; padding:0; width:100%; min-height:100%; }
+body{
+    background: radial-gradient(circle at top, #5d0715 0%, #26030a 42%, #090205 100%);
+    font-family: "Noto Sans Devanagari", "Mangal", "Segoe UI", sans-serif;
+    color:#fff;
+    overflow-x:hidden;
+    padding-bottom: 90px !important;
+}
+
+/* PAGE */
+.id-page{
+    width:100%;
+    min-height:100vh;
+    padding: 16px 10px 25px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+/* PAGE TITLE */
+.page-title{ text-align:center; margin-bottom:12px; width:100%; }
+.page-title .small{ font-size:11px; letter-spacing:3px; color:#e8c878; font-weight:800; }
+.page-title h1{ margin:4px 0 0; font-size:20px; font-weight:950; color:#fff5d0; text-shadow:0 2px 8px #000; }
+
+/* FIXED CARD VIEWPORT */
+.card-viewport{
+    position:relative;
+    width:360px;
+    height:570px;
+    flex:none;
+    transform-origin:top center;
+}
+
+/* FLIP SCENE */
+.flip-scene{ width:360px; height:570px; perspective:1800px; position:relative; }
+.flip-card{
+    width:360px;
+    height:570px;
+    position:relative;
+    transform-style:preserve-3d;
+    -webkit-transform-style:preserve-3d;
+    transition: transform 1.1s cubic-bezier(.22,.61,.36,1);
+}
+.flip-card.is-flipped{ transform:rotateY(180deg); }
+
+/* CARD FACES */
+.card-face{
+    width:360px;
+    height:570px;
+    position:absolute;
+    left:0; top:0;
+    overflow:hidden;
+    border-radius:25px;
+    border:3px solid #d4a73a;
+    background:#f8edcf;
+    box-shadow: 0 24px 50px rgba(0,0,0,.55), inset 0 0 0 2px rgba(255,255,255,.3);
+    backface-visibility:hidden;
+    -webkit-backface-visibility:hidden;
+    transform-style:preserve-3d;
+}
+
+/* FRONT */
+.front-card{
+    background: radial-gradient(circle at 50% 35%, rgba(255,255,255,.95), rgba(255,246,211,.9) 35%, rgba(244,224,174,.98) 100%);
+    color:#4b0713;
+}
+
+.front-header{
+    position:absolute;
+    left:0; top:0;
+    width:360px; height:125px;
+    background: linear-gradient(135deg, #520712, #790b1d 50%, #3b040d);
+    border-bottom: 4px solid #e0b94d;
+    overflow:hidden;
+}
+.front-header:after{
+    content:"";
+    position:absolute;
+    width:220px; height:220px;
+    border-radius:50%;
+    right:-90px; top:-150px;
+    background: rgba(255,211,92,.14);
+}
+
+.logo-row-double{
+    position:absolute;
+    top:10px; left:0;
+    width:360px; height:68px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 24px;
+}
+.card-logo{
+    width:61px; height:61px;
+    border-radius:50%;
+    object-fit:cover;
+    background:#fff;
+    border:3px solid #f1cd62;
+    box-shadow: 0 4px 14px rgba(0,0,0,.45);
+}
+
+.ksh-title{
+    position:absolute;
+    left:10px; top:79px;
+    width:340px;
+    text-align:center;
+    font-size:17.5px;
+    line-height:22px;
+    font-weight:950;
+    color:#fff1b8;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-shadow: 0 2px 4px rgba(0,0,0,.8);
+}
+
+/* MEMBER PHOTO */
+.member-photo-wrap{
+    position:absolute;
+    left:109px; top:139px;
+    width:142px; height:142px;
+    border-radius:50%;
+    padding:6px;
+    background: linear-gradient(135deg, #fff0a6, #b47b17, #ffe88c, #8b5b0b);
+    box-shadow: 0 8px 20px rgba(73,0,10,.32);
+}
+.member-photo{
+    width:130px; height:130px;
+    display:block;
+    border-radius:50%;
+    object-fit:cover;
+    background:#fff;
+    border:3px solid #fff8dc;
+}
+
+/* DETAILS */
+.member-name{
+    position:absolute;
+    top:292px; left:20px;
+    width:320px;
+    text-align:center;
+    color:#560817;
+    font-size:22px;
+    line-height:28px;
+    font-weight:950;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.role-badge{
+    position:absolute;
+    top:326px; left:55px;
+    width:250px; height:32px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:18px;
+    background: linear-gradient(135deg, #5c0716, #8b1027, #4b0511);
+    border:2px solid #d8ad43;
+    color:#ffe8a0;
+    font-size:13px;
+    font-weight:900;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    box-shadow: 0 5px 12px rgba(0,0,0,.2);
+}
+
+.info-panel{
+    position:absolute;
+    left:25px; top:370px;
+    width:310px; height:93px;
+    border-radius:17px;
+    border:2px solid #d3aa4c;
+    background: rgba(255,250,229,.9);
+    box-shadow: inset 0 0 15px rgba(176,125,27,.12);
+}
+.info-row{ width:100%; height:45px; display:flex; align-items:center; padding:0 13px; }
+.info-row + .info-row{ border-top:1px solid #e2c982; }
+.info-icon{ width:30px; font-size:17px; text-align:center; }
+.info-text{ flex:1; min-width:0; font-size:13px; color:#4d0a16; font-weight:850; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
+.id-badge{
+    position:absolute;
+    left:25px; top:475px;
+    width:310px; height:39px;
+    border-radius:11px;
+    background: linear-gradient(90deg, #e1bd57, #fff0ae, #d2a337);
+    border:1px solid #a77717;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#41030c;
+    font-size:13.5px;
+    font-weight:950;
+    letter-spacing:1px;
+    white-space:nowrap;
+}
+
+.front-footer{
+    position:absolute;
+    left:0; bottom:0;
+    width:360px; height:48px;
+    background: linear-gradient(135deg, #48050f, #700a1b, #40040c);
+    border-top:2px solid #d9b34b;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#ffe8a1;
+    font-size:12px;
+    font-weight:900;
+    letter-spacing:.5px;
+}
+
+/* BACK SIDE */
+.back-card{
+    transform:rotateY(180deg);
+    background: radial-gradient(circle at 50% 40%, #fffdf2, #f5e7c0 68%, #e5c985 100%);
+    color:#4b0713;
+}
+
+.back-top{
+    position:absolute;
+    top:0; left:0;
+    width:360px; height:102px;
+    background: linear-gradient(135deg, #4a0610, #760b1e 52%, #3c030b);
+    border-bottom:3px solid #dcb34b;
+    text-align:center;
+    padding-top:13px;
+}
+.back-top .office{ margin-top:3px; font-size:15px; color:#fff0bd; font-weight:950; }
+.back-top .email{ margin-top:6px; font-size:15px; color:#fff; font-weight:950; letter-spacing:0.5px; }
+.back-top .phone{ margin-top:5px; font-size:17px; color:#fff; font-weight:950; letter-spacing:1px; }
+
+.social-panel{
+    position:absolute;
+    left:25px; top:116px;
+    width:310px; height:76px;
+    border:2px solid #cda444;
+    border-radius:15px;
+    background: rgba(255,251,232,.95);
+    text-align:center;
+    padding-top:9px;
+    color:#4e0814;
+}
+.social-title{ font-size:11px; font-weight:950; letter-spacing:1px; color:#8a5d09; margin-bottom:4px; }
+.social-line{ font-size:11px; line-height:19px; font-weight:850; white-space:nowrap; }
+
+.qr-title{ position:absolute; top:205px; left:0; width:360px; text-align:center; font-size:14px; color:#63091a; font-weight:950; letter-spacing:1.5px; }
+.qr-box{
+    position:absolute;
+    left:95px; top:231px;
+    width:170px; height:170px;
+    padding:7px;
+    border-radius:15px;
+    background:#fff;
+    border:3px solid #c79a2e;
+    box-shadow: 0 7px 18px rgba(62,18,0,.18);
+}
+.qr-image{ width:150px; height:150px; display:block; object-fit:contain; background:#fff; }
+
+.profile-url{ position:absolute; top:409px; left:20px; width:320px; text-align:center; font-size:9.5px; color:#6c4b0a; font-weight:800; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.president-label{ position:absolute; top:437px; left:20px; width:320px; text-align:center; font-size:12px; color:#7a4f06; font-weight:900; }
+.president-name{ position:absolute; top:456px; left:20px; width:320px; text-align:center; font-size:15px; color:#4e0612; font-weight:950; }
+.signature{ position:absolute; left:135px; top:479px; width:90px; height:39px; object-fit:contain; mix-blend-mode:multiply; }
+
+.back-footer{
+    position:absolute;
+    bottom:0; left:0;
+    width:360px; height:43px;
+    background: linear-gradient(135deg, #47050f, #720a1c, #3c030b);
+    border-top:2px solid #dcb34b;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#ffe8a0;
+    font-size:11px;
+    font-weight:950;
+    letter-spacing:.8px;
+}
+
+/* CONTROLS */
+.controls{ width:100%; margin-top:14px; display:flex; flex-direction:column; align-items:center; gap:9px; }
+.action-row{ display:flex; justify-content:center; gap:8px; width:100%; flex-wrap:wrap; }
+.btn{
+    min-height:44px;
+    padding:0 14px;
+    border-radius:12px;
+    border:1px solid #dcb44c;
+    background: linear-gradient(135deg, #760a1d, #4a0410);
+    color:#ffe8a0;
+    font-size:12px;
+    font-weight:950;
+    cursor:pointer;
+    box-shadow: 0 6px 14px rgba(0,0,0,.28);
+    transition: transform .18s ease;
+}
+.btn:active{ transform:scale(.96); }
+.flip-btn{
+    min-width:200px;
+    background: linear-gradient(135deg, #e1bb52, #fff0a0, #c99422);
+    color:#4c0711;
+    border-color:#ffe7a0;
+    font-size:13.5px;
+}
+.status-text{ min-height:18px; width:100%; text-align:center; color:#f7df96; font-size:11.5px; font-weight:700; }
+
+/* GATE */
+.gate{
+    width:min(360px,92vw);
+    margin:35px auto;
+    padding:28px 18px;
+    text-align:center;
+    border-radius:20px;
+    background: linear-gradient(145deg, #fff5d7, #e6cb88);
+    color:#4b0712;
+    border:2px solid #d5aa42;
+    box-shadow: 0 15px 40px rgba(0,0,0,.35);
+}
+.gate h2{ margin:0 0 10px; font-size:19px; }
+.gate p{ margin:0 0 16px; font-size:13px; line-height:20px; font-weight:700; }
+.gate-btn{ display:inline-block; padding:10px 22px; background:#4b0712; color:#ffe8a0; border-radius:12px; text-decoration:none; font-weight:800; font-size:13px; }
+
+/* ---------------- FOOTER NAVIGATION BAR ---------------- */
+#sss-nav {
+    position: fixed;
+    bottom: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 480px;
+    height: 75px;
+    background: linear-gradient(180deg, #ff4500, #800000);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-top: 4px solid #ffcc00;
+    border-radius: 20px 20px 0 0;
+    z-index: 99999;
+    box-shadow: 0 -5px 20px rgba(0,0,0,0.4);
+}
+.sss-item { flex: 1; text-align: center; text-decoration: none; color: #fff; font-size: 10px; font-weight: 800; }
+.sss-item img { width: 28px; height: 28px; display: block; margin: auto; }
+.sss-dash-wrap { margin-top: -30px; }
+.sss-gold-circle {
+    width: 60px; height: 60px;
+    background: linear-gradient(45deg, #ffd700, #ffcc00, #b8860b);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    border: 3px solid #800000;
+    box-shadow: 0 0 15px rgba(255,215,0,0.6);
+}
+.sss-gold-circle img { width: 35px; height: 35px; }
+</style>
+</head>
+<body>
+
+<div class="id-page">
+
+    <!-- नॉट-लॉगिन या अप्रूव्ड न होने पर स्टेट -->
+    <div id="unauthGate" class="gate" style="display:none;">
+        <h2>🔐 लॉगिन आवश्यक है</h2>
+        <p>अपना डिजिटल पहचान पत्र देखने के लिए कृपया पहले लॉगिन करें।</p>
+        <a href="app_login.html" class="gate-btn">लॉगिन पेज पर जाएँ</a>
+    </div>
+
+    <!-- मुख्य कार्ड व्यू -->
+    <div id="cardMainSection" style="display:flex; flex-direction:column; align-items:center; width:100%;">
+        <div class="page-title">
+            <div class="small">SANATANAM • DIGITAL ID</div>
+            <h1>सनातन सेवा समिति</h1>
+        </div>
+
+        <div id="cardViewport" class="card-viewport">
+            <div id="flipScene" class="flip-scene">
+                <div id="flipCard" class="flip-card">
+
+                    <!-- FRONT SIDE -->
+                    <div id="frontCard" class="card-face front-card">
+                        <div class="front-header">
+                            <div class="logo-row-double">
+                                <img src="https://sanatansevasamiti.org/Images/jpg/logo.jpg" class="card-logo" crossorigin="anonymous" alt="Samiti">
+                                <img id="kshetraLogo" src="https://sanatansevasamiti.org/Images/jpg/logo.jpg" class="card-logo" crossorigin="anonymous" alt="Kshetra" onerror="this.src='https://sanatansevasamiti.org/Images/jpg/logo.jpg';">
+                            </div>
+                            <div id="cardKshetraTitle" class="ksh-title">सनातन सेवा समिति</div>
+                        </div>
+
+                        <div class="member-photo-wrap">
+                            <img id="cardMemberPhoto" src="https://via.placeholder.com/130?text=Photo" class="member-photo" crossorigin="anonymous" alt="Member Photo">
+                        </div>
+
+                        <div id="cardMemberName" class="member-name">सदस्य नाम</div>
+                        <div id="cardMemberRole" class="role-badge">पंजीकृत सदस्य</div>
+
+                        <div class="info-panel">
+                            <div class="info-row">
+                                <div class="info-icon">📍</div>
+                                <div id="cardLocation" class="info-text">स्थान लोड हो रहा है...</div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-icon">🪪</div>
+                                <div id="cardUserIdRow" class="info-text">सदस्य पहचान संख्या : ---</div>
+                            </div>
+                        </div>
+
+                        <div id="cardIdBadge" class="id-badge">SANATANAM • ---</div>
+                        <div class="front-footer">✦ सनातन सेवा समिति • सदस्य पहचान पत्र ✦</div>
+                    </div>
+
+                    <!-- BACK SIDE -->
+                    <div id="backCard" class="card-face back-card">
+                        <div class="back-top">
+                            <div class="office">सनातन सेवा समिति</div>
+                            <div class="email">📧 officialsanatansevasamiti@gmail.com</div>
+                            <div class="phone">☎ 9425739360</div>
+                        </div>
+
+                        <div class="social-panel">
+                            <div class="social-title">OFFICIAL SOCIAL MEDIA</div>
+                            <div class="social-line">FB: Swami Sachchidanand ji &nbsp;|&nbsp; YT: SANATANAM</div>
+                            <div class="social-line">Insta: sachchidanand.ji_ &nbsp;|&nbsp; X: Sanatanam</div>
+                        </div>
+
+                        <div class="qr-title">SCAN FOR PROFILE</div>
+
+                        <div class="qr-box">
+                            <img id="cardQrImg" src="https://api.qrserver.com/v1/create-qr-code/?size=350x350&data=https://sanatansevasamiti.org" class="qr-image" crossorigin="anonymous" alt="Profile QR">
+                        </div>
+
+                        <div id="cardProfileUrl" class="profile-url">https://sanatansevasamiti.org</div>
+                        <div class="president-label">राष्ट्रीय अध्यक्ष</div>
+                        <div class="president-name">सनातन सेवा समिति</div>
+                        <img src="https://sanatansevasamiti.org/uploads/signature.jpg" class="signature" crossorigin="anonymous" alt="Signature">
+                        <div class="back-footer">SANATAN SEVA SAMITI &nbsp;•&nbsp; sanatansevasamiti.org</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTROLS -->
+        <div class="controls">
+            <button type="button" id="flipBtn" class="btn flip-btn">🔄 Back Side देखें</button>
+            <div class="action-row">
+                <button type="button" id="frontDownload" class="btn">⬇️ Front Download</button>
+                <button type="button" id="backDownload" class="btn">⬇️ Back Download</button>
+                <button type="button" id="bothDownload" class="btn">📦 Both Download</button>
+            </div>
+            <div id="statusText" class="status-text"></div>
+        </div>
+    </div>
+
+</div>
+
+<!-- FOOTER NAVIGATION BAR -->
+<div id="sss-nav">
+    <a href="app_home.html" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341771file_00000000145071fab7ea2e7e30f9dfaa-e1776295057951.png" alt="गृह">
+        <span>गृह</span>
+    </a>
+    <a href="javascript:void(0);" onclick="alert('गुरु परंपरा — यह अनुभाग शीघ्र ही स्थानीय रूप से उपलब्ध होगा।');" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341317ci.jpg" alt="गुरु">
+        <span>गुरु परंपरा</span>
+    </a>
+    <a href="feed.html" class="sss-item sss-dash-wrap">
+        <div class="sss-gold-circle">
+            <img src="https://sanatansevasamiti.org/uploads/footer/1780341218logo.jpg" alt="फीड">
+        </div>
+        <span></span>
+    </a>
+    <a href="javascript:void(0);" onclick="alert('पुस्तकें — यह अनुभाग शीघ्र ही स्थानीय रूप से उपलब्ध होगा।');" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341270bi.jpg" alt="पुस्तकें">
+        <span>पुस्तकें</span>
+    </a>
+    <a href="id_card.html" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341144ai.jpg" alt="पहचान पत्र">
+        <span>पहचान पत्र</span>
+    </a>
+</div>
+
+<script>
+const CARD_W = 360;
+const CARD_H = 570;
+
+const flipCard = document.getElementById('flipCard');
+const flipBtn  = document.getElementById('flipBtn');
+const viewport = document.getElementById('cardViewport');
+const statusText = document.getElementById('statusText');
+
+let fileBase = "SANATANAM_ID_CARD";
+let currentUser = null;
+
+// कार्ड रिस्पॉन्सिव स्केलिंग
+function fitCard(){
+    const availableWidth = Math.max(250, window.innerWidth - 20);
+    let scale = availableWidth / CARD_W;
+    scale = Math.min(scale, 1);
+    viewport.style.width = (CARD_W * scale) + 'px';
+    viewport.style.height = (CARD_H * scale) + 'px';
+    viewport.style.transform = `scale(${scale})`;
+}
+window.addEventListener('resize', fitCard);
+window.addEventListener('orientationchange', () => setTimeout(fitCard, 150));
+fitCard();
+
+// फ्लिप टॉगल
+let isFlipped = false;
+let flipping = false;
+flipBtn.addEventListener('click', function(){
+    if(flipping) return;
+    flipping = true;
+    isFlipped = !isFlipped;
+    flipCard.classList.toggle('is-flipped', isFlipped);
+    flipBtn.textContent = isFlipped ? '🔄 Front Side देखें' : '🔄 Back Side देखें';
+    setTimeout(() => { flipping = false; }, 1150);
+});
+
+// यूज़र सत्र लोड करें
+function loadUserData() {
+    try {
+        const raw = localStorage.getItem("sss_user_data");
+        if (!raw) {
+            document.getElementById("cardMainSection").style.display = "none";
+            document.getElementById("unauthGate").style.display = "block";
+            return;
+        }
+
+        currentUser = JSON.parse(raw);
+        const name = currentUser.full_name || "सदस्य";
+        const uid = currentUser.unique_id || "PRO1781";
+        const photo = currentUser.profile_photo ? ("https://sanatansevasamiti.org/" + currentUser.profile_photo) : "https://sanatansevasamiti.org/Images/jpg/logo.jpg";
+        const district = currentUser.district || "मुरैना";
+        const state = currentUser.state || "मध्य प्रदेश";
+
+        document.getElementById("cardMemberName").innerText = name;
+        document.getElementById("cardMemberPhoto").src = photo;
+        document.getElementById("cardLocation").innerText = `${district}, ${state}`;
+        document.getElementById("cardUserIdRow").innerText = `सदस्य पहचान संख्या : ${uid}`;
+        document.getElementById("cardIdBadge").innerText = `SANATANAM • ${uid}`;
+
+        const profLink = `https://sanatansevasamiti.org/profile.php?id=${uid}`;
+        document.getElementById("cardProfileUrl").innerText = profLink;
+        document.getElementById("cardQrImg").src = `https://api.qrserver.com/v1/create-qr-code/?size=350x350&data=${encodeURIComponent(profLink)}`;
+
+        fileBase = `SANATANAM_ID_${name.replace(/\s+/g, '_')}_${uid}`;
+    } catch(e) {
+        console.log("Error loading user data", e);
+    }
+}
+
+function setStatus(text){ statusText.textContent = text || ''; }
+
+function waitForImages(element){
+    const images = Array.from(element.querySelectorAll('img'));
+    return Promise.all(images.map(img => {
+        if(img.complete) return Promise.resolve();
+        return new Promise(resolve => {
+            img.onload = resolve;
+            img.onerror = resolve;
+            setTimeout(resolve, 4000);
+        });
+    }));
+}
+
+// कार्ड कैप्चर (html2canvas)
+async function captureCard(cardId){
+    const face = document.getElementById(cardId);
+    const flip = document.getElementById('flipCard');
+
+    const oldFlipTransform = flip.style.transform;
+    const oldFaceTransform = face.style.transform;
+    const oldVisibility = face.style.visibility;
+    const oldBackface = face.style.backfaceVisibility;
+
+    const otherFace = cardId === 'frontCard' ? document.getElementById('backCard') : document.getElementById('frontCard');
+    const oldOtherVisibility = otherFace.style.visibility;
+    const oldViewportTransform = viewport.style.transform;
+
+    flip.style.transform = 'none';
+    face.style.transform = 'none';
+    face.style.visibility = 'visible';
+    face.style.backfaceVisibility = 'visible';
+    face.style.webkitBackfaceVisibility = 'visible';
+    otherFace.style.visibility = 'hidden';
+    viewport.style.transform = 'none';
+
+    await waitForImages(face);
+
+    const canvas = await html2canvas(face, {
+        width: CARD_W,
+        height: CARD_H,
+        scale: 3,
+        useCORS: true,
+        allowTaint: false,
+        backgroundColor: null,
+        logging: false,
+        imageTimeout: 12000,
+        scrollX: 0,
+        scrollY: 0,
+        windowWidth: CARD_W,
+        windowHeight: CARD_H
+    });
+
+    flip.style.transform = oldFlipTransform;
+    face.style.transform = oldFaceTransform;
+    face.style.visibility = oldVisibility;
+    face.style.backfaceVisibility = oldBackface;
+    face.style.webkitBackfaceVisibility = oldBackface;
+    otherFace.style.visibility = oldOtherVisibility;
+    viewport.style.transform = oldViewportTransform;
+
+    return canvas;
+}
+
+// डाउनलोड हैंडलर (WebView व Web दोनों के लिए सुरक्षित)
+function saveCanvas(canvas, filename){
+    const base64Data = canvas.toDataURL('image/png', 1.0);
+    
+    // यदि Android Studio Bridge उपलब्ध है तो सीधे ऐप स्टोरेज में भेजें
+    if (window.AndroidBridge && window.AndroidBridge.saveBase64File) {
+        window.AndroidBridge.saveBase64File(base64Data, filename, "image/png");
+        return;
+    }
+
+    const link = document.createElement('a');
+    link.download = filename;
+    link.href = base64Data;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+}
+
+// फ्रंट डाउनलोड
+document.getElementById('frontDownload').addEventListener('click', async function(){
+    try{
+        setStatus('⏳ Front Card तैयार हो रहा है...');
+        const canvas = await captureCard('frontCard');
+        saveCanvas(canvas, fileBase + '_FRONT.png');
+        setStatus('✅ Front Card डाउनलोड हो गया');
+    }catch(err){
+        console.error(err);
+        setStatus('⚠️ कार्ड डाउनलोड में त्रुटि हुई।');
+    }
+});
+
+// बैक डाउनलोड
+document.getElementById('backDownload').addEventListener('click', async function(){
+    try{
+        setStatus('⏳ Back Card तैयार हो रहा है...');
+        const canvas = await captureCard('backCard');
+        saveCanvas(canvas, fileBase + '_BACK.png');
+        setStatus('✅ Back Card डाउनलोड हो गया');
+    }catch(err){
+        console.error(err);
+        setStatus('⚠️ कार्ड डाउनलोड में त्रुटि हुई।');
+    }
+});
+
+// दोनों कार्ड्स (ZIP)
+document.getElementById('bothDownload').addEventListener('click', async function(){
+    try{
+        setStatus('⏳ Front और Back दोनों तैयार हो रहे हैं...');
+        const frontCanvas = await captureCard('frontCard');
+        const backCanvas = await captureCard('backCard');
+
+        const frontData = frontCanvas.toDataURL('image/png', 1.0).split(',')[1];
+        const backData = backCanvas.toDataURL('image/png', 1.0).split(',')[1];
+
+        const zip = new JSZip();
+        zip.file(fileBase + '_FRONT.png', frontData, { base64: true });
+        zip.file(fileBase + '_BACK.png', backData, { base64: true });
+
+        const blob = await zip.generateAsync({ type: 'blob' });
+        
+        // यदि Android Bridge है तो Base64 बनाकर भेजें
+        if (window.AndroidBridge && window.AndroidBridge.saveBase64File) {
+            const reader = new FileReader();
+            reader.onloadend = function() {
+                window.AndroidBridge.saveBase64File(reader.result, fileBase + '_BOTH.zip', "application/zip");
+            };
+            reader.readAsDataURL(blob);
+            setStatus('✅ ZIP डाउनलोड हो गई');
+            return;
+        }
+
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = fileBase + '_BOTH.zip';
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 2000);
+        setStatus('✅ Front + Back दोनों ZIP में डाउनलोड हो गए');
+    }catch(err){
+        console.error(err);
+        setStatus('⚠️ ZIP डाउनलोड नहीं हो पाई।');
+    }
+});
+
+window.addEventListener("DOMContentLoaded", () => {
+    loadUserData();
+});
+</script>
+</body>
+</html>

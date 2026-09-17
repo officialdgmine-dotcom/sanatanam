@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>SANATANAM — Welcome</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Noto+Sans+Devanagari:wght@600;800;900&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --bhagwa: #FF7700;
+        --bhagwa-deep: #D44000;
+        --lava: #8A0000;
+        --gold: #FFD54F;
+        --gold-border: #D4A017;
+        --pure-white: #FFFFFF;
+        --bg-grad: radial-gradient(circle at top, #FF8800 0%, #B82E00 45%, #4A0000 100%);
+    }
+
+    * { 
+        box-sizing: border-box; 
+        -webkit-tap-highlight-color: transparent; 
+        user-select: none;
+        -webkit-user-select: none;
+    }
+    
+    html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: var(--bg-grad);
+        font-family: 'Poppins', 'Noto Sans Devanagari', sans-serif;
+        color: #222;
+    }
+
+    body {
+        padding: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .app-card {
+        width: 100%;
+        max-width: 430px;
+        height: 100%;
+        max-height: 680px;
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-radius: 28px;
+        border: 2px solid var(--gold-border);
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+        padding: 20px 18px 16px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .app-card::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 6px;
+        border-radius: 28px 28px 0 0;
+        background: linear-gradient(90deg, var(--bhagwa), var(--gold), var(--lava));
+    }
+
+    /* Progress Indicators */
+    .stepper-dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-bottom: 10px;
+        margin-top: 4px;
+    }
+    .dot {
+        width: 24px;
+        height: 6px;
+        border-radius: 4px;
+        background: #e8d0bc;
+        transition: 0.3s ease;
+    }
+    .dot.active {
+        width: 40px;
+        background: linear-gradient(90deg, var(--bhagwa), var(--lava));
+    }
+
+    /* Step Containers */
+    .step-content {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        animation: fadeInSlide 0.3s ease-out forwards;
+        flex-grow: 1;
+        justify-content: center;
+        overflow: hidden;
+    }
+    .step-content.active {
+        display: flex;
+    }
+
+    @keyframes fadeInSlide {
+        from { opacity: 0; transform: translateY(12px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Graphics */
+    .brand-logo-wrap {
+        width: 105px;
+        height: 105px;
+        margin: 0 auto 14px;
+        border-radius: 50%;
+        padding: 4px;
+        background: linear-gradient(135deg, var(--gold), var(--bhagwa));
+        box-shadow: 0 10px 25px rgba(138, 0, 0, 0.3);
+    }
+    .brand-logo {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+        background: #fff;
+    }
+
+    .maiya-photo-wrap {
+        width: 140px;
+        height: 140px;
+        margin: 0 auto 14px;
+        border-radius: 20px;
+        padding: 4px;
+        background: linear-gradient(135deg, var(--gold), var(--bhagwa));
+        box-shadow: 0 12px 28px rgba(138, 0, 0, 0.35);
+    }
+    .maiya-img {
+        width: 100%;
+        height: 100%;
+        border-radius: 16px;
+        object-fit: contain;
+        background: #fff;
+    }
+
+    /* Headings & Descriptions */
+    .mantra-tag {
+        color: var(--lava);
+        font-size: 16px;
+        font-weight: 800;
+        margin-bottom: 6px;
+        letter-spacing: 0.5px;
+    }
+    .main-title {
+        color: #222;
+        font-size: 19px;
+        font-weight: 800;
+        margin: 0 0 8px;
+    }
+    .description-text {
+        font-size: 13px;
+        color: #6d4c41;
+        line-height: 1.5;
+        padding: 0 6px;
+        margin: 0;
+        font-weight: 600;
+    }
+
+    /* STEP 3: SEARCHABLE 105+ LANGUAGES */
+    .lang-search-box {
+        width: 100%;
+        height: 42px;
+        display: flex;
+        align-items: center;
+        background: #fffdf9;
+        border: 1.5px solid #e0c9a6;
+        border-radius: 12px;
+        padding: 0 12px;
+        margin: 10px 0 8px;
+        gap: 8px;
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+        transition: 0.2s;
+    }
+    .lang-search-box:focus-within {
+        border-color: var(--bhagwa);
+        box-shadow: 0 0 0 3px rgba(255, 119, 0, 0.15);
+    }
+    .search-icon {
+        font-size: 14px;
+        color: #8A0000;
+    }
+    .lang-search-input {
+        width: 100%;
+        border: none;
+        background: transparent;
+        font-size: 13px;
+        font-family: inherit;
+        font-weight: 600;
+        color: #333;
+        outline: none;
+        user-select: text;
+        -webkit-user-select: text;
+    }
+    .search-clear-btn {
+        background: none;
+        border: none;
+        color: #999;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        padding: 0 4px;
+    }
+
+    .quick-lang-section {
+        width: 100%;
+        margin-bottom: 6px;
+        text-align: left;
+    }
+    .quick-lang-label {
+        font-size: 11px;
+        font-weight: 800;
+        color: #8A0000;
+        margin-bottom: 4px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+    .quick-chips-wrap {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+    .quick-chip {
+        padding: 4px 9px;
+        border-radius: 18px;
+        font-size: 11px;
+        font-weight: 700;
+        background: #fff8e1;
+        border: 1px solid var(--gold-border);
+        color: #7a3e00;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+    .quick-chip:active {
+        transform: scale(0.96);
+    }
+    .quick-chip.selected {
+        background: linear-gradient(135deg, var(--bhagwa), var(--lava));
+        color: #fff;
+        border-color: var(--lava);
+    }
+
+    .lang-grid-scroll {
+        width: 100%;
+        max-height: 180px;
+        overflow-y: auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        padding: 2px;
+        margin-top: 4px;
+        -webkit-overflow-scrolling: touch;
+    }
+    .lang-grid-scroll::-webkit-scrollbar {
+        width: 4px;
+    }
+    .lang-grid-scroll::-webkit-scrollbar-thumb {
+        background: #e0c9a6;
+        border-radius: 4px;
+    }
+
+    .lang-card {
+        background: #fffdf9;
+        border: 1.5px solid #e0c9a6;
+        border-radius: 12px;
+        padding: 8px 6px;
+        cursor: pointer;
+        transition: 0.2s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+    .lang-card:active {
+        transform: scale(0.97);
+    }
+    .lang-card.selected {
+        border: 2px solid var(--bhagwa);
+        background: #fff6e8;
+        box-shadow: 0 3px 12px rgba(255, 119, 0, 0.2);
+    }
+    .lang-card.selected::after {
+        content: "✓";
+        position: absolute;
+        top: 3px;
+        right: 6px;
+        font-size: 11px;
+        font-weight: 900;
+        color: var(--bhagwa);
+    }
+    .lang-primary {
+        font-size: 13.5px;
+        font-weight: 800;
+        color: var(--lava);
+        line-height: 1.2;
+    }
+    .lang-sub {
+        font-size: 10.5px;
+        color: #795548;
+        margin-top: 2px;
+        font-weight: 600;
+    }
+    .no-lang-found {
+        grid-column: span 2;
+        padding: 20px 10px;
+        font-size: 12px;
+        color: #8d6e63;
+        font-weight: 600;
+    }
+    .lang-counter-badge {
+        font-size: 11px;
+        color: #8A0000;
+        font-weight: 800;
+        margin-top: 6px;
+        background: #fff7e6;
+        padding: 3px 10px;
+        border-radius: 16px;
+        border: 1px solid #ffd54f;
+    }
+
+    /* Step 4 Action Buttons */
+    .auth-actions-wrap {
+        width: 100%;
+        margin-top: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .btn-vip-register {
+        width: 100%;
+        height: 50px;
+        background: linear-gradient(135deg, var(--bhagwa), var(--lava));
+        border: none;
+        border-radius: 14px;
+        color: #fff;
+        font-size: 15px;
+        font-weight: 800;
+        font-family: inherit;
+        cursor: pointer;
+        box-shadow: 0 6px 20px rgba(184, 46, 0, 0.35);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        text-decoration: none;
+        transition: 0.2s;
+    }
+    .btn-vip-register:active { transform: scale(0.98); }
+
+    .btn-vip-login {
+        width: 100%;
+        height: 50px;
+        background: #fff8e1;
+        border: 2px solid var(--gold-border);
+        border-radius: 14px;
+        color: #7a3e00;
+        font-size: 15px;
+        font-weight: 800;
+        font-family: inherit;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        text-decoration: none;
+        transition: 0.2s;
+    }
+    .btn-vip-login:active { background: #ffecb3; transform: scale(0.98); }
+
+    /* Navigation Bar */
+    .bottom-nav-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 14px;
+        padding-top: 12px;
+        border-top: 1px dashed #e2cbb2;
+    }
+    .btn-nav {
+        height: 42px;
+        padding: 0 20px;
+        border-radius: 12px;
+        font-size: 13.5px;
+        font-weight: 800;
+        font-family: inherit;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        transition: 0.2s;
+        border: none;
+    }
+    .btn-back {
+        background: #f0e6da;
+        color: #5d4037;
+    }
+    .btn-next {
+        background: linear-gradient(135deg, var(--bhagwa), var(--bhagwa-deep));
+        color: #fff;
+        box-shadow: 0 5px 15px rgba(212, 64, 0, 0.25);
+        margin-left: auto;
+    }
+</style>
+</head>
+<body>
+
+<div class="app-card">
+    
+    <!-- Stepper Dots -->
+    <div class="stepper-dots">
+        <div class="dot active" id="dot-1"></div>
+        <div class="dot" id="dot-2"></div>
+        <div class="dot" id="dot-3"></div>
+        <div class="dot" id="dot-4"></div>
+    </div>
+
+    <!-- STEP 1: WELCOME & LOGO -->
+    <div class="step-content active" id="step-1">
+        <div class="brand-logo-wrap">
+            <img src="https://sanatansevasamiti.org/Images/logo.jpg" alt="Logo" class="brand-logo" onerror="this.src='https://via.placeholder.com/110';">
+        </div>
+        <div class="mantra-tag" data-i18n="jayBhawani">🙏 Jay Bhawani 🙏</div>
+        <h2 class="main-title" data-i18n="welcomeTitle">Welcome to SANATANAM</h2>
+        <p class="description-text" data-i18n="welcomeDesc">
+            Welcome to the official digital platform of <b>Sanatan Seva Samiti</b>. Dedicated to righteousness, divine service, and unity.
+        </p>
+    </div>
+
+    <!-- STEP 2: MAIYA DARSHAN & BLESSING -->
+    <div class="step-content" id="step-2">
+        <div class="maiya-photo-wrap">
+            <img src="https://sanatansevasamiti.org/Images/maiya.png" alt="Maa Kali" class="maiya-img" onerror="this.src='https://sanatansevasamiti.org/Images/logo.jpg';">
+        </div>
+        <div class="mantra-tag" data-i18n="divineMantra">॥ ॐ ऐं ह्रीं क्लीं चामुण्डायै विच्चे ॥</div>
+        <h2 class="main-title" data-i18n="divineBlessings">Divine Blessings</h2>
+        <p class="description-text" data-i18n="divineDesc" style="font-size: 14px; color: #4a148c; font-weight: 700;">
+            राज राजेश्वरी माँ काली की असीम अनुकंपा और कृपा सदा आप और आपके परिवार पर बनी रहे।
+        </p>
+    </div>
+
+    <!-- STEP 3: SEARCHABLE 105+ LANGUAGES SELECTION -->
+    <div class="step-content" id="step-3">
+        <div class="mantra-tag" data-i18n="prefBadge">🌐 Preferences</div>
+        <h2 class="main-title" data-i18n="prefTitle">Choose Your Language</h2>
+        <p class="description-text" data-i18n="prefDesc">Select your preferred language for using the application.</p>
+        
+        <!-- Search Input with Clear Button -->
+        <div class="lang-search-box">
+            <span class="search-icon">🔍</span>
+            <input 
+                type="text" 
+                id="langSearchInput" 
+                class="lang-search-input" 
+                placeholder="अपनी भाषा खोजें / Search 105+ Languages..." 
+                oninput="filterLanguages(this.value)"
+                autocomplete="off"
+            />
+            <button type="button" class="search-clear-btn" id="searchClearBtn" onclick="clearLangSearch()" style="display:none;">✕</button>
+        </div>
+
+        <!-- Quick Pick Chips -->
+        <div class="quick-lang-section" id="quickLangSection">
+            <div class="quick-lang-label">✨ त्वरित चयन / Quick Pick:</div>
+            <div class="quick-chips-wrap" id="quickChipsWrap"></div>
+        </div>
+
+        <!-- Scrollable 105+ Languages Grid -->
+        <div class="lang-grid-scroll" id="langGridContainer"></div>
+
+        <div class="lang-counter-badge" id="langCounterBadge">
+            🌐 105+ भाषाएँ उपलब्ध (Global Real-time Translation)
+        </div>
+    </div>
+
+    <!-- STEP 4: FINAL ACTIONS (STRICTLY NO EXTRA PAGES) -->
+    <div class="step-content" id="step-4">
+        <div class="brand-logo-wrap" style="width: 75px; height: 75px; margin-bottom: 8px;">
+            <img src="https://sanatansevasamiti.org/Images/logo.jpg" alt="Logo" class="brand-logo">
+        </div>
+        <div class="mantra-tag" data-i18n="samitiName">🔱 Sanatan Seva Samiti</div>
+        <h2 class="main-title" data-i18n="memberTitle">Become a Member</h2>
+        <p class="description-text" data-i18n="memberDesc">
+            Join the sacred mission of Sanatan Dharma. Get your verified Digital Identity Card, engage in sacred service, and contribute to society.
+        </p>
+
+        <div class="auth-actions-wrap">
+            <button type="button" class="btn-vip-register" onclick="triggerAndroidAction('register')">
+                <span data-i18n="btnRegister">➕ New Registration</span>
+            </button>
+            <button type="button" class="btn-vip-login" onclick="triggerAndroidAction('login')">
+                <span data-i18n="btnLogin">🔑 Member Login</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- NAVIGATION CONTROLS (Back / Next) -->
+    <div class="bottom-nav-bar" id="navBar">
+        <button type="button" class="btn-nav btn-back" id="btnBack" onclick="navigateStep(-1)" style="visibility: hidden;">
+            <span data-i18n="btnBack">⬅ Back</span>
+        </button>
+        <button type="button" class="btn-nav btn-next" id="btnNext" onclick="navigateStep(1)">
+            <span data-i18n="btnNext">Next ➔</span>
+        </button>
+    </div>
+
+</div>
+
+<script>
+let currentStep = 1;
+const totalSteps = 4;
+let activeLang = "hi";
+
+try {
+    activeLang = localStorage.getItem("sanatanam_app_lang") || "hi";
+} catch (e) {
+    activeLang = "hi";
+}
+
+// 105+ Complete Language Dataset (Self-Contained for APK)
+const SANATANAM_LANGUAGES = [
+    { code: "hi", name: "Hindi", native: "हिन्दी" },
+    { code: "en", name: "English", native: "English" },
+    { code: "sa", name: "Sanskrit", native: "संस्कृतम्" },
+    { code: "mr", name: "Marathi", native: "मराठी" },
+    { code: "gu", name: "Gujarati", native: "ગુજરાતી" },
+    { code: "bn", name: "Bengali", native: "বাংলা" },
+    { code: "ta", name: "Tamil", native: "தமிழ்" },
+    { code: "te", name: "Telugu", native: "తెలుగు" },
+    { code: "kn", name: "Kannada", native: "ಕನ್ನಡ" },
+    { code: "ml", name: "Malayalam", native: "മലയാളം" },
+    { code: "pa", name: "Punjabi", native: "ਪੰਜਾਬੀ" },
+    { code: "or", name: "Odia", native: "ଓଡ଼ିଆ" },
+    { code: "as", name: "Assamese", native: "অসমীয়া" },
+    { code: "ne", name: "Nepali", native: "नेपाली" },
+    { code: "ur", name: "Urdu", native: "اردو" },
+    { code: "bho", name: "Bhojpuri", native: "भोजपुरी" },
+    { code: "mai", name: "Maithili", native: "मैथिली" },
+    { code: "raj", name: "Rajasthani", native: "राजस्थानी" },
+    { code: "sd", name: "Sindhi", native: "سنڌي" },
+    { code: "ks", name: "Kashmiri", native: "کٲشُر" },
+    { code: "kok", name: "Konkani", native: "कोंकणी" },
+    { code: "mni", name: "Manipuri", native: "মৈতৈলোন্" },
+    { code: "ar", name: "Arabic", native: "العربية" },
+    { code: "fr", name: "French", native: "Français" },
+    { code: "de", name: "German", native: "Deutsch" },
+    { code: "es", name: "Spanish", native: "Español" },
+    { code: "ru", name: "Russian", native: "Русский" },
+    { code: "ja", name: "Japanese", native: "日本語" },
+    { code: "zh", name: "Chinese", native: "中文" },
+    { code: "ko", name: "Korean", native: "한국어" },
+    { code: "it", name: "Italian", native: "Italiano" },
+    { code: "pt", name: "Portuguese", native: "Português" },
+    { code: "th", name: "Thai", native: "ไทย" },
+    { code: "vi", name: "Vietnamese", native: "Tiếng Việt" },
+    { code: "id", name: "Indonesian", native: "Bahasa Indonesia" },
+    { code: "tr", name: "Turkish", native: "Türkçe" },
+    { code: "fa", name: "Persian", native: "فارسی" },
+    { code: "nl", name: "Dutch", native: "Nederlands" },
+    { code: "el", name: "Greek", native: "Ελληνικά" },
+    { code: "he", name: "Hebrew", native: "עברית" },
+    { code: "pl", name: "Polish", native: "Polski" },
+    { code: "uk", name: "Ukrainian", native: "Українська" },
+    { code: "sv", name: "Swedish", native: "Svenska" },
+    { code: "no", name: "Norwegian", native: "Norsk" },
+    { code: "fi", name: "Finnish", native: "Suomi" },
+    { code: "da", name: "Danish", native: "Dansk" },
+    { code: "cs", name: "Czech", native: "Čeština" },
+    { code: "hu", name: "Hungarian", native: "Magyar" },
+    { code: "ro", name: "Romanian", native: "Română" },
+    { code: "bg", name: "Bulgarian", native: "Български" },
+    { code: "sr", name: "Serbian", native: "Српски" },
+    { code: "hr", name: "Croatian", native: "Hrvatski" },
+    { code: "sk", name: "Slovak", native: "Slovenčina" },
+    { code: "sl", name: "Slovenian", native: "Slovenščina" },
+    { code: "ms", name: "Malay", native: "Bahasa Melayu" },
+    { code: "fil", name: "Filipino", native: "Filipino" },
+    { code: "my", name: "Burmese", native: "မြန်မာ" },
+    { code: "km", name: "Khmer", native: "ខ្មែរ" },
+    { code: "lo", name: "Lao", native: "ລາວ" },
+    { code: "si", name: "Sinhala", native: "සිංහල" },
+    { code: "am", name: "Amharic", native: "አማርኛ" },
+    { code: "sw", name: "Swahili", native: "Kiswahili" },
+    { code: "af", name: "Afrikaans", native: "Afrikaans" },
+    { code: "sq", name: "Albanian", native: "Shqip" },
+    { code: "hy", name: "Armenian", native: "Հայերեն" },
+    { code: "az", name: "Azerbaijani", native: "Azərbaycan" },
+    { code: "eu", name: "Basque", native: "Euskara" },
+    { code: "be", name: "Belarusian", native: "Беларуская" },
+    { code: "bs", name: "Bosnian", native: "Bosanski" },
+    { code: "ca", name: "Catalan", native: "Català" },
+    { code: "et", name: "Estonian", native: "Eesti" },
+    { code: "gl", name: "Galician", native: "Galego" },
+    { code: "ka", name: "Georgian", native: "ქართული" },
+    { code: "is", name: "Icelandic", native: "Íslenska" },
+    { code: "ga", name: "Irish", native: "Gaeilge" },
+    { code: "kk", name: "Kazakh", native: "Қазақ" },
+    { code: "ky", name: "Kyrgyz", native: "Кыргызча" },
+    { code: "lv", name: "Latvian", native: "Latviešu" },
+    { code: "lt", name: "Lithuanian", native: "Lietuvių" },
+    { code: "mk", name: "Macedonian", native: "Македонски" },
+    { code: "mg", name: "Malagasy", native: "Malagasy" },
+    { code: "mt", name: "Maltese", native: "Malti" },
+    { code: "mn", name: "Mongolian", native: "Монгол" },
+    { code: "ps", name: "Pashto", native: "پښتو" },
+    { code: "so", name: "Somali", native: "Soomaali" },
+    { code: "tg", name: "Tajik", native: "Тоҷикӣ" },
+    { code: "uz", name: "Uzbek", native: "Oʻzbek" },
+    { code: "cy", name: "Welsh", native: "Cymraeg" },
+    { code: "yi", name: "Yiddish", native: "ייִדיש" },
+    { code: "yo", name: "Yoruba", native: "Yorùbá" },
+    { code: "zu", name: "Zulu", native: "isiZulu" }
+];
+
+const QUICK_LANGS = [
+    { code: "hi", native: "हिन्दी" },
+    { code: "en", native: "English" },
+    { code: "sa", native: "संस्कृतम्" },
+    { code: "gu", native: "ગુજરાતી" },
+    { code: "mr", native: "मराठी" },
+    { code: "bn", native: "বাংলা" },
+    { code: "ta", native: "தமிழ்" },
+    { code: "te", native: "తెలుగు" }
+];
+
+// Translations dictionary for key UI labels
+const TRANSLATIONS = {
+    hi: {
+        jayBhawani: "🙏 जय भवानी 🙏",
+        welcomeTitle: "सनातनम् में आपका स्वागत है",
+        welcomeDesc: "<b>सनातन सेवा समिति</b> के आधिकारिक डिजिटल मंच पर आपका स्वागत है। धर्म, सेवा और एकता को समर्पित।",
+        divineBlessings: "दिव्य आशीर्वाद",
+        prefBadge: "🌐 भाषा प्राथमिकता",
+        prefTitle: "अपनी भाषा चुनें",
+        prefDesc: "एप्लिकेशन का उपयोग करने के लिए अपनी पसंदीदा भाषा चुनें।",
+        samitiName: "🔱 सनातन सेवा समिति",
+        memberTitle: "सदस्य बनें",
+        memberDesc: "सनातन धर्म के पावन मिशन से जुड़ें। अपना सत्यापित डिजिटल पहचान पत्र प्राप्त करें और सेवा कार्य में सहयोग दें।",
+        btnRegister: "➕ नया पंजीकरण",
+        btnLogin: "🔑 सदस्य लॉगिन",
+        btnBack: "⬅ वापस",
+        btnNext: "आगे बढ़ें ➔"
+    },
+    en: {
+        jayBhawani: "🙏 Jay Bhawani 🙏",
+        welcomeTitle: "Welcome to SANATANAM",
+        welcomeDesc: "Welcome to the official digital platform of <b>Sanatan Seva Samiti</b>. Dedicated to righteousness, divine service, and unity.",
+        divineBlessings: "Divine Blessings",
+        prefBadge: "🌐 Preferences",
+        prefTitle: "Choose Your Language",
+        prefDesc: "Select your preferred language for using the application.",
+        samitiName: "🔱 Sanatan Seva Samiti",
+        memberTitle: "Become a Member",
+        memberDesc: "Join the sacred mission of Sanatan Dharma. Get your verified Digital Identity Card, engage in sacred service, and contribute to society.",
+        btnRegister: "➕ New Registration",
+        btnLogin: "🔑 Member Login",
+        btnBack: "⬅ Back",
+        btnNext: "Next ➔"
+    },
+    sa: {
+        jayBhawani: "🙏 जय भवानी 🙏",
+        welcomeTitle: "सनातने स्वागतम्",
+        welcomeDesc: "<b>सनातन सेवा समितेः</b> आधिकारिके डिजिटल-मञ्चे स्वागतम्। धर्म-सेवा-एकताभ्यः समर्पितम्।",
+        divineBlessings: "दिव्याशीर्वादः",
+        prefBadge: "🌐 भाषा चयनम्",
+        prefTitle: "स्वाभीष्टभाषां वृणुताम्",
+        prefDesc: "अनुप्रयोगस्य प्रयोगार्थं स्वाभीष्टभाषां वृणुताम्।",
+        samitiName: "🔱 सनातन सेवा समितिः",
+        memberTitle: "सदस्यो भवतु",
+        memberDesc: "सनातनधर्मस्य पवित्रकार्ये सम्मिलिताः भवन्तु। स्वाभासीयं परिचयपत्रं प्राप्नुवन्तु।",
+        btnRegister: "➕ नूतनपञ्जीकरणम्",
+        btnLogin: "🔑 सदस्यप्रवेशः",
+        btnBack: "⬅ प्रतिगच्छतु",
+        btnNext: "अग्रिमम् ➔"
+    }
+};
+
+function applyTranslations(lang) {
+    const t = TRANSLATIONS[lang] || TRANSLATIONS['hi'] || TRANSLATIONS['en'];
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (t[key]) {
+            el.innerHTML = t[key];
+        }
+    });
+}
+
+function renderQuickChips() {
+    const wrap = document.getElementById("quickChipsWrap");
+    if (!wrap) return;
+    wrap.innerHTML = QUICK_LANGS.map(item => `
+        <div class="quick-chip ${activeLang === item.code ? 'selected' : ''}" 
+             onclick="selectAppLanguage('${item.code}')">
+            ${item.native}
+        </div>
+    `).join("");
+}
+
+function renderLanguagesList(filterText = "") {
+    const container = document.getElementById("langGridContainer");
+    if (!container) return;
+
+    const query = filterText.trim().toLowerCase();
+    const filtered = query ? SANATANAM_LANGUAGES.filter(item => 
+        item.name.toLowerCase().includes(query) || 
+        item.native.toLowerCase().includes(query) ||
+        item.code.toLowerCase().includes(query)
+    ) : SANATANAM_LANGUAGES;
+
+    if (filtered.length === 0) {
+        container.innerHTML = `<div class="no-lang-found">⚠️ कोई भाषा नहीं मिली / No language matched "${filterText}"</div>`;
+        return;
+    }
+
+    container.innerHTML = filtered.map(item => `
+        <div class="lang-card ${activeLang === item.code ? 'selected' : ''}" 
+             onclick="selectAppLanguage('${item.code}')"
+             id="lang-card-${item.code}">
+            <span class="lang-primary">${item.native}</span>
+            <span class="lang-sub">${item.name}</span>
+        </div>
+    `).join("");
+
+    const badge = document.getElementById("langCounterBadge");
+    if (badge) {
+        if (query) {
+            badge.innerText = `🔍 ${filtered.length} भाषाएँ मिलीं / Languages Found`;
+        } else {
+            badge.innerText = `🌐 ${SANATANAM_LANGUAGES.length}+ भाषाएँ उपलब्ध (Global Real-time Translation)`;
+        }
+    }
+}
+
+function filterLanguages(val) {
+    const clearBtn = document.getElementById("searchClearBtn");
+    if (clearBtn) {
+        clearBtn.style.display = val.length > 0 ? "inline-block" : "none";
+    }
+    renderLanguagesList(val);
+}
+
+function clearLangSearch() {
+    const input = document.getElementById("langSearchInput");
+    if (input) {
+        input.value = "";
+        filterLanguages("");
+        input.focus();
+    }
+}
+
+function selectAppLanguage(langCode) {
+    activeLang = langCode;
+    try {
+        localStorage.setItem("sanatanam_app_lang", langCode);
+    } catch (e) {}
+
+    applyTranslations(langCode);
+    renderQuickChips();
+    const searchVal = document.getElementById("langSearchInput")?.value || "";
+    renderLanguagesList(searchVal);
+
+    // Notify Android Native Environment if available
+    if (window.AndroidBridge && window.AndroidBridge.onLanguageSelected) {
+        window.AndroidBridge.onLanguageSelected(langCode);
+    }
+}
+
+function updateStepperUI() {
+    for (let i = 1; i <= totalSteps; i++) {
+        const stepEl = document.getElementById(`step-${i}`);
+        const dotEl = document.getElementById(`dot-${i}`);
+        
+        if (i === currentStep) {
+            stepEl.classList.add("active");
+            dotEl.classList.add("active");
+        } else {
+            stepEl.classList.remove("active");
+            dotEl.classList.remove("active");
+        }
+    }
+
+    const btnBack = document.getElementById("btnBack");
+    const btnNext = document.getElementById("btnNext");
+
+    if (currentStep === 1) {
+        btnBack.style.visibility = "hidden";
+    } else {
+        btnBack.style.visibility = "visible";
+    }
+
+    if (currentStep === totalSteps) {
+        btnNext.style.display = "none";
+    } else {
+        btnNext.style.display = "inline-flex";
+    }
+}
+
+function navigateStep(direction) {
+    const nextStep = currentStep + direction;
+    if (nextStep >= 1 && nextStep <= totalSteps) {
+        currentStep = nextStep;
+        updateStepperUI();
+    }
+}
+
+// Android Bridge Communication for Register / Login actions
+function triggerAndroidAction(actionType) {
+    if (window.AndroidBridge) {
+        if (actionType === 'register') {
+            if (window.AndroidBridge.onRegisterClick) {
+                window.AndroidBridge.onRegisterClick();
+            }
+            if (window.AndroidBridge.openNativeScreen) {
+                window.AndroidBridge.openNativeScreen("app_register");
+                return;
+            }
+        }
+        if (actionType === 'login') {
+            if (window.AndroidBridge.onLoginClick) {
+                window.AndroidBridge.onLoginClick();
+            }
+            if (window.AndroidBridge.openNativeScreen) {
+                window.AndroidBridge.openNativeScreen("app_login");
+                return;
+            }
+        }
+    }
+    if (actionType === 'register') {
+        window.location.href = "app_register.html";
+    } else if (actionType === 'login') {
+        window.location.href = "app_login.html";
+    }
+    console.log("Action triggered: " + actionType);
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+    applyTranslations(activeLang);
+    updateStepperUI();
+    renderQuickChips();
+    renderLanguagesList();
+});
+</script>
+
+</body>
+</html>

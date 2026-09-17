@@ -1,0 +1,9 @@
+{
+  "appId": "org.sanatansevasamiti.app",
+  "appName": "SANATANAM",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https",
+    "cleartext": true
+  }
+}
