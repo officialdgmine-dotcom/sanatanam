@@ -394,8 +394,8 @@ body{
                     <div id="frontCard" class="card-face front-card">
                         <div class="front-header">
                             <div class="logo-row-double">
-                                <img id="samitiMainLogo" src="https://sanatansevasamiti.org/Images/jpg/logo.jpg" class="card-logo" crossorigin="anonymous" alt="Samiti">
-                                <img id="kshetraLogo" src="https://sanatansevasamiti.org/Images/jpg/logo.jpg" class="card-logo" crossorigin="anonymous" alt="Kshetra" onerror="this.src='https://sanatansevasamiti.org/Images/jpg/logo.jpg';">
+                                <img id="samitiMainLogo" src="Images/jpg/logo.jpg" class="card-logo" crossorigin="anonymous" alt="Samiti">
+                                <img id="kshetraLogo" src="Images/jpg/logo.jpg" class="card-logo" crossorigin="anonymous" alt="Kshetra" onerror="this.src='Images/jpg/logo.jpg';">
                             </div>
                             <div id="cardKshetraTitle" class="ksh-title">सनातन सेवा समिति</div>
                         </div>
@@ -544,13 +544,13 @@ function loadUserData() {
         const name = currentUser.full_name || "सदस्य";
         const uid = currentUser.unique_id || "PRO1781";
         
-        let photo = "https://sanatansevasamiti.org/Images/jpg/logo.jpg";
+        let photo = "Images/jpg/logo.jpg";
         if (currentUser.profile_photo) {
             if (typeof getUserProfileMediaUrl === "function") {
                 photo = getUserProfileMediaUrl(currentUser.profile_photo);
             } else {
                 const clean = currentUser.profile_photo.replace(/^.*[\\\/]/, '').trim();
-                photo = clean ? `https://sanatansevasamiti.org/api/get_media.php?file=${encodeURIComponent(clean)}` : "https://sanatansevasamiti.org/Images/jpg/logo.jpg";
+                photo = clean ? `https://sanatansevasamiti.org/api/get_media.php?file=${encodeURIComponent(clean)}` : "Images/jpg/logo.jpg";
             }
         }
 
@@ -569,7 +569,7 @@ function loadUserData() {
         // लोड इमेजेस वाया ऑफलाइन-फर्स्ट कैश इंजन (Base64)
         if (typeof getOfflineImage === "function") {
             // 1. समिति मुख्य लोगो
-            getOfflineImage("samiti_main_logo", "https://sanatansevasamiti.org/Images/jpg/logo.jpg").then(b64 => {
+            getOfflineImage("samiti_main_logo", "Images/jpg/logo.jpg").then(b64 => {
                 if (b64) document.getElementById("samitiMainLogo").src = b64;
             });
 
@@ -582,14 +582,14 @@ function loadUserData() {
             const kshetraId = (currentUser.seva_kshetra || "").trim();
             const kshetraDpUrl = (typeof getKshetraDpMediaUrl === "function") 
                 ? getKshetraDpMediaUrl(kshetraId)
-                : (kshetraId ? `https://sanatansevasamiti.org/api/get_media.php?pid=${encodeURIComponent(kshetraId)}&type=dp` : "https://sanatansevasamiti.org/Images/jpg/logo.jpg");
+                : (kshetraId ? `https://sanatansevasamiti.org/api/get_media.php?pid=${encodeURIComponent(kshetraId)}&type=dp` : "Images/jpg/logo.jpg");
 
             if (kshetraId && kshetraId !== 'PRO1781011172') {
                 getOfflineImage(`kshetra_dp_${kshetraId}`, kshetraDpUrl).then(b64 => {
                     if (b64) document.getElementById("kshetraLogo").src = b64;
                 });
             } else {
-                getOfflineImage("samiti_main_logo", "https://sanatansevasamiti.org/Images/jpg/logo.jpg").then(b64 => {
+                getOfflineImage("samiti_main_logo", "Images/jpg/logo.jpg").then(b64 => {
                     if (b64) document.getElementById("kshetraLogo").src = b64;
                 });
             }
