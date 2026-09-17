@@ -611,6 +611,33 @@ const ROLE_HINDI_MAP = {
     'Sadharan Sadasya': 'साधारण सदस्य'
 };
 
+// संरक्षण सदस्य एवं पदनाम प्राथमिकता नियम (Sanrakshan Sadasya Designation Rule)
+function resolveDisplayDesignation(user) {
+    if (!user || user.status !== 'approved' || !user.unique_id) {
+        return 'पंजीकृत सदस्य (स्वीकृति प्रतीक्षारत)';
+    }
+
+    const rawRole = (user.role || '').trim();
+    const padNaam = (user.pad_naam || user.display_designation || user.designation || '').trim();
+
+    // STRICT CONDITION: Only if role is Sanrakshan Sadasya AND has an active post
+    if (rawRole === 'Sanrakshan Sadasya' && padNaam !== '') {
+        return padNaam; // Show Executive Post (पद)
+    }
+
+    // Role Mapping for members without post or other roles
+    const roleMap = {
+        'Admin': 'एडमिन',
+        'Sanatan Seva Samiti': 'एडमिन',
+        'Sanrakshan Sadasya': 'संरक्षण सदस्य',
+        'Aajiwan Sadasya': 'आजीवन सदस्य',
+        'Sammaniya Sadasya': 'सम्मानित सदस्य',
+        'Sadharan Sadasya': 'साधारण सदस्य'
+    };
+
+    return roleMap[rawRole] || rawRole || 'साधारण सदस्य';
+}
+
 // कार्ड रिस्पॉन्सिव स्केलिंग
 function fitCard(){
     const availableWidth = Math.max(250, window.innerWidth - 20);
@@ -663,12 +690,9 @@ function loadUserData() {
         const uid = currentUser.unique_id || "PRO1781";
         const district = currentUser.district || "मुरैना";
         const state = currentUser.state || "मध्य प्रदेश";
-        const rawRole = currentUser.role || "Sadharan Sadasya";
-        const hindiRole = ROLE_HINDI_MAP[rawRole] || rawRole;
 
-        // पद (Designation) प्राथमिकता नियम
-        const designation = (currentUser.pad_naam || currentUser.display_designation || currentUser.designation || "").trim();
-        const displayRoleOrPost = designation ? designation : hindiRole;
+        // पद (Designation) एवं संरक्षण सदस्य प्राथमिकता नियम
+        const displayRoleOrPost = resolveDisplayDesignation(currentUser);
 
         // 1. टेक्स्ट फ़ील्ड्स
         document.getElementById("cardMemberName").innerText = name;

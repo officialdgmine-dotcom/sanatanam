@@ -632,6 +632,33 @@ const ROLE_HINDI_MAP = {
     'Sadharan Sadasya': 'साधारण सदस्य'
 };
 
+// संरक्षण सदस्य एवं पदनाम प्राथमिकता नियम (Sanrakshan Sadasya Designation Rule)
+function resolveDisplayDesignation(user) {
+    if (!user || user.status !== 'approved' || !user.unique_id) {
+        return 'पंजीकृत सदस्य (स्वीकृति प्रतीक्षारत)';
+    }
+
+    const rawRole = (user.role || '').trim();
+    const padNaam = (user.pad_naam || user.display_designation || user.designation || '').trim();
+
+    // STRICT CONDITION: Only if role is Sanrakshan Sadasya AND has an active post
+    if (rawRole === 'Sanrakshan Sadasya' && padNaam !== '') {
+        return padNaam; // Show Executive Post (पद)
+    }
+
+    // Role Mapping for members without post or other roles
+    const roleMap = {
+        'Admin': 'एडमिन',
+        'Sanatan Seva Samiti': 'एडमिन',
+        'Sanrakshan Sadasya': 'संरक्षण सदस्य',
+        'Aajiwan Sadasya': 'आजीवन सदस्य',
+        'Sammaniya Sadasya': 'सम्मानित सदस्य',
+        'Sadharan Sadasya': 'साधारण सदस्य'
+    };
+
+    return roleMap[rawRole] || rawRole || 'साधारण सदस्य';
+}
+
 function fitCard(){
     if(!viewport) return;
     const availableWidth = Math.max(250, window.innerWidth - 20);
@@ -722,9 +749,8 @@ function renderUserInterface(u) {
     const hindiRole = ROLE_HINDI_MAP[rawRole] || rawRole;
     const isApproved = (u.status === 'approved' && Boolean(uid));
     
-    // पद (Designation) प्राथमिकता नियम
-    const designation = (u.pad_naam || u.display_designation || u.designation || "").trim();
-    const displayPostOrRole = designation ? designation : (isApproved ? hindiRole : 'पंजीकृत सदस्य (स्वीकृति प्रतीक्षारत)');
+    // पद (Designation) एवं संरक्षण सदस्य प्राथमिकता नियम
+    const displayPostOrRole = resolveDisplayDesignation(u);
 
     // 2. यूज़र कार्ड फ़ील्ड्स
     document.getElementById("dashUserName").innerText = name;

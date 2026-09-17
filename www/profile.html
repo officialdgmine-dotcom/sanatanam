@@ -479,6 +479,33 @@ window.addEventListener("DOMContentLoaded", () => {
     loadLocalUserProfile();
 });
 
+// संरक्षण सदस्य एवं पदनाम प्राथमिकता नियम (Sanrakshan Sadasya Designation Rule)
+function resolveDisplayDesignation(user) {
+    if (!user || user.status !== 'approved' || !user.unique_id) {
+        return 'पंजीकृत सदस्य (स्वीकृति प्रतीक्षारत)';
+    }
+
+    const rawRole = (user.role || '').trim();
+    const padNaam = (user.pad_naam || user.display_designation || user.designation || '').trim();
+
+    // STRICT CONDITION: Only if role is Sanrakshan Sadasya AND has an active post
+    if (rawRole === 'Sanrakshan Sadasya' && padNaam !== '') {
+        return padNaam; // Show Executive Post (पद)
+    }
+
+    // Role Mapping for members without post or other roles
+    const roleMap = {
+        'Admin': 'एडमिन',
+        'Sanatan Seva Samiti': 'एडमिन',
+        'Sanrakshan Sadasya': 'संरक्षण सदस्य',
+        'Aajiwan Sadasya': 'आजीवन सदस्य',
+        'Sammaniya Sadasya': 'सम्मानित सदस्य',
+        'Sadharan Sadasya': 'साधारण सदस्य'
+    };
+
+    return roleMap[rawRole] || rawRole || 'साधारण सदस्य';
+}
+
 function loadLocalUserProfile() {
     try {
         const raw = localStorage.getItem("sss_user_data");
@@ -491,7 +518,7 @@ function loadLocalUserProfile() {
         
         document.getElementById("viewUserName").innerText = currentUserData.full_name || "सनातन सेवक";
         document.getElementById("viewUserId").innerText = "ID: " + (currentUserData.unique_id || "Pending");
-        document.getElementById("viewUserRole").innerText = "🏵️ " + (currentUserData.pad_naam || currentUserData.role || "साधारण सदस्य");
+        document.getElementById("viewUserRole").innerText = "🏵️ " + resolveDisplayDesignation(currentUserData);
 
         if (currentUserData.profile_photo) {
             const photoUrl = currentUserData.profile_photo.startsWith("http")
