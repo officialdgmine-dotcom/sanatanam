@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>मेरा प्रोफाइल — सनातन सेवा समिति</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+<style>
+    :root {
+        --primary: #FF7700;
+        --secondary: #8A0000;
+        --lava: #B30000;
+        --gold: #FFD54F;
+        --gold-border: #D4A017;
+        --bg-grad: radial-gradient(circle at top, #FF8800 0%, #B82E00 45%, #4A0000 100%);
+    }
+
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    
+    html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        min-height: 100%;
+        background: var(--bg-grad);
+        font-family: 'Noto Sans Devanagari', sans-serif;
+        color: #222;
+    }
+
+    body {
+        padding: 16px 12px 105px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .card-wrapper {
+        width: 100%;
+        max-width: 460px;
+        background: rgba(255, 255, 255, 0.97);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        border-radius: 28px;
+        border: 2px solid var(--gold-border);
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+        padding: 24px 18px;
+        position: relative;
+    }
+
+    .card-wrapper::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 6px;
+        border-radius: 28px 28px 0 0;
+        background: linear-gradient(90deg, var(--primary), var(--gold), var(--secondary));
+    }
+
+    .top-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 14px;
+    }
+    .back-nav-btn {
+        background: #fff8e1;
+        border: 1.5px solid var(--gold-border);
+        color: var(--secondary);
+        padding: 6px 14px;
+        border-radius: 12px;
+        font-size: 12.5px;
+        font-weight: 800;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .profile-header { text-align: center; margin-bottom: 16px; }
+    .avatar-box {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        margin: 0 auto 10px;
+    }
+    .profile-photo {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border: 4px solid var(--gold);
+        object-fit: cover;
+        background: #fff;
+        box-shadow: 0 6px 16px rgba(138, 0, 0, 0.3);
+    }
+    .upload-icon-badge {
+        position: absolute;
+        bottom: 2px;
+        right: 4px;
+        background: var(--secondary);
+        color: #fff;
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border: 2px solid #fff;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        font-size: 14px;
+    }
+    .user-name { font-size: 20px; font-weight: 900; color: var(--secondary); margin: 0; }
+    .user-uid-label { font-size: 12px; color: #666; font-weight: 700; margin-top: 2px; }
+    .role-badge {
+        display: inline-block;
+        background: linear-gradient(135deg, var(--secondary), var(--lava));
+        color: #ffd700;
+        padding: 4px 14px;
+        border-radius: 16px;
+        font-weight: 800;
+        font-size: 12px;
+        margin-top: 6px;
+        border: 1px solid #ffd700;
+    }
+
+    .progress-box {
+        background: #fff8e8;
+        padding: 12px;
+        border-radius: 14px;
+        margin: 14px 0 18px;
+        border: 1px solid var(--gold-border);
+    }
+    .progress-bar {
+        height: 10px;
+        background: #e0d0c0;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-top: 6px;
+    }
+    .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        transition: width 0.5s ease;
+        border-radius: 10px;
+    }
+
+    .section-head {
+        font-size: 13.5px;
+        font-weight: 800;
+        color: var(--secondary);
+        background: #fff7e6;
+        padding: 6px 12px;
+        border-radius: 10px;
+        border-left: 4px solid var(--primary);
+        margin: 18px 0 10px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .form-group { margin-bottom: 12px; }
+    .form-group label {
+        display: block;
+        font-weight: 700;
+        margin-bottom: 4px;
+        font-size: 12px;
+        color: #4a2c00;
+    }
+    .form-group input, .form-group textarea, .form-group select {
+        width: 100%;
+        padding: 0 12px;
+        height: 44px;
+        border: 1.5px solid #e0c9a6;
+        border-radius: 12px;
+        background: #fffdf9;
+        font-size: 13.5px;
+        font-weight: 600;
+        font-family: inherit;
+        outline: none;
+        transition: 0.2s ease;
+    }
+    .form-group textarea {
+        height: 64px;
+        padding: 8px 12px;
+        resize: none;
+    }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+        border-color: var(--primary);
+        background: #fff;
+        box-shadow: 0 0 0 3px rgba(255, 119, 0, 0.15);
+    }
+
+    .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .rejected input, .rejected textarea {
+        border-color: #dc3545 !important;
+        background: #fff5f5 !important;
+    }
+    .rejected-alert-text {
+        font-size: 10.5px;
+        color: #dc3545;
+        font-weight: 700;
+        margin-top: 2px;
+        display: block;
+    }
+
+    .doc-box {
+        background: #fffbf2;
+        padding: 10px 12px;
+        border-radius: 14px;
+        margin-bottom: 10px;
+        border: 1.5px dashed var(--gold-border);
+        text-align: center;
+    }
+    .doc-box img {
+        max-width: 100%;
+        height: 120px;
+        object-fit: cover;
+        margin-top: 6px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        background: #fff;
+    }
+    .doc-btn-upload {
+        display: inline-block;
+        padding: 5px 12px;
+        background: #fff8e1;
+        border: 1px solid var(--gold-border);
+        color: var(--secondary);
+        border-radius: 8px;
+        font-size: 11px;
+        font-weight: 800;
+        cursor: pointer;
+        margin-top: 4px;
+    }
+
+    .btn-submit {
+        width: 100%;
+        height: 48px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-weight: 800;
+        font-size: 14.5px;
+        font-family: inherit;
+        cursor: pointer;
+        margin-top: 10px;
+        box-shadow: 0 6px 18px rgba(138, 0, 0, 0.3);
+        transition: 0.2s;
+    }
+    .btn-submit:active { transform: scale(0.98); }
+
+    .alert-msg {
+        display: none;
+        padding: 10px 12px;
+        border-radius: 10px;
+        font-size: 12px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        text-align: center;
+    }
+    .alert-success { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
+    .alert-danger { background: #ffebee; color: var(--secondary); border: 1px solid #ffcdd2; }
+
+    #sss-nav {
+        position: fixed;
+        bottom: 0; left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        max-width: 480px;
+        height: 75px;
+        background: linear-gradient(180deg, #ff4500, #800000);
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        border-top: 4px solid #ffcc00;
+        border-radius: 20px 20px 0 0;
+        z-index: 99999;
+        box-shadow: 0 -5px 20px rgba(0,0,0,0.4);
+    }
+    .sss-item { flex: 1; text-align: center; text-decoration: none; color: #fff; font-size: 10px; font-weight: 800; }
+    .sss-item img { width: 28px; height: 28px; display: block; margin: auto; }
+    .sss-dash-wrap { margin-top: -30px; }
+    .sss-gold-circle {
+        width: 60px; height: 60px;
+        background: linear-gradient(45deg, #ffd700, #ffcc00, #b8860b);
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        border: 3px solid #800000;
+        box-shadow: 0 0 15px rgba(255,215,0,0.6);
+    }
+    .sss-gold-circle img { width: 35px; height: 35px; }
+</style>
+</head>
+<body>
+
+<div class="card-wrapper">
+    
+    <div class="top-head">
+        <a href="app_dashboard.html" class="back-nav-btn">⬅ डैशबोर्ड</a>
+        <span style="font-size:13px; font-weight:800; color:var(--secondary);">प्रोफाइल प्रबंधन</span>
+        <div style="width:50px;"></div>
+    </div>
+
+    <div id="statusAlert" class="alert-msg"></div>
+
+    <div class="profile-header">
+        <div class="avatar-box">
+            <img id="viewUserPhoto" class="profile-photo" src="Images/jpg/logo.jpg" alt="Profile" onerror="this.src='https://sanatansevasamiti.org/Images/jpg/logo.jpg';">
+            <label for="profile_photo_file" class="upload-icon-badge" title="फोटो बदलें">
+                <i class="fa-solid fa-camera"></i>
+            </label>
+            <input type="file" id="profile_photo_file" accept="image/*" style="display:none;" onchange="handlePhotoSelect(event)">
+        </div>
+        <h2 id="viewUserName" class="user-name">सनातन सेवक</h2>
+        <div id="viewUserId" class="user-uid-label">ID: ---</div>
+        <span id="viewUserRole" class="role-badge">🏵️ साधारण सदस्य</span>
+    </div>
+
+    <div class="progress-box">
+        <div style="display:flex; justify-content:space-between; font-size:11.5px; font-weight:800; color:var(--secondary);">
+            <span>प्रोफ़ाइल पूर्णता</span>
+            <span id="progressPctText">0%</span>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressBarFill" style="width:0%;"></div>
+        </div>
+    </div>
+
+    <form id="profileEditForm" onsubmit="saveProfileDetails(event)">
+        
+        <div class="section-head">👤 व्यक्तिगत विवरण</div>
+        
+        <div class="form-group" id="grp_full_name">
+            <label>पूरा नाम *</label>
+            <input type="text" id="inp_full_name" required>
+        </div>
+
+        <div class="grid-2">
+            <div class="form-group" id="grp_mobile">
+                <label>मोबाइल नंबर *</label>
+                <input type="tel" id="inp_mobile" maxlength="10" required>
+            </div>
+            <div class="form-group" id="grp_gender">
+                <label>लिंग (Gender)</label>
+                <select id="inp_gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="grid-2">
+            <div class="form-group" id="grp_email">
+                <label>ईमेल</label>
+                <input type="email" id="inp_email">
+            </div>
+            <div class="form-group" id="grp_dob">
+                <label>जन्म तिथि</label>
+                <input type="date" id="inp_dob">
+            </div>
+        </div>
+
+        <div class="section-head">📍 निवास एवं स्थान</div>
+
+        <div class="form-group" id="grp_pincode">
+            <label>पिनकोड (Pincode डालते ही राज्य व जिला भर जाएगा)</label>
+            <input type="number" id="inp_pincode" placeholder="6 अंकों का पिनकोड" oninput="autoFetchPincode(this.value)">
+            <span id="pinFetchStatus" style="font-size:11px; font-weight:700; color:var(--primary); display:none;"></span>
+        </div>
+
+        <div class="grid-2">
+            <div class="form-group" id="grp_state">
+                <label>राज्य (State)</label>
+                <input type="text" id="inp_state" placeholder="उदा. मध्य प्रदेश">
+            </div>
+            <div class="form-group" id="grp_district">
+                <label>जिला (District)</label>
+                <input type="text" id="inp_district" placeholder="उदा. मुरैना">
+            </div>
+        </div>
+
+        <div class="form-group" id="grp_address">
+            <label>पूरा पता (Address)</label>
+            <textarea id="inp_address" placeholder="गाँव / वार्ड, मोहल्ला, पिन कोड..."></textarea>
+        </div>
+
+        <div class="section-head">🪪 पहचान पत्र / दस्तावेज़ विवरण</div>
+        
+        <div class="form-group" id="grp_aadhar_no">
+            <label>पहचान पत्र / पहचान संख्या</label>
+            <input type="text" id="inp_aadhar_no" placeholder="पहचान संख्या दर्ज करें">
+        </div>
+
+        <div class="doc-box" id="grp_aadhar_front">
+            <label style="font-size:11.5px; font-weight:700; color:var(--secondary); display:block;">📄 पहचान दस्तावेज़ (आगे का भाग)</label>
+            <label for="doc_front_file" class="doc-btn-upload">📁 दस्तावेज़ चुनें</label>
+            <input type="file" id="doc_front_file" accept="image/*" style="display:none;" onchange="handleDocUpload(event, 'front')">
+            <img id="previewDocFront" src="https://via.placeholder.com/300x150?text=Identity+Doc+Front" alt="Front Document">
+        </div>
+
+        <div class="doc-box" id="grp_aadhar_back">
+            <label style="font-size:11.5px; font-weight:700; color:var(--secondary); display:block;">📄 पहचान दस्तावेज़ (पीछे का भाग)</label>
+            <label for="doc_back_file" class="doc-btn-upload">📁 दस्तावेज़ चुनें</label>
+            <input type="file" id="doc_back_file" accept="image/*" style="display:none;" onchange="handleDocUpload(event, 'back')">
+            <img id="previewDocBack" src="https://via.placeholder.com/300x150?text=Identity+Doc+Back" alt="Back Document">
+        </div>
+
+        <button type="submit" id="btnSaveProfile" class="btn-submit">💾 प्रोफ़ाइल सुरक्षित करें</button>
+    </form>
+
+    <div class="section-head" style="margin-top:24px;">🔐 पासवर्ड बदलें</div>
+    <form id="pwdChangeForm" onsubmit="handlePasswordChange(event)">
+        <div class="form-group">
+            <label>पुराना पासवर्ड *</label>
+            <input type="password" id="old_pass" placeholder="वर्तमान पासवर्ड" required>
+        </div>
+        <div class="grid-2">
+            <div class="form-group">
+                <label>नया पासवर्ड *</label>
+                <input type="password" id="new_pass" placeholder="कम से कम 6 अक्षर" minlength="6" required>
+            </div>
+            <div class="form-group">
+                <label>दोबारा पुष्टि करें *</label>
+                <input type="password" id="confirm_pass" placeholder="नया पासवर्ड पुनः" minlength="6" required>
+            </div>
+        </div>
+        <button type="submit" id="btnUpdatePwd" class="btn-submit" style="background:linear-gradient(135deg, #374151, #1f2937);">🔑 पासवर्ड अपडेट करें</button>
+    </form>
+
+    <div style="text-align:center; margin-top:20px;">
+        <a href="javascript:void(0)" onclick="logoutFromApp()" style="color:var(--secondary); font-weight:800; font-size:13px; text-decoration:none;">
+            <i class="fa-solid fa-right-from-bracket"></i> लॉग आउट करें
+        </a>
+    </div>
+
+</div>
+
+<div id="sss-nav">
+    <a href="app_home.html" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341771file_00000000145071fab7ea2e7e30f9dfaa-e1776295057951.png" alt="गृह">
+        <span>गृह</span>
+    </a>
+    <a href="javascript:void(0);" onclick="alert('गुरु परंपरा अनुभाग शीघ्र उपलब्ध होगा।');" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341317ci.jpg" alt="गुरु">
+        <span>गुरु परंपरा</span>
+    </a>
+    <a href="feed.html" class="sss-item sss-dash-wrap">
+        <div class="sss-gold-circle">
+            <img src="https://sanatansevasamiti.org/uploads/footer/1780341218logo.jpg" alt="फीड">
+        </div>
+        <span></span>
+    </a>
+    <a href="javascript:void(0);" onclick="alert('पुस्तकें अनुभाग शीघ्र उपलब्ध होगा।');" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341270bi.jpg" alt="पुस्तकें">
+        <span>पुस्तकें</span>
+    </a>
+    <a href="app_dashboard.html" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341144ai.jpg" alt="अकाउंट">
+        <span>अकाउंट</span>
+    </a>
+</div>
+
+<script>
+let currentUserData = {};
+let newPhotoBase64 = "";
+let docFrontBase64 = "";
+let docBackBase64 = "";
+
+window.addEventListener("DOMContentLoaded", () => {
+    loadLocalUserProfile();
+});
+
+function loadLocalUserProfile() {
+    try {
+        const raw = localStorage.getItem("sss_user_data");
+        if (!raw) {
+            window.location.href = "app_login.html";
+            return;
+        }
+
+        currentUserData = JSON.parse(raw);
+        
+        document.getElementById("viewUserName").innerText = currentUserData.full_name || "सनातन सेवक";
+        document.getElementById("viewUserId").innerText = "ID: " + (currentUserData.unique_id || "Pending");
+        document.getElementById("viewUserRole").innerText = "🏵️ " + (currentUserData.pad_naam || currentUserData.role || "साधारण सदस्य");
+
+        if (currentUserData.profile_photo) {
+            const photoUrl = currentUserData.profile_photo.startsWith("http")
+                ? currentUserData.profile_photo
+                : "https://sanatansevasamiti.org/" + currentUserData.profile_photo.replace(/^\/+/, "");
+            document.getElementById("viewUserPhoto").src = photoUrl;
+        }
+
+        document.getElementById("inp_full_name").value = currentUserData.full_name || "";
+        document.getElementById("inp_mobile").value = (currentUserData.mobile || "").replace(/^\+91/, '');
+        document.getElementById("inp_email").value = currentUserData.email || "";
+        document.getElementById("inp_gender").value = currentUserData.gender || "Male";
+        document.getElementById("inp_dob").value = currentUserData.dob || "";
+        document.getElementById("inp_state").value = currentUserData.state || "";
+        document.getElementById("inp_district").value = currentUserData.district || "";
+        document.getElementById("inp_address").value = currentUserData.address || "";
+        document.getElementById("inp_aadhar_no").value = currentUserData.aadhar_no || "";
+
+        if (currentUserData.aadhar_front) {
+            document.getElementById("previewDocFront").src = "https://sanatansevasamiti.org/" + currentUserData.aadhar_front.replace(/^\/+/, "");
+        }
+        if (currentUserData.aadhar_back) {
+            document.getElementById("previewDocBack").src = "https://sanatansevasamiti.org/" + currentUserData.aadhar_back.replace(/^\/+/, "");
+        }
+
+        highlightRejectedFields(currentUserData.rejected_fields);
+        calculateProfileProgress();
+
+    } catch(e) {
+        console.log("Profile loader error:", e);
+    }
+}
+
+function highlightRejectedFields(rejJson) {
+    let rejList = [];
+    try {
+        rejList = typeof rejJson === "string" ? JSON.parse(rejJson) : (rejJson || []);
+    } catch(e) { rejList = []; }
+
+    rejList.forEach(field => {
+        const el = document.getElementById("grp_" + field);
+        if (el) {
+            el.classList.add("rejected");
+            const alertTag = document.createElement("span");
+            alertTag.className = "rejected-alert-text";
+            alertTag.innerText = "⚠️ एडमिन द्वारा पुनः सुधार हेतु चिह्नित";
+            el.appendChild(alertTag);
+        }
+    });
+}
+
+function calculateProfileProgress() {
+    const checkFields = [
+        document.getElementById("inp_full_name").value,
+        document.getElementById("inp_mobile").value,
+        document.getElementById("inp_email").value,
+        document.getElementById("inp_dob").value,
+        document.getElementById("inp_state").value,
+        document.getElementById("inp_district").value,
+        document.getElementById("inp_address").value,
+        document.getElementById("inp_aadhar_no").value,
+        currentUserData.profile_photo || newPhotoBase64,
+        currentUserData.country || "India",
+        currentUserData.aadhar_front || docFrontBase64,
+        currentUserData.aadhar_back || docBackBase64
+    ];
+
+    let filled = checkFields.filter(val => Boolean(val && String(val).trim().length > 0)).length;
+    let pct = Math.round((filled / 12) * 100);
+
+    document.getElementById("progressPctText").innerText = pct + "%";
+    document.getElementById("progressBarFill").style.width = pct + "%";
+}
+
+async function autoFetchPincode(pin) {
+    const statusBox = document.getElementById("pinFetchStatus");
+    pin = pin.trim();
+    if (pin.length !== 6) {
+        statusBox.style.display = "none";
+        return;
+    }
+
+    statusBox.style.display = "block";
+    statusBox.innerText = "⏳ स्थान खोजा जा रहा है...";
+
+    try {
+        const res = await fetch(`https://api.postalpincode.in/pincode/${pin}`);
+        const data = await res.json();
+        if (data && data[0] && data[0].Status === "Success") {
+            const po = data[0].PostOffice[0];
+            document.getElementById("inp_state").value = po.State;
+            document.getElementById("inp_district").value = po.District;
+            statusBox.style.color = "#2e7d32";
+            statusBox.innerText = `✓ ${po.District}, ${po.State}`;
+            calculateProfileProgress();
+        } else {
+            statusBox.style.color = "#dc3545";
+            statusBox.innerText = "पिनकोड नहीं मिला";
+        }
+    } catch(e) {
+        statusBox.style.display = "none";
+    }
+}
+
+function handlePhotoSelect(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(evt) {
+        newPhotoBase64 = evt.target.result;
+        document.getElementById("viewUserPhoto").src = newPhotoBase64;
+        calculateProfileProgress();
+    };
+    reader.readAsDataURL(file);
+}
+
+function handleDocUpload(e, side) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(evt) {
+        if (side === 'front') {
+            docFrontBase64 = evt.target.result;
+            document.getElementById("previewDocFront").src = docFrontBase64;
+        } else {
+            docBackBase64 = evt.target.result;
+            document.getElementById("previewDocBack").src = docBackBase64;
+        }
+        calculateProfileProgress();
+    };
+    reader.readAsDataURL(file);
+}
+
+async function saveProfileDetails(e) {
+    e.preventDefault();
+    const btn = document.getElementById("btnSaveProfile");
+    const alertBox = document.getElementById("statusAlert");
+    alertBox.style.display = "none";
+
+    const payload = {
+        unique_id: currentUserData.unique_id,
+        user_id: currentUserData.id,
+        full_name: document.getElementById("inp_full_name").value.trim(),
+        mobile: document.getElementById("inp_mobile").value.trim(),
+        email: document.getElementById("inp_email").value.trim(),
+        gender: document.getElementById("inp_gender").value,
+        dob: document.getElementById("inp_dob").value,
+        state: document.getElementById("inp_state").value.trim(),
+        district: document.getElementById("inp_district").value.trim(),
+        address: document.getElementById("inp_address").value.trim(),
+        aadhar_no: document.getElementById("inp_aadhar_no").value.trim(),
+        profile_photo_base64: newPhotoBase64,
+        aadhar_front_base64: docFrontBase64,
+        aadhar_back_base64: docBackBase64
+    };
+
+    btn.innerText = "⏳ सुरक्षित किया जा रहा है...";
+    btn.disabled = true;
+
+    try {
+        const res = await fetch("https://sanatansevasamiti.org/api/update_profile.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+
+        currentUserData = { ...currentUserData, ...payload };
+        if (newPhotoBase64) currentUserData.profile_photo = newPhotoBase64;
+        localStorage.setItem("sss_user_data", JSON.stringify(currentUserData));
+
+        alertBox.className = "alert-msg alert-success";
+        alertBox.innerText = "✅ प्रोफाइल सफलतापूर्वक अपडेट हो गई!";
+        alertBox.style.display = "block";
+        document.getElementById("viewUserName").innerText = payload.full_name;
+
+    } catch(err) {
+        currentUserData = { ...currentUserData, ...payload };
+        if (newPhotoBase64) currentUserData.profile_photo = newPhotoBase64;
+        localStorage.setItem("sss_user_data", JSON.stringify(currentUserData));
+
+        alertBox.className = "alert-msg alert-success";
+        alertBox.innerText = "✅ प्रोफ़ाइल डेटा ऐप में सुरक्षित हो गया!";
+        alertBox.style.display = "block";
+    } finally {
+        btn.innerText = "💾 प्रोफ़ाइल सुरक्षित करें";
+        btn.disabled = false;
+        calculateProfileProgress();
+    }
+}
+
+async function handlePasswordChange(e) {
+    e.preventDefault();
+    const oldP = document.getElementById("old_pass").value;
+    const newP = document.getElementById("new_pass").value;
+    const confP = document.getElementById("confirm_pass").value;
+    const alertBox = document.getElementById("statusAlert");
+    alertBox.style.display = "none";
+
+    if (newP !== confP) {
+        alertBox.className = "alert-msg alert-danger";
+        alertBox.innerText = "❌ नया पासवर्ड और पुष्टि पासवर्ड मेल नहीं खा रहे!";
+        alertBox.style.display = "block";
+        return;
+    }
+
+    const btn = document.getElementById("btnUpdatePwd");
+    btn.innerText = "⏳ पासवर्ड बदला जा रहा है...";
+    btn.disabled = true;
+
+    try {
+        const res = await fetch("https://sanatansevasamiti.org/api/change_password.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                unique_id: currentUserData.unique_id,
+                old_pass: oldP,
+                new_pass: newP
+            })
+        });
+        const data = await res.json();
+        
+        if (data.status) {
+            alertBox.className = "alert-msg alert-success";
+            alertBox.innerText = "✅ " + data.message;
+            document.getElementById("pwdChangeForm").reset();
+        } else {
+            alertBox.className = "alert-msg alert-danger";
+            alertBox.innerText = "❌ " + data.message;
+        }
+    } catch(err) {
+        alertBox.className = "alert-msg alert-danger";
+        alertBox.innerText = "सर्वर से कनेक्ट नहीं हो सका। कृपया बाद में प्रयास करें।";
+    } finally {
+        alertBox.style.display = "block";
+        btn.innerText = "🔑 पासवर्ड अपडेट करें";
+        btn.disabled = false;
+    }
+}
+
+function logoutFromApp() {
+    if (confirm("क्या आप वाकई लॉगआउट करना चाहते हैं?")) {
+        localStorage.removeItem("sss_user_token");
+        localStorage.removeItem("sss_user_data");
+        window.location.href = "app_login.html";
+    }
+}
+</script>
+</body>
+</html>

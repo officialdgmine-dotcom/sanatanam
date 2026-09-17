@@ -23,6 +23,68 @@ body{
     padding-bottom: 90px !important;
 }
 
+/* PULL TO REFRESH STYLES */
+.ptr-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    pointer-events: none;
+    transform: translateY(-100%);
+    transition: transform 0.25s cubic-bezier(0.18, 0.89, 0.32, 1.28), opacity 0.2s ease;
+    opacity: 0;
+}
+.ptr-container.active {
+    opacity: 1;
+}
+.ptr-content {
+    background: rgba(38, 3, 10, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1.5px solid rgba(255, 215, 0, 0.45);
+    border-radius: 26px;
+    padding: 8px 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.65);
+    margin-top: 10px;
+}
+.ptr-icon-wrap {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ptr-arrow {
+    width: 18px;
+    height: 18px;
+    stroke: #ffd54f;
+    transition: transform 0.2s ease;
+}
+.ptr-spinner {
+    width: 18px;
+    height: 18px;
+    border: 2.5px solid rgba(255, 215, 0, 0.25);
+    border-top-color: #ffd54f;
+    border-radius: 50%;
+    animation: ptr-spin 0.75s linear infinite;
+}
+@keyframes ptr-spin {
+    to { transform: rotate(360deg); }
+}
+.ptr-text {
+    font-size: 12px;
+    font-weight: 800;
+    color: #fff4d0;
+    letter-spacing: 0.2px;
+}
+
 /* PAGE */
 .id-page{
     width:100%;
@@ -31,6 +93,7 @@ body{
     display:flex;
     flex-direction:column;
     align-items:center;
+    transition: transform 0.2s ease-out;
 }
 
 /* PAGE TITLE */
@@ -380,6 +443,20 @@ body{
 </style>
 </head>
 <body>
+
+<!-- PULL TO REFRESH INDICATOR -->
+<div id="pullToRefreshBox" class="ptr-container">
+    <div class="ptr-content">
+        <div class="ptr-icon-wrap" id="ptrIconWrap">
+            <svg id="ptrArrowIcon" class="ptr-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <polyline points="19 12 12 19 5 12"></polyline>
+            </svg>
+            <div id="ptrSpinner" class="ptr-spinner" style="display:none;"></div>
+        </div>
+        <span id="ptrText" class="ptr-text">नीचे खींचकर रीफ्रेश करें...</span>
+    </div>
+</div>
 
 <div class="id-page">
 
@@ -835,9 +912,9 @@ document.getElementById('bothDownload').addEventListener('click', async function
 // सर्विस वर्कर पंजीकरण (Service Worker Registration for Offline ID Card)
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('id_card_sw.js')
+        navigator.serviceWorker.register('sw.js')
             .then((reg) => {
-                console.log('[ServiceWorker] registered successfully for ID Card scope:', reg.scope);
+                console.log('[ServiceWorker] registered successfully (sw.js) for scope:', reg.scope);
             })
             .catch((err) => {
                 console.log('[ServiceWorker] registration skipped or failed:', err);
@@ -845,8 +922,171 @@ if ('serviceWorker' in navigator) {
     });
 }
 
+// ==========================================
+// PULL TO REFRESH MECHANISM (सदस्यता एवं स्थिति री-सिंक)
+// ==========================================
+function initPullToRefresh() {
+    const ptrBox = document.getElementById('pullToRefreshBox');
+    const ptrArrow = document.getElementById('ptrArrowIcon');
+    const ptrSpinner = document.getElementById('ptrSpinner');
+    const ptrText = document.getElementById('ptrText');
+    const pageEl = document.querySelector('.id-page');
+
+    if (!ptrBox) return;
+
+    let startY = 0;
+    let isPulling = false;
+    let isRefreshing = false;
+    const PULL_THRESHOLD = 70; // minimum pull distance in px
+    const MAX_PULL = 110;
+
+    window.addEventListener('touchstart', (e) => {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop || 0;
+        if (scrollTop <= 2 && !isRefreshing && e.touches.length === 1) {
+            startY = e.touches[0].pageY;
+            isPulling = true;
+            ptrBox.style.transition = 'none';
+            if (pageEl) pageEl.style.transition = 'none';
+        }
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e) => {
+        if (!isPulling || isRefreshing) return;
+
+        const currentTouchY = e.touches[0].pageY;
+        const diff = currentTouchY - startY;
+
+        if (diff > 0) {
+            const dampenedDiff = Math.min(diff * 0.45, MAX_PULL);
+            ptrBox.classList.add('active');
+            ptrBox.style.transform = `translateY(${dampenedDiff}px)`;
+            if (pageEl) pageEl.style.transform = `translateY(${dampenedDiff * 0.45}px)`;
+
+            if (dampenedDiff >= PULL_THRESHOLD * 0.45) {
+                ptrArrow.style.transform = 'rotate(180deg)';
+                ptrText.innerText = 'छोड़ते ही अपडेट होगा...';
+            } else {
+                ptrArrow.style.transform = 'rotate(0deg)';
+                ptrText.innerText = 'नीचे खींचकर रीफ्रेश करें...';
+            }
+        }
+    }, { passive: true });
+
+    window.addEventListener('touchend', async (e) => {
+        if (!isPulling || isRefreshing) return;
+        isPulling = false;
+
+        const touchEndY = (e.changedTouches && e.changedTouches[0]) ? e.changedTouches[0].pageY : 0;
+        const diff = touchEndY - startY;
+        const dampenedDiff = Math.min(diff * 0.45, MAX_PULL);
+
+        if (dampenedDiff >= PULL_THRESHOLD * 0.45) {
+            isRefreshing = true;
+            ptrBox.style.transition = 'transform 0.25s ease, opacity 0.2s ease';
+            ptrBox.style.transform = 'translateY(55px)';
+            if (pageEl) {
+                pageEl.style.transition = 'transform 0.25s ease';
+                pageEl.style.transform = 'translateY(30px)';
+            }
+
+            ptrArrow.style.display = 'none';
+            ptrSpinner.style.display = 'block';
+            ptrText.innerText = 'सर्वर से स्थिति जाँची जा रही है...';
+
+            await syncProfileFromServer();
+
+            setTimeout(() => {
+                ptrBox.style.transition = 'transform 0.3s ease, opacity 0.25s ease';
+                ptrBox.style.transform = 'translateY(-100%)';
+                ptrBox.classList.remove('active');
+                if (pageEl) {
+                    pageEl.style.transition = 'transform 0.3s ease';
+                    pageEl.style.transform = 'translateY(0)';
+                }
+
+                setTimeout(() => {
+                    ptrArrow.style.display = 'block';
+                    ptrArrow.style.transform = 'rotate(0deg)';
+                    ptrSpinner.style.display = 'none';
+                    ptrText.innerText = 'नीचे खींचकर रीफ्रेश करें...';
+                    isRefreshing = false;
+                }, 350);
+            }, 900);
+        } else {
+            ptrBox.style.transition = 'transform 0.2s ease, opacity 0.2s ease';
+            ptrBox.style.transform = 'translateY(-100%)';
+            ptrBox.classList.remove('active');
+            if (pageEl) {
+                pageEl.style.transition = 'transform 0.2s ease';
+                pageEl.style.transform = 'translateY(0)';
+            }
+            ptrArrow.style.transform = 'rotate(0deg)';
+        }
+    });
+
+    async function syncProfileFromServer() {
+        try {
+            const raw = localStorage.getItem("sss_user_data");
+            if (!raw) {
+                loadUserData();
+                ptrText.innerText = '⚠️ सत्र अनुपलब्ध है';
+                return;
+            }
+
+            const localUser = JSON.parse(raw);
+            const uid = localUser.unique_id || localUser.id || localUser.mobile;
+
+            if (!uid) {
+                loadUserData();
+                ptrText.innerText = '✓ स्थानीय डेटा लोड हुआ';
+                return;
+            }
+
+            const apiUrl = `https://sanatansevasamiti.org/api/get_user_dashboard.php?user_id=${encodeURIComponent(uid)}&_t=${Date.now()}`;
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 6500);
+
+            const res = await fetch(apiUrl, {
+                cache: 'no-store',
+                signal: controller.signal
+            });
+            clearTimeout(timeoutId);
+
+            const data = await res.json();
+
+            if (data && data.status && data.user) {
+                const mergedUser = Object.assign({}, localUser, data.user);
+                localStorage.setItem("sss_user_data", JSON.stringify(mergedUser));
+                currentUser = mergedUser;
+
+                loadUserData();
+
+                if (typeof preCacheUserAssets === 'function') {
+                    preCacheUserAssets(mergedUser);
+                }
+
+                ptrText.innerText = '✅ प्रोफाइल स्थिति अद्यतित!';
+                if (typeof setStatus === 'function') {
+                    setStatus('✅ सदस्य स्थिति सर्वर से अद्यतित कर दी गई');
+                }
+            } else {
+                loadUserData();
+                ptrText.innerText = '✓ स्थिति अद्यतित है';
+            }
+        } catch (err) {
+            console.warn('[PullToRefresh] Sync error or offline:', err);
+            loadUserData();
+            ptrText.innerText = '🌐 ऑफलाइन: सुरक्षित डेटा लोड हुआ';
+            if (typeof setStatus === 'function') {
+                setStatus('🌐 ऑफलाइन मोड: स्थानीय आईडी कार्ड सुरक्षित है');
+            }
+        }
+    }
+}
+
 window.addEventListener("DOMContentLoaded", () => {
     loadUserData();
+    initPullToRefresh();
     if (typeof preCacheUserAssets === 'function' && currentUser) {
         preCacheUserAssets(currentUser);
     }
