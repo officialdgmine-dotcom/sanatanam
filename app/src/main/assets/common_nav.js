@@ -111,7 +111,7 @@
             <span>गृह</span>
         </a>
 
-        <a href="javascript:void(0);" onclick="if(window.showAppNotice){window.showAppNotice('गुरु परंपरा');}else{alert('गुरु परंपरा — यह अनुभाग शीघ्र ही स्थानीय रूप से उपलब्ध होगा।');}" class="sss-item">
+        <a href="guru_parampara.html" class="sss-item">
             <img src="https://sanatansevasamiti.org/uploads/footer/1780341317ci.jpg" alt="गुरु परंपरा">
             <span>गुरु परंपरा</span>
         </a>

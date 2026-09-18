@@ -408,13 +408,34 @@
         }
 
         .compact-post-footer {
-            margin-top: 4px;
-            font-size: 10.5px;
+            margin-top: 6px;
+            font-size: 11px;
             color: var(--bhagwa);
             font-weight: 700;
             display: flex;
             align-items: center;
+            justify-content: space-between;
+        }
+
+        .compact-share-btn {
+            background: rgba(255, 111, 0, 0.12);
+            border: 1px solid rgba(255, 111, 0, 0.35);
+            color: var(--lava);
+            padding: 3px 9px;
+            border-radius: 12px;
+            font-size: 10.5px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
             gap: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.2s ease;
+        }
+        .compact-share-btn:active {
+            transform: scale(0.92);
+            background: var(--bhagwa);
+            color: #fff;
         }
 
         .view-all-posts-btn {
@@ -714,7 +735,7 @@
             
             <!-- बैक इमेज -->
             <div class="hero-back">
-                <img src="https://sanatansevasamiti.org/uploads/pc.jpg" alt="Back Banner">
+                <img src="uploads/pc.jpg" onerror="this.src='https://sanatansevasamiti.org/uploads/pc.jpg';" alt="Back Banner">
                 <div class="hero-overlay"></div>
                 <div class="hero-badge">
                     <i class="fa-solid fa-hands-praying"></i> सर्वे भवन्तु सुखिनः
@@ -730,7 +751,7 @@
     <!-- 3. ABOUT SAMITI CARD (समिति के बारे में जानें) -->
     <div class="about-samiti-card">
         <div class="samiti-logo">
-            <img src="Images/jpg/logo.jpg" onerror="this.src='https://via.placeholder.com/60';" alt="समिति लोगो" />
+            <img src="Images/jpg/logo.jpg" onerror="this.src='Images/logo.jpg';" alt="समिति लोगो" />
         </div>
         <div class="samiti-info">
             <h2>सनातन सेवा समिति</h2>
@@ -785,7 +806,7 @@
 
         <div id="latestPostsContainer">
             <!-- पोस्ट 1 -->
-            <a href="feed.html" class="compact-post-card">
+            <div class="compact-post-card" onclick="window.location.href='feed.html'">
                 <img class="compact-post-cover" src="Images/jpg/logo.jpg" alt="कवर इमेज" />
                 <div class="compact-post-details">
                     <div class="compact-post-user">
@@ -796,12 +817,15 @@
                     </div>
                     <div class="compact-post-footer">
                         <span>पूरा पढ़ें <i class="fa-solid fa-arrow-right"></i></span>
+                        <button type="button" class="compact-share-btn" onclick="event.stopPropagation(); sharePostItem(101, 'सनातन सेवा समिति')">
+                            <i class="fa-solid fa-share-nodes"></i> साझा करें
+                        </button>
                     </div>
                 </div>
-            </a>
+            </div>
 
             <!-- पोस्ट 2 -->
-            <a href="feed.html" class="compact-post-card">
+            <div class="compact-post-card" onclick="window.location.href='feed.html'">
                 <img class="compact-post-cover" src="https://sanatansevasamiti.org/uploads/file_00000000b5447207af241f52a9137425.png" alt="कवर इमेज" />
                 <div class="compact-post-details">
                     <div class="compact-post-user">
@@ -812,9 +836,12 @@
                     </div>
                     <div class="compact-post-footer">
                         <span>पूरा पढ़ें <i class="fa-solid fa-arrow-right"></i></span>
+                        <button type="button" class="compact-share-btn" onclick="event.stopPropagation(); sharePostItem(102, 'धर्म रक्षा एवं सेवा')">
+                            <i class="fa-solid fa-share-nodes"></i> साझा करें
+                        </button>
                     </div>
                 </div>
-            </a>
+            </div>
         </div>
 
         <!-- सभी पोस्ट देखें बटन -->
@@ -888,7 +915,7 @@
             <span>गृह</span>
         </a>
 
-        <a href="javascript:void(0);" onclick="openSectionModal('गुरु परंपरा')" class="sss-item">
+        <a href="guru_parampara.html" class="sss-item">
             <img src="https://sanatansevasamiti.org/uploads/footer/1780341317ci.jpg" alt="गुरु">
             <span>गुरु परंपरा</span>
         </a>
@@ -915,32 +942,45 @@
 
 <!-- DATA AND INTERACTION SCRIPT -->
 <script>
-    // 16 Sections Data (100% Preserved)
+    // Helper to resolve fallback between ss and sections folder
+    function handleImgFallback(imgElement, pid) {
+        if (!imgElement.dataset.triedFallback) {
+            imgElement.dataset.triedFallback = "1";
+            imgElement.src = 'Images/sections/' + pid + '_dp.jpg';
+        } else if (imgElement.dataset.triedFallback === "1") {
+            imgElement.dataset.triedFallback = "2";
+            imgElement.src = 'https://sanatansevasamiti.org/api/get_media.php?pid=' + encodeURIComponent(pid) + '&type=dp';
+        } else {
+            imgElement.src = 'Images/jpg/logo.jpg';
+        }
+    }
+
+    // 16 Sections Data (सेवा क्षेत्र और सेनाओं के लिए स्थानीय पाथ सक्रिय)
     const SECTIONS_DATA = [
         {
             heading: 'सनातन सेवा समिति की सेवाएँ',
             link: 'https://sanatansevasamiti.org/anand-lahari/',
             items: [
-                {title:'आनंद लहरी', img:'Images/ss/PRO1781011341_dp.jpg', url:'https://sanatansevasamiti.org/aanand-lahari/'},
-                {title:'सत्य सनातन मार्ग', img:'Images/ss/PRO1781285901_dp.jpg', url:'https://sanatansevasamiti.org/saty-sanatan-marg/'},
-                {title:'सनातन धर्म आश्रम', img:'Images/ss/PRO1781287765_dp.jpg', url:'https://sanatansevasamiti.org/sanatan-dharm-aashram/'},
-                {title:'श्री शिवशक्ति वैदिक गुरुकुलम', img:'Images/ss/PRO1781288688_dp.jpg', url:'https://sanatansevasamiti.org/shri-shiv-shakti-vaidic-gurukulam/'},
-                {title:'प्रकृति संरक्षण', img:'Images/ss/PRO1781289469_dp.jpg', url:'https://sanatansevasamiti.org/prakriti-sanrakshan/'},
-                {title:'शिवशक्ति शिक्षा केंद्र', img:'Images/ss/PRO1781367447_dp.jpg', url:'https://sanatansevasamiti.org/shri-shiv-shakti-siksha-kendra/'},
-                {title:'जीव सेवा', img:'Images/ss/PRO1781289610_dp.jpg', url:'https://sanatansevasamiti.org/jeev-seva/'},
-                {title:'निःशुल्क स्वास्थ्य सेवा', img:'Images/ss/PRO1781290640_dp.jpg', url:'https://sanatansevasamiti.org/nishulk-swasthy-seva/'},
-                {title:'निराश्रित जन सेवा', img:'Images/ss/PRO1781291019_dp.jpg', url:'https://sanatansevasamiti.org/nirashrit-jan-seva/'},
-                {title:'वृद्ध जन सेवा', img:'Images/ss/PRO1781313938_dp.jpg', url:'https://sanatansevasamiti.org/vriddh-jan-seva/'}
+                {title:'आनंद लहरी', pid:'PRO1781011341', img:'Images/ss/PRO1781011341_dp.jpg', url:'https://sanatansevasamiti.org/aanand-lahari/'},
+                {title:'सत्य सनातन मार्ग', pid:'PRO1781285901', img:'Images/ss/PRO1781285901_dp.jpg', url:'https://sanatansevasamiti.org/saty-sanatan-marg/'},
+                {title:'सनातन धर्म आश्रम', pid:'PRO1781287765', img:'Images/ss/PRO1781287765_dp.jpg', url:'https://sanatansevasamiti.org/sanatan-dharm-aashram/'},
+                {title:'श्री शिवशक्ति वैदिक गुरुकुलम', pid:'PRO1781288688', img:'Images/ss/PRO1781288688_dp.jpg', url:'https://sanatansevasamiti.org/shri-shiv-shakti-vaidic-gurukulam/'},
+                {title:'प्रकृति संरक्षण', pid:'PRO1781289469', img:'Images/ss/PRO1781289469_dp.jpg', url:'https://sanatansevasamiti.org/prakriti-sanrakshan/'},
+                {title:'शिवशक्ति शिक्षा केंद्र', pid:'PRO1781367447', img:'Images/ss/PRO1781367447_dp.jpg', url:'https://sanatansevasamiti.org/shri-shiv-shakti-siksha-kendra/'},
+                {title:'जीव सेवा', pid:'PRO1781289610', img:'Images/ss/PRO1781289610_dp.jpg', url:'https://sanatansevasamiti.org/jeev-seva/'},
+                {title:'निःशुल्क स्वास्थ्य सेवा', pid:'PRO1781290640', img:'Images/ss/PRO1781290640_dp.jpg', url:'https://sanatansevasamiti.org/nishulk-swasthy-seva/'},
+                {title:'निराश्रित जन सेवा', pid:'PRO1781291019', img:'Images/ss/PRO1781291019_dp.jpg', url:'https://sanatansevasamiti.org/nirashrit-jan-seva/'},
+                {title:'वृद्ध जन सेवा', pid:'PRO1781313938', img:'Images/ss/PRO1781313938_dp.jpg', url:'https://sanatansevasamiti.org/vriddh-jan-seva/'}
             ]
         },
         {
             heading: 'सनातन सेवा समिति की सेनाएँ',
             link: 'https://sanatansevasamiti.org/rashtry-sanatan-raksha-sena/',
             items: [
-                {title:'राष्ट्रीय सनातन रक्षा सेना', img:'Images/ss/PRO1781318323_dp.jpg', url:'https://sanatansevasamiti.org/rashtry-sanatan-raksha-sena/'},
-                {title:'संत सेना', img:'Images/ss/PRO1781368186_dp.jpg', url:'https://sanatansevasamiti.org/sant-sena/'},
-                {title:'भवानी सेना', img:'Images/ss/PRO1781318500_dp.jpg', url:'https://sanatansevasamiti.org/bhawani-sena/'},
-                {title:'वेद सेना', img:'Images/ss/PRO1781319711_dp.jpg', url:'https://sanatansevasamiti.org/ved-sena/'}
+                {title:'राष्ट्रीय सनातन रक्षा सेना', pid:'PRO1781318323', img:'Images/ss/PRO1781318323_dp.jpg', url:'https://sanatansevasamiti.org/rashtry-sanatan-raksha-sena/'},
+                {title:'संत सेना', pid:'PRO1781368186', img:'Images/ss/PRO1781368186_dp.jpg', url:'https://sanatansevasamiti.org/sant-sena/'},
+                {title:'भवानी सेना', pid:'PRO1781318500', img:'Images/ss/PRO1781318500_dp.jpg', url:'https://sanatansevasamiti.org/bhawani-sena/'},
+                {title:'वेद सेना', pid:'PRO1781319711', img:'Images/ss/PRO1781319711_dp.jpg', url:'https://sanatansevasamiti.org/ved-sena/'}
             ]
         },
         {
@@ -1213,9 +1253,10 @@
             `;
             sec.items.forEach(item => {
                 const escapedTitle = item.title.replace(/'/g, "\\'");
+                const errHandler = item.pid ? `onerror="handleImgFallback(this, '${item.pid}')"` : `onerror="this.src='Images/jpg/logo.jpg';"`;
                 html += `
                     <div class="item-card">
-                        ${item.img ? `<img src="${item.img}" alt="${item.title}" loading="lazy" onerror="this.src='Images/jpg/logo.jpg';">` : ''}
+                        ${item.img ? `<img src="${item.img}" alt="${item.title}" loading="lazy" ${errHandler}>` : ''}
                         <h3>${item.title}</h3>
                         <a href="javascript:void(0);" onclick="openSectionModal('${escapedTitle}')" class="btn-view">अभी देखें <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
@@ -1260,16 +1301,43 @@
         }
     }
 
-    // App Sharing
-    function shareSanatanamApp() {
+    // Post & App Sharing Functionality
+    function sharePostItem(postId, author) {
+        const shareUrl = `https://sanatansevasamiti.org/open.php?target=post&id=${postId}`;
+        let authorName = 'सनातन सेवक';
+        try {
+            if (author) authorName = decodeURIComponent(author);
+        } catch (e) {
+            authorName = author || 'सनातन सेवक';
+        }
+        const shareText = `सनातन सेवा समिति (${authorName}) की दैनिक गतिविधि देखें:\n${shareUrl}`;
+
+        if (navigator.share) {
+            navigator.share({
+                title: 'SANATANAM फ़ीड',
+                text: shareText,
+                url: shareUrl
+            }).catch(() => {});
+        } else {
+            window.open(`https://wa.me/?text=${encodeURIComponent(shareText)}`, '_blank');
+        }
+    }
+
+    function shareSanatanamApp(postId) {
+        if (postId) {
+            sharePostItem(postId, 'सनातन सेवा समिति');
+            return;
+        }
+        const shareUrl = 'https://sanatansevasamiti.org';
+        const shareText = 'सनातन सेवा समिति आधिकारिक मोबाइल ऐप — धर्म, संस्कृति एवं सेवा संगम।\n' + shareUrl;
         if (navigator.share) {
             navigator.share({
                 title: 'SANATANAM',
                 text: 'सनातन सेवा समिति आधिकारिक मोबाइल ऐप — धर्म, संस्कृति एवं सेवा संगम।',
-                url: 'https://sanatansevasamiti.org'
+                url: shareUrl
             }).catch(() => {});
         } else {
-            showNotice("सनातन सेवा समिति ऐप विवरण कॉपी किया गया।");
+            window.open(`https://wa.me/?text=${encodeURIComponent(shareText)}`, '_blank');
         }
     }
 
@@ -1317,16 +1385,25 @@
             if (rawUser) {
                 const user = JSON.parse(rawUser);
                 let photo = "Images/jpg/logo.jpg";
+                let photoOnlineFallback = "Images/jpg/logo.jpg";
                 if (user.profile_photo) {
-                    if (typeof getUserProfileMediaUrl === "function") {
+                    if (user.profile_photo.startsWith("data:image/") || user.profile_photo.startsWith("Images/")) {
+                        photo = user.profile_photo;
+                    } else if (typeof getUserProfileMediaUrl === "function") {
                         photo = getUserProfileMediaUrl(user.profile_photo);
                     } else {
                         const clean = user.profile_photo.replace(/^.*[\\\/]/, '').trim();
-                        photo = clean ? `https://sanatansevasamiti.org/api/get_media.php?file=${encodeURIComponent(clean)}` : "Images/jpg/logo.jpg";
+                        if (clean === "pc.jpg") {
+                            photo = "uploads/pc.jpg";
+                        } else if (clean) {
+                            photo = `https://sanatansevasamiti.org/api/get_media.php?file=${encodeURIComponent(clean)}`;
+                        }
                     }
                 }
                 
                 headerAvatar.src = photo;
+                headerAvatar.onerror = function() { this.src = photoOnlineFallback; };
+
                 if (typeof getOfflineImage === "function") {
                     getOfflineImage("user_profile_dp", photo).then(b64 => {
                         if (b64) {
@@ -1339,7 +1416,7 @@
 
                 sideBox.innerHTML = `
                     <div class="sidebar-user-box">
-                        <img id="sidebarAvatarImg" src="${photo}" crossorigin="anonymous" onerror="this.src='Images/jpg/logo.jpg';" />
+                        <img id="sidebarAvatarImg" src="${photo}" crossorigin="anonymous" onerror="this.src='${photoOnlineFallback}';" />
                         <div>
                             <h4 style="color:#FFD700; font-size:14px;">${user.full_name || 'सनातन सेवक'}</h4>
                             <p style="font-size:11px; color:#eee;">ID: <b>${user.unique_id || 'सत्यापित'}</b></p>

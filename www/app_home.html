@@ -408,13 +408,34 @@
         }
 
         .compact-post-footer {
-            margin-top: 4px;
-            font-size: 10.5px;
+            margin-top: 6px;
+            font-size: 11px;
             color: var(--bhagwa);
             font-weight: 700;
             display: flex;
             align-items: center;
+            justify-content: space-between;
+        }
+
+        .compact-share-btn {
+            background: rgba(255, 111, 0, 0.12);
+            border: 1px solid rgba(255, 111, 0, 0.35);
+            color: var(--lava);
+            padding: 3px 9px;
+            border-radius: 12px;
+            font-size: 10.5px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
             gap: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.2s ease;
+        }
+        .compact-share-btn:active {
+            transform: scale(0.92);
+            background: var(--bhagwa);
+            color: #fff;
         }
 
         .view-all-posts-btn {
@@ -785,7 +806,7 @@
 
         <div id="latestPostsContainer">
             <!-- पोस्ट 1 -->
-            <a href="feed.html" class="compact-post-card">
+            <div class="compact-post-card" onclick="window.location.href='feed.html'">
                 <img class="compact-post-cover" src="Images/jpg/logo.jpg" alt="कवर इमेज" />
                 <div class="compact-post-details">
                     <div class="compact-post-user">
@@ -796,12 +817,15 @@
                     </div>
                     <div class="compact-post-footer">
                         <span>पूरा पढ़ें <i class="fa-solid fa-arrow-right"></i></span>
+                        <button type="button" class="compact-share-btn" onclick="event.stopPropagation(); sharePostItem(101, 'सनातन सेवा समिति')">
+                            <i class="fa-solid fa-share-nodes"></i> साझा करें
+                        </button>
                     </div>
                 </div>
-            </a>
+            </div>
 
             <!-- पोस्ट 2 -->
-            <a href="feed.html" class="compact-post-card">
+            <div class="compact-post-card" onclick="window.location.href='feed.html'">
                 <img class="compact-post-cover" src="https://sanatansevasamiti.org/uploads/file_00000000b5447207af241f52a9137425.png" alt="कवर इमेज" />
                 <div class="compact-post-details">
                     <div class="compact-post-user">
@@ -812,9 +836,12 @@
                     </div>
                     <div class="compact-post-footer">
                         <span>पूरा पढ़ें <i class="fa-solid fa-arrow-right"></i></span>
+                        <button type="button" class="compact-share-btn" onclick="event.stopPropagation(); sharePostItem(102, 'धर्म रक्षा एवं सेवा')">
+                            <i class="fa-solid fa-share-nodes"></i> साझा करें
+                        </button>
                     </div>
                 </div>
-            </a>
+            </div>
         </div>
 
         <!-- सभी पोस्ट देखें बटन -->
@@ -888,7 +915,7 @@
             <span>गृह</span>
         </a>
 
-        <a href="javascript:void(0);" onclick="openSectionModal('गुरु परंपरा')" class="sss-item">
+        <a href="guru_parampara.html" class="sss-item">
             <img src="https://sanatansevasamiti.org/uploads/footer/1780341317ci.jpg" alt="गुरु">
             <span>गुरु परंपरा</span>
         </a>
@@ -1274,16 +1301,43 @@
         }
     }
 
-    // App Sharing
-    function shareSanatanamApp() {
+    // Post & App Sharing Functionality
+    function sharePostItem(postId, author) {
+        const shareUrl = `https://sanatansevasamiti.org/open.php?target=post&id=${postId}`;
+        let authorName = 'सनातन सेवक';
+        try {
+            if (author) authorName = decodeURIComponent(author);
+        } catch (e) {
+            authorName = author || 'सनातन सेवक';
+        }
+        const shareText = `सनातन सेवा समिति (${authorName}) की दैनिक गतिविधि देखें:\n${shareUrl}`;
+
+        if (navigator.share) {
+            navigator.share({
+                title: 'SANATANAM फ़ीड',
+                text: shareText,
+                url: shareUrl
+            }).catch(() => {});
+        } else {
+            window.open(`https://wa.me/?text=${encodeURIComponent(shareText)}`, '_blank');
+        }
+    }
+
+    function shareSanatanamApp(postId) {
+        if (postId) {
+            sharePostItem(postId, 'सनातन सेवा समिति');
+            return;
+        }
+        const shareUrl = 'https://sanatansevasamiti.org';
+        const shareText = 'सनातन सेवा समिति आधिकारिक मोबाइल ऐप — धर्म, संस्कृति एवं सेवा संगम।\n' + shareUrl;
         if (navigator.share) {
             navigator.share({
                 title: 'SANATANAM',
                 text: 'सनातन सेवा समिति आधिकारिक मोबाइल ऐप — धर्म, संस्कृति एवं सेवा संगम।',
-                url: 'https://sanatansevasamiti.org'
+                url: shareUrl
             }).catch(() => {});
         } else {
-            showNotice("सनातन सेवा समिति ऐप विवरण कॉपी किया गया।");
+            window.open(`https://wa.me/?text=${encodeURIComponent(shareText)}`, '_blank');
         }
     }
 
@@ -1333,10 +1387,17 @@
                 let photo = "Images/jpg/logo.jpg";
                 let photoOnlineFallback = "Images/jpg/logo.jpg";
                 if (user.profile_photo) {
-                    const clean = user.profile_photo.replace(/^.*[\\\/]/, '').trim();
-                    if (clean) {
-                        photo = "uploads/" + clean;
-                        photoOnlineFallback = `https://sanatansevasamiti.org/api/get_media.php?file=${encodeURIComponent(clean)}`;
+                    if (user.profile_photo.startsWith("data:image/") || user.profile_photo.startsWith("Images/")) {
+                        photo = user.profile_photo;
+                    } else if (typeof getUserProfileMediaUrl === "function") {
+                        photo = getUserProfileMediaUrl(user.profile_photo);
+                    } else {
+                        const clean = user.profile_photo.replace(/^.*[\\\/]/, '').trim();
+                        if (clean === "pc.jpg") {
+                            photo = "uploads/pc.jpg";
+                        } else if (clean) {
+                            photo = `https://sanatansevasamiti.org/api/get_media.php?file=${encodeURIComponent(clean)}`;
+                        }
                     }
                 }
                 
@@ -1344,7 +1405,7 @@
                 headerAvatar.onerror = function() { this.src = photoOnlineFallback; };
 
                 if (typeof getOfflineImage === "function") {
-                    getOfflineImage("user_profile_dp", photo, photoOnlineFallback).then(b64 => {
+                    getOfflineImage("user_profile_dp", photo).then(b64 => {
                         if (b64) {
                             headerAvatar.src = b64;
                             const sideImg = document.getElementById("sidebarAvatarImg");

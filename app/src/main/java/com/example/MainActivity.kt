@@ -18,6 +18,7 @@ import android.webkit.SslErrorHandler
 import android.webkit.ValueCallback
 import android.webkit.WebChromeClient
 import android.webkit.WebResourceRequest
+import android.webkit.WebResourceResponse
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -25,6 +26,8 @@ import android.widget.Toast
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
+import java.net.HttpURLConnection
+import java.net.URL
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
@@ -77,6 +80,7 @@ class MainActivity : ComponentActivity() {
     setContent {
       MyApplicationTheme(dynamicColor = false) {
         SanatanamWebViewScreen(
+          deepLinkUri = intent?.data,
           onOpenFileChooser = { callback, fileChooserParams ->
             fileUploadCallback?.onReceiveValue(null)
             fileUploadCallback = callback
@@ -205,6 +209,7 @@ class AndroidBridge(
 @SuppressLint("SetJavaScriptEnabled")
 @Composable
 fun SanatanamWebViewScreen(
+  deepLinkUri: Uri? = null,
   onOpenFileChooser: (ValueCallback<Array<Uri>>, WebChromeClient.FileChooserParams?) -> Boolean
 ) {
   val context = LocalContext.current
@@ -250,12 +255,8 @@ fun SanatanamWebViewScreen(
 
           setBackgroundColor(android.graphics.Color.parseColor("#4A0000"))
 
-          // Use software rendering if hardware rendernode is unavailable on virtualized devices/emulators
-          try {
-            setLayerType(View.LAYER_TYPE_HARDWARE, null)
-          } catch (_: Exception) {
-            setLayerType(View.LAYER_TYPE_SOFTWARE, null)
-          }
+          // Use default rendering without forcing an offscreen hardware layer, avoiding rendernode failures
+          setLayerType(View.LAYER_TYPE_NONE, null)
 
           settings.apply {
             javaScriptEnabled = true
@@ -275,6 +276,47 @@ fun SanatanamWebViewScreen(
           }
 
           webViewClient = object : WebViewClient() {
+            override fun shouldInterceptRequest(
+              view: WebView?,
+              request: WebResourceRequest?
+            ): WebResourceResponse? {
+              val uri = request?.url ?: return null
+              val urlStr = uri.toString()
+
+              // Intercept file:///android_asset/uploads/ requests to prevent AndroidProtocolHandler asset open failures
+              if (urlStr.startsWith("file:///android_asset/uploads/")) {
+                val assetPath = urlStr.removePrefix("file:///android_asset/")
+                val fileName = urlStr.removePrefix("file:///android_asset/uploads/")
+                try {
+                  val stream = ctx.assets.open(assetPath)
+                  val mime = if (fileName.endsWith(".png", true)) "image/png" else "image/jpeg"
+                  return WebResourceResponse(mime, "UTF-8", stream)
+                } catch (_: Exception) {
+                  // Asset not bundled in local APK assets; fetch dynamically from Samiti media API
+                  try {
+                    val serverUrl = URL("https://sanatansevasamiti.org/api/get_media.php?file=$fileName")
+                    val conn = (serverUrl.openConnection() as HttpURLConnection).apply {
+                      connectTimeout = 3000
+                      readTimeout = 3000
+                      instanceFollowRedirects = true
+                    }
+                    if (conn.responseCode in 200..299) {
+                      val mime = conn.contentType ?: "image/png"
+                      return WebResourceResponse(mime, "UTF-8", conn.inputStream)
+                    }
+                  } catch (_: Exception) {}
+
+                  // Fallback to local default logo so AndroidProtocolHandler never triggers an error log
+                  try {
+                    val fallbackStream = ctx.assets.open("Images/jpg/logo.jpg")
+                    return WebResourceResponse("image/jpeg", "UTF-8", fallbackStream)
+                  } catch (_: Exception) {}
+                }
+              }
+
+              return super.shouldInterceptRequest(view, request)
+            }
+
             override fun onReceivedSslError(
               view: WebView?,
               handler: SslErrorHandler?,
@@ -382,7 +424,22 @@ fun SanatanamWebViewScreen(
             "AndroidBridge"
           )
 
-          loadUrl("file:///android_asset/index.html")
+          val initialUrl = if (deepLinkUri != null && deepLinkUri.scheme == "sanatanam") {
+            val target = deepLinkUri.getQueryParameter("target") ?: deepLinkUri.host ?: ""
+            val id = deepLinkUri.getQueryParameter("id")
+            when {
+              target == "post" && id != null -> "file:///android_asset/feed.html?postid=$id"
+              target == "feed" -> "file:///android_asset/feed.html"
+              target == "home" -> "file:///android_asset/app_home.html"
+              target == "id_card" -> "file:///android_asset/id_card.html"
+              target == "guru_parampara" -> "file:///android_asset/guru_parampara.html"
+              else -> "file:///android_asset/index.html"
+            }
+          } else {
+            "file:///android_asset/index.html"
+          }
+
+          loadUrl(initialUrl)
           webViewRef = this
         }
       },

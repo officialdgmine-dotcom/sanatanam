@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>श्री सच्चिदानन्द सम्प्रदाय | श्री आनन्द पीठ</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+:root{
+    --bhagwa: #d84315;
+    --bhagwa-deep: #800000;
+    --bhagwa-light: #ff6f00;
+    --gold: #b98a35;
+    --gold2: #d7b76a;
+    --gold3: #ffd700;
+    --yellow: #fff700;
+    --cream: #fffaf0;
+    --cream2: #fff5e6;
+    --paper: #fceddb;
+    --dark: #1f0307;
+    --white: #ffffff;
+    --text: #2c1a12;
+    --muted: #6e5241;
+    --border: rgba(185,138,53,.38);
+    --serif: "Noto Serif Devanagari", serif;
+    --display: "Cormorant Garamond", "Noto Serif Devanagari", serif;
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
+html{ scroll-behavior:smooth; }
+body{
+    background:var(--cream);
+    color:var(--text);
+    font-family:var(--serif);
+    overflow-x:hidden;
+    padding-bottom: 95px !important;
+}
+
+img{ max-width:100%; display:block; }
+a{ color:inherit; text-decoration:none; }
+button{ font-family:inherit; }
+.container{ width:min(1280px,92%); margin:auto; }
+section{ position:relative; }
+.section{ padding:80px 0; }
+
+.ornament{ display:flex; justify-content:center; align-items:center; gap:14px; margin:20px 0; }
+.ornament::before, .ornament::after{ content:""; width:70px; height:1px; background:linear-gradient(90deg, transparent, var(--gold)); }
+.ornament::after{ background:linear-gradient(90deg, var(--gold), transparent); }
+.ornament-center{ width:9px; height:9px; border:1px solid var(--gold); transform:rotate(45deg); }
+.eyebrow{ font-size:11.5px; letter-spacing:3px; color:var(--bhagwa-light); font-weight:700; margin-bottom:12px; }
+.gold{ color:var(--gold3); }
+
+/* TOP APP HEADER */
+.top-ribbon{
+    position: sticky; top:0; z-index: 1000;
+    height: 48px;
+    background: linear-gradient(135deg, #ff4500, #800000);
+    color: var(--gold3);
+    display:flex; align-items:center; justify-content:space-between;
+    font-size:13px; font-weight:700;
+    padding:0 14px;
+    border-bottom: 2px solid var(--gold2);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+}
+.back-btn{
+    color: #fff; width: 32px; height: 32px; border-radius: 50%;
+    background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center;
+}
+
+/* HERO */
+.hero{
+    min-height:75vh;
+    padding: 60px 0 40px;
+    background: linear-gradient(180deg, rgba(38,4,12,.96) 0%, rgba(92,7,21,.90) 60%, rgba(128,0,0,.85) 100%),
+                url("Images/shri-sachchidanand-ji-maharaj.png") center/cover no-repeat;
+    color:white;
+    display:flex; align-items:center; overflow:hidden;
+}
+.hero-content{ position:relative; z-index:3; max-width:850px; text-align: center; margin: auto; }
+.hero-symbol{ width:85px; height:85px; object-fit:contain; margin: 0 auto 18px; }
+.hero-kicker{ color:var(--gold3); font-size:12px; letter-spacing:2px; margin-bottom:12px; }
+.hero h1{ font-family:var(--display); font-size:clamp(38px, 6vw, 75px); line-height:1; font-weight:700; }
+.hero h1 span{ display:block; color:var(--gold3); margin-top: 5px; }
+.hero-subtitle{ margin: 20px auto; max-width:680px; color:#f7ebd2; font-size:14px; line-height:1.8; }
+.hero-actions{ display:flex; gap:12px; justify-content: center; flex-wrap:wrap; margin-top: 25px; }
+.btn{
+    display:inline-flex; align-items:center; justify-content:center;
+    min-height:45px; padding:0 22px; border:1px solid var(--gold);
+    font-size:12.5px; font-weight: 700; transition:.2s; border-radius: 6px;
+}
+.btn-gold{ background: linear-gradient(135deg, var(--gold3), var(--gold)); color:#26040c; }
+.btn-outline{ color:white; background:rgba(255,255,255,.08); }
+
+/* INTRODUCTION */
+.intro-grid{ display:grid; grid-template-columns:.85fr 1.15fr; gap:40px; align-items:center; }
+.intro-photo img{ height:380px; width:100%; object-fit:cover; border: 3px solid #fff; box-shadow: 0 8px 24px rgba(128,0,0,.15); border-radius: 12px; }
+.intro-text h2{ font-family:var(--display); font-size:clamp(32px,4vw,50px); font-weight:700; color: var(--bhagwa-deep); }
+.intro-text p{ color:var(--muted); line-height:1.9; margin:14px 0; font-size:13.5px; }
+
+/* TREE HIERARCHY */
+.parampara{
+    background: linear-gradient(180deg, #26040c 0%, #420612 50%, #26040c 100%);
+    color:white; overflow:hidden;
+}
+.parampara-heading{ text-align:center; max-width:800px; margin:auto; }
+.parampara-heading h2{ font-family:var(--display); font-size:clamp(36px,5vw,60px); font-weight:700; }
+.parampara-tree{ margin-top:50px; display:flex; flex-direction:column; align-items:center; width:100%; }
+.tree-line{ width:3px; height:50px; background: linear-gradient(180deg, var(--gold3), var(--bhagwa-light)); position:relative; }
+.tree-line::after{ content:"◆"; position:absolute; bottom:-7px; left:50%; transform:translateX(-50%); font-size:11px; color:var(--gold3); }
+.tree-node{ width:100%; display:flex; justify-content:center; z-index:2; }
+.guru-card{
+    background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,215,0,0.04));
+    border: 1.5px solid var(--border); border-radius: 16px;
+    text-align: center; padding: 25px 20px; width: 88%; max-width: 420px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+}
+.adya-level .guru-card{
+    max-width: 480px; width: 92%; border: 2px solid var(--gold3);
+    background: linear-gradient(145deg, rgba(255,215,0,0.15), rgba(216,67,21,0.18));
+}
+.guru-photo{
+    width: 140px; height: 140px; margin:auto; border-radius:50%; padding:4px;
+    background: #500713; border: 2px solid var(--gold);
+}
+.adya-level .guru-photo{ width: 175px; height: 175px; border: 3px solid var(--gold3); }
+.guru-photo img{ width:100%; height:100%; object-fit:cover; border-radius:50%; }
+.guru-tag{
+    margin-top:14px; font-size:11px; letter-spacing:1px; font-weight: 700;
+    background: linear-gradient(90deg, #d84315, #800000); padding: 4px 12px; border-radius: 20px;
+    display: inline-block; color: var(--yellow); border: 1px solid var(--gold3);
+}
+.guru-name{ margin-top:8px; font-size:17px; font-weight:700; color:var(--gold3); }
+.guru-title{ color:#e0d2c1; font-size:12px; line-height:1.6; margin:6px 0 12px; }
+
+/* FULL NAMASKAR */
+.parampara-namaskar{
+    margin-top:60px; padding:30px 18px; border:1px solid rgba(255,215,0,.35);
+    background: rgba(255,255,255,.04); text-align:center; border-radius: 12px;
+}
+.parampara-namaskar h3{ font-family:var(--display); font-size:28px; color:var(--gold3); margin-bottom:18px; }
+.namaskar-line{ color:#f2e6d3; line-height:2; font-size:12.5px; margin:10px 0; }
+
+/* CURRENT PEETHADHISHWAR */
+.current{ background: linear-gradient(110deg, #1f0307, #4a0715); color:white; }
+.current-grid{ display:grid; grid-template-columns:.9fr 1.1fr; gap:40px; align-items:center; }
+.current-photo img{ width:100%; max-height:460px; object-fit:cover; border: 2px solid var(--gold); border-radius: 12px; }
+.current-content h2{ font-family:var(--display); font-size:clamp(32px,4vw,52px); color:var(--gold3); line-height: 1.1; }
+.current-badge{ display:inline-block; border:1px solid var(--gold3); color:var(--yellow); background: rgba(216,67,21,0.25); padding:6px 14px; font-size:11px; border-radius: 4px; margin-bottom:15px; }
+
+/* SECTIONS GRID */
+.siddhant-grid, .more-grid{ display:grid; grid-template-columns:1fr; gap:14px; }
+.siddhant-item, .more-item{
+    background:var(--white); padding:24px; border-radius:12px; border:1px solid #eedec7;
+    box-shadow: 0 4px 15px rgba(128,0,0,0.04);
+}
+.siddhant-number{ font-size:32px; color:var(--bhagwa); font-weight: 700; }
+.siddhant-item h3, .more-item h3{ font-size:18px; color:var(--bhagwa-deep); margin:6px 0 8px; }
+.siddhant-item p, .more-item p{ color:#6a594d; font-size:13px; line-height:1.7; }
+
+/* FOOTER NAV */
+#sss-nav {
+    position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 100%; max-width: 480px; height: 75px;
+    background: linear-gradient(180deg, #ff4500, #800000);
+    display: flex; justify-content: space-evenly; align-items: center;
+    border-top: 4px solid #ffd700; border-radius: 20px 20px 0 0;
+    z-index: 999999; box-shadow: 0 -5px 20px rgba(0,0,0,0.4);
+}
+.sss-item { flex: 1; text-align: center; color: #fff; font-size: 10px; font-weight: 800; }
+.sss-item img { width: 28px; height: 28px; display: block; margin: auto; }
+.sss-dash-wrap { margin-top: -30px; }
+.sss-gold-circle {
+    width: 60px; height: 60px; background: linear-gradient(45deg, #ffd700, #ffcc00, #b8860b);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    border: 3px solid #800000; box-shadow: 0 0 15px rgba(255,215,0,0.6);
+}
+.sss-gold-circle img { width: 35px; height: 35px; }
+
+@media(min-width:768px){
+    .siddhant-grid{ grid-template-columns: 1fr 1fr; }
+    .more-grid{ grid-template-columns: repeat(3, 1fr); }
+}
+@media(max-width:768px){
+    .intro-grid, .current-grid{ grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-ribbon">
+    <a href="app_home.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i></a>
+    <span>श्री सच्चिदानन्द सम्प्रदाय • श्री आनन्द पीठ</span>
+    <span style="width:32px;"></span>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+    <div class="container">
+        <div class="hero-content">
+            <img class="hero-symbol" src="Images/shri-sachchidanand-sampraday.png" onerror="this.src='https://sanatansevasamiti.org/Images/shri-sachchidanand-sampraday.png';" alt="सम्प्रदाय लोगो">
+            <div class="hero-kicker">श्री आनन्द पीठ की पावन गुरु परंपरा</div>
+            <h1>श्री सच्चिदानन्द <span>सम्प्रदाय</span></h1>
+            <p class="hero-subtitle">श्री आनन्द पीठ से प्रवाहित गुरु-शिष्य परंपरा, सिद्धांत, साधना, मर्यादा, दीक्षा एवं आध्यात्मिक जीवन-पद्धति का आधिकारिक परिचय।</p>
+            <div class="hero-actions">
+                <a href="#parampara" class="btn btn-gold">गुरु परंपरा देखें</a>
+                <a href="#acharya" class="btn btn-outline">वर्तमान पीठाधीश्वर</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- INTRO -->
+<section class="section introduction">
+    <div class="container intro-grid">
+        <div class="intro-photo">
+            <img src="Images/shri-sachchidanand-sampraday.png" onerror="this.src='https://sanatansevasamiti.org/Images/shri-sachchidanand-sampraday.png';" alt="सम्प्रदाय">
+        </div>
+        <div class="intro-text">
+            <div class="eyebrow">श्री सच्चिदानन्द सम्प्रदाय</div>
+            <h2>श्री आनन्द पीठ से <span class="gold" style="color:var(--bhagwa);">प्रवाहित दिव्य परंपरा</span></h2>
+            <div class="ornament" style="justify-content:flex-start;"><div class="ornament-center"></div></div>
+            <p>श्री सच्चिदानन्द सम्प्रदाय की आध्यात्मिक परंपरा का प्रमुख आधार श्री आनन्द पीठ है।</p>
+            <p>यह पोर्टल सम्प्रदाय की गुरु परंपरा, गुरु-मर्यादा, साधना-पद्धति, नियमावली, मुख्य ग्रंथ एवं दीक्षा-विधान की प्रमाणित जानकारी प्रस्तुत करता है।</p>
+            <a href="#parampara" class="btn btn-gold">गुरु परंपरा में प्रवेश करें</a>
+        </div>
+    </div>
+</section>
+
+<!-- 4-TIER GURU PARAMPARA -->
+<section class="section parampara" id="parampara">
+    <div class="container">
+        <div class="parampara-heading">
+            <div class="eyebrow">अखंड गुरु-शिष्य परंपरा</div>
+            <h2>गुरु <span class="gold">परंपरा</span></h2>
+            <div class="ornament"><div class="ornament-center"></div></div>
+            <p>श्री आनन्द पीठ से प्रारम्भ हुई श्री सच्चिदानन्द सम्प्रदाय की सर्वोच्च पावन गुरु परंपरा।</p>
+        </div>
+
+        <div class="parampara-tree">
+            <!-- 1. आद्य गुरु -->
+            <div class="tree-node adya-level">
+                <div class="guru-card">
+                    <div class="guru-photo">
+                        <img src="Images/shri-sachchidanandachary-ji-maharaj.png" onerror="this.src='https://sanatansevasamiti.org/Images/shri-sachchidanandachary-ji-maharaj.png';" alt="आद्य गुरु">
+                    </div>
+                    <div><span class="guru-tag">👑 आद्य गुरु • प्रथम पीठाधीश्वर</span></div>
+                    <div class="guru-name">स्वामी सच्चिदानंदाचार्य जी महाराज</div>
+                    <div class="guru-title">प्रथम पीठाधीश्वर • परमपूज्य आद्य जगद्गुरु</div>
+                </div>
+            </div>
+
+            <div class="tree-line"></div>
+
+            <!-- 2. परम गुरु -->
+            <div class="tree-node sub-level">
+                <div class="guru-card">
+                    <div class="guru-photo">
+                        <img src="Images/shri-siddheswaranand-ji-maharaj.png" onerror="this.src='https://sanatansevasamiti.org/Images/shri-siddheswaranand-ji-maharaj.png';" alt="परम गुरु">
+                    </div>
+                    <div><span class="guru-tag">👑 द्वितीय परंपरा • परम गुरु</span></div>
+                    <div class="guru-name">स्वामी सिद्धेश्वरानन्द जी महाराज</div>
+                    <div class="guru-title">सिद्धचूड़ामणि • परमानन्दविग्रह</div>
+                </div>
+            </div>
+
+            <div class="tree-line"></div>
+
+            <!-- 3. पूर्व गुरु -->
+            <div class="tree-node sub-level">
+                <div class="guru-card">
+                    <div class="guru-photo">
+                        <img src="Images/shri-rajeswaranandnand-ji-maharaj.png" onerror="this.src='https://sanatansevasamiti.org/Images/shri-rajeswaranandnand-ji-maharaj.png';" alt="पूर्व गुरु">
+                    </div>
+                    <div><span class="guru-tag">👑 तृतीय परंपरा • पूर्व गुरु</span></div>
+                    <div class="guru-name">स्वामी राजेश्वरानन्द जी महाराज</div>
+                    <div class="guru-title">सिद्धाश्रम संस्थापक • ब्रह्मलीन जगद्गुरु</div>
+                </div>
+            </div>
+
+            <div class="tree-line"></div>
+
+            <!-- 4. वर्तमान गुरु -->
+            <div class="tree-node sub-level">
+                <div class="guru-card" style="border: 2px solid var(--gold3); background: linear-gradient(145deg, rgba(255,215,0,0.12), rgba(216,67,21,0.15));">
+                    <div class="guru-photo" style="border-color:var(--gold3);">
+                        <img src="Images/shri-sachchidanand-ji-maharaj.png" onerror="this.src='https://sanatansevasamiti.org/Images/shri-sachchidanand-ji-maharaj.png';" alt="वर्तमान पीठाधीश्वर">
+                    </div>
+                    <div><span class="guru-tag" style="color:var(--yellow);">👑 चतुर्थ परंपरा • वर्तमान पीठाधीश्वर</span></div>
+                    <div class="guru-name" style="color:var(--yellow);">स्वामी सच्चिदानंद जी महाराज</div>
+                    <div class="guru-title">आनंद पीठाधीश्वर • पूज्य सद्गुरुदेव</div>
+                    <a href="#acharya" class="btn btn-gold" style="margin-top:10px; min-height:38px; font-size:11.5px;">पीठाधीश्वर विवरण</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- NAMASKAR MANTRA -->
+        <div class="parampara-namaskar">
+            <h3>गुरु परंपरा को सादर प्रणाम</h3>
+            <div class="ornament"><div class="ornament-center"></div></div>
+            <div class="namaskar-line">श्री श्री 1008 आनन्दमार्गप्रवर्तक-सिद्धसम्राट्-साक्षाच्छिवशक्तिस्वरूप-परमपूज्याद्यजगद्गुरु स्वामी सच्चिदानन्दाचार्य चरणकमलेभ्यो नमः</div>
+            <div class="namaskar-line">श्री श्री 1008 ब्रह्मलीन-परमपूज्य-जगद्गुरु-सच्चिदानन्दाचार्य-सिद्धचूड़ामणे-परमानन्दविग्रह-अखिललोकपूजित-स्वामिसिद्धेश्वरानन्दवर्यचरणेभ्यो नमः</div>
+            <div class="namaskar-line">श्री श्री 1008 ब्रह्मलीन-जगद्गुरु-सच्चिदानन्दाचार्य-सदानन्दनिमग्न-भक्तप्राणशान्तिदातृ-सिद्धाश्रमसंस्थापक-स्वामिराजेश्वरानन्दचरणकमलेभ्यो नमः</div>
+            <div class="namaskar-line">श्री श्री 1008 अनन्तश्रीविभूषित-आनन्दपीठाधीश्वर-श्रोत्रियब्रह्मनिष्ठ-पूज्यसच्चिदानन्दाचार्य-पूज्यसद्गुरुदेव-स्वामिसच्चिदानन्द-चरणकमलेभ्यो साष्टाङ्गप्रणामाः</div>
+        </div>
+    </div>
+</section>
+
+<!-- PEETHADHISHWAR -->
+<section class="section current" id="acharya">
+    <div class="container current-grid">
+        <div class="current-photo">
+            <img src="Images/shri-sachchidanand-ji-maharaj.png" onerror="this.src='https://sanatansevasamiti.org/Images/shri-sachchidanand-ji-maharaj.png';" alt="स्वामी सच्चिदानंद जी">
+        </div>
+        <div class="current-content">
+            <div class="current-badge">👑 वर्तमान पीठाधीश्वर</div>
+            <div class="eyebrow" style="color:var(--yellow);">श्री आनन्द पीठ</div>
+            <h2>पूज्य सद्गुरुदेव <span>स्वामी सच्चिदानंद जी महाराज</span></h2>
+            <div class="ornament" style="justify-content:flex-start;"><div class="ornament-center"></div></div>
+            <p style="color:#f7ebd2;line-height:1.9;"><strong>राष्ट्रीय अध्यक्ष एवं संस्थापक – सनातन सेवा समिति</strong></p>
+            <p style="color:#f7ebd2;line-height:1.9; margin-top:10px;">वर्तमान पीठाधीश्वर के दिव्य मार्गदर्शन में सम्प्रदाय की साधना एवं लोक-कल्याणकारी सेवाएँ निरंतर संचालित हैं।</p>
+        </div>
+    </div>
+</section>
+
+<!-- SIDDHANT -->
+<section class="section siddhant">
+    <div class="container">
+        <div class="parampara-heading" style="color:#2d211c; margin-bottom:30px;">
+            <div class="eyebrow">आध्यात्मिक दर्शन</div>
+            <h2>सम्प्रदाय के <span class="gold" style="color:var(--bhagwa);">सिद्धांत</span></h2>
+            <div class="ornament"><div class="ornament-center"></div></div>
+        </div>
+        <div class="siddhant-grid">
+            <div class="siddhant-item">
+                <div class="siddhant-number">01</div>
+                <h3>गुरु-शिष्य परंपरा</h3>
+                <p>सम्प्रदाय में गुरु-निष्ठा एवं सनातन वैदिक मर्यादा सर्वोपरि है।</p>
+            </div>
+            <div class="siddhant-item">
+                <div class="siddhant-number">02</div>
+                <h3>साधना एवं उपासना</h3>
+                <p>नियमित नाम जप, ध्यान एवं आत्म-शुद्धि का विधान।</p>
+            </div>
+            <div class="siddhant-item">
+                <div class="siddhant-number">03</div>
+                <h3>समर्पित सेवा</h3>
+                <p>दीन-दुखियों, गौ-माता एवं धर्म-संस्कृति की निःस्वार्थ सेवा।</p>
+            </div>
+            <div class="siddhant-item">
+                <div class="siddhant-number">04</div>
+                <h3>आध्यात्मिक जीवन</h3>
+                <p>सत्य, अहिंसा, सदाचार और वैदिक जीवन पद्धति का पालन।</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER NAV -->
+<div id="sss-nav">
+    <a href="app_home.html" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341771file_00000000145071fab7ea2e7e30f9dfaa-e1776295057951.png" alt="गृह">
+        <span>गृह</span>
+    </a>
+    <a href="guru_parampara.html" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341317ci.jpg" alt="गुरु">
+        <span style="color:var(--gold3);">गुरु परंपरा</span>
+    </a>
+    <a href="feed.html" class="sss-item sss-dash-wrap">
+        <div class="sss-gold-circle">
+            <img src="https://sanatansevasamiti.org/uploads/footer/1780341218logo.jpg" alt="फीड">
+        </div>
+        <span></span>
+    </a>
+    <a href="javascript:void(0);" onclick="alert('पुस्तकें — शीघ्र उपलब्ध होगा।');" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341270bi.jpg" alt="पुस्तकें">
+        <span>पुस्तकें</span>
+    </a>
+    <a href="app_dashboard.html" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341144ai.jpg" alt="अकाउंट">
+        <span>अकाउंट</span>
+    </a>
+</div>
+
+</body>
+</html>

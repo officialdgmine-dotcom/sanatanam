@@ -73,7 +73,7 @@ function getKshetraDpMediaUrl(sevaKshetra) {
  */
 function getCoverMediaUrl(sevaKshetra, customCover) {
     if (customCover) {
-        if (customCover.startsWith("data:image/") || customCover.startsWith("Images/") || customCover.startsWith("uploads/")) {
+        if (customCover.startsWith("data:image/") || customCover.startsWith("Images/") || customCover === "uploads/pc.jpg") {
             return customCover;
         }
         for (const pid of Object.keys(LOCAL_SS_MAP)) {
@@ -81,6 +81,9 @@ function getCoverMediaUrl(sevaKshetra, customCover) {
                 return LOCAL_SS_MAP[pid].cover;
             }
         }
+        if (customCover.startsWith("http")) return customCover;
+        const cleanCover = customCover.replace(/^.*[\\\/]/, '').trim();
+        if (cleanCover) return `https://sanatansevasamiti.org/api/get_media.php?file=${encodeURIComponent(cleanCover)}`;
     }
     const k = (sevaKshetra || "").trim();
     if (k && LOCAL_SS_MAP[k] && LOCAL_SS_MAP[k].cover) {
@@ -98,9 +101,14 @@ function getCoverMediaUrl(sevaKshetra, customCover) {
 async function getOfflineImage(key, remoteUrl) {
     if (!remoteUrl) return "";
 
-    // 1. यदि रिलेटिव लोकल पाथ (Images/ या uploads/) या Base64 डेटा है
-    if (remoteUrl.startsWith("data:image/") || remoteUrl.startsWith("Images/") || remoteUrl.startsWith("uploads/")) {
+    // 1. यदि रिलेटिव लोकल पाथ (Images/ या uploads/pc.jpg) या Base64 डेटा है
+    if (remoteUrl.startsWith("data:image/") || remoteUrl.startsWith("Images/") || remoteUrl === "uploads/pc.jpg") {
         return remoteUrl;
+    }
+
+    if (remoteUrl.startsWith("uploads/")) {
+        const clean = remoteUrl.replace(/^uploads\//, '').trim();
+        remoteUrl = `https://sanatansevasamiti.org/api/get_media.php?file=${encodeURIComponent(clean)}`;
     }
 
     const storageKey = IMAGE_CACHE_PREFIX + key;

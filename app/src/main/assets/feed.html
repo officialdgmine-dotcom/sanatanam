@@ -3,25 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>SANATANAM - दैनिक फ़ीड एवं गतिविधियाँ</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>सनातन सेवा समिति - दैनिक फ़ीड एवं गतिविधियाँ</title>
+    
+    <!-- Google Fonts & FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <style>
         :root {
-            --saffron: #ff6f00;
+            --bhagwa: #ff6f00;
             --maroon: #800000;
+            --lava: #b30000;
             --gold: #ffd700;
-            --dark-gold: #b8860b;
+            --gold-light: #fff9e6;
             --card-bg: #ffffff;
-            --body-bg: #fff7eb;
-            --text-dark: #2c1a12;
+            --body-bg: #fbf8f4;
+            --text-dark: #20242a;
             --text-muted: #6b4d38;
+            --radius-lg: 18px;
+            --shadow-card: 0 8px 24px rgba(128, 0, 0, 0.08);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+            font-family: 'Noto Sans Devanagari', 'Poppins', sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
 
@@ -30,20 +39,31 @@
             color: var(--text-dark);
             padding-bottom: 95px;
             min-height: 100vh;
+            display: flex;
+            justify-content: center;
         }
 
-        /* Top Header */
+        .app-feed-screen {
+            width: 100%;
+            max-width: 480px;
+            background: var(--body-bg);
+            min-height: 100vh;
+            position: relative;
+            box-shadow: 0 0 35px rgba(0,0,0,0.15);
+        }
+
+        /* 1. Header */
         .feed-header {
             position: sticky;
             top: 0;
             z-index: 1000;
-            background: linear-gradient(135deg, #ff4500 0%, #800000 100%);
+            background: linear-gradient(180deg, #ff4500, #800000);
             color: white;
-            padding: 14px 16px;
+            padding: 12px 14px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
             border-bottom: 2px solid var(--gold);
         }
 
@@ -55,7 +75,7 @@
 
         .back-btn {
             color: white;
-            font-size: 18px;
+            font-size: 17px;
             text-decoration: none;
             display: flex;
             align-items: center;
@@ -63,13 +83,14 @@
             width: 36px;
             height: 36px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.18);
+            border: 1px solid rgba(255, 215, 0, 0.4);
         }
 
         .header-title {
-            font-size: 17px;
-            font-weight: 800;
-            letter-spacing: 0.5px;
+            font-size: 16px;
+            font-weight: 900;
+            letter-spacing: 0.3px;
             color: #fff;
         }
 
@@ -79,26 +100,24 @@
             border-radius: 50%;
             border: 2px solid var(--gold);
             object-fit: cover;
+            background: #fff;
         }
 
-        /* Feed Container */
+        /* 2. Feed Container */
         .feed-container {
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 12px 14px;
+            padding: 14px 12px;
             display: flex;
             flex-direction: column;
             gap: 16px;
         }
 
-        /* Post Card */
+        /* 3. Post Card */
         .post-card {
-            background: white;
-            border-radius: 16px;
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
             overflow: hidden;
-            border: 1px solid #ffe0b2;
-            box-shadow: 0 6px 18px rgba(128, 0, 0, 0.08);
-            transition: transform 0.15s ease;
+            border: 1.5px solid #ffe0b2;
+            box-shadow: var(--shadow-card);
         }
 
         .post-header {
@@ -106,6 +125,9 @@
             align-items: center;
             justify-content: space-between;
             padding: 12px 14px;
+            cursor: pointer;
+            background: #fffdfa;
+            border-bottom: 1px solid #fff3e0;
         }
 
         .author-box {
@@ -115,66 +137,185 @@
         }
 
         .author-avatar {
-            width: 42px;
-            height: 42px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             border: 2px solid var(--gold);
             object-fit: cover;
+            background: #fff;
+            flex-shrink: 0;
         }
 
         .author-meta h4 {
-            font-size: 14.5px;
+            font-size: 14px;
             color: var(--maroon);
-            font-weight: 800;
+            font-weight: 850;
+            line-height: 1.2;
         }
 
         .author-meta span {
             font-size: 11px;
             color: var(--text-muted);
+            font-weight: 600;
         }
 
         .post-badge {
             background: #fff3e0;
-            color: #d84315;
+            color: var(--lava);
             padding: 4px 10px;
             border-radius: 20px;
             font-size: 11px;
-            font-weight: 700;
+            font-weight: 800;
             border: 1px solid #ffcc80;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
         }
 
-        .post-image-box {
+        /* 4. Media Components (Video, Shorts & Multi-Image Slider) */
+        .media-container {
             width: 100%;
-            max-height: 280px;
+            background: #000;
+            position: relative;
             overflow: hidden;
-            background: #f5f5f5;
         }
 
-        .post-image {
+        .yt-frame {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            border: none;
+            aspect-ratio: 16/9;
             display: block;
         }
 
-        .post-content {
-            padding: 14px;
+        .yt-shorts {
+            aspect-ratio: 9/16 !important;
+            max-height: 600px;
+            margin: 0 auto;
         }
 
-        .post-text {
-            font-size: 13.5px;
-            line-height: 1.6;
-            color: #3e2723;
-            margin-bottom: 12px;
+        .native-video {
+            width: 100%;
+            max-height: 520px;
+            display: block;
+            background: #000;
         }
 
+        /* Image Slider */
+        .slider-wrapper {
+            position: relative;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background: #111;
+        }
+
+        .slides-container {
+            display: flex;
+            width: 100%;
+            transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .slide-item {
+            min-width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #000;
+        }
+
+        .slide-item img {
+            width: 100%;
+            max-height: 480px;
+            object-fit: contain;
+            cursor: pointer;
+            display: block;
+        }
+
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.65);
+            color: #ffd700;
+            border: 1px solid rgba(255, 215, 0, 0.5);
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+            font-size: 15px;
+            border-radius: 50%;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .slider-btn:active {
+            background: rgba(0, 0, 0, 0.9);
+            transform: translateY(-50%) scale(0.92);
+        }
+
+        .prev-btn { left: 10px; }
+        .next-btn { right: 10px; }
+
+        .slider-dots {
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 6px;
+            z-index: 6;
+        }
+
+        .slider-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .slider-dot.active {
+            background: var(--gold);
+            width: 16px;
+            border-radius: 10px;
+        }
+
+        /* 5. Caption & See More */
+        .caption-box {
+            padding: 12px 14px 8px;
+            font-size: 13px;
+            color: #333;
+            line-height: 1.55;
+        }
+
+        .hidden-caption {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .see-more-btn {
+            color: var(--bhagwa);
+            cursor: pointer;
+            font-weight: 800;
+            border: none;
+            background: none;
+            padding: 4px 0;
+            font-size: 12px;
+            display: inline-block;
+        }
+
+        /* 6. Post Action Buttons */
         .post-actions {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 10px 14px;
+            padding: 9px 14px;
             border-top: 1px solid #fff3e0;
-            background: #fffcf8;
+            background: #fffcf7;
         }
 
         .action-btn {
@@ -182,39 +323,261 @@
             border: none;
             color: var(--maroon);
             font-size: 13px;
-            font-weight: 700;
+            font-weight: 800;
             display: flex;
             align-items: center;
             gap: 6px;
             cursor: pointer;
+            padding: 6px 10px;
+            border-radius: 8px;
+            transition: 0.15s;
         }
 
-        .action-btn i {
-            font-size: 16px;
+        .action-btn:active {
+            background: #ffe0b2;
+            transform: scale(0.96);
         }
 
-        /* Notification Toast */
+        .action-btn.liked {
+            color: #d32f2f;
+        }
+
+        .action-btn.liked i {
+            animation: popHeart 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes popHeart {
+            0% { transform: scale(0.8); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+
+        /* 7. Lightbox Modal */
+        #lightbox-modal {
+            display: none;
+            position: fixed;
+            z-index: 999999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.94);
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+        }
+
+        #lightbox-modal img {
+            max-width: 95%;
+            max-height: 85%;
+            border-radius: 10px;
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            color: #fff;
+            font-size: 32px;
+            font-weight: bold;
+            cursor: pointer;
+            background: none;
+            border: none;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+        }
+
+        .lightbox-close:hover {
+            color: var(--gold);
+        }
+
+        /* Toast */
         #noticeToast {
             position: fixed;
             bottom: 85px;
             left: 50%;
             transform: translateX(-50%);
-            background: #800000;
+            background: linear-gradient(135deg, #800000, #4a0000);
             color: #ffd700;
-            padding: 10px 20px;
+            padding: 10px 22px;
             border-radius: 25px;
-            font-size: 13px;
+            font-size: 12.5px;
             font-weight: bold;
             display: none;
             z-index: 1000000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            box-shadow: 0 4px 18px rgba(0,0,0,0.45);
             border: 1px solid #ffd700;
             text-align: center;
             max-width: 85vw;
         }
+
+        /* Bottom Navigation Bar */
+        #sss-nav {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 480px;
+            height: 75px;
+            background: linear-gradient(180deg, #ff4500, #800000);
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            border-top: 4px solid #ffcc00;
+            border-radius: 20px 20px 0 0;
+            z-index: 99999;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.4);
+        }
+
+        .sss-item {
+            flex: 1;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+        .sss-item img {
+            width: 28px;
+            height: 28px;
+            display: block;
+            margin: auto;
+        }
+
+        .sss-dash-wrap { margin-top: -30px; }
+
+        .sss-gold-circle {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #ffd700, #ffcc00, #b8860b);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid #800000;
+            box-shadow: 0 0 15px rgba(255,215,0,0.6);
+        }
+
+        .sss-gold-circle img { width: 35px; height: 35px; }
+
+        /* Subtle In-Feed Top Loading Spinner */
+        .feed-top-spinner-bar {
+            width: 100%;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 8px 0 6px 0;
+            margin-bottom: -4px;
+            transition: all 0.3s ease;
+        }
+        .feed-top-spinner-bar.active {
+            display: flex;
+        }
+        .subtle-feed-spinner-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid #ffd54f;
+            border-radius: 20px;
+            padding: 6px 14px;
+            box-shadow: 0 4px 12px rgba(128, 0, 0, 0.12);
+            color: var(--lava);
+            font-size: 11.5px;
+            font-weight: 700;
+        }
+        .subtle-feed-spinner-ring {
+            width: 15px;
+            height: 15px;
+            border: 2px solid rgba(179, 0, 0, 0.2);
+            border-top-color: var(--lava);
+            border-radius: 50%;
+            animation: ptr-spin 0.7s linear infinite;
+        }
+
+        /* Pull-to-Refresh Mechanism Styles */
+        .ptr-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            pointer-events: none;
+            transform: translateY(-100%);
+            transition: transform 0.25s cubic-bezier(0.18, 0.89, 0.32, 1.28), opacity 0.2s ease;
+            opacity: 0;
+        }
+        .ptr-container.active {
+            opacity: 1;
+        }
+        .ptr-content {
+            background: rgba(38, 3, 10, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1.5px solid rgba(255, 215, 0, 0.5);
+            border-radius: 26px;
+            padding: 8px 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.65);
+            margin-top: 10px;
+        }
+        .ptr-icon-wrap {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .ptr-arrow {
+            width: 18px;
+            height: 18px;
+            stroke: #ffd54f;
+            transition: transform 0.2s ease;
+        }
+        .ptr-spinner {
+            width: 18px;
+            height: 18px;
+            border: 2.5px solid rgba(255, 215, 0, 0.25);
+            border-top-color: #ffd54f;
+            border-radius: 50%;
+            animation: ptr-spin 0.75s linear infinite;
+        }
+        @keyframes ptr-spin {
+            to { transform: rotate(360deg); }
+        }
+        .ptr-text {
+            font-size: 12px;
+            font-weight: 800;
+            color: #fff4d0;
+            letter-spacing: 0.2px;
+        }
     </style>
 </head>
 <body>
+
+<div class="app-feed-screen">
+
+    <!-- PULL TO REFRESH INDICATOR -->
+    <div id="pullToRefreshBox" class="ptr-container">
+        <div class="ptr-content">
+            <div class="ptr-icon-wrap" id="ptrIconWrap">
+                <svg id="ptrArrowIcon" class="ptr-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <polyline points="19 12 12 19 5 12"></polyline>
+                </svg>
+                <div id="ptrSpinner" class="ptr-spinner" style="display:none;"></div>
+            </div>
+            <span id="ptrText" class="ptr-text">नीचे खींचकर रीफ्रेश करें...</span>
+        </div>
+    </div>
 
     <!-- Header -->
     <header class="feed-header">
@@ -224,126 +587,509 @@
             </a>
             <span class="header-title">दैनिक फ़ीड एवं गतिविधियाँ</span>
         </div>
-        <img src="https://sanatansevasamiti.org/Images/jpg/logo.jpg" alt="Logo" class="header-logo" onerror="this.src='https://sanatansevasamiti.org/Images/jpg/logo.jpg';">
+        <img src="Images/jpg/logo.jpg" alt="Logo" class="header-logo" onerror="this.src='https://sanatansevasamiti.org/Images/jpg/logo.jpg';">
     </header>
 
-    <!-- Main Feed -->
-    <div class="feed-container">
+    <!-- Feed Container (Dynamic Posts rendered via JavaScript) -->
+    <main class="feed-container" id="feedPostsWrapper">
+        <!-- Subtle Loading Spinner at the top of the feed -->
+        <div id="feedTopSpinnerBar" class="feed-top-spinner-bar">
+            <div class="subtle-feed-spinner-badge">
+                <div class="subtle-feed-spinner-ring"></div>
+                <span>फ़ीड ताज़ा हो रही है...</span>
+            </div>
+        </div>
+        <div id="initialFeedLoading" style="text-align:center; padding:30px; color:#888; font-size:13px; font-weight:600;">
+            <i class="fa-solid fa-spinner fa-spin" style="font-size:24px; color:#800000; margin-bottom:10px;"></i><br>
+            सनातन फ़ीड लोड हो रही है...
+        </div>
+    </main>
 
-        <!-- Post 1 -->
-        <article class="post-card">
-            <div class="post-header">
-                <div class="author-box">
-                    <img src="https://sanatansevasamiti.org/Images/jpg/logo.jpg" alt="Logo" class="author-avatar" onerror="this.src='https://sanatansevasamiti.org/Images/jpg/logo.jpg';">
-                    <div class="author-meta">
-                        <h4>सनातन सेवा समिति</h4>
-                        <span>आज • आधिकारिक सूचना</span>
-                    </div>
-                </div>
-                <div class="post-badge">
-                    <i class="fa-solid fa-om"></i> धर्म रक्षा
-                </div>
-            </div>
-            <div class="post-image-box">
-                <img src="https://sanatansevasamiti.org/uploads/file_00000000b5447207af241f52a9137425.png" alt="धर्म रक्षा" class="post-image" onerror="this.src='https://sanatansevasamiti.org/Images/jpg/logo.jpg';">
-            </div>
-            <div class="post-content">
-                <p class="post-text">
-                    समस्त सनातन समाज की सेवा, सुरक्षा एवं सर्वांगीण विकास हेतु समर्पित सनातन सेवा समिति। आइए मिलकर भारतीय संस्कृति, गौ सेवा एवं वैदिक ज्ञान के संरक्षण में अपना योगदान दें।
-                </p>
-            </div>
-            <div class="post-actions">
-                <button class="action-btn" onclick="triggerLike(this)">
-                    <i class="fa-regular fa-heart"></i> <span class="like-count">108</span>
-                </button>
-                <button class="action-btn" onclick="sharePost()">
-                    <i class="fa-solid fa-share-nodes"></i> साझा करें
-                </button>
-            </div>
-        </article>
-
-        <!-- Post 2 -->
-        <article class="post-card">
-            <div class="post-header">
-                <div class="author-box">
-                    <img src="https://sanatansevasamiti.org/uploads/footer/1780341317ci.jpg" alt="गुरु परंपरा" class="author-avatar" onerror="this.src='https://sanatansevasamiti.org/Images/jpg/logo.jpg';">
-                    <div class="author-meta">
-                        <h4>श्री शिव शक्ति वैदिक गुरुकुलम्</h4>
-                        <span>कल • गुरुकुल सेवा</span>
-                    </div>
-                </div>
-                <div class="post-badge">
-                    <i class="fa-solid fa-book-open"></i> वैदिक शिक्षा
-                </div>
-            </div>
-            <div class="post-image-box">
-                <img src="https://sanatansevasamiti.org/uploads/pc.jpg" alt="गुरुकुल" class="post-image" onerror="this.src='https://sanatansevasamiti.org/Images/jpg/logo.jpg';">
-            </div>
-            <div class="post-content">
-                <p class="post-text">
-                    "सर्वे भवन्तु सुखिनः सर्वे सन्तु निरामयाः" — हमारे गुरुकुल में बालकों को सनातन संस्कार, वेद पाठ और जीवन उपयोगी विद्या का निःशुल्क अध्यापन निरंतर कराया जा रहा है।
-                </p>
-            </div>
-            <div class="post-actions">
-                <button class="action-btn" onclick="triggerLike(this)">
-                    <i class="fa-regular fa-heart"></i> <span class="like-count">251</span>
-                </button>
-                <button class="action-btn" onclick="sharePost()">
-                    <i class="fa-solid fa-share-nodes"></i> साझा करें
-                </button>
-            </div>
-        </article>
-
+    <!-- Fullscreen Lightbox Modal -->
+    <div id="lightbox-modal" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+        <img id="lightbox-image" src="" alt="Enlarged View">
     </div>
 
     <!-- Notification Toast -->
     <div id="noticeToast"></div>
 
-    <script src="common_nav.js"></script>
-    <script>
-        function showNotice(msg) {
-            const toast = document.getElementById("noticeToast");
-            toast.innerText = msg;
-            toast.style.display = "block";
-            setTimeout(() => {
-                toast.style.display = "none";
-            }, 2500);
-        }
+    <!-- Footer Navigation -->
+    <div id="sss-nav">
+        <a href="app_home.html" class="sss-item">
+            <img src="https://sanatansevasamiti.org/uploads/footer/1780341771file_00000000145071fab7ea2e7e30f9dfaa-e1776295057951.png" alt="गृह">
+            <span>गृह</span>
+        </a>
+        <a href="guru_parampara.html" class="sss-item">
+            <img src="https://sanatansevasamiti.org/uploads/footer/1780341317ci.jpg" alt="गुरु">
+            <span>गुरु परंपरा</span>
+        </a>
+        <a href="feed.html" class="sss-item sss-dash-wrap">
+            <div class="sss-gold-circle">
+                <img src="https://sanatansevasamiti.org/uploads/footer/1780341218logo.jpg" alt="फीड">
+            </div>
+            <span></span>
+        </a>
+        <a href="javascript:void(0);" onclick="showToast('पुस्तकें — यह अनुभाग शीघ्र ही उपलब्ध होगा।')" class="sss-item">
+            <img src="https://sanatansevasamiti.org/uploads/footer/1780341270bi.jpg" alt="पुस्तकें">
+            <span>पुस्तकें</span>
+        </a>
+        <a href="app_dashboard.html" class="sss-item">
+            <img src="https://sanatansevasamiti.org/uploads/footer/1780341144ai.jpg" alt="अकाउंट">
+            <span>अकाउंट</span>
+        </a>
+    </div>
 
-        window.showAppNotice = function(secName) {
-            showNotice(`${secName} — यह अनुभाग शीघ्र ही स्थानीय रूप से उपलब्ध होगा।`);
-        };
+</div>
 
-        function triggerLike(btn) {
-            const heart = btn.querySelector("i");
-            const countSpan = btn.querySelector(".like-count");
-            let count = parseInt(countSpan.innerText) || 0;
-
-            if (heart.classList.contains("fa-regular")) {
-                heart.classList.remove("fa-regular");
-                heart.classList.add("fa-solid");
-                heart.style.color = "#e53935";
-                countSpan.innerText = count + 1;
-                showNotice("जय श्री राम! पोस्ट पसंद की गई।");
-            } else {
-                heart.classList.remove("fa-solid");
-                heart.classList.add("fa-regular");
-                heart.style.color = "";
-                countSpan.innerText = Math.max(0, count - 1);
+<script>
+    // 1. यूआरएल से यूट्यूब एम्बेड और शॉर्ट्स पहचानना
+    function getEmbedUrl(url) {
+        if (!url) return '';
+        const regExp = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/|youtube\.com\/shorts\/)([^"&?\/ ]{11})/;
+        const match = url.match(regExp);
+        if (match && match[1]) {
+            const videoId = match[1];
+            if (url.includes('shorts/')) {
+                return `https://www.youtube.com/embed/${videoId}?controls=1`;
             }
+            return `https://www.youtube.com/embed/${videoId}`;
+        }
+        return url;
+    }
+
+    function isYouTubeShorts(url) {
+        return url && url.includes('shorts/');
+    }
+
+    // 2. प्रोफ़ाइल DP लोकल पाथ और फ़ॉलबैक हेल्पर
+    function getProfileDp(profileId) {
+        if (!profileId) return 'Images/jpg/logo.jpg';
+        return `Images/ss/${profileId}_dp.jpg`;
+    }
+
+    function handleDpFallback(imgEl, profileId) {
+        if (!imgEl.dataset.tried) {
+            imgEl.dataset.tried = "1";
+            imgEl.src = `Images/sections/${profileId}_dp.jpg`;
+        } else if (imgEl.dataset.tried === "1") {
+            imgEl.dataset.tried = "2";
+            imgEl.src = `https://sanatansevasamiti.org/api/get_media.php?pid=${encodeURIComponent(profileId)}&type=dp`;
+        } else {
+            imgEl.src = 'Images/jpg/logo.jpg';
+        }
+    }
+
+    // 3. फ़ीड पोस्ट्स डेटा (सर्वर लाइव फ़ेच + ऑफ़लाइन डिफ़ॉल्ट बैकअप)
+    const DEFAULT_FEED_POSTS = [
+        {
+            id: 101,
+            profile_id: 'PRO1781011172',
+            author: 'सनातन सेवा समिति',
+            tagline: 'समस्त सनातन समाज की सेवा हेतु समर्पित',
+            badge: 'धर्म रक्षा',
+            post_type: 'image',
+            links: [
+                'https://sanatansevasamiti.org/uploads/file_00000000b5447207af241f52a9137425.png',
+                'https://sanatansevasamiti.org/uploads/pc.jpg'
+            ],
+            caption: 'समस्त सनातन समाज की सेवा, सुरक्षा एवं सर्वांगीण विकास हेतु समर्पित सनातन सेवा समिति। आइए मिलकर भारतीय संस्कृति, गौ सेवा एवं वैदिक ज्ञान के संरक्षण में अपना सक्रिय योगदान दें। धर्मो रक्षति रक्षितः!',
+            likes: 108
+        },
+        {
+            id: 102,
+            profile_id: 'PRO1781011341',
+            author: 'आनंद लहरी',
+            tagline: 'भजन में आनंद, कीर्तन में प्राण',
+            badge: 'संकीर्तन',
+            post_type: 'youtube',
+            links: ['https://www.youtube.com/watch?v=kJQP7kiw5Fk'],
+            caption: 'भगवान के दिव्य नाम संकीर्तन और भक्ति भजनों के माध्यम से चित्त को शांति एवं दिव्यता का अनुभव कराती आनंद लहरी सेवा। निरंतर भजन-कीर्तन प्रवाह से जुड़ें।',
+            likes: 251
+        },
+        {
+            id: 103,
+            profile_id: 'PRO1781288688',
+            author: 'श्री शिव शक्ति वैदिक गुरुकुलम्',
+            tagline: 'वैदिक संस्कार एवं ज्ञान केंद्र',
+            badge: 'गुरुकुल शिक्षा',
+            post_type: 'image',
+            links: ['https://sanatansevasamiti.org/uploads/pc.jpg'],
+            caption: '"सर्वे भवन्तु सुखिनः सर्वे सन्तु निरामयाः" — हमारे गुरुकुल में बालकों को सनातन संस्कार, वेद पाठ और जीवन उपयोगी विद्या का निःशुल्क अध्यापन निरंतर कराया जा रहा है।',
+            likes: 184
+        }
+    ];
+
+    // स्लाइडर स्टेट ट्रैकिंग
+    const sliderIndices = {};
+
+    function renderFeed(posts) {
+        const wrapper = document.getElementById('feedPostsWrapper');
+        if (!wrapper) return;
+
+        const topSpinnerHtml = `
+            <div id="feedTopSpinnerBar" class="feed-top-spinner-bar">
+                <div class="subtle-feed-spinner-badge">
+                    <div class="subtle-feed-spinner-ring"></div>
+                    <span>फ़ीड ताज़ा हो रही है...</span>
+                </div>
+            </div>
+        `;
+
+        if (!posts || posts.length === 0) {
+            wrapper.innerHTML = topSpinnerHtml + `<div style="text-align:center; padding:30px; color:#888;">कोई पोस्ट उपलब्ध नहीं है।</div>`;
+            return;
         }
 
-        function sharePost() {
-            if (navigator.share) {
-                navigator.share({
-                    title: 'SANATANAM',
-                    text: 'सनातन सेवा समिति - दैनिक पावन विचार एवं गतिविधियाँ',
-                    url: window.location.href
-                }).catch(() => {});
+        let html = topSpinnerHtml;
+        posts.forEach(post => {
+            const pid = post.profile_id || 'PRO1781011172';
+            const author = post.author || 'सनातन सेवक';
+            const tagline = post.tagline || 'सनातन सेवा समिति';
+            const badge = post.badge || 'आधिकारिक सूचना';
+            const postType = post.post_type || 'image';
+            const links = Array.isArray(post.links) ? post.links : [post.links];
+            const caption = post.caption || '';
+            const likes = post.likes || 0;
+            const postId = post.id || Math.floor(Math.random()*10000);
+
+            html += `
+            <article class="post-card" id="post-${postId}">
+                <div class="post-header" onclick="window.location.href='app_dashboard.html'">
+                    <div class="author-box">
+                        <img src="${getProfileDp(pid)}" alt="${author}" class="author-avatar" 
+                             onerror="handleDpFallback(this, '${pid}')">
+                        <div class="author-meta">
+                            <h4>${author}</h4>
+                            <span>${tagline}</span>
+                        </div>
+                    </div>
+                    <div class="post-badge">
+                        <i class="fa-solid fa-om"></i> ${badge}
+                    </div>
+                </div>
+
+                <div class="media-container">
+            `;
+
+            // मीडिया रेंडरिंग (YouTube / Video / Slider)
+            if (postType === 'youtube') {
+                links.forEach(link => {
+                    const isShort = isYouTubeShorts(link);
+                    html += `
+                        <div style="width: 100%;">
+                            <iframe class="yt-frame ${isShort ? 'yt-shorts' : ''}" 
+                                    src="${getEmbedUrl(link)}" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen loading="lazy"></iframe>
+                        </div>
+                    `;
+                });
+            } else if (postType === 'video') {
+                links.forEach(link => {
+                    html += `
+                        <div style="width: 100%;">
+                            <video class="native-video" controls src="${link}"></video>
+                        </div>
+                    `;
+                });
             } else {
-                showNotice("लिंक कॉपी कर दिया गया है!");
+                // इमेज स्लाइडर
+                sliderIndices[postId] = 0;
+                html += `
+                    <div class="slider-wrapper" id="slider-${postId}">
+                        <div class="slides-container" id="slides-${postId}">
+                `;
+                links.forEach(imgUrl => {
+                    html += `
+                        <div class="slide-item">
+                            <img src="${imgUrl}" alt="Post Media" loading="lazy" 
+                                 onclick="openLightbox('${imgUrl}')" 
+                                 onerror="this.src='Images/jpg/logo.jpg';">
+                        </div>
+                    `;
+                });
+                html += `</div>`;
+
+                if (links.length > 1) {
+                    html += `
+                        <button type="button" class="slider-btn prev-btn" onclick="moveSlide(${postId}, -1, ${links.length})">&#10094;</button>
+                        <button type="button" class="slider-btn next-btn" onclick="moveSlide(${postId}, 1, ${links.length})">&#10095;</button>
+                        <div class="slider-dots" id="dots-${postId}">
+                    `;
+                    links.forEach((_, idx) => {
+                        html += `<div class="slider-dot ${idx === 0 ? 'active' : ''}"></div>`;
+                    });
+                    html += `</div>`;
+                }
+                html += `</div>`;
             }
+
+            html += `
+                </div>
+
+                <div class="caption-box">
+                    <div id="caption-text-${postId}" class="hidden-caption">
+                        ${caption.replace(/\n/g, '<br>')}
+                    </div>
+                    ${caption.length > 120 ? `<button type="button" class="see-more-btn" onclick="toggleCaption(${postId}, this)">और पढ़ें...</button>` : ''}
+                </div>
+
+                <div class="post-actions">
+                    <button type="button" class="action-btn" onclick="togglePostLike(this, ${postId})">
+                        <i class="fa-regular fa-heart"></i> <span class="like-count">${likes}</span>
+                    </button>
+                    <button type="button" class="action-btn" onclick="sharePostItem(${postId}, '${encodeURIComponent(author)}')">
+                        <i class="fa-solid fa-share-nodes"></i> साझा करें
+                    </button>
+                </div>
+            </article>
+            `;
+        });
+
+        wrapper.innerHTML = html;
+    }
+
+    // 4. स्लाइडर कंट्रोल
+    function moveSlide(postId, direction, totalSlides) {
+        if (!sliderIndices.hasOwnProperty(postId)) sliderIndices[postId] = 0;
+        let newIdx = sliderIndices[postId] + direction;
+
+        if (newIdx < 0) newIdx = totalSlides - 1;
+        if (newIdx >= totalSlides) newIdx = 0;
+
+        sliderIndices[postId] = newIdx;
+        const slidesEl = document.getElementById(`slides-${postId}`);
+        if (slidesEl) {
+            slidesEl.style.transform = `translateX(-${newIdx * 100}%)`;
         }
-    </script>
+
+        // डॉट्स अपडेट
+        const dotsContainer = document.getElementById(`dots-${postId}`);
+        if (dotsContainer) {
+            const dots = dotsContainer.querySelectorAll('.slider-dot');
+            dots.forEach((dot, dIdx) => {
+                dot.classList.toggle('active', dIdx === newIdx);
+            });
+        }
+    }
+
+    // 5. कैप्शन टॉगल ('और पढ़ें...')
+    function toggleCaption(postId, btn) {
+        const textEl = document.getElementById(`caption-text-${postId}`);
+        if (!textEl) return;
+
+        if (textEl.classList.contains('hidden-caption')) {
+            textEl.classList.remove('hidden-caption');
+            btn.innerText = 'कम करें';
+        } else {
+            textEl.classList.add('hidden-caption');
+            btn.innerText = 'और पढ़ें...';
+        }
+    }
+
+    // 6. लाइक फंक्शन
+    function togglePostLike(btn, postId) {
+        const icon = btn.querySelector('i');
+        const countSpan = btn.querySelector('.like-count');
+        let count = parseInt(countSpan.innerText) || 0;
+
+        if (icon.classList.contains('fa-regular')) {
+            icon.classList.remove('fa-regular');
+            icon.classList.add('fa-solid');
+            btn.classList.add('liked');
+            countSpan.innerText = count + 1;
+            showToast('जय श्री राम! पोस्ट पसंद की गई।');
+        } else {
+            icon.classList.remove('fa-solid');
+            icon.classList.add('fa-regular');
+            btn.classList.remove('liked');
+            countSpan.innerText = Math.max(0, count - 1);
+        }
+    }
+
+    // 7. शेयरिंग (WhatsApp व सिस्टम शेयर)
+    function sharePostItem(postId, author) {
+        const shareUrl = `https://sanatansevasamiti.org/open.php?target=post&id=${postId}`;
+        let authorName = 'सनातन सेवक';
+        try {
+            if (author) authorName = decodeURIComponent(author);
+        } catch (e) {
+            authorName = author || 'सनातन सेवक';
+        }
+        const shareText = `सनातन सेवा समिति (${authorName}) की दैनिक गतिविधि देखें:\n${shareUrl}`;
+
+        if (navigator.share) {
+            navigator.share({
+                title: 'SANATANAM फ़ीड',
+                text: shareText,
+                url: shareUrl
+            }).catch(() => {});
+        } else {
+            window.open(`https://wa.me/?text=${encodeURIComponent(shareText)}`, '_blank');
+        }
+    }
+
+    // 8. लाइटबॉक्स हैंडलर
+    function openLightbox(src) {
+        const modal = document.getElementById('lightbox-modal');
+        const modalImg = document.getElementById('lightbox-image');
+        modalImg.src = src;
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        const modal = document.getElementById('lightbox-modal');
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    // 9. टोस्ट नोटिफिकेशन
+    function showToast(msg) {
+        const toast = document.getElementById('noticeToast');
+        if (!toast) return;
+        toast.innerText = msg;
+        toast.style.display = 'block';
+        setTimeout(() => { toast.style.display = 'none'; }, 2600);
+    }
+
+    // 10. सर्वर से लाइव पोस्ट्स फेच (Fallback to DEFAULT_FEED_POSTS)
+    async function loadLiveFeed() {
+        try {
+            const res = await fetch('https://sanatansevasamiti.org/api/get_feed_posts.php');
+            const data = await res.json();
+            if (data && data.status && Array.isArray(data.posts) && data.posts.length > 0) {
+                renderFeed(data.posts);
+                return;
+            }
+        } catch (e) {
+            console.log("Live feed fetch offline or fallback active.");
+        }
+        // यदि इंटरनेट बंद हो या API न मिले तो तुरंत ऑफ़लाइन डिफ़ॉल्ट पोस्ट्स दिखाएँ
+        renderFeed(DEFAULT_FEED_POSTS);
+    }
+
+    // 11. PULL TO REFRESH MECHANISM (फ़ीड रीफ्रेश तंत्र)
+    function initPullToRefresh() {
+        const ptrBox = document.getElementById('pullToRefreshBox');
+        const ptrArrow = document.getElementById('ptrArrowIcon');
+        const ptrSpinner = document.getElementById('ptrSpinner');
+        const ptrText = document.getElementById('ptrText');
+        const feedWrapper = document.getElementById('feedPostsWrapper');
+
+        if (!ptrBox) return;
+
+        let startY = 0;
+        let isPulling = false;
+        let isRefreshing = false;
+        const PULL_THRESHOLD = 70; // px threshold before trigger
+        const MAX_PULL = 110;
+
+        window.addEventListener('touchstart', (e) => {
+            const scrollTop = window.scrollY || document.documentElement.scrollTop || 0;
+            if (scrollTop <= 2 && !isRefreshing && e.touches.length === 1) {
+                startY = e.touches[0].pageY;
+                isPulling = true;
+                ptrBox.style.transition = 'none';
+                if (feedWrapper) feedWrapper.style.transition = 'none';
+            }
+        }, { passive: true });
+
+        window.addEventListener('touchmove', (e) => {
+            if (!isPulling || isRefreshing) return;
+
+            const currentTouchY = e.touches[0].pageY;
+            const diff = currentTouchY - startY;
+
+            if (diff > 0) {
+                const dampenedDiff = Math.min(diff * 0.45, MAX_PULL);
+                ptrBox.classList.add('active');
+                ptrBox.style.transform = `translateY(${dampenedDiff}px)`;
+                if (feedWrapper) feedWrapper.style.transform = `translateY(${dampenedDiff * 0.45}px)`;
+
+                if (dampenedDiff >= PULL_THRESHOLD * 0.45) {
+                    ptrArrow.style.transform = 'rotate(180deg)';
+                    ptrText.innerText = 'छोड़ते ही फ़ीड अपडेट होगी...';
+                } else {
+                    ptrArrow.style.transform = 'rotate(0deg)';
+                    ptrText.innerText = 'नीचे खींचकर रीफ्रेश करें...';
+                }
+            }
+        }, { passive: true });
+
+        window.addEventListener('touchend', async (e) => {
+            if (!isPulling || isRefreshing) return;
+            isPulling = false;
+
+            const touchEndY = (e.changedTouches && e.changedTouches[0]) ? e.changedTouches[0].pageY : 0;
+            const diff = touchEndY - startY;
+            const dampenedDiff = Math.min(diff * 0.45, MAX_PULL);
+
+            if (dampenedDiff >= PULL_THRESHOLD * 0.45) {
+                isRefreshing = true;
+                ptrBox.style.transition = 'transform 0.25s ease, opacity 0.2s ease';
+                ptrBox.style.transform = 'translateY(55px)';
+                if (feedWrapper) {
+                    feedWrapper.style.transition = 'transform 0.25s ease';
+                    feedWrapper.style.transform = 'translateY(30px)';
+                }
+
+                // दोनों जगह स्पिनर दिखाएं (PTR कार्ड और फ़ीड शीर्ष)
+                ptrArrow.style.display = 'none';
+                ptrSpinner.style.display = 'block';
+                ptrText.innerText = 'नवीनतम फ़ीड लोड हो रही है...';
+
+                const topSpinner = document.getElementById('feedTopSpinnerBar');
+                if (topSpinner) topSpinner.classList.add('active');
+
+                try {
+                    await loadLiveFeed();
+                    ptrText.innerText = '✓ फ़ीड अद्यतित हुई!';
+                } catch (err) {
+                    console.error("Feed refresh error:", err);
+                    ptrText.innerText = '✓ फ़ीड पुनः लोड हुई';
+                } finally {
+                    const topSpinnerActive = document.getElementById('feedTopSpinnerBar');
+                    if (topSpinnerActive) topSpinnerActive.classList.remove('active');
+                }
+
+                setTimeout(() => {
+                    ptrBox.style.transition = 'transform 0.3s ease, opacity 0.25s ease';
+                    ptrBox.style.transform = 'translateY(-100%)';
+                    ptrBox.classList.remove('active');
+                    if (feedWrapper) {
+                        feedWrapper.style.transition = 'transform 0.3s ease';
+                        feedWrapper.style.transform = 'translateY(0)';
+                    }
+
+                    setTimeout(() => {
+                        ptrArrow.style.display = 'block';
+                        ptrArrow.style.transform = 'rotate(0deg)';
+                        ptrSpinner.style.display = 'none';
+                        ptrText.innerText = 'नीचे खींचकर रीफ्रेश करें...';
+                        isRefreshing = false;
+                    }, 350);
+                }, 800);
+            } else {
+                ptrBox.style.transition = 'transform 0.2s ease, opacity 0.2s ease';
+                ptrBox.style.transform = 'translateY(-100%)';
+                ptrBox.classList.remove('active');
+                if (feedWrapper) {
+                    feedWrapper.style.transition = 'transform 0.2s ease';
+                    feedWrapper.style.transform = 'translateY(0)';
+                }
+                ptrArrow.style.transform = 'rotate(0deg)';
+            }
+        });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        loadLiveFeed();
+        initPullToRefresh();
+    });
+</script>
+<script src="image_cache.js"></script>
+<script src="auth_guard.js"></script>
 </body>
 </html>

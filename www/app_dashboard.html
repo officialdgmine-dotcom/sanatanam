@@ -585,7 +585,7 @@ body {
         <img src="https://sanatansevasamiti.org/uploads/footer/1780341771file_00000000145071fab7ea2e7e30f9dfaa-e1776295057951.png" alt="गृह">
         <span>गृह</span>
     </a>
-    <a href="https://sanatansevasamiti.org/shri-sachchidanand-sampraday/" class="sss-item">
+    <a href="guru_parampara.html" class="sss-item">
         <img src="https://sanatansevasamiti.org/uploads/footer/1780341317ci.jpg" alt="गुरु">
         <span>गुरु परंपरा</span>
     </a>
@@ -727,18 +727,22 @@ function renderUserInterface(u) {
     const name = u.full_name || "सनातन सेवक";
     const uid = u.unique_id || "";
     
-    // 1. फोटो पाथ रिज़ॉल्यूशन (पहले लोकल Assets/uploads/ फिर Online fallback)
+    // 1. फोटो पाथ रिज़ॉल्यूशन
     let photo = "Images/jpg/logo.jpg";
-    let photoFallback = "https://sanatansevasamiti.org/Images/jpg/logo.jpg";
+    let photoFallback = "Images/jpg/logo.jpg";
     if (u.profile_photo) {
         if (u.profile_photo.startsWith("http") || u.profile_photo.startsWith("data:image/")) {
             photo = u.profile_photo;
-            photoFallback = u.profile_photo;
+            photoFallback = "Images/jpg/logo.jpg";
+        } else if (typeof getUserProfileMediaUrl === "function") {
+            photo = getUserProfileMediaUrl(u.profile_photo);
+            photoFallback = "Images/jpg/logo.jpg";
         } else {
             const clean = u.profile_photo.replace(/^.*[\\\/]/, '').trim();
-            if (clean) {
-                photo = "uploads/" + clean;
-                photoFallback = `https://sanatansevasamiti.org/api/get_media.php?file=${encodeURIComponent(clean)}`;
+            if (clean === "pc.jpg") {
+                photo = "uploads/pc.jpg";
+            } else if (clean) {
+                photo = `https://sanatansevasamiti.org/api/get_media.php?file=${encodeURIComponent(clean)}`;
             }
         }
     }
