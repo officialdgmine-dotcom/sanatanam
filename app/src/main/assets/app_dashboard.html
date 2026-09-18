@@ -911,68 +911,94 @@ function renderTransactionsList(transactions) {
 // -------------------------------------------------------------
 async function fetchLiveUserData(uid) {
     if (!uid) return;
+    const listEl = document.getElementById("txnListContainer");
     try {
-        const res = await fetch(`https://sanatansevasamiti.org/api/get_user_dashboard.php?user_id=${encodeURIComponent(uid)}`);
+        const res = await fetch(`https://sanatansevasamiti.org/api/get_user_dashboard.php?user_id=${encodeURIComponent(uid)}`, {
+            method: 'GET',
+            headers: { 'Accept': 'application/json' }
+        });
         const data = await res.json();
         
         if (data && data.status) {
+            // 1. Sync User Session if updated on server
             if (data.user) {
                 renderUserInterface(data.user);
                 localStorage.setItem("sss_user_data", JSON.stringify(data.user));
             }
 
-            // वॉलेट बैलेंस
-            if (data.wallet_balance !== undefined) {
-                document.getElementById("liveWalletAmount").innerText = "₹" + parseFloat(data.wallet_balance).toFixed(2);
-            }
+            // 2. Real Metrics Counters
+            document.getElementById("liveWalletAmount").innerText = "₹" + parseFloat(data.wallet_balance || 0).toFixed(2);
+            document.getElementById("statDhan").innerText = "₹" + parseFloat(data.total_dhan || 0).toFixed(2);
+            document.getElementById("statAnn").innerText = parseFloat(data.total_ann || 0).toFixed(1) + " Kg";
+            document.getElementById("statSeva").innerText = (data.total_seva || 0) + " बार";
 
-            // तीन स्वतंत्र दान गणनाएं (Dhan, Ann, Seva)
-            let calcDhan = (data.total_dhan !== undefined) ? parseFloat(data.total_dhan) : 0;
-            let calcAnn = (data.total_ann !== undefined) ? parseFloat(data.total_ann) : 0;
-            let calcSeva = (data.total_seva !== undefined) ? parseInt(data.total_seva) : 0;
-
-            if (Array.isArray(data.transactions) && data.transactions.length > 0) {
-                let sumDhan = 0, sumAnn = 0, sumSeva = 0;
-                let hasTypeTransactions = false;
-
-                data.transactions.forEach(t => {
-                    const amtVal = parseFloat(t.amount) || 0;
-                    if (t.amount_type === 'ann') {
-                        sumAnn += amtVal;
-                        hasTypeTransactions = true;
-                    } else if (t.amount_type === 'seva') {
-                        sumSeva += 1;
-                        hasTypeTransactions = true;
-                    } else {
-                        sumDhan += amtVal;
-                        if (amtVal > 0) hasTypeTransactions = true;
-                    }
-                });
-
-                if (data.total_dhan === undefined && hasTypeTransactions) calcDhan = sumDhan;
-                if (data.total_ann === undefined && hasTypeTransactions) calcAnn = sumAnn;
-                if (data.total_seva === undefined && hasTypeTransactions) calcSeva = sumSeva;
-
-                renderTransactionsList(data.transactions);
-                localStorage.setItem("sss_user_txns", JSON.stringify(data.transactions));
-            } else {
-                renderTransactionsList([]);
-            }
-
-            document.getElementById("statDhan").innerText = "₹" + calcDhan.toFixed(2);
-            document.getElementById("statAnn").innerText = calcAnn.toFixed(1) + " Kg";
-            document.getElementById("statSeva").innerText = calcSeva + " बार";
-
-            // Local cache to retain fallback metrics seamlessly without clearing UI
+            // Local cache to retain fallback metrics seamlessly
             localStorage.setItem("sss_user_metrics", JSON.stringify({
                 wallet_balance: data.wallet_balance,
-                total_dhan: calcDhan,
-                total_ann: calcAnn,
-                total_seva: calcSeva
+                total_dhan: data.total_dhan,
+                total_ann: data.total_ann,
+                total_seva: data.total_seva
             }));
+
+            // 3. Render Real Transactions
+            if (Array.isArray(data.transactions) && data.transactions.length > 0) {
+                localStorage.setItem("sss_user_txns", JSON.stringify(data.transactions));
+                document.getElementById("txnCountBadge").innerText = `कुल: ${data.transactions.length} लेन-देन`;
+                let txHtml = "";
+                data.transactions.forEach(t => {
+                    const isPending = (t.status === 'pending');
+                    let amtStr = "+ ₹" + parseFloat(t.amount || 0).toFixed(2);
+                    let amtStyle = "color: #158146;";
+                    if (t.amount_type === 'ann') {
+                        amtStr = "🌾 " + t.amount + " Kg";
+                        amtStyle = "color: #2e7d32;";
+                    } else if (t.amount_type === 'seva') {
+                        amtStr = "🚩 प्रत्यक्ष सेवा";
+                        amtStyle = "color: #c62828;";
+                    }
+
+                    const recUrl = `https://sanatansevasamiti.org/samiti/view_receipt.php?tx_id=${encodeURIComponent(t.tx_id)}`;
+                    txHtml += `
+                        <div class="txn-item">
+                            <div class="txn-row-top">
+                                <span class="txn-profile">🚩 ${t.profile_name || 'सनातन सेवा समिति'}</span>
+                                <span class="txn-date">${t.tx_date}</span>
+                            </div>
+                            <div class="txn-desc"><b>विवरण:</b> ${t.seva_desc}</div>
+                            <div class="txn-row-bot">
+                                <div>
+                                    <span style="${amtStyle} font-weight:900; font-size:13px;">${amtStr}</span>
+                                    <span class="txn-badge ${isPending ? 'txn-pending' : 'txn-approved'}" style="margin-left:4px;">
+                                        ${isPending ? '⏳ पेंडिंग' : '✓ स्वीकृत'}
+                                    </span>
+                                </div>
+                                <div class="txn-btn-group">
+                                    <a href="${recUrl}" target="_blank" class="btn-receipt">📄 रसीद देखें</a>
+                                    <a href="https://wa.me/?text=${encodeURIComponent('सनातन सेवा समर्पण रसीद:\n' + recUrl)}" target="_blank" class="btn-share">📲 शेयर</a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                listEl.innerHTML = txHtml;
+            } else {
+                localStorage.setItem("sss_user_txns", JSON.stringify([]));
+                document.getElementById("txnCountBadge").innerText = "कुल: 0 लेन-देन";
+                listEl.innerHTML = `
+                    <div style="text-align:center; padding:22px 10px; color:#8d7967; font-size:12.5px; line-height:1.6;">
+                        📜 आपके खाते द्वारा अभी तक कोई सेवा या दान दर्ज नहीं हुआ है।<br>
+                        🙏 आपके पहले सेवा समर्पण का स्वागत है।
+                    </div>
+                `;
+            }
         }
     } catch(err) {
-        console.log("Live dashboard polling fallback active (retaining cached UI metrics).");
+        console.log("Live dashboard polling fallback active:", err);
+        listEl.innerHTML = `
+            <div style="text-align:center; padding:20px 10px; color:#8d7967; font-size:12px;">
+                डेटा सिंक करने के लिए इंटरनेट कनेक्शन की जांच करें।
+            </div>
+        `;
     }
 }
 
