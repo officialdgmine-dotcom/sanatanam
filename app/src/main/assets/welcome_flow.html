@@ -1,520 +1,326 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <title>SANATANAM — Welcome</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Noto+Sans+Devanagari:wght@600;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-    :root {
-        --bhagwa: #FF7700;
-        --bhagwa-deep: #D44000;
-        --lava: #8A0000;
-        --gold: #FFD54F;
-        --gold-border: #D4A017;
-        --pure-white: #FFFFFF;
-        --bg-grad: radial-gradient(circle at top, #FF8800 0%, #B82E00 45%, #4A0000 100%);
-    }
+:root{
+    --saffron:#FF7A00;
+    --saffron2:#FFB12B;
+    --gold:#D7A83E;
+    --gold-light:#FFE39A;
+    --gold-dark:#A86B12;
+    --deep:#421006;
+    --deep2:#651805;
+    --wine:#7B2107;
+    --glass:rgba(255,220,150,.075);
+    --glass-border:rgba(255,225,145,.28);
+    --white:#FFF9EE;
+    --muted:rgba(255,249,238,.72);
+    --radius:26px;
+}
+*{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html, body{ width:100%; height:100%; margin:0; overflow:hidden; }
+body{ font-family:'Inter','Noto Sans Devanagari',sans-serif; color:var(--white); background:#421006; }
 
-    * { 
-        box-sizing: border-box; 
-        -webkit-tap-highlight-color: transparent; 
-        user-select: none;
-        -webkit-user-select: none;
-    }
-    
-    html, body {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        background: var(--bg-grad);
-        font-family: 'Poppins', 'Noto Sans Devanagari', sans-serif;
-        color: #222;
-    }
+.app-card{
+    position:relative; width:100%; height:100dvh; min-height:100dvh; overflow:hidden;
+    background:
+        radial-gradient(circle at 50% 5%, rgba(255,218,105,.42) 0%, rgba(255,157,36,.30) 13%, rgba(255,122,0,.17) 28%, transparent 50%),
+        radial-gradient(circle at 0% 100%, rgba(255,91,0,.42), transparent 42%),
+        radial-gradient(circle at 100% 70%, rgba(255,188,54,.24), transparent 38%),
+        linear-gradient(145deg, #4B1005 0%, #681805 28%, #7A2107 55%, #541206 78%, #3B0C05 100%);
+    isolation:isolate;
+}
 
-    body {
-        padding: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+.app-card::before{
+    content:""; position:absolute; width:90vw; height:90vw; max-width:520px; max-height:520px;
+    border-radius:50%; left:50%; top:-280px; transform:translateX(-50%);
+    background:radial-gradient(circle, rgba(255,236,158,.48), rgba(255,173,42,.28) 28%, rgba(255,112,0,.14) 48%, transparent 70%);
+    filter:blur(6px); pointer-events:none; z-index:-1;
+}
 
-    .app-card {
-        width: 100%;
-        max-width: 430px;
-        height: 100%;
-        max-height: 680px;
-        background: rgba(255, 255, 255, 0.96);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border-radius: 28px;
-        border: 2px solid var(--gold-border);
-        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
-        padding: 20px 18px 16px;
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
+.app-card::after{
+    content:""; position:absolute; inset:0;
+    background-image:radial-gradient(circle, rgba(255,235,165,.26) 1px, transparent 1.5px);
+    background-size:42px 42px; opacity:.16;
+    mask-image:linear-gradient(to bottom, black, transparent 82%);
+    pointer-events:none; z-index:-1;
+}
 
-    .app-card::before {
-        content: "";
-        position: absolute;
-        top: 0; left: 0; right: 0;
-        height: 6px;
-        border-radius: 28px 28px 0 0;
-        background: linear-gradient(90deg, var(--bhagwa), var(--gold), var(--lava));
-    }
+.top-brand{
+    position:absolute; top:0; left:0; right:0;
+    padding:max(20px,env(safe-area-inset-top)) 22px 0;
+    display:flex; align-items:center; justify-content:space-between; z-index:20;
+}
+.brand-lockup{ display:flex; align-items:center; gap:11px; }
+.brand-mark{
+    width:39px; height:39px; border-radius:13px; object-fit:cover;
+    border:1px solid rgba(255,230,157,.68);
+    box-shadow:0 0 25px rgba(255,174,43,.32), 0 0 50px rgba(255,121,0,.13), inset 0 0 15px rgba(255,255,255,.10);
+}
+.brand-name{ font-family:'Cinzel',serif; font-size:12px; font-weight:700; letter-spacing:3px; color:#FFE6A0; text-shadow:0 0 16px rgba(255,207,93,.28); }
+.brand-sub{ margin-top:2px; font-size:8px; letter-spacing:2px; color:rgba(255,249,238,.62); text-transform:uppercase; }
+.step-count{
+    min-width:56px; padding:8px 10px; text-align:center; border:1px solid rgba(255,224,142,.32);
+    border-radius:50px; background:rgba(119,30,5,.38); backdrop-filter:blur(15px);
+    color:rgba(255,249,238,.82); font-size:10px; font-weight:600; letter-spacing:1px;
+}
 
-    /* Progress Indicators */
-    .stepper-dots {
-        display: flex;
-        justify-content: center;
-        gap: 8px;
-        margin-bottom: 10px;
-        margin-top: 4px;
-    }
-    .dot {
-        width: 24px;
-        height: 6px;
-        border-radius: 4px;
-        background: #e8d0bc;
-        transition: 0.3s ease;
-    }
-    .dot.active {
-        width: 40px;
-        background: linear-gradient(90deg, var(--bhagwa), var(--lava));
-    }
+.stepper-dots{ position:absolute; top:82px; left:22px; right:22px; display:grid; grid-template-columns:repeat(4,1fr); gap:6px; z-index:20; }
+.stepper-dots span{ height:3px; border-radius:10px; background:rgba(255,229,161,.20); transition:.4s ease; }
+.stepper-dots .active, .stepper-dots .completed{
+    background:linear-gradient(90deg, #FF7A00, #FFE29A, #FF9D24);
+    box-shadow:0 0 15px rgba(255,174,45,.62);
+}
 
-    /* Step Containers */
-    .step-content {
-        display: none;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        animation: fadeInSlide 0.3s ease-out forwards;
-        flex-grow: 1;
-        justify-content: center;
-        overflow: hidden;
-    }
-    .step-content.active {
-        display: flex;
-    }
+.step{ position:absolute; inset:112px 20px 96px; display:none; flex-direction:column; animation:screenIn .5s cubic-bezier(.22,.8,.24,1); }
+.step.active{ display:flex; }
+@keyframes screenIn{ from{ opacity:0; transform:translateY(18px) scale(.985); } to{ opacity:1; transform:translateY(0) scale(1); } }
 
-    @keyframes fadeInSlide {
-        from { opacity: 0; transform: translateY(12px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
+.hero-visual{ flex:1; min-height:0; display:flex; align-items:center; justify-content:center; position:relative; }
+.hero-orbit{
+    position:absolute; width:min(76vw,310px); aspect-ratio:1; border-radius:50%;
+    border:1px solid rgba(255,226,145,.30); box-shadow:0 0 75px rgba(255,150,24,.20), 0 0 120px rgba(255,201,82,.08);
+    animation:rotateSlow 25s linear infinite;
+}
+.hero-orbit::before, .hero-orbit::after{
+    content:""; position:absolute; width:7px; height:7px; border-radius:50%; background:#FFE49A;
+    box-shadow:0 0 18px #FFD15C, 0 0 32px rgba(255,137,0,.75);
+}
+.hero-orbit::before{ top:14%; left:7%; } .hero-orbit::after{ bottom:13%; right:7%; }
+@keyframes rotateSlow{ to{ transform:rotate(360deg); } }
 
-    /* Graphics */
-    .brand-logo-wrap {
-        width: 105px;
-        height: 105px;
-        margin: 0 auto 14px;
-        border-radius: 50%;
-        padding: 4px;
-        background: linear-gradient(135deg, var(--gold), var(--bhagwa));
-        box-shadow: 0 10px 25px rgba(138, 0, 0, 0.3);
-    }
-    .brand-logo {
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        object-fit: cover;
-        background: #fff;
-    }
+.hero-ring{
+    width:min(57vw,230px); aspect-ratio:1; border-radius:50%; padding:8px;
+    background:linear-gradient(145deg, #FFF0B4, #DDAA3D, #FF7900, #FFE69B, #C47D16);
+    box-shadow:0 0 35px rgba(255,180,42,.42), 0 0 75px rgba(255,122,0,.18), 0 20px 55px rgba(79,22,3,.30);
+    position:relative; z-index:2;
+}
+.hero-ring-inner{
+    width:100%; height:100%; border-radius:50%; background:radial-gradient(circle, #8B2708, #651705 65%, #4A1005);
+    display:flex; align-items:center; justify-content:center; overflow:hidden; border:2px solid rgba(255,240,181,.22);
+}
+.hero-logo{ width:88%; height:88%; object-fit:cover; border-radius:50%; filter:drop-shadow(0 0 18px rgba(255,208,92,.55)); }
+.divine-image{
+    width:min(61vw,245px); aspect-ratio:1; object-fit:cover; border-radius:50%; padding:5px;
+    background:linear-gradient(145deg, #FFF0B0, #FF9D24, #FF6F00, #D79525, #FFE69B);
+    box-shadow:0 0 50px rgba(255,174,38,.40), 0 0 100px rgba(255,109,0,.18), 0 25px 70px rgba(83,22,2,.30);
+}
 
-    .maiya-photo-wrap {
-        width: 140px;
-        height: 140px;
-        margin: 0 auto 14px;
-        border-radius: 20px;
-        padding: 4px;
-        background: linear-gradient(135deg, var(--gold), var(--bhagwa));
-        box-shadow: 0 12px 28px rgba(138, 0, 0, 0.35);
-    }
-    .maiya-img {
-        width: 100%;
-        height: 100%;
-        border-radius: 16px;
-        object-fit: contain;
-        background: #fff;
-    }
+.content-block{ flex-shrink:0; text-align:center; padding:0 5px 10px; }
+.eyebrow{
+    display:inline-flex; align-items:center; gap:8px; color:#FFE29A; font-size:9px; font-weight:700;
+    letter-spacing:2.5px; text-transform:uppercase; margin-bottom:12px; text-shadow:0 0 15px rgba(255,188,65,.20);
+}
+.eyebrow::before, .eyebrow::after{ content:""; width:20px; height:1px; background:linear-gradient(90deg, transparent, #FFD66D); }
+.eyebrow::after{ transform:rotate(180deg); }
+h1{ margin:0; font-family:'Cinzel',serif; font-size:clamp(25px,7vw,34px); line-height:1.15; font-weight:600; color:#FFF8E8; }
+.gold-title{ background:linear-gradient(100deg, #FFF0B8, #E7AF42, #FFF4C9, #D89B2E); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.description{ max-width:410px; margin:12px auto 0; color:var(--muted); font-size:12px; line-height:1.75; }
+.mantra{
+    margin:10px auto 16px; padding:10px 14px; display:inline-block; border:1px solid rgba(255,224,142,.30);
+    border-radius:50px; background:rgba(255,194,73,.075); color:#FFE19A; font-size:11px;
+}
 
-    /* Headings & Descriptions */
-    .mantra-tag {
-        color: var(--lava);
-        font-size: 16px;
-        font-weight: 800;
-        margin-bottom: 6px;
-        letter-spacing: 0.5px;
-    }
-    .main-title {
-        color: #222;
-        font-size: 19px;
-        font-weight: 800;
-        margin: 0 0 8px;
-    }
-    .description-text {
-        font-size: 13px;
-        color: #6d4c41;
-        line-height: 1.5;
-        padding: 0 6px;
-        margin: 0;
-        font-weight: 600;
-    }
+.language-header{ flex-shrink:0; text-align:left; margin-bottom:13px; }
+.language-header h1{ font-size:25px; }
+.language-header .description{ margin:7px 0 0; font-size:11px; text-align:left; }
+.language-search{ position:relative; flex-shrink:0; }
+#langSearchInput{
+    width:100%; height:50px; border-radius:17px; border:1px solid rgba(255,222,141,.27); outline:none;
+    padding:0 45px; background:rgba(255,208,110,.075); color:#fff; font-family:inherit; font-size:13px; backdrop-filter:blur(18px);
+}
+#langSearchInput::placeholder{ color:rgba(255,249,238,.55); }
+.search-icon{ position:absolute; left:17px; top:50%; transform:translateY(-50%); color:#FFE29A; font-size:17px; }
+#searchClearBtn{
+    position:absolute; right:10px; top:50%; transform:translateY(-50%); width:31px; height:31px;
+    border:0; border-radius:50%; background:rgba(255,220,132,.10); color:rgba(255,255,255,.75);
+    display:none; align-items:center; justify-content:center; cursor:pointer;
+}
 
-    /* STEP 3: SEARCHABLE 105+ LANGUAGES */
-    .lang-search-box {
-        width: 100%;
-        height: 42px;
-        display: flex;
-        align-items: center;
-        background: #fffdf9;
-        border: 1.5px solid #e0c9a6;
-        border-radius: 12px;
-        padding: 0 12px;
-        margin: 10px 0 8px;
-        gap: 8px;
-        box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
-        transition: 0.2s;
-    }
-    .lang-search-box:focus-within {
-        border-color: var(--bhagwa);
-        box-shadow: 0 0 0 3px rgba(255, 119, 0, 0.15);
-    }
-    .search-icon {
-        font-size: 14px;
-        color: #8A0000;
-    }
-    .lang-search-input {
-        width: 100%;
-        border: none;
-        background: transparent;
-        font-size: 13px;
-        font-family: inherit;
-        font-weight: 600;
-        color: #333;
-        outline: none;
-        user-select: text;
-        -webkit-user-select: text;
-    }
-    .search-clear-btn {
-        background: none;
-        border: none;
-        color: #999;
-        font-size: 14px;
-        font-weight: bold;
-        cursor: pointer;
-        padding: 0 4px;
-    }
+#quickLangSection{ flex-shrink:0; margin-top:13px; }
+.quick-title-row{ display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
+.quick-title{ font-size:9px; font-weight:700; letter-spacing:1.8px; color:rgba(255,249,238,.64); text-transform:uppercase; }
+#langCounterBadge{ font-size:9px; color:#FFE19A; }
+#quickChipsWrap{ display:flex; gap:7px; overflow-x:auto; scrollbar-width:none; padding-bottom:2px; }
+#quickChipsWrap::-webkit-scrollbar{ display:none; }
+.quick-chip{
+    flex:0 0 auto; padding:8px 12px; border-radius:50px; border:1px solid rgba(255,222,142,.25);
+    background:rgba(255,196,73,.065); color:rgba(255,249,238,.78); font-size:10px; font-weight:600; cursor:pointer;
+}
+.quick-chip.active{
+    color:#4A1605; background:linear-gradient(135deg, #FFF0B0, #F5C55A, #D89B2E);
+    border-color:#FFE49A; box-shadow:0 0 20px rgba(255,190,67,.24);
+}
 
-    .quick-lang-section {
-        width: 100%;
-        margin-bottom: 6px;
-        text-align: left;
-    }
-    .quick-lang-label {
-        font-size: 11px;
-        font-weight: 800;
-        color: #8A0000;
-        margin-bottom: 4px;
-        display: flex;
-        align-items: center;
-        gap: 4px;
-    }
-    .quick-chips-wrap {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 5px;
-    }
-    .quick-chip {
-        padding: 4px 9px;
-        border-radius: 18px;
-        font-size: 11px;
-        font-weight: 700;
-        background: #fff8e1;
-        border: 1px solid var(--gold-border);
-        color: #7a3e00;
-        cursor: pointer;
-        transition: 0.2s;
-    }
-    .quick-chip:active {
-        transform: scale(0.96);
-    }
-    .quick-chip.selected {
-        background: linear-gradient(135deg, var(--bhagwa), var(--lava));
-        color: #fff;
-        border-color: var(--lava);
-    }
+#langGridContainer{
+    flex:1; min-height:0; margin-top:12px; overflow-y:auto; padding-right:2px; padding-bottom:5px;
+    scrollbar-width:thin; scrollbar-color:rgba(255,194,72,.55) transparent;
+}
+#langGridContainer::-webkit-scrollbar{ width:3px; }
+#langGridContainer::-webkit-scrollbar-thumb{ background:rgba(255,194,72,.55); border-radius:10px; }
+.lang-grid{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; }
+.lang-card{
+    min-height:61px; padding:10px 11px; display:flex; align-items:center; gap:10px; border-radius:17px;
+    border:1px solid rgba(255,225,145,.12); background:linear-gradient(145deg, rgba(255,217,130,.09), rgba(255,160,25,.035));
+    cursor:pointer; transition:.2s ease;
+}
+.lang-card.active{
+    border-color:rgba(255,226,148,.72); background:linear-gradient(145deg, rgba(255,164,38,.24), rgba(255,218,117,.08));
+    box-shadow:0 0 28px rgba(255,157,24,.14);
+}
+.lang-icon{
+    width:32px; height:32px; flex:0 0 32px; border-radius:11px; display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(145deg, rgba(255,180,45,.24), rgba(255,221,124,.08)); color:#FFE29A; font-size:12px; font-weight:700;
+}
+.lang-name{ min-width:0; text-align:left; }
+.lang-native{ display:block; color:#FFF8E8; font-size:11px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.lang-english{ display:block; margin-top:2px; color:rgba(255,249,238,.48); font-size:8px; }
 
-    .lang-grid-scroll {
-        width: 100%;
-        max-height: 180px;
-        overflow-y: auto;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
-        padding: 2px;
-        margin-top: 4px;
-        -webkit-overflow-scrolling: touch;
-    }
-    .lang-grid-scroll::-webkit-scrollbar {
-        width: 4px;
-    }
-    .lang-grid-scroll::-webkit-scrollbar-thumb {
-        background: #e0c9a6;
-        border-radius: 4px;
-    }
+.member-visual{ flex:1; display:flex; align-items:center; justify-content:center; position:relative; }
+.member-logo{
+    width:min(52vw,210px); aspect-ratio:1; object-fit:cover; border-radius:50%;
+    border:2px solid rgba(255,225,145,.68); box-shadow:0 0 65px rgba(255,153,27,.30);
+}
+.member-actions{ display:grid; gap:10px; margin-top:20px; }
+.member-btn{
+    width:100%; min-height:54px; border-radius:18px; border:1px solid rgba(255,224,142,.34);
+    font-family:inherit; font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center; gap:9px; cursor:pointer;
+}
+.member-btn.primary{ color:#4A1604; background:linear-gradient(135deg, #FFF0B0, #F2C258, #D89B2E, #FFE49A); }
+.member-btn.secondary{ color:#FFE19A; background:rgba(255,210,110,.075); backdrop-filter:blur(15px); }
 
-    .lang-card {
-        background: #fffdf9;
-        border: 1.5px solid #e0c9a6;
-        border-radius: 12px;
-        padding: 8px 6px;
-        cursor: pointer;
-        transition: 0.2s ease;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-    }
-    .lang-card:active {
-        transform: scale(0.97);
-    }
-    .lang-card.selected {
-        border: 2px solid var(--bhagwa);
-        background: #fff6e8;
-        box-shadow: 0 3px 12px rgba(255, 119, 0, 0.2);
-    }
-    .lang-card.selected::after {
-        content: "✓";
-        position: absolute;
-        top: 3px;
-        right: 6px;
-        font-size: 11px;
-        font-weight: 900;
-        color: var(--bhagwa);
-    }
-    .lang-primary {
-        font-size: 13.5px;
-        font-weight: 800;
-        color: var(--lava);
-        line-height: 1.2;
-    }
-    .lang-sub {
-        font-size: 10.5px;
-        color: #795548;
-        margin-top: 2px;
-        font-weight: 600;
-    }
-    .no-lang-found {
-        grid-column: span 2;
-        padding: 20px 10px;
-        font-size: 12px;
-        color: #8d6e63;
-        font-weight: 600;
-    }
-    .lang-counter-badge {
-        font-size: 11px;
-        color: #8A0000;
-        font-weight: 800;
-        margin-top: 6px;
-        background: #fff7e6;
-        padding: 3px 10px;
-        border-radius: 16px;
-        border: 1px solid #ffd54f;
-    }
+.bottom-nav{
+    position:absolute; left:18px; right:18px; bottom:0; padding:10px 0 max(12px,env(safe-area-inset-bottom));
+    display:grid; grid-template-columns:54px 1fr; gap:10px; z-index:30;
+}
+.nav-btn{
+    height:52px; border-radius:18px; border:1px solid rgba(255,224,142,.25); background:rgba(108,29,5,.55);
+    color:rgba(255,249,238,.82); font-family:inherit; font-size:11px; font-weight:700; cursor:pointer;
+}
+#btnNext{
+    background:linear-gradient(135deg, #FFF0B0, #F3C65E, #D49728); border-color:#FFE49A; color:#4A1605;
+}
 
-    /* Step 4 Action Buttons */
-    .auth-actions-wrap {
-        width: 100%;
-        margin-top: 18px;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-    .btn-vip-register {
-        width: 100%;
-        height: 50px;
-        background: linear-gradient(135deg, var(--bhagwa), var(--lava));
-        border: none;
-        border-radius: 14px;
-        color: #fff;
-        font-size: 15px;
-        font-weight: 800;
-        font-family: inherit;
-        cursor: pointer;
-        box-shadow: 0 6px 20px rgba(184, 46, 0, 0.35);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        text-decoration: none;
-        transition: 0.2s;
-    }
-    .btn-vip-register:active { transform: scale(0.98); }
-
-    .btn-vip-login {
-        width: 100%;
-        height: 50px;
-        background: #fff8e1;
-        border: 2px solid var(--gold-border);
-        border-radius: 14px;
-        color: #7a3e00;
-        font-size: 15px;
-        font-weight: 800;
-        font-family: inherit;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        text-decoration: none;
-        transition: 0.2s;
-    }
-    .btn-vip-login:active { background: #ffecb3; transform: scale(0.98); }
-
-    /* Navigation Bar */
-    .bottom-nav-bar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 14px;
-        padding-top: 12px;
-        border-top: 1px dashed #e2cbb2;
-    }
-    .btn-nav {
-        height: 42px;
-        padding: 0 20px;
-        border-radius: 12px;
-        font-size: 13.5px;
-        font-weight: 800;
-        font-family: inherit;
-        cursor: pointer;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 6px;
-        transition: 0.2s;
-        border: none;
-    }
-    .btn-back {
-        background: #f0e6da;
-        color: #5d4037;
-    }
-    .btn-next {
-        background: linear-gradient(135deg, var(--bhagwa), var(--bhagwa-deep));
-        color: #fff;
-        box-shadow: 0 5px 15px rgba(212, 64, 0, 0.25);
-        margin-left: auto;
-    }
+@media (min-width:600px){
+    .app-card{ max-width:520px; margin:auto; box-shadow:0 0 100px rgba(85,25,3,.50); }
+    body{ display:flex; justify-content:center; background:#2B0803; }
+}
 </style>
 </head>
 <body>
 
 <div class="app-card">
-    
-    <!-- Stepper Dots -->
-    <div class="stepper-dots">
-        <div class="dot active" id="dot-1"></div>
-        <div class="dot" id="dot-2"></div>
-        <div class="dot" id="dot-3"></div>
-        <div class="dot" id="dot-4"></div>
-    </div>
 
-    <!-- STEP 1: WELCOME & LOGO -->
-    <div class="step-content active" id="step-1">
-        <div class="brand-logo-wrap">
-            <img src="Images/jpg/logo.jpg" alt="Logo" class="brand-logo" onerror="this.src='https://sanatansevasamiti.org/Images/jpg/logo.jpg';">
+    <div class="top-brand">
+        <div class="brand-lockup">
+            <img class="brand-mark" src="https://sanatansevasamiti.org/Images/logo.jpg" alt="SANATANAM">
+            <div>
+                <div class="brand-name">SANATANAM</div>
+                <div class="brand-sub">A Living Spiritual Experience</div>
+            </div>
         </div>
-        <div class="mantra-tag" data-i18n="jayBhawani">🙏 Jay Bhawani 🙏</div>
-        <h2 class="main-title" data-i18n="welcomeTitle">Welcome to SANATANAM</h2>
-        <p class="description-text" data-i18n="welcomeDesc">
-            Welcome to the official digital platform of <b>Sanatan Seva Samiti</b>. Dedicated to righteousness, divine service, and unity.
-        </p>
-    </div>
-
-    <!-- STEP 2: MAIYA DARSHAN & BLESSING -->
-    <div class="step-content" id="step-2">
-        <div class="maiya-photo-wrap">
-            <img src="https://sanatansevasamiti.org/Images/maiya.png" alt="Maa Kali" class="maiya-img" onerror="this.src='Images/jpg/logo.jpg';">
-        </div>
-        <div class="mantra-tag" data-i18n="divineMantra">॥ ॐ ऐं ह्रीं क्लीं चामुण्डायै विच्चे ॥</div>
-        <h2 class="main-title" data-i18n="divineBlessings">Divine Blessings</h2>
-        <p class="description-text" data-i18n="divineDesc" style="font-size: 14px; color: #4a148c; font-weight: 700;">
-            राज राजेश्वरी माँ काली की असीम अनुकंपा और कृपा सदा आप और आपके परिवार पर बनी रहे।
-        </p>
-    </div>
-
-    <!-- STEP 3: SEARCHABLE 105+ LANGUAGES SELECTION -->
-    <div class="step-content" id="step-3">
-        <div class="mantra-tag" data-i18n="prefBadge">🌐 Preferences</div>
-        <h2 class="main-title" data-i18n="prefTitle">Choose Your Language</h2>
-        <p class="description-text" data-i18n="prefDesc">Select your preferred language for using the application.</p>
-        
-        <!-- Search Input with Clear Button -->
-        <div class="lang-search-box">
-            <span class="search-icon">🔍</span>
-            <input 
-                type="text" 
-                id="langSearchInput" 
-                class="lang-search-input" 
-                placeholder="अपनी भाषा खोजें / Search 105+ Languages..." 
-                oninput="filterLanguages(this.value)"
-                autocomplete="off"
-            />
-            <button type="button" class="search-clear-btn" id="searchClearBtn" onclick="clearLangSearch()" style="display:none;">✕</button>
-        </div>
-
-        <!-- Quick Pick Chips -->
-        <div class="quick-lang-section" id="quickLangSection">
-            <div class="quick-lang-label">✨ त्वरित चयन / Quick Pick:</div>
-            <div class="quick-chips-wrap" id="quickChipsWrap"></div>
-        </div>
-
-        <!-- Scrollable 105+ Languages Grid -->
-        <div class="lang-grid-scroll" id="langGridContainer"></div>
-
-        <div class="lang-counter-badge" id="langCounterBadge">
-            🌐 105+ भाषाएँ उपलब्ध (Global Real-time Translation)
+        <div class="step-count">
+            <span id="currentStepLabel">01</span>
+            <span style="opacity:.35;">/</span>
+            <span>04</span>
         </div>
     </div>
 
-    <!-- STEP 4: FINAL ACTIONS (STRICTLY NO EXTRA PAGES) -->
-    <div class="step-content" id="step-4">
-        <div class="brand-logo-wrap" style="width: 75px; height: 75px; margin-bottom: 8px;">
-            <img src="https://sanatansevasamiti.org/Images/logo.jpg" alt="Logo" class="brand-logo">
-        </div>
-        <div class="mantra-tag" data-i18n="samitiName">🔱 Sanatan Seva Samiti</div>
-        <h2 class="main-title" data-i18n="memberTitle">Become a Member</h2>
-        <p class="description-text" data-i18n="memberDesc">
-            Join the sacred mission of Sanatan Dharma. Get your verified Digital Identity Card, engage in sacred service, and contribute to society.
-        </p>
+    <div class="stepper-dots" id="stepper-dots">
+        <span class="dot-1 active"></span>
+        <span class="dot-2"></span>
+        <span class="dot-3"></span>
+        <span class="dot-4"></span>
+    </div>
 
-        <div class="auth-actions-wrap">
-            <button type="button" class="btn-vip-register" onclick="triggerAndroidAction('register')">
-                <span data-i18n="btnRegister">➕ New Registration</span>
-            </button>
-            <button type="button" class="btn-vip-login" onclick="triggerAndroidAction('login')">
-                <span data-i18n="btnLogin">🔑 Member Login</span>
-            </button>
+    <!-- STEP 1 -->
+    <div class="step active" id="step-1">
+        <div class="hero-visual">
+            <div class="hero-orbit"></div>
+            <div class="hero-ring">
+                <div class="hero-ring-inner">
+                    <img class="hero-logo" src="https://sanatansevasamiti.org/Images/logo.jpg" alt="SANATANAM">
+                </div>
+            </div>
+        </div>
+        <div class="content-block">
+            <div class="eyebrow" data-i18n="step1Eyebrow">Welcome</div>
+            <h1>Enter the World of <span class="gold-title">SANATANAM</span></h1>
+            <p class="description" data-i18n="welcomeDesc">
+                A modern spiritual platform bringing Sanatana wisdom, devotion, knowledge and tradition together in one beautiful experience.
+            </p>
         </div>
     </div>
 
-    <!-- NAVIGATION CONTROLS (Back / Next) -->
-    <div class="bottom-nav-bar" id="navBar">
-        <button type="button" class="btn-nav btn-back" id="btnBack" onclick="navigateStep(-1)" style="visibility: hidden;">
-            <span data-i18n="btnBack">⬅ Back</span>
-        </button>
-        <button type="button" class="btn-nav btn-next" id="btnNext" onclick="navigateStep(1)">
-            <span data-i18n="btnNext">Next ➔</span>
-        </button>
+    <!-- STEP 2 -->
+    <div class="step" id="step-2">
+        <div class="hero-visual">
+            <div class="hero-orbit"></div>
+            <img class="divine-image" src="https://sanatansevasamiti.org/Images/maa.png" onerror="this.src='https://sanatansevasamiti.org/Images/maiya.png'" alt="Maa">
+        </div>
+        <div class="content-block">
+            <div class="eyebrow" data-i18n="step2Eyebrow">Divine Blessings</div>
+            <div class="mantra">॥ ॐ ऐं ह्रीं क्लीं चामुण्डायै विच्चे ॥</div>
+            <h1 class="gold-title" data-i18n="divineTitle">Divine Blessings</h1>
+            <p class="description" data-i18n="divineDesc">
+                May divine grace illuminate your path, strengthen your faith and bring peace, wisdom and positive energy into your life.
+            </p>
+        </div>
+    </div>
+
+    <!-- STEP 3 (105+ LANGUAGES SEARCHABLE) -->
+    <div class="step" id="step-3">
+        <div class="language-header">
+            <div class="eyebrow" data-i18n="step3Eyebrow">Personalize Your Experience</div>
+            <h1>Choose Your <span class="gold-title" data-i18n="langTitle">Language</span></h1>
+            <p class="description" data-i18n="langDesc">Select the language you would like to use throughout your SANATANAM experience.</p>
+        </div>
+        <div class="language-search">
+            <span class="search-icon">⌕</span>
+            <input type="search" id="langSearchInput" placeholder="Search your language / भाषा खोजें..." autocomplete="off">
+            <button type="button" id="searchClearBtn" onclick="clearLangSearch()">×</button>
+        </div>
+        <div id="quickLangSection">
+            <div class="quick-title-row">
+                <span class="quick-title" data-i18n="quickTitle">Popular Languages</span>
+                <span id="langCounterBadge">105+ Languages</span>
+            </div>
+            <div id="quickChipsWrap"></div>
+        </div>
+        <div id="langGridContainer"></div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="step" id="step-4">
+        <div class="member-visual">
+            <img class="member-logo" src="https://sanatansevasamiti.org/Images/logo.jpg" alt="SANATANAM">
+        </div>
+        <div class="content-block">
+            <div class="eyebrow" data-i18n="step4Eyebrow">Your Journey Begins</div>
+            <h1>Welcome to <span class="gold-title">SANATANAM</span></h1>
+            <p class="description" data-i18n="memberDesc">Create your account or continue with your existing SANATANAM membership.</p>
+            <div class="member-actions">
+                <button class="member-btn primary" type="button" onclick="triggerAndroidAction('register')">
+                    <span class="btn-icon">✦</span>
+                    <span data-i18n="btnRegister">Create New Account</span>
+                </button>
+                <button class="member-btn secondary" type="button" onclick="triggerAndroidAction('login')">
+                    <span class="btn-icon">→</span>
+                    <span data-i18n="btnLogin">Sign In</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-nav">
+        <button id="btnBack" class="nav-btn" type="button" onclick="navigateStep(-1)">‹</button>
+        <button id="btnNext" class="nav-btn" type="button" onclick="navigateStep(1)">Continue</button>
     </div>
 
 </div>
@@ -522,337 +328,301 @@
 <script>
 let currentStep = 1;
 const totalSteps = 4;
-let activeLang = "hi";
+let activeLang = "en"; // Onboarding always resets to English
 
-try {
-    activeLang = localStorage.getItem("sanatanam_app_lang") || "hi";
-} catch (e) {
-    activeLang = "hi";
-}
-
-// 105+ Complete Language Dataset (Self-Contained for APK)
-const SANATANAM_LANGUAGES = [
-    { code: "hi", name: "Hindi", native: "हिन्दी" },
-    { code: "en", name: "English", native: "English" },
-    { code: "sa", name: "Sanskrit", native: "संस्कृतम्" },
-    { code: "mr", name: "Marathi", native: "मराठी" },
-    { code: "gu", name: "Gujarati", native: "ગુજરાતી" },
-    { code: "bn", name: "Bengali", native: "বাংলা" },
-    { code: "ta", name: "Tamil", native: "தமிழ்" },
-    { code: "te", name: "Telugu", native: "తెలుగు" },
-    { code: "kn", name: "Kannada", native: "ಕನ್ನಡ" },
-    { code: "ml", name: "Malayalam", native: "മലയാളം" },
-    { code: "pa", name: "Punjabi", native: "ਪੰਜਾਬੀ" },
-    { code: "or", name: "Odia", native: "ଓଡ଼ିଆ" },
-    { code: "as", name: "Assamese", native: "অসমীয়া" },
-    { code: "ne", name: "Nepali", native: "नेपाली" },
-    { code: "ur", name: "Urdu", native: "اردو" },
-    { code: "bho", name: "Bhojpuri", native: "भोजपुरी" },
-    { code: "mai", name: "Maithili", native: "मैथिली" },
-    { code: "raj", name: "Rajasthani", native: "राजस्थानी" },
-    { code: "sd", name: "Sindhi", native: "سنڌي" },
-    { code: "ks", name: "Kashmiri", native: "کٲشُر" },
-    { code: "kok", name: "Konkani", native: "कोंकणी" },
-    { code: "mni", name: "Manipuri", native: "মৈতৈলোন্" },
-    { code: "ar", name: "Arabic", native: "العربية" },
-    { code: "fr", name: "French", native: "Français" },
-    { code: "de", name: "German", native: "Deutsch" },
-    { code: "es", name: "Spanish", native: "Español" },
-    { code: "ru", name: "Russian", native: "Русский" },
-    { code: "ja", name: "Japanese", native: "日本語" },
-    { code: "zh", name: "Chinese", native: "中文" },
-    { code: "ko", name: "Korean", native: "한국어" },
-    { code: "it", name: "Italian", native: "Italiano" },
-    { code: "pt", name: "Portuguese", native: "Português" },
-    { code: "th", name: "Thai", native: "ไทย" },
-    { code: "vi", name: "Vietnamese", native: "Tiếng Việt" },
-    { code: "id", name: "Indonesian", native: "Bahasa Indonesia" },
-    { code: "tr", name: "Turkish", native: "Türkçe" },
-    { code: "fa", name: "Persian", native: "فارسی" },
-    { code: "nl", name: "Dutch", native: "Nederlands" },
-    { code: "el", name: "Greek", native: "Ελληνικά" },
-    { code: "he", name: "Hebrew", native: "עברית" },
-    { code: "pl", name: "Polish", native: "Polski" },
-    { code: "uk", name: "Ukrainian", native: "Українська" },
-    { code: "sv", name: "Swedish", native: "Svenska" },
-    { code: "no", name: "Norwegian", native: "Norsk" },
-    { code: "fi", name: "Finnish", native: "Suomi" },
-    { code: "da", name: "Danish", native: "Dansk" },
-    { code: "cs", name: "Czech", native: "Čeština" },
-    { code: "hu", name: "Hungarian", native: "Magyar" },
-    { code: "ro", name: "Romanian", native: "Română" },
-    { code: "bg", name: "Bulgarian", native: "Български" },
-    { code: "sr", name: "Serbian", native: "Српски" },
-    { code: "hr", name: "Croatian", native: "Hrvatski" },
-    { code: "sk", name: "Slovak", native: "Slovenčina" },
-    { code: "sl", name: "Slovenian", native: "Slovenščina" },
-    { code: "ms", name: "Malay", native: "Bahasa Melayu" },
-    { code: "fil", name: "Filipino", native: "Filipino" },
-    { code: "my", name: "Burmese", native: "မြန်မာ" },
-    { code: "km", name: "Khmer", native: "ខ្មែរ" },
-    { code: "lo", name: "Lao", native: "ລາວ" },
-    { code: "si", name: "Sinhala", native: "සිංහල" },
-    { code: "am", name: "Amharic", native: "አማርኛ" },
-    { code: "sw", name: "Swahili", native: "Kiswahili" },
-    { code: "af", name: "Afrikaans", native: "Afrikaans" },
-    { code: "sq", name: "Albanian", native: "Shqip" },
-    { code: "hy", name: "Armenian", native: "Հայերեն" },
-    { code: "az", name: "Azerbaijani", native: "Azərbaycan" },
-    { code: "eu", name: "Basque", native: "Euskara" },
-    { code: "be", name: "Belarusian", native: "Беларуская" },
-    { code: "bs", name: "Bosnian", native: "Bosanski" },
-    { code: "ca", name: "Catalan", native: "Català" },
-    { code: "et", name: "Estonian", native: "Eesti" },
-    { code: "gl", name: "Galician", native: "Galego" },
-    { code: "ka", name: "Georgian", native: "ქართული" },
-    { code: "is", name: "Icelandic", native: "Íslenska" },
-    { code: "ga", name: "Irish", native: "Gaeilge" },
-    { code: "kk", name: "Kazakh", native: "Қазақ" },
-    { code: "ky", name: "Kyrgyz", native: "Кыргызча" },
-    { code: "lv", name: "Latvian", native: "Latviešu" },
-    { code: "lt", name: "Lithuanian", native: "Lietuvių" },
-    { code: "mk", name: "Macedonian", native: "Македонски" },
-    { code: "mg", name: "Malagasy", native: "Malagasy" },
-    { code: "mt", name: "Maltese", native: "Malti" },
-    { code: "mn", name: "Mongolian", native: "Монгол" },
-    { code: "ps", name: "Pashto", native: "پښتو" },
-    { code: "so", name: "Somali", native: "Soomaali" },
-    { code: "tg", name: "Tajik", native: "Тоҷикӣ" },
-    { code: "uz", name: "Uzbek", native: "Oʻzbek" },
-    { code: "cy", name: "Welsh", native: "Cymraeg" },
-    { code: "yi", name: "Yiddish", native: "ייִדיש" },
-    { code: "yo", name: "Yoruba", native: "Yorùbá" },
-    { code: "zu", name: "Zulu", native: "isiZulu" }
+// 105+ Complete World Languages Dataset
+const LANGUAGES = [
+    {code:"hi",native:"हिन्दी",english:"Hindi"},
+    {code:"en",native:"English",english:"English"},
+    {code:"sa",native:"संस्कृतम्",english:"Sanskrit"},
+    {code:"mr",native:"मराठी",english:"Marathi"},
+    {code:"gu",native:"ગુજરાતી",english:"Gujarati"},
+    {code:"bn",native:"বাংলা",english:"Bengali"},
+    {code:"ta",native:"தமிழ்",english:"Tamil"},
+    {code:"te",native:"తెలుగు",english:"Telugu"},
+    {code:"kn",native:"ಕನ್ನಡ",english:"Kannada"},
+    {code:"ml",native:"മലയാളം",english:"Malayalam"},
+    {code:"pa",native:"ਪੰਜਾਬੀ",english:"Punjabi"},
+    {code:"or",native:"ଓଡ଼ିଆ",english:"Odia"},
+    {code:"as",native:"অসমীয়া",english:"Assamese"},
+    {code:"ne",native:"नेपाली",english:"Nepali"},
+    {code:"ur",native:"اردو",english:"Urdu"},
+    {code:"bho",native:"भोजपुरी",english:"Bhojpuri"},
+    {code:"mai",native:"मैथिली",english:"Maithili"},
+    {code:"raj",native:"राजस्थानी",english:"Rajasthani"},
+    {code:"sd",native:"سنڌي",english:"Sindhi"},
+    {code:"ks",native:"کٲشُر",english:"Kashmiri"},
+    {code:"kok",native:"कोंकणी",english:"Konkani"},
+    {code:"mni",native:"মৈতৈলোন্",english:"Manipuri"},
+    {code:"ar",native:"العربية",english:"Arabic"},
+    {code:"fr",native:"Français",english:"French"},
+    {code:"de",native:"Deutsch",english:"German"},
+    {code:"es",native:"Español",english:"Spanish"},
+    {code:"ru",native:"Русский",english:"Russian"},
+    {code:"ja",native:"日本語",english:"Japanese"},
+    {code:"zh",native:"中文",english:"Chinese"},
+    {code:"ko",native:"한국어",english:"Korean"},
+    {code:"it",native:"Italiano",english:"Italian"},
+    {code:"pt",native:"Português",english:"Portuguese"},
+    {code:"th",native:"ไทย",english:"Thai"},
+    {code:"vi",native:"Tiếng Việt",english:"Vietnamese"},
+    {code:"id",native:"Bahasa Indonesia",english:"Indonesian"},
+    {code:"tr",native:"Türkçe",english:"Turkish"},
+    {code:"fa",native:"فارسی",english:"Persian"},
+    {code:"nl",native:"Nederlands",english:"Dutch"},
+    {code:"el",native:"Ελληνικά",english:"Greek"},
+    {code:"he",native:"עברית",english:"Hebrew"},
+    {code:"pl",native:"Polski",english:"Polish"},
+    {code:"uk",native:"Українська",english:"Ukrainian"},
+    {code:"sv",native:"Svenska",english:"Swedish"},
+    {code:"no",native:"Norsk",english:"Norwegian"},
+    {code:"fi",native:"Suomi",english:"Finnish"},
+    {code:"da",native:"Dansk",english:"Danish"},
+    {code:"cs",native:"Čeština",english:"Czech"},
+    {code:"hu",native:"Magyar",english:"Hungarian"},
+    {code:"ro",native:"Română",english:"Romanian"},
+    {code:"bg",native:"Български",english:"Bulgarian"},
+    {code:"sr",native:"Српски",english:"Serbian"},
+    {code:"hr",native:"Hrvatski",english:"Croatian"},
+    {code:"sk",native:"Slovenčina",english:"Slovak"},
+    {code:"sl",native:"Slovenščina",english:"Slovenian"},
+    {code:"ms",native:"Bahasa Melayu",english:"Malay"},
+    {code:"fil",native:"Filipino",english:"Filipino"},
+    {code:"my",native:"မြန်မာ",english:"Burmese"},
+    {code:"km",native:"ខ្មែរ",english:"Khmer"},
+    {code:"lo",native:"ລາວ",english:"Lao"},
+    {code:"si",native:"සිංහල",english:"Sinhala"},
+    {code:"am",native:"አማርኛ",english:"Amharic"},
+    {code:"sw",native:"Kiswahili",english:"Swahili"},
+    {code:"af",native:"Afrikaans",english:"Afrikaans"},
+    {code:"sq",native:"Shqip",english:"Albanian"},
+    {code:"hy",native:"Հայերեն",english:"Armenian"},
+    {code:"az",native:"Azərbaycan",english:"Azerbaijani"},
+    {code:"eu",native:"Euskara",english:"Basque"},
+    {code:"be",native:"Беларуская",english:"Belarusian"},
+    {code:"bs",native:"Bosanski",english:"Bosnian"},
+    {code:"ca",native:"Català",english:"Catalan"},
+    {code:"et",native:"Eesti",english:"Estonian"},
+    {code:"gl",native:"Galego",english:"Galician"},
+    {code:"ka",native:"ქართული",english:"Georgian"},
+    {code:"is",native:"Íslenska",english:"Icelandic"},
+    {code:"ga",native:"Gaeilge",english:"Irish"},
+    {code:"kk",native:"Қазақ",english:"Kazakh"},
+    {code:"ky",native:"Кыргызча",english:"Kyrgyz"},
+    {code:"lv",native:"Latviešu",english:"Latvian"},
+    {code:"lt",native:"Lietuvių",english:"Lithuanian"},
+    {code:"mk",native:"Македонски",english:"Macedonian"},
+    {code:"mg",native:"Malagasy",english:"Malagasy"},
+    {code:"mt",native:"Malti",english:"Maltese"},
+    {code:"mn",native:"Монгол",english:"Mongolian"},
+    {code:"ps",native:"پښتو",english:"Pashto"},
+    {code:"so",native:"Soomaali",english:"Somali"},
+    {code:"tg",native:"Тоҷикӣ",english:"Tajik"},
+    {code:"uz",native:"Oʻzbek",english:"Uzbek"},
+    {code:"cy",native:"Cymraeg",english:"Welsh"},
+    {code:"yi",native:"ייִדיש",english:"Yiddish"},
+    {code:"yo",native:"Yorùbá",english:"Yoruba"},
+    {code:"zu",native:"isiZulu",english:"Zulu"}
 ];
 
-const QUICK_LANGS = [
-    { code: "hi", native: "हिन्दी" },
-    { code: "en", native: "English" },
-    { code: "sa", native: "संस्कृतम्" },
-    { code: "gu", native: "ગુજરાતી" },
-    { code: "mr", native: "मराठी" },
-    { code: "bn", native: "বাংলা" },
-    { code: "ta", native: "தமிழ்" },
-    { code: "te", native: "తెలుగు" }
-];
+const QUICK_LANGS = ["hi","en","sa","gu","mr","bn","ta","te"];
 
-// Translations dictionary for key UI labels
 const TRANSLATIONS = {
-    hi: {
-        jayBhawani: "🙏 जय भवानी 🙏",
-        welcomeTitle: "सनातनम् में आपका स्वागत है",
-        welcomeDesc: "<b>सनातन सेवा समिति</b> के आधिकारिक डिजिटल मंच पर आपका स्वागत है। धर्म, सेवा और एकता को समर्पित।",
-        divineBlessings: "दिव्य आशीर्वाद",
-        prefBadge: "🌐 भाषा प्राथमिकता",
-        prefTitle: "अपनी भाषा चुनें",
-        prefDesc: "एप्लिकेशन का उपयोग करने के लिए अपनी पसंदीदा भाषा चुनें।",
-        samitiName: "🔱 सनातन सेवा समिति",
-        memberTitle: "सदस्य बनें",
-        memberDesc: "सनातन धर्म के पावन मिशन से जुड़ें। अपना सत्यापित डिजिटल पहचान पत्र प्राप्त करें और सेवा कार्य में सहयोग दें।",
-        btnRegister: "➕ नया पंजीकरण",
-        btnLogin: "🔑 सदस्य लॉगिन",
-        btnBack: "⬅ वापस",
-        btnNext: "आगे बढ़ें ➔"
+    en:{
+        step1Eyebrow:"Welcome",
+        welcomeDesc:"A modern spiritual platform bringing Sanatana wisdom, devotion, knowledge and tradition together in one beautiful experience.",
+        step2Eyebrow:"Divine Blessings",
+        divineTitle:"Divine Blessings",
+        divineDesc:"May divine grace illuminate your path, strengthen your faith and bring peace, wisdom and positive energy into your life.",
+        step3Eyebrow:"Personalize Your Experience",
+        langTitle:"Language",
+        langDesc:"Select the language you would like to use throughout your SANATANAM experience.",
+        quickTitle:"Popular Languages",
+        step4Eyebrow:"Your Journey Begins",
+        memberDesc:"Create your account or continue with your existing SANATANAM membership.",
+        btnRegister:"Create New Account",
+        btnLogin:"Sign In"
     },
-    en: {
-        jayBhawani: "🙏 Jay Bhawani 🙏",
-        welcomeTitle: "Welcome to SANATANAM",
-        welcomeDesc: "Welcome to the official digital platform of <b>Sanatan Seva Samiti</b>. Dedicated to righteousness, divine service, and unity.",
-        divineBlessings: "Divine Blessings",
-        prefBadge: "🌐 Preferences",
-        prefTitle: "Choose Your Language",
-        prefDesc: "Select your preferred language for using the application.",
-        samitiName: "🔱 Sanatan Seva Samiti",
-        memberTitle: "Become a Member",
-        memberDesc: "Join the sacred mission of Sanatan Dharma. Get your verified Digital Identity Card, engage in sacred service, and contribute to society.",
-        btnRegister: "➕ New Registration",
-        btnLogin: "🔑 Member Login",
-        btnBack: "⬅ Back",
-        btnNext: "Next ➔"
+    hi:{
+        step1Eyebrow:"स्वागतम्",
+        welcomeDesc:"सनातन ज्ञान, भक्ति, संस्कृति और सेवा परंपरा को एक सुंदर डिजिटल अनुभव में एक साथ अनुभव करें।",
+        step2Eyebrow:"दिव्य आशीर्वाद",
+        divineTitle:"दिव्य आशीर्वाद",
+        divineDesc:"राज राजेश्वरी माँ भगवती की असीम अनुकंपा और कृपा सदा आप और आपके परिवार पर बनी रहे।",
+        step3Eyebrow:"भाषा प्राथमिकता",
+        langTitle:"भाषा",
+        langDesc:"एप्लिकेशन का उपयोग करने के लिए अपनी पसंदीदा भाषा चुनें।",
+        quickTitle:"त्वरित चयन",
+        step4Eyebrow:"पावन यात्रा",
+        memberDesc:"सनातन धर्म के पावन मिशन से जुड़ें। अपना डिजिटल परिचय पत्र प्राप्त करें और सेवा से जुड़ें।",
+        btnRegister:"नया पंजीकरण",
+        btnLogin:"सदस्य लॉगिन"
     },
-    sa: {
-        jayBhawani: "🙏 जय भवानी 🙏",
-        welcomeTitle: "सनातने स्वागतम्",
-        welcomeDesc: "<b>सनातन सेवा समितेः</b> आधिकारिके डिजिटल-मञ्चे स्वागतम्। धर्म-सेवा-एकताभ्यः समर्पितम्।",
-        divineBlessings: "दिव्याशीर्वादः",
-        prefBadge: "🌐 भाषा चयनम्",
-        prefTitle: "स्वाभीष्टभाषां वृणुताम्",
-        prefDesc: "अनुप्रयोगस्य प्रयोगार्थं स्वाभीष्टभाषां वृणुताम्।",
-        samitiName: "🔱 सनातन सेवा समितिः",
-        memberTitle: "सदस्यो भवतु",
-        memberDesc: "सनातनधर्मस्य पवित्रकार्ये सम्मिलिताः भवन्तु। स्वाभासीयं परिचयपत्रं प्राप्नुवन्तु।",
-        btnRegister: "➕ नूतनपञ्जीकरणम्",
-        btnLogin: "🔑 सदस्यप्रवेशः",
-        btnBack: "⬅ प्रतिगच्छतु",
-        btnNext: "अग्रिमम् ➔"
+    sa:{
+        step1Eyebrow:"स्वागतम्",
+        welcomeDesc:"सनातनज्ञानं भक्तिं संस्कृतिं परम्परां च एकस्मिन् सुन्दरानुभवे अनुभवन्तु।",
+        step2Eyebrow:"दिव्याशीर्वादाः",
+        divineTitle:"दिव्याशीर्वादाः",
+        divineDesc:"भगवत्याः असीमकृपा भवत्सु भवतां परिवारेषु च सन्ततं तिष्ठतु।",
+        step3Eyebrow:"भाषा चयनम्",
+        langTitle:"भाषा",
+        langDesc:"अनुप्रयोगस्य प्रयोगार्थं स्वाभीष्टभाषां वृणुताम्।",
+        quickTitle:"प्रमुखाः भाषाः",
+        step4Eyebrow:"पावनयात्रा",
+        memberDesc:"सनातनधर्मस्य पवित्रकार्ये सम्मिलिताः भवन्तु। स्वाभासीयं परिचयपत्रं प्राप्नुवन्तु।",
+        btnRegister:"नूतनपञ्जीकरणम्",
+        btnLogin:"सदस्यप्रवेशः"
     }
 };
 
-function applyTranslations(lang) {
-    const t = TRANSLATIONS[lang] || TRANSLATIONS['hi'] || TRANSLATIONS['en'];
-    document.querySelectorAll("[data-i18n]").forEach(el => {
+function applyTranslations(lang){
+    const t = TRANSLATIONS[lang] || TRANSLATIONS.en;
+    document.querySelectorAll("[data-i18n]").forEach(el=>{
         const key = el.getAttribute("data-i18n");
-        if (t[key]) {
-            el.innerHTML = t[key];
-        }
+        if(t[key]){ el.innerHTML = t[key]; }
     });
 }
 
-function renderQuickChips() {
+function renderQuickChips(){
     const wrap = document.getElementById("quickChipsWrap");
-    if (!wrap) return;
-    wrap.innerHTML = QUICK_LANGS.map(item => `
-        <div class="quick-chip ${activeLang === item.code ? 'selected' : ''}" 
-             onclick="selectAppLanguage('${item.code}')">
-            ${item.native}
-        </div>
-    `).join("");
+    if(!wrap) return;
+    wrap.innerHTML = QUICK_LANGS.map(code => {
+        const lang = LANGUAGES.find(x => x.code === code);
+        if(!lang) return "";
+        return `<button type="button" class="quick-chip ${activeLang===code?'active':''}" onclick="selectAppLanguage('${code}')">${lang.native}</button>`;
+    }).join("");
 }
 
-function renderLanguagesList(filterText = "") {
+function renderLanguagesList(list = LANGUAGES){
     const container = document.getElementById("langGridContainer");
-    if (!container) return;
+    if(!container) return;
+    container.innerHTML = "";
+    const grid = document.createElement("div");
+    grid.className = "lang-grid";
 
-    const query = filterText.trim().toLowerCase();
-    const filtered = query ? SANATANAM_LANGUAGES.filter(item => 
-        item.name.toLowerCase().includes(query) || 
-        item.native.toLowerCase().includes(query) ||
-        item.code.toLowerCase().includes(query)
-    ) : SANATANAM_LANGUAGES;
-
-    if (filtered.length === 0) {
-        container.innerHTML = `<div class="no-lang-found">⚠️ कोई भाषा नहीं मिली / No language matched "${filterText}"</div>`;
+    if(list.length === 0){
+        container.innerHTML = `<div style="grid-column:span 2; padding:20px; text-align:center; color:#e0c9a6; font-size:12px;">No language matched</div>`;
         return;
     }
 
-    container.innerHTML = filtered.map(item => `
-        <div class="lang-card ${activeLang === item.code ? 'selected' : ''}" 
-             onclick="selectAppLanguage('${item.code}')"
-             id="lang-card-${item.code}">
-            <span class="lang-primary">${item.native}</span>
-            <span class="lang-sub">${item.name}</span>
-        </div>
-    `).join("");
+    list.forEach(lang => {
+        const card = document.createElement("button");
+        card.type = "button";
+        card.className = "lang-card" + (activeLang === lang.code ? " active" : "");
+        card.innerHTML = `
+            <div class="lang-icon">${lang.native.substring(0,1)}</div>
+            <div class="lang-name">
+                <span class="lang-native">${lang.native}</span>
+                <span class="lang-english">${lang.english}</span>
+            </div>
+        `;
+        card.onclick = () => selectAppLanguage(lang.code);
+        grid.appendChild(card);
+    });
+    container.appendChild(grid);
 
     const badge = document.getElementById("langCounterBadge");
-    if (badge) {
-        if (query) {
-            badge.innerText = `🔍 ${filtered.length} भाषाएँ मिलीं / Languages Found`;
-        } else {
-            badge.innerText = `🌐 ${SANATANAM_LANGUAGES.length}+ भाषाएँ उपलब्ध (Global Real-time Translation)`;
-        }
+    if(badge){
+        badge.textContent = list.length + " Languages";
     }
 }
 
-function filterLanguages(val) {
-    const clearBtn = document.getElementById("searchClearBtn");
-    if (clearBtn) {
-        clearBtn.style.display = val.length > 0 ? "inline-block" : "none";
-    }
-    renderLanguagesList(val);
-}
-
-function clearLangSearch() {
+function filterLanguages(){
     const input = document.getElementById("langSearchInput");
-    if (input) {
-        input.value = "";
-        filterLanguages("");
-        input.focus();
-    }
+    const clearBtn = document.getElementById("searchClearBtn");
+    if(!input) return;
+    const query = input.value.trim().toLowerCase();
+    if(clearBtn) clearBtn.style.display = query ? "flex" : "none";
+
+    const filtered = LANGUAGES.filter(l => 
+        l.native.toLowerCase().includes(query) ||
+        l.english.toLowerCase().includes(query) ||
+        l.code.toLowerCase().includes(query)
+    );
+    renderLanguagesList(filtered);
 }
 
-function selectAppLanguage(langCode) {
-    activeLang = langCode;
+function clearLangSearch(){
+    const input = document.getElementById("langSearchInput");
+    if(!input) return;
+    input.value = "";
+    filterLanguages();
+    input.focus();
+}
+
+function selectAppLanguage(code){
+    activeLang = code;
     try {
-        localStorage.setItem("sanatanam_app_lang", langCode);
-    } catch (e) {}
-
-    applyTranslations(langCode);
+        localStorage.setItem("sanatanam_app_lang", code);
+    } catch(e){}
+    applyTranslations(code);
     renderQuickChips();
-    const searchVal = document.getElementById("langSearchInput")?.value || "";
-    renderLanguagesList(searchVal);
+    renderLanguagesList();
 
-    // Notify Android Native Environment if available
-    if (window.AndroidBridge && window.AndroidBridge.onLanguageSelected) {
-        window.AndroidBridge.onLanguageSelected(langCode);
+    if(typeof AndroidBridge !== "undefined" && AndroidBridge.onLanguageSelected){
+        AndroidBridge.onLanguageSelected(code);
     }
 }
 
-function updateStepperUI() {
-    for (let i = 1; i <= totalSteps; i++) {
-        const stepEl = document.getElementById(`step-${i}`);
-        const dotEl = document.getElementById(`dot-${i}`);
-        
-        if (i === currentStep) {
-            stepEl.classList.add("active");
-            dotEl.classList.add("active");
-        } else {
-            stepEl.classList.remove("active");
-            dotEl.classList.remove("active");
-        }
+function updateStepperUI(){
+    for(let i=1; i<=totalSteps; i++){
+        const dot = document.querySelector(".dot-"+i);
+        if(!dot) continue;
+        dot.classList.remove("active", "completed");
+        if(i < currentStep) dot.classList.add("completed");
+        if(i === currentStep) dot.classList.add("active");
     }
+    const label = document.getElementById("currentStepLabel");
+    if(label) label.textContent = String(currentStep).padStart(2, "0");
 
-    const btnBack = document.getElementById("btnBack");
-    const btnNext = document.getElementById("btnNext");
+    document.querySelectorAll(".step").forEach((step, idx) => {
+        step.classList.toggle("active", idx + 1 === currentStep);
+    });
 
-    if (currentStep === 1) {
-        btnBack.style.visibility = "hidden";
-    } else {
-        btnBack.style.visibility = "visible";
+    const back = document.getElementById("btnBack");
+    const next = document.getElementById("btnNext");
+    if(back){
+        back.style.opacity = currentStep === 1 ? ".35" : "1";
+        back.disabled = currentStep === 1;
     }
-
-    if (currentStep === totalSteps) {
-        btnNext.style.display = "none";
-    } else {
-        btnNext.style.display = "inline-flex";
+    if(next){
+        next.textContent = currentStep === totalSteps ? "Get Started" : "Continue";
     }
 }
 
-function navigateStep(direction) {
-    const nextStep = currentStep + direction;
-    if (nextStep >= 1 && nextStep <= totalSteps) {
+function navigateStep(dir){
+    const nextStep = currentStep + dir;
+    if(nextStep >= 1 && nextStep <= totalSteps){
         currentStep = nextStep;
         updateStepperUI();
     }
 }
 
-// Android Bridge Communication for Register / Login actions
-function triggerAndroidAction(actionType) {
-    if (window.AndroidBridge) {
-        if (actionType === 'register') {
-            if (window.AndroidBridge.onRegisterClick) {
-                window.AndroidBridge.onRegisterClick();
-            }
-            if (window.AndroidBridge.openNativeScreen) {
-                window.AndroidBridge.openNativeScreen("app_register");
+function triggerAndroidAction(action){
+    try {
+        if(typeof AndroidBridge !== "undefined"){
+            if(action === "register" && AndroidBridge.onRegisterClick){ AndroidBridge.onRegisterClick(); return; }
+            if(action === "login" && AndroidBridge.onLoginClick){ AndroidBridge.onLoginClick(); return; }
+            if(AndroidBridge.openNativeScreen){
+                AndroidBridge.openNativeScreen(action === "register" ? "app_register" : "app_login");
                 return;
             }
         }
-        if (actionType === 'login') {
-            if (window.AndroidBridge.onLoginClick) {
-                window.AndroidBridge.onLoginClick();
-            }
-            if (window.AndroidBridge.openNativeScreen) {
-                window.AndroidBridge.openNativeScreen("app_login");
-                return;
-            }
-        }
-    }
-    if (actionType === 'register') {
-        window.location.href = "app_register.html";
-    } else if (actionType === 'login') {
-        window.location.href = "app_login.html";
-    }
-    console.log("Action triggered: " + actionType);
+    } catch(e){}
+    window.location.href = action === "register" ? "app_register.html" : "app_login.html";
 }
 
-window.addEventListener("DOMContentLoaded", () => {
-    applyTranslations(activeLang);
-    updateStepperUI();
+document.addEventListener("DOMContentLoaded", () => {
+    // ONBOARDING ALWAYS STARTS IN ENGLISH (RESET STATE)
+    activeLang = "en";
+    applyTranslations("en");
     renderQuickChips();
     renderLanguagesList();
+    updateStepperUI();
+
+    const search = document.getElementById("langSearchInput");
+    if(search) search.addEventListener("input", filterLanguages);
 });
 </script>
-
 </body>
 </html>
