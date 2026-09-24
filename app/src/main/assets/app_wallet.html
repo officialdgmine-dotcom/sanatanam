@@ -103,6 +103,9 @@
     .amt-dr { color: #d41420; }
     .click-hint { font-size: 10px; color: #8c0710; font-weight: 600; display: block; margin-top: 2px; }
 
+    /* खाली स्थिति */
+    .empty-state { text-align: center; padding: 40px 20px; background: #fff; border-radius: 18px; color: #888; border: 1px dashed #ddd; font-size: 13px; }
+
     /* रसीद MODAL */
     .modal-overlay {
         position: fixed; inset: 0; background: rgba(0,0,0,0.65); backdrop-filter: blur(4px);
@@ -140,32 +143,9 @@
     .r-row span:first-child { color: #777; }
     .r-row span:last-child { font-weight: bold; color: #222; text-align: right; max-width: 190px; word-break: break-word; }
 
-    .r-btn-group { display: flex; gap: 10px; margin-top: 15px; }
-    .r-complete-btn {
-        flex: 1; padding: 12px; background: linear-gradient(135deg, #28a745, #1e7e34); color: #fff;
-        border: none; border-radius: 12px; font-weight: bold; font-size: 14px; cursor: pointer;
-        display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 4px 12px rgba(40,167,69,0.3);
-    }
-    .r-complete-btn:active { transform: scale(0.96); }
     .r-close-btn {
-        flex: 1; padding: 12px; background: #333; color: #fff;
+        width: 100%; margin-top: 15px; padding: 12px; background: #222; color: #fff;
         border: none; border-radius: 12px; font-weight: bold; font-size: 14px; cursor: pointer;
-    }
-
-    /* Toast Notification */
-    .toast-notification {
-        position: fixed; bottom: 85px; left: 50%;
-        transform: translateX(-50%) translateY(40px);
-        background: linear-gradient(135deg, #1b5e20, #2e7d32);
-        color: #ffffff; padding: 12px 22px; border-radius: 50px;
-        font-size: 13.5px; font-weight: 700; display: flex; align-items: center; gap: 10px;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.3); border: 1.5px solid #4caf50;
-        z-index: 100001; opacity: 0; pointer-events: none;
-        transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        max-width: 90%; width: max-content; text-align: center;
-    }
-    .toast-notification.show {
-        opacity: 1; transform: translateX(-50%) translateY(0); pointer-events: auto;
     }
 
     /* FOOTER NAV */
@@ -192,7 +172,7 @@
     <div class="wallet-hero">
         <div class="hero-top">
             <div class="hero-om">ॐ</div>
-            <div class="hero-user" id="walletUserName">सनातन सेवक</div>
+            <div class="hero-user" id="walletUserName">लोड हो रहा है...</div>
         </div>
         
         <div class="hero-bal-label">उपलब्ध कुल वॉलेट बैलेंस</div>
@@ -206,19 +186,19 @@
 
     <!-- 2. तुरंत खर्च / भुगतान के विकल्प -->
     <div class="quick-actions">
-        <a href="javascript:void(0)" onclick="openPaySheet('दान / सेवा सहयोग')" class="action-card">
+        <a href="pay.html?service=दान / सहयोग" class="action-card">
             <span class="action-icon">🚩</span>
             दान / सेवा सहयोग
         </a>
-        <a href="javascript:void(0)" onclick="openPaySheet('धार्मिक पुस्तक खरीद')" class="action-card">
+        <a href="pay.html?service=धार्मिक पुस्तक" class="action-card">
             <span class="action-icon">📚</span>
             किताब खरीद
         </a>
-        <a href="javascript:void(0)" onclick="openPaySheet('सदस्यता अपग्रेड')" class="action-card">
+        <a href="pay.html?service=सदस्यता अपग्रेड" class="action-card">
             <span class="action-icon">🎖️</span>
             सदस्यता अपग्रेड
         </a>
-        <a href="javascript:void(0)" onclick="openPaySheet('धान व कृषि सहयोग')" class="action-card">
+        <a href="pay.html?service=कृषि व धान सहयोग" class="action-card">
             <span class="action-icon">🌾</span>
             धान / कृषि सहयोग
         </a>
@@ -232,21 +212,7 @@
         </div>
 
         <div id="walletTxnContainer">
-            <!-- लेन-देन 1 -->
-            <div class="txn-item" onclick="viewDemoReceipt('CREDIT', '₹501.00', 'दान / सहयोग', 'विशेष सेवा समर्पण', 'SSM2026090178A', '987654321012', 'SSM-RCP-2026-101')">
-                <div class="txn-left">
-                    <div class="txn-icon icon-cr">↓</div>
-                    <div>
-                        <div class="txn-title">दान / सेवा सहयोग</div>
-                        <div class="txn-desc">समिति विकास सेवा समर्पण</div>
-                        <div class="txn-date">📅 हाल ही में • 11:30 AM</div>
-                    </div>
-                </div>
-                <div class="txn-right">
-                    <div class="txn-amount amt-cr">+₹501.00</div>
-                    <span class="click-hint">रसीद देखें ➔</span>
-                </div>
-            </div>
+            <div class="empty-state">लेन-देन विवरण लोड हो रहा है...</div>
         </div>
     </div>
 
@@ -270,7 +236,7 @@
             <div class="r-details">
                 <div class="r-row">
                     <span>सहयोगकर्ता:</span>
-                    <span id="r_name">सनातन सेवक</span>
+                    <span id="r_name">--</span>
                 </div>
                 <div class="r-row">
                     <span>सेवा:</span>
@@ -294,18 +260,13 @@
                 </div>
                 <div class="r-row">
                     <span>दिनांक व समय:</span>
-                    <span id="r_date">हाल ही में</span>
+                    <span id="r_date">--</span>
                 </div>
             </div>
 
-            <div class="r-btn-group">
-                <button type="button" class="r-complete-btn" id="walletCompleteBtn" onclick="completeWalletReceipt()">
-                    <i class="fa-solid fa-circle-check"></i> Complete
-                </button>
-                <button type="button" class="r-close-btn" onclick="document.getElementById('receiptModal').style.display='none'">
-                    बंद करें
-                </button>
-            </div>
+            <button type="button" class="r-close-btn" onclick="document.getElementById('receiptModal').style.display='none'">
+                रसीद बंद करें
+            </button>
         </div>
     </div>
 </div>
@@ -337,58 +298,101 @@
 </div>
 
 <script>
-function loadWalletUserData() {
+let currentUserName = "सनातन सेवक";
+
+async function fetchLiveWalletData() {
     try {
         const raw = localStorage.getItem("sss_user_data");
-        if (raw) {
-            const u = JSON.parse(raw);
-            const name = u.full_name || "सनातन सेवक";
-            const uid = u.unique_id || "PRO1781011172";
-            document.getElementById("walletUserName").innerText = name;
-            document.getElementById("walletUserId").innerText = uid;
-            document.getElementById("r_name").innerText = name;
-
-            const savedBal = localStorage.getItem("sss_wallet_balance");
-            if (savedBal) {
-                document.getElementById("walletUserBalance").innerText = "₹" + parseFloat(savedBal).toFixed(2);
-            }
-            pollWalletBalance(uid);
+        if (!raw) {
+            document.getElementById("walletTxnContainer").innerHTML = `<div class="empty-state">कृपया ऐप में लॉगिन करें।</div>`;
+            return;
         }
-    } catch(e) {
-        console.log("Wallet session sync check:", e);
+
+        const user = JSON.parse(raw);
+        const uid = user.unique_id || user.id || "SSS00000001";
+        currentUserName = user.full_name || "सनातन सेवक";
+
+        // पहले कैश से बेसिक डेटा तुरंत दिखाएं (0-delay)
+        document.getElementById("walletUserName").innerText = currentUserName;
+        document.getElementById("walletUserId").innerText = uid;
+        document.getElementById("r_name").innerText = currentUserName;
+
+        const cachedBal = localStorage.getItem("sss_wallet_balance");
+        if (cachedBal !== null) {
+            document.getElementById("walletUserBalance").innerText = "₹" + parseFloat(cachedBal).toFixed(2);
+        }
+
+        // सर्वर से लाइव डेटा फेच
+        const response = await fetch(`https://sanatansevasamiti.org/api/get_wallet_data.php?uid=${encodeURIComponent(uid)}`);
+        if (!response.ok) throw new Error("नेटवर्क प्रतिक्रिया विफल");
+
+        const data = await response.json();
+        if (data && data.status) {
+            // 1. लाइव बैलेंस अपडेट
+            const liveBal = parseFloat(data.wallet_balance) || 0;
+            document.getElementById("walletUserBalance").innerText = "₹" + liveBal.toFixed(2);
+            localStorage.setItem("sss_wallet_balance", liveBal);
+
+            if (data.full_name) {
+                currentUserName = data.full_name;
+                document.getElementById("walletUserName").innerText = currentUserName;
+                document.getElementById("r_name").innerText = currentUserName;
+            }
+
+            // 2. वास्तविक लेन-देन हिस्ट्री रेंडर
+            const container = document.getElementById("walletTxnContainer");
+            if (Array.isArray(data.transactions) && data.transactions.length > 0) {
+                container.innerHTML = data.transactions.map(t => {
+                    const isCr = (t.type === 'CREDIT');
+                    const tJson = JSON.stringify({
+                        type: t.type,
+                        amount: "₹" + parseFloat(t.amount).toFixed(2),
+                        service: t.service_name,
+                        desc: t.description,
+                        txn_id: t.txn_id,
+                        utr: t.utr_no,
+                        receipt: t.receipt_no,
+                        date: t.date,
+                        name: currentUserName
+                    }).replace(/"/g, '&quot;');
+
+                    return `
+                    <div class="txn-item" onclick="viewReceipt(${tJson})">
+                        <div class="txn-left">
+                            <div class="txn-icon ${isCr ? 'icon-cr' : 'icon-dr'}">${isCr ? '↓' : '↑'}</div>
+                            <div>
+                                <div class="txn-title">${t.service_name}</div>
+                                <div class="txn-desc">${t.description}</div>
+                                <div class="txn-date">📅 ${t.date}</div>
+                            </div>
+                        </div>
+                        <div class="txn-right">
+                            <div class="txn-amount ${isCr ? 'amt-cr' : 'amt-dr'}">${isCr ? '+' : '-'}₹${parseFloat(t.amount).toFixed(2)}</div>
+                            <span class="click-hint">रसीद देखें ➔</span>
+                        </div>
+                    </div>`;
+                }).join("");
+            } else {
+                container.innerHTML = `<div class="empty-state">अभी तक कोई लेन-देन नहीं हुआ है।</div>`;
+            }
+        }
+    } catch (err) {
+        console.warn("Wallet data sync error:", err);
     }
 }
 
-async function pollWalletBalance(uid) {
-    if (!navigator.onLine) return;
-    try {
-        const token = localStorage.getItem("sss_user_token") || "";
-        const res = await fetch(`https://sanatansevasamiti.org/api/user_metrics.php?uid=${encodeURIComponent(uid)}&token=${encodeURIComponent(token)}`, {
-            method: 'GET',
-            headers: { 'Accept': 'application/json' }
-        });
-        if (res.ok) {
-            const data = await res.json();
-            if (data && data.success && data.wallet_balance !== undefined) {
-                document.getElementById("walletUserBalance").innerText = "₹" + parseFloat(data.wallet_balance).toFixed(2);
-                localStorage.setItem("sss_wallet_balance", data.wallet_balance);
-            }
-        }
-    } catch(err) {
-        console.log("Offline or wallet balance fallback:", err);
-    }
-}
-
-function viewDemoReceipt(type, amount, service, desc, txn, utr, receipt) {
-    document.getElementById('r_amount').innerText = amount;
-    document.getElementById('r_service').innerText = service;
-    document.getElementById('r_desc').innerText = desc;
-    document.getElementById('r_txn').innerText = txn;
-    document.getElementById('r_utr').innerText = utr;
-    document.getElementById('r_receipt').innerText = receipt;
+function viewReceipt(data) {
+    document.getElementById('r_amount').innerText = data.amount;
+    document.getElementById('r_name').innerText = data.name || currentUserName;
+    document.getElementById('r_service').innerText = data.service;
+    document.getElementById('r_desc').innerText = data.desc;
+    document.getElementById('r_txn').innerText = data.txn_id;
+    document.getElementById('r_utr').innerText = data.utr;
+    document.getElementById('r_receipt').innerText = data.receipt;
+    document.getElementById('r_date').innerText = data.date;
 
     const badge = document.getElementById('r_badge');
-    if (type === 'CREDIT') {
+    if (data.type === 'CREDIT') {
         badge.className = 'r-badge r-badge-cr';
         badge.innerText = '↑ CREDITED ✓';
     } else {
@@ -405,78 +409,7 @@ function closeModal(e) {
     }
 }
 
-// Web Audio API subtle positive chime feedback
-function playSuccessChime() {
-    try {
-        const AudioCtxClass = window.AudioContext || window.webkitAudioContext;
-        if (!AudioCtxClass) return;
-        if (!window._audioCtx) {
-            window._audioCtx = new AudioCtxClass();
-        }
-        const ctx = window._audioCtx;
-        if (ctx.state === 'suspended') {
-            ctx.resume();
-        }
-
-        const now = ctx.currentTime;
-        const tones = [
-            { freq: 587.33, start: 0, duration: 0.22, vol: 0.12 },
-            { freq: 880.00, start: 0.08, duration: 0.28, vol: 0.14 },
-            { freq: 1174.66, start: 0.16, duration: 0.40, vol: 0.10 }
-        ];
-
-        tones.forEach(t => {
-            const osc = ctx.createOscillator();
-            const gain = ctx.createGain();
-
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(t.freq, now + t.start);
-
-            gain.gain.setValueAtTime(0.0001, now + t.start);
-            gain.gain.linearRampToValueAtTime(t.vol, now + t.start + 0.02);
-            gain.gain.exponentialRampToValueAtTime(0.0001, now + t.start + t.duration);
-
-            osc.connect(gain);
-            gain.connect(ctx.destination);
-
-            osc.start(now + t.start);
-            osc.stop(now + t.start + t.duration);
-        });
-    } catch (err) {
-        console.warn("Web Audio chime playback:", err);
-    }
-}
-
-function showToast(message, duration = 3500) {
-    playSuccessChime();
-    let toast = document.getElementById("toastNotification");
-    if (!toast) {
-        toast = document.createElement("div");
-        toast.id = "toastNotification";
-        toast.className = "toast-notification";
-        document.body.appendChild(toast);
-    }
-    toast.innerHTML = `<i class="fa-solid fa-circle-check" style="font-size:18px; color:#a3e635;"></i> <span>${message}</span>`;
-    toast.classList.add("show");
-    
-    if (window._toastTimer) clearTimeout(window._toastTimer);
-    window._toastTimer = setTimeout(() => {
-        toast.classList.remove("show");
-    }, duration);
-}
-
-function completeWalletReceipt() {
-    document.getElementById('receiptModal').style.display = 'none';
-    showToast("लेन-देन एवं रसीद सत्यापन सफलतापूर्वक पूर्ण हुआ! (Action Confirmed)");
-}
-
-function openPaySheet(service) {
-    alert(service + " भुगतान गेटवे लोड हो रहा है...");
-}
-
-window.addEventListener("DOMContentLoaded", () => {
-    loadWalletUserData();
-});
+window.addEventListener("DOMContentLoaded", fetchLiveWalletData);
 </script>
 </body>
 </html>
