@@ -6,6 +6,7 @@
 <title>सनातन सेवा समिति — डिजिटल पहचान, सेवा व वॉलेट</title>
 
 <!-- External Scripts for Canvas & Zip -->
+<script src="image_cache.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700;800;900&display=swap" rel="stylesheet">
@@ -1128,9 +1129,14 @@ if(document.getElementById('frontDownload')) {
 
 function logoutUser() {
     if (confirm("क्या आप वाकई लॉगआउट करना चाहते हैं?")) {
-        localStorage.removeItem("sss_user_token");
-        localStorage.removeItem("sss_user_data");
-        window.location.href = "app_login.html";
+        if (typeof window.handleSanatanamLogout === "function") {
+            window.handleSanatanamLogout();
+        } else {
+            localStorage.removeItem("sanatanam_app_lang");
+            localStorage.removeItem("sss_user_token");
+            localStorage.removeItem("sss_user_data");
+            window.location.href = "welcome.html";
+        }
     }
 }
 
@@ -1138,5 +1144,6 @@ window.addEventListener("DOMContentLoaded", () => {
     loadDashboardUserData();
 });
 </script>
+<script src="app_translator.js"></script>
 </body>
 </html>

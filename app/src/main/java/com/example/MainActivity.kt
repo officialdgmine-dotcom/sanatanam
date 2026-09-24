@@ -10,6 +10,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.provider.Settings
 import android.util.Base64
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +19,7 @@ import android.webkit.RenderProcessGoneDetail
 import android.webkit.SslErrorHandler
 import android.webkit.ValueCallback
 import android.webkit.WebChromeClient
+import android.webkit.WebResourceError
 import android.webkit.WebResourceRequest
 import android.webkit.WebResourceResponse
 import android.webkit.WebSettings
@@ -77,6 +79,7 @@ class MainActivity : ComponentActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+    window.setBackgroundDrawable(android.graphics.drawable.ColorDrawable(android.graphics.Color.parseColor("#170105")))
     enableEdgeToEdge()
     setContent {
       MyApplicationTheme(dynamicColor = false) {
@@ -205,6 +208,23 @@ class AndroidBridge(
       }
     }
   }
+
+  @JavascriptInterface
+  fun openSettings() {
+    try {
+      val intent = Intent(Settings.ACTION_WIRELESS_SETTINGS).apply {
+        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+      }
+      context.startActivity(intent)
+    } catch (e: Exception) {
+      try {
+        val intent = Intent(Settings.ACTION_SETTINGS).apply {
+          addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        }
+        context.startActivity(intent)
+      } catch (_: Exception) {}
+    }
+  }
 }
 
 @SuppressLint("SetJavaScriptEnabled")
@@ -234,15 +254,7 @@ fun SanatanamWebViewScreen(
   Box(
     modifier = Modifier
       .fillMaxSize()
-      .background(
-        Brush.verticalGradient(
-          colors = listOf(
-            Color(0xFFFF8800),
-            Color(0xFFB82E00),
-            Color(0xFF4A0000)
-          )
-        )
-      )
+      .background(Color(0xFF170105))
       .windowInsetsPadding(WindowInsets.safeDrawing)
   ) {
     AndroidView(
@@ -254,7 +266,7 @@ fun SanatanamWebViewScreen(
             ViewGroup.LayoutParams.MATCH_PARENT
           )
 
-          setBackgroundColor(android.graphics.Color.parseColor("#4A0000"))
+          setBackgroundColor(android.graphics.Color.parseColor("#170105"))
 
           // Use software layer rendering for WebView on virtualized environments to avoid Mesa DRI rendernode access failures
           setLayerType(View.LAYER_TYPE_SOFTWARE, null)
@@ -335,6 +347,28 @@ fun SanatanamWebViewScreen(
               handler?.proceed()
             }
 
+            override fun onReceivedError(
+              view: WebView?,
+              request: WebResourceRequest?,
+              error: WebResourceError?
+            ) {
+              super.onReceivedError(view, request, error)
+              if (request?.isForMainFrame == true) {
+                view?.loadUrl("file:///android_asset/offline.html")
+              }
+            }
+
+            @Suppress("DEPRECATION")
+            override fun onReceivedError(
+              view: WebView?,
+              errorCode: Int,
+              description: String?,
+              failingUrl: String?
+            ) {
+              super.onReceivedError(view, errorCode, description, failingUrl)
+              view?.loadUrl("file:///android_asset/offline.html")
+            }
+
             override fun shouldOverrideUrlLoading(
               view: WebView?,
               request: WebResourceRequest?
@@ -358,7 +392,8 @@ fun SanatanamWebViewScreen(
             override fun onPageFinished(view: WebView?, url: String?) {
               super.onPageFinished(view, url)
               val pageUrl = url?.lowercase() ?: ""
-              val isExcluded = pageUrl.contains("welcome_flow") ||
+              val isExcluded = pageUrl.contains("welcome") ||
+                pageUrl.contains("splash") ||
                 pageUrl.contains("app_login") ||
                 pageUrl.contains("app_register")
 
@@ -412,9 +447,10 @@ fun SanatanamWebViewScreen(
               onOpenNativeScreen = { screenName ->
                 (ctx as? ComponentActivity)?.runOnUiThread {
                   when (screenName) {
+                    "splash" -> loadUrl("file:///android_asset/splash.html")
                     "app_register" -> loadUrl("file:///android_asset/app_register.html")
                     "app_login" -> loadUrl("file:///android_asset/app_login.html")
-                    "welcome_flow" -> loadUrl("file:///android_asset/welcome_flow.html")
+                    "welcome", "welcome_flow" -> loadUrl("file:///android_asset/welcome.html")
                     "welcome_letter" -> loadUrl("file:///android_asset/welcome_letter.html")
                     else -> {
                       if (screenName.endsWith(".html")) {
@@ -442,10 +478,10 @@ fun SanatanamWebViewScreen(
               target == "home" -> "file:///android_asset/app_home.html"
               target == "id_card" -> "file:///android_asset/id_card.html"
               target == "guru_parampara" -> "file:///android_asset/guru_parampara.html"
-              else -> "file:///android_asset/index.html"
+              else -> "file:///android_asset/splash.html"
             }
           } else {
-            "file:///android_asset/index.html"
+            "file:///android_asset/splash.html"
           }
 
           loadUrl(initialUrl)

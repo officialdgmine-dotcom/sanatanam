@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>इंटरनेट कनेक्शन आवश्यक है</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --bhagwa: #ff6f00;
+            --maroon: #800000;
+            --gold: #ffd700;
+            --bg-page: #fffaf0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans Devanagari', 'Poppins', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: var(--bg-page);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: #2c1a12;
+            text-align: center;
+        }
+
+        .offline-card {
+            background: #ffffff;
+            width: 100%;
+            max-width: 390px;
+            border-radius: 28px;
+            padding: 35px 24px;
+            border: 2px solid var(--gold);
+            box-shadow: 0 14px 40px rgba(128, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .icon-circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            border: 3px solid var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 18px;
+            color: var(--maroon);
+            font-size: 42px;
+            box-shadow: 0 8px 22px rgba(255, 111, 0, 0.22);
+        }
+
+        .badge-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: #b30000;
+            background: #ffebee;
+            padding: 6px 16px;
+            border-radius: 20px;
+            border: 1px solid #ffcdd2;
+            margin-bottom: 16px;
+            font-weight: 800;
+        }
+
+        h2 {
+            font-size: 21px;
+            font-weight: 900;
+            color: var(--maroon);
+            margin-bottom: 8px;
+        }
+
+        p {
+            font-size: 13.5px;
+            color: #5d4037;
+            line-height: 1.65;
+            margin-bottom: 26px;
+        }
+
+        .action-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 14px;
+            border-radius: 14px;
+            font-size: 14px;
+            font-weight: 800;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s ease;
+        }
+
+        .action-btn:active {
+            transform: scale(0.97);
+        }
+
+        .btn-settings {
+            background: linear-gradient(135deg, #ff4500, #800000);
+            color: #ffffff;
+            border: 1.5px solid var(--gold);
+            box-shadow: 0 5px 15px rgba(179, 0, 0, 0.25);
+            margin-bottom: 12px;
+        }
+
+        .btn-retry {
+            background: #fff8e1;
+            color: var(--maroon);
+            border: 1.5px solid var(--gold);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="offline-card">
+        <div class="icon-circle">
+            <i class="fa-solid fa-wifi-slash"></i>
+        </div>
+
+        <div class="badge-status">
+            <i class="fa-solid fa-circle-exclamation"></i> कोई इंटरनेट कनेक्शन नहीं
+        </div>
+
+        <h2>इंटरनेट बंद है</h2>
+        <p>
+            सनातन सेवा समिति की दैनिक गतिविधियों, संकीर्तन और सेवा कार्यों से जुड़ने के लिए कृपया अपना मोबाइल डेटा या वाई-फ़ाई चालू करें।
+        </p>
+
+        <!-- सेटिंग्स खोलने का बटन -->
+        <button type="button" class="action-btn btn-settings" onclick="openNetworkSettings()">
+            <i class="fa-solid fa-gear"></i> इंटरनेट / वाई-फ़ाई चालू करें
+        </button>
+
+        <!-- रीलोड बटन -->
+        <button type="button" class="action-btn btn-retry" onclick="retryConnection()">
+            <i class="fa-solid fa-rotate-right"></i> पुनः प्रयास करें (Retry)
+        </button>
+    </div>
+
+    <script>
+        function openNetworkSettings() {
+            // AndroidBridge के ज़रिए सेटिंग्स खोलना
+            if (window.AndroidBridge && window.AndroidBridge.openSettings) {
+                window.AndroidBridge.openSettings();
+            } else {
+                // Fallback Android Intent
+                window.location.href = "intent:#Intent;action=android.settings.WIRELESS_SETTINGS;end";
+            }
+        }
+
+        function retryConnection() {
+            if (navigator.onLine) {
+                if (window.history.length > 1) {
+                    window.history.back();
+                } else {
+                    window.location.href = "app_home.html";
+                }
+            } else {
+                alert("इंटरनेट अभी भी बंद है। कृपया डेटा या वाई-फ़ाई ऑन करें।");
+            }
+        }
+
+        // इंटरनेट आते ही स्वतः वापस जाना
+        window.addEventListener('online', () => {
+            retryConnection();
+        });
+    </script>
+</body>
+</html>

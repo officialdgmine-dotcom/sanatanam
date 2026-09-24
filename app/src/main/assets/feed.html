@@ -954,20 +954,34 @@
         setTimeout(() => { toast.style.display = 'none'; }, 2600);
     }
 
-    // 10. सर्वर से लाइव पोस्ट्स फेच (Fallback to DEFAULT_FEED_POSTS)
+    // 10. सर्वर से लाइव पोस्ट्स फेच (Cache-First / Stale-While-Revalidate)
     async function loadLiveFeed() {
+        // 1. फ़ोन की लोकल मेमोरी से तुरंत 0 सेकंड में लोड
+        try {
+            const localCached = localStorage.getItem("cached_feed_posts");
+            if (localCached) {
+                const cachedData = JSON.parse(localCached);
+                if (Array.isArray(cachedData) && cachedData.length > 0) {
+                    renderFeed(cachedData);
+                }
+            } else {
+                renderFeed(DEFAULT_FEED_POSTS);
+            }
+        } catch(e) {
+            renderFeed(DEFAULT_FEED_POSTS);
+        }
+
+        // 2. बैकग्राउंड में ताज़ा डेटा फ़ेच व स्मूथ अपडेट
         try {
             const res = await fetch('https://sanatansevasamiti.org/api/get_feed_posts.php');
             const data = await res.json();
             if (data && data.status && Array.isArray(data.posts) && data.posts.length > 0) {
+                localStorage.setItem("cached_feed_posts", JSON.stringify(data.posts));
                 renderFeed(data.posts);
-                return;
             }
         } catch (e) {
-            console.log("Live feed fetch offline or fallback active.");
+            console.log("Background feed sync completed / offline mode active.");
         }
-        // यदि इंटरनेट बंद हो या API न मिले तो तुरंत ऑफ़लाइन डिफ़ॉल्ट पोस्ट्स दिखाएँ
-        renderFeed(DEFAULT_FEED_POSTS);
     }
 
     // 11. PULL TO REFRESH MECHANISM (फ़ीड रीफ्रेश तंत्र)

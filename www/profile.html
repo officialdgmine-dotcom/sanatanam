@@ -6,6 +6,7 @@
 <title>मेरा प्रोफाइल — सनातन सेवा समिति</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+<script src="image_cache.js"></script>
 
 <style>
     :root {
@@ -761,11 +762,17 @@ async function handlePasswordChange(e) {
 
 function logoutFromApp() {
     if (confirm("क्या आप वाकई लॉगआउट करना चाहते हैं?")) {
-        localStorage.removeItem("sss_user_token");
-        localStorage.removeItem("sss_user_data");
-        window.location.href = "app_login.html";
+        if (typeof window.handleSanatanamLogout === "function") {
+            window.handleSanatanamLogout();
+        } else {
+            localStorage.removeItem("sanatanam_app_lang");
+            localStorage.removeItem("sss_user_token");
+            localStorage.removeItem("sss_user_data");
+            window.location.href = "welcome.html";
+        }
     }
 }
 </script>
+<script src="app_translator.js"></script>
 </body>
 </html>

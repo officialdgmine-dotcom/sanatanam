@@ -1,7 +1,8 @@
 (function() {
     // 1. Check current page - Welcome, Login, Register पेजों पर नहीं दिखेगा
     const currentPath = window.location.pathname.toLowerCase();
-    const isExcluded = currentPath.includes("welcome_flow") || 
+    const isExcluded = currentPath.includes("welcome") || 
+                       currentPath.includes("splash") ||
                        currentPath.includes("app_login") || 
                        currentPath.includes("app_register");
 

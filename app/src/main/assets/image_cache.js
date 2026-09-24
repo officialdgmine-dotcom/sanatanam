@@ -1,11 +1,11 @@
 /**
- * Offline-First Local Image Caching Engine
- * Pre-bundles and maps all Seva Kshetra DPs, Covers, and Sections locally.
- * Caches images in localStorage as Base64 data URLs for instant zero-latency loading
- * and 100% offline rendering (including html2canvas exports and WebView sandbox).
+ * Zero-Latency Offline Image Cache Engine (IndexedDB)
+ * High-speed caching for all DPs, Covers, Post media, and UI assets.
+ * 0-second instant load from local memory (Base64/Blob), stale-free background sync.
  */
 
-const IMAGE_CACHE_PREFIX = "cache_img_";
+const SSS_CACHE_DB = 'sanatanam_img_cache_db';
+const SSS_CACHE_STORE = 'images';
 
 // Local static mapping dictionary for instant offline resolution
 const LOCAL_SS_MAP = {
@@ -25,23 +25,82 @@ const LOCAL_SS_MAP = {
     'PRO1781319711': { dp: 'Images/ss/PRO1781319711_dp.jpg', cover: 'Images/ss/PRO1781319711_cover.jpg' }
 };
 
+function getDB() {
+    return new Promise((resolve) => {
+        try {
+            if (!window.indexedDB) return resolve(null);
+            const req = indexedDB.open(SSS_CACHE_DB, 1);
+            req.onupgradeneeded = () => req.result.createObjectStore(SSS_CACHE_STORE);
+            req.onsuccess = () => resolve(req.result);
+            req.onerror = () => resolve(null);
+        } catch (e) {
+            resolve(null);
+        }
+    });
+}
+
+async function getOfflineImage(cacheKey, preferredLocalUrl, fallbackRemoteUrl) {
+    // 1. स्थानीय एसेट प्राथमिकता
+    if (preferredLocalUrl && !preferredLocalUrl.startsWith('http')) {
+        return preferredLocalUrl;
+    }
+
+    const key = cacheKey || preferredLocalUrl || fallbackRemoteUrl;
+    if (!key) return 'Images/jpg/logo.jpg';
+
+    try {
+        const db = await getDB();
+        if (db) {
+            const cachedData = await new Promise((res) => {
+                const tx = db.transaction(SSS_CACHE_STORE, 'readonly');
+                const store = tx.objectStore(SSS_CACHE_STORE);
+                const req = store.get(key);
+                req.onsuccess = () => res(req.result);
+                req.onerror = () => res(null);
+            });
+
+            if (cachedData) {
+                return cachedData; // 0 सेकंड में लोकल कैश से रिटर्न
+            }
+        }
+    } catch(e) {}
+
+    // 2. बैकग्राउंड में फ़ेच व लोकल सेव
+    const targetUrl = fallbackRemoteUrl || preferredLocalUrl;
+    if (targetUrl && targetUrl.startsWith('http')) {
+        fetch(targetUrl)
+            .then(res => res.blob())
+            .then(blob => {
+                const reader = new FileReader();
+                reader.onloadend = async () => {
+                    const b64 = reader.result;
+                    const db = await getDB();
+                    if (db) {
+                        const tx = db.transaction(SSS_CACHE_STORE, 'readwrite');
+                        tx.objectStore(SSS_CACHE_STORE).put(b64, key);
+                    }
+                };
+                reader.readAsDataURL(blob);
+            })
+            .catch(() => {});
+    }
+
+    return targetUrl || 'Images/jpg/logo.jpg';
+}
+
 /**
  * Helper to build media URL for user profile photo
- * @param {string} photoPath 
- * @returns {string}
  */
 function getUserProfileMediaUrl(photoPath) {
     if (!photoPath) return "Images/jpg/logo.jpg";
     if (photoPath.startsWith("data:image/") || photoPath.startsWith("Images/")) return photoPath;
     
-    // Check if photo matches any Seva Kshetra profile ID
     for (const pid of Object.keys(LOCAL_SS_MAP)) {
         if (photoPath.includes(pid)) {
             return LOCAL_SS_MAP[pid].dp;
         }
     }
     
-    // If external URL or clean filename, fallback gracefully
     if (photoPath.includes("get_media.php")) return photoPath;
     const cleanName = photoPath.replace(/^.*[\\\/]/, '').trim();
     if (!cleanName) return "Images/jpg/logo.jpg";
@@ -50,15 +109,12 @@ function getUserProfileMediaUrl(photoPath) {
 
 /**
  * Helper to build media URL for Kshetra DP
- * @param {string} sevaKshetra 
- * @returns {string}
  */
 function getKshetraDpMediaUrl(sevaKshetra) {
     const k = (sevaKshetra || "").trim();
     if (!k || k === 'PRO1781011172') {
         return "Images/jpg/logo.jpg";
     }
-    // Local first match
     if (LOCAL_SS_MAP[k] && LOCAL_SS_MAP[k].dp) {
         return LOCAL_SS_MAP[k].dp;
     }
@@ -67,9 +123,6 @@ function getKshetraDpMediaUrl(sevaKshetra) {
 
 /**
  * Helper to build media URL for Cover Photo
- * @param {string} sevaKshetra 
- * @param {string} customCover 
- * @returns {string}
  */
 function getCoverMediaUrl(sevaKshetra, customCover) {
     if (customCover) {
@@ -93,67 +146,6 @@ function getCoverMediaUrl(sevaKshetra, customCover) {
 }
 
 /**
- * Retrieves an image as Base64 from local cache or fetches, converts, and saves it.
- * @param {string} key Unique identifier for the cached image
- * @param {string} remoteUrl URL to fetch if not cached
- * @returns {Promise<string>} Base64 data URL or original URL as fallback
- */
-async function getOfflineImage(key, remoteUrl) {
-    if (!remoteUrl) return "";
-
-    // 1. यदि रिलेटिव लोकल पाथ (Images/ या uploads/pc.jpg) या Base64 डेटा है
-    if (remoteUrl.startsWith("data:image/") || remoteUrl.startsWith("Images/") || remoteUrl === "uploads/pc.jpg") {
-        return remoteUrl;
-    }
-
-    if (remoteUrl.startsWith("uploads/")) {
-        const clean = remoteUrl.replace(/^uploads\//, '').trim();
-        remoteUrl = `https://sanatansevasamiti.org/api/get_media.php?file=${encodeURIComponent(clean)}`;
-    }
-
-    const storageKey = IMAGE_CACHE_PREFIX + key;
-
-    // 2. लोकल स्टोरेज में पहले से सेव Base64 चेक करें
-    try {
-        const cached = localStorage.getItem(storageKey);
-        if (cached && cached.startsWith("data:image/")) {
-            return cached;
-        }
-    } catch (e) {
-        console.warn("[ImageCache] Storage read error:", e);
-    }
-
-    // 3. यदि कैश में नहीं है, तो फ़ेच करके Base64 में बदलें
-    try {
-        const response = await fetch(remoteUrl, { mode: "cors" });
-        if (!response.ok) {
-            throw new Error(`Fetch failed with status: ${response.status}`);
-        }
-        const blob = await response.blob();
-        
-        return await new Promise((resolve) => {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                const base64data = reader.result;
-                try {
-                    localStorage.setItem(storageKey, base64data);
-                } catch (quotaErr) {
-                    console.warn("[ImageCache] LocalStorage quota exceeded:", quotaErr);
-                }
-                resolve(base64data);
-            };
-            reader.onerror = () => {
-                resolve(remoteUrl);
-            };
-            reader.readAsDataURL(blob);
-        });
-    } catch (err) {
-        console.warn(`[ImageCache] Could not pre-cache ${key}:`, err);
-        return remoteUrl;
-    }
-}
-
-/**
  * Pre-cache all essential images in background
  */
 async function preCacheUserAssets(user) {
@@ -161,21 +153,74 @@ async function preCacheUserAssets(user) {
     try {
         const promises = [];
         promises.push(getOfflineImage("samiti_main_logo", "Images/jpg/logo.jpg"));
-        promises.push(getOfflineImage("samiti_signature", "https://sanatansevasamiti.org/uploads/signature.jpg"));
+        promises.push(getOfflineImage("samiti_signature", null, "https://sanatansevasamiti.org/uploads/signature.jpg"));
 
         if (user.profile_photo) {
             const userPhotoUrl = getUserProfileMediaUrl(user.profile_photo);
-            promises.push(getOfflineImage("user_profile_dp", userPhotoUrl));
+            promises.push(getOfflineImage("user_profile_dp", userPhotoUrl.startsWith("http") ? null : userPhotoUrl, userPhotoUrl));
         }
 
         const sevaKshetra = (user.seva_kshetra || "").trim();
         if (sevaKshetra) {
-            promises.push(getOfflineImage(`kshetra_dp_${sevaKshetra}`, getKshetraDpMediaUrl(sevaKshetra)));
-            promises.push(getOfflineImage(`kshetra_cover_${sevaKshetra}`, getCoverMediaUrl(sevaKshetra, user.cover_photo)));
+            const dpUrl = getKshetraDpMediaUrl(sevaKshetra);
+            const coverUrl = getCoverMediaUrl(sevaKshetra, user.cover_photo);
+            promises.push(getOfflineImage(`kshetra_dp_${sevaKshetra}`, dpUrl.startsWith("http") ? null : dpUrl, dpUrl));
+            promises.push(getOfflineImage(`kshetra_cover_${sevaKshetra}`, coverUrl.startsWith("http") ? null : coverUrl, coverUrl));
         }
 
         await Promise.allSettled(promises);
     } catch (e) {
-        console.warn("[ImageCache] Pre-caching completed with notices:", e);
+        console.warn("[ImageCache] Pre-caching notice:", e);
     }
 }
+
+// ऑटोमैटिक सभी <img> टैग्स को सुपरफ़ास्ट लोड कराने का ग्लोबल ऑब्ज़र्वर
+window.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('img[data-cache-key]').forEach(async (img) => {
+        const key = img.getAttribute('data-cache-key');
+        const fallback = img.getAttribute('data-fallback') || img.src;
+        const fastSrc = await getOfflineImage(key, img.src, fallback);
+        if (fastSrc) img.src = fastSrc;
+    });
+
+    // Auto-cache observer for remote images loaded across feeds/cards
+    const optimizeImg = async (img) => {
+        if (!img || img.dataset.cacheEngineChecked) return;
+        img.dataset.cacheEngineChecked = "1";
+        const key = img.getAttribute('data-cache-key') || img.src;
+        const fallback = img.getAttribute('data-fallback') || img.src;
+        if (key && fallback && fallback.startsWith('http')) {
+            const fastSrc = await getOfflineImage(key, img.src.startsWith('http') ? null : img.src, fallback);
+            if (fastSrc && fastSrc !== img.src) {
+                img.src = fastSrc;
+            }
+        }
+    };
+
+    if ('MutationObserver' in window) {
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                mutation.addedNodes.forEach((node) => {
+                    if (node.nodeType === 1) {
+                        if (node.tagName === 'IMG') {
+                            optimizeImg(node);
+                        } else if (node.querySelectorAll) {
+                            node.querySelectorAll('img').forEach(optimizeImg);
+                        }
+                    }
+                });
+            });
+        });
+        observer.observe(document.body || document.documentElement, { childList: true, subtree: true });
+    }
+});
+
+// Global exports
+window.SSS_CACHE_DB = SSS_CACHE_DB;
+window.SSS_CACHE_STORE = SSS_CACHE_STORE;
+window.getDB = getDB;
+window.getOfflineImage = getOfflineImage;
+window.getUserProfileMediaUrl = getUserProfileMediaUrl;
+window.getKshetraDpMediaUrl = getKshetraDpMediaUrl;
+window.getCoverMediaUrl = getCoverMediaUrl;
+window.preCacheUserAssets = preCacheUserAssets;
