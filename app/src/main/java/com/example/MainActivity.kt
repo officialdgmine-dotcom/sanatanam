@@ -14,6 +14,7 @@ import android.util.Base64
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.JavascriptInterface
+import android.webkit.RenderProcessGoneDetail
 import android.webkit.SslErrorHandler
 import android.webkit.ValueCallback
 import android.webkit.WebChromeClient
@@ -255,8 +256,8 @@ fun SanatanamWebViewScreen(
 
           setBackgroundColor(android.graphics.Color.parseColor("#4A0000"))
 
-          // Use default rendering without forcing an offscreen hardware layer, avoiding rendernode failures
-          setLayerType(View.LAYER_TYPE_NONE, null)
+          // Use software layer rendering for WebView on virtualized environments to avoid Mesa DRI rendernode access failures
+          setLayerType(View.LAYER_TYPE_SOFTWARE, null)
 
           settings.apply {
             javaScriptEnabled = true
@@ -276,6 +277,14 @@ fun SanatanamWebViewScreen(
           }
 
           webViewClient = object : WebViewClient() {
+            override fun onRenderProcessGone(
+              view: WebView?,
+              detail: RenderProcessGoneDetail?
+            ): Boolean {
+              // Gracefully handle render process termination without crashing the app process
+              return true
+            }
+
             override fun shouldInterceptRequest(
               view: WebView?,
               request: WebResourceRequest?

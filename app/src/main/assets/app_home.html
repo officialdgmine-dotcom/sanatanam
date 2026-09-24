@@ -879,7 +879,7 @@
             <div class="submenu">
                 <a href="javascript:void(0)" onclick="openSectionModal('सभी सेवाएँ')">सभी सेवाएँ</a>
                 <a href="javascript:void(0)" onclick="openSectionModal('सनातन सेवा समिति')">⚜️ सनातन सेवा समिति ⚜️</a>            
-                <a href="javascript:void(0)" onclick="openSectionModal('आनंद लहरी')">🪇 आनंद लहरी 🪇</a>
+                <a href="anand_lahari.html">🪇 आनंद लहरी 🪇</a>
                 <a href="javascript:void(0)" onclick="openSectionModal('सत्य सनातन मार्ग')">🛣️ सत्य सनातन मार्ग 🛣️</a>
                 <a href="javascript:void(0)" onclick="openSectionModal('सनातन धर्म आश्रम')">🕉️ सनातन धर्म आश्रम 🕉️</a>            
                 <a href="javascript:void(0)" onclick="openSectionModal('श्री शिव शक्ति वैदिक गुरुकुलम्')">⛳ श्री शिव शक्ति वैदिक गुरुकुलम् ⛳</a>
@@ -961,7 +961,7 @@
             heading: 'सनातन सेवा समिति की सेवाएँ',
             link: 'https://sanatansevasamiti.org/anand-lahari/',
             items: [
-                {title:'आनंद लहरी', pid:'PRO1781011341', img:'Images/ss/PRO1781011341_dp.jpg', url:'https://sanatansevasamiti.org/aanand-lahari/'},
+                {title:'आनंद लहरी', pid:'PRO1781011341', img:'Images/ss/PRO1781011341_dp.jpg', url:'anand_lahari.html'},
                 {title:'सत्य सनातन मार्ग', pid:'PRO1781285901', img:'Images/ss/PRO1781285901_dp.jpg', url:'https://sanatansevasamiti.org/saty-sanatan-marg/'},
                 {title:'सनातन धर्म आश्रम', pid:'PRO1781287765', img:'Images/ss/PRO1781287765_dp.jpg', url:'https://sanatansevasamiti.org/sanatan-dharm-aashram/'},
                 {title:'श्री शिवशक्ति वैदिक गुरुकुलम', pid:'PRO1781288688', img:'Images/ss/PRO1781288688_dp.jpg', url:'https://sanatansevasamiti.org/shri-shiv-shakti-vaidic-gurukulam/'},
@@ -1254,11 +1254,14 @@
             sec.items.forEach(item => {
                 const escapedTitle = item.title.replace(/'/g, "\\'");
                 const errHandler = item.pid ? `onerror="handleImgFallback(this, '${item.pid}')"` : `onerror="this.src='Images/jpg/logo.jpg';"`;
+                const targetUrl = item.url || '';
+                const isLocal = targetUrl && !targetUrl.startsWith('http');
+                const navAction = isLocal ? `window.location.href='${targetUrl}';` : `openSectionModal('${escapedTitle}');`;
                 html += `
-                    <div class="item-card">
+                    <div class="item-card" onclick="${navAction}" style="cursor:pointer;">
                         ${item.img ? `<img src="${item.img}" alt="${item.title}" loading="lazy" ${errHandler}>` : ''}
                         <h3>${item.title}</h3>
-                        <a href="javascript:void(0);" onclick="openSectionModal('${escapedTitle}')" class="btn-view">अभी देखें <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="${isLocal ? targetUrl : 'javascript:void(0);'}" onclick="event.stopPropagation(); ${navAction}" class="btn-view">अभी देखें <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 `;
             });
@@ -1283,6 +1286,10 @@
 
     // Section Click Feedback Modal/Toast
     function openSectionModal(title) {
+        if (title === 'आनंद लहरी') {
+            window.location.href = 'anand_lahari.html';
+            return;
+        }
         showNotice(`'${title}' — यह पावन सेवा शीघ्र ही स्थानीय रूप से उपलब्ध होगी।`);
     }
 

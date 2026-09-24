@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>आनंद लहरी - प्रोफाइल एवं सेवा समर्पण</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root { 
+            --bhagwa: #FF9933; 
+            --dark-bhagwa: #E65C00;
+            --red: #B30000; 
+            --dark-red: #800000;
+            --yellow: #FFF700; 
+            --gold: #FFD700;
+            --light-yellow: #FFFDF0;
+            --white: #FFFFFF;
+            --text-dark: #2c1a12;
+            --green: #28a745;
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Noto Sans Devanagari', 'Poppins', sans-serif; -webkit-tap-highlight-color: transparent; }
+        body { background: var(--light-yellow); color: var(--dark-red); padding-bottom: 95px !important; min-height: 100vh; overflow-x: hidden; }
+
+        /* Top Bar */
+        .app-topbar {
+            position: sticky; top: 0; z-index: 1000;
+            height: 52px; background: linear-gradient(135deg, #ff4500, #800000);
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 14px; border-bottom: 2px solid var(--gold);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25); color: #fff;
+        }
+        .topbar-back {
+            color: #fff; width: 34px; height: 34px; border-radius: 50%;
+            background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center;
+            text-decoration: none; font-size: 16px; border: 1px solid rgba(255,215,0,0.4);
+        }
+        .topbar-title { font-size: 16px; font-weight: 850; letter-spacing: 0.5px; }
+
+        /* Cover & Header */
+        .cover { width: 100%; height: 210px; background: var(--bhagwa); position: relative; cursor: pointer; overflow: hidden; }
+        .cover img { width: 100%; height: 100%; object-fit: cover; border-bottom: 4px solid var(--red); display: block; }
+        
+        .profile-header-bar { display: flex; justify-content: space-between; align-items: flex-start; padding: 0 16px; margin-top: -65px; position: relative; z-index: 10; }
+        .dp-area { position: relative; display: inline-block; }
+        .dp { width: 125px; height: 125px; border-radius: 50%; border: 5px solid var(--white); background: var(--white); object-fit: cover; box-shadow: 0 5px 15px rgba(179,0,0,0.35); cursor: pointer; display: block; }
+
+        /* Dropdown Under DP */
+        .fb-menu-trigger { font-size: 12px; font-weight: 800; color: var(--red); text-decoration: underline; cursor: pointer; text-align: center; margin-top: 5px; display: block; }
+        .fb-dropdown-menu { display: none; position: absolute; top: 140px; left: 0; background: var(--white); border: 2px solid var(--bhagwa); border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); z-index: 50; width: 165px; padding: 5px 0; }
+        .fb-dropdown-menu a { display: block; padding: 8px 12px; color: var(--dark-red); text-decoration: none; font-size: 12.5px; font-weight: bold; }
+        .fb-dropdown-menu a:hover { background: #ffe6cc; }
+
+        /* Vishesh Vikalp Button */
+        .under-cover-btn { background: linear-gradient(135deg, var(--red), var(--dark-red)); color: var(--yellow); padding: 9px 18px; border-radius: 25px; font-weight: 800; text-decoration: none; border: 2px solid var(--yellow); box-shadow: 0 4px 10px rgba(179,0,0,0.3); margin-top: 75px; display: inline-block; cursor: pointer; font-size: 13px; }
+        .vishesh-dropdown-box { display: none; max-width: 600px; margin: 15px auto; background: var(--white); padding: 18px; border-radius: 16px; border: 2px solid var(--bhagwa); box-shadow: 0 5px 15px rgba(230,92,0,0.1); }
+
+        /* Profile Info */
+        .profile-info { padding: 15px 16px; text-align: center; max-width: 600px; margin: 0 auto 10px auto; }
+        .name { 
+            font-size: 26px; font-weight: 900; margin-bottom: 6px; 
+            background: linear-gradient(to right, var(--dark-red), #ff0000, var(--dark-red));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+        }
+        .tagline { 
+            color: var(--dark-red); font-weight: 800; 
+            background: linear-gradient(135deg, #fff5e6, #ffe6cc); 
+            padding: 6px 18px; border-radius: 30px; display: inline-block; 
+            margin-bottom: 16px; font-size: 13.5px; border: 1.5px solid var(--bhagwa);
+            box-shadow: 0 3px 8px rgba(255,153,51,0.2);
+        }
+
+        /* 3D Action Buttons */
+        .btn-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 15px; }
+        .btn-half { 
+            padding: 12px 10px; background: linear-gradient(135deg, var(--red), var(--dark-red)); 
+            color: var(--yellow); border-radius: 50px; font-weight: 800; font-size: 14.5px; 
+            text-align: center; text-decoration: none; border: 2px solid var(--bhagwa); 
+            cursor: pointer; box-shadow: 0 5px 0 #5a0000, 0 8px 12px rgba(179,0,0,0.25); 
+            display: flex; align-items: center; justify-content: center; gap: 6px;
+        }
+        .btn-half:active { transform: translateY(4px); box-shadow: 0 1px 0 #5a0000; }
+
+        .btn-daan-full {
+            display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%;
+            padding: 14px 18px; background: linear-gradient(135deg, #28a745, #1e7e34);
+            color: #ffffff; border-radius: 50px; font-weight: 900; font-size: 16px;
+            text-align: center; text-decoration: none; border: 2px solid var(--gold);
+            cursor: pointer; box-sizing: border-box; margin-bottom: 16px;
+            box-shadow: 0 5px 0 #145523, 0 8px 15px rgba(40,167,69,0.3);
+        }
+        .btn-daan-full:active { transform: translateY(4px); box-shadow: 0 1px 0 #145523; }
+
+        /* Social Media Buttons */
+        .social-media-container { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 8px; margin: 10px 0 16px 0; }
+        .social-btn {
+            display: inline-flex; align-items: center; gap: 6px; padding: 7px 13px;
+            border-radius: 20px; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 12px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+        }
+        .social-btn-fb { background: linear-gradient(135deg, #1877f2, #0d5cc7); }
+        .social-btn-yt { background: linear-gradient(135deg, #ff0000, #b30000); }
+        .social-btn-ig { background: linear-gradient(135deg, #f09433 0%, #dc2743 50%, #bc1888 100%); }
+        .social-btn-x  { background: linear-gradient(135deg, #000000, #222222); }
+
+        /* Schedule Dropdown */
+        .schedule-header {
+            background: linear-gradient(135deg, var(--white), #fff5e6);
+            border: 2px solid var(--red); color: var(--red);
+            padding: 12px 18px; border-radius: 12px; font-size: 16px; font-weight: 850;
+            display: flex; justify-content: space-between; align-items: center; cursor: pointer;
+            box-shadow: 0 4px 10px rgba(179,0,0,0.1); margin-bottom: 12px;
+        }
+        .schedule-header .arrow { transition: transform 0.3s; font-size: 14px; }
+        .schedule-header.active .arrow { transform: rotate(180deg); }
+        .schedule-content { display: none; }
+        .schedule-card { background: var(--white); border-radius: 14px; border: 1.5px solid var(--bhagwa); margin-bottom: 14px; overflow: hidden; box-shadow: 0 4px 12px rgba(230,92,0,0.08); padding: 14px; }
+
+        /* Tabs */
+        .tabs { display: flex; background: var(--white); border-top: 3px solid var(--bhagwa); border-bottom: 3px solid var(--red); position: sticky; top: 52px; z-index: 100; box-shadow: 0 4px 6px rgba(179,0,0,0.1); }
+        .tab-btn { flex: 1; padding: 14px; text-align: center; font-weight: 850; font-size: 14px; cursor: pointer; color: var(--red); border: none; background: none; }
+        .tab-btn.active { border-bottom: 4px solid var(--dark-red); background: #ffe6cc; color: var(--dark-red); }
+        .tab-content { display: none; padding: 16px; max-width: 600px; margin: 0 auto; }
+
+        /* Posts Styling */
+        .post-card { background: #fff; margin: 0 auto 16px auto; border-radius: 16px; box-shadow: 0 6px 18px rgba(0,0,0,0.08); overflow: hidden; border: 1px solid #ffe0b2; }
+        .post-header { display: flex; align-items: center; padding: 12px; }
+        .post-header img { width: 44px; height: 44px; border-radius: 50%; border: 2px solid #FF9933; object-fit: cover; }
+        .user-info { margin-left: 12px; }
+        .user-info h4 { margin: 0; color: #333; font-weight: 800; font-size: 14px; }
+        .user-info p { margin: 0; font-size: 11px; color: #ff9933; font-weight: 700; }
+        .media-container { width: 100%; background: #000; position: relative; }
+        .yt-frame { width: 100%; border: none; aspect-ratio: 16/9; display: block; }
+        .yt-shorts { aspect-ratio: 9/16 !important; max-height: 550px; margin: 0 auto; }
+        .slider-wrapper { position: relative; width: 100%; overflow: hidden; background: #000; }
+        .slides-container { display: flex; width: 100%; transition: transform 0.3s ease; }
+        .slide-item { min-width: 100%; display: flex; justify-content: center; }
+        .slide-item img { width: 100%; max-height: 420px; object-fit: contain; cursor: pointer; }
+        .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.65); color: #ffd700; border: none; width: 34px; height: 34px; cursor: pointer; border-radius: 50%; z-index: 5; display: flex; align-items: center; justify-content: center; }
+        .prev-btn { left: 8px; } .next-btn { right: 8px; }
+        .caption-box { padding: 12px 14px; font-size: 13px; color: #444; line-height: 1.55; }
+        .hidden-caption { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+        .see-more { color: #FF9933; cursor: pointer; font-weight: bold; border: none; background: none; padding: 4px 0; font-size: 12px; }
+        .actions { display: flex; padding: 8px 14px; border-top: 1px solid #f9f9f9; background: #fffcf8; }
+        .btn-act { flex: 1; padding: 8px; border: none; background: #fdf5e6; border-radius: 8px; margin: 0 4px; font-weight: 700; cursor: pointer; color: #555; font-size: 12px; }
+        .btn-act:hover { background: #ff9933; color: white; }
+        .liked { background: #ff3333 !important; color: white !important; }
+
+        /* Daan Cards */
+        .daan-card { background: var(--white); padding: 14px; margin-bottom: 12px; border-radius: 12px; border-left: 5px solid #28a745; display: flex; align-items: center; gap: 12px; box-shadow: 0 3px 10px rgba(0,0,0,0.06); }
+        .mname { font-weight: 850; color: var(--red); font-size: 15px; }
+        .btn-receipt { background: linear-gradient(135deg, var(--bhagwa), var(--dark-bhagwa)); color: var(--white); padding: 6px 12px; border-radius: 8px; text-decoration: none; font-size: 11.5px; font-weight: 800; white-space: nowrap; }
+
+        /* Lightbox */
+        #lightbox-modal { display: none; position: fixed; z-index: 999999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); justify-content: center; align-items: center; padding: 15px; }
+        #lightbox-modal img { max-width: 95%; max-height: 85%; border-radius: 8px; object-fit: contain; }
+        .lightbox-back-btn { position: absolute; top: 20px; left: 20px; color: #fff; background: rgba(255,255,255,0.25); border: 1.5px solid #fff; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: bold; cursor: pointer; }
+
+        /* Contact Popup */
+        .contact-popup { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 88%; max-width: 380px; background: var(--white); padding: 22px; border-radius: 18px; border: 3px solid var(--red); z-index: 99999; box-shadow: 0 10px 30px rgba(0,0,0,0.3); text-align: center; }
+        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(90,0,0,0.6); z-index: 99998; }
+
+        /* Inline Daan Module (When User clicks 'अभी दान करें') */
+        #daanSamarpanModule { display: none; background: #fffdf7; border: 2px solid var(--gold); border-radius: 18px; padding: 18px; margin: 15px auto; max-width: 600px; box-shadow: 0 8px 25px rgba(128,0,0,0.12); }
+        .f-tabs-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 14px; }
+        .f-tab-btn { padding: 9px 4px; border-radius: 10px; border: 1px solid #ead5b3; background: #fdf5e6; font-size: 11px; font-weight: 850; color: #7b5428; cursor: pointer; }
+        .f-tab-btn.active { background: linear-gradient(135deg, #df7909, #8e3100); color: #fff; border-color: #8e3100; }
+        .daan-field { width: 100%; padding: 11px 13px; border: 1.5px solid #e8d8c1; border-radius: 12px; font-size: 13.5px; outline: none; margin-top: 5px; margin-bottom: 12px; }
+        .amount-quick-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 12px; }
+        .amount-quick-btn { padding: 7px 2px; border-radius: 10px; border: 1px solid #e3ccaa; background: #fffaf1; font-weight: 800; font-size: 11px; color: #8c5413; cursor: pointer; }
+        .submit-daan-btn { width: 100%; padding: 13px; border: none; border-radius: 12px; font-weight: 900; font-size: 14px; color: #fff; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
+
+        /* Footer Nav Bar */
+        #sss-nav {
+            position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 480px; height: 75px;
+            background: linear-gradient(180deg, #ff4500, #800000); display: flex; justify-content: space-evenly; align-items: center;
+            border-top: 4px solid #ffcc00; border-radius: 20px 20px 0 0; z-index: 99999; box-shadow: 0 -5px 20px rgba(0,0,0,0.4);
+        }
+        .sss-item { flex: 1; text-align: center; text-decoration: none; color: #fff; font-size: 10px; font-weight: 800; }
+        .sss-item img { width: 28px; height: 28px; display: block; margin: auto; }
+        .sss-dash-wrap { margin-top: -30px; }
+        .sss-gold-circle {
+            width: 60px; height: 60px; background: linear-gradient(45deg, #ffd700, #ffcc00, #b8860b);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid #800000; box-shadow: 0 0 15px rgba(255,215,0,0.6);
+        }
+        .sss-gold-circle img { width: 35px; height: 35px; }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Top Header -->
+    <header class="app-topbar">
+        <a href="app_home.html" class="topbar-back" title="वापस जाएं">
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+        <span class="topbar-title">आनंद लहरी • संकीर्तन सेवा</span>
+        <a href="app_wallet.html" style="color:var(--gold); text-decoration:none; font-size:12px; font-weight:800; display:flex; align-items:center; gap:4px;">
+            <i class="fa-solid fa-wallet"></i> वॉलेट
+        </a>
+    </header>
+
+    <!-- 2. Cover Photo -->
+    <div class="cover" onclick="openLightbox('Images/ss/PRO1781011341_cover.jpg')">
+        <img src="Images/ss/PRO1781011341_cover.jpg" 
+             onerror="this.src='https://sanatansevasamiti.org/Images/ss/PRO1781011341_cover.jpg';" 
+             alt="Cover Photo">
+    </div>
+
+    <!-- 3. Profile DP & Vikalp -->
+    <div class="profile-header-bar">
+        <div class="dp-area">
+            <img class="dp" src="Images/ss/PRO1781011341_dp.jpg" 
+                 onerror="this.src='https://sanatansevasamiti.org/Images/ss/PRO1781011341_dp.jpg';" 
+                 alt="Profile Photo" 
+                 onclick="openLightbox('Images/ss/PRO1781011341_dp.jpg')">
+            <span class="fb-menu-trigger" onclick="toggleFbMenu(event)">विकल्प ▼</span>
+            <div id="fbDropdown" class="fb-dropdown-menu">
+                <a href="javascript:void(0)" onclick="openLightbox('Images/ss/PRO1781011341_dp.jpg')">🖼️ View Profile Photo</a>
+                <a href="javascript:void(0)" onclick="openLightbox('Images/ss/PRO1781011341_cover.jpg')">📖 View Cover Photo</a>
+            </div>
+        </div>
+
+        <a href="javascript:void(0);" class="under-cover-btn" onclick="toggleVishesh()">
+            🌟 विस्तार से जानें
+        </a>
+    </div>
+
+    <!-- 4. विस्तार से जानें ड्रॉपडाउन बॉक्स -->
+    <div id="visheshBox" class="vishesh-dropdown-box">
+        <h3 style="color: var(--red); margin-top: 0; border-bottom: 2px solid var(--bhagwa); padding-bottom: 8px; text-align: center; font-size: 20px;">
+            विशेष जानकारी एवं दिव्य संकल्प
+        </h3>
+
+        <!-- महाराज जी कार्ड -->
+        <div style="background: linear-gradient(135deg, #fffaf0 0%, #fff2e0 100%); border: 1.5px solid var(--bhagwa); border-radius: 16px; padding: 16px; margin: 15px 0; text-align: center;">
+            <img src="https://sanatansevasamiti.org/public_html/Images/maharaj.jpg" onerror="this.src='Images/jpg/logo.jpg';" alt="Maharaj Ji" style="width: 100%; max-width: 220px; border-radius: 14px; border: 3px solid var(--bhagwa); margin: 0 auto; display: block;">
+            
+            <h4 style="color: var(--dark-red); font-size: 15px; margin-top: 12px; margin-bottom: 4px; line-height: 1.4;">
+                श्री श्री 1008 अनंत श्री विभूषित परम पूज्य जगद्गुरु सच्चिदानंदाचार्य आनंद पीठाधीश्वर<br>परम पूज्य सद्गुरुदेव स्वामी सच्चिदानंद जी महाराज
+            </h4>
+            <p style="color: var(--dark-bhagwa); font-weight: 700; font-size: 12px; margin-bottom: 12px;">
+                ( संस्थापक एवं राष्ट्रीय अध्यक्ष - सनातन सेवा समिति )
+            </p>
+
+            <div style="background: #ffffff; border-radius: 10px; border-left: 4px solid var(--red); padding: 12px; text-align: left; font-size: 12.5px; color: #444; line-height: 1.6;">
+                <b>🚩 दिव्य संकल्प:</b> कलियुग के घोर संताप और भटकाव से जन-जन को मुक्त कराकर <b>"श्री आनन्द लहरी"</b> के माध्यम से घर-घर हरिनाम संकीर्तन की पावन ज्योति प्रज्वलित करना। नई पीढ़ी में वैदिक संस्कार और सनातन धर्म की दिव्य चेतना का जागरण ही इसका मुख्य लक्ष्य है।
+            </div>
+        </div>
+
+        <!-- कथा एवं संकीर्तन दर्शन विवरण -->
+        <div style="font-size: 13.5px; line-height: 1.7; color: #333; text-align: justify;">
+            <blockquote style="background: var(--light-yellow); padding: 10px 14px; border-left: 4px solid var(--bhagwa); font-weight: bold; color: var(--dark-red); margin: 10px 0; text-align: center;">
+                कलियुग केवल नाम अधारा।<br>सुमिरि सुमिरि नर उतरहिं पारा॥
+            </blockquote>
+            <p>जब व्यासपीठ से पूज्य सद्गुरुदेव स्वामी सच्चिदानंद जी महाराज के श्रीमुख से ज्ञान, वैराग्य और भक्ति का मर्म प्रस्फुटित होता है, तो श्रोताओं के समस्त संताप शांत हो जाते हैं। झांझ, मंजीरे, मृदंग और ढोलक की ताल पर सैकड़ों भक्त एक स्वर में “हरे राम हरे कृष्ण” का उद्घोष कर परमानंद की अनुभूति करते हैं।</p>
+        </div>
+
+        <div style="text-align: center; margin-top: 18px;">
+            <button onclick="toggleVishesh()" style="background: var(--white); color: var(--red); border: 1.5px solid var(--red); padding: 7px 20px; border-radius: 20px; font-weight: bold; cursor: pointer;">
+                ▲ बंद करें
+            </button>
+        </div>
+    </div>
+
+    <!-- 5. प्रोफाइल विवरण और त्वरित सोशल मीडिया लिंक्स -->
+    <div class="profile-info">
+        <div class="name">
+            आनंद लहरी 
+            <span style="font-size:16px; color:#ff6600;"><i class="fa-solid fa-circle-check"></i></span>
+        </div>
+        <div class="tagline">भजन में आनंद, कीर्तन में प्राण • सनातन सेवा समिति</div>
+
+        <div class="social-media-container">
+            <a href="https://www.facebook.com/share/1CDnijD1X9/" target="_blank" class="social-btn social-btn-fb">
+                <i class="fa-brands fa-facebook"></i> Facebook
+            </a>
+            <a href="https://youtube.com/@sanatan_sevasamiti?si=hh_FPQrttaCVu-kF" target="_blank" class="social-btn social-btn-yt">
+                <i class="fa-brands fa-youtube"></i> YouTube
+            </a>
+            <a href="https://www.instagram.com/sachchidanand.ji_/" target="_blank" class="social-btn social-btn-ig">
+                <i class="fa-brands fa-instagram"></i> Instagram
+            </a>
+            <a href="https://x.com/SatySanatanmarg" target="_blank" class="social-btn social-btn-x">
+                <i class="fa-brands fa-x-twitter"></i> X
+            </a>
+        </div>
+
+        <div class="btn-row">
+            <button class="btn-half" onclick="scrollToDaanModule()">👉 अभी दान करें</button>
+            <button class="btn-half" onclick="openContact()">📞 संपर्क करें</button>
+        </div>
+    </div>
+
+    <!-- 6. दान समर्पण मॉड्यूल (धन, अन्न, सेवा) -->
+    <div id="daanSamarpanModule">
+        <h3 style="color:var(--dark-red); text-align:center; font-size:18px; margin-bottom:12px; font-weight:900;">
+            🙏 श्री आनन्द लहरी सेवा समर्पण
+        </h3>
+        
+        <div class="f-tabs-row">
+            <button type="button" class="f-tab-btn active" id="fTabDhan" onclick="switchDaanType('dhan')">💰 धन दान</button>
+            <button type="button" class="f-tab-btn" id="fTabAnn" onclick="switchDaanType('ann')">🌾 अन्न दान</button>
+            <button type="button" class="f-tab-btn" id="fTabSeva" onclick="switchDaanType('seva')">🚩 सेवा</button>
+        </div>
+
+        <!-- Dhan Form -->
+        <div id="boxDhan">
+            <label style="font-size:11px; font-weight:800; color:#695548;">राशि (₹):</label>
+            <input type="number" id="inputDhanAmount" class="daan-field" placeholder="₹ राशि दर्ज करें" value="501">
+            <div class="amount-quick-row">
+                <button type="button" class="amount-quick-btn" onclick="setQuickAmount(101)">₹101</button>
+                <button type="button" class="amount-quick-btn" onclick="setQuickAmount(501)">₹501</button>
+                <button type="button" class="amount-quick-btn" onclick="setQuickAmount(1100)">₹1,100</button>
+                <button type="button" class="amount-quick-btn" onclick="setQuickAmount(2100)">₹2,100</button>
+            </div>
+            <label style="font-size:11px; font-weight:800; color:#695548;">सेवा उद्देश्य:</label>
+            <input type="text" id="inputDhanDesc" class="daan-field" value="श्री आनन्द लहरी संकीर्तन सेवा">
+            <button type="button" class="submit-daan-btn" style="background:linear-gradient(135deg, #df7909, #8f3400);" onclick="submitDaanAction('dhan')">
+                🙏 वॉलेट से सेवा समर्पित करें
+            </button>
+        </div>
+
+        <!-- Ann Form -->
+        <div id="boxAnn" style="display:none;">
+            <label style="font-size:11px; font-weight:800; color:#695548;">मात्रा (Kg में):</label>
+            <input type="number" id="inputAnnKg" class="daan-field" placeholder="उदा. 25, 50, 100">
+            <label style="font-size:11px; font-weight:800; color:#695548;">अन्न विवरण:</label>
+            <input type="text" id="inputAnnDesc" class="daan-field" placeholder="गेहूँ, चावल, आटा, दाल, तेल आदि">
+            <button type="button" class="submit-daan-btn" style="background:linear-gradient(135deg, #378d3c, #145c20);" onclick="submitDaanAction('ann')">
+                🌾 अन्न सेवा दर्ज करें
+            </button>
+        </div>
+
+        <!-- Seva Form -->
+        <div id="boxSeva" style="display:none;">
+            <label style="font-size:11px; font-weight:800; color:#695548;">सेवा / श्रम / सामग्री विवरण:</label>
+            <textarea id="inputSevaDesc" class="daan-field" rows="3" placeholder="उदा. 4 दिन संकीर्तन में साउंड व्यवस्था, भण्डारा सेवा या सामग्री आदि"></textarea>
+            <button type="button" class="submit-daan-btn" style="background:linear-gradient(135deg, #c62828, #7b0007);" onclick="submitDaanAction('seva')">
+                🚩 सेवा समर्पण दर्ज करें
+            </button>
+        </div>
+    </div>
+
+    <!-- 7. आगामी कार्यक्रम (Schedules) -->
+    <div style="max-width: 600px; margin: 5px auto 18px auto; padding: 0 16px;">
+        <div class="schedule-header" onclick="toggleSchedules(this)">
+            <span>📅 आगामी कार्यक्रम (Schedules)</span>
+            <span class="arrow">▼</span>
+        </div>
+
+        <div id="scheduleContainer" class="schedule-content">
+            <div class="schedule-card">
+                <div style="font-size:16px; font-weight:850; color:var(--red); margin-bottom:6px;">🚩 भव्य हरिनाम संकीर्तन एवं सत्संग</div>
+                <div style="font-size:13px; color:#444; line-height:1.5; margin-bottom:8px;">पूज्य सद्गुरुदेव स्वामी सच्चिदानंद जी महाराज के पावन सान्निध्य में विराट संकीर्तन सभा।</div>
+                <div style="font-size:12px; color:var(--dark-bhagwa); font-weight:700;">🗓️ रविवार • ⏰ शाम 5:00 बजे से</div>
+                <div style="font-size:12px; color:var(--dark-bhagwa); font-weight:700; margin-top:2px;">📍 मुरैना, मध्य प्रदेश</div>
+                <div style="margin-top:10px;">
+                    <a href="tel:9425739360" style="background:#27ae60; color:#fff; padding:6px 12px; border-radius:6px; text-decoration:none; font-size:12px; font-weight:800;">📞 संपर्क करें</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 8. मुख्य टैब्स (पोस्ट, कार्यकारिणी, दान सूची) -->
+    <div class="tabs">
+        <button class="tab-btn active" onclick="showTab('posts', this)">पोस्ट</button>
+        <button class="tab-btn" onclick="showTab('karyakarini', this)">कार्यकारिणी</button>
+        <button class="tab-btn" onclick="showTab('daan', this)">दान सूची</button>
+    </div>
+
+    <!-- टैब 1: पोस्ट्स -->
+    <div id="posts" class="tab-content" style="display:block;">
+        <div class="post-card">
+            <div class="post-header">
+                <img src="Images/ss/PRO1781011341_dp.jpg" onerror="this.src='Images/jpg/logo.jpg';" alt="DP">
+                <div class="user-info">
+                    <h4>आनंद लहरी</h4>
+                    <p>भजन में आनंद, कीर्तन में प्राण</p>
+                </div>
+            </div>
+            <div class="media-container">
+                <iframe class="yt-frame" src="https://www.youtube.com/embed/kJQP7kiw5Fk" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="caption-box">
+                <div id="text-post1" class="hidden-caption">
+                    भगवान के दिव्य नाम संकीर्तन और भक्ति भजनों के माध्यम से चित्त को शांति एवं दिव्यता का अनुभव कराती आनंद लहरी सेवा। निरंतर भजन-कीर्तन प्रवाह से जुड़ें।
+                </div>
+                <button class="see-more" onclick="showMore('post1')">और पढ़ें...</button>
+            </div>
+            <div class="actions">
+                <button class="btn-act" onclick="toggleLike(this)">❤️ Like</button>
+                <button class="btn-act" onclick="sharePost()">🔗 Share</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- टैब 2: कार्यकारिणी -->
+    <div id="karyakarini" class="tab-content">
+        <div style="background:#fff; padding:18px; border-radius:12px; border:1.5px solid var(--red); text-align:center;">
+            <h4 style="color:var(--red); margin-bottom:8px; font-size:16px;">🚩 श्री आनन्द लहरी कार्यकारिणी</h4>
+            <p style="color:#555; font-size:13px; line-height:1.6;">संस्थापक एवं राष्ट्रीय अध्यक्ष: पूज्य सद्गुरुदेव स्वामी सच्चिदानंद जी महाराज<br>समस्त समर्पित संकीर्तन मंडल एवं स्वयंसेवक बंधु।</p>
+        </div>
+    </div>
+
+    <!-- टैब 3: दान सूची -->
+    <div id="daan" class="tab-content">
+        <h3 style="color:var(--red); text-align:center; border-bottom: 2px solid var(--bhagwa); padding-bottom: 8px; margin-bottom: 14px; font-size:17px;">
+            समर्पित सेवा एवं दान विवरण
+        </h3>
+
+        <button type="button" class="btn-daan-full" onclick="scrollToDaanModule()">
+            🔱 अभी दान करें (Donate Now) 🔱
+        </button>
+
+        <div id="daanListContainer">
+            <div class="daan-card">
+                <div style="width: 48px; height: 48px; border-radius: 50%; background: #e8f5e9; border: 2px solid var(--bhagwa); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0;">
+                    📥
+                </div>
+                <div style="flex: 1;">
+                    <div class="mname">सनातन सेवक <span style="font-size:10px; background:#e8f5e9; color:#2e7d32; padding:2px 6px; border-radius:8px;">स्वीकृत</span></div>
+                    <div style="color: #28a745; font-weight: 900; font-size: 15px; margin-top: 2px;">+ ₹501.00</div>
+                    <small style="color: var(--dark-bhagwa); font-weight: 600; display: block; margin-top: 2px;">श्री आनन्द लहरी संकीर्तन सेवा</small>
+                </div>
+                <a href="https://sanatansevasamiti.org/samiti/anand_lahari_daan.php" class="btn-receipt">🧾 रसीद</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox-modal">
+        <button class="lightbox-back-btn" onclick="closeLightbox()">← Back</button>
+        <img id="lightbox-img" src="" alt="Zoomed Media">
+    </div>
+
+    <!-- Contact Popup -->
+    <div id="overlay" class="overlay" onclick="closeContact()"></div>
+    <div id="contact-popup" class="contact-popup">
+        <h3 style="color: var(--red); margin-bottom: 12px; font-size:18px;">संपर्क सेवा</h3>
+        <a href="tel:9425739360" style="background:var(--bhagwa); color:var(--white); display:block; padding:10px; margin:8px 0; border-radius:8px; text-decoration:none; font-weight:bold;">📞 9425739360 पर कॉल करें</a>
+        <a href="mailto:officialsanatansevasamiti@gmail.com" style="background:var(--red); color:var(--white); display:block; padding:10px; margin:8px 0; border-radius:8px; text-decoration:none; font-weight:bold;">📧 ईमेल करें</a>
+        <button onclick="closeContact()" style="background:#fff; color:var(--red); margin-top:10px; width:100%; padding:9px; border:1px solid var(--red); border-radius:8px; font-weight:bold; cursor:pointer;">बंद करें</button>
+    </div>
+
+    <!-- Footer Nav -->
+    <div id="sss-nav">
+        <a href="app_home.html" class="sss-item">
+            <img src="https://sanatansevasamiti.org/uploads/footer/1780341771file_00000000145071fab7ea2e7e30f9dfaa-e1776295057951.png" alt="गृह">
+            <span>गृह</span>
+        </a>
+        <a href="guru_parampara.html" class="sss-item">
+            <img src="https://sanatansevasamiti.org/uploads/footer/1780341317ci.jpg" alt="गुरु">
+            <span>गुरु परंपरा</span>
+        </a>
+        <a href="feed.html" class="sss-item sss-dash-wrap">
+            <div class="sss-gold-circle">
+                <img src="https://sanatansevasamiti.org/uploads/footer/1780341218logo.jpg" alt="फीड">
+            </div>
+            <span></span>
+        </a>
+        <a href="javascript:void(0);" onclick="alert('पुस्तकें — शीघ्र उपलब्ध होगा।');" class="sss-item">
+            <img src="https://sanatansevasamiti.org/uploads/footer/1780341270bi.jpg" alt="पुस्तकें">
+            <span>पुस्तकें</span>
+        </a>
+        <a href="app_dashboard.html" class="sss-item">
+            <img src="https://sanatansevasamiti.org/uploads/footer/1780341144ai.jpg" alt="अकाउंट">
+            <span>अकाउंट</span>
+        </a>
+    </div>
+
+    <!-- Interactions & Logic -->
+    <script>
+        function showTab(tabId, btn) {
+            document.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none');
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(tabId).style.display = 'block';
+            btn.classList.add('active');
+        }
+
+        function toggleVishesh() {
+            const box = document.getElementById('visheshBox');
+            box.style.display = (box.style.display === 'block') ? 'none' : 'block';
+            if (box.style.display === 'block') {
+                box.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function toggleFbMenu(event) {
+            event.stopPropagation();
+            const menu = document.getElementById('fbDropdown');
+            menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.fb-menu-trigger')) {
+                const menu = document.getElementById('fbDropdown');
+                if (menu && menu.style.display === 'block') menu.style.display = 'none';
+            }
+        };
+
+        function toggleSchedules(headerEl) {
+            const content = document.getElementById('scheduleContainer');
+            headerEl.classList.toggle('active');
+            content.style.display = (content.style.display === 'block') ? 'none' : 'block';
+        }
+
+        function showMore(id) {
+            const el = document.getElementById('text-' + id);
+            if (el) el.classList.remove('hidden-caption');
+            event.target.style.display = 'none';
+        }
+
+        function toggleLike(btn) {
+            btn.classList.toggle('liked');
+        }
+
+        function sharePost() {
+            const shareText = "आनंद लहरी - हरिनाम संकीर्तन एवं भक्ति सेवा:\nhttps://sanatansevasamiti.org/open.php?target=post&id=102";
+            if (navigator.share) {
+                navigator.share({ title: 'आनंद लहरी', text: shareText, url: 'https://sanatansevasamiti.org/open.php?target=post&id=102' }).catch(()=>{});
+            } else {
+                window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(shareText), '_blank');
+            }
+        }
+
+        function openLightbox(src) {
+            document.getElementById('lightbox-modal').style.display = 'flex';
+            document.getElementById('lightbox-img').src = src;
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox-modal').style.display = 'none';
+        }
+
+        function openContact() {
+            document.getElementById('contact-popup').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        function closeContact() {
+            document.getElementById('contact-popup').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+
+        function scrollToDaanModule() {
+            const mod = document.getElementById('daanSamarpanModule');
+            mod.style.display = 'block';
+            mod.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function switchDaanType(type) {
+            document.getElementById('boxDhan').style.display = 'none';
+            document.getElementById('boxAnn').style.display = 'none';
+            document.getElementById('boxSeva').style.display = 'none';
+            document.querySelectorAll('.f-tab-btn').forEach(b => b.classList.remove('active'));
+
+            if (type === 'dhan') {
+                document.getElementById('boxDhan').style.display = 'block';
+                document.getElementById('fTabDhan').classList.add('active');
+            } else if (type === 'ann') {
+                document.getElementById('boxAnn').style.display = 'block';
+                document.getElementById('fTabAnn').classList.add('active');
+            } else {
+                document.getElementById('boxSeva').style.display = 'block';
+                document.getElementById('fTabSeva').classList.add('active');
+            }
+        }
+
+        function setQuickAmount(amt) {
+            document.getElementById('inputDhanAmount').value = amt;
+        }
+
+        function submitDaanAction(type) {
+            alert('जय श्री राम! आपकी ' + type + ' सेवा समर्पण प्रक्रिया दर्ज की जा रही है। आधिकारिक रसीद जारी हो रही है...');
+            window.location.href = 'https://sanatansevasamiti.org/aanand-lahari/daan.php';
+        }
+    </script>
+    <script src="image_cache.js"></script>
+    <script src="auth_guard.js"></script>
+</body>
+</html>
