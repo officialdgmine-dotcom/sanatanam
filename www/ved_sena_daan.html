@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>वेद सेना | वैदिक सेवा एवं समर्पण</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Yatra+One&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   ULTRA-PREMIUM VEDIC GLASS-ROYAL DESIGN SYSTEM
+============================================================ */
+:root {
+    --gold-primary: #f0c05a;
+    --gold-gradient: linear-gradient(135deg, #fff2a6 0%, #d4af37 50%, #aa820a 100%);
+    --gold-glow: 0 0 35px rgba(212, 175, 55, 0.35);
+    
+    --bg-dark: #080202;
+    --bg-panel: rgba(22, 6, 6, 0.75);
+    --bg-panel-solid: #150505;
+    
+    --maroon-deep: #400508;
+    --maroon-glow: linear-gradient(135deg, #780009, #350004);
+    
+    --text-gold: #fde8ad;
+    --text-bright: #ffffff;
+    --text-muted: #c9b19b;
+    
+    --border-gold: 1px solid rgba(212, 175, 55, 0.35);
+    --border-gold-strong: 2px solid #d4af37;
+    
+    --radius-xl: 32px;
+    --radius-md: 20px;
+    --radius-sm: 14px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html { scroll-behavior: smooth; }
+
+body {
+    background-color: var(--bg-dark);
+    background-image: 
+        radial-gradient(circle at 50% 0%, rgba(130, 10, 15, 0.45) 0%, transparent 60%),
+        radial-gradient(circle at 100% 50%, rgba(212, 175, 55, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 0% 80%, rgba(90, 5, 10, 0.3) 0%, transparent 50%);
+    background-attachment: fixed;
+    color: var(--text-bright);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    overflow-x: hidden;
+    padding-bottom: 70px;
+}
+
+.vedic-container {
+    width: min(1200px, 94%);
+    margin: 0 auto;
+}
+
+/* 1. ROYAL STICKY TOPBAR */
+.v-topbar {
+    position: sticky;
+    top: 12px;
+    z-index: 999;
+    background: rgba(18, 4, 4, 0.85);
+    backdrop-filter: blur(25px);
+    border: var(--border-gold);
+    border-radius: var(--radius-xl);
+    padding: 10px 18px;
+    margin: 12px auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+}
+
+.v-brand-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.v-brand-badge {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 2px solid var(--gold-primary);
+    overflow: hidden;
+    background: #000;
+}
+.v-brand-badge img { width: 100%; height: 100%; object-fit: cover; }
+
+.v-brand-title {
+    font-family: 'Yatra One', cursive;
+    font-size: 20px;
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.1;
+}
+
+.v-brand-sub {
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+}
+
+.v-wallet-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(40, 10, 10, 0.8));
+    border: 1px solid var(--gold-primary);
+    padding: 8px 16px;
+    border-radius: 999px;
+    color: var(--gold-primary);
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 13px;
+    box-shadow: var(--gold-glow);
+    transition: all 0.3s ease;
+}
+.v-wallet-btn:hover { transform: scale(1.04); }
+
+/* 2. HERO SHOWCASE */
+.v-hero {
+    position: relative;
+    border-radius: var(--radius-xl);
+    border: var(--border-gold-strong);
+    background: linear-gradient(180deg, rgba(35, 5, 8, 0.9) 0%, rgba(12, 2, 3, 0.95) 100%);
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.8), inset 0 0 60px rgba(212, 175, 55, 0.15);
+    overflow: hidden;
+    padding: 45px 30px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.v-hero::before {
+    content: "ॐ";
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 320px;
+    color: rgba(212, 175, 55, 0.04);
+    font-family: 'Cinzel', serif;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.v-hero-inner { position: relative; z-index: 1; }
+
+.v-avatar-aura {
+    width: 140px;
+    height: 140px;
+    margin: 0 auto 18px;
+    padding: 6px;
+    border-radius: 50%;
+    background: var(--gold-gradient);
+    box-shadow: 0 0 40px rgba(212, 175, 55, 0.5);
+    position: relative;
+}
+
+.v-avatar-aura img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #000;
+}
+
+.v-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 16px;
+    background: rgba(212, 175, 55, 0.12);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--gold-primary);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.v-hero-h1 {
+    font-family: 'Yatra One', cursive;
+    font-size: clamp(38px, 6vw, 68px);
+    line-height: 1.1;
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
+}
+
+.v-hero-tagline {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-gold);
+    margin-bottom: 18px;
+}
+
+.v-hero-p {
+    max-width: 780px;
+    margin: 0 auto 28px;
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--text-muted);
+}
+
+.v-hero-cta-grid {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.v-btn-primary {
+    background: var(--gold-gradient);
+    color: #1a0202;
+    padding: 15px 30px;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+    transition: all 0.3s ease;
+}
+.v-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 15px 40px rgba(212, 175, 55, 0.6); }
+
+.v-btn-secondary {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text-gold);
+    border: 1px solid var(--gold-primary);
+    padding: 15px 25px;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.v-btn-secondary:hover { background: rgba(212, 175, 55, 0.15); }
+
+/* 3. MAHARAJ JI & SANKALP BANNER */
+.v-sankalp-banner {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 25px;
+    background: var(--bg-panel);
+    border: var(--border-gold);
+    border-radius: var(--radius-xl);
+    padding: 24px;
+    backdrop-filter: blur(20px);
+    margin-bottom: 25px;
+    align-items: center;
+}
+
+.v-maharaj-frame {
+    width: 100%;
+    height: 380px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 2px solid var(--gold-primary);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+}
+.v-maharaj-frame img { width: 100%; height: 100%; object-fit: cover; }
+
+.v-sankalp-body h3 {
+    font-family: 'Yatra One', cursive;
+    color: var(--gold-primary);
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+.v-sankalp-quote {
+    background: rgba(80, 10, 15, 0.4);
+    border-left: 4px solid var(--gold-primary);
+    padding: 18px;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--text-gold);
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+/* 4. SEVA CARDS GRID */
+.v-section-title {
+    text-align: center;
+    margin: 35px 0 20px;
+}
+.v-section-title h2 {
+    font-family: 'Yatra One', cursive;
+    font-size: 30px;
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.v-section-title p { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+
+.v-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin-bottom: 30px;
+}
+
+.v-card {
+    background: var(--bg-panel);
+    border: var(--border-gold);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+.v-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--gold-primary);
+    box-shadow: var(--gold-glow);
+}
+.v-card-icon {
+    font-size: 36px;
+    margin-bottom: 12px;
+}
+.v-card h4 {
+    font-size: 18px;
+    color: var(--gold-primary);
+    margin-bottom: 8px;
+    font-weight: 800;
+}
+.v-card p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.7;
+}
+
+/* 5. DONATION PORTAL */
+.v-donation-hub {
+    background: linear-gradient(180deg, rgba(30, 6, 8, 0.95) 0%, rgba(15, 2, 3, 0.98) 100%);
+    border: 2px solid var(--gold-primary);
+    border-radius: var(--radius-xl);
+    padding: 35px;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.9), var(--gold-glow);
+    margin-bottom: 35px;
+}
+
+.v-wallet-status-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(212, 175, 55, 0.08);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: var(--radius-sm);
+    padding: 16px 20px;
+    margin-bottom: 25px;
+}
+.v-user-meta span { display: block; }
+.v-user-meta .u-name { font-weight: 800; font-size: 15px; color: var(--gold-primary); }
+.v-user-meta .u-id { font-size: 11px; color: var(--text-muted); }
+.v-bal-meta { text-align: right; }
+.v-bal-meta .b-label { font-size: 11px; color: var(--text-muted); }
+.v-bal-meta .b-val { font-size: 24px; font-weight: 900; color: #55efc4; }
+
+/* TABS */
+.v-tabs-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 6px;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    margin-bottom: 25px;
+}
+
+.v-tab-btn {
+    padding: 14px 10px;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    font-weight: 800;
+    font-size: 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+.v-tab-btn.active {
+    background: var(--gold-gradient);
+    color: #150202;
+    box-shadow: 0 5px 20px rgba(212, 175, 55, 0.35);
+}
+
+/* QUICK AMOUNTS */
+.v-chips-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+    margin-bottom: 20px;
+}
+.v-chip {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    color: var(--gold-primary);
+    padding: 12px 5px;
+    border-radius: var(--radius-sm);
+    font-weight: 800;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.v-chip:hover { background: var(--gold-primary); color: #000; }
+
+/* INPUT STYLING */
+.v-field-group { margin-bottom: 20px; }
+.v-field-group label {
+    display: block;
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--text-gold);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.v-input-wrap { position: relative; }
+.v-input-wrap span {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gold-primary);
+    font-size: 22px;
+    font-weight: 900;
+}
+
+.v-input {
+    width: 100%;
+    padding: 16px 18px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    border-radius: var(--radius-sm);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: inherit;
+    outline: none;
+    transition: border 0.3s;
+}
+.v-input:focus { border-color: var(--gold-primary); box-shadow: 0 0 15px rgba(212, 175, 55, 0.3); }
+.v-input.amount-pad { padding-left: 45px; font-size: 24px; font-weight: 900; color: #ffd875; }
+
+.v-submit-btn {
+    width: 100%;
+    padding: 18px;
+    border: none;
+    border-radius: var(--radius-sm);
+    background: var(--gold-gradient);
+    color: #120202;
+    font-size: 18px;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+    transition: all 0.3s;
+}
+.v-submit-btn:hover { transform: translateY(-2px); box-shadow: 0 15px 40px rgba(212, 175, 55, 0.6); }
+
+/* ERROR & NOTIFICATIONS */
+.v-error-box {
+    background: rgba(180, 20, 20, 0.25);
+    border: 1px solid #ff4d4d;
+    padding: 16px;
+    border-radius: var(--radius-sm);
+    color: #ff9999;
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 20px;
+    text-align: center;
+    display: none;
+}
+.v-error-box a {
+    display: inline-block;
+    margin-top: 8px;
+    background: #ff4d4d;
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+/* MODAL POPUP */
+.v-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(12px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+.v-modal-card {
+    width: 100%;
+    max-width: 440px;
+    background: linear-gradient(180deg, #1f0406 0%, #0c0102 100%);
+    border: 2px solid var(--gold-primary);
+    border-radius: var(--radius-xl);
+    padding: 30px 24px;
+    text-align: center;
+    box-shadow: 0 30px 100px rgba(0, 0, 0, 0.9), var(--gold-glow);
+}
+.v-modal-icon { font-size: 55px; margin-bottom: 10px; }
+.v-modal-h3 { font-family: 'Yatra One', cursive; color: var(--gold-primary); font-size: 24px; }
+.v-modal-amt { font-size: 32px; font-weight: 900; color: #55efc4; margin: 10px 0; }
+.v-modal-actions { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+
+/* HISTORY TIMELINE CARDS */
+.v-history-list { display: flex; flex-direction: column; gap: 12px; }
+.v-history-item {
+    background: var(--bg-panel);
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    border-radius: var(--radius-sm);
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+.v-h-left .date { font-size: 11px; color: var(--text-muted); }
+.v-h-left .desc { font-size: 14px; font-weight: 800; color: #fff; margin-top: 2px; }
+.v-h-right { display: flex; align-items: center; gap: 12px; }
+.v-h-amt { font-size: 18px; font-weight: 900; color: var(--gold-primary); }
+.v-h-badge {
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 800;
+}
+.badge-app { background: rgba(85, 239, 196, 0.15); color: #55efc4; border: 1px solid #55efc4; }
+.badge-pen { background: rgba(255, 180, 0, 0.15); color: #ffb400; border: 1px solid #ffb400; }
+.v-h-btn {
+    background: rgba(212, 175, 55, 0.12);
+    border: 1px solid var(--gold-primary);
+    color: var(--gold-primary);
+    padding: 6px 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+@media (max-width: 900px) {
+    .v-sankalp-banner { grid-template-columns: 1fr; text-align: center; }
+    .v-maharaj-frame { height: 320px; }
+    .v-chips-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 600px) {
+    .v-tabs-wrapper { grid-template-columns: 1fr; }
+    .v-chips-grid { grid-template-columns: repeat(3, 1fr); }
+    .v-hero { padding: 30px 15px; }
+    .v-hero-h1 { font-size: 34px; }
+    .v-donation-hub { padding: 20px 15px; }
+}
+</style>
+</head>
+<body>
+
+<div class="vedic-container">
+
+    <!-- 1. STICKY TOPBAR -->
+    <header class="v-topbar">
+        <div class="v-brand-group">
+            <div class="v-brand-badge">
+                <img src="https://sanatansevasamiti.org/public_html/Images/ss/PRO1781319711_dp.jpg" alt="वेद सेना">
+            </div>
+            <div>
+                <div class="v-brand-title">वेद सेना</div>
+                <div class="v-brand-sub">सनातन सेवा समिति • वैदिक प्रकल्प</div>
+            </div>
+        </div>
+        <a href="app_wallet.html" class="v-wallet-btn">
+            <span>💳</span> <span id="topWalletBalance">₹0.00</span>
+        </a>
+    </header>
+
+    <!-- 2. HERO SHOWCASE -->
+    <section class="v-hero">
+        <div class="v-hero-inner">
+            <div class="v-avatar-aura">
+                <img src="https://sanatansevasamiti.org/public_html/Images/ss/PRO1781319711_dp.jpg" alt="वेद सेना">
+            </div>
+            <div class="v-kicker">🚩 राष्ट्रीय वैदिक चेतना महाअभियान</div>
+            <h1 class="v-hero-h1">वेद सेना</h1>
+            <div class="v-hero-tagline">“वेद रक्षा • धर्म रक्षा • राष्ट्र रक्षा”</div>
+            <p class="v-hero-p">
+                वेदों, वेदांगों, वैदिक शिक्षा, संस्कारों और सनातन वैदिक परंपरा के संरक्षण एवं संवर्धन के लिए समर्पित विद्वान ब्राह्मणों, आचार्यों और वैदिक युवाओं का सेवा-संकल्प।
+            </p>
+            <div class="v-hero-cta-grid">
+                <a href="#dedication-hub" onclick="switchFormTab('dhan')" class="v-btn-primary">🕉️ वॉलेट से सेवा समर्पित करें</a>
+                <a href="#vedic-sankalp" class="v-btn-secondary">📜 पूज्य गुरुदेव का संकल्प</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ERROR HANDLING -->
+    <div class="v-error-box" id="errorBox">
+        <span id="errorMessage">⚠️ त्रुटि</span>
+        <br><a href="app_wallet.html" id="errorWalletLink" style="display:none;">💰 तुरंत वॉलेट रीचार्ज करें</a>
+    </div>
+
+    <!-- 3. GURUDEV SANKALP BANNER -->
+    <section class="v-sankalp-banner" id="vedic-sankalp">
+        <div class="v-maharaj-frame">
+            <img src="https://sanatansevasamiti.org/public_html/Images/maharaj.jpg" alt="सद्गुरुदेव स्वामी सच्चिदानंद जी महाराज">
+        </div>
+        <div class="v-sankalp-body">
+            <div class="v-kicker">🙏 परम पूज्य सद्गुरुदेव का पावन सान्निध्य</div>
+            <h3>श्री श्री 1008 स्वामी सच्चिदानंद जी महाराज</h3>
+            <div class="v-sankalp-quote">
+                “वेद बचेगा तो ज्ञान बचेगा, ज्ञान बचेगा तो संस्कार बचेंगे, और संस्कार बचेंगे तो सनातन धर्म की ज्योति अखंड रहेगी।”
+            </div>
+            <p style="font-size: 14px; color: var(--text-muted); line-height: 1.8;">
+                वेद सेना का उद्देश्य वैदिक ज्ञान, वेदपाठियों, गुरुकुलों, संस्कृत एवं यज्ञ परंपरा को आने वाली पीढ़ियों के लिए संरक्षित एवं संवर्धित करना है।
+            </p>
+        </div>
+    </section>
+
+    <!-- 4. CORE SERVICES GRID -->
+    <div class="v-section-title">
+        <h2>वैदिक सेवा संकल्प क्षेत्र</h2>
+        <p>आपकी सेवा निधि किन क्षेत्रों के संवर्धन में उपयोग की जाती है</p>
+    </div>
+
+    <div class="v-cards-grid">
+        <div class="v-card">
+            <div class="v-card-icon">📖</div>
+            <h4>वेद अध्ययन व संरक्षण</h4>
+            <p>प्राचीन ऋचाओं, श्रुति परंपरा एवं वेदों के प्रामाणिक अध्ययन का संरक्षण।</p>
+        </div>
+        <div class="v-card">
+            <div class="v-card-icon">🏫</div>
+            <h4>गुरुकुल व वेदपाठी सेवा</h4>
+            <p>अध्ययनरत बटुकों, आचार्यों के भरण-पोषण, भोजन व पाठ्य सामग्री की व्यवस्था।</p>
+        </div>
+        <div class="v-card">
+            <div class="v-card-icon">🔥</div>
+            <h4>यज्ञ व अनुष्ठान संस्कृति</h4>
+            <p>वैदिक विधियों द्वारा यज्ञ, अग्निहोत्र एवं संस्कारों की परंपरा का विस्तार।</p>
+        </div>
+        <div class="v-card">
+            <div class="v-card-icon">💻</div>
+            <h4>डिजिटल वैदिक साक्षरता</h4>
+            <p>ई-वेद पुस्तकालय, ऑनलाइन मंत्रोच्चार कक्षाएं एवं आधुनिक माध्यमों से प्रसार।</p>
+        </div>
+    </div>
+
+    <!-- 5. MAIN DONATION PORTAL -->
+    <section class="v-donation-hub" id="dedication-hub">
+        <div class="v-section-title" style="margin-top:0;">
+            <h2>🙏 वैदिक सेवा में अपना समर्पण दें</h2>
+            <p>श्रद्धा एवं सामर्थ्य अनुसार धन, अन्न अथवा श्रम सेवा चुनें</p>
+        </div>
+
+        <div class="v-wallet-status-bar">
+            <div class="v-user-meta">
+                <span class="u-name">👤 सेवक: <span id="userNameLabel">वेद सेवी</span></span>
+                <span class="u-id">User ID: <span id="userIdLabel">---</span> • Seva ID: PRO1781319711</span>
+            </div>
+            <div class="v-bal-meta">
+                <span class="b-label">उपलब्ध वॉलेट बैलेंस</span>
+                <span class="b-val" id="hubWalletBalance">₹0.00</span>
+            </div>
+        </div>
+
+        <div class="v-tabs-wrapper">
+            <button type="button" class="v-tab-btn active" id="tab_dhan" onclick="switchFormTab('dhan')">💰 धन सेवा (Wallet)</button>
+            <button type="button" class="v-tab-btn" id="tab_ann" onclick="switchFormTab('ann')">🌾 अन्न सेवा (Kg)</button>
+            <button type="button" class="v-tab-btn" id="tab_seva" onclick="switchFormTab('seva')">🚩 सेवा समर्पण</button>
+        </div>
+
+        <!-- FORM 1: DHAN DAAN (WALLET) -->
+        <form id="form_dhan" onsubmit="handleVedSubmit(event, 'dhan')">
+            <div class="v-chips-grid">
+                <button type="button" class="v-chip" onclick="setDhanAmount(101)">₹101</button>
+                <button type="button" class="v-chip" onclick="setDhanAmount(501)">₹501</button>
+                <button type="button" class="v-chip" onclick="setDhanAmount(1100)">₹1,100</button>
+                <button type="button" class="v-chip" onclick="setDhanAmount(2100)">₹2,100</button>
+                <button type="button" class="v-chip" onclick="setDhanAmount(5100)">₹5,100</button>
+                <button type="button" class="v-chip" onclick="setDhanAmount(11000)">₹11,000</button>
+            </div>
+
+            <div class="v-field-group">
+                <label>समर्पण राशि (₹)</label>
+                <div class="v-input-wrap">
+                    <span>₹</span>
+                    <input type="number" id="amount_dhan" class="v-input amount-pad" min="1" step="1" placeholder="0" required>
+                </div>
+            </div>
+
+            <div class="v-field-group">
+                <label>सेवा का उद्देश्य</label>
+                <select id="seva_desc_dhan" class="v-input">
+                    <option value="वेद संरक्षण एवं स्वाध्याय">📜 वेद संरक्षण एवं स्वाध्याय</option>
+                    <option value="गुरुकुल एवं बटुक सेवा">🏫 गुरुकुल एवं बटुक सेवा</option>
+                    <option value="वैदिक आचार्य व विद्वान सम्मान">👳 वैदिक आचार्य व विद्वान सम्मान</option>
+                    <option value="यज्ञ, हवन एवं संस्कार सेवा">🔥 यज्ञ, हवन एवं संस्कार सेवा</option>
+                    <option value="डिजिटल वैदिक साक्षरता">💻 डिजिटल वैदिक साक्षरता</option>
+                    <option value="वेद सेना सामान्य सेवा" selected>🕉️ वेद सेना सामान्य सेवा</option>
+                </select>
+            </div>
+
+            <button type="submit" id="btnSubmitDhan" class="v-submit-btn">🙏 वॉलेट से सेवा समर्पित करें</button>
+        </form>
+
+        <!-- FORM 2: ANN DAAN -->
+        <form id="form_ann" style="display:none;" onsubmit="handleVedSubmit(event, 'ann')">
+            <div class="v-field-group">
+                <label>अन्न की मात्रा (Kg में)</label>
+                <input type="number" step="0.1" id="amount_ann" class="v-input" placeholder="उदा. 25, 50, 100 Kg" required>
+            </div>
+
+            <div class="v-field-group">
+                <label>अन्न / सामग्री का प्रकार</label>
+                <input type="text" id="ann_desc" class="v-input" value="गुरुकुल बटुक अन्न सेवा (गेहूं/चावल/दाल/घी)" required>
+            </div>
+
+            <button type="submit" id="btnSubmitAnn" class="v-submit-btn" style="background:linear-gradient(135deg,#55efc4,#00b894); color:#000;">🌾 अन्न सेवा दर्ज करें</button>
+        </form>
+
+        <!-- FORM 3: SEVA SAMARPAN -->
+        <form id="form_seva" style="display:none;" onsubmit="handleVedSubmit(event, 'seva')">
+            <div class="v-field-group">
+                <label>आपकी सेवा / श्रम का विस्तृत विवरण</label>
+                <textarea id="seva_desc_only" class="v-input" rows="4" placeholder="उदा. गुरुकुल में शिक्षण सेवा, यज्ञ व्यवस्था, डिजिटल सेवा, निर्माण सामग्री समर्पण..." required></textarea>
+            </div>
+
+            <button type="submit" id="btnSubmitSeva" class="v-submit-btn" style="background:linear-gradient(135deg,#ff7675,#d63031); color:#fff;">🚩 सेवा समर्पण दर्ज करें</button>
+        </form>
+    </section>
+
+    <!-- 6. MY DEDICATIONS TIMELINE -->
+    <div class="v-section-title">
+        <h2>मेरी सेवा यात्रा (इतिहास)</h2>
+        <p>वेद सेना को समर्पित आपके योगदान का आधिकारिक रिकॉर्ड</p>
+    </div>
+
+    <div id="historyContainer">
+        <div style="text-align:center; padding:30px; background:var(--bg-panel); border-radius:var(--radius-md); border:var(--border-gold); color:var(--text-muted);">
+            📜 अभी इस प्रोफाइल के लिए आपकी कोई पूर्व सेवा दर्ज नहीं है। आज ही अपना प्रथम समर्पण दें।
+        </div>
+    </div>
+
+</div>
+
+<!-- 7. REALTIME SUCCESS POPUP MODAL -->
+<div class="v-modal-overlay" id="successModal">
+    <div class="v-modal-card">
+        <div class="v-modal-icon">🕉️</div>
+        <div class="v-modal-h3">सेवा समर्पण सफल</div>
+        <div class="v-modal-amt" id="modalAmount">₹0.00</div>
+        <p style="font-size:13px; color:var(--text-muted); line-height:1.6;" id="modalNotice">
+            आपके वॉलेट से सेवा राशि सफलतापूर्वक समर्पित हो चुकी है।
+        </p>
+        
+        <div style="margin:15px 0; padding:12px; background:rgba(255,255,255,0.04); border-radius:12px; font-size:12px; text-align:left; color:var(--text-gold);">
+            <div><strong>रसीद संख्या:</strong> <span id="modalReceipt">---</span></div>
+            <div><strong>सेवा:</strong> <span id="modalDesc">---</span></div>
+            <div><strong>दिनांक:</strong> <span id="modalDate">---</span></div>
+        </div>
+
+        <div class="v-modal-actions">
+            <a id="modalReceiptLink" href="#" target="_blank" class="v-btn-primary" style="text-align:center;">📄 आधिकारिक रसीद देखें</a>
+            <a id="modalWhatsappLink" href="#" target="_blank" class="v-btn-secondary" style="text-align:center; background:#25D366; color:#fff; border:none;">📲 WhatsApp शेयर करें</a>
+            <button type="button" class="v-btn-secondary" onclick="closeSuccessModal()">पूर्ण करें</button>
+        </div>
+    </div>
+</div>
+
+<script>
+const PROFILE_ID = "PRO1781319711";
+let currentBalance = 0;
+let currentUserId = "";
+let currentUserName = "वेद सेवी";
+
+function switchFormTab(type) {
+    document.querySelectorAll('.v-tab-btn').forEach(btn => btn.classList.remove('active'));
+    document.getElementById('form_dhan').style.display = 'none';
+    document.getElementById('form_ann').style.display = 'none';
+    document.getElementById('form_seva').style.display = 'none';
+
+    const tab = document.getElementById('tab_' + type);
+    const form = document.getElementById('form_' + type);
+    if(tab) tab.classList.add('active');
+    if(form) form.style.display = 'block';
+}
+
+function setDhanAmount(val) {
+    const input = document.getElementById('amount_dhan');
+    if(input) {
+        input.value = val;
+        input.focus();
+    }
+}
+
+function showError(msg, isWallet = false){
+    const box = document.getElementById('errorBox');
+    const msgEl = document.getElementById('errorMessage');
+    const wLink = document.getElementById('errorWalletLink');
+    if(box && msgEl){
+        msgEl.innerText = "⚠️ " + msg;
+        box.style.display = 'block';
+        if(wLink) wLink.style.display = isWallet ? 'inline-block' : 'none';
+        box.scrollIntoView({ behavior:'smooth', block:'center' });
+    }
+}
+
+function hideError(){
+    const box = document.getElementById('errorBox');
+    if(box) box.style.display = 'none';
+}
+
+function closeSuccessModal() {
+    const modal = document.getElementById('successModal');
+    if(modal) {
+        modal.style.display = 'none';
+        loadUserData();
+    }
+}
+
+async function loadUserData(){
+    try {
+        const rawUser = localStorage.getItem("sss_user_data");
+        if(rawUser){
+            const u = JSON.parse(rawUser);
+            currentUserId = u.unique_id || u.id || "";
+            currentUserName = u.full_name || "वेद सेवी";
+            document.getElementById('userNameLabel').innerText = currentUserName;
+            document.getElementById('userIdLabel').innerText = currentUserId;
+        }
+
+        const res = await fetch(`https://sanatansevasamiti.org/api/get_profile_full.php?action=detail&profile_id=${PROFILE_ID}&user_id=${encodeURIComponent(currentUserId)}`);
+        const data = await res.json();
+
+        if(data && data.status === 'success'){
+            if(data.user_data && data.user_data.is_logged_in){
+                currentBalance = parseFloat(data.user_data.wallet_balance) || 0;
+                document.getElementById('topWalletBalance').innerText = "₹" + currentBalance.toFixed(2);
+                document.getElementById('hubWalletBalance').innerText = "₹" + currentBalance.toFixed(2);
+                localStorage.setItem("sss_wallet_balance", currentBalance);
+
+                renderHistory(data.user_data.user_history);
+            } else {
+                renderHistory([]);
+            }
+        }
+    } catch(e){
+        console.error("Ved Sena Daan Load Error:", e);
+    }
+}
+
+function renderHistory(list){
+    const c = document.getElementById('historyContainer');
+    if(!list || list.length === 0){
+        c.innerHTML = `
+            <div style="text-align:center; padding:30px; background:var(--bg-panel); border-radius:var(--radius-md); border:var(--border-gold); color:var(--text-muted);">
+                📜 अभी इस प्रोफाइल के लिए आपकी कोई पूर्व सेवा दर्ज नहीं है। आज ही अपना प्रथम समर्पण दें।
+            </div>
+        `;
+        return;
+    }
+
+    c.innerHTML = `<div class="v-history-list">${list.map(h => {
+        let amtDisplay = '';
+        if(h.amount_type === 'ann') amtDisplay = "🌾 " + h.amount + " Kg";
+        else if(h.amount_type === 'seva') amtDisplay = "🚩 सेवा";
+        else amtDisplay = "₹" + parseFloat(h.amount).toFixed(2);
+
+        const isPending = (h.status === 'pending');
+
+        return `
+            <div class="v-history-item">
+                <div class="v-h-left">
+                    <div class="date">📅 ${h.tx_date} • TXN: ${h.tx_id}</div>
+                    <div class="desc">${h.seva_desc}</div>
+                </div>
+                <div class="v-h-right">
+                    <div class="v-h-amt">${amtDisplay}</div>
+                    <span class="v-h-badge ${isPending ? 'badge-pen' : 'badge-app'}">
+                        ${isPending ? '⏳ पेंडिंग' : '✓ स्वीकृत'}
+                    </span>
+                    <a href="${h.receipt_url}" target="_blank" class="v-h-btn">📄 रसीद</a>
+                </div>
+            </div>
+        `;
+    }).join("")}</div>`;
+}
+
+async function handleVedSubmit(e, type){
+    e.preventDefault();
+    hideError();
+
+    if(!currentUserId){
+        alert("कृपया सेवा के लिए पहले ऐप में लॉगिन करें।");
+        window.location.href = "app_login.html";
+        return;
+    }
+
+    let amount = 0;
+    let desc = "";
+    let btn = null;
+    let originalText = "";
+
+    if(type === 'dhan'){
+        amount = parseFloat(document.getElementById('amount_dhan').value) || 0;
+        desc = document.getElementById('seva_desc_dhan').value;
+        btn = document.getElementById('btnSubmitDhan');
+        originalText = "🙏 वॉलेट से सेवा समर्पित करें";
+
+        if(amount <= 0){
+            showError("कृपया मान्य सेवा राशि दर्ज करें।");
+            return;
+        }
+        if(amount > currentBalance){
+            showError("आपके डिजिटल वॉलेट में इस सेवा के लिए पर्याप्त राशि उपलब्ध नहीं है।", true);
+            return;
+        }
+    } else if(type === 'ann'){
+        amount = parseFloat(document.getElementById('amount_ann').value) || 0;
+        desc = document.getElementById('ann_desc').value.trim();
+        btn = document.getElementById('btnSubmitAnn');
+        originalText = "🌾 अन्न सेवा दर्ज करें";
+
+        if(amount <= 0 || !desc){
+            showError("कृपया मान्य अन्न मात्रा तथा सामग्री दर्ज करें।");
+            return;
+        }
+    } else if(type === 'seva'){
+        desc = document.getElementById('seva_desc_only').value.trim();
+        btn = document.getElementById('btnSubmitSeva');
+        originalText = "🚩 सेवा समर्पण दर्ज करें";
+
+        if(!desc){
+            showError("कृपया अपनी सेवा अथवा श्रम का विवरण लिखें।");
+            return;
+        }
+    }
+
+    btn.disabled = true;
+    btn.innerText = "⏳ सेवा दर्ज हो रही है...";
+
+    try {
+        const payload = {
+            profile_id: PROFILE_ID,
+            user_id: currentUserId,
+            type: type,
+            amount: amount,
+            seva_desc: desc
+        };
+
+        const res = await fetch(`https://sanatansevasamiti.org/api/get_profile_full.php?action=donate`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+
+        const data = await res.json();
+
+        if(data && data.status === 'success'){
+            let displayAmt = (type === 'dhan') ? `₹${amount.toFixed(2)}` : (type === 'ann' ? `${amount} Kg` : `🚩 सेवा समर्पण`);
+            document.getElementById('modalAmount').innerText = displayAmt;
+            document.getElementById('modalReceipt').innerText = data.receipt_no || "---";
+            document.getElementById('modalDesc').innerText = desc;
+            document.getElementById('modalDate').innerText = data.date || "आज";
+            document.getElementById('modalReceiptLink').href = data.receipt_url || "#";
+
+            const waShare = encodeURIComponent(`🚩 सनातन सेवा समिति - वेद सेना रसीद\nसमर्पण: ${displayAmt}\nविवरण: ${desc}\nरसीद लिंक:\n${data.receipt_url}`);
+            document.getElementById('modalWhatsappLink').href = `https://api.whatsapp.com/send?text=${waShare}`;
+
+            document.getElementById('successModal').style.display = 'flex';
+
+            if(type === 'dhan') document.getElementById('amount_dhan').value = "";
+            if(type === 'ann') document.getElementById('amount_ann').value = "";
+            if(type === 'seva') document.getElementById('seva_desc_only').value = "";
+        } else {
+            showError(data.message || "समर्पण दर्ज करने में समस्या आई।");
+        }
+    } catch(err){
+        showError("सर्वर से संपर्क नहीं हो पाया। इंटरनेट कनेक्शन जाँचें।");
+    } finally {
+        btn.disabled = false;
+        btn.innerText = originalText;
+    }
+}
+
+document.addEventListener("DOMContentLoaded", loadUserData);
+</script>
+
+</body>
+</html>
