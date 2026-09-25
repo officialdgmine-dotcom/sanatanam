@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#031610">
+<title>निःशुल्क स्वास्थ्य सेवा — सेवा समर्पण</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Rozha+One&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --emerald-deep: #051a14;
+  --emerald-rich: #092c22;
+  --emerald-card: rgba(255, 255, 255, 0.96);
+  --sacred-gold: #caa14d;
+  --sacred-gold-light: #f7e2a9;
+  --sacred-gold-dark: #8c6a21;
+  --mint-glow: rgba(46, 175, 125, 0.12);
+  --text-main: #14241e;
+  --text-muted: #566c64;
+  --border-emerald: rgba(202, 161, 77, 0.32);
+  --border-glass: rgba(9, 44, 34, 0.1);
+  --shadow-emerald: 0 24px 60px rgba(5, 26, 20, 0.08), 0 1px 3px rgba(0,0,0,0.03);
+  --radius-xl: 32px;
+  --radius-lg: 20px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0; -webkit-tap-highlight-color: transparent;}
+html{scroll-behavior:smooth}
+body{
+  color:var(--text-main);
+  font-family:'Plus Jakarta Sans',system-ui,-apple-system,"Noto Sans Devanagari",sans-serif;
+  background:#f4f8f6;
+  background-image:
+    radial-gradient(at 0% 0%, rgba(202, 161, 77, 0.14) 0px, transparent 40%),
+    radial-gradient(at 100% 10%, rgba(9, 44, 34, 0.08) 0px, transparent 45%),
+    radial-gradient(at 50% 100%, rgba(46, 175, 125, 0.06) 0px, transparent 50%);
+  background-attachment:fixed;
+  padding-bottom:120px;
+  -webkit-font-smoothing:antialiased;
+}
+
+button,input,textarea,select{font:inherit}
+a{color:inherit;text-decoration:none}
+.container{width:min(1100px,calc(100% - 28px));margin:auto}
+
+.healing-glow{
+  position:fixed;width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(46,175,125,0.08) 0%,transparent 70%);
+  top:-150px;right:-150px;pointer-events:none;z-index:0;
+}
+
+.topbar{
+  position:sticky;top:0;z-index:500;
+  background:rgba(244, 248, 246, 0.88);
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border-emerald);
+  box-shadow:0 6px 25px rgba(5,26,20,0.03);
+}
+.topIn{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:15px}
+.brand{display:flex;align-items:center;gap:14px}
+.brand img{
+  width:52px;height:52px;border-radius:18px;object-fit:cover;
+  border:2px solid var(--sacred-gold);
+  box-shadow:0 8px 22px rgba(202,161,77,0.22);
+}
+.brand b{
+  display:block;color:var(--emerald-rich);font-size:17px;font-weight:800;
+  font-family:'Rozha One',serif;letter-spacing:0.3px;
+}
+.brand small{
+  display:block;color:var(--sacred-gold-dark);font-size:11px;font-weight:600;margin-top:2px;
+}
+.wallet-badge{
+  display:flex;align-items:center;gap:12px;
+  padding:10px 18px;border-radius:20px;
+  background:linear-gradient(135deg,#fffdf7,#f5ede0);
+  border:1.5px solid var(--sacred-gold);
+  box-shadow:0 10px 25px rgba(202,161,77,0.12);
+}
+.wallet-icon{
+  width:38px;height:38px;border-radius:12px;
+  background:linear-gradient(135deg,var(--emerald-rich),var(--emerald-deep));
+  display:grid;place-items:center;color:var(--sacred-gold-light);font-size:17px;
+}
+.wallet-info span{display:block;font-size:9px;color:var(--text-muted);font-weight:700;text-transform:uppercase;letter-spacing:0.8px}
+.wallet-info strong{display:block;color:var(--emerald-rich);font-size:17px;font-weight:800}
+
+.hero{
+  position:relative;margin-top:20px;min-height:640px;border-radius:var(--radius-xl);
+  overflow:hidden;color:#fff;
+  background:
+    linear-gradient(105deg, rgba(5,26,20,0.98) 0%, rgba(9,44,34,0.85) 50%, rgba(9,44,34,0.25) 100%),
+    url('https://sanatansevasamiti.org/public_html/Images/maharaj.jpg') center 22%/cover no-repeat;
+  box-shadow:0 30px 80px rgba(5,26,20,0.35);
+  border:1px solid rgba(202,161,77,0.4);
+}
+.hero::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(0deg, rgba(5,26,20,0.8) 0%, transparent 60%);
+}
+.heroInner{position:relative;z-index:2;padding:60px 48px;max-width:760px}
+.royalPill{
+  display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:999px;
+  background:rgba(202,161,77,0.15);border:1px solid rgba(247,226,169,0.45);
+  color:var(--sacred-gold-light);font-size:11px;font-weight:800;letter-spacing:0.5px;
+  backdrop-filter:blur(10px);
+}
+.hero h1{
+  font-family:'Rozha One',serif;
+  font-size:clamp(38px,6vw,68px);line-height:1.08;margin:22px 0 18px;
+  text-shadow:0 4px 20px rgba(0,0,0,0.5);
+}
+.hero h1 span{
+  background:linear-gradient(135deg,#fff8e7 0%,#f7e2a9 50%,#caa14d 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.heroSub{font-size:16px;line-height:1.9;color:#d5e5df;max-width:650px;margin:0;font-weight:400}
+.guruName{
+  margin-top:28px;padding:18px 22px;border-left:4px solid var(--sacred-gold);
+  background:rgba(5,26,20,0.7);border-radius:0 20px 20px 0;
+  backdrop-filter:blur(16px);border-top:1px solid rgba(255,255,255,0.06);
+  font-size:14px;color:#fcecd2;font-family:'Rozha One',serif;line-height:1.6;
+}
+.heroActions{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+.heroBtn{
+  padding:16px 28px;border-radius:18px;font-size:13px;font-weight:800;
+  display:inline-flex;align-items:center;gap:8px;transition:all 0.3s cubic-bezier(0.16,1,0.3,1);
+}
+.heroBtn.gold{
+  background:linear-gradient(135deg,#fce39f 0%,#caa14d 50%,#9e7723 100%);
+  color:#051a14;box-shadow:0 12px 35px rgba(202,161,77,0.35);
+}
+.heroBtn.gold:hover{transform:translateY(-3px);box-shadow:0 18px 45px rgba(202,161,77,0.5)}
+.heroBtn.outline{
+  background:rgba(255,255,255,0.08);color:#fff;border:1px solid rgba(255,255,255,0.25);
+  backdrop-filter:blur(10px);
+}
+.heroBtn.outline:hover{background:rgba(255,255,255,0.15)}
+.heroStats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:36px}
+.hStat{
+  padding:16px;border-radius:20px;
+  background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);
+  backdrop-filter:blur(10px);
+}
+.hStat b{display:block;font-size:20px;color:var(--sacred-gold-light);font-family:'Rozha One',serif}
+.hStat span{font-size:11px;color:#bad0c8;margin-top:4px;display:block}
+
+.guruCard{
+  margin-top:26px;border-radius:var(--radius-xl);overflow:hidden;
+  background:var(--emerald-card);border:1px solid var(--border-emerald);
+  box-shadow:var(--shadow-emerald);display:grid;grid-template-columns:380px 1fr;
+  gap:36px;align-items:stretch;
+}
+.guruPhoto{
+  position:relative;min-height:480px;border-radius:24px;overflow:hidden;
+  border:2px solid var(--sacred-gold);margin:16px;
+  box-shadow:0 16px 40px rgba(5,26,20,0.15);
+}
+.guruPhoto img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+.guruContent{padding:36px 36px 36px 0;display:flex;flex-direction:column;justify-content:center}
+.guruEyebrow{
+  display:inline-block;color:var(--sacred-gold-dark);font-size:11px;font-weight:800;
+  letter-spacing:0.16em;text-transform:uppercase;margin-bottom:8px;
+}
+.guruContent h2{
+  font-size:clamp(26px,4vw,38px);color:var(--emerald-rich);margin:0 0 16px;
+  font-family:'Rozha One',serif;line-height:1.25;
+}
+.guruContent p{font-size:14px;color:var(--text-muted);line-height:1.95;margin:0 0 16px}
+.guruQuote{
+  margin-top:10px;padding:22px 24px;border-radius:20px;
+  background:linear-gradient(135deg,#fbf6eb 0%,#f5edd8 100%);
+  border:1px solid rgba(202,161,77,0.35);color:#4a3810;
+  font-size:14px;font-weight:700;line-height:1.8;
+}
+
+.card{
+  margin-top:26px;background:var(--emerald-card);
+  border:1px solid var(--border-emerald);border-radius:var(--radius-xl);
+  padding:36px;box-shadow:var(--shadow-emerald);position:relative;
+}
+.cardHead{display:flex;align-items:center;gap:16px;margin-bottom:22px}
+.cardIcon{
+  width:58px;height:58px;flex:0 0 58px;border-radius:18px;
+  background:linear-gradient(135deg,#fef7e6,#f7e5b7);
+  border:1.5px solid var(--sacred-gold);display:grid;place-items:center;
+  font-size:26px;box-shadow:0 8px 20px rgba(202,161,77,0.18);
+}
+.cardHead h2{margin:0;color:var(--emerald-rich);font-size:26px;font-family:'Rozha One',serif}
+.cardHead span{display:block;margin-top:3px;color:var(--text-muted);font-size:12px}
+
+.missionIntro{color:var(--text-muted);font-size:14px;line-height:1.95;margin-bottom:26px}
+.missionGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.missionItem{
+  overflow:hidden;border-radius:24px;background:#ffffff;
+  border:1px solid var(--border-glass);box-shadow:0 8px 25px rgba(0,0,0,0.02);
+  transition:all 0.35s ease;
+}
+.missionItem:hover{
+  transform:translateY(-5px);border-color:var(--sacred-gold);
+  box-shadow:0 18px 45px rgba(9,44,34,0.1);
+}
+.missionItem img{width:100%;height:220px;object-fit:cover;display:block}
+.missionText{padding:22px}
+.missionText h3{margin:0 0 8px;color:var(--emerald-rich);font-size:18px;font-family:'Rozha One',serif}
+.missionText p{margin:0;color:var(--text-muted);font-size:13px;line-height:1.8}
+
+.promises{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}
+.promise{
+  padding:22px;border-radius:22px;background:linear-gradient(135deg,#fcfaf4,#f8f4e6);
+  border:1px solid rgba(202,161,77,0.25);
+}
+.promise b{display:block;color:var(--emerald-rich);font-size:14px;margin-bottom:6px;font-family:'Rozha One',serif}
+.promise p{margin:0;color:var(--text-muted);font-size:12px;line-height:1.7}
+
+.vision{
+  display:grid;grid-template-columns:1fr 1fr;gap:34px;padding:0;overflow:hidden;
+  background:linear-gradient(135deg,var(--emerald-deep) 0%,var(--emerald-rich) 100%);
+  border:1px solid var(--border-emerald);box-shadow:0 25px 60px rgba(5,26,20,0.25);
+}
+.visionImage{min-height:380px;position:relative}
+.visionImage img{width:100%;height:100%;object-fit:cover;display:block}
+.visionContent{padding:40px 40px 40px 10px;display:flex;flex-direction:column;justify-content:center}
+.visionContent .mini{color:var(--sacred-gold-light);font-size:11px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase}
+.visionContent h2{margin:10px 0 16px;color:#fff;font-size:clamp(26px,4vw,38px);font-family:'Rozha One',serif;line-height:1.25}
+.visionContent p{margin:0;color:#d2e5de;line-height:1.95;font-size:14px}
+
+.donationCard{
+  border:2px solid var(--sacred-gold);
+  background:linear-gradient(180deg,#ffffff 0%,#fbf9f2 100%);
+  box-shadow:0 30px 80px rgba(202,161,77,0.16);
+}
+.tabs{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:8px;
+  padding:8px;background:#e9f1ed;border-radius:22px;margin-bottom:26px;
+}
+.tabBtn{
+  border:0;padding:15px 8px;border-radius:16px;background:transparent;
+  color:#425850;font-weight:800;font-size:12.5px;cursor:pointer;
+  transition:all 0.3s cubic-bezier(0.16,1,0.3,1);
+}
+.tabBtn.active{
+  background:linear-gradient(135deg,var(--emerald-rich) 0%,var(--emerald-deep) 100%);
+  color:#fcecd2;box-shadow:0 8px 22px rgba(5,26,20,0.3);
+}
+.field{margin-bottom:20px}
+label{display:block;font-size:12px;font-weight:800;color:var(--emerald-rich);margin-bottom:9px;letter-spacing:0.3px}
+.input,.textarea{
+  width:100%;padding:16px 20px;border:1.5px solid #d4e2dc;border-radius:18px;
+  background:#fff;outline:0;color:var(--text-main);font-size:14px;
+  transition:all 0.25s ease;
+}
+.input:focus,.textarea:focus{
+  border-color:var(--sacred-gold);
+  box-shadow:0 0 0 4px rgba(202,161,77,0.18);
+}
+.amountGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:10px 0 20px}
+.amtBtn{
+  padding:14px 6px;border-radius:16px;border:1.5px solid #d4e2dc;
+  background:#f9fcfa;color:var(--emerald-rich);font-weight:800;font-size:13px;
+  cursor:pointer;transition:all 0.25s ease;
+}
+.amtBtn:hover{border-color:var(--sacred-gold);background:#fff}
+.amtBtn.active{
+  background:linear-gradient(135deg,var(--emerald-rich),var(--emerald-deep));
+  color:#fcecd2;border-color:var(--emerald-deep);
+  box-shadow:0 8px 20px rgba(5,26,20,0.25);
+}
+.submitBtn{
+  width:100%;border:0;padding:18px;border-radius:20px;
+  background:linear-gradient(135deg,#0c392c 0%,#041510 100%);
+  color:#fcecd2;font-weight:900;font-size:16px;cursor:pointer;
+  box-shadow:0 14px 35px rgba(5,26,20,0.3);
+  transition:all 0.3s cubic-bezier(0.16,1,0.3,1);
+}
+.submitBtn:hover{transform:translateY(-2px);box-shadow:0 18px 45px rgba(5,26,20,0.45)}
+.submitBtn.gold{
+  background:linear-gradient(135deg,#fce39f 0%,#caa14d 50%,#9e7723 100%);
+  color:#051a14;box-shadow:0 14px 35px rgba(202,161,77,0.35);
+}
+.serviceNote{
+  margin-top:16px;padding:16px 20px;border-radius:18px;
+  color:var(--text-muted);background:#fbf8f0;
+  border:1px solid rgba(202,161,77,0.25);font-size:12px;line-height:1.7;text-align:center;
+}
+
+.historyItem{
+  padding:18px 22px;border-radius:20px;background:#ffffff;
+  border:1px solid var(--border-glass);margin-bottom:12px;
+  display:flex;justify-content:space-between;align-items:center;gap:14px;
+}
+.hLeft b{display:block;color:var(--emerald-rich);font-size:14px;font-weight:700}
+.hLeft span{display:block;color:var(--text-muted);font-size:11px;margin-top:5px}
+.hRight{text-align:right}
+.hRight strong{display:block;color:var(--sacred-gold-dark);font-size:15px;font-weight:800}
+.hBtn{
+  display:inline-block;margin-top:6px;padding:7px 14px;border-radius:12px;
+  background:#f8f3e6;color:#5a4312;font-size:10.5px;font-weight:800;
+  border:1px solid rgba(202,161,77,0.3);
+}
+
+.alert{padding:16px 20px;border-radius:18px;margin-top:18px;font-weight:700;font-size:13px;display:none}
+.alert.error{background:#fff1ee;color:#9b1c06;border:1px solid #f7cdc4}
+
+.successBox{
+  border:2px solid var(--sacred-gold)!important;
+  background:linear-gradient(135deg,#ffffff,#faf5e8)!important;
+  display:none;
+}
+.successTitle{color:var(--emerald-rich);font-size:23px;font-family:'Rozha One',serif}
+.successNotice{color:var(--text-main);font-size:13px;line-height:1.8;margin:14px 0 20px}
+.successActions{display:flex;gap:12px;flex-wrap:wrap}
+.successActions a{
+  flex:1;min-width:180px;text-align:center;padding:14px;border-radius:16px;
+  color:#fff;background:linear-gradient(135deg,var(--emerald-rich),var(--emerald-deep));
+  font-size:12.5px;font-weight:800;
+}
+.successActions a.whatsapp{background:linear-gradient(135deg,#1f9c54,#0d6f38)}
+
+.bottomBar{
+  position:fixed;left:16px;right:16px;bottom:16px;z-index:900;
+  max-width:1040px;margin:auto;display:flex;gap:10px;padding:10px;
+  border-radius:26px;background:rgba(5,26,20,0.92);
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  box-shadow:0 20px 50px rgba(0,0,0,0.4);border:1px solid rgba(202,161,77,0.35);
+}
+.bottomBar a{
+  flex:1;text-align:center;color:#fff;padding:14px 10px;border-radius:18px;
+  font-size:12px;font-weight:800;
+}
+.bottomBar a.gold{
+  background:linear-gradient(135deg,#fce39f 0%,#caa14d 100%);
+  color:#051a14;box-shadow:0 8px 25px rgba(202,161,77,0.4);
+}
+
+@media(max-width:920px){
+  .guruCard,.vision{grid-template-columns:1fr}
+  .missionGrid{grid-template-columns:1fr 1fr}
+  .guruPhoto{margin:20px;min-height:380px}
+  .guruContent{padding:0 30px 30px}
+  .visionContent{padding:10px 30px 30px}
+  .amountGrid{grid-template-columns:repeat(3,1fr)}
+  .tabs{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .container{width:min(100% - 20px,1100px)}
+  .topIn{min-height:68px}
+  .brand small{display:none}
+  .wallet-badge{padding:8px 12px}
+  .wallet-info strong{font-size:14px}
+  .hero{border-radius:28px;min-height:auto}
+  .heroInner{padding:40px 22px 30px}
+  .hero h1{font-size:38px}
+  .heroStats{grid-template-columns:1fr}
+  .card{padding:22px;border-radius:24px}
+  .missionGrid{grid-template-columns:1fr}
+  .promises{grid-template-columns:1fr}
+  .bottomBar a{font-size:11px;padding:12px 6px}
+}
+</style>
+</head>
+
+<body>
+<div class="healing-glow"></div>
+
+<header class="topbar">
+    <div class="container topIn">
+        <a class="brand" href="swasthya_seva.html">
+            <img src="https://sanatansevasamiti.org/public_html/Images/ss/PRO1781290640_dp.jpg" alt="निःशुल्क स्वास्थ्य सेवा लोगो">
+            <div>
+                <b>निःशुल्क स्वास्थ्य सेवा</b>
+                <small>गरीब एवं जरूरतमंद रोगियों की सेवा</small>
+            </div>
+        </a>
+
+        <a href="app_wallet.html" class="wallet-badge">
+            <div class="wallet-icon">💳</div>
+            <div class="wallet-info">
+                <span>वॉलेट बैलेंस</span>
+                <strong id="topWalletBalance">₹0.00</strong>
+            </div>
+        </a>
+    </div>
+</header>
+
+<main class="container" id="top">
+
+    <div class="alert error" id="alertBox">
+        ⚠️ <span id="alertMsg">त्रुटि</span>
+    </div>
+
+    <!-- SUCCESS -->
+    <section class="card successBox" id="successBox">
+        <div class="cardHead">
+            <div class="cardIcon">✓</div>
+            <div>
+                <div class="successTitle">🙏 स्वास्थ्य सेवा समर्पण सफल हुआ</div>
+                <span>रसीद संख्या: <span id="successReceiptNo">---</span></span>
+            </div>
+        </div>
+
+        <p class="successNotice" id="successNoticeText">
+            आपके वॉलेट से निःशुल्क स्वास्थ्य सेवा के लिए राशि समर्पित कर दी गई है।
+        </p>
+
+        <div class="successActions">
+            <a target="_blank" id="btnViewReceipt" href="#">
+                🧾 आधिकारिक रसीद देखें
+            </a>
+            <a class="whatsapp" target="_blank" id="btnShareWa" href="#">
+                📲 WhatsApp शेयर करें
+            </a>
+        </div>
+    </section>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="heroInner">
+            <div class="heroCopy">
+                <div class="royalPill">
+                    ✦ सनातन सेवा समिति • मानव सेवा • स्वास्थ्य सेवा
+                </div>
+
+                <h1>
+                    स्वास्थ्य सेवा
+                    <span>मानवता की सच्ची सेवा।</span>
+                </h1>
+
+                <p class="heroSub">
+                    आर्थिक रूप से कमजोर, गरीब एवं जरूरतमंद रोगियों तक निःशुल्क स्वास्थ्य सेवा,
+                    चिकित्सा सहयोग, आवश्यक औषधियों और स्वास्थ्य शिविरों के माध्यम से सेवा पहुँचाने
+                    का यह पावन संकल्प है।
+                </p>
+
+                <div class="guruName">
+                    श्री श्री 1008 अनंत श्री विभूषित परम पूज्य जगद्गुरु सच्चिदानंदाचार्य
+                    आनंद पीठाधीश्वर परम पूज्य सद्गुरुदेव स्वामी सच्चिदानंद जी महाराज
+                </div>
+
+                <div class="heroActions">
+                    <a class="heroBtn gold" href="#daan">
+                        🏥 अभी स्वास्थ्य सेवा करें
+                    </a>
+                    <a class="heroBtn outline" href="#mission">
+                        ✦ सेवा का संकल्प जानें
+                    </a>
+                </div>
+
+                <div class="heroStats">
+                    <div class="hStat">
+                        <b>₹1+</b>
+                        <span>श्रद्धानुसार सहयोग</span>
+                    </div>
+                    <div class="hStat">
+                        <b>निःशुल्क</b>
+                        <span>जरूरतमंद रोगियों हेतु सेवा</span>
+                    </div>
+                    <div class="hStat">
+                        <b>स्वास्थ्य</b>
+                        <span>शिविर एवं चिकित्सा सहयोग</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GURU -->
+    <section class="guruCard">
+        <div class="guruPhoto">
+            <img src="https://sanatansevasamiti.org/public_html/Images/maharaj.jpg" alt="परम पूज्य सद्गुरुदेव स्वामी सच्चिदानंद जी महाराज">
+        </div>
+
+        <div class="guruContent">
+            <span class="guruEyebrow">सद्गुरुदेव की प्रेरणा • सेवा का संकल्प</span>
+            <h2>पीड़ित मानव की सेवा में समर्पित एक पावन प्रयास</h2>
+
+            <p>
+                जब किसी जरूरतमंद व्यक्ति के सामने बीमारी, उपचार और आर्थिक कठिनाई एक साथ खड़ी हो जाती है,
+                तब मानवता का सबसे बड़ा धर्म उसके साथ खड़ा होना है।
+                इसी सेवा-भाव को आगे बढ़ाते हुए निःशुल्क स्वास्थ्य सेवा के माध्यम से गरीब एवं जरूरतमंद रोगियों तक उपचार एवं स्वास्थ्य सहयोग पहुँचाने का प्रयास निरंतर किया जा रहा है।
+            </p>
+
+            <div class="guruQuote">
+                🪔 “सेवा केवल सहायता नहीं, बल्कि किसी पीड़ित के जीवन में आशा का दीप जलाने का माध्यम है।”
+            </div>
+        </div>
+    </section>
+
+    <!-- MISSION -->
+    <section class="card" id="mission">
+        <div class="cardHead">
+            <div class="cardIcon">🏥</div>
+            <div>
+                <h2>निःशुल्क स्वास्थ्य सेवा मिशन</h2>
+                <span>जरूरतमंद रोगियों तक सेवा पहुँचाने का प्रयास</span>
+            </div>
+        </div>
+
+        <p class="missionIntro">
+            इस सेवा के अंतर्गत आर्थिक रूप से कमजोर, गरीब और जरूरतमंद रोगियों को यथासंभव निःशुल्क चिकित्सा सहायता उपलब्ध कराने,
+            स्वास्थ्य जागरूकता बढ़ाने तथा आवश्यकता के अनुसार स्वास्थ्य शिविरों के माध्यम से सेवा पहुँचाने का कार्य किया जा रहा है।
+            आपका सहयोग इस सेवा को अधिक लोगों तक पहुँचाने में महत्वपूर्ण भूमिका निभाता है।
+        </p>
+
+        <div class="missionGrid">
+            <div class="missionItem">
+                <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=1200&q=90" alt="चिकित्सा सेवा">
+                <div class="missionText">
+                    <h3>👨‍⚕️ जरूरतमंद रोगियों की चिकित्सा सेवा</h3>
+                    <p>आर्थिक कठिनाइयों के कारण उपचार से वंचित जरूरतमंद रोगियों के लिए यथासंभव चिकित्सा सहयोग और उपचार व्यवस्था में सहायता करना।</p>
+                </div>
+            </div>
+
+            <div class="missionItem">
+                <img src="https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1200&q=90" alt="निःशुल्क स्वास्थ्य शिविर">
+                <div class="missionText">
+                    <h3>🏥 निःशुल्क स्वास्थ्य शिविर</h3>
+                    <p>अलग-अलग स्थानों पर आयोजित होने वाले स्वास्थ्य शिविरों के माध्यम से जरूरतमंद लोगों तक स्वास्थ्य जाँच एवं आवश्यक चिकित्सा सहयोग पहुँचाने का प्रयास।</p>
+                </div>
+            </div>
+
+            <div class="missionItem">
+                <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=1200&q=90" alt="औषधि सेवा">
+                <div class="missionText">
+                    <h3>💊 औषधि एवं उपचार सहयोग</h3>
+                    <p>आवश्यकता के अनुसार गरीब एवं जरूरतमंद रोगियों के लिए औषधि तथा उपचार संबंधी सहायता उपलब्ध कराने का सेवा प्रयास।</p>
+                </div>
+            </div>
+
+            <div class="missionItem">
+                <img src="https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=1200&q=90" alt="रोगी सेवा">
+                <div class="missionText">
+                    <h3>❤️ पीड़ित मानव की सेवा</h3>
+                    <p>बीमारी और आर्थिक परेशानी से जूझ रहे जरूरतमंद परिवारों के लिए चिकित्सा सहयोग के माध्यम से राहत और आशा पहुँचाना।</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="promises">
+            <div class="promise">
+                <b>🏥 स्वास्थ्य शिविर</b>
+                <p>विभिन्न स्थानों पर सेवा की आवश्यकता के अनुसार स्वास्थ्य शिविर आयोजित करने का प्रयास।</p>
+            </div>
+            <div class="promise">
+                <b>💊 चिकित्सा सहयोग</b>
+                <p>जरूरतमंद रोगियों की दवा एवं उपचार संबंधी आवश्यकताओं में सहयोग।</p>
+            </div>
+            <div class="promise">
+                <b>🤲 सेवा में आपका योगदान</b>
+                <p>आपका छोटा सा सहयोग भी किसी जरूरतमंद व्यक्ति के उपचार में उपयोगी बन सकता है।</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- VISION -->
+    <section class="card vision">
+        <div class="visionImage">
+            <img src="https://sanatansevasamiti.org/public_html/Images/kirtan.jpg" alt="परम पूज्य सद्गुरुदेव प्रवचन">
+        </div>
+        <div class="visionContent">
+            <div class="mini">सद्गुरुदेव का सेवा संदेश</div>
+            <h2>जहाँ पीड़ा है, वहाँ सेवा पहुँचनी चाहिए।</h2>
+            <p>
+                निःशुल्क स्वास्थ्य सेवा केवल उपचार तक सीमित नहीं है। इसका उद्देश्य उस जरूरतमंद व्यक्ति तक पहुँच बनाना है जिसके लिए बीमारी के समय आर्थिक सहायता भी एक बड़ी चुनौती बन जाती है।
+                स्वास्थ्य शिविर, चिकित्सा सहयोग, औषधि सहायता और सेवा-भाव के माध्यम से इस संकल्प को आगे बढ़ाने का प्रयास निरंतर किया जा रहा है।
+            </p>
+        </div>
+    </section>
+
+    <!-- DONATION FORM -->
+    <section class="card donationCard" id="daan">
+        <div class="cardHead">
+            <div class="cardIcon">🤲</div>
+            <div>
+                <h2>स्वास्थ्य सेवा समर्पण</h2>
+                <span>अपने वॉलेट से श्रद्धानुसार सेवा सहयोग करें</span>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <button type="button" class="tabBtn active" id="btn_dhan" onclick="setTab('dhan')">💰 स्वास्थ्य दान</button>
+            <button type="button" class="tabBtn" id="btn_medical" onclick="setTab('medical')">💊 चिकित्सा</button>
+            <button type="button" class="tabBtn" id="btn_camp" onclick="setTab('camp')">🏥 स्वास्थ्य कैंप</button>
+            <button type="button" class="tabBtn" id="btn_seva" onclick="setTab('seva')">🚩 प्रत्यक्ष सेवा</button>
+        </div>
+
+        <!-- DHAN FORM -->
+        <form id="form_dhan" onsubmit="handleHealthSubmit(event, 'dhan')">
+            <div class="amountGrid">
+                <button type="button" class="amtBtn" onclick="setAmt('amtInput',51,this)">₹51</button>
+                <button type="button" class="amtBtn active" onclick="setAmt('amtInput',101,this)">₹101</button>
+                <button type="button" class="amtBtn" onclick="setAmt('amtInput',501,this)">₹501</button>
+                <button type="button" class="amtBtn" onclick="setAmt('amtInput',1100,this)">₹1,100</button>
+                <button type="button" class="amtBtn" onclick="setAmt('amtInput',2100,this)">₹2,100</button>
+            </div>
+
+            <div class="field">
+                <label>स्वास्थ्य सेवा समर्पण राशि (₹)</label>
+                <input class="input" id="amtInput" name="amount_dhan" type="number" min="1" step="0.01" value="101" required>
+            </div>
+
+            <div class="field">
+                <label>सेवा का पावन उद्देश्य</label>
+                <select class="input" id="dhanPurpose" name="seva_desc_dhan">
+                    <option value="गरीब एवं जरूरतमंद रोगियों की स्वास्थ्य सेवा">गरीब एवं जरूरतमंद रोगियों की स्वास्थ्य सेवा</option>
+                    <option value="निःशुल्क चिकित्सा एवं उपचार सहयोग">निःशुल्क चिकित्सा एवं उपचार सहयोग</option>
+                    <option value="जरूरतमंद रोगियों की औषधि सेवा">जरूरतमंद रोगियों की औषधि सेवा</option>
+                    <option value="निःशुल्क स्वास्थ्य शिविर सहयोग">निःशुल्क स्वास्थ्य शिविर सहयोग</option>
+                    <option value="गरीब परिवारों के चिकित्सा सहयोग हेतु">गरीब परिवारों के चिकित्सा सहयोग हेतु</option>
+                    <option value="सामान्य स्वास्थ्य सेवा निधि">सामान्य स्वास्थ्य सेवा निधि</option>
+                </select>
+            </div>
+
+            <button class="submitBtn" id="btnSubmitDhan" type="submit">
+                🏥 वॉलेट से स्वास्थ्य सेवा समर्पित करें
+            </button>
+            <div class="serviceNote">
+                🔐 आपका सहयोग सुरक्षित डिजिटल वॉलेट प्रणाली के माध्यम से दर्ज किया जाएगा।
+            </div>
+        </form>
+
+        <!-- MEDICAL FORM -->
+        <form id="form_medical" style="display:none" onsubmit="handleHealthSubmit(event, 'medical')">
+            <div class="amountGrid">
+                <button type="button" class="amtBtn" onclick="setAmt('medicalAmount',101,this)">₹101</button>
+                <button type="button" class="amtBtn active" onclick="setAmt('medicalAmount',501,this)">₹501</button>
+                <button type="button" class="amtBtn" onclick="setAmt('medicalAmount',1100,this)">₹1,100</button>
+                <button type="button" class="amtBtn" onclick="setAmt('medicalAmount',2100,this)">₹2,100</button>
+                <button type="button" class="amtBtn" onclick="setAmt('medicalAmount',5100,this)">₹5,100</button>
+            </div>
+
+            <div class="field">
+                <label>चिकित्सा सेवा राशि (₹)</label>
+                <input class="input" id="medicalAmount" name="amount_medical" type="number" min="1" step="0.01" value="501" required>
+            </div>
+
+            <div class="field">
+                <label>चिकित्सा सहयोग का उद्देश्य</label>
+                <select class="input" id="medicalDesc" name="medical_desc">
+                    <option value="जरूरतमंद रोगी की दवा सेवा">जरूरतमंद रोगी की दवा सेवा</option>
+                    <option value="उपचार एवं चिकित्सा सहयोग">उपचार एवं चिकित्सा सहयोग</option>
+                    <option value="आवश्यक औषधि सहयोग">आवश्यक औषधि सहयोग</option>
+                    <option value="गरीब रोगी की स्वास्थ्य सहायता">गरीब रोगी की स्वास्थ्य सहायता</option>
+                </select>
+            </div>
+
+            <button class="submitBtn" id="btnSubmitMedical" type="submit">
+                💊 चिकित्सा सेवा समर्पित करें
+            </button>
+        </form>
+
+        <!-- CAMP FORM -->
+        <form id="form_camp" style="display:none" onsubmit="handleHealthSubmit(event, 'camp')">
+            <div class="amountGrid">
+                <button type="button" class="amtBtn" onclick="setAmt('campAmount',101,this)">₹101</button>
+                <button type="button" class="amtBtn active" onclick="setAmt('campAmount',501,this)">₹501</button>
+                <button type="button" class="amtBtn" onclick="setAmt('campAmount',1100,this)">₹1,100</button>
+                <button type="button" class="amtBtn" onclick="setAmt('campAmount',2100,this)">₹2,100</button>
+                <button type="button" class="amtBtn" onclick="setAmt('campAmount',5100,this)">₹5,100</button>
+            </div>
+
+            <div class="field">
+                <label>स्वास्थ्य शिविर सहयोग राशि (₹)</label>
+                <input class="input" id="campAmount" name="amount_camp" type="number" min="1" step="0.01" value="501" required>
+            </div>
+
+            <div class="field">
+                <label>स्वास्थ्य शिविर का उद्देश्य</label>
+                <select class="input" id="campDesc" name="camp_desc">
+                    <option value="निःशुल्क स्वास्थ्य शिविर सहयोग">निःशुल्क स्वास्थ्य शिविर सहयोग</option>
+                    <option value="जरूरतमंद रोगियों की स्वास्थ्य जाँच सेवा">जरूरतमंद रोगियों की स्वास्थ्य जाँच सेवा</option>
+                    <option value="चिकित्सा शिविर एवं औषधि सहयोग">चिकित्सा शिविर एवं औषधि सहयोग</option>
+                    <option value="ग्रामीण एवं जरूरतमंद क्षेत्र स्वास्थ्य सेवा">ग्रामीण एवं जरूरतमंद क्षेत्र स्वास्थ्य सेवा</option>
+                </select>
+            </div>
+
+            <button class="submitBtn gold" id="btnSubmitCamp" type="submit">
+                🏥 स्वास्थ्य शिविर के लिए सेवा करें
+            </button>
+        </form>
+
+        <!-- DIRECT SEVA FORM -->
+        <form id="form_seva" style="display:none" onsubmit="handleHealthSubmit(event, 'seva')">
+            <div class="field">
+                <label>प्रत्यक्ष सेवा / चिकित्सा सहयोग का विवरण</label>
+                <textarea class="textarea" id="sevaDescOnly" name="seva_desc_only" rows="4" placeholder="उदाहरण: स्वास्थ्य शिविर में सेवा, रोगी सहायता, चिकित्सा सामग्री सहयोग आदि..." required></textarea>
+            </div>
+
+            <button class="submitBtn" id="btnSubmitSeva" type="submit">
+                🚩 प्रत्यक्ष स्वास्थ्य सेवा दर्ज करें
+            </button>
+            <div class="serviceNote">
+                यह विकल्प प्रत्यक्ष सेवा, चिकित्सा सामग्री अथवा स्वयंसेवी सहयोग का संकल्प दर्ज करने के लिए है।
+            </div>
+        </form>
+    </section>
+
+    <!-- HISTORY -->
+    <section class="card">
+        <div class="cardHead">
+            <div class="cardIcon">📜</div>
+            <div>
+                <h2>आपकी स्वास्थ्य सेवा</h2>
+                <span>इस प्रोफाइल में आपके पिछले सेवा समर्पण</span>
+            </div>
+        </div>
+
+        <div id="historyContainer">
+            <div style="text-align:center; padding:20px; color:#888; font-size:12px;">
+                📜 सेवा इतिहास लोड हो रहा है...
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CALL TO ACTION -->
+    <section class="card" style="text-align:center;background:linear-gradient(135deg,var(--emerald-deep) 0%,var(--emerald-rich) 100%);color:#fff;border-color:var(--sacred-gold);box-shadow:0 30px 70px rgba(5,26,20,0.35)">
+        <div style="color:var(--sacred-gold-light);font-size:11px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase">
+            ✦ सेवा • समर्पण • मानवता ✦
+        </div>
+        <h2 style="margin:14px 0 10px;color:#fff;font-size:clamp(26px,5vw,40px);font-family:'Rozha One',serif">
+            आइए, किसी जरूरतमंद के उपचार में सहभागी बनें।
+        </h2>
+        <p style="max-width:700px;margin:0 auto 24px;color:#d2e5de;line-height:1.9;font-size:14px">
+            आपका सहयोग किसी गरीब रोगी के लिए दवा, उपचार या स्वास्थ्य शिविर की सेवा में सहायक बन सकता है।
+        </p>
+        <a href="#daan" class="heroBtn gold">
+            🏥 अभी स्वास्थ्य सेवा करें
+        </a>
+    </section>
+
+</main>
+
+<!-- BOTTOM BAR -->
+<div class="bottomBar">
+    <a href="#top">🔝 ऊपर</a>
+    <a href="#mission">🏥 सेवा</a>
+    <a href="#daan" class="gold">🤲 अभी स्वास्थ्य सेवा करें</a>
+</div>
+
+<script>
+const PROFILE_ID = "PRO1781290640";
+let currentBalance = 0;
+let currentUserId = "";
+let currentUserName = "सेवा साधक";
+
+function setTab(type){
+    const tabs = ['dhan','medical','camp','seva'];
+    tabs.forEach(function(t){
+        const form = document.getElementById('form_' + t);
+        const button = document.getElementById('btn_' + t);
+        if(form) form.style.display = (t === type) ? 'block' : 'none';
+        if(button) button.classList.toggle('active', t === type);
+    });
+}
+
+function setAmt(inputId, value, el){
+    const input = document.getElementById(inputId);
+    if(input) input.value = value;
+    const parent = el.closest('.amountGrid');
+    if(parent){
+        parent.querySelectorAll('.amtBtn').forEach(function(btn){
+            btn.classList.remove('active');
+        });
+    }
+    el.classList.add('active');
+}
+
+function showAlert(msg){
+    const box = document.getElementById('alertBox');
+    document.getElementById('alertMsg').innerText = msg;
+    box.style.display = 'block';
+    box.scrollIntoView({ behavior:'smooth', block:'center' });
+}
+
+function hideAlert(){
+    document.getElementById('alertBox').style.display = 'none';
+}
+
+function money(v){
+    return "₹" + Number(v || 0).toLocaleString('en-IN', { minimumFractionDigits:2, maximumFractionDigits:2 });
+}
+
+async function loadUserData(){
+    try {
+        const rawUser = localStorage.getItem("sss_user_data");
+        if(rawUser){
+            const u = JSON.parse(rawUser);
+            currentUserId = u.unique_id || u.id || "";
+            currentUserName = u.full_name || "सेवा साधक";
+        }
+
+        const res = await fetch(`https://sanatansevasamiti.org/api/get_profile_full.php?action=detail&profile_id=${PROFILE_ID}&user_id=${encodeURIComponent(currentUserId)}`);
+        const data = await res.json();
+
+        if(data && data.status === 'success'){
+            if(data.user_data && data.user_data.is_logged_in){
+                currentBalance = parseFloat(data.user_data.wallet_balance) || 0;
+                document.getElementById('topWalletBalance').innerText = money(currentBalance);
+                localStorage.setItem("sss_wallet_balance", currentBalance);
+
+                renderHistory(data.user_data.user_history);
+            } else {
+                renderHistory([]);
+            }
+        }
+    } catch(e){
+        console.error("Health Daan Load Error:", e);
+    }
+}
+
+function renderHistory(list){
+    const c = document.getElementById('historyContainer');
+    if(!list || list.length === 0){
+        c.innerHTML = `<div style="text-align:center; padding:15px; color:#888; font-size:12px;">🙏 अभी आपका कोई पूर्व स्वास्थ्य सेवा रिकॉर्ड उपलब्ध नहीं है।</div>`;
+        return;
+    }
+
+    c.innerHTML = list.map(h => {
+        let amtDisplay = '';
+        if(h.amount_type === 'medical' || h.amount_type === 'camp' || h.amount_type === 'dhan') {
+            amtDisplay = money(h.amount);
+        } else if(h.amount_type === 'seva') {
+            amtDisplay = "🚩 सेवा";
+        } else {
+            amtDisplay = money(h.amount);
+        }
+
+        return `
+            <div class="historyItem">
+                <div class="hLeft">
+                    <b>${h.seva_desc}</b>
+                    <span>📅 ${h.tx_date} • ID: ${h.tx_id}</span>
+                </div>
+                <div class="hRight">
+                    <strong>${amtDisplay}</strong>
+                    <a class="hBtn" target="_blank" href="${h.receipt_url}">🧾 रसीद देखें</a>
+                </div>
+            </div>
+        `;
+    }).join("");
+}
+
+async function handleHealthSubmit(e, type){
+    e.preventDefault();
+    hideAlert();
+
+    if(!currentUserId){
+        alert("कृपया सेवा के लिए पहले ऐप में लॉगिन करें।");
+        window.location.href = "app_login.html";
+        return;
+    }
+
+    let amount = 0;
+    let desc = "";
+    let btn = null;
+    let originalText = "";
+
+    if(type === 'dhan'){
+        amount = parseFloat(document.getElementById('amtInput').value) || 0;
+        desc = document.getElementById('dhanPurpose').value;
+        btn = document.getElementById('btnSubmitDhan');
+        originalText = "🏥 वॉलेट से स्वास्थ्य सेवा समर्पित करें";
+
+        if(amount < 1){
+            showAlert("दान राशि कम से कम ₹1 होनी चाहिए।");
+            return;
+        }
+        if(amount > currentBalance){
+            showAlert("आपके वॉलेट में इस सेवा के लिए पर्याप्त राशि नहीं है।");
+            return;
+        }
+    } else if(type === 'medical'){
+        amount = parseFloat(document.getElementById('medicalAmount').value) || 0;
+        desc = document.getElementById('medicalDesc').value;
+        btn = document.getElementById('btnSubmitMedical');
+        originalText = "💊 चिकित्सा सेवा समर्पित करें";
+
+        if(amount < 1){
+            showAlert("कम से कम ₹1 की सेवा राशि दर्ज करें।");
+            return;
+        }
+        if(amount > currentBalance){
+            showAlert("आपके वॉलेट में पर्याप्त राशि नहीं है।");
+            return;
+        }
+    } else if(type === 'camp'){
+        amount = parseFloat(document.getElementById('campAmount').value) || 0;
+        desc = document.getElementById('campDesc').value;
+        btn = document.getElementById('btnSubmitCamp');
+        originalText = "🏥 स्वास्थ्य शिविर के लिए सेवा करें";
+
+        if(amount < 1){
+            showAlert("कम से कम ₹1 की सेवा राशि दर्ज करें।");
+            return;
+        }
+        if(amount > currentBalance){
+            showAlert("आपके वॉलेट में पर्याप्त राशि नहीं है।");
+            return;
+        }
+    } else if(type === 'seva'){
+        desc = document.getElementById('sevaDescOnly').value.trim();
+        btn = document.getElementById('btnSubmitSeva');
+        originalText = "🚩 प्रत्यक्ष स्वास्थ्य सेवा दर्ज करें";
+
+        if(!desc){
+            showAlert("कृपया सेवा / चिकित्सा सहयोग का विवरण दर्ज करें।");
+            return;
+        }
+    }
+
+    btn.disabled = true;
+    btn.innerText = "⏳ सेवा दर्ज हो रही है...";
+
+    try {
+        const payload = {
+            profile_id: PROFILE_ID,
+            user_id: currentUserId,
+            type: (type === 'seva' ? 'seva' : 'dhan'),
+            amount: amount,
+            seva_desc: desc
+        };
+
+        const res = await fetch(`https://sanatansevasamiti.org/api/get_profile_full.php?action=donate`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+
+        const data = await res.json();
+
+        if(data && data.status === 'success'){
+            document.getElementById('successReceiptNo').innerText = data.receipt_no || "---";
+            document.getElementById('btnViewReceipt').href = data.receipt_url || "#";
+            const waShare = encodeURIComponent(`🙏 निःशुल्क स्वास्थ्य सेवा रसीद: ${data.receipt_url}`);
+            document.getElementById('btnShareWa').href = `https://api.whatsapp.com/send?text=${waShare}`;
+
+            const box = document.getElementById('successBox');
+            box.style.display = 'block';
+            box.scrollIntoView({ behavior:'smooth', block:'center' });
+
+            loadUserData();
+        } else {
+            showAlert(data.message || "समर्पण दर्ज करने में समस्या आई।");
+        }
+    } catch(err){
+        showAlert("सर्वर से संपर्क नहीं हो पाया। इंटरनेट कनेक्शन जाँचें।");
+    } finally {
+        btn.disabled = false;
+        btn.innerText = originalText;
+    }
+}
+
+document.addEventListener("DOMContentLoaded", loadUserData);
+</script>
+
+</body>
+</html>
