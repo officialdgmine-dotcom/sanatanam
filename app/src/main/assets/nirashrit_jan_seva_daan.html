@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#651317">
+<title>निराश्रित जन सेवा — सेवा समर्पण</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --maroon:#68161b;
+    --maroon-dark:#35090d;
+    --maroon-soft:#8b2726;
+    --saffron:#d08a22;
+    --gold:#c9a04a;
+    --gold-light:#f3dfaa;
+    --cream:#fffaf0;
+    --ivory:#fffdf8;
+    --sand:#f3e7d0;
+    --ink:#2d211c;
+    --muted:#79665a;
+    --line:rgba(104,22,27,.12);
+    --white:#ffffff;
+    --shadow:0 25px 75px rgba(67,20,12,.13);
+    --shadowDeep:0 35px 100px rgba(46,8,10,.25);
+    --radius:30px;
+}
+
+*{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html{ scroll-behavior:smooth; }
+
+body{
+    margin:0;
+    color:var(--ink);
+    background:
+        radial-gradient(circle at 8% 0%, rgba(201,160,74,.17), transparent 28%),
+        radial-gradient(circle at 92% 25%, rgba(104,22,27,.08), transparent 28%),
+        linear-gradient(180deg, #fffaf0 0%, #fffdf8 45%, #f7eee0 100%);
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans Devanagari", sans-serif;
+    padding-bottom:105px;
+}
+
+button, input, textarea, select{ font:inherit; }
+a{ color:inherit; text-decoration:none; }
+.container{ width:min(1040px, calc(100% - 24px)); margin:auto; }
+
+.ornament{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    margin:12px 0;
+}
+.ornament:before, .ornament:after{
+    content:"";
+    height:1px;
+    width:65px;
+    background:linear-gradient(90deg, transparent, var(--gold));
+}
+.ornament:after{ background:linear-gradient(90deg, var(--gold), transparent); }
+.ornament span{ color:var(--gold); font-size:18px; }
+
+.topbar{
+    position:sticky;
+    top:0;
+    z-index:900;
+    background:rgba(255, 253, 248, .94);
+    backdrop-filter:blur(22px);
+    border-bottom:1px solid rgba(104,22,27,.1);
+    box-shadow:0 5px 25px rgba(52,9,12,.06);
+}
+
+.topIn{
+    min-height:76px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+}
+
+.brand{ display:flex; align-items:center; gap:11px; min-width:0; }
+.brand img{
+    width:51px;
+    height:51px;
+    border-radius:16px;
+    object-fit:cover;
+    border:2px solid var(--gold);
+    padding:2px;
+    background:#fff;
+}
+.brand b{ display:block; color:var(--maroon); font-size:15px; font-weight:950; }
+.brand small{ display:block; color:var(--muted); font-size:9px; margin-top:2px; }
+
+.wallet-badge{
+    padding:9px 13px;
+    border-radius:17px;
+    background:linear-gradient(135deg, #fff7df, #f5e4bb);
+    border:1px solid rgba(201,160,74,.42);
+    text-align:right;
+    min-width:120px;
+    box-shadow:0 5px 20px rgba(122,77,19,.08);
+}
+.wallet-badge span{ display:block; font-size:8px; color:#765525; font-weight:950; }
+.wallet-badge strong{ display:block; color:var(--maroon); font-size:15px; margin-top:1px; }
+
+.hero{
+    position:relative;
+    margin:15px auto 0;
+    min-height:620px;
+    overflow:hidden;
+    border-radius:42px;
+    background:#390b0f;
+    box-shadow:var(--shadowDeep);
+    border:1px solid rgba(201,160,74,.55);
+}
+
+.heroPhoto{
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(90deg, rgba(38,6,9,.98) 0%, rgba(52,9,12,.91) 38%, rgba(60,12,14,.55) 67%, rgba(48,8,10,.35) 100%),
+        url('https://sanatansevasamiti.org/public_html/Images/maharaj.jpg') center right/cover no-repeat;
+    opacity:.98;
+}
+
+.heroGlow{
+    position:absolute;
+    width:500px;
+    height:500px;
+    border-radius:50%;
+    right:5%;
+    top:7%;
+    background:radial-gradient(circle, rgba(245,211,132,.35), rgba(201,160,74,.12) 35%, transparent 68%);
+    filter:blur(2px);
+    pointer-events:none;
+    animation:softGlow 5s ease-in-out infinite;
+}
+
+@keyframes softGlow{
+    0%, 100%{ opacity:.65; transform:scale(1); }
+    50%{ opacity:1; transform:scale(1.04); }
+}
+
+.hero:before{
+    content:"";
+    position:absolute;
+    inset:14px;
+    border:1px solid rgba(242,216,156,.48);
+    border-radius:33px;
+    pointer-events:none;
+}
+
+.heroInner{
+    position:relative;
+    z-index:3;
+    min-height:620px;
+    display:flex;
+    align-items:center;
+    padding:60px 50px;
+}
+
+.heroCopy{ width:min(650px,100%); }
+
+.sanskritPill{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    padding:9px 17px;
+    border-radius:999px;
+    color:var(--gold-light);
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(242,216,156,.35);
+    font-size:11px;
+    font-weight:950;
+    letter-spacing:.2px;
+}
+
+.hero h1{
+    margin:22px 0 13px;
+    color:#fff;
+    font-size:clamp(37px, 6vw, 70px);
+    line-height:1.06;
+    letter-spacing:-.045em;
+    font-weight:950;
+}
+.hero h1 span{ display:block; color:#f3d68e; text-shadow:0 5px 25px rgba(201,160,74,.2); }
+
+.heroIntro{ color:#f0dfd2; max-width:650px; font-size:15px; line-height:1.95; margin:0 0 24px; }
+
+.maharajName{
+    color:#fff;
+    font-size:12px;
+    line-height:1.8;
+    max-width:630px;
+    padding:13px 15px;
+    border-left:3px solid var(--gold);
+    background:rgba(255,255,255,.055);
+    border-radius:0 15px 15px 0;
+}
+.maharajName strong{ color:var(--gold-light); font-size:13px; }
+
+.heroActions{ display:flex; flex-wrap:wrap; gap:9px; margin-top:25px; }
+
+.heroBtn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:14px 20px;
+    border-radius:17px;
+    font-size:12px;
+    font-weight:950;
+    cursor:pointer;
+}
+
+.heroBtn.gold{
+    color:#3b2307;
+    background:linear-gradient(135deg, #c99d43, #f4dda4);
+    box-shadow:0 12px 30px rgba(201,160,74,.25);
+}
+
+.heroBtn.dark{
+    color:#fff;
+    background:rgba(255,255,255,.09);
+    border:1px solid rgba(255,255,255,.23);
+}
+
+.heroStats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:8px;
+    margin-top:27px;
+}
+
+.hStat{
+    padding:14px 12px;
+    border-radius:19px;
+    background:rgba(255,255,255,.065);
+    border:1px solid rgba(255,255,255,.13);
+}
+.hStat b{ display:block; color:#fff; font-size:18px; font-weight:950; }
+.hStat span{ display:block; color:#d9c6b8; font-size:9px; margin-top:3px; }
+
+.divineIntro{
+    margin:22px auto;
+    padding:27px;
+    text-align:center;
+    border-radius:var(--radius);
+    background:linear-gradient(145deg, #fffdf8, #fff5df);
+    border:1px solid rgba(201,160,74,.28);
+    box-shadow:var(--shadow);
+}
+.divineIntro .small{ color:var(--gold); font-size:10px; font-weight:950; letter-spacing:.12em; }
+.divineIntro h2{ color:var(--maroon); font-size:clamp(24px, 4vw, 36px); margin:8px 0; font-weight:950; }
+.divineIntro p{ max-width:800px; margin:auto; color:var(--muted); font-size:13px; line-height:1.9; }
+
+.card{
+    margin:18px auto;
+    padding:27px;
+    border-radius:var(--radius);
+    background:rgba(255,255,255,.94);
+    border:1px solid var(--line);
+    box-shadow:var(--shadow);
+}
+
+.cardHead{ display:flex; align-items:center; gap:13px; margin-bottom:18px; }
+.cardIcon{
+    flex:0 0 auto;
+    width:53px;
+    height:53px;
+    display:grid;
+    place-items:center;
+    border-radius:18px;
+    color:var(--gold-light);
+    background:linear-gradient(145deg, var(--maroon), var(--maroon-dark));
+    border:1px solid rgba(201,160,74,.45);
+    box-shadow:0 10px 25px rgba(75,12,15,.18);
+    font-size:24px;
+}
+.cardHead h2{ margin:0; color:var(--maroon); font-size:22px; font-weight:950; }
+.cardHead span{ display:block; color:var(--muted); font-size:10px; margin-top:3px; }
+
+.serviceGrid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin-top:17px;
+}
+
+.serviceItem{
+    position:relative;
+    min-height:205px;
+    padding:22px 18px;
+    border-radius:23px;
+    overflow:hidden;
+    background:linear-gradient(145deg, #fffdf9, #f9edda);
+    border:1px solid rgba(201,160,74,.22);
+    transition:transform .25s ease, box-shadow .25s ease;
+}
+.serviceItem:hover{ transform:translateY(-4px); box-shadow:0 20px 40px rgba(85,31,18,.12); }
+.serviceNo{ position:absolute; right:12px; top:8px; font-size:42px; color:rgba(201,160,74,.12); font-weight:950; }
+.serviceEmoji{
+    width:48px; height:48px; display:grid; place-items:center; border-radius:16px;
+    background:#fff; border:1px solid rgba(201,160,74,.25); font-size:24px; margin-bottom:13px;
+}
+.serviceItem h3{ margin:0 0 7px; color:var(--maroon); font-size:15px; font-weight:950; }
+.serviceItem p{ margin:0; color:var(--muted); font-size:11px; line-height:1.75; }
+
+.maharajSection{
+    display:grid;
+    grid-template-columns:.78fr 1.22fr;
+    gap:20px;
+    align-items:stretch;
+}
+
+.maharajPhoto{
+    position:relative;
+    min-height:440px;
+    overflow:hidden;
+    border-radius:28px;
+    border:1px solid rgba(201,160,74,.4);
+    background:#4b0c10;
+    box-shadow:0 20px 55px rgba(66,14,13,.18);
+}
+.maharajPhoto img{ width:100%; height:100%; min-height:440px; display:block; object-fit:cover; }
+
+.photoBadge{
+    position:absolute; left:15px; right:15px; bottom:15px; padding:14px; border-radius:18px;
+    color:#fff; background:rgba(49,7,10,.82); backdrop-filter:blur(15px); border:1px solid rgba(242,216,156,.3);
+}
+.photoBadge b{ display:block; color:var(--gold-light); font-size:12px; }
+.photoBadge span{ display:block; font-size:9px; line-height:1.6; margin-top:3px; color:#eadbd0; }
+
+.maharajText{ padding:8px 5px; }
+.maharajText .eyebrow{ color:var(--gold); font-size:10px; font-weight:950; letter-spacing:.12em; }
+.maharajText h2{ margin:9px 0 14px; color:var(--maroon); font-size:clamp(24px, 4vw, 38px); line-height:1.18; font-weight:950; }
+.maharajText p{ color:var(--muted); font-size:13px; line-height:1.9; }
+
+.quoteBox{
+    margin-top:18px; padding:17px; border-radius:20px; color:#fff;
+    background:linear-gradient(135deg, #68161b, #3a090d); border:1px solid rgba(201,160,74,.35);
+    box-shadow:0 15px 30px rgba(61,8,12,.16);
+}
+.quoteBox b{ display:block; color:var(--gold-light); font-size:14px; margin-bottom:5px; }
+.quoteBox span{ font-size:11px; color:#e9d8cd; line-height:1.7; }
+
+.visionCard{
+    position:relative;
+    overflow:hidden;
+    min-height:310px;
+    border-radius:28px;
+    background:linear-gradient(90deg, rgba(46,7,11,.98), rgba(70,12,15,.86));
+}
+.visionCard img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.34; }
+.visionOverlay{ position:relative; z-index:2; padding:38px; max-width:680px; }
+.visionOverlay .tag{
+    display:inline-block; padding:7px 12px; border-radius:999px; color:var(--gold-light);
+    border:1px solid rgba(242,216,156,.3); background:rgba(255,255,255,.07); font-size:10px; font-weight:950;
+}
+.visionOverlay h2{ color:#fff; font-size:clamp(27px, 5vw, 45px); line-height:1.15; margin:15px 0 9px; font-weight:950; }
+.visionOverlay p{ color:#eadbd2; font-size:13px; line-height:1.85; margin:0 0 20px; }
+.videoBtn{
+    display:inline-flex; align-items:center; gap:9px; padding:13px 18px; border-radius:16px;
+    background:linear-gradient(135deg, #c99d43, #f1d89b); color:#351f08; font-size:11px; font-weight:950;
+}
+
+.pillarGrid{ display:grid; grid-template-columns:repeat(4,1fr); gap:9px; }
+.pillar{ padding:17px 13px; text-align:center; border-radius:19px; background:#fffaf0; border:1px solid rgba(201,160,74,.25); }
+.pillar strong{ display:block; color:var(--maroon); font-size:13px; }
+.pillar span{ display:block; color:var(--muted); font-size:9px; line-height:1.6; margin-top:4px; }
+
+.donationCard{
+    position:relative;
+    overflow:hidden;
+    padding:0;
+    background:linear-gradient(135deg, #fffdf8, #f8ead2);
+    border:1px solid rgba(201,160,74,.35);
+}
+.donationTop{
+    padding:30px 28px 22px; color:#fff; background:linear-gradient(135deg, #72191d, #39090d);
+    position:relative; overflow:hidden;
+}
+.donationTop:after{
+    content:"ॐ"; position:absolute; right:25px; top:-20px; font-size:130px; color:rgba(242,216,156,.07);
+}
+.donationTop h2{ position:relative; z-index:2; margin:0 0 5px; color:#fff; font-size:clamp(25px, 4vw, 37px); font-weight:950; }
+.donationTop p{ position:relative; z-index:2; margin:0; color:#ead8cd; font-size:11px; line-height:1.7; }
+.donationBody{ padding:24px 28px 30px; }
+
+.tabs{ display:grid; grid-template-columns:repeat(3,1fr); gap:6px; padding:6px; border-radius:20px; background:#f0e3ce; margin-bottom:20px; }
+.tabBtn{
+    border:0; padding:13px 6px; border-radius:15px; color:#765d4d; background:transparent;
+    font-size:11px; font-weight:950; cursor:pointer; transition:.2s;
+}
+.tabBtn.active{ color:#fff; background:linear-gradient(135deg, #761a1e, #4c0d11); box-shadow:0 7px 18px rgba(76,13,17,.2); }
+
+.field{ margin-bottom:15px; }
+label{ display:block; color:#624c3e; font-size:11px; font-weight:950; margin-bottom:7px; }
+.input, .textarea{
+    width:100%; padding:14px; border:1px solid #dfcfb7; border-radius:16px;
+    background:rgba(255,255,255,.78); color:var(--ink); outline:0; font-size:14px;
+}
+.input:focus, .textarea:focus{ border-color:var(--gold); box-shadow:0 0 0 4px rgba(201,160,74,.11); }
+
+.amountGrid{ display:grid; grid-template-columns:repeat(5,1fr); gap:7px; margin:5px 0 16px; }
+.amtBtn{
+    padding:11px 5px; border-radius:14px; border:1px solid #decdb2; background:#fffaf1;
+    color:var(--maroon); font-weight:950; font-size:11px; cursor:pointer;
+}
+.amtBtn.active{ color:#fff; background:linear-gradient(135deg, #8a2020, #5a0f13); border-color:#6d1519; }
+
+.walletNotice{
+    display:flex; align-items:center; gap:10px; padding:13px; margin-bottom:16px;
+    border-radius:16px; background:#fff7e5; border:1px solid rgba(201,160,74,.25); color:#6b502a; font-size:10px; line-height:1.6;
+}
+
+.submitBtn{
+    width:100%; border:0; padding:17px; border-radius:18px; color:#fff;
+    background:linear-gradient(135deg, #8b2020, #520e12); font-size:14px; font-weight:950;
+    cursor:pointer; box-shadow:0 12px 28px rgba(82,14,18,.2); transition:transform .2s ease, box-shadow .2s ease;
+}
+.submitBtn:hover{ transform:translateY(-2px); box-shadow:0 17px 35px rgba(82,14,18,.26); }
+
+.successBox{ border:2px solid rgba(201,160,74,.55); background:linear-gradient(135deg, #fffdf6, #f7ead0); display:none; }
+.successMark{
+    width:55px; height:55px; display:grid; place-items:center; border-radius:18px;
+    color:#fff; background:linear-gradient(135deg, #a66b1b, #6f4310); font-size:25px; box-shadow:0 10px 25px rgba(115,68,11,.2);
+}
+.successActions{ display:flex; gap:8px; flex-wrap:wrap; margin-top:15px; }
+.successActions a{
+    flex:1; min-width:170px; text-align:center; padding:13px; border-radius:15px;
+    color:#fff; background:linear-gradient(135deg, #741a1e, #4d0c10); font-size:11px; font-weight:950;
+}
+.successActions a.whatsapp{ background:#218c4a; }
+
+.historyItem{
+    display:flex; justify-content:space-between; align-items:center; gap:10px;
+    padding:14px; margin-bottom:9px; border-radius:18px; background:#fffaf2; border:1px solid rgba(201,160,74,.2);
+}
+.hLeft{ min-width:0; }
+.hLeft b{ display:block; color:var(--maroon); font-size:12px; }
+.hLeft span{ display:block; color:var(--muted); font-size:9px; margin-top:3px; }
+.hRight{ text-align:right; flex:0 0 auto; }
+.hRight strong{ display:block; color:#8b5d13; font-size:13px; }
+.hBtn{ display:inline-block; margin-top:4px; padding:5px 9px; border-radius:9px; color:var(--maroon); background:#f4e7cf; font-size:9px; font-weight:950; }
+
+.alert{ padding:14px 16px; border-radius:17px; margin:12px auto; font-size:11px; font-weight:950; display:none; }
+.alert.error{ color:#8b1818; background:#fff0ed; border:1px solid #f0c9c0; }
+
+.bottomBar{
+    position:fixed; left:12px; right:12px; bottom:12px; z-index:1000;
+    max-width:1016px; margin:auto; display:flex; gap:7px; padding:8px; border-radius:23px;
+    background:rgba(57,8,12,.96); backdrop-filter:blur(20px); border:1px solid rgba(242,216,156,.25);
+    box-shadow:0 20px 55px rgba(33,5,7,.3);
+}
+.bottomBar a{ flex:1; text-align:center; color:#fff; padding:13px 8px; border-radius:16px; font-size:11px; font-weight:950; }
+.bottomBar a.gold{ color:#3b2408; background:linear-gradient(135deg, #c89b43, #f1d79a); }
+
+@media(max-width:800px){
+    .heroInner{ padding:40px 25px; min-height:650px; }
+    .hero{ min-height:650px; }
+    .serviceGrid{ grid-template-columns:repeat(2,1fr); }
+    .maharajSection{ grid-template-columns:1fr; }
+    .pillarGrid{ grid-template-columns:repeat(2,1fr); }
+    .maharajPhoto, .maharajPhoto img{ min-height:380px; }
+}
+
+@media(max-width:600px){
+    .container{ width:calc(100% - 16px); }
+    .topIn{ min-height:69px; }
+    .brand small{ display:none; }
+    .brand img{ width:45px; height:45px; }
+    .wallet-badge{ min-width:103px; padding:8px 10px; }
+    .hero{ margin-top:9px; border-radius:29px; min-height:690px; }
+    .hero:before{ inset:9px; border-radius:23px; }
+    .heroPhoto{
+        background:
+            linear-gradient(180deg, rgba(39,7,10,.68) 0%, rgba(48,8,11,.86) 48%, rgba(43,7,10,.98) 100%),
+            url('https://sanatansevasamiti.org/public_html/Images/maharaj.jpg') center/cover no-repeat;
+    }
+    .heroInner{ min-height:690px; align-items:flex-end; padding:35px 20px 30px; }
+    .hero h1{ font-size:39px; }
+    .heroIntro{ font-size:13px; }
+    .heroStats{ grid-template-columns:repeat(2,1fr); }
+    .card{ padding:20px; border-radius:24px; }
+    .serviceGrid{ grid-template-columns:1fr; }
+    .serviceItem{ min-height:auto; }
+    .tabs{ grid-template-columns:1fr; }
+    .amountGrid{ grid-template-columns:repeat(3,1fr); }
+    .donationBody{ padding:20px; }
+    .donationTop{ padding:25px 20px 20px; }
+    .visionOverlay{ padding:27px 21px; }
+    .maharajText{ padding:2px; }
+    .historyItem{ align-items:flex-start; }
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+    <div class="container topIn">
+        <a class="brand" href="nirashrit_jan_seva.html">
+            <img src="https://sanatansevasamiti.org/public_html/Images/ss/PRO1781291019_dp.jpg" alt="निराश्रित जन सेवा लोगो">
+            <div>
+                <b>निराश्रित जन सेवा</b>
+                <small>अन्न • उपचार • वस्त्र • मानव सेवा</small>
+            </div>
+        </a>
+
+        <a href="app_wallet.html" class="wallet-badge">
+            <span>💳 सेवा वॉलेट</span>
+            <strong id="topWalletBalance">₹0.00</strong>
+        </a>
+    </div>
+</header>
+
+<main class="container" id="top">
+
+    <div class="alert error" id="alertBox">
+        ⚠️ <span id="alertMsg">त्रुटि</span>
+    </div>
+
+    <!-- SUCCESS -->
+    <section class="card successBox" id="successBox">
+        <div class="cardHead">
+            <div class="successMark">✓</div>
+            <div>
+                <h2>🙏 सेवा समर्पण सफल हुआ</h2>
+                <span>रसीद संख्या: <span id="successReceiptNo">---</span></span>
+            </div>
+        </div>
+
+        <p style="color:#6d5749; font-size:13px; line-height:1.8; margin:0;" id="successNoticeText">
+            आपका सेवा समर्पण सफलतापूर्वक दर्ज हो गया है।
+        </p>
+
+        <div class="successActions">
+            <a target="_blank" id="btnViewReceipt" href="#">🧾 आधिकारिक रसीद देखें</a>
+            <a class="whatsapp" target="_blank" id="btnShareWa" href="#">📲 WhatsApp शेयर करें</a>
+        </div>
+    </section>
+
+    <!-- DIVINE HERO -->
+    <section class="hero">
+        <div class="heroPhoto"></div>
+        <div class="heroGlow"></div>
+        <div class="heroInner">
+            <div class="heroCopy">
+                <div class="sanskritPill">🪔 मानव सेवा • माधव सेवा 🪔</div>
+                <h1>निराश्रित जनों के जीवन में<span>सेवा का प्रकाश।</span></h1>
+                <p class="heroIntro">
+                    जिनके पास सहारा नहीं, जिनके पास भोजन, उपचार, वस्त्र या जीवन की मूलभूत आवश्यकताओं का अभाव है— उनके लिए करुणा, सम्मान और सहयोग का संकल्प ही इस सेवा का मूल उद्देश्य है।
+                </p>
+
+                <div class="maharajName">
+                    <strong>
+                        श्री श्री 1008 अनंत श्री विभूषित परम पूज्य जगद्गुरु सच्चिदानंदाचार्य आनंद पीठाधीश्वर परम पूज्य सद्गुरुदेव स्वामी सच्चिदानंद जी महाराज
+                    </strong><br>
+                    सेवा, करुणा और मानव कल्याण की प्रेरणा से निराश्रित एवं जरूरतमंद जनों तक सहयोग पहुँचाने का सतत प्रयास।
+                </div>
+
+                <div class="heroActions">
+                    <a href="#daan" class="heroBtn gold">🙏 अभी सेवा समर्पित करें</a>
+                    <a href="#maharaj" class="heroBtn dark">🪔 सेवा प्रेरणा जानें</a>
+                </div>
+
+                <div class="heroStats">
+                    <div class="hStat"><b>नित्य</b><span>अन्न सेवा</span></div>
+                    <div class="hStat"><b>सतत</b><span>उपचार सहायता</span></div>
+                    <div class="hStat"><b>जरूरतमंद</b><span>परिवारों तक सहयोग</span></div>
+                    <div class="hStat"><b>₹1+</b><span>श्रद्धानुसार समर्पण</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIVINE INTRO -->
+    <section class="divineIntro">
+        <div class="small">✦ सनातन सेवा समिति ✦</div>
+        <h2>सेवा केवल दान नहीं, किसी जीवन के लिए सहारा है।</h2>
+        <div class="ornament"><span>❈</span></div>
+        <p>
+            निराश्रित जन सेवा के अंतर्गत ऐसे लोगों तक भोजन, वस्त्र, चिकित्सा सहायता, आवश्यक सामग्री, शिक्षा सहयोग तथा मानवीय संवेदना पहुँचाने का प्रयास किया जाता है जिन्हें जीवन की कठिन परिस्थितियों में समाज के सहयोग की आवश्यकता होती है।
+        </p>
+    </section>
+
+    <!-- MISSION -->
+    <section class="card">
+        <div class="cardHead">
+            <div class="cardIcon">🤲</div>
+            <div>
+                <h2>निराश्रित जन सेवा के प्रमुख कार्य</h2>
+                <span>सेवा के अनेक आयाम — आवश्यकता के अनुसार सहयोग</span>
+            </div>
+        </div>
+
+        <div class="serviceGrid">
+            <div class="serviceItem">
+                <div class="serviceNo">01</div>
+                <div class="serviceEmoji">👧</div>
+                <h3>निराश्रित एवं अनाथ बच्चों की सेवा</h3>
+                <p>जरूरतमंद एवं निराश्रित बच्चों के लिए भोजन, वस्त्र, शिक्षा सामग्री, दैनिक आवश्यकताओं तथा आवश्यकता अनुसार सहयोग उपलब्ध कराने का प्रयास।</p>
+            </div>
+
+            <div class="serviceItem">
+                <div class="serviceNo">02</div>
+                <div class="serviceEmoji">🍚</div>
+                <h3>गरीब एवं भिक्षुक जन अन्न सेवा</h3>
+                <p>भोजन से वंचित गरीब, असहाय एवं भिक्षुक जनों तक नित्य या आवश्यकता अनुसार भोजन एवं अन्न सामग्री पहुँचाने की सेवा।</p>
+            </div>
+
+            <div class="serviceItem">
+                <div class="serviceNo">03</div>
+                <div class="serviceEmoji">🏥</div>
+                <h3>उपचार एवं चिकित्सा सहायता</h3>
+                <p>आर्थिक रूप से कमजोर एवं असहाय जनों के लिए दवा, प्राथमिक उपचार, चिकित्सकीय परामर्श एवं आवश्यकता अनुसार उपचार सहयोग।</p>
+            </div>
+
+            <div class="serviceItem">
+                <div class="serviceNo">04</div>
+                <div class="serviceEmoji">👕</div>
+                <h3>वस्त्र एवं आवश्यक सामग्री</h3>
+                <p>जरूरतमंद परिवारों, बच्चों एवं असहाय लोगों के लिए मौसम के अनुसार वस्त्र, कंबल, दैनिक उपयोग की सामग्री एवं अन्य आवश्यक सहयोग।</p>
+            </div>
+
+            <div class="serviceItem">
+                <div class="serviceNo">05</div>
+                <div class="serviceEmoji">👴</div>
+                <h3>असहाय एवं वृद्ध जन सहयोग</h3>
+                <p>अकेलेपन, आर्थिक कठिनाई अथवा दैनिक जरूरतों से जूझ रहे असहाय एवं वृद्ध जनों तक आवश्यकता अनुसार सेवा पहुँचाने का प्रयास।</p>
+            </div>
+
+            <div class="serviceItem">
+                <div class="serviceNo">06</div>
+                <div class="serviceEmoji">🏠</div>
+                <h3>आपातकालीन मानव सहायता</h3>
+                <p>अचानक आई कठिन परिस्थिति में जरूरतमंद व्यक्ति या परिवार को भोजन, दवा, सामग्री अथवा आवश्यक सहायता उपलब्ध कराने का प्रयास।</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAHARAJ SECTION -->
+    <section class="card" id="maharaj">
+        <div class="maharajSection">
+            <div class="maharajPhoto">
+                <img src="https://sanatansevasamiti.org/public_html/Images/maharaj.jpg" alt="परम पूज्य सद्गुरुदेव स्वामी सच्चिदानंद जी महाराज">
+                <div class="photoBadge">
+                    <b>🪔 सेवा प्रेरणा</b>
+                    <span>
+                        श्री श्री 1008 अनंत श्री विभूषित परम पूज्य जगद्गुरु सच्चिदानंदाचार्य आनंद पीठाधीश्वर परम पूज्य सद्गुरुदेव स्वामी सच्चिदानंद जी महाराज
+                    </span>
+                </div>
+            </div>
+
+            <div class="maharajText">
+                <div class="eyebrow">सद्गुरुदेव की प्रेरणा</div>
+                <h2>करुणा को संकल्प बनाकर सेवा को जीवन का माध्यम बनाना।</h2>
+                <div class="ornament" style="justify-content:flex-start"><span>✦</span></div>
+                <p>
+                    सनातन परंपरा में सेवा का अर्थ केवल किसी को कुछ देना नहीं है। सेवा का अर्थ है — किसी पीड़ित व्यक्ति की पीड़ा को समझना, उसके सम्मान को बनाए रखना और आवश्यकता के समय उसके साथ खड़े होना।
+                </p>
+                <p>
+                    इसी भावना से निराश्रित एवं जरूरतमंद जनों के लिए अन्न, उपचार, वस्त्र, शिक्षा सामग्री, दैनिक उपयोग की वस्तुएँ तथा परिस्थिति के अनुसार अन्य आवश्यक सहयोग उपलब्ध कराने के सेवा कार्य निरंतर किए जाते हैं।
+                </p>
+                <div class="quoteBox">
+                    <b>“मानव सेवा ही माधव सेवा है।”</b>
+                    <span>करुणा, संवेदना और सेवा के माध्यम से समाज के उस वर्ग तक पहुँचना जो सहायता का सबसे अधिक अधिकारी है।</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRAVACHAN / VISION -->
+    <section class="card">
+        <div class="visionCard">
+            <img src="https://sanatansevasamiti.org/public_html/Images/kirtan.jpg" alt="परम पूज्य सद्गुरुदेव प्रवचन">
+            <div class="visionOverlay">
+                <div class="tag">🎙️ प्रवचन एवं सेवा प्रेरणा</div>
+                <h2>सेवा की प्रेरणा, सद्गुरुदेव के वचनों से।</h2>
+                <p>
+                    परम पूज्य सद्गुरुदेव के प्रवचन एवं सेवा संदेश से प्रेरणा लेकर मानव कल्याण के कार्यों को समाज के सहयोग से आगे बढ़ाने का प्रयास किया जाता है।
+                </p>
+                <a href="https://www.youtube.com/@sanatan_sevasamiti" target="_blank" class="videoBtn">▶ सेवा एवं प्रवचन देखें</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEVA PILLARS -->
+    <section class="card">
+        <div class="cardHead">
+            <div class="cardIcon">✦</div>
+            <div>
+                <h2>आपका सहयोग कहाँ पहुँच सकता है?</h2>
+                <span>सेवा की आवश्यकता के अनुसार</span>
+            </div>
+        </div>
+
+        <div class="pillarGrid">
+            <div class="pillar"><strong>🍚 अन्न</strong><span>भोजन एवं खाद्य सामग्री</span></div>
+            <div class="pillar"><strong>🏥 उपचार</strong><span>दवा एवं चिकित्सा सहायता</span></div>
+            <div class="pillar"><strong>👕 वस्त्र</strong><span>कपड़े एवं मौसम आधारित सहायता</span></div>
+            <div class="pillar"><strong>📚 शिक्षा</strong><span>बच्चों की शिक्षा सामग्री</span></div>
+            <div class="pillar"><strong>🏠 आश्रय</strong><span>आवश्यक परिस्थिति में सहयोग</span></div>
+            <div class="pillar"><strong>👴 वृद्ध सेवा</strong><span>असहाय वृद्ध जन सहायता</span></div>
+            <div class="pillar"><strong>👧 बाल सेवा</strong><span>निराश्रित बच्चों का सहयोग</span></div>
+            <div class="pillar"><strong>🤲 आपात सेवा</strong><span>तत्काल आवश्यकता में सहयोग</span></div>
+        </div>
+    </section>
+
+    <!-- DONATION SECTION -->
+    <section class="card donationCard" id="daan">
+        <div class="donationTop">
+            <h2>🙏 सेवा समर्पण कक्ष</h2>
+            <p>
+                अपनी श्रद्धा एवं सामर्थ्य के अनुसार निराश्रित जन सेवा में सहयोग समर्पित करें। धन दान वॉलेट से सुरक्षित रूप से दर्ज होगा।
+            </p>
+        </div>
+
+        <div class="donationBody">
+            <div class="tabs">
+                <button type="button" class="tabBtn active" id="btn_dhan" onclick="setTab('dhan')">💰 धन सेवा</button>
+                <button type="button" class="tabBtn" id="btn_ann" onclick="setTab('ann')">🍚 अन्न / सामग्री</button>
+                <button type="button" class="tabBtn" id="btn_seva" onclick="setTab('seva')">🚩 प्रत्यक्ष सेवा</button>
+            </div>
+
+            <!-- DHAN FORM -->
+            <form id="form_dhan" onsubmit="handleNirashritSubmit(event, 'dhan')">
+                <div class="walletNotice">
+                    🔐 <span>धन सेवा आपके उपलब्ध डिजिटल वॉलेट से सुरक्षित रूप से डेबिट होगी और सफल समर्पण के बाद डिजिटल रसीद उपलब्ध होगी।</span>
+                </div>
+
+                <div class="amountGrid">
+                    <button type="button" class="amtBtn" onclick="setAmt(51,this)">₹51</button>
+                    <button type="button" class="amtBtn active" onclick="setAmt(101,this)">₹101</button>
+                    <button type="button" class="amtBtn" onclick="setAmt(501,this)">₹501</button>
+                    <button type="button" class="amtBtn" onclick="setAmt(1100,this)">₹1,100</button>
+                    <button type="button" class="amtBtn" onclick="setAmt(2100,this)">₹2,100</button>
+                </div>
+
+                <div class="field">
+                    <label>सेवा समर्पण राशि (₹)</label>
+                    <input class="input" id="amtInput" name="amount_dhan" type="number" min="1" step="0.01" value="101" required>
+                </div>
+
+                <div class="field">
+                    <label>किस सेवा के लिए समर्पित करना चाहते हैं?</label>
+                    <select class="input" id="dhanPurpose" name="seva_desc_dhan">
+                        <option value="निराश्रित जन सामान्य सहायता">निराश्रित जन सामान्य सहायता</option>
+                        <option value="गरीब एवं भिक्षुक जन अन्न सेवा">गरीब एवं भिक्षुक जन अन्न सेवा</option>
+                        <option value="निराश्रित एवं अनाथ बच्चों की सेवा">निराश्रित एवं अनाथ बच्चों की सेवा</option>
+                        <option value="जरूरतमंदों की दवा एवं उपचार सहायता">जरूरतमंदों की दवा एवं उपचार सहायता</option>
+                        <option value="वस्त्र एवं कंबल सेवा">वस्त्र एवं कंबल सेवा</option>
+                        <option value="बच्चों की शिक्षा सामग्री सेवा">बच्चों की शिक्षा सामग्री सेवा</option>
+                        <option value="असहाय एवं वृद्ध जन सहायता">असहाय एवं वृद्ध जन सहायता</option>
+                        <option value="आपातकालीन मानव सेवा">आपातकालीन मानव सेवा</option>
+                    </select>
+                </div>
+
+                <button class="submitBtn" id="btnSubmitDhan" type="submit">🙏 वॉलेट से सेवा समर्पित करें</button>
+            </form>
+
+            <!-- ANN FORM -->
+            <form id="form_ann" style="display:none" onsubmit="handleNirashritSubmit(event, 'ann')">
+                <div class="field">
+                    <label>अन्न / सामग्री की मात्रा (Kg / इकाई में)</label>
+                    <input class="input" id="annAmount" name="amount_ann" type="number" min="1" step="0.1" placeholder="उदा. 10, 25, 50" required>
+                </div>
+
+                <div class="field">
+                    <label>सामग्री / सेवा का विवरण</label>
+                    <input class="input" id="annDesc" name="ann_desc" placeholder="उदा. गेहूं, चावल, आटा, दाल, कपड़े, कंबल, राशन आदि" required>
+                </div>
+
+                <button class="submitBtn" id="btnSubmitAnn" type="submit">🍚 अन्न / सामग्री सेवा संकल्प दर्ज करें</button>
+            </form>
+
+            <!-- SEVA FORM -->
+            <form id="form_seva" style="display:none" onsubmit="handleNirashritSubmit(event, 'seva')">
+                <div class="field">
+                    <label>प्रत्यक्ष सेवा / दवा / सामग्री का विवरण</label>
+                    <textarea class="textarea" id="sevaDescOnly" name="seva_desc_only" rows="5" placeholder="उदा. जरूरतमंद बच्चों को शिक्षा सामग्री देना, गरीब परिवार के लिए राशन देना, दवा उपलब्ध कराना, वस्त्र सेवा करना आदि..." required></textarea>
+                </div>
+
+                <button class="submitBtn" id="btnSubmitSeva" type="submit">🚩 प्रत्यक्ष सेवा सहयोग समर्पित करें</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- HISTORY -->
+    <section class="card">
+        <div class="cardHead">
+            <div class="cardIcon">📜</div>
+            <div>
+                <h2>आपकी सेवा यात्रा</h2>
+                <span>इस सेवा प्रोफाइल में आपके पूर्व समर्पण</span>
+            </div>
+        </div>
+
+        <div id="historyContainer">
+            <div style="text-align:center; padding:20px; color:#888; font-size:12px;">
+                📜 सेवा इतिहास लोड हो रहा है...
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CALL -->
+    <section class="divineIntro">
+        <div class="small">✦ आपका छोटा सा सहयोग भी किसी के लिए बड़ा सहारा बन सकता है ✦</div>
+        <h2>आइए, सेवा को अपना संकल्प बनाएं।</h2>
+        <div class="ornament"><span>ॐ</span></div>
+        <p>
+            आपकी श्रद्धा से समर्पित सहयोग को निराश्रित एवं जरूरतमंद जनों की आवश्यकताओं के अनुसार सेवा कार्यों में उपयोग करने का प्रयास किया जाता है। सेवा में सहभागी बनें और मानव जीवन में करुणा का एक दीप प्रज्वलित करें।
+        </p>
+    </section>
+
+</main>
+
+<div class="bottomBar">
+    <a href="#top">🔝 ऊपर</a>
+    <a href="#maharaj">🪔 प्रेरणा</a>
+    <a href="#daan" class="gold">🙏 अभी सेवा करें</a>
+</div>
+
+<script>
+const PROFILE_ID = "PRO1781291019";
+let currentBalance = 0;
+let currentUserId = "";
+let currentUserName = "सेवा साधक";
+
+function setTab(type){
+    ['dhan','ann','seva'].forEach(function(t){
+        const form = document.getElementById('form_' + t);
+        const btn = document.getElementById('btn_' + t);
+        if(form) form.style.display = (t === type) ? 'block' : 'none';
+        if(btn) btn.classList.toggle('active', t === type);
+    });
+}
+
+function setAmt(v, el){
+    const input = document.getElementById('amtInput');
+    if(input) input.value = v;
+    document.querySelectorAll('.amtBtn').forEach(function(btn){
+        btn.classList.remove('active');
+    });
+    if(el) el.classList.add('active');
+}
+
+function showAlert(msg){
+    const box = document.getElementById('alertBox');
+    document.getElementById('alertMsg').innerText = msg;
+    box.style.display = 'block';
+    box.scrollIntoView({ behavior:'smooth', block:'center' });
+}
+
+function hideAlert(){
+    document.getElementById('alertBox').style.display = 'none';
+}
+
+function money(v){
+    return "₹" + Number(v || 0).toLocaleString('en-IN', { minimumFractionDigits:2, maximumFractionDigits:2 });
+}
+
+async function loadUserData(){
+    try {
+        const rawUser = localStorage.getItem("sss_user_data");
+        if(rawUser){
+            const u = JSON.parse(rawUser);
+            currentUserId = u.unique_id || u.id || "";
+            currentUserName = u.full_name || "सेवा साधक";
+        }
+
+        const res = await fetch(`https://sanatansevasamiti.org/api/get_profile_full.php?action=detail&profile_id=${PROFILE_ID}&user_id=${encodeURIComponent(currentUserId)}`);
+        const data = await res.json();
+
+        if(data && data.status === 'success'){
+            if(data.user_data && data.user_data.is_logged_in){
+                currentBalance = parseFloat(data.user_data.wallet_balance) || 0;
+                document.getElementById('topWalletBalance').innerText = money(currentBalance);
+                localStorage.setItem("sss_wallet_balance", currentBalance);
+
+                renderHistory(data.user_data.user_history);
+            } else {
+                renderHistory([]);
+            }
+        }
+    } catch(e){
+        console.error("Nirashrit Daan Load Error:", e);
+    }
+}
+
+function renderHistory(list){
+    const c = document.getElementById('historyContainer');
+    if(!list || list.length === 0){
+        c.innerHTML = `<div style="text-align:center; padding:15px; color:#888; font-size:12px;">🙏 अभी आपका कोई पूर्व सेवा सहयोग रिकॉर्ड उपलब्ध नहीं है।</div>`;
+        return;
+    }
+
+    c.innerHTML = list.map(h => {
+        let amtDisplay = '';
+        if(h.amount_type === 'ann') amtDisplay = h.amount + " Kg / इकाई";
+        else if(h.amount_type === 'seva') amtDisplay = "🚩 सेवा";
+        else amtDisplay = money(h.amount);
+
+        return `
+            <div class="historyItem">
+                <div class="hLeft">
+                    <b>${h.seva_desc}</b>
+                    <span>📅 ${h.tx_date} • ID: ${h.tx_id}</span>
+                </div>
+                <div class="hRight">
+                    <strong>${amtDisplay}</strong>
+                    <a class="hBtn" target="_blank" href="${h.receipt_url}">रसीद देखें</a>
+                </div>
+            </div>
+        `;
+    }).join("");
+}
+
+async function handleNirashritSubmit(e, type){
+    e.preventDefault();
+    hideAlert();
+
+    if(!currentUserId){
+        alert("कृपया सेवा के लिए पहले ऐप में लॉगिन करें।");
+        window.location.href = "app_login.html";
+        return;
+    }
+
+    let amount = 0;
+    let desc = "";
+    let btn = null;
+    let originalText = "";
+
+    if(type === 'dhan'){
+        amount = parseFloat(document.getElementById('amtInput').value) || 0;
+        desc = document.getElementById('dhanPurpose').value;
+        btn = document.getElementById('btnSubmitDhan');
+        originalText = "🙏 वॉलेट से सेवा समर्पित करें";
+
+        if(amount < 1){
+            showAlert("दान राशि कम से कम ₹1 होनी चाहिए।");
+            return;
+        }
+        if(amount > currentBalance){
+            showAlert("आपके सेवा वॉलेट में इस समर्पण के लिए पर्याप्त राशि उपलब्ध नहीं है।");
+            return;
+        }
+    } else if(type === 'ann'){
+        amount = parseFloat(document.getElementById('annAmount').value) || 0;
+        const itemName = document.getElementById('annDesc').value.trim();
+        desc = `अन्न / सामग्री सेवा: ${itemName}`;
+        btn = document.getElementById('btnSubmitAnn');
+        originalText = "🍚 अन्न / सामग्री सेवा संकल्प दर्ज करें";
+
+        if(amount <= 0 || !itemName){
+            showAlert("कृपया सेवा की मान्य मात्रा और विवरण दर्ज करें।");
+            return;
+        }
+    } else if(type === 'seva'){
+        desc = document.getElementById('sevaDescOnly').value.trim();
+        btn = document.getElementById('btnSubmitSeva');
+        originalText = "🚩 प्रत्यक्ष सेवा सहयोग समर्पित करें";
+
+        if(!desc){
+            showAlert("कृपया सेवा / दवा / सामग्री का विवरण दर्ज करें।");
+            return;
+        }
+    }
+
+    btn.disabled = true;
+    btn.innerText = "⏳ सेवा दर्ज हो रही है...";
+
+    try {
+        const payload = {
+            profile_id: PROFILE_ID,
+            user_id: currentUserId,
+            type: (type === 'dhan' ? 'dhan' : type),
+            amount: amount,
+            seva_desc: desc
+        };
+
+        const res = await fetch(`https://sanatansevasamiti.org/api/get_profile_full.php?action=donate`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+
+        const data = await res.json();
+
+        if(data && data.status === 'success'){
+            document.getElementById('successReceiptNo').innerText = data.receipt_no || "---";
+            document.getElementById('btnViewReceipt').href = data.receipt_url || "#";
+            const waShare = encodeURIComponent(`🙏 निराश्रित जन सेवा रसीद: ${data.receipt_url}`);
+            document.getElementById('btnShareWa').href = `https://api.whatsapp.com/send?text=${waShare}`;
+
+            const box = document.getElementById('successBox');
+            box.style.display = 'block';
+            box.scrollIntoView({ behavior:'smooth', block:'center' });
+
+            loadUserData();
+        } else {
+            showAlert(data.message || "समर्पण दर्ज करने में समस्या आई।");
+        }
+    } catch(err){
+        showAlert("सर्वर से संपर्क नहीं हो पाया। इंटरनेट कनेक्शन जाँचें।");
+    } finally {
+        btn.disabled = false;
+        btn.innerText = originalText;
+    }
+}
+
+document.addEventListener("DOMContentLoaded", loadUserData);
+</script>
+
+</body>
+</html>
