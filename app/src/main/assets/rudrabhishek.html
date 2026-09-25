@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>सामूहिक सवा लाख पार्थिव रुद्राभिषेक महा-संकल्प | सनातन सेवा समिति</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- QR Code Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<style>
+:root{
+    --bhagwa: #ff7200;
+    --bhagwa-deep: #d9480f;
+    --bhagwa-gradient: linear-gradient(135deg, #ff922b 0%, #ff7200 50%, #e8590c 100%);
+    --gold: #d4af37;
+    --gold2: #ffd978;
+    --maroon: #780009;
+    --text-dark: #2a1106;
+    --text-muted: #6b4d3d;
+    --card-white: #ffffff;
+    --border-subtle: 1px solid #fed7aa;
+    --border-strong: 2px solid #ff7200;
+    --shadow-soft: 0 10px 30px rgba(180, 50, 0, 0.08);
+    --shadow-prominent: 0 18px 50px rgba(180, 50, 0, 0.14);
+}
+
+*{box-sizing:border-box;margin:0;padding:0; -webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth}
+
+body{
+    font-family:'Plus Jakarta Sans','Noto Sans Devanagari',sans-serif;
+    background:#ffffff;
+    color:var(--text-dark);
+    min-height:100vh;
+    padding-bottom:95px;
+}
+
+/* 1. TOP NAVBAR */
+.v-topbar{
+    position:sticky;
+    top:0;
+    z-index:999;
+    background:rgba(255,255,255,0.96);
+    backdrop-filter:blur(15px);
+    border-bottom:2px solid #ffd8a8;
+    padding:12px 18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 4px 20px rgba(0,0,0,0.04);
+}
+.brand-group{display:flex;align-items:center;gap:12px}
+.brand-logo-img{width:46px;height:46px;border-radius:50%;border:2px solid var(--bhagwa);object-fit:cover;box-shadow:0 3px 10px rgba(255,114,0,0.25)}
+.brand-titles .title{font-family:'Yatra One',cursive;color:var(--maroon);font-size:20px;line-height:1.1}
+.brand-titles .sub{font-size:11px;color:var(--text-muted);font-weight:700}
+
+.nav-actions{display:flex;align-items:center;gap:10px}
+.btn-daan{
+    background:linear-gradient(135deg,#ff7200,#c92a2a);
+    color:#fff;
+    text-decoration:none;
+    padding:9px 18px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:900;
+    box-shadow:0 4px 15px rgba(255,114,0,0.3);
+    transition:transform 0.2s;
+    cursor:pointer;
+}
+.btn-daan:hover{transform:scale(1.03);color:#fff}
+.wallet-box-btn{
+    background:#fff7ed;
+    border:1.5px solid var(--bhagwa);
+    color:var(--maroon);
+    padding:8px 15px;
+    border-radius:999px;
+    text-decoration:none;
+    font-weight:800;
+    font-size:12px;
+}
+
+/* 2. COVER PHOTO & PROFILE BANNER */
+.cover-container{
+    width:100%;
+    max-width:1200px;
+    margin:0 auto;
+    padding:12px 12px 0;
+}
+.cover-banner{
+    width:100%;
+    height:280px;
+    border-radius:24px 24px 0 0;
+    overflow:hidden;
+    background:url('https://sanatansevasamiti.org/Images/cover-rudra.jpg') center/cover no-repeat;
+    position:relative;
+    box-shadow:var(--shadow-soft);
+}
+.cover-banner::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg,rgba(0,0,0,0.15) 0%,rgba(0,0,0,0.65) 100%);
+}
+
+.profile-card-hub{
+    background:#ffffff;
+    border:2px solid #ffd8a8;
+    border-top:none;
+    border-radius:0 0 24px 24px;
+    padding:0 24px 30px;
+    text-align:center;
+    box-shadow:var(--shadow-prominent);
+    position:relative;
+    margin-bottom:30px;
+}
+.profile-avatar-box{
+    width:130px;
+    height:130px;
+    margin:-65px auto 14px;
+    position:relative;
+    border-radius:50%;
+    padding:5px;
+    background:#ffffff;
+    border:3px solid var(--bhagwa);
+    box-shadow:0 8px 25px rgba(255,114,0,0.3);
+}
+.profile-avatar-box img{width:100%;height:100%;border-radius:50%;object-fit:cover}
+
+.profile-h1{
+    font-family:'Yatra One',cursive;
+    font-size:clamp(30px,5vw,46px);
+    color:var(--maroon);
+    line-height:1.2;
+    margin-bottom:6px;
+}
+.profile-kicker{color:var(--bhagwa-deep);font-weight:800;font-size:16px;margin-bottom:12px}
+.profile-intro{
+    max-width:850px;
+    margin:0 auto 22px;
+    font-size:15px;
+    line-height:1.9;
+    color:var(--text-muted);
+}
+.hero-buttons{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+}
+.btn-primary-hero{
+    background:var(--bhagwa-gradient);
+    color:#fff;
+    padding:14px 28px;
+    border-radius:14px;
+    text-decoration:none;
+    font-weight:900;
+    font-size:15px;
+    box-shadow:0 6px 20px rgba(255,114,0,0.35);
+}
+.btn-secondary-hero{
+    background:#fff7ed;
+    color:var(--maroon);
+    border:1.5px solid var(--bhagwa);
+    padding:14px 24px;
+    border-radius:14px;
+    text-decoration:none;
+    font-weight:800;
+    font-size:15px;
+}
+
+/* 3. SAWA LAKH PROGRESS */
+.progress-card-white{
+    background:#ffffff;
+    border:2px solid #ffd8a8;
+    border-radius:24px;
+    padding:24px;
+    box-shadow:var(--shadow-soft);
+    margin-bottom:30px;
+}
+.p-header-row{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:12px}
+.p-bar-outer{width:100%;height:18px;background:#fff4e6;border-radius:12px;overflow:hidden;border:1px solid #fed7aa}
+.p-bar-inner{height:100%;background:linear-gradient(90deg,#ff922b,#ff7200,#d9480f);border-radius:12px;transition:width 1s}
+
+/* 4. MAHARAJ JI SANCTUM */
+.maharaj-card-white{
+    background:#fffaf4;
+    border:2px solid #fed7aa;
+    border-radius:26px;
+    padding:28px;
+    margin-bottom:35px;
+    display:grid;
+    grid-template-columns:230px 1fr;
+    gap:28px;
+    align-items:center;
+    box-shadow:var(--shadow-soft);
+}
+.maharaj-frame{
+    width:210px;
+    height:270px;
+    border-radius:20px;
+    overflow:hidden;
+    border:3px solid var(--bhagwa);
+    box-shadow:0 8px 25px rgba(0,0,0,0.1);
+    margin:0 auto;
+}
+.maharaj-frame img{width:100%;height:100%;object-fit:cover}
+.maharaj-badge-tag{
+    display:inline-block;
+    background:#fff4e6;
+    border:1px solid var(--bhagwa);
+    color:var(--bhagwa-deep);
+    padding:5px 14px;
+    border-radius:999px;
+    font-size:11px;
+    font-weight:900;
+    margin-bottom:10px;
+}
+.maharaj-name-text{
+    font-family:'Yatra One',cursive;
+    font-size:23px;
+    color:var(--maroon);
+    line-height:1.45;
+    margin-bottom:6px;
+}
+.maharaj-sub-role{color:var(--bhagwa);font-weight:800;font-size:13px;margin-bottom:14px}
+.maharaj-message-box{
+    background:#ffffff;
+    border-left:4px solid var(--bhagwa);
+    padding:16px 20px;
+    border-radius:0 14px 14px 0;
+    font-size:14px;
+    line-height:1.85;
+    color:#4a2b1f;
+    box-shadow:0 4px 15px rgba(0,0,0,0.03);
+}
+
+/* 5. DETAILED INFORMATION */
+.info-section-white{
+    background:#ffffff;
+    border:1.5px solid #fed7aa;
+    border-radius:24px;
+    padding:28px;
+    margin-bottom:35px;
+    box-shadow:var(--shadow-soft);
+}
+.info-header-h3{font-family:'Yatra One',cursive;font-size:26px;color:var(--maroon);margin-bottom:12px;text-align:center}
+.info-desc-p{font-size:14px;line-height:1.9;color:var(--text-muted);text-align:justify;margin-bottom:20px}
+
+.steps-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:16px;
+}
+.step-card{
+    background:#fffbf7;
+    border:1px solid #fed7aa;
+    border-radius:16px;
+    padding:18px;
+    text-align:center;
+}
+.step-icon{font-size:32px;margin-bottom:8px}
+.step-card h4{font-size:16px;color:var(--maroon);margin-bottom:6px;font-weight:800}
+.step-card p{font-size:12px;color:var(--text-muted);line-height:1.7}
+
+/* 6. BOOKING FORM */
+.booking-card-white{
+    background:#ffffff;
+    border:2.5px solid var(--bhagwa);
+    border-radius:26px;
+    padding:35px 25px;
+    box-shadow:var(--shadow-prominent);
+    margin-bottom:35px;
+}
+.wallet-status-bar-white{
+    background:#fff7ed;
+    border:1.5px dashed var(--bhagwa);
+    border-radius:16px;
+    padding:16px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:24px;
+}
+.field-wrap{margin-bottom:20px}
+.field-wrap label{display:block;font-size:13px;font-weight:800;color:var(--maroon);margin-bottom:8px}
+.input-control{
+    width:100%;
+    padding:15px;
+    background:#fffaf4;
+    border:1.5px solid #fed7aa;
+    border-radius:14px;
+    color:var(--text-dark);
+    font-size:15px;
+    font-weight:700;
+    outline:none;
+}
+.input-control:focus{border-color:var(--bhagwa);box-shadow:0 0 0 3px rgba(255,114,0,0.15)}
+.calc-price-badge{
+    display:inline-block;
+    margin-top:8px;
+    background:#e6fcf5;
+    border:1px solid #63e6be;
+    color:#0ca678;
+    padding:6px 14px;
+    border-radius:8px;
+    font-weight:900;
+    font-size:13px;
+}
+.btn-submit-booking{
+    width:100%;
+    padding:18px;
+    background:var(--bhagwa-gradient);
+    border:none;
+    border-radius:16px;
+    color:#fff;
+    font-weight:900;
+    font-size:18px;
+    cursor:pointer;
+    box-shadow:0 8px 25px rgba(255,114,0,0.35);
+    transition:transform 0.2s;
+}
+.btn-submit-booking:hover{transform:translateY(-2px)}
+
+.error-banner{
+    background:#fff5f5;
+    border:1.5px solid #ff8787;
+    color:#c92a2a;
+    padding:16px;
+    border-radius:14px;
+    margin-bottom:20px;
+    text-align:center;
+    font-weight:700;
+    display:none;
+}
+
+/* 7. FOOTER */
+.footer-white{
+    text-align:center;
+    padding:30px 15px;
+    border-top:1px solid #ffd8a8;
+    background:#fffaf4;
+    color:var(--text-muted);
+    font-size:13px;
+    line-height:1.8;
+}
+
+/* FOOTER NAVIGATION BAR */
+#sss-nav {
+    position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 1200px; height: 75px;
+    background: linear-gradient(180deg, #ff4500, #800000); display: flex; justify-content: space-evenly; align-items: center;
+    border-top: 4px solid #ffcc00; border-radius: 20px 20px 0 0; z-index: 99999; box-shadow: 0 -5px 20px rgba(0,0,0,0.4);
+}
+.sss-item { flex: 1; text-align: center; text-decoration: none; color: #fff; font-size: 10px; font-weight: 800; }
+.sss-item img { width: 28px; height: 28px; display: block; margin: auto; }
+.sss-dash-wrap { margin-top: -30px; }
+.sss-gold-circle {
+    width: 60px; height: 60px; background: linear-gradient(45deg, #ffd700, #ffcc00, #b8860b);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid #800000; box-shadow: 0 0 15px rgba(255,215,0,0.6);
+}
+.sss-gold-circle img { width: 35px; height: 35px; }
+
+@media(max-width:768px){
+    .cover-banner{height:180px}
+    .profile-card-hub{padding:0 15px 25px}
+    .profile-avatar-box{width:105px;height:105px;margin:-50px auto 10px}
+    .maharaj-card-white{grid-template-columns:1fr;text-align:center}
+    .maharaj-frame{width:160px;height:210px}
+}
+</style>
+</head>
+<body>
+
+<!-- 1. STICKY TOPBAR -->
+<header class="v-topbar">
+    <div class="brand-group">
+        <img src="https://sanatansevasamiti.org/Images/rudra.jpg" class="brand-logo-img" alt="Rudra Logo">
+        <div class="brand-titles">
+            <div class="title">सवा लाख रुद्राभिषेक</div>
+            <div class="sub">सनातन सेवा समिति</div>
+        </div>
+    </div>
+    <div class="nav-actions">
+        <a href="satya_sanatan_marg_daan.html" class="btn-daan">❤️ अभी सहयोग / दान करें</a>
+        <a href="app_wallet.html" class="wallet-box-btn" id="topNavWallet">💳 वॉलेट: ₹0.00</a>
+    </div>
+</header>
+
+<div class="cover-container">
+
+    <!-- 2. COVER PHOTO BANNER -->
+    <div class="cover-banner"></div>
+
+    <!-- 3. SACRED PROFILE HUB -->
+    <div class="profile-card-hub">
+        <div class="profile-avatar-box">
+            <img src="https://sanatansevasamiti.org/Images/rudra.jpg" alt="Rudra Logo">
+        </div>
+        <div style="font-size:13px;color:var(--bhagwa);font-weight:900;letter-spacing:1px;">॥ ॐ नमः शिवाय ॥</div>
+        <h1 class="profile-h1">सामूहिक सवा लाख पार्थिव रुद्राभिषेक महा-संकल्प</h1>
+        <div class="profile-kicker">एक संकल्प • एक शिवलिंग • एक दिव्य अनुभूति • सर्वजन कल्याण</div>
+        
+        <p class="profile-intro">
+            भगवान श्री सदाशिव महादेव की परम आराधना हेतु पूज्य सद्गुरुदेव के मार्गदर्शन में सवा लाख पार्थिव शिवलिंगों के निर्माण एवं महा-रुद्राभिषेक का पावन महायज्ञ आयोजित किया जा रहा है। आप सभी सनातनी भक्तजन अपनी श्रद्धा और सामर्थ्य अनुसार शिवलिंग निर्माण का संकल्प लेकर इस अलौकिक आध्यात्मिक अनुष्ठान के सहभागी बनें।
+        </p>
+
+        <div class="hero-buttons">
+            <a href="#booking-hub" class="btn-primary-hero">🔱 अभी रुद्राभिषेक संकल्प लें (बुक करें)</a>
+            <a href="satya_sanatan_marg_daan.html" class="btn-secondary-hero">❤️ महादान सहयोग (सत्य सनातन)</a>
+        </div>
+    </div>
+
+    <!-- 4. SAWA LAKH LIVE PROGRESS -->
+    <div class="progress-card-white">
+        <div class="p-header-row">
+            <div>
+                <span style="font-size:11px;font-weight:900;color:var(--bhagwa);text-transform:uppercase;">🚩 सवा लाख महा-संकल्प लाइव काउंटिंग</span>
+                <h3 style="font-family:'Yatra One',cursive;font-size:24px;color:var(--maroon);margin-top:3px;">पार्थिव शिवलिंग निर्माण व अभिषेक प्रगति</h3>
+            </div>
+            <div style="text-align:right;">
+                <div style="font-size:26px;font-weight:900;color:var(--bhagwa-deep);">
+                    <span id="liveCompletedCount">34,500</span> <span style="font-size:14px;color:#888;">/ 1,25,000</span>
+                </div>
+                <b style="color:#0ca678;font-size:13px;" id="livePctBadge">27.6% संकल्प पूर्ण</b>
+            </div>
+        </div>
+        <div class="p-bar-outer">
+            <div class="p-bar-inner" id="liveProgressBar" style="width:27.6%;"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-top:10px;font-size:12px;color:var(--text-muted);font-weight:700;">
+            <span>सत्यापित संपन्न संख्या: <b id="textDoneCount">34,500</b> शिवलिंग</span>
+            <span>शेष लक्ष्य: <b id="textRemainCount">90,500</b> शिवलिंग</span>
+        </div>
+    </div>
+
+    <!-- 5. MAHARAJ JI SACRED SANCTUM & GOAL -->
+    <div class="maharaj-card-white">
+        <div class="maharaj-frame">
+            <img src="https://sanatansevasamiti.org/public_html/Images/maharaj.jpg" alt="सद्गुरुदेव स्वामी सच्चिदानंद जी महाराज">
+        </div>
+        <div>
+            <span class="maharaj-badge-tag">🙏 परम पूज्य सद्गुरुदेव का दिव्य सान्निध्य</span>
+            <h2 class="maharaj-name-text">
+                श्री श्री 1008 अनंत श्री विभूषित परम पूज्य जगद्गुरु सच्चिदानंदाचार्य आनंद पीठाधीश्वर परम पूज्य सद्गुरुदेव स्वामी सच्चिदानंद जी महाराज
+            </h2>
+            <div class="maharaj-sub-role">( संस्थापक एवं राष्ट्रीय अध्यक्ष — सनातन सेवा समिति )</div>
+            <div class="maharaj-message-box">
+                <b>पूज्य गुरुदेव का पावन ध्येय:</b><br>
+                “सामूहिक सवा लाख पार्थिव रुद्राभिषेक का संकल्प केवल एक कर्मकांड नहीं, अपितु विश्व शांति, सनातन संस्कृति की जागृति और प्रत्येक साधक के गृह में शिवत्व की स्थापना का आध्यात्मिक अनुष्ठान है। पार्थिव शिवलिंग का निर्माण समस्त तीर्थों के दर्शन और अभिषेक के समान पुण्यकारी माना गया है।”
+            </div>
+        </div>
+    </div>
+
+    <!-- 6. DETAILED PROCESS & SANKALP RULES -->
+    <div class="info-section-white">
+        <h3 class="info-header-h3">अनुष्ठान प्रक्रिया एवं महा-संकल्प नियम</h3>
+        <p class="info-desc-p">
+            पार्थिव रुद्राभिषेक में भाग लेने के लिए आप आगामी किसी भी कार्यक्रम का चयन कर सकते हैं। ₹2 प्रति शिवलिंग की दर से सेवा सहयोग सीधे आपके डिजिटल वॉलेट से समर्पित होगा। संकल्प पूरा करने के उपरांत आपको आधिकारिक **प्रवेश पत्र (Entry Pass)** प्राप्त होगा, जिसे लेकर आपको निर्धारित समय पर आयोजन स्थल पर पहुंचना होगा।
+        </p>
+
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-icon">📍</div>
+                <h4>1. कार्यक्रम का चयन</h4>
+                <p>आगामी तिथियों एवं पावन स्थानों में से अपनी सुविधानुसार स्थल चुनें।</p>
+            </div>
+            <div class="step-card">
+                <div class="step-icon">🕉️</div>
+                <h4>2. शिवलिंग संख्या</h4>
+                <p>जितने शिवलिंग का अभिषेक करना चाहें दर्ज करें (दर: ₹2 प्रति शिवलिंग)।</p>
+            </div>
+            <div class="step-card">
+                <div class="step-icon">🎟️</div>
+                <h4>3. प्रवेश पत्र व टोकन</h4>
+                <p>वॉलेट से सहयोग समर्पित होते ही डिजिटल प्रवेश पत्र व QR टोकन जारी होगा।</p>
+            </div>
+            <div class="step-card">
+                <div class="step-icon">📜</div>
+                <h4>4. सत्यापन व आशीर्वाद</h4>
+                <p>स्थल पर टोकन स्कैन होने के बाद सवा लाख में शिवलिंग जुड़ेंगे व आशीर्वाद पत्र मिलेगा।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 7. BOOKING HUB (WALLET CONNECTED) -->
+    <div class="booking-card-white" id="booking-hub">
+        <div style="text-align:center;margin-bottom:24px;">
+            <span style="background:#fff4e6;border:1px solid #ffd8a8;color:var(--bhagwa);padding:5px 16px;border-radius:999px;font-size:11px;font-weight:900;">भक्त संकल्प फॉर्म</span>
+            <h2 style="font-family:'Yatra One',cursive;font-size:30px;color:var(--maroon);margin-top:6px;">पार्थिव रुद्राभिषेक संकल्प समर्पण</h2>
+        </div>
+
+        <div class="error-banner" id="errorBanner"></div>
+
+        <div class="wallet-status-bar-white">
+            <div>
+                <b style="color:var(--maroon);font-size:15px;">👤 संकल्पकर्ता:</b> <span id="userNameLabel">सनातन सेवक</span>
+                <small style="color:var(--text-muted);display:block;font-size:11px;">User ID: <span id="userIdLabel">---</span></small>
+            </div>
+            <div style="text-align:right;">
+                <span style="font-size:11px;color:var(--text-muted);display:block;font-weight:700;">उपलब्ध सेवा निधि</span>
+                <b style="color:#0ca678;font-size:20px;" id="userWalletDisplay">₹0.00</b>
+            </div>
+        </div>
+
+        <form id="rudraBookingForm" onsubmit="handleRudraBooking(event)">
+            <div class="field-wrap">
+                <label>📍 आगामी कार्यक्रम स्थल का चयन करें *</label>
+                <select id="eventSelect" class="input-control" required>
+                    <option value="">-- कार्यक्रम चुनें --</option>
+                    <option value="1">विशाल महारुद्राभिषेक महोत्सव — दिनांक: 15 Oct 2026 (स्थान: सनातन आश्रम परिसर)</option>
+                    <option value="2">कार्तिक मास पावन रुद्राभिषेक — दिनांक: 28 Oct 2026 (स्थान: शिव मंदिर घाट)</option>
+                </select>
+            </div>
+
+            <div class="field-wrap">
+                <label>🔱 पार्थिव शिवलिंग संख्या (जितने शिवलिंग का निर्माण/अभिषेक करना चाहते हैं) *</label>
+                <input type="number" id="shivaling_count" class="input-control" min="1" placeholder="उदा. 11, 21, 51, 108, 1008" required oninput="calcPrice(this.value)">
+                <div>
+                    <span class="calc-price-badge" id="priceDisplay">सहयोग शुल्क: ₹0.00 (दर: ₹2 प्रति शिवलिंग)</span>
+                </div>
+            </div>
+
+            <button type="submit" id="btnSubmitBooking" class="btn-submit-booking">
+                🙏 वॉलेट से संकल्प समर्पित करें
+            </button>
+        </form>
+    </div>
+
+</div>
+
+<!-- ============================================================
+     8. ENTRY PASS OVERLAY & MODAL (PRESERVED TEMPLATE)
+============================================================ -->
+<div id="entryPassOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:99999;overflow-y:auto;padding:20px 10px;">
+    <div style="max-width:950px;margin:auto;">
+        
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;flex-wrap:wrap;gap:10px;">
+            <button onclick="window.print()" class="btn-daan" style="background:#138a45;border:none;">
+                🖨️ प्रवेश पत्र प्रिंट करें
+            </button>
+            <button onclick="document.getElementById('entryPassOverlay').style.display='none'" style="background:#b32400;color:#fff;border:none;padding:8px 18px;border-radius:10px;cursor:pointer;font-weight:900;">
+                ✕ बंद करें
+            </button>
+        </div>
+
+        <!-- ORIGINAL EXACT TEMPLATE PRESERVED -->
+        <div class="pass-card" style="border:1px solid rgba(255,215,120,.75);border-radius:28px;background:linear-gradient(145deg,rgba(37,23,52,.98),rgba(8,7,15,.99) 55%,rgba(51,20,29,.98));padding:0;overflow:hidden;color:#fff;">
+            <div style="height:5px;background:linear-gradient(90deg,transparent,#d9a441,#fff0ad,#d9a441,transparent);"></div>
+            
+            <header style="text-align:center;padding:25px 20px 20px;border-bottom:1px solid rgba(255,215,120,.2);">
+                <div style="font-size:34px;color:var(--gold2);">ॐ</div>
+                <div style="font-size:13px;letter-spacing:2px;color:#d8c7a4;">॥ हर हर महादेव ॥</div>
+                <h1 style="font-size:clamp(24px,5vw,40px);font-weight:900;background:linear-gradient(180deg,#fff4b8 0%,#ffd45d 42%,#bd7b16 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">
+                    श्री रुद्राभिषेक संकल्प<br>एवं प्रवेश पत्र
+                </h1>
+                <div style="font-size:13px;color:#f5dfb0;margin-top:5px;">Seva Sankalp & Entry Pass</div>
+                <div style="display:inline-block;margin-top:12px;padding:6px 16px;border-radius:50px;background:rgba(109,32,38,.5);border:1px solid rgba(255,215,120,.6);color:#ffe49a;font-size:12px;font-weight:800;">
+                    🔱 अधिकृत सेवा प्रवेश पत्र
+                </div>
+            </header>
+
+            <div style="padding:24px;">
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;">
+                    <div>
+                        <!-- USER DETAILS -->
+                        <div style="border:1px solid rgba(255,215,120,.25);border-radius:18px;background:rgba(255,255,255,.035);padding:18px;margin-bottom:18px;">
+                            <div style="color:#ffe092;font-size:16px;font-weight:800;margin-bottom:12px;">🙏 संकल्पकर्ता विवरण</div>
+                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                                <div style="background:rgba(0,0,0,.3);padding:10px;border-radius:10px;">
+                                    <small style="color:#aaa;display:block;font-size:10px;">संकल्पकर्ता का नाम</small>
+                                    <b style="color:#fff5d6;font-size:14px;" id="passUserName">सनातन सेवक</b>
+                                </div>
+                                <div style="background:rgba(0,0,0,.3);padding:10px;border-radius:10px;">
+                                    <small style="color:#aaa;display:block;font-size:10px;">यूजर आईडी</small>
+                                    <b style="color:#fff5d6;font-size:14px;" id="passUserId">---</b>
+                                </div>
+                                <div style="background:rgba(0,0,0,.3);padding:10px;border-radius:10px;">
+                                    <small style="color:#aaa;display:block;font-size:10px;">संपर्क नंबर</small>
+                                    <b style="color:#fff5d6;font-size:14px;" id="passUserMobile">---</b>
+                                </div>
+                                <div style="background:rgba(0,0,0,.3);padding:10px;border-radius:10px;">
+                                    <small style="color:#aaa;display:block;font-size:10px;">समर्पित निधि (₹2/शिवलिंग)</small>
+                                    <b style="color:#55efc4;font-size:14px;" id="passAmount">₹0.00</b>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TOKEN NUMBER -->
+                        <div style="text-align:center;padding:16px;border-radius:16px;border:1px solid rgba(255,215,120,.55);background:linear-gradient(135deg,rgba(114,39,42,.45),rgba(36,20,35,.65));margin-bottom:18px;">
+                            <div style="font-size:11px;color:#c8b798;">आपका विशिष्ट सेवा टोकन नंबर</div>
+                            <div style="font-size:28px;font-weight:900;color:#ffe078;letter-spacing:2px;" id="passTokenNo">RUDRA-2026-000000</div>
+                        </div>
+
+                        <!-- EVENT VENUE -->
+                        <div style="border:1px solid rgba(255,215,120,.25);border-radius:18px;background:rgba(255,255,255,.035);padding:18px;">
+                            <div style="color:#ffe092;font-size:16px;font-weight:800;margin-bottom:12px;">🕉️ कार्यक्रम विवरण</div>
+                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                                <div style="background:rgba(0,0,0,.3);padding:10px;border-radius:10px;">
+                                    <small style="color:#ffe29a;display:block;font-size:11px;">📍 स्थान</small>
+                                    <span style="font-size:13px;" id="passVenue">सनातन सेवा परिसर</span>
+                                </div>
+                                <div style="background:rgba(0,0,0,.3);padding:10px;border-radius:10px;">
+                                    <small style="color:#ffe29a;display:block;font-size:11px;">📅 दिनांक व समय</small>
+                                    <span style="font-size:13px;" id="passDateTime">15 Oct, 2026 (प्रातः 08:00 AM)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ASIDE: SHIVLING & QR -->
+                    <div style="text-align:center;">
+                        <div style="padding:20px;border-radius:18px;border:1px solid rgba(255,211,105,.55);background:radial-gradient(circle,rgba(119,72,30,.35),rgba(0,0,0,.2) 65%);">
+                            <div style="font-size:11px;color:#bcae98;">आपको आवंटित</div>
+                            <div style="font-size:55px;margin:5px 0;">🕉️</div>
+                            <div style="font-size:11px;color:#bcae98;">पवित्र पार्थिव शिवलिंग संख्या</div>
+                            <div style="font-size:32px;font-weight:900;color:#ffd86d;" id="passShivlingCount">0</div>
+                        </div>
+
+                        <div style="padding:16px;border-radius:18px;background:#fff;margin-top:16px;text-align:center;">
+                            <div id="pass_qrcode" style="display:flex;justify-content:center;"></div>
+                            <div style="color:#222;font-size:10px;font-weight:800;margin-top:8px;">प्रवेश सत्यापन हेतु स्कैन करें</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer style="padding:16px;text-align:center;border-top:1px solid rgba(255,215,120,.2);background:rgba(0,0,0,.2);">
+                <div style="color:#ffe092;font-size:14px;font-weight:800;">🔱 सामूहिक सवा लाख पार्थिव रुद्राभिषेक महा संकल्प 🔱</div>
+                <div style="color:#9f927e;font-size:11px;margin-top:4px;">सनातन सेवा समिति • हर हर महादेव</div>
+            </footer>
+        </div>
+    </div>
+</div>
+
+<!-- 8. FOOTER -->
+<footer class="footer-white">
+    <b>सनातन सेवा समिति — श्री सवा लाख रुद्राभिषेक महा-संकल्प</b><br>
+    धर्म • सेवा • संस्कार • संस्कृति | Satya Sanatan • Ananta Sanatan
+</footer>
+
+<!-- FOOTER NAVIGATION BAR -->
+<div id="sss-nav">
+    <a href="app_home.html" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341771file_00000000145071fab7ea2e7e30f9dfaa-e1776295057951.png" alt="गृह">
+        <span>गृह</span>
+    </a>
+    <a href="guru_parampara.html" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341317ci.jpg" alt="गुरु">
+        <span>गुरु परंपरा</span>
+    </a>
+    <a href="feed.html" class="sss-item sss-dash-wrap">
+        <div class="sss-gold-circle">
+            <img src="https://sanatansevasamiti.org/uploads/footer/1780341218logo.jpg" alt="फीड">
+        </div>
+        <span></span>
+    </a>
+    <a href="javascript:void(0);" onclick="alert('पुस्तकें — यह अनुभाग शीघ्र ही स्थानीय रूप से उपलब्ध होगा।');" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341270bi.jpg" alt="पुस्तकें">
+        <span>पुस्तकें</span>
+    </a>
+    <a href="app_dashboard.html" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341144ai.jpg" alt="अकाउंट">
+        <span>अकाउंट</span>
+    </a>
+</div>
+
+<script>
+let currentBalance = 0;
+let currentUserId = "";
+let currentUserName = "सनातन सेवक";
+let currentUserMobile = "";
+let qrInstance = null;
+
+function calcPrice(count) {
+    let num = parseInt(count) || 0;
+    let total = num * 2; // दर ₹2 प्रति शिवलिंग
+    document.getElementById('priceDisplay').innerText = `सहयोग शुल्क: ₹${total.toLocaleString('en-IN')}.00 (दर: ₹2 प्रति शिवलिंग)`;
+}
+
+function showBannerError(msg, isWallet = false) {
+    const b = document.getElementById('errorBanner');
+    if (b) {
+        b.innerHTML = isWallet 
+            ? `⚠️ आपके डिजिटल वॉलेट में पर्याप्त राशि उपलब्ध नहीं है (दर: ₹2 प्रति शिवलिंग)।<br><a href="app_wallet.html" style="display:inline-block;margin-top:8px;background:var(--bhagwa);color:#fff;padding:8px 20px;border-radius:8px;text-decoration:none;font-weight:800;">💰 वॉलेट रीचार्ज करें</a>`
+            : `⚠️ ${msg}`;
+        b.style.display = 'block';
+        b.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+}
+
+function hideBannerError() {
+    const b = document.getElementById('errorBanner');
+    if (b) b.style.display = 'none';
+}
+
+async function loadRudraData() {
+    try {
+        const rawUser = localStorage.getItem("sss_user_data");
+        if (rawUser) {
+            const u = JSON.parse(rawUser);
+            currentUserId = u.unique_id || u.id || "";
+            currentUserName = u.full_name || "सनातन सेवक";
+            currentUserMobile = u.mobile || "";
+
+            document.getElementById('userNameLabel').innerText = currentUserName;
+            document.getElementById('userIdLabel').innerText = currentUserId;
+        }
+
+        // Live Wallet Balance Fetch
+        const savedBal = localStorage.getItem("sss_wallet_balance");
+        if (savedBal !== null) {
+            currentBalance = parseFloat(savedBal) || 0;
+            document.getElementById('topNavWallet').innerText = `💳 वॉलेट: ₹${currentBalance.toFixed(2)}`;
+            document.getElementById('userWalletDisplay').innerText = `₹${currentBalance.toFixed(2)}`;
+        }
+
+        // Live API Sync for Rudrabhishek
+        const res = await fetch(`https://sanatansevasamiti.org/api/get_profile_full.php?action=detail&profile_id=PRO1781285901&user_id=${encodeURIComponent(currentUserId)}`);
+        const data = await res.json();
+
+        if (data && data.status === 'success') {
+            if (data.user_data && data.user_data.wallet_balance !== undefined) {
+                currentBalance = parseFloat(data.user_data.wallet_balance) || 0;
+                document.getElementById('topNavWallet').innerText = `💳 वॉलेट: ₹${currentBalance.toFixed(2)}`;
+                document.getElementById('userWalletDisplay').innerText = `₹${currentBalance.toFixed(2)}`;
+                localStorage.setItem("sss_wallet_balance", currentBalance);
+            }
+
+            // Sync Live Sawa Lakh Counter
+            let done = 34500;
+            if (data.rudra_completed !== undefined) {
+                done = parseInt(data.rudra_completed) || done;
+            }
+            const target = 125000;
+            const pct = Math.min(100, ((done / target) * 100).toFixed(1));
+
+            document.getElementById('liveCompletedCount').innerText = done.toLocaleString('en-IN');
+            document.getElementById('livePctBadge').innerText = `${pct}% संकल्प पूर्ण`;
+            document.getElementById('liveProgressBar').style.width = `${pct}%`;
+            document.getElementById('textDoneCount').innerText = done.toLocaleString('en-IN');
+            document.getElementById('textRemainCount').innerText = Math.max(0, target - done).toLocaleString('en-IN');
+        }
+    } catch (e) {
+        console.error("Rudra Page Data Load Error:", e);
+    }
+}
+
+async function handleRudraBooking(e) {
+    e.preventDefault();
+    hideBannerError();
+
+    if (!currentUserId) {
+        alert("कृपया रुद्राभिषेक संकल्प के लिए पहले ऐप में लॉगिन करें।");
+        window.location.href = "app_login.html";
+        return;
+    }
+
+    const eventEl = document.getElementById('eventSelect');
+    const eventId = eventEl.value;
+    const eventText = eventEl.options[eventEl.selectedIndex].text;
+    const count = parseInt(document.getElementById('shivaling_count').value) || 0;
+    const requiredAmount = count * 2;
+
+    if (!eventId) {
+        showBannerError("कृपया आगामी कार्यक्रम स्थल का चयन करें।");
+        return;
+    }
+
+    if (count <= 0) {
+        showBannerError("कृपया कम से कम 1 शिवलिंग की संख्या दर्ज करें।");
+        return;
+    }
+
+    if (requiredAmount > currentBalance) {
+        showBannerError("पर्याप्त राशि नहीं", true);
+        return;
+    }
+
+    const submitBtn = document.getElementById('btnSubmitBooking');
+    submitBtn.disabled = true;
+    submitBtn.style.opacity = ".75";
+    submitBtn.innerText = "⏳ संकल्प समर्पित किया जा रहा है...";
+
+    try {
+        const payload = {
+            profile_id: "PRO1781285901",
+            user_id: currentUserId,
+            type: "dhan",
+            amount: requiredAmount,
+            seva_desc: `🔱 सवा लाख रुद्राभिषेक संकल्प: ${count} शिवलिंग (दर: ₹2/शिवलिंग)`
+        };
+
+        const res = await fetch(`https://sanatansevasamiti.org/api/get_profile_full.php?action=donate`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+
+        const data = await res.json();
+
+        if (data && data.status === 'success') {
+            const tokenNo = `RUDRA-${new Date().getFullYear()}-${Math.floor(100000 + Math.random() * 900000)}`;
+
+            // Populate Entry Pass Data
+            document.getElementById('passUserName').innerText = currentUserName;
+            document.getElementById('passUserId').innerText = currentUserId;
+            document.getElementById('passUserMobile').innerText = currentUserMobile || "---";
+            document.getElementById('passAmount').innerText = `₹${requiredAmount.toFixed(2)}`;
+            document.getElementById('passTokenNo').innerText = tokenNo;
+            document.getElementById('passShivlingCount').innerText = count;
+
+            // Generate QR Code
+            const qrContainer = document.getElementById("pass_qrcode");
+            qrContainer.innerHTML = "";
+            new QRCode(qrContainer, {
+                text: `https://sanatansevasamiti.org/sss-admin/rudra_admin.php?quick_verify=${encodeURIComponent(tokenNo)}`,
+                width: 140,
+                height: 140,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+
+            // Show Overlay Modal
+            document.getElementById('entryPassOverlay').style.display = 'block';
+
+            // Reset Form and reload balance
+            document.getElementById('shivaling_count').value = "";
+            calcPrice(0);
+            loadRudraData();
+        } else {
+            showBannerError(data.message || "संकल्प समर्पित करने में त्रुटि आई।");
+        }
+    } catch (err) {
+        showBannerError("सर्वर से संपर्क नहीं हो पाया। इंटरनेट कनेक्शन जाँचें।");
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = "1";
+        submitBtn.innerText = "🙏 वॉलेट से संकल्प समर्पित करें";
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    loadRudraData();
+});
+</script>
+
+</body>
+</html>
