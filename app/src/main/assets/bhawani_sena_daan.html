@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>भवानी सेना | नारी शक्ति महाअभियान समर्पण</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --bg-page: #fdfaf5;
+    --card-white: #ffffff;
+    --saffron: #f28c28;
+    --saffron-deep: #d96b12;
+    --red: #a94416;
+    --red-dark: #7a1200;
+    --gold: #d4af37;
+    --gold-light: #fff5db;
+    --text-dark: #2c1a0e;
+    --text-muted: #735d4d;
+    --border-subtle: 1.5px solid #fed7aa;
+    --shadow-soft: 0 15px 45px rgba(169, 68, 22, 0.08);
+    --shadow-prominent: 0 20px 50px rgba(122, 18, 0, 0.15);
+}
+
+*{ box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color: transparent; }
+html{ scroll-behavior:smooth; }
+
+body{
+    margin:0;
+    font-family:"Poppins", "Noto Sans Devanagari", sans-serif;
+    background:var(--bg-page);
+    color:var(--text-dark);
+    padding-bottom:70px;
+}
+
+img{ max-width:100%; }
+.container{ width:min(1180px,94%); margin:auto; }
+.section{ padding:65px 0; }
+
+.section-title{ text-align:center; margin-bottom:35px; }
+.section-title .small{
+    display:inline-block;
+    background:linear-gradient(135deg, #ffe09b, var(--gold));
+    color:var(--red-dark);
+    padding:7px 18px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:900;
+    margin-bottom:10px;
+}
+.section-title h2{
+    margin:0;
+    font-size:38px;
+    line-height:1.25;
+    font-weight:900;
+    color:var(--red);
+}
+.section-title p{
+    max-width:760px;
+    margin:10px auto 0;
+    line-height:1.8;
+    font-size:15px;
+    font-weight:600;
+    color:var(--text-muted);
+}
+
+/* TOP BRAND */
+.top-brand{
+    padding:15px 0;
+    background:#ffffff;
+    border-bottom:2px solid var(--gold);
+    box-shadow:0 4px 15px rgba(0,0,0,.04);
+}
+.brand-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+.brand-left{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+.brand-logo{
+    width:56px;
+    height:56px;
+    border-radius:50%;
+    object-fit:cover;
+    background:#fff;
+    border:2.5px solid var(--saffron);
+    padding:2px;
+}
+.brand-name{
+    font-size:21px;
+    font-weight:900;
+    color:var(--red);
+}
+.brand-sub{
+    font-size:11.5px;
+    font-weight:800;
+    color:var(--saffron-deep);
+}
+.wallet-badge{
+    padding:9px 18px;
+    border-radius:999px;
+    background:#eaf8ef;
+    border:1.5px solid #168347;
+    color:#14763d;
+    font-weight:900;
+    font-size:13.5px;
+    text-decoration:none;
+}
+
+/* HERO */
+.hero{
+    margin-top:18px;
+    border-radius:35px;
+    overflow:hidden;
+    position:relative;
+    background:linear-gradient(135deg, var(--red-dark) 0%, var(--red) 45%, var(--saffron) 100%);
+    border:2px solid var(--gold);
+    box-shadow:var(--shadow-prominent);
+}
+.hero-inner{
+    position:relative;
+    z-index:2;
+    padding:45px;
+    display:grid;
+    grid-template-columns:170px 1fr 160px;
+    gap:30px;
+    align-items:center;
+}
+.profile-circle{
+    width:165px;
+    height:165px;
+    border-radius:50%;
+    overflow:hidden;
+    border:5px solid #ffffff;
+    background:white;
+    box-shadow:0 12px 35px rgba(0,0,0,.35);
+}
+.profile-circle img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+.hero-content{
+    color:#fff;
+    text-align:center;
+}
+.hero-kicker{
+    display:inline-block;
+    padding:6px 16px;
+    border-radius:999px;
+    background:rgba(255,255,255,.15);
+    border:1px solid rgba(255,255,255,.3);
+    color:#fff5db;
+    font-size:12px;
+    font-weight:900;
+}
+.hero-title{
+    margin:12px 0 5px;
+    font-size:52px;
+    line-height:1.1;
+    font-weight:900;
+}
+.hero-tagline{
+    font-size:20px;
+    font-weight:800;
+    color:var(--gold-light);
+}
+.hero-desc{
+    max-width:760px;
+    margin:15px auto 0;
+    font-size:14.5px;
+    line-height:1.9;
+}
+.power{
+    width:145px;
+    height:145px;
+    border-radius:50%;
+    background:#ffffff;
+    color:var(--red);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    font-weight:900;
+    font-size:14px;
+    padding:15px;
+    border:4px solid var(--gold);
+    box-shadow:0 12px 30px rgba(0,0,0,.25);
+}
+
+/* HERO BUTTONS */
+.hero-actions{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top:20px;
+}
+.hero-btn{
+    text-decoration:none;
+    padding:13px 25px;
+    border-radius:999px;
+    font-weight:900;
+    font-size:14px;
+    cursor:pointer;
+}
+.hero-btn.primary{
+    background:#ffffff;
+    color:var(--red);
+    box-shadow:0 6px 18px rgba(0,0,0,.2);
+}
+.hero-btn.secondary{
+    background:rgba(255,255,255,.15);
+    color:white;
+    border:1.5px solid rgba(255,255,255,.4);
+}
+
+/* MISSION CARDS */
+.mission-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+.mission-card{
+    background:#ffffff;
+    border:var(--border-subtle);
+    border-radius:22px;
+    padding:23px 14px;
+    text-align:center;
+    box-shadow:var(--shadow-soft);
+    transition:.25s;
+}
+.mission-card:hover{ transform:translateY(-7px); border-color:var(--saffron); }
+.mission-icon{ font-size:42px; }
+.mission-card h3{ margin:8px 0 5px; color:var(--red); font-size:18px; }
+.mission-card p{ margin:0; font-size:12.5px; line-height:1.6; color:var(--text-muted); }
+
+/* MAHARAJ SANKALP */
+.sankalp{
+    background:#ffffff;
+    border-top:1.5px solid var(--border-subtle);
+    border-bottom:1.5px solid var(--border-subtle);
+}
+.sankalp-box{
+    display:grid;
+    grid-template-columns:380px 1fr;
+    gap:35px;
+    align-items:center;
+    background:#fffaf5;
+    padding:30px;
+    border-radius:32px;
+    border:1.5px solid #fed7aa;
+    box-shadow:var(--shadow-soft);
+}
+.maharaj-photo{
+    height:430px;
+    border-radius:25px;
+    overflow:hidden;
+    border:4px solid var(--gold);
+    box-shadow:0 15px 40px rgba(0,0,0,.15);
+}
+.maharaj-photo img{ width:100%; height:100%; object-fit:cover; }
+.sankalp-content{ text-align:center; }
+.sankalp-label{
+    display:inline-block;
+    background:var(--red);
+    color:#fff;
+    padding:7px 18px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:900;
+}
+.sankalp-content h2{
+    font-size:32px;
+    color:var(--red);
+    margin:15px 0 5px;
+    line-height:1.4;
+}
+.maharaj-name{
+    color:var(--red-dark);
+    font-size:20px;
+    line-height:1.7;
+    font-weight:900;
+}
+.sankalp-quote{
+    margin:22px auto;
+    max-width:700px;
+    padding:20px;
+    border-radius:20px;
+    background:#ffffff;
+    border:1.5px solid var(--gold);
+    font-size:16px;
+    line-height:1.9;
+    font-weight:700;
+    color:#55433a;
+}
+.sankalp-points{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    text-align:left;
+}
+.sankalp-point{
+    padding:13px;
+    background:#ffffff;
+    border-radius:15px;
+    border-left:4px solid var(--saffron);
+    font-size:13px;
+    line-height:1.6;
+    font-weight:700;
+    color:var(--text-dark);
+    border-top:1px solid #fed7aa;
+    border-right:1px solid #fed7aa;
+    border-bottom:1px solid #fed7aa;
+}
+
+/* SEVA IMAGE GRID */
+.image-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+.image-card{
+    position:relative;
+    min-height:310px;
+    border-radius:25px;
+    overflow:hidden;
+    border:1.5px solid var(--border-subtle);
+    box-shadow:var(--shadow-soft);
+}
+.image-card img{
+    width:100%;
+    height:100%;
+    min-height:310px;
+    object-fit:cover;
+    transition:.4s;
+}
+.image-card:hover img{ transform:scale(1.06); }
+.image-overlay{
+    position:absolute;
+    left:0; right:0; bottom:0;
+    padding:35px 18px 18px;
+    background:linear-gradient(transparent, rgba(122,18,0,.95));
+    color:white;
+}
+.image-overlay h3{ margin:0; font-size:19px; }
+.image-overlay p{ margin:5px 0 0; font-size:12px; line-height:1.5; color:#ffe9d6; }
+
+/* DONATION SECTION */
+.donation-section{
+    padding:75px 0;
+    background:#ffffff;
+    border-top:1.5px solid var(--border-subtle);
+    border-bottom:1.5px solid var(--border-subtle);
+}
+.donation-card{
+    max-width:1000px;
+    margin:auto;
+    background:#ffffff;
+    border:2px solid var(--saffron);
+    border-radius:35px;
+    padding:35px;
+    box-shadow:var(--shadow-prominent);
+}
+.donation-heading{
+    text-align:center;
+    margin-bottom:25px;
+}
+.donation-heading h2{ margin:0; font-size:36px; color:var(--red); }
+.donation-heading p{ font-size:14px; font-weight:600; color:var(--text-muted); }
+
+.wallet-box-info{
+    padding:16px 20px;
+    border-radius:18px;
+    background:#fffaf2;
+    border:1.5px solid #fed7aa;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+.wallet-box-info .bal-label{ font-size:13px; font-weight:800; color:var(--red-dark); }
+.wallet-box-info .bal-val{ font-size:24px; font-weight:900; color:#168347; }
+
+.type-title{ font-size:15px; font-weight:800; color:var(--red); margin-bottom:12px; }
+.type-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:24px;
+}
+.type-option{ position:relative; }
+.type-option input{ position:absolute; opacity:0; }
+.type-label{
+    display:block; cursor:pointer; text-align:center; padding:18px 10px; border-radius:20px;
+    border:1.5px solid #fed7aa; background:#fffdfa; transition:.25s;
+}
+.type-icon{ font-size:32px; }
+.type-name{ display:block; font-size:15px; font-weight:800; color:var(--red); margin-top:4px; }
+.type-small{ font-size:11px; font-weight:600; color:var(--text-muted); }
+.type-option input:checked + .type-label{
+    background:linear-gradient(135deg, var(--saffron), var(--red));
+    border-color:var(--red); transform:translateY(-3px);
+    box-shadow:0 8px 22px rgba(169,68,22,.25);
+}
+.type-option input:checked + .type-label .type-name,
+.type-option input:checked + .type-label .type-small{ color:#fff; }
+
+.quick-title{ font-size:14px; font-weight:800; color:var(--red); margin-bottom:10px; }
+.quick-grid{
+    display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-bottom:22px;
+}
+.quick{
+    padding:13px 5px; border-radius:13px; border:1.5px solid #fed7aa;
+    background:#fffaf2; color:var(--red-dark); font-family:inherit; font-size:14px;
+    font-weight:800; cursor:pointer; transition:.2s;
+}
+.quick:hover{ background:var(--saffron); color:#fff; border-color:var(--saffron); }
+
+.form-grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.field{ display:flex; flex-direction:column; gap:6px; }
+.field.full{ grid-column:1/-1; }
+.field label{ font-size:13px; font-weight:800; color:var(--red); }
+.field input, .field textarea, .field select{
+    width:100%; padding:14px; border-radius:14px; border:1.5px solid #fed7aa;
+    background:#fffdfa; font-family:inherit; font-size:14px; color:var(--text-dark); outline:none;
+}
+.field input:focus, .field textarea:focus, .field select:focus{
+    border-color:var(--red); box-shadow:0 0 0 4px rgba(242,140,40,.15);
+}
+.field textarea{ min-height:105px; resize:vertical; }
+.amount-box{ position:relative; }
+.amount-prefix{ position:absolute; left:14px; top:36px; font-size:20px; font-weight:900; color:var(--red); }
+.amount-box input{ padding-left:40px; font-size:20px; font-weight:900; }
+
+.submit-btn{
+    width:100%; margin-top:24px; padding:18px; border:0; border-radius:18px; cursor:pointer;
+    font-family:inherit; font-size:18px; font-weight:900; color:white;
+    background:linear-gradient(135deg, var(--saffron), var(--red));
+    box-shadow:0 10px 25px rgba(169,68,22,.3); transition:.2s;
+}
+.submit-btn:hover{ transform:translateY(-2px); }
+
+.error-box{
+    padding:14px; border-radius:15px; background:#fff1f1; border:1.5px solid #ff4d4d;
+    color:#991b1b; text-align:center; font-weight:800; margin-bottom:20px; display:none;
+}
+.error-box a{
+    display:inline-block; margin-top:8px; padding:6px 16px; background:#991b1b;
+    color:#fff; text-decoration:none; border-radius:10px; font-size:12px;
+}
+
+.success-box{
+    text-align:center; padding:35px; border-radius:25px; background:#fffdfa;
+    border:2px solid #168347; display:none; margin-bottom:20px;
+}
+.success-icon{ font-size:55px; }
+.success-box h2{ color:#168347; font-size:25px; margin:10px 0; }
+.receipt-btn{
+    display:inline-block; padding:13px 26px; border-radius:14px; background:#168347;
+    color:white; text-decoration:none; font-weight:800; margin:5px;
+}
+
+.trust{
+    display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin-top:20px;
+}
+.trust-item{
+    padding:8px 14px; border-radius:999px; background:#fffaf2; border:1px solid #fed7aa;
+    font-size:11px; font-weight:800; color:var(--text-muted);
+}
+
+.final-cta{
+    text-align:center; padding:70px 20px; background:#fffaf2; border-top:1.5px solid var(--border-subtle);
+}
+.final-cta h2{ margin:0; font-size:38px; color:var(--red); }
+.final-cta p{ max-width:750px; margin:12px auto; font-weight:600; line-height:1.9; color:var(--text-muted); }
+
+.footer{
+    text-align:center; padding:35px 15px; background:#2a0b06; color:#fff; font-size:13px; line-height:2;
+}
+.footer strong{ color:var(--gold-light); font-size:16px; }
+
+@media(max-width:900px){
+    .hero-inner{ grid-template-columns:1fr; justify-items:center; padding:30px 18px; }
+    .hero-title{ font-size:38px; }
+    .mission-grid{ grid-template-columns:1fr 1fr; }
+    .sankalp-box{ grid-template-columns:1fr; }
+    .image-grid{ grid-template-columns:1fr 1fr; }
+}
+@media(max-width:600px){
+    .hero-title{ font-size:32px; }
+    .hero-tagline{ font-size:16px; }
+    .type-grid{ grid-template-columns:1fr; }
+    .quick-grid{ grid-template-columns:repeat(3,1fr); }
+    .form-grid{ grid-template-columns:1fr; }
+    .field.full{ grid-column:auto; }
+    .donation-card{ padding:20px; border-radius:24px; }
+}
+</style>
+</head>
+<body>
+
+<header class="top-brand">
+    <div class="container">
+        <div class="brand-inner">
+            <div class="brand-left">
+                <a href="bhawani_sena.html"><img class="brand-logo" src="https://sanatansevasamiti.org/public_html/Images/ss/PRO1781318500_dp.jpg" alt="Bhawani Sena"></a>
+                <div>
+                    <div class="brand-name">भवानी सेना</div>
+                    <div class="brand-sub">नारी शक्ति • स्वावलंबन • सनातन सेवा</div>
+                </div>
+            </div>
+            <div>
+                <a href="app_wallet.html" class="wallet-badge" id="topWalletBalance">💳 वॉलेट: ₹0.00</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main>
+
+<div class="container">
+<section class="hero">
+    <div class="hero-inner">
+        <div class="profile-circle">
+            <img src="https://sanatansevasamiti.org/public_html/Images/ss/PRO1781318500_dp.jpg" alt="भवानी सेना">
+        </div>
+
+        <div class="hero-content">
+            <span class="hero-kicker">🌺 नारी शक्ति महाअभियान</span>
+            <h1 class="hero-title">भवानी सेना</h1>
+            <div class="hero-tagline">नारी शक्ति • शिक्षा • आत्मनिर्भरता • सम्मान</div>
+            <p class="hero-desc">
+                बेटियों और महिलाओं को <strong>उच्चतम शिक्षा, डिजिटल साक्षरता, कौशल विकास, आत्मनिर्भरता, सम्मान एवं सुरक्षित भविष्य</strong> की दिशा में आगे बढ़ाने का एक समर्पित प्रयास।
+            </p>
+            <div class="hero-actions">
+                <a href="#donation" class="hero-btn primary">🌺 अभी सहयोग करें</a>
+                <a href="#sankalp" class="hero-btn secondary">🙏 महाराज जी का संकल्प</a>
+            </div>
+        </div>
+
+        <div class="power">
+            🙏<br>नारी ही<br>शक्ति है<br>🌺<br>जय भवानी
+        </div>
+    </div>
+</section>
+</div>
+
+<!-- MISSION -->
+<section class="section">
+    <div class="container">
+        <div class="section-title">
+            <span class="small">भवानी सेना का उद्देश्य</span>
+            <h2>🌺 नारी को सक्षम • शिक्षित • आत्मनिर्भर बनाना</h2>
+            <p>हमारा प्रयास है कि समाज की बेटियों एवं महिलाओं को शिक्षा, तकनीक, कौशल, सम्मान और आत्मनिर्भरता के अवसर प्राप्त हों।</p>
+        </div>
+
+        <div class="mission-grid">
+            <div class="mission-card">
+                <div class="mission-icon">🎓</div>
+                <h3>बालिका शिक्षा</h3>
+                <p>बेटियों की अच्छी एवं उच्चतम शिक्षा के लिए सहयोग और अवसर।</p>
+            </div>
+            <div class="mission-card">
+                <div class="mission-icon">💻</div>
+                <h3>डिजिटल साक्षरता</h3>
+                <p>महिलाओं एवं बालिकाओं को डिजिटल दुनिया से जोड़ना।</p>
+            </div>
+            <div class="mission-card">
+                <div class="mission-icon">🧵</div>
+                <h3>कौशल विकास</h3>
+                <p>हुनर एवं प्रशिक्षण के माध्यम से आत्मनिर्भरता की ओर कदम।</p>
+            </div>
+            <div class="mission-card">
+                <div class="mission-icon">🛡️</div>
+                <h3>सम्मान व सुरक्षा</h3>
+                <p>नारी के सम्मान और सुरक्षित भविष्य के लिए सामाजिक जागरूकता।</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MAHARAJ SANKALP -->
+<section class="section sankalp" id="sankalp">
+    <div class="container">
+        <div class="section-title">
+            <span class="small">🙏 पूज्य सद्गुरुदेव का संकल्प</span>
+            <h2>महाराज जी का नारी शक्ति संकल्प</h2>
+        </div>
+
+        <div class="sankalp-box">
+            <div class="maharaj-photo">
+                <img src="https://sanatansevasamiti.org/public_html/Images/maharaj.jpg" alt="सद्गुरुदेव स्वामी सच्चिदानंद जी महाराज">
+            </div>
+
+            <div class="sankalp-content">
+                <span class="sankalp-label">🙏 परम पूज्य सद्गुरुदेव का आशीर्वाद</span>
+                <h2>नारी शक्ति का सम्मान, समाज की सच्ची उन्नति</h2>
+                <div class="maharaj-name">
+                    श्री श्री 1008 अनंत श्री विभूषित परम पूज्य जगद्गुरु सच्चिदानंदाचार्य आनंद पीठाधीश्वर<br>
+                    परम पूज्य सद्गुरुदेव स्वामी सच्चिदानंद जी महाराज
+                </div>
+
+                <div class="sankalp-quote">
+                    “जब नारी शिक्षित, संस्कारित, सक्षम और आत्मनिर्भर होगी, तभी परिवार, समाज और राष्ट्र अधिक सशक्त होगा।”
+                </div>
+
+                <div class="sankalp-points">
+                    <div class="sankalp-point">🎓 प्रत्येक बेटी को अच्छी शिक्षा की दिशा में आगे बढ़ाना।</div>
+                    <div class="sankalp-point">💻 महिलाओं को डिजिटल युग से जोड़ना।</div>
+                    <div class="sankalp-point">🧵 हुनर एवं कौशल के माध्यम से आत्मनिर्भर बनाना।</div>
+                    <div class="sankalp-point">🛡️ सम्मान, सुरक्षा एवं जागरूकता के लिए सहयोग।</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- GALLERY -->
+<section class="section">
+    <div class="container">
+        <div class="section-title">
+            <span class="small">हमारे सेवा संकल्प</span>
+            <h2>🌺 एक सहयोग • अनेक संभावनाएँ</h2>
+            <p>आपका सहयोग नारी शक्ति के विभिन्न क्षेत्रों में सेवा एवं जागरूकता के प्रयासों को मजबूत करने में सहायक है।</p>
+        </div>
+
+        <div class="image-grid">
+            <div class="image-card">
+                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=85" alt="डिजिटल साक्षरता अभियान">
+                <div class="image-overlay">
+                    <h3>💻 डिजिटल साक्षरता अभियान</h3>
+                    <p>महिलाओं एवं बालिकाओं को कंप्यूटर, इंटरनेट और डिजिटल ज्ञान से जोड़ने की दिशा में प्रयास।</p>
+                </div>
+            </div>
+            <div class="image-card">
+                <img src="https://images.unsplash.com/photo-1573496799515-eebbb63814f2?auto=format&fit=crop&w=1200&q=85" alt="आत्मनिर्भर नारी">
+                <div class="image-overlay">
+                    <h3>🌺 आत्मनिर्भर नारी</h3>
+                    <p>नारी को अपने पैरों पर खड़ा करने, हुनर विकसित करने और अवसरों से जोड़ने का संकल्प।</p>
+                </div>
+            </div>
+            <div class="image-card">
+                <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1200&q=85" alt="बालिका शिक्षा">
+                <div class="image-overlay">
+                    <h3>🎓 बेटी की शिक्षा</h3>
+                    <p>शिक्षा ही वह शक्ति है जो जीवन की दिशा बदल सकती है।</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- DONATION PORTAL -->
+<section class="donation-section" id="donation">
+    <div class="container">
+        <div class="donation-card">
+            <div class="donation-heading">
+                <h2>🌺 भवानी सेना सहयोग</h2>
+                <p>आप अपनी इच्छा और सामर्थ्य के अनुसार धन, अन्न अथवा सेवा के रूप में सहयोग कर सकते हैं।</p>
+            </div>
+
+            <div class="wallet-box-info">
+                <div>
+                    <div class="bal-label">👤 सेवक: <span id="userNameLabel">सनातन सेवक</span> (ID: <span id="userIdLabel">---</span>)</div>
+                    <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">Digital Wallet Integration Active</div>
+                </div>
+                <div style="text-align:right;">
+                    <div class="bal-label">उपलब्ध वॉलेट बैलेंस</div>
+                    <div class="bal-val" id="hubWalletBalance">₹0.00</div>
+                </div>
+            </div>
+
+            <div class="error-box" id="errorBox">
+                ⚠️ <span id="errorMsgText">त्रुटि</span>
+                <br><a href="app_wallet.html" id="errorWalletLink" style="display:none;">💰 तुरंत वॉलेट रीचार्ज करें</a>
+            </div>
+
+            <div class="success-box" id="successBox">
+                <div class="success-icon">🙏</div>
+                <h2>सहयोग विवरण सफलतापूर्वक दर्ज हो गया</h2>
+                <p id="successNoticeText">भवानी सेना के नारी शक्ति अभियान में आपके पावन सहयोग के लिए हृदय से धन्यवाद।</p>
+                <div style="margin-top:15px;">
+                    <a class="receipt-btn" id="successReceiptLink" href="#" target="_blank">🧾 आधिकारिक रसीद देखें</a>
+                    <a class="receipt-btn" id="successWaLink" style="background:#25D366;" href="#" target="_blank">📲 WhatsApp शेयर</a>
+                </div>
+            </div>
+
+            <form id="donationForm" onsubmit="handleBhawaniSubmit(event)">
+                <div class="type-title">सहयोग का प्रकार चुनें</div>
+                <div class="type-grid">
+                    <div class="type-option">
+                        <input type="radio" id="dhan" name="amount_type" value="dhan" checked onchange="changeDonationType('dhan')">
+                        <label class="type-label" for="dhan">
+                            <span class="type-icon">💰</span>
+                            <span class="type-name">धन सहयोग</span>
+                            <span class="type-small">Digital Wallet Debit</span>
+                        </label>
+                    </div>
+                    <div class="type-option">
+                        <input type="radio" id="ann" name="amount_type" value="ann" onchange="changeDonationType('ann')">
+                        <label class="type-label" for="ann">
+                            <span class="type-icon">🌾</span>
+                            <span class="type-name">अन्न सहयोग</span>
+                            <span class="type-small">Food / Grain</span>
+                        </label>
+                    </div>
+                    <div class="type-option">
+                        <input type="radio" id="seva" name="amount_type" value="seva" onchange="changeDonationType('seva')">
+                        <label class="type-label" for="seva">
+                            <span class="type-icon">🙏</span>
+                            <span class="type-name">सेवा सहयोग</span>
+                            <span class="type-small">Shram / Seva</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div id="moneySection">
+                    <div class="quick-title">सहयोग राशि चुनें</div>
+                    <div class="quick-grid">
+                        <button type="button" class="quick" onclick="setAmount(101)">₹101</button>
+                        <button type="button" class="quick" onclick="setAmount(501)">₹501</button>
+                        <button type="button" class="quick" onclick="setAmount(1100)">₹1,100</button>
+                        <button type="button" class="quick" onclick="setAmount(2100)">₹2,100</button>
+                        <button type="button" class="quick" onclick="setAmount(5100)">₹5,100</button>
+                    </div>
+                </div>
+
+                <div class="form-grid">
+                    <div class="field">
+                        <label>👤 दानकर्ता का नाम *</label>
+                        <input type="text" id="donor_name" value="सनातन सेवक" placeholder="अपना पूरा नाम लिखें" required>
+                    </div>
+
+                    <div class="field amount-box" id="amountField">
+                        <label id="amountLabel">💰 सहयोग राशि (वॉलेट से कटेगी) *</label>
+                        <span class="amount-prefix">₹</span>
+                        <input type="number" id="amount" min="1" step="1" value="101" placeholder="सहयोग राशि" required>
+                    </div>
+
+                    <div class="field full" id="annField" style="display:none;">
+                        <label>🌾 अन्न की मात्रा (Kg में)</label>
+                        <input type="number" id="ann_amount" min="0.1" step="0.1" placeholder="उदाहरण: 10, 25, 50 Kg">
+                    </div>
+
+                    <div class="field full" id="sevaField" style="display:none;">
+                        <label>🚩 सेवा अथवा श्रम का विवरण</label>
+                        <textarea id="seva_desc_custom" placeholder="अपनी सेवा, श्रमदान अथवा प्रशिक्षण का विवरण लिखें..."></textarea>
+                    </div>
+
+                    <div class="field full">
+                        <label>🎯 सहयोग किस उद्देश्य के लिए?</label>
+                        <select id="seva_desc">
+                            <option value="बालिका शिक्षा">🎓 बालिका शिक्षा</option>
+                            <option value="महिला शिक्षा">📚 महिला शिक्षा</option>
+                            <option value="डिजिटल साक्षरता अभियान">💻 डिजिटल साक्षरता अभियान</option>
+                            <option value="कौशल विकास">🧵 कौशल विकास</option>
+                            <option value="महिला आत्मनिर्भरता">🌺 महिला आत्मनिर्भरता</option>
+                            <option value="स्वरोजगार सहयोग">💼 स्वरोजगार सहयोग</option>
+                            <option value="नारी सुरक्षा एवं सम्मान">🛡️ नारी सुरक्षा एवं सम्मान</option>
+                            <option value="भवानी सेना सामान्य सहयोग" selected>🌺 भवानी सेना सामान्य सहयोग</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn" id="btnSubmitDaan">
+                    🌺 भवानी सेना को सेवा समर्पित करें
+                </button>
+
+                <div class="trust">
+                    <div class="trust-item">🔒 सुरक्षित वॉलेट सिस्टम</div>
+                    <div class="trust-item">🧾 डिजिटल रसीद</div>
+                    <div class="trust-item">🙏 सेवा का संकल्प</div>
+                    <div class="trust-item">🎓 शिक्षा अभियान</div>
+                    <div class="trust-item">🌺 नारी शक्ति</div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<section class="final-cta">
+    <h2>🙏 आइए, नारी शक्ति के इस संकल्प से जुड़ें</h2>
+    <p>
+        एक बेटी की शिक्षा, एक महिला का हुनर, एक परिवार की आत्मनिर्भरता और एक सुरक्षित भविष्य— इनमें आपका सहयोग महत्वपूर्ण भूमिका निभा सकता है।
+    </p>
+    <a href="#donation" class="hero-btn primary" style="background:var(--red); color:#fff;">🌺 अभी सहयोग करें</a>
+</section>
+
+</main>
+
+<footer class="footer">
+    <strong>भवानी सेना</strong><br>
+    नारी शक्ति • शिक्षा • डिजिटल साक्षरता • आत्मनिर्भरता • सम्मान<br><br>
+    <strong>सनातन सेवा समिति</strong><br>
+    सेवा • संस्कार • समाज • सनातन
+</footer>
+
+<script>
+const PROFILE_ID = "PRO1781318500";
+let currentBalance = 0;
+let currentUserId = "";
+let currentUserName = "सनातन सेवक";
+
+function setAmount(amount){
+    const field = document.getElementById("amount");
+    if(field){
+        field.value = amount;
+        field.focus();
+    }
+}
+
+function changeDonationType(type){
+    const moneySection = document.getElementById("moneySection");
+    const amountField = document.getElementById("amountField");
+    const annField = document.getElementById("annField");
+    const sevaField = document.getElementById("sevaField");
+    const amount = document.getElementById("amount");
+    const annAmount = document.getElementById("ann_amount");
+
+    if(type === "dhan"){
+        moneySection.style.display = "block";
+        amountField.style.display = "flex";
+        annField.style.display = "none";
+        sevaField.style.display = "none";
+        amount.required = true;
+        if(annAmount) annAmount.required = false;
+    } else if(type === "ann"){
+        moneySection.style.display = "none";
+        amountField.style.display = "none";
+        annField.style.display = "flex";
+        sevaField.style.display = "none";
+        amount.required = false;
+        if(annAmount) annAmount.required = true;
+    } else if(type === "seva"){
+        moneySection.style.display = "none";
+        amountField.style.display = "none";
+        annField.style.display = "none";
+        sevaField.style.display = "flex";
+        amount.required = false;
+        if(annAmount) annAmount.required = false;
+    }
+}
+
+function showError(msg, isWallet = false){
+    const box = document.getElementById('errorBox');
+    const msgEl = document.getElementById('errorMsgText');
+    const wLink = document.getElementById('errorWalletLink');
+    if(box && msgEl){
+        msgEl.innerText = msg;
+        box.style.display = 'block';
+        if(wLink) wLink.style.display = isWallet ? 'inline-block' : 'none';
+        box.scrollIntoView({ behavior:'smooth', block:'center' });
+    }
+}
+
+function hideError(){
+    const box = document.getElementById('errorBox');
+    if(box) box.style.display = 'none';
+}
+
+async function loadUserData(){
+    try {
+        const rawUser = localStorage.getItem("sss_user_data");
+        if(rawUser){
+            const u = JSON.parse(rawUser);
+            currentUserId = u.unique_id || u.id || "";
+            currentUserName = u.full_name || "सनातन सेवक";
+            document.getElementById('userNameLabel').innerText = currentUserName;
+            document.getElementById('userIdLabel').innerText = currentUserId;
+            document.getElementById('donor_name').value = currentUserName;
+        }
+
+        const res = await fetch(`https://sanatansevasamiti.org/api/get_profile_full.php?action=detail&profile_id=${PROFILE_ID}&user_id=${encodeURIComponent(currentUserId)}`);
+        const data = await res.json();
+
+        if(data && data.status === 'success'){
+            if(data.user_data && data.user_data.is_logged_in){
+                currentBalance = parseFloat(data.user_data.wallet_balance) || 0;
+                document.getElementById('topWalletBalance').innerText = `💳 वॉलेट: ₹${currentBalance.toFixed(2)}`;
+                document.getElementById('hubWalletBalance').innerText = `₹${currentBalance.toFixed(2)}`;
+                localStorage.setItem("sss_wallet_balance", currentBalance);
+            }
+        }
+    } catch(e){
+        console.error("Data Load Error:", e);
+    }
+}
+
+async function handleBhawaniSubmit(e){
+    e.preventDefault();
+    hideError();
+
+    if(!currentUserId){
+        alert("कृपया सेवा के लिए पहले ऐप में लॉगिन करें।");
+        window.location.href = "app_login.html";
+        return;
+    }
+
+    const type = document.querySelector('input[name="amount_type"]:checked').value;
+    let amountVal = 0;
+    let desc = document.getElementById("seva_desc").value || "भवानी सेना सामान्य सहयोग";
+
+    if(type === 'dhan'){
+        amountVal = parseFloat(document.getElementById("amount").value) || 0;
+        if(amountVal < 1){
+            showError("सहयोग राशि कम से कम ₹1 होनी चाहिए।");
+            return;
+        }
+        if(amountVal > currentBalance){
+            showError("आपके वॉलेट में इस सेवा के लिए पर्याप्त राशि उपलब्ध नहीं है।", true);
+            return;
+        }
+    } else if(type === 'ann'){
+        amountVal = parseFloat(document.getElementById("ann_amount").value) || 0;
+        if(amountVal <= 0){
+            showError("कृपया मान्य अन्न मात्रा दर्ज करें।");
+            return;
+        }
+        desc = `अन्न सेवा: ${amountVal} Kg (${desc})`;
+    } else if(type === 'seva'){
+        const customTxt = document.getElementById("seva_desc_custom").value.trim();
+        if(!customTxt){
+            showError("कृपया सेवा अथवा श्रम का विवरण लिखें।");
+            return;
+        }
+        desc = `श्रम/सेवा: ${customTxt}`;
+    }
+
+    const btn = document.getElementById("btnSubmitDaan");
+    btn.disabled = true;
+    btn.innerText = "⏳ सेवा दर्ज हो रही है...";
+
+    try {
+        const payload = {
+            profile_id: PROFILE_ID,
+            user_id: currentUserId,
+            type: (type === 'dhan' ? 'dhan' : type),
+            amount: amountVal,
+            seva_desc: `[भवानी सेना] ${desc}`
+        };
+
+        const res = await fetch(`https://sanatansevasamiti.org/api/get_profile_full.php?action=donate`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+
+        const data = await res.json();
+
+        if(data && data.status === 'success'){
+            document.getElementById("successReceiptLink").href = data.receipt_url || "#";
+            const waShare = encodeURIComponent(`🚩 सनातन सेवा समिति - भवानी सेना रसीद\nसहयोग: ₹${amountVal}\nविवरण: ${desc}\nरसीद: ${data.receipt_url}`);
+            document.getElementById("successWaLink").href = `https://api.whatsapp.com/send?text=${waShare}`;
+
+            document.getElementById("donationForm").style.display = "none";
+            const sBox = document.getElementById("successBox");
+            sBox.style.display = "block";
+            sBox.scrollIntoView({ behavior:"smooth", block:"center" });
+
+            loadUserData();
+        } else {
+            showError(data.message || "समर्पण दर्ज करने में समस्या आई।");
+        }
+    } catch(err){
+        showError("सर्वर से संपर्क नहीं हो पाया। इंटरनेट कनेक्शन जाँचें।");
+    } finally {
+        btn.disabled = false;
+        btn.innerText = "🌺 भवानी सेना को सेवा समर्पित करें";
+    }
+}
+
+document.addEventListener("DOMContentLoaded", loadUserData);
+</script>
+
+</body>
+</html>
