@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>सनातन धर्म आश्रम - प्रोफाइल</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700;900&family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root{ 
+            --saffron:#ff8a00; 
+            --saffron2:#ffb52e; 
+            --deep:#8e1800; 
+            --red:#c62816; 
+            --gold:#f5c45a; 
+            --cream:#fff8e8; 
+            --white:#fff; 
+            --text:#5b210d; 
+            --shadow:0 18px 50px rgba(113,43,5,.16); 
+        } 
+        *{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; } 
+        html{ scroll-behavior:smooth; } 
+        body{ 
+            margin:0; 
+            background: radial-gradient(circle at 10% 10%,rgba(255,183,77,.22),transparent 25%), radial-gradient(circle at 90% 20%,rgba(198,40,22,.10),transparent 25%), #fffaf0; 
+            color:var(--text); 
+            font-family:"Noto Sans Devanagari","Poppins",sans-serif; 
+            padding-bottom:95px !important;
+        } 
+
+        .profile-page{ width:100%; max-width:1100px; margin:auto; } 
+        .hero{ position:relative; height:430px; overflow:hidden; background:#6d1b00; } 
+        .hero-cover{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; cursor:pointer; } 
+        .hero::after{ 
+            content:""; position:absolute; inset:0; 
+            background: linear-gradient( to bottom, rgba(0,0,0,.05) 0%, rgba(65,13,0,.05) 35%, rgba(65,13,0,.80) 100% ); 
+        } 
+        .hero-top{ position:absolute; top:20px; left:20px; right:20px; z-index:5; display:flex; justify-content:space-between; align-items:center; } 
+        .hero-badge{ padding:9px 16px; border-radius:50px; color:#fff; background:rgba(77,22,0,.55); border:1px solid rgba(255,214,119,.7); backdrop-filter:blur(10px); font-size:13px; font-weight:800; } 
+        .hero-menu{ width:42px; height:42px; border-radius:50%; border:1px solid rgba(255,255,255,.6); background:rgba(60,15,0,.55); color:white; font-size:22px; cursor:pointer; backdrop-filter:blur(10px); } 
+
+        .identity{ position:relative; margin-top:-105px; z-index:10; padding:0 30px 25px; } 
+        .identity-card{ position:relative; padding:0 25px 25px; border-radius:30px; background:rgba(255,252,244,.96); border:1px solid rgba(245,196,90,.65); box-shadow:var(--shadow); backdrop-filter:blur(15px); } 
+        .dp-wrap{ position:relative; width:150px; height:150px; margin:-65px auto 10px; } 
+        .dp-ring{ position:absolute; inset:-7px; border-radius:50%; background:conic-gradient( var(--gold), var(--saffron), #fff0a6, var(--red), var(--gold) ); animation:spin 8s linear infinite; } 
+        @keyframes spin{ to{transform:rotate(360deg);} } 
+        .dp{ position:relative; width:150px; height:150px; border-radius:50%; object-fit:cover; border:7px solid #fffaf0; background:#fff; cursor:pointer; display:block; z-index:2; } 
+        .online-dot{ position:absolute; right:9px; bottom:13px; width:23px; height:23px; background:#22a447; border:4px solid #fff; border-radius:50%; z-index:4; } 
+        .profile-name{ text-align:center; margin:7px 0 2px; font-size:32px; line-height:1.2; font-weight:900; color:var(--deep); } 
+        .verified{ display:inline-flex; width:25px; height:25px; align-items:center; justify-content:center; margin-left:5px; border-radius:50%; background:linear-gradient(135deg,#ffae00,#c62816); color:white; font-size:13px; vertical-align:middle; box-shadow:0 4px 10px rgba(198,40,22,.25); } 
+        .tagline{ text-align:center; margin:8px auto 10px; color:#8b430f; font-size:15px; font-weight:700; } 
+        .location{ text-align:center; font-size:13px; color:#9a735c; margin-bottom:15px; font-weight:600; } 
+
+        /* सामाजिक मीडिया बटन्स */
+        .social-bar{ display:flex; justify-content:center; gap:8px; margin:0 auto 20px; flex-wrap:wrap; max-width:650px; }
+        .social-btn{ display:inline-flex; align-items:center; gap:6px; padding:8px 16px; border-radius:50px; font-size:12px; font-weight:800; text-decoration:none; color:#fff; transition:0.3s; box-shadow:0 4px 12px rgba(0,0,0,0.12); border:1px solid rgba(255,255,255,0.3); }
+        .social-btn:hover{ transform:translateY(-2px); box-shadow:0 8px 20px rgba(0,0,0,0.22); }
+        .social-insta{ background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
+        .social-yt{ background:#ff0000; }
+        .social-fb{ background:#1877f2; }
+        .social-x{ background:#000000; }
+
+        .actions{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; max-width:720px; margin:auto; } 
+        .action-btn{ min-height:53px; border:none; border-radius:16px; cursor:pointer; text-decoration:none; display:flex; align-items:center; justify-content:center; gap:7px; font-size:14px; font-weight:800; transition:.25s; } 
+        .action-btn:hover{ transform:translateY(-3px); } 
+        .donate{ color:white; background:linear-gradient(135deg,#d12b0e,#8e1800); box-shadow:0 8px 20px rgba(142,24,0,.22); } 
+        .contact{ color:#8e1800; background:#fff; border:1px solid #e6b65a; } 
+        .more{ color:white; background:linear-gradient(135deg,#ffad22,#e46b00); } 
+
+        .stats{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; padding:0 30px; margin:20px auto; } 
+        .stat{ background:rgba(255,255,255,.86); border:1px solid #efd49a; border-radius:20px; padding:16px 8px; text-align:center; box-shadow:0 8px 25px rgba(120,50,0,.08); } 
+        .stat strong{ display:block; color:var(--deep); font-size:21px; font-weight:900; } 
+        .stat span{ color:#9a735c; font-size:12px; font-weight:700; } 
+
+        .tabs-wrap{ position:sticky; top:0; z-index:50; padding:8px 20px; background:rgba(255,250,240,.92); backdrop-filter:blur(15px); border-top:1px solid #efd49a; border-bottom:1px solid #efd49a; } 
+        .tabs{ max-width:850px; margin:auto; display:grid; grid-template-columns:repeat(3,1fr); gap:7px; } 
+        .tab{ border:0; background:transparent; padding:13px 8px; border-radius:14px; color:#985018; font-family:inherit; font-weight:800; cursor:pointer; transition:0.3s; } 
+        .tab.active{ color:white; background:linear-gradient(135deg,#c62816,#8e1800); box-shadow:0 6px 16px rgba(142,24,0,.2); } 
+
+        .content{ max-width:850px; margin:auto; padding:25px 20px 70px; } 
+        .tab-content{ display:none; }
+        .section-title{ display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; } 
+        .section-title h2{ margin:0; color:var(--deep); font-size:21px; } 
+        .section-title span{ color:#c27b22; font-size:12px; font-weight:700; } 
+
+        .post{ background:white; border:1px solid #efd9aa; border-radius:25px; overflow:hidden; margin-bottom:22px; box-shadow:0 12px 35px rgba(110,45,0,.09); } 
+        .post-head{ display:flex; align-items:center; padding:15px 17px; } 
+        .post-dp{ width:48px; height:48px; border-radius:50%; object-fit:cover; border:3px solid #ffb52e; } 
+        .post-user{ margin-left:12px; } 
+        .post-user b{ display:block; color:#71220b; font-size:15px; } 
+        .post-user small{ color:#bd7a28; font-size:11px; } 
+        .post-media{ width:100%; background:#3b1608; position:relative; overflow:hidden; } 
+        .post-media img, .post-media video{ display:block; width:100%; max-height:600px; object-fit:contain; background:#000; } 
+        .yt-frame{ width:100%; border:none; aspect-ratio:16/9; display:block; }
+        .yt-shorts{ aspect-ratio:9/16 !important; max-height:700px; }
+        .media-label{ position:absolute; top:13px; left:13px; padding:6px 11px; border-radius:30px; color:white; background:rgba(60,15,0,.65); backdrop-filter:blur(8px); font-size:11px; font-weight:800; z-index:3; } 
+        
+        .slider-wrapper { position:relative; width:100%; overflow:hidden; background:#000; }
+        .slides-container { display:flex; width:100%; transition:transform 0.3s ease-in-out; }
+        .slide-item { min-width:100%; display:flex; justify-content:center; align-items:center; }
+        .slide-item img { width:100%; max-height:500px; object-fit:contain; cursor:pointer; }
+        .slider-btn { position:absolute; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.6); color:white; border:none; padding:10px 14px; cursor:pointer; font-size:18px; border-radius:50%; z-index:5; }
+        .prev-btn { left:10px; }
+        .next-btn { right:10px; }
+
+        .post-caption{ padding:17px; color:#65402c; font-size:14px; line-height:1.7; } 
+        .post-actions{ display:flex; gap:8px; padding:0 15px 15px; } 
+        .post-action{ flex:1; padding:11px; border:0; border-radius:13px; background:#fff7e8; color:#8a4515; font-weight:800; cursor:pointer; transition:0.2s; } 
+
+        .schedule{ background:white; border:1px solid #efd49a; border-radius:23px; overflow:hidden; margin-bottom:18px; box-shadow:0 10px 30px rgba(110,45,0,.08); } 
+        .schedule-img{ width:100%; height:260px; object-fit:cover; } 
+        .schedule-body{ padding:18px; } 
+        .schedule-title{ font-size:20px; font-weight:900; color:var(--deep); margin-bottom:9px; } 
+        .schedule-desc{ color:#765440; font-size:13px; line-height:1.6; margin-bottom:14px; } 
+        .meta{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:15px; } 
+        .meta span{ padding:7px 10px; border-radius:10px; background:#fff6e5; color:#925017; font-size:11px; font-weight:800; } 
+        .schedule-buttons{ display:grid; grid-template-columns:repeat(auto-fit, minmax(110px, 1fr)); gap:8px; } 
+        .schedule-buttons a{ padding:10px 5px; border-radius:11px; text-align:center; text-decoration:none; font-size:12px; font-weight:800; background:#fff0d0; color:#8e1800; transition:0.2s; } 
+        .schedule-buttons a:hover{ background:#8e1800; color:#fff; }
+
+        .donation{ background:white; border:1px solid #efd49a; border-radius:20px; padding:15px; display:flex; align-items:center; gap:13px; margin-bottom:12px; box-shadow:0 8px 25px rgba(110,45,0,.07); } 
+        .donation-icon{ width:52px; height:52px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:#fff1d3; border:2px solid #e7b54e; font-size:23px; flex-shrink:0; } 
+        .donation-info{ flex:1; } 
+        .donation-info b{ color:#75250c; font-size:14px; display:block; } 
+        .donation-info small{ display:block; color:#9c7a63; margin-top:3px; font-size:11px; font-weight:600; } 
+        .amount{ color:#20913d; font-size:16px; font-weight:900; margin-top:2px; } 
+        .receipt{ padding:8px 14px; border-radius:10px; background:#8e1800; color:white; text-decoration:none; font-size:11px; font-weight:800; white-space:nowrap; } 
+
+        .info-box{ background: linear-gradient(135deg,#fff8e7,#fff0d0); border:1px solid #e8c16d; border-radius:23px; padding:22px; box-shadow:0 10px 30px rgba(130,60,0,.08); margin-top:35px; } 
+        .info-box h3{ color:var(--deep); margin-top:0; border-bottom:2px solid var(--gold); padding-bottom:8px; text-align:center; } 
+        .info-box p{ color:#674735; font-size:14px; line-height:1.8; text-align:justify; } 
+        .info-box blockquote{ background:#fffaf0; padding:12px; border-left:4px solid var(--saffron); border-radius:0 10px 10px 0; color:var(--deep); font-weight:bold; margin:15px 0; text-align:center; }
+
+        .ashram-gallery-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; margin:20px 0; }
+        .ashram-gal-card{ background:#fff; border-radius:18px; overflow:hidden; border:2px solid #ecd8b9; box-shadow:0 6px 18px rgba(142,24,0,0.07); cursor:pointer; transition:0.3s; }
+        .ashram-gal-card:hover{ transform:translateY(-4px); box-shadow:0 12px 25px rgba(142,24,0,0.15); }
+        .ashram-gal-card img{ width:100%; height:180px; object-fit:cover; display:block; }
+        .ashram-gal-card .card-caption{ padding:10px 8px; text-align:center; font-size:12.5px; font-weight:800; color:var(--deep); background:#fff9ee; border-top:1px solid #f6deb4; }
+        .sub-box{ background:#fffaf2; border:1.5px solid #efd49a; border-radius:18px; padding:16px; margin:15px 0; border-left:5px solid var(--saffron); }
+        .sub-box h4{ margin:0 0 6px 0; color:var(--deep); font-size:16px; font-weight:800; display:flex; align-items:center; gap:6px; }
+        .sub-box p{ margin:0; font-size:13.5px; color:#674735; line-height:1.75; }
+        .video-wrapper-divine{ position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:20px; border:3px solid var(--gold); box-shadow:0 10px 25px rgba(142,24,0,0.18); margin:18px 0; background:#000; }
+        .video-wrapper-divine iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+
+        .lightbox{ position:fixed; inset:0; z-index:9999; background:rgba(30,8,0,.96); display:none; align-items:center; justify-content:center; padding:20px; } 
+        .lightbox.show{ display:flex; } 
+        .lightbox img{ max-width:95%; max-height:88vh; object-fit:contain; border-radius:15px; } 
+        .close-lightbox{ position:absolute; top:20px; left:20px; width:45px; height:45px; border-radius:50%; border:1px solid rgba(255,255,255,.5); background:rgba(255,255,255,.15); color:white; font-size:22px; cursor:pointer; } 
+
+        .overlay{ position:fixed; inset:0; background:rgba(50,10,0,.65); backdrop-filter:blur(5px); display:none; z-index:800; } 
+        .popup{ position:fixed; left:50%; top:50%; transform:translate(-50%,-50%) scale(.95); width:90%; max-width:390px; padding:25px; border-radius:25px; background:#fffaf0; border:2px solid #e4b34f; box-shadow:0 25px 70px rgba(0,0,0,.3); display:none; z-index:900; text-align:center; } 
+        .popup.show{ display:block; } 
+        .popup h2{ color:var(--deep); margin-top:0; } 
+        .popup a, .popup button{ width:100%; display:block; padding:13px; margin-top:10px; border:0; border-radius:13px; text-decoration:none; font-family:inherit; font-weight:800; cursor:pointer; } 
+        .popup-call{ background:#299447; color:white; } 
+        .popup-mail{ background:#c62816; color:white; } 
+        .popup-close{ background:#fff; color:#8e1800; border:1px solid #d9ad5a !important; } 
+
+        /* FOOTER NAVIGATION BAR */
+        #sss-nav {
+            position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 1100px; height: 75px;
+            background: linear-gradient(180deg, #ff4500, #800000); display: flex; justify-content: space-evenly; align-items: center;
+            border-top: 4px solid #ffcc00; border-radius: 20px 20px 0 0; z-index: 99999; box-shadow: 0 -5px 20px rgba(0,0,0,0.4);
+        }
+        .sss-item { flex: 1; text-align: center; text-decoration: none; color: #fff; font-size: 10px; font-weight: 800; }
+        .sss-item img { width: 28px; height: 28px; display: block; margin: auto; }
+        .sss-dash-wrap { margin-top: -30px; }
+        .sss-gold-circle {
+            width: 60px; height: 60px; background: linear-gradient(45deg, #ffd700, #ffcc00, #b8860b);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid #800000; box-shadow: 0 0 15px rgba(255,215,0,0.6);
+        }
+        .sss-gold-circle img { width: 35px; height: 35px; }
+
+        @media(max-width:650px){ 
+            .hero{ height:330px; } 
+            .hero-top{ top:12px; left:12px; right:12px; } 
+            .identity{ margin-top:-78px; padding:0 12px 18px; } 
+            .identity-card{ padding:0 15px 20px; border-radius:25px; } 
+            .dp-wrap{ width:125px; height:125px; margin:-53px auto 10px; } 
+            .dp{ width:125px; height:125px; } 
+            .profile-name{ font-size:25px; } 
+            .actions{ grid-template-columns:1fr 1fr; } 
+            .actions .more{ grid-column:1/-1; } 
+            .stats{ padding:0 12px; } 
+            .stat{ padding:13px 5px; } 
+            .stat strong{ font-size:18px; } 
+            .content{ padding-left:12px; padding-right:12px; } 
+            .schedule-buttons{ grid-template-columns:1fr 1fr; } 
+            .schedule-buttons a:last-child{ grid-column:1/-1; } 
+            .donation{ align-items:flex-start; } 
+            .receipt{ align-self:center; } 
+        } 
+    </style>
+</head>
+<body>
+
+<div class="profile-page">
+    
+    <div class="hero">
+        <img class="hero-cover" id="heroCover" src="https://sanatansevasamiti.org/Images/ss/PRO1781287765_cover.jpg" onerror="this.src='https://sanatansevasamiti.org/public_html/Images/kirtan.jpg'" alt="Cover Photo" onclick="openLightbox(this.src)"> 
+        <div class="hero-top"> 
+            <div class="hero-badge">🕉️ सनातन धर्म आश्रम • आध्यात्मिक प्रोफाइल</div> 
+            <button class="hero-menu" onclick="openContact()">⋮</button> 
+        </div> 
+    </div>
+
+    <div class="identity">
+        <div class="identity-card">
+            <div class="dp-wrap"> 
+                <div class="dp-ring"></div> 
+                <img class="dp" id="profileDp" src="https://sanatansevasamiti.org/Images/ss/PRO1781287765_dp.jpg" onerror="this.src='https://sanatansevasamiti.org/public_html/Images/maharaj.jpg'" alt="Profile Photo" onclick="openLightbox(this.src)"> 
+                <div class="online-dot"></div> 
+            </div> 
+            <div class="profile-name"> 
+                <span id="profileName">सनातन धर्म आश्रम</span> <span class="verified">✓</span> 
+            </div> 
+            <div class="tagline" id="profileTagline"> 
+                सनातन धर्म आश्रम जीर्णोद्धार, भव्य केंद्रीय धाम निर्माण एवं सेवा संकल्प
+            </div> 
+            <div class="location"> 
+                📍 मुरैना, मध्य प्रदेश • भारत 
+            </div> 
+
+            <div class="social-bar">
+                <a href="https://www.instagram.com/sachchidanand.ji_/" target="_blank" class="social-btn social-insta">📸 Instagram</a>
+                <a href="https://youtube.com/@sanatan_sevasamiti?si=CvVOUP5slvqHdRnc" target="_blank" class="social-btn social-yt">▶️ YouTube</a>
+                <a href="https://www.facebook.com/share/1BvUG3NR69/" target="_blank" class="social-btn social-fb">f Facebook</a>
+                <a href="https://x.com/SatySanatanmarg" target="_blank" class="social-btn social-x">𝕏 Twitter</a>
+            </div>
+            
+            <div class="actions"> 
+                <a href="sanatan_dharm_aashram_daan.html" class="action-btn donate"> 🙏 अभी दान करें </a> 
+                <button class="action-btn contact" onclick="openContact()"> 📞 संपर्क करें </button> 
+                <button class="action-btn more" onclick="scrollToInfo()"> ✨ विस्तार से जानें </button> 
+            </div> 
+        </div>
+    </div>
+
+    <div class="stats">
+        <div class="stat"> 
+            <strong id="statPosts">0+</strong> 
+            <span>पोस्ट</span> 
+        </div> 
+        <div class="stat"> 
+            <strong id="statEvents">0</strong> 
+            <span>कार्यक्रम</span> 
+        </div> 
+        <div class="stat"> 
+            <strong id="statDonors">108+</strong> 
+            <span>सेवा सहयोगी</span> 
+        </div> 
+    </div>
+
+    <div class="tabs-wrap">
+        <div class="tabs"> 
+            <button class="tab active" onclick="showTab('posts', this)"> 🪔 पोस्ट </button> 
+            <button class="tab" onclick="showTab('events', this)"> 📅 कार्यक्रम </button> 
+            <button class="tab" onclick="showTab('donations', this)"> 🙏 दान सूची </button> 
+        </div> 
+    </div>
+
+    <div class="content">
+        
+        <!-- 1. POSTS TAB -->
+        <div id="posts" class="tab-content" style="display:block;">
+            <div class="section-title"> 
+                <h2>🪔 नवीन पोस्ट</h2> 
+                <span id="postsCountBadge">कुल: 0</span> 
+            </div> 
+            <div id="postsContainer">
+                <p style="text-align:center; color:#777; background:#fff; padding:25px; border-radius:20px; border:1px dashed #efd49a;">पोस्ट्स लोड हो रही हैं...</p>
+            </div>
+        </div>
+
+        <!-- 2. EVENTS / SCHEDULES TAB -->
+        <div id="events" class="tab-content">
+            <div class="section-title"> 
+                <h2>📅 आगामी कार्यक्रम</h2> 
+                <span>Schedules</span> 
+            </div> 
+            <div id="eventsContainer">
+                <p style="text-align:center; color:#777; background:#fff; padding:25px; border-radius:20px; border:1px dashed #efd49a;">कार्यक्रम लोड हो रहे हैं...</p>
+            </div>
+        </div>
+
+        <!-- 3. DONATIONS TAB -->
+        <div id="donations" class="tab-content">
+            <div class="section-title"> 
+                <h2>🙏 दान सूची</h2> 
+                <span>Recent Seva</span> 
+            </div> 
+            <div id="donationsContainer">
+                <p style="text-align:center; color:#777; background:#fff; padding:25px; border-radius:20px; border:1px dashed #efd49a;">दान सूची लोड हो रही है...</p>
+            </div>
+        </div>
+
+        <!-- 4. VISHESH INFO BOX (पूरा वही ज्ञान व दर्शन) -->
+        <div class="info-box" id="aboutInfo"> 
+            <div style="text-align: center; margin-bottom: 20px;">
+                <img src="https://sanatansevasamiti.org/public_html/Images/maharaj.jpg" alt="Maharaj Ji" style="width: 100%; max-width: 220px; border-radius: 15px; border: 3px solid var(--gold); box-shadow: 0 5px 15px rgba(179,0,0,0.2); object-fit: cover;">
+                <h4 style="color: var(--deep); font-size: 16px; margin: 12px 0 4px 0; line-height: 1.4;">
+                    श्री श्री 1008 अनंत श्री विभूषित परम पूज्य जगद्गुरु सच्चिदानंदाचार्य आनंद पीठाधीश्वर<br>सद्गुरुदेव स्वामी सच्चिदानंद जी महाराज
+                </h4>
+                <p style="color: var(--saffron); font-weight: 700; font-size: 13px; margin: 0;">
+                    ( संस्थापक एवं राष्ट्रीय अध्यक्ष - सनातन सेवा समिति )
+                </p>
+            </div>
+
+            <h3>🚩 सनातन धर्म आश्रम का पावन उद्देश्य एवं संकल्प</h3> 
+            <p>
+                पूज्य महाराज श्री ने <b>सनातन धर्म आश्रम</b> का शुभारंभ कलियुग में वैदिक ज्ञान, सनातन संस्कृति, हरिनाम संकीर्तन, सुरभि गौसेवा तथा जन-कल्याणकारी प्रकल्पों के माध्यम से समाज में धर्म और संस्कारों को जाग्रत करने के पावन उद्देश्य से किया है।
+            </p> 
+            <blockquote>
+                “हरिनाम से हृदय जागरण, भक्ति से जीवन उत्थान।”
+            </blockquote>
+            <blockquote>
+                हरेर्नाम हरेर्नाम हरेर्नामैव केवलम् ।<br>कलौ नास्त्येव नास्त्येव नास्त्येव गतिरन्यता ॥
+            </blockquote>
+            <p>
+                कलियुग में यदि किसी साधन को समस्त शास्त्रों और संतों ने सर्वश्रेष्ठ बताया है तो वह है भगवान के पवित्र नामों का कीर्तन तथा संतों व असहायों की निष्काम सेवा। सनातन धर्म आश्रम केवल एक भवन नहीं, अपितु सनातन संस्कृति, गुरु परंपरा, वैदिक ज्ञान और आध्यात्मिक चेतना का पावन केंद्र है।
+            </p> 
+
+            <div style="margin-top:35px; border-top:2px dashed var(--gold); padding-top:25px;">
+                
+                <h3>🚩 धर्म, गुरु परंपरा एवं सनातन संस्कृति के संरक्षण का दिव्य संकल्प 🚩</h3>
+                
+                <p style="text-align:center; font-weight:bold; color:var(--deep); margin:12px 0;">
+                    ।। श्री गुरु चरण कमलेभ्यो नमः ।।
+                </p>
+                <p>
+                    <b>सनातन धर्म आश्रम</b> हमारी पूज्य गुरु परंपरा से प्राप्त दिव्य प्रेरणा के आधार पर स्थापित किए जाने वाले ऐसे आध्यात्मिक केंद्र होंगे, जहाँ भगवान की भक्ति, वेदों का ज्ञान, धार्मिक संस्कार और मानव सेवा का कार्य निरंतर चलता रहेगा। <b>मुरैना (मध्य प्रदेश)</b> में प्रधान केंद्रीय तपोभूमि निर्माण के साथ-साथ संपूर्ण देश में उपेक्षित व जीर्ण-शीर्ण आश्रमों का कायाकल्प और संरक्षण किया जा रहा है।
+                </p>
+
+                <div style="margin:25px 0 15px;">
+                    <h4 style="color:var(--deep); font-size:16px; margin:0 0 10px; text-align:center;">🎥 सनातन धर्म आश्रम परिचय एवं वीडियो दर्शन 🎥</h4>
+                    <div class="video-wrapper-divine">
+                        <iframe src="https://www.youtube.com/embed/videoseries?list=PLsomeList" title="Sanatan Dharm Ashram Video" allowfullscreen></iframe>
+                    </div>
+                </div>
+
+                <div style="text-align:center; margin:25px 0;">
+                    <h3 style="margin-bottom:15px;">🙏 पावन गुरु परंपरा 🙏</h3>
+                    <img src="https://sanatansevasamiti.org/public_html/Images/guru-parampara.jpg" onerror="this.src='https://sanatansevasamiti.org/public_html/Images/maharaj.jpg'" alt="गुरु परंपरा" style="width:100%; max-width:650px; border-radius:18px; border:2px solid var(--gold); box-shadow:0 6px 20px rgba(0,0,0,0.1); cursor:pointer;" onclick="openLightbox(this.src)">
+                </div>
+
+                <div class="sub-box">
+                    <h4>👑 आद्य गुरु (प्रथम पीठाधीश्वर):</h4>
+                    <p>श्री श्री 1008 परम पूज्य आद्य जगद्गुरु, आनंद मार्ग प्रवर्तक स्वामी सच्चिदानंदाचार्य जी महाराज</p>
+                </div>
+                <div class="sub-box">
+                    <h4>👑 परम गुरु:</h4>
+                    <p>श्री श्री 1008 ब्रह्मलीन परम पूज्य जगद्गुरु सच्चिदानंदाचार्य स्वामी सिद्धेश्वरानंद जी महाराज</p>
+                </div>
+                <div class="sub-box">
+                    <h4>👑 पूर्व गुरु:</h4>
+                    <p>श्री श्री 1008 ब्रह्मलीन जगद्गुरु सच्चिदानंदाचार्य स्वामी राजेश्वरानंद जी महाराज</p>
+                </div>
+                <div class="sub-box">
+                    <h4>👑 वर्तमान पीठाधीश्वर:</h4>
+                    <p>श्री श्री 1008 अनंत श्री विभूषित पूज्य सच्चिदानंदाचार्य आनंद पीठाधीश्वर पूज्य सद्गुरुदेव स्वामी सच्चिदानंद जी महाराज</p>
+                </div>
+
+                <h3 style="margin-top:30px;">🏵️ सनातन धर्म आश्रम के प्रमुख उद्देश्य 🏵️</h3>
+                <div class="sub-box">
+                    <h4>🏛️ मुरैना केंद्रीय धाम का महा-निर्माण</h4>
+                    <p>मुरैना की पावन धरा पर एक विशाल एवं सुसज्जित आध्यात्मिक परिसर का निर्माण, जिसमें 1000+ क्षमता का भव्य सत्संग भवन, वातानुकूलित/सात्विक संत निवास कक्ष, ध्यान-साधना केंद्र एवं प्रशासनिक भवन सम्मिलित हैं।</p>
+                </div>
+                <div class="sub-box">
+                    <h4>🔄 देश भर के उपेक्षित आश्रमों का जीर्णोद्धार</h4>
+                    <p>ग्रामीण व वनवासी अंचलों में स्थित जर्जर आश्रमों की चारदीवारी (बाउंड्री वॉल), छत, रंग-रोगन, सोलर विद्युत व्यवस्था, स्वच्छ पेयजल तथा संत-महात्माओं की दैनिक जीवन रक्षा व्यवस्था का स्थायी प्रबंधन।</p>
+                </div>
+                <div class="sub-box">
+                    <h4>🏡 वैदिक गुरुकुल एवं संस्कार शिक्षा केंद्र</h4>
+                    <p>आने वाली पीढ़ियों को अपनी संस्कृति, संस्कार, वेद, शास्त्र और भारतीय परंपराओं का ज्ञान प्रदान करने हेतु वैदिक गुरुकुल की स्थापना, जहाँ युवाओं को अनुशासन, सेवा और राष्ट्र प्रेम की शिक्षा दी जाएगी।</p>
+                </div>
+                <div class="sub-box">
+                    <h4>🍚 नित्य भोजन एवं अखंड अन्नक्षेत्र सेवा</h4>
+                    <p>आश्रम परिसरों में संतों, तपस्वियों, तीर्थयात्रियों तथा दीन-दुखियों के लिए 365 दिन 24 घंटे निःशुल्क, शुद्ध एवं पौष्टिक महाप्रसाद का अटूट अन्नक्षेत्र संचालन।</p>
+                </div>
+                <div class="sub-box">
+                    <h4>📖 धार्मिक कथा एवं आध्यात्मिक आयोजन</h4>
+                    <p>श्रीमद्भागवत कथा, देवी भागवत, शिव महापुराण एवं राम कथाओं का निष्काम भाव से आयोजन, जिसका उद्देश्य समाज में धर्म का ज्ञान और भक्ति भावना का विस्तार करना है।</p>
+                </div>
+                <div class="sub-box">
+                    <h4>🐄 सुरभि गौसेवा एवं संरक्षण</h4>
+                    <p>असहाय, वृद्ध एवं निराश्रित गोवंश के संवर्धन हेतु वृहद गौशालाओं का निर्माण तथा गोमाता की नित्य सेवा-अर्चना।</p>
+                </div>
+
+                <h3 style="margin-top:30px;">📜 शास्त्र सम्मत दान महिमा</h3>
+                <blockquote>
+                    “धर्मो रक्षति रक्षितः — दानं दुर्गतिनाशनम्”
+                </blockquote>
+                <div class="sub-box">
+                    <h4>🧱 ईंट, शिला एवं निर्माण दान का महत्व:</h4>
+                    <p>शास्त्रों में उल्लेख है कि आश्रम या देवालय के निर्माण में जितनी ईंटें लगती हैं, जब तक वे वहां विद्यमान रहती हैं, तब तक दानदाता और उसके पितरों को वहां होने वाले नित्य वेदपाठ, हरि-संकीर्तन और तपस्या का अनंत पुण्य निरंतर प्राप्त होता रहता है।</p>
+                </div>
+                <div class="sub-box">
+                    <h4>🌾 अन्नदान — साक्षात परब्रह्म की तृप्ति:</h4>
+                    <p>अन्नदान को 'महादान' कहा गया है। संतों और अभ्यागतों को भोजन कराने से साक्षात भगवान नारायण तृप्त होते हैं और घर में अन्नपूर्णा माता का नित्य वास होता है।</p>
+                </div>
+
+                <h3 style="margin-top:30px;">📸 आश्रम पावन दर्शन एवं आयोजन दीर्घा</h3>
+                <p style="text-align:center; font-size:13px; color:#785e49; margin-top:-5px;">
+                    (फोटो पर क्लिक करके पूर्ण दर्शन करें)
+                </p>
+                <div class="ashram-gallery-grid">
+                    <div class="ashram-gal-card" onclick="openLightbox('https://sanatansevasamiti.org/public_html/Images/aashram.jpg')">
+                        <img src="https://sanatansevasamiti.org/public_html/Images/aashram.jpg" alt="पूर्व आश्रम दर्शन" onerror="this.src='https://sanatansevasamiti.org/public_html/Images/kirtan.jpg'">
+                        <div class="card-caption">🚩 पूर्व आश्रम दर्शन (वर्तमान स्थिति)</div>
+                    </div>
+                    <div class="ashram-gal-card" onclick="openLightbox('https://sanatansevasamiti.org/public_html/Images/bhoomi-poojan.jpg')">
+                        <img src="https://sanatansevasamiti.org/public_html/Images/bhoomi-poojan.jpg" alt="सनातन धर्म आश्रम भूमि पूजन" onerror="this.src='https://sanatansevasamiti.org/public_html/Images/kirtan1.jpg'">
+                        <div class="card-caption">🔱 सनातन धर्म आश्रम भूमि पूजन</div>
+                    </div>
+                    <div class="ashram-gal-card" onclick="openLightbox('https://sanatansevasamiti.org/public_html/Images/varshik-utsav.jpg')">
+                        <img src="https://sanatansevasamiti.org/public_html/Images/varshik-utsav.jpg" alt="वार्षिकोत्सव एवं विशाल भंडारा" onerror="this.src='https://sanatansevasamiti.org/public_html/Images/kirtan2.jpg'">
+                        <div class="card-caption">🔥 वार्षिकोत्सव एवं विशाल भंडारा</div>
+                    </div>
+                    <div class="ashram-gal-card" onclick="openLightbox('https://sanatansevasamiti.org/public_html/Images/future-aashram.jpg')">
+                        <img src="https://sanatansevasamiti.org/public_html/Images/future-aashram.jpg" alt="प्रस्तावित मुख्य आश्रम मॉडल" onerror="this.src='https://sanatansevasamiti.org/public_html/Images/katha.jpg'">
+                        <div class="card-caption">🏛️ प्रस्तावित मुख्य आश्रम 3D मॉडल</div>
+                    </div>
+                    <div class="ashram-gal-card" onclick="openLightbox('https://sanatansevasamiti.org/public_html/Images/future-aashram1.jpg')">
+                        <img src="https://sanatansevasamiti.org/public_html/Images/future-aashram1.jpg" alt="भव्य सत्संग भवन" onerror="this.src='https://sanatansevasamiti.org/public_html/Images/katha1.jpg'">
+                        <div class="card-caption">🪔 भव्य सत्संग एवं ध्यान केंद्र</div>
+                    </div>
+                    <div class="ashram-gal-card" onclick="openLightbox('https://sanatansevasamiti.org/public_html/Images/future-aashram2.jpg')">
+                        <img src="https://sanatansevasamiti.org/public_html/Images/future-aashram2.jpg" alt="संत कुटीर एवं गौशाला" onerror="this.src='https://sanatansevasamiti.org/public_html/Images/rudrabhishek.jpg'">
+                        <div class="card-caption">🐄 संत कुटीर एवं गौशाला विजन</div>
+                    </div>
+                </div>
+
+                <div style="text-align:center; margin:30px 0 10px;">
+                    <a href="sanatan_dharm_aashram_daan.html" style="display:inline-block; padding:15px 35px; background:linear-gradient(135deg,#d12b0e,#8e1800); color:#fff; text-decoration:none; border-radius:50px; font-size:18px; font-weight:900; box-shadow:0 8px 25px rgba(142,24,0,0.3); border:2px solid var(--gold);">
+                        🚩 धर्म सेवा अभियान — आश्रम दान समर्पित करें
+                    </a>
+                </div>
+
+            </div>
+        </div> 
+
+    </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox"> 
+    <button class="close-lightbox" onclick="closeLightbox()"> ← </button> 
+    <img id="lightboxImage" src="" alt="Full Preview"> 
+</div> 
+
+<!-- CONTACT POPUP -->
+<div class="overlay" id="overlay" onclick="closeContact()"></div> 
+<div class="popup" id="contactPopup"> 
+    <h2>📞 संपर्क करें</h2> 
+    <p>संपर्क करने के लिए नीचे दिए विकल्प का चयन करें।</p> 
+    <a id="popupCall" href="tel:+919876543210" class="popup-call"> 📞 कॉल करें </a> 
+    <a id="popupMail" href="mailto:contact@sanatansevasamiti.org" class="popup-mail"> 📧 ईमेल करें </a> 
+    <button class="popup-close" onclick="closeContact()"> बंद करें </button> 
+</div> 
+
+<!-- FOOTER NAVIGATION BAR -->
+<div id="sss-nav">
+    <a href="app_home.html" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341771file_00000000145071fab7ea2e7e30f9dfaa-e1776295057951.png" alt="गृह">
+        <span>गृह</span>
+    </a>
+    <a href="guru_parampara.html" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341317ci.jpg" alt="गुरु">
+        <span>गुरु परंपरा</span>
+    </a>
+    <a href="feed.html" class="sss-item sss-dash-wrap">
+        <div class="sss-gold-circle">
+            <img src="https://sanatansevasamiti.org/uploads/footer/1780341218logo.jpg" alt="फीड">
+        </div>
+        <span></span>
+    </a>
+    <a href="javascript:void(0);" onclick="alert('पुस्तकें — यह अनुभाग शीघ्र ही स्थानीय रूप से उपलब्ध होगा।');" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341270bi.jpg" alt="पुस्तकें">
+        <span>पुस्तकें</span>
+    </a>
+    <a href="app_dashboard.html" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341144ai.jpg" alt="अकाउंट">
+        <span>अकाउंट</span>
+    </a>
+</div>
+
+<script>
+    const PROFILE_ID = "PRO1781287765";
+    let CURRENT_UID = "";
+
+    try {
+        const rawUser = localStorage.getItem("sss_user_data");
+        if(rawUser){
+            const u = JSON.parse(rawUser);
+            CURRENT_UID = u.unique_id || u.id || "";
+        }
+    } catch(e){}
+
+    // API INTEGRATION: LOAD PROFILE DETAILS
+    async function loadAshramData(){
+        try {
+            const apiUrl = `https://sanatansevasamiti.org/api/get_profile_full.php?action=detail&profile_id=${PROFILE_ID}&user_id=${encodeURIComponent(CURRENT_UID)}`;
+            const res = await fetch(apiUrl);
+            if(!res.ok) throw new Error("नेटवर्क प्रतिक्रिया विफल");
+            const data = await res.json();
+
+            if(data && data.status === 'success'){
+                // 1. Profile Metadata
+                if(data.profile){
+                    const p = data.profile;
+                    if(p.name) document.getElementById('profileName').innerText = p.name;
+                    if(p.tagline) document.getElementById('profileTagline').innerText = p.tagline;
+                    if(p.dp_url) document.getElementById('profileDp').src = p.dp_url;
+                    if(p.cover_url) document.getElementById('heroCover').src = p.cover_url;
+                    if(p.mobile) document.getElementById('popupCall').href = "tel:" + p.mobile;
+                    if(p.email) document.getElementById('popupMail').href = "mailto:" + p.email;
+                }
+
+                // 2. Stats
+                const postsCount = data.posts ? data.posts.length : 0;
+                const eventsCount = data.schedules ? data.schedules.length : 0;
+                const donorsCount = data.public_donations ? data.public_donations.length : 0;
+
+                document.getElementById('statPosts').innerText = postsCount + "+";
+                document.getElementById('statEvents').innerText = eventsCount;
+                document.getElementById('statDonors').innerText = (donorsCount > 0 ? donorsCount + "+" : "108+");
+                document.getElementById('postsCountBadge').innerText = "कुल: " + postsCount;
+
+                // 3. Render Posts, Events, Donations
+                renderPosts(data.posts, data.profile);
+                renderEvents(data.schedules);
+                renderDonations(data.public_donations);
+            }
+        } catch(err){
+            console.error("Ashram Profile Load Error:", err);
+        }
+    }
+
+    function renderPosts(posts, prof){
+        const container = document.getElementById('postsContainer');
+        if(!posts || posts.length === 0){
+            container.innerHTML = `<p style="text-align:center; color:#777; background:#fff; padding:25px; border-radius:20px; border:1px dashed #efd49a;">इस प्रोफाइल पर अभी कोई पोस्ट नहीं है।</p>`;
+            return;
+        }
+
+        container.innerHTML = posts.map(post => {
+            const mediaList = post.parsed_media || [];
+            let mediaBlock = '';
+
+            if(post.post_type === 'youtube'){
+                mediaBlock = mediaList.map(m => `
+                    <iframe class="yt-frame ${m.is_shorts ? 'yt-shorts' : ''}" src="${m.embed_url}" allowfullscreen></iframe>
+                `).join("");
+            } else if(post.post_type === 'video'){
+                mediaBlock = mediaList.map(m => `
+                    <video controls src="${m.raw_url}"></video>
+                `).join("");
+            } else if(mediaList.length > 0){
+                const slides = mediaList.map(m => `
+                    <div class="slide-item">
+                        <img src="${m.raw_url}" onclick="openLightbox(this.src)">
+                    </div>
+                `).join("");
+
+                mediaBlock = `
+                    <div class="slider-wrapper" id="slider-${post.id}">
+                        <div class="slides-container" id="slides-${post.id}">
+                            ${slides}
+                        </div>
+                        ${mediaList.length > 1 ? `
+                            <button class="slider-btn prev-btn" onclick="moveSlide(${post.id}, -1)">&#10094;</button>
+                            <button class="slider-btn next-btn" onclick="moveSlide(${post.id}, 1)">&#10095;</button>
+                        ` : ''}
+                    </div>
+                `;
+            }
+
+            return `
+            <article class="post"> 
+                <div class="post-head"> 
+                    <img class="post-dp" src="${prof.dp_url || 'https://sanatansevasamiti.org/Images/ss/PRO1781287765_dp.jpg'}" onerror="this.src='https://sanatansevasamiti.org/public_html/Images/maharaj.jpg'"> 
+                    <div class="post-user"> 
+                        <b>${prof.name || 'सनातन धर्म आश्रम'} ✓</b> 
+                        <small>सार्वजनिक संदेश</small> 
+                    </div> 
+                    <div class="post-menu">•••</div> 
+                </div> 
+
+                <div class="post-media"> 
+                    <span class="media-label">🕉️ सनातन संदेश</span> 
+                    ${mediaBlock}
+                </div> 
+
+                <div class="post-caption"> 
+                    ${(post.caption || '').replace(/\n/g, '<br>')} 
+                </div> 
+
+                <div class="post-actions"> 
+                    <button class="post-action" onclick="likePost(this)"> ❤️ Like </button> 
+                    <button class="post-action" onclick="sharePost('https://sanatansevasamiti.org/feed.php?postid=${post.id}')"> 🔗 Share </button> 
+                </div> 
+            </article>`;
+        }).join("");
+    }
+
+    function renderEvents(events){
+        const container = document.getElementById('eventsContainer');
+        if(!events || events.length === 0){
+            container.innerHTML = `<p style="text-align:center; color:#777; background:#fff; padding:25px; border-radius:20px; border:1px dashed #efd49a;">फिलहाल कोई कार्यक्रम उपलब्ध नहीं है।</p>`;
+            return;
+        }
+
+        container.innerHTML = events.map(sch => {
+            const media = (sch.media_files && sch.media_files.length > 0) ? sch.media_files[0] : '';
+            let mediaHtml = '';
+            if(media){
+                if(media.match(/\.(mp4|webm|ogg)$/i)){
+                    mediaHtml = `<video controls src="${media}" style="width:100%; height:260px; object-fit:cover;"></video>`;
+                } else {
+                    mediaHtml = `<img class="schedule-img" src="${media}" alt="Event Poster" onclick="openLightbox(this.src)">`;
+                }
+            }
+
+            return `
+            <article class="schedule"> 
+                ${mediaHtml}
+                <div class="schedule-body"> 
+                    <div class="schedule-title">${sch.title || ''}</div> 
+                    <div class="schedule-desc">${(sch.description || '').replace(/\n/g, '<br>')}</div> 
+                    <div class="meta"> 
+                        <span>🗓️ ${sch.event_date || ''}</span> 
+                        <span>⏰ ${sch.time_from || ''} - ${sch.time_to || ''}</span> 
+                        <span>📍 ${sch.address || ''}, ${sch.district || ''}</span> 
+                    </div> 
+                    <div class="schedule-buttons"> 
+                        ${sch.mobile ? `<a href="tel:${sch.mobile}"> 📞 कॉल </a>` : ''}
+                        ${sch.web_url ? `<a href="${sch.web_url}" target="_blank"> 🌐 विवरण </a>` : ''}
+                        ${sch.yt_link ? `<a href="${sch.yt_link}" target="_blank"> ▶️ YouTube </a>` : ''}
+                        ${sch.fb_link ? `<a href="${sch.fb_link}" target="_blank"> f Facebook </a>` : ''}
+                    </div> 
+                </div> 
+            </article>`;
+        }).join("");
+    }
+
+    function renderDonations(donations){
+        const container = document.getElementById('donationsContainer');
+        if(!donations || donations.length === 0){
+            container.innerHTML = `<p style="text-align:center; color:#777; background:#fff; padding:25px; border-radius:20px; border:1px dashed #efd49a;">इस प्रोफाइल के लिए अभी कोई ट्रांजैक्शन रिकॉर्ड मौजूद नहीं है।</p>`;
+            return;
+        }
+
+        container.innerHTML = donations.map(tx => `
+            <div class="donation"> 
+                <div class="donation-icon">📥</div> 
+                <div class="donation-info"> 
+                    <b>${tx.full_name}</b> 
+                    <small> 
+                        ${tx.unique_id ? `ID: ${tx.unique_id} • ` : ''}
+                        ${tx.payment_mode || 'UPI'} • ${tx.tx_date}
+                    </small> 
+                    <div class="amount"> + ${tx.amount_label} </div> 
+                </div> 
+                <a href="${tx.receipt_url}" target="_blank" class="receipt"> 🧾 रसीद </a> 
+            </div>
+        `).join("");
+    }
+
+    // TABS CONTROL
+    function showTab(id, button){ 
+        document.querySelectorAll(".tab-content").forEach(section => { 
+            section.style.display = "none"; 
+        }); 
+        document.querySelectorAll(".tab").forEach(tab => { 
+            tab.classList.remove("active"); 
+        }); 
+        document.getElementById(id).style.display = "block"; 
+        button.classList.add("active"); 
+    } 
+
+    // SLIDER CONTROL
+    const slideIndexes = {};
+    function moveSlide(postId, direction) {
+        if (!slideIndexes[postId]) slideIndexes[postId] = 0;
+        const container = document.getElementById('slides-' + postId);
+        if(!container) return;
+        const totalSlides = container.children.length;
+        
+        slideIndexes[postId] += direction;
+        if (slideIndexes[postId] >= totalSlides) slideIndexes[postId] = 0;
+        else if (slideIndexes[postId] < 0) slideIndexes[postId] = totalSlides - 1;
+        
+        container.style.transform = `translateX(-${slideIndexes[postId] * 100}%)`;
+    }
+
+    // LIGHTBOX
+    function openLightbox(src){ 
+        document.getElementById("lightboxImage").src = src; 
+        document.getElementById("lightbox").classList.add("show"); 
+    } 
+    function closeLightbox(){ 
+        document.getElementById("lightbox").classList.remove("show"); 
+        document.getElementById("lightboxImage").src = ""; 
+    } 
+
+    // CONTACT POPUP
+    function openContact(){ 
+        document.getElementById("overlay").style.display = "block"; 
+        document.getElementById("contactPopup").classList.add("show"); 
+    } 
+    function closeContact(){ 
+        document.getElementById("overlay").style.display = "none"; 
+        document.getElementById("contactPopup").classList.remove("show"); 
+    } 
+
+    // LIKE TOGGLE
+    function likePost(button){ 
+        if(button.innerText.includes("❤️ Like")){ 
+            button.innerText = "❤️ Liked"; 
+            button.style.background = "#c62816"; 
+            button.style.color = "#fff"; 
+        } else { 
+            button.innerText = "❤️ Like"; 
+            button.style.background = ""; 
+            button.style.color = ""; 
+        } 
+    } 
+
+    // SHARE FUNCTION
+    function sharePost(customUrl){ 
+        const urlToShare = customUrl || window.location.href;
+        if(navigator.share){ 
+            navigator.share({ 
+                title: "सनातन धर्म आश्रम प्रोफाइल", 
+                text: "इस प्रोफाइल को देखें", 
+                url: urlToShare 
+            }).catch(()=>{}); 
+        } else { 
+            navigator.clipboard.writeText(urlToShare); 
+            alert("लिंक कॉपी हो गया है!"); 
+        } 
+    } 
+
+    // SCROLL TO INFO BOX
+    function scrollToInfo(){ 
+        document.getElementById("aboutInfo").scrollIntoView({ behavior: "smooth" }); 
+    } 
+
+    // ESCAPE KEY CLOSE
+    document.addEventListener("keydown", function(e){ 
+        if(e.key === "Escape"){ 
+            closeLightbox(); 
+            closeContact(); 
+        } 
+    }); 
+
+    window.addEventListener("DOMContentLoaded", loadAshramData);
+</script>
+
+</body>
+</html>
