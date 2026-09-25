@@ -706,7 +706,7 @@
 
 <div class="app-screen">
 
-    <!-- 1. APP HEADER (PhonePe Style Translucent Sticky Header) -->
+    <!-- 1. APP HEADER -->
     <header class="app-header" id="mainHeader">
         <form action="feed.html" method="get" class="search-bar" style="margin: 0;" onsubmit="handleHeaderSearch(event)">
             <i class="fa-solid fa-magnifying-glass"></i>
@@ -724,7 +724,6 @@
     <!-- 2. 2-SIDE FLIP HERO BANNER -->
     <div class="hero-container" onclick="toggleHeroFlip()">
         <div class="hero-flip" id="heroFlipper">
-            <!-- फ्रंट इमेज -->
             <div class="hero-poster">
                 <img src="https://sanatansevasamiti.org/uploads/file_00000000b5447207af241f52a9137425.png" alt="Front Banner">
                 <div class="hero-overlay"></div>
@@ -733,7 +732,6 @@
                 </div>
             </div>
             
-            <!-- बैक इमेज -->
             <div class="hero-back">
                 <img src="uploads/pc.jpg" onerror="this.src='https://sanatansevasamiti.org/uploads/pc.jpg';" alt="Back Banner">
                 <div class="hero-overlay"></div>
@@ -748,7 +746,7 @@
         </div>
     </div>
 
-    <!-- 3. ABOUT SAMITI CARD (समिति के बारे में जानें) -->
+    <!-- 3. ABOUT SAMITI CARD -->
     <div class="about-samiti-card">
         <div class="samiti-logo">
             <img src="Images/jpg/logo.jpg" onerror="this.src='Images/logo.jpg';" alt="समिति लोगो" />
@@ -765,31 +763,26 @@
     <!-- 4. 5 BUTTONS IN A SINGLE LINE -->
     <div class="action-strip-wrapper">
         <div class="action-strip">
-            <!-- 1. दैनिक पोस्ट -->
             <a href="feed.html" class="action-pill">
                 <div class="pill-icon"><i class="fa-solid fa-newspaper"></i></div>
                 <span class="pill-title">दैनिक पोस्ट</span>
             </a>
 
-            <!-- 2. दैनिक स्टेटस -->
             <a href="javascript:void(0);" onclick="openSectionModal('दैनिक स्टेटस')" class="action-pill">
                 <div class="pill-icon"><i class="fa-solid fa-circle-notch"></i></div>
                 <span class="pill-title">दैनिक स्टेटस</span>
             </a>
 
-            <!-- 3. दान प्रगति -->
             <a href="javascript:void(0);" onclick="openSectionModal('दान प्रगति')" class="action-pill">
                 <div class="pill-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
                 <span class="pill-title">दान प्रगति</span>
             </a>
 
-            <!-- 4. i card -->
             <a href="id_card.html" class="action-pill">
                 <div class="pill-icon"><i class="fa-solid fa-id-card"></i></div>
                 <span class="pill-title">i card</span>
             </a>
 
-            <!-- 5. स्वागत पत्र + नियुक्ति पत्र -->
             <a href="welcome_letter.html" class="action-pill">
                 <div class="pill-icon"><i class="fa-solid fa-file-signature"></i></div>
                 <span class="pill-title">स्वागत + नियुक्ति</span>
@@ -805,7 +798,6 @@
         </div>
 
         <div id="latestPostsContainer">
-            <!-- पोस्ट 1 -->
             <div class="compact-post-card" onclick="window.location.href='feed.html'">
                 <img class="compact-post-cover" src="Images/jpg/logo.jpg" alt="कवर इमेज" />
                 <div class="compact-post-details">
@@ -824,7 +816,6 @@
                 </div>
             </div>
 
-            <!-- पोस्ट 2 -->
             <div class="compact-post-card" onclick="window.location.href='feed.html'">
                 <img class="compact-post-cover" src="https://sanatansevasamiti.org/uploads/file_00000000b5447207af241f52a9137425.png" alt="कवर इमेज" />
                 <div class="compact-post-details">
@@ -844,7 +835,6 @@
             </div>
         </div>
 
-        <!-- सभी पोस्ट देखें बटन -->
         <a href="feed.html" class="view-all-posts-btn">
             और पढ़ें / सभी पोस्ट देखें <i class="fa-solid fa-arrow-right-long"></i>
         </a>
@@ -859,7 +849,6 @@
         <div class="close-btn" onclick="closeMenu()">✖</div>
 
         <div id="sidebarUserContainer">
-            <!-- डायनामिक यूजर कार्ड या लॉगिन बटन -->
             <div class="sidebar-user-box" style="justify-content:center; text-align:center;">
                 <a href="app_login.html" style="background:#ffd700; color:#8b0000; padding:8px 16px; border-radius:8px; font-weight:bold; text-decoration:none;">🔐 लॉगिन / पंजीकरण</a>
             </div>
@@ -873,32 +862,30 @@
         <a href="welcome_letter.html">📜 स्वागत पत्र व नियुक्ति</a>
         <a href="app_register.html">📝 नया पंजीकरण करें</a>
 
-        <!-- Submenu -->
+        <!-- Submenu with Direct HTML Links -->
         <div class="menu-item">
             <a href="javascript:void(0)" onclick="toggleSubmenu(this)">🛕 सनातन सेवा समिति सेवाएँ ▼</a>
             <div class="submenu">
-                <a href="javascript:void(0)" onclick="openSectionModal('सभी सेवाएँ')">सभी सेवाएँ</a>
-                <a href="javascript:void(0)" onclick="openSectionModal('सनातन सेवा समिति')">⚜️ सनातन सेवा समिति ⚜️</a>            
                 <a href="anand_lahari.html">🪇 आनंद लहरी 🪇</a>
-                <a href="javascript:void(0)" onclick="openSectionModal('सत्य सनातन मार्ग')">🛣️ सत्य सनातन मार्ग 🛣️</a>
-                <a href="javascript:void(0)" onclick="openSectionModal('सनातन धर्म आश्रम')">🕉️ सनातन धर्म आश्रम 🕉️</a>            
-                <a href="javascript:void(0)" onclick="openSectionModal('श्री शिव शक्ति वैदिक गुरुकुलम्')">⛳ श्री शिव शक्ति वैदिक गुरुकुलम् ⛳</a>
-                <a href="javascript:void(0)" onclick="openSectionModal('श्री शिव शक्ति शिक्षा केंद्र')">🏫 श्री शिव शक्ति शिक्षा केंद्र 🏫</a>
-                <a href="javascript:void(0)" onclick="openSectionModal('प्रकृति संरक्षण')">🌿 प्रकृति संरक्षण 🌿</a>            
-                <a href="javascript:void(0)" onclick="openSectionModal('जीव सेवा')">🐄 जीव सेवा 🐄</a>
-                <a href="javascript:void(0)" onclick="openSectionModal('निःशुल्क स्वास्थ्य सेवा')">🩺 निःशुल्क स्वास्थ्य सेवा 🩺</a>
-                <a href="javascript:void(0)" onclick="openSectionModal('निराश्रित जन सेवा')">🚹 निराश्रित जन सेवा 🚹</a>            
-                <a href="javascript:void(0)" onclick="openSectionModal('वृद्धजन सेवा')">👴 वृद्धजन सेवा 👴</a>
-                <a href="javascript:void(0)" onclick="openSectionModal('राष्ट्रीय सनातन रक्षा सेना')">⚔️ राष्ट्रीय सनातन रक्षा सेना ⚔️</a>
-                <a href="javascript:void(0)" onclick="openSectionModal('संत सेना')">🚩 संत सेना 🚩</a>            
-                <a href="javascript:void(0)" onclick="openSectionModal('भवानी सेना')">🔱 भवानी सेना 🔱</a>
-                <a href="javascript:void(0)" onclick="openSectionModal('वेद सेना')">📜 वेद सेना 📜</a>
+                <a href="satya_sanatan_marg.html">🛣️ सत्य सनातन मार्ग 🛣️</a>
+                <a href="sanatan_dharm_aashram.html">🕉️ सनातन धर्म आश्रम 🕉️</a>            
+                <a href="shri_shiv_shakti_vaidic_gurukulam.html">⛳ श्री शिव शक्ति वैदिक गुरुकुलम् ⛳</a>
+                <a href="shiksha_kendra.html">🏫 श्री शिव शक्ति शिक्षा केंद्र 🏫</a>
+                <a href="prakriti_sanrakshan.html">🌿 प्रकृति संरक्षण 🌿</a>            
+                <a href="jeev_seva.html">🐄 जीव सेवा 🐄</a>
+                <a href="swasthya_seva.html">🩺 निःशुल्क स्वास्थ्य सेवा 🩺</a>
+                <a href="nirashrit_jan_seva.html">🚹 निराश्रित जन सेवा 🚹</a>            
+                <a href="vriddh_jan_seva.html">👴 वृद्धजन सेवा 👴</a>
+                <a href="rashtriya_sanatan_raksha_sena.html">⚔️ राष्ट्रीय सनातन रक्षा सेना ⚔️</a>
+                <a href="sant_sena.html">🚩 संत सेना 🚩</a>            
+                <a href="bhawani_sena.html">🔱 भवानी सेना 🔱</a>
+                <a href="ved_sena.html">📜 वेद सेना 📜</a>
             </div>
         </div>
 
         <a href="javascript:void(0)" onclick="openSectionModal('सनातन ज्योतिष')">🔮 सनातन ज्योतिष</a>
         <a href="javascript:void(0)" onclick="openSectionModal('सनातन पुस्तक संग्रह')">📚 सनातन पुस्तक संग्रह</a>
-        <a href="javascript:void(0)" onclick="openSectionModal('गुरु परंपरा')">🙌 गुरु परंपरा</a>
+        <a href="guru_parampara.html">🙌 गुरु परंपरा</a>
         <a href="javascript:void(0)" onclick="openSectionModal('सनातन सामग्री')">🛒 सनातन सामग्री</a>
         <a href="javascript:void(0)" onclick="openSectionModal('वंश वृक्ष')">🌳 वंश वृक्ष</a>
         <a href="javascript:void(0)" onclick="openSectionModal('हमारे बारे में')">❕ हमारे बारे में</a>
@@ -908,7 +895,7 @@
         <a href="javascript:void(0)" onclick="handleLogout()" id="logoutBtn" style="color:#ffb3b3; display:none;">🚪 लॉगआउट</a>
     </div>
 
-    <!-- 8. FOOTER NAVIGATION BAR (Pure Local Offline Routing) -->
+    <!-- 8. FOOTER NAVIGATION BAR -->
     <div id="sss-nav">
         <a href="app_home.html" class="sss-item">
             <img src="https://sanatansevasamiti.org/uploads/footer/1780341771file_00000000145071fab7ea2e7e30f9dfaa-e1776295057951.png" alt="गृह">
@@ -940,9 +927,10 @@
 
 </div>
 
+<div id="noticeToast"></div>
+
 <!-- DATA AND INTERACTION SCRIPT -->
 <script>
-    // Helper to resolve fallback between ss and sections folder
     function handleImgFallback(imgElement, pid) {
         if (!imgElement.dataset.triedFallback) {
             imgElement.dataset.triedFallback = "1";
@@ -955,287 +943,268 @@
         }
     }
 
-    // 16 Sections Data (सेवा क्षेत्र और सेनाओं के लिए स्थानीय पाथ सक्रिय)
+    // 16 Sections Data (Seva Kshetra & Sena Linked to Local HTML Files)
     const SECTIONS_DATA = [
         {
             heading: 'सनातन सेवा समिति की सेवाएँ',
-            link: 'https://sanatansevasamiti.org/anand-lahari/',
             items: [
                 {title:'आनंद लहरी', pid:'PRO1781011341', img:'Images/ss/PRO1781011341_dp.jpg', url:'anand_lahari.html'},
-                {title:'सत्य सनातन मार्ग', pid:'PRO1781285901', img:'Images/ss/PRO1781285901_dp.jpg', url:'https://sanatansevasamiti.org/saty-sanatan-marg/'},
-                {title:'सनातन धर्म आश्रम', pid:'PRO1781287765', img:'Images/ss/PRO1781287765_dp.jpg', url:'https://sanatansevasamiti.org/sanatan-dharm-aashram/'},
-                {title:'श्री शिवशक्ति वैदिक गुरुकुलम', pid:'PRO1781288688', img:'Images/ss/PRO1781288688_dp.jpg', url:'https://sanatansevasamiti.org/shri-shiv-shakti-vaidic-gurukulam/'},
-                {title:'प्रकृति संरक्षण', pid:'PRO1781289469', img:'Images/ss/PRO1781289469_dp.jpg', url:'https://sanatansevasamiti.org/prakriti-sanrakshan/'},
-                {title:'शिवशक्ति शिक्षा केंद्र', pid:'PRO1781367447', img:'Images/ss/PRO1781367447_dp.jpg', url:'https://sanatansevasamiti.org/shri-shiv-shakti-siksha-kendra/'},
-                {title:'जीव सेवा', pid:'PRO1781289610', img:'Images/ss/PRO1781289610_dp.jpg', url:'https://sanatansevasamiti.org/jeev-seva/'},
-                {title:'निःशुल्क स्वास्थ्य सेवा', pid:'PRO1781290640', img:'Images/ss/PRO1781290640_dp.jpg', url:'https://sanatansevasamiti.org/nishulk-swasthy-seva/'},
-                {title:'निराश्रित जन सेवा', pid:'PRO1781291019', img:'Images/ss/PRO1781291019_dp.jpg', url:'https://sanatansevasamiti.org/nirashrit-jan-seva/'},
-                {title:'वृद्ध जन सेवा', pid:'PRO1781313938', img:'Images/ss/PRO1781313938_dp.jpg', url:'https://sanatansevasamiti.org/vriddh-jan-seva/'}
+                {title:'सत्य सनातन मार्ग', pid:'PRO1781285901', img:'Images/ss/PRO1781285901_dp.jpg', url:'satya_sanatan_marg.html'},
+                {title:'सनातन धर्म आश्रम', pid:'PRO1781287765', img:'Images/ss/PRO1781287765_dp.jpg', url:'sanatan_dharm_aashram.html'},
+                {title:'श्री शिवशक्ति वैदिक गुरुकुलम', pid:'PRO1781288688', img:'Images/ss/PRO1781288688_dp.jpg', url:'shri_shiv_shakti_vaidic_gurukulam.html'},
+                {title:'प्रकृति संरक्षण', pid:'PRO1781289469', img:'Images/ss/PRO1781289469_dp.jpg', url:'prakriti_sanrakshan.html'},
+                {title:'शिवशक्ति शिक्षा केंद्र', pid:'PRO1781367447', img:'Images/ss/PRO1781367447_dp.jpg', url:'shiksha_kendra.html'},
+                {title:'जीव सेवा', pid:'PRO1781289610', img:'Images/ss/PRO1781289610_dp.jpg', url:'jeev_seva.html'},
+                {title:'निःशुल्क स्वास्थ्य सेवा', pid:'PRO1781290640', img:'Images/ss/PRO1781290640_dp.jpg', url:'swasthya_seva.html'},
+                {title:'निराश्रित जन सेवा', pid:'PRO1781291019', img:'Images/ss/PRO1781291019_dp.jpg', url:'nirashrit_jan_seva.html'},
+                {title:'वृद्ध जन सेवा', pid:'PRO1781313938', img:'Images/ss/PRO1781313938_dp.jpg', url:'vriddh_jan_seva.html'}
             ]
         },
         {
             heading: 'सनातन सेवा समिति की सेनाएँ',
-            link: 'https://sanatansevasamiti.org/rashtry-sanatan-raksha-sena/',
             items: [
-                {title:'राष्ट्रीय सनातन रक्षा सेना', pid:'PRO1781318323', img:'Images/ss/PRO1781318323_dp.jpg', url:'https://sanatansevasamiti.org/rashtry-sanatan-raksha-sena/'},
-                {title:'संत सेना', pid:'PRO1781368186', img:'Images/ss/PRO1781368186_dp.jpg', url:'https://sanatansevasamiti.org/sant-sena/'},
-                {title:'भवानी सेना', pid:'PRO1781318500', img:'Images/ss/PRO1781318500_dp.jpg', url:'https://sanatansevasamiti.org/bhawani-sena/'},
-                {title:'वेद सेना', pid:'PRO1781319711', img:'Images/ss/PRO1781319711_dp.jpg', url:'https://sanatansevasamiti.org/ved-sena/'}
+                {title:'राष्ट्रीय सनातन रक्षा सेना', pid:'PRO1781318323', img:'Images/ss/PRO1781318323_dp.jpg', url:'rashtriya_sanatan_raksha_sena.html'},
+                {title:'संत सेना', pid:'PRO1781368186', img:'Images/ss/PRO1781368186_dp.jpg', url:'sant_sena.html'},
+                {title:'भवानी सेना', pid:'PRO1781318500', img:'Images/ss/PRO1781318500_dp.jpg', url:'bhawani_sena.html'},
+                {title:'वेद सेना', pid:'PRO1781319711', img:'Images/ss/PRO1781319711_dp.jpg', url:'ved_sena.html'}
             ]
         },
         {
             heading: 'SANATANAM | Vedic Astrology & Guidance',
-            link: 'https://sanatansevasamiti.org/vedic-astrology-&-guidance/',
             items: [
-                {title:'जन्म कुंडली विश्लेषण', img:'https://sanatansevasamiti.org/public_html/Images/file_0000000034a8720bb8a4015fcb6d5050.png', url:'https://sanatansevasamiti.org/vedic-astrology-&-guidance/kundali/'},
-                {title:'सनातन पंचांग', img:'https://sanatansevasamiti.org/public_html/Images/file_0000000042348207a31036a10c91f7b1.png', url:'https://sanatansevasamiti.org/vedic-astrology-&-guidance/panchang/'},
-                {title:'प्रश्न कुंडली', img:'https://sanatansevasamiti.org/public_html/Images/file_00000000f2c88211b17cdcfd3da44f23.png', url:'https://sanatansevasamiti.org/vedic-astrology-&-guidance/prashna-kundali/'},
-                {title:'अंक ज्योतिष', img:'https://sanatansevasamiti.org/public_html/Images/file_0000000046188208894d37afa5d7d2c0.png', url:'https://sanatansevasamiti.org/vedic-astrology-&-guidance/ank-jyotish/'},
-                {title:'मुहूर्त दिखवाएं', img:'https://sanatansevasamiti.org/public_html/Images/file_0000000075bc8211b80281facc345309.png', url:'https://sanatansevasamiti.org/vedic-astrology-&-guidance/muhurat/'},
-                {title:'पूजा एवं उपाय', img:'https://sanatansevasamiti.org/public_html/Images/file_000000005a4482088c71b074055a4827.png', url:'https://sanatansevasamiti.org/vedic-astrology-&-guidance/puja-upay/'},
-                {title:'रत्न परामर्श', img:'https://sanatansevasamiti.org/public_html/Images/file_000000004da882118d876d134768db83.png', url:'https://sanatansevasamiti.org/vedic-astrology-&-guidance/ratna-paramarsh/'},
-                {title:'कुण्डली बनवाएं', img:'https://sanatansevasamiti.org/public_html/Images/file_0000000070c0821198cd99e3e7a00be4.png', url:'https://sanatansevasamiti.org/vedic-astrology-&-guidance/make-kundali/'},
-                {title:'ज्योतिष परामर्श बुकिंग', img:'https://sanatansevasamiti.org/public_html/Images/file_00000000ff588211a90294b780f04be9.png', url:'https://sanatansevasamiti.org/vedic-astrology-&-guidance/booking/'}
+                {title:'जन्म कुंडली विश्लेषण', img:'https://sanatansevasamiti.org/public_html/Images/file_0000000034a8720bb8a4015fcb6d5050.png'},
+                {title:'सनातन पंचांग', img:'https://sanatansevasamiti.org/public_html/Images/file_0000000042348207a31036a10c91f7b1.png'},
+                {title:'प्रश्न कुंडली', img:'https://sanatansevasamiti.org/public_html/Images/file_00000000f2c88211b17cdcfd3da44f23.png'},
+                {title:'अंक ज्योतिष', img:'https://sanatansevasamiti.org/public_html/Images/file_0000000046188208894d37afa5d7d2c0.png'},
+                {title:'मुहूर्त दिखवाएं', img:'https://sanatansevasamiti.org/public_html/Images/file_0000000075bc8211b80281facc345309.png'},
+                {title:'पूजा एवं उपाय', img:'https://sanatansevasamiti.org/public_html/Images/file_000000005a4482088c71b074055a4827.png'},
+                {title:'रत्न परामर्श', img:'https://sanatansevasamiti.org/public_html/Images/file_000000004da882118d876d134768db83.png'},
+                {title:'कुण्डली बनवाएं', img:'https://sanatansevasamiti.org/public_html/Images/file_0000000070c0821198cd99e3e7a00be4.png'},
+                {title:'ज्योतिष परामर्श बुकिंग', img:'https://sanatansevasamiti.org/public_html/Images/file_00000000ff588211a90294b780f04be9.png'}
             ]
         },
         {
             heading: 'SANATANAM | Vastu & Spatial Harmony',
-            link: 'https://sanatansevasamiti.org/vastu-&-spatial-harmony/',
             items: [
-                {title:'घर का वास्तु', img:'https://sanatansevasamiti.org/public_html/Images/home.png', url:'https://sanatansevasamiti.org/vastu-&-spatial-harmony/ghar/'},
-                {title:'वास्तु नक्शा सेवा', img:'https://sanatansevasamiti.org/public_html/Images/map.png', url:'https://sanatansevasamiti.org/vastu-&-spatial-harmony/map/'},
-                {title:'प्लॉट एवं भूमि वास्तु', img:'https://sanatansevasamiti.org/public_html/Images/land.png', url:'https://sanatansevasamiti.org/vastu-&-spatial-harmony/land/'},
-                {title:'व्यावसायिक वास्तु', img:'https://sanatansevasamiti.org/public_html/Images/business.png', url:'https://sanatansevasamiti.org/vastu-&-spatial-harmony/business/'},
-                {title:'मुख्य द्वार एवं कक्ष वास्तु', img:'https://sanatansevasamiti.org/public_html/Images/room.png', url:'https://sanatansevasamiti.org/vastu-&-spatial-harmony/rooms/'},
-                {title:'दिशा परीक्षण', img:'https://sanatansevasamiti.org/public_html/Images/disha.png', url:'https://sanatansevasamiti.org/vastu-&-spatial-harmony/direction-test/'},
-                {title:'वास्तु दोष जांच', img:'https://sanatansevasamiti.org/public_html/Images/janch.png', url:'https://sanatansevasamiti.org/vastu-&-spatial-harmony/dosh-janch/'},
-                {title:'वास्तु दोष निवारण', img:'https://sanatansevasamiti.org/public_html/Images/dosh.png', url:'https://sanatansevasamiti.org/vastu-&-spatial-harmony/dosh-nivaran/'},
-                {title:'वास्तु पूजा', img:'https://sanatansevasamiti.org/public_html/Images/puja.png', url:'https://sanatansevasamiti.org/vastu-&-spatial-harmony/puja/'},
-                {title:'वास्तु शुभ मुहूर्त', img:'https://sanatansevasamiti.org/public_html/Images/muhurt.png', url:'https://sanatansevasamiti.org/vastu-&-spatial-harmony/muhurat/'},
-                {title:'वास्तु रिपोर्ट', img:'https://sanatansevasamiti.org/public_html/Images/report.png', url:'https://sanatansevasamiti.org/vastu-&-spatial-harmony/report/'},
-                {title:'वास्तु परामर्श बुकिंग', img:'https://sanatansevasamiti.org/public_html/Images/contact.png', url:'https://sanatansevasamiti.org/vastu-&-spatial-harmony/booking/'}
+                {title:'घर का वास्तु', img:'https://sanatansevasamiti.org/public_html/Images/home.png'},
+                {title:'वास्तु नक्शा सेवा', img:'https://sanatansevasamiti.org/public_html/Images/map.png'},
+                {title:'प्लॉट एवं भूमि वास्तु', img:'https://sanatansevasamiti.org/public_html/Images/land.png'},
+                {title:'व्यावसायिक वास्तु', img:'https://sanatansevasamiti.org/public_html/Images/business.png'},
+                {title:'मुख्य द्वार एवं कक्ष वास्तु', img:'https://sanatansevasamiti.org/public_html/Images/room.png'},
+                {title:'दिशा परीक्षण', img:'https://sanatansevasamiti.org/public_html/Images/disha.png'},
+                {title:'वास्तु दोष जांच', img:'https://sanatansevasamiti.org/public_html/Images/janch.png'},
+                {title:'वास्तु दोष निवारण', img:'https://sanatansevasamiti.org/public_html/Images/dosh.png'},
+                {title:'वास्तु पूजा', img:'https://sanatansevasamiti.org/public_html/Images/puja.png'},
+                {title:'वास्तु शुभ मुहूर्त', img:'https://sanatansevasamiti.org/public_html/Images/muhurt.png'},
+                {title:'वास्तु रिपोर्ट', img:'https://sanatansevasamiti.org/public_html/Images/report.png'},
+                {title:'वास्तु परामर्श बुकिंग', img:'https://sanatansevasamiti.org/public_html/Images/contact.png'}
             ]
         },
         {
             heading: 'SANATANAM | Books & Publications',
-            link: 'https://sanatansevasamiti.org/books-&-publications/',
             items: [
-                {title:'सनातन प्रश्नोत्तरी', img:'https://sanatansevasamiti.org/uploads/books/prasn.jpg', url:'https://sanatansevasamiti.org/books-&-publications/prasnottari/'},
-                {title:'सनातन व्रत कथा', img:'https://sanatansevasamiti.org/uploads/books/vrat.jpg', url:'https://sanatansevasamiti.org/books-&-publications/vrat-katha/'},
-                {title:'स्वप्न सरोवर', img:'https://sanatansevasamiti.org/uploads/books/swapn.jpg', url:'https://sanatansevasamiti.org/books-&-publications/swapna-sarovar/'},
-                {title:'सनातन पूजन पद्धति', img:'https://sanatansevasamiti.org/uploads/books/poojan.jpg', url:'https://sanatansevasamiti.org/books-&-publications/poojan-paddhati/'},
-                {title:'सनातन आरती संग्रह', img:'https://sanatansevasamiti.org/uploads/books/aarti.jpg', url:'https://sanatansevasamiti.org/books-&-publications/aarti-sangrah/'},
-                {title:'और देखें', img:'https://sanatansevasamiti.org/uploads/books/aur.jpg', url:'https://sanatansevasamiti.org/books-&-publications/'}
+                {title:'सनातन प्रश्नोत्तरी', img:'https://sanatansevasamiti.org/uploads/books/prasn.jpg'},
+                {title:'सनातन व्रत कथा', img:'https://sanatansevasamiti.org/uploads/books/vrat.jpg'},
+                {title:'स्वप्न सरोवर', img:'https://sanatansevasamiti.org/uploads/books/swapn.jpg'},
+                {title:'सनातन पूजन पद्धति', img:'https://sanatansevasamiti.org/uploads/books/poojan.jpg'},
+                {title:'सनातन आरती संग्रह', img:'https://sanatansevasamiti.org/uploads/books/aarti.jpg'},
+                {title:'और देखें', img:'https://sanatansevasamiti.org/uploads/books/aur.jpg'}
             ]
         },
         {
             heading: 'SANATANAM | Vedic Essentials',
-            link: 'https://sanatansevasamiti.org/vedic-essentials/',
             items: [
-                {title:'प्रामाणिक रत्न', img:'https://sanatansevasamiti.org/Images/pramanik-ratna.png', url:'https://sanatansevasamiti.org/vedic-essentials/pramanik-ratna/'},
-                {title:'रुद्राक्ष, मालाएँ एवं जप सामग्री', img:'https://sanatansevasamiti.org/Images/rudraksha-mala-jap.png', url:'https://sanatansevasamiti.org/vedic-essentials/rudraksha-mala-jap/'},
-                {title:'पवित्र जड़ी-बूटियाँ एवं प्राकृतिक सामग्री', img:'https://sanatansevasamiti.org/Images/jadibooti-prakritik-samagri.png', url:'https://sanatansevasamiti.org/vedic-essentials/jadibooti-prakritik-samagri/'},
-                {title:'ज्योतिषीय उत्पाद', img:'https://sanatansevasamiti.org/Images/jyotishiya-utpad.png', url:'https://sanatansevasamiti.org/vedic-essentials/jyotishiya-utpad/'},
-                {title:'वास्तु उत्पाद', img:'https://sanatansevasamiti.org/Images/vastu-utpad.png', url:'https://sanatansevasamiti.org/vedic-essentials/vastu-utpad/'},
-                {title:'पूजन एवं हवन सामग्री', img:'https://sanatansevasamiti.org/Images/pujan-havan-samagri.png', url:'https://sanatansevasamiti.org/vedic-essentials/pujan-havan-samagri/'},
-                {title:'धार्मिक वस्त्र एवं पूजन परिधान', img:'https://sanatansevasamiti.org/Images/dharmik-vastra.png', url:'https://sanatansevasamiti.org/vedic-essentials/dharmik-vastra/'},
-                {title:'धूप, दीप एवं सुगंधित धार्मिक सामग्री', img:'https://sanatansevasamiti.org/Images/dhoop-deep-sugandh.png', url:'https://sanatansevasamiti.org/vedic-essentials/dhoop-deep-sugandh/'}
+                {title:'प्रामाणिक रत्न', img:'https://sanatansevasamiti.org/Images/pramanik-ratna.png'},
+                {title:'रुद्राक्ष, मालाएँ एवं जप सामग्री', img:'https://sanatansevasamiti.org/Images/rudraksha-mala-jap.png'},
+                {title:'पवित्र जड़ी-बूटियाँ एवं प्राकृतिक सामग्री', img:'https://sanatansevasamiti.org/Images/jadibooti-prakritik-samagri.png'},
+                {title:'ज्योतिषीय उत्पाद', img:'https://sanatansevasamiti.org/Images/jyotishiya-utpad.png'},
+                {title:'वास्तु उत्पाद', img:'https://sanatansevasamiti.org/Images/vastu-utpad.png'},
+                {title:'पूजन एवं हवन सामग्री', img:'https://sanatansevasamiti.org/Images/pujan-havan-samagri.png'},
+                {title:'धार्मिक वस्त्र एवं पूजन परिधान', img:'https://sanatansevasamiti.org/Images/dharmik-vastra.png'},
+                {title:'धूप, दीप एवं सुगंधित धार्मिक सामग्री', img:'https://sanatansevasamiti.org/Images/dhoop-deep-sugandh.png'}
             ]
         },
         {
             heading: 'SANATANAM | Drishti & Pravah',
-            link: 'https://sanatansevasamiti.org/drishti-&-pravah/',
             items: [
-                {title:'लाइव धार्मिक टीवी', img:'https://sanatansevasamiti.org/Images/live-dharmik-tv.png', url:'https://sanatansevasamiti.org/drishti-&-pravah/live-tv/'},
-                {title:'लाइव आयोजन एवं प्रसारण', img:'https://sanatansevasamiti.org/Images/live-ayojan-prasaran.png', url:'https://sanatansevasamiti.org/drishti-&-pravah/live-ayojan/'},
-                {title:'धार्मिक कथाएँ एवं धारावाहिक', img:'https://sanatansevasamiti.org/Images/dharmik-katha-dharavahik.png', url:'https://sanatansevasamiti.org/drishti-&-pravah/katha-dharavahik/'},
-                {title:'धार्मिक सिनेमा', img:'https://sanatansevasamiti.org/Images/dharmik-cinema.png', url:'https://sanatansevasamiti.org/drishti-&-pravah/dharmik-cinema/'},
-                {title:'भजन एवं संगीत', img:'https://sanatansevasamiti.org/Images/bhajan-sangeet.png', url:'https://sanatansevasamiti.org/drishti-&-pravah/bhajan-sangeet/'},
-                {title:'कथा एवं प्रवचन', img:'https://sanatansevasamiti.org/Images/katha-pravachan.png', url:'https://sanatansevasamiti.org/drishti-&-pravah/katha-pravachan/'},
-                {title:'ऑडियो कथाएँ एवं धार्मिक श्रवण', img:'https://sanatansevasamiti.org/Images/audio-katha-shravan.png', url:'https://sanatansevasamiti.org/drishti-&-pravah/audio-katha/'},
-                {title:'धार्मिक कहानियाँ पढ़ें', img:'https://sanatansevasamiti.org/Images/dharmik-kahaniyan.png', url:'https://sanatansevasamiti.org/drishti-&-pravah/dharmik-kahaniyan/'},
-                {title:'बाल धार्मिक मनोरंजन', img:'https://sanatansevasamiti.org/Images/bal-dharmik-manoranjan.png', url:'https://sanatansevasamiti.org/drishti-&-pravah/bal-manoranjan/'},
-                {title:'लोकप्रिय एवं विशेष सामग्री', img:'https://sanatansevasamiti.org/Images/lokpriya-vishesh-samagri.png', url:'https://sanatansevasamiti.org/drishti-&-pravah/vishesh-samagri/'}
+                {title:'लाइव धार्मिक टीवी', img:'https://sanatansevasamiti.org/Images/live-dharmik-tv.png'},
+                {title:'लाइव आयोजन एवं प्रसारण', img:'https://sanatansevasamiti.org/Images/live-ayojan-prasaran.png'},
+                {title:'धार्मिक कथाएँ एवं धारावाहिक', img:'https://sanatansevasamiti.org/Images/dharmik-katha-dharavahik.png'},
+                {title:'धार्मिक सिनेमा', img:'https://sanatansevasamiti.org/Images/dharmik-cinema.png'},
+                {title:'भजन एवं संगीत', img:'https://sanatansevasamiti.org/Images/bhajan-sangeet.png'},
+                {title:'कथा एवं प्रवचन', img:'https://sanatansevasamiti.org/Images/katha-pravachan.png'},
+                {title:'ऑडियो कथाएँ एवं धार्मिक श्रवण', img:'https://sanatansevasamiti.org/Images/audio-katha-shravan.png'},
+                {title:'धार्मिक कहानियाँ पढ़ें', img:'https://sanatansevasamiti.org/Images/dharmik-kahaniyan.png'},
+                {title:'बाल धार्मिक मनोरंजन', img:'https://sanatansevasamiti.org/Images/bal-dharmik-manoranjan.png'},
+                {title:'लोकप्रिय एवं विशेष सामग्री', img:'https://sanatansevasamiti.org/Images/lokpriya-vishesh-samagri.png'}
             ]
         },
         {
             heading: 'SANATANAM | Katha & Granth Vani',
-            link: 'https://sanatansevasamiti.org/katha-&-granth-vani/',
             items: [
-                {title:'सभी कथावाचकों की कथाएँ', img:'https://sanatansevasamiti.org/Images/kathavachak-katha.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/kathavachak/'},
-                {title:'श्रीमद्भागवत कथा', img:'https://sanatansevasamiti.org/Images/shrimad-bhagwat-katha.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/bhagwat-katha/'},
-                {title:'राम कथा', img:'https://sanatansevasamiti.org/Images/ram-katha.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/ram-katha/'},
-                {title:'श्रीकृष्ण कथा', img:'https://sanatansevasamiti.org/Images/shri-krishna-katha.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/krishna-katha/'},
-                {title:'शिव कथा', img:'https://sanatansevasamiti.org/Images/shiv-katha.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/shiv-katha/'},
-                {title:'देवी कथा', img:'https://sanatansevasamiti.org/Images/devi-katha.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/devi-katha/'},
-                {title:'श्रीगणेश कथा', img:'https://sanatansevasamiti.org/Images/ganesh-katha.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/ganesh-katha/'},
-                {title:'भक्त चरित्र एवं भक्तमाल', img:'https://sanatansevasamiti.org/Images/bhakt-charitra-bhaktmaal.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/bhakt-charitra/'},
-                {title:'संत एवं महापुरुष चरित्र', img:'https://sanatansevasamiti.org/Images/sant-mahapurush-charitra.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/sant-charitra/'},
-                {title:'अन्य पौराणिक एवं धार्मिक कथाएँ', img:'https://sanatansevasamiti.org/Images/pauranik-dharmik-katha.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/anya-katha/'},
-                {title:'सभी लिखित कथाएँ', img:'https://sanatansevasamiti.org/Images/likhit-katha.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/likhit-katha/'},
-                {title:'सभी ऑडियो कथाएँ', img:'https://sanatansevasamiti.org/Images/audio-katha.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/audio-katha/'},
-                {title:'सभी वीडियो कथाएँ', img:'https://sanatansevasamiti.org/Images/video-katha.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/video-katha/'},
-                {title:'सभी धार्मिक भजन एवं संगीत', img:'https://sanatansevasamiti.org/Images/dharmik-bhajan-sangeet.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/bhajan-sangeet/'},
-                {title:'अखंड भजन एवं संगीत', img:'https://sanatansevasamiti.org/Images/akhand-bhajan.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/akhand-bhajan/'},
-                {title:'देवी-देवताओं के भजन', img:'https://sanatansevasamiti.org/Images/devi-devta-bhajan.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/devi-devta-bhajan/'},
-                {title:'कीर्तन एवं संकीर्तन', img:'https://sanatansevasamiti.org/Images/kirtan-sankirtan.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/kirtan/'},
-                {title:'मंत्र एवं स्तोत्र श्रवण', img:'https://sanatansevasamiti.org/Images/mantra-stotra-shravan.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/mantra-stotra/'},
-                {title:'ध्यान एवं मनःशांति संगीत', img:'https://sanatansevasamiti.org/Images/dhyan-manshanti-sangeet.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/dhyan-sangeet/'},
-                {title:'ऊर्जा एवं प्रेरणा संगीत', img:'https://sanatansevasamiti.org/Images/urja-prerna-sangeet.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/prerna-sangeet/'},
-                {title:'भक्ति वाद्य संगीत', img:'https://sanatansevasamiti.org/Images/bhakti-vadya-sangeet.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/bhakti-vadya/'},
-                {title:'आरती एवं मंगल गीत', img:'https://sanatansevasamiti.org/Images/aarti-mangal-geet.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/aarti-mangal-geet/'},
-                {title:'लोक भक्ति एवं क्षेत्रीय संगीत', img:'https://sanatansevasamiti.org/Images/lok-bhakti-sangeet.png', url:'https://sanatansevasamiti.org/katha-&-granth-vani/lok-bhakti-sangeet/'}
+                {title:'सभी कथावाचकों की कथाएँ', img:'https://sanatansevasamiti.org/Images/kathavachak-katha.png'},
+                {title:'श्रीमद्भागवत कथा', img:'https://sanatansevasamiti.org/Images/shrimad-bhagwat-katha.png'},
+                {title:'राम कथा', img:'https://sanatansevasamiti.org/Images/ram-katha.png'},
+                {title:'श्रीकृष्ण कथा', img:'https://sanatansevasamiti.org/Images/shri-krishna-katha.png'},
+                {title:'शिव कथा', img:'https://sanatansevasamiti.org/Images/shiv-katha.png'},
+                {title:'देवी कथा', img:'https://sanatansevasamiti.org/Images/devi-katha.png'},
+                {title:'श्रीगणेश कथा', img:'https://sanatansevasamiti.org/Images/ganesh-katha.png'},
+                {title:'भक्त चरित्र एवं भक्तमाल', img:'https://sanatansevasamiti.org/Images/bhakt-charitra-bhaktmaal.png'},
+                {title:'संत एवं महापुरुष चरित्र', img:'https://sanatansevasamiti.org/Images/sant-mahapurush-charitra.png'},
+                {title:'अन्य पौराणिक एवं धार्मिक कथाएँ', img:'https://sanatansevasamiti.org/Images/pauranik-dharmik-katha.png'},
+                {title:'सभी लिखित कथाएँ', img:'https://sanatansevasamiti.org/Images/likhit-katha.png'},
+                {title:'सभी ऑडियो कथाएँ', img:'https://sanatansevasamiti.org/Images/audio-katha.png'},
+                {title:'सभी वीडियो कथाएँ', img:'https://sanatansevasamiti.org/Images/video-katha.png'},
+                {title:'सभी धार्मिक भजन एवं संगीत', img:'https://sanatansevasamiti.org/Images/dharmik-bhajan-sangeet.png'},
+                {title:'अखंड भजन एवं संगीत', img:'https://sanatansevasamiti.org/Images/akhand-bhajan.png'},
+                {title:'देवी-देवताओं के भजन', img:'https://sanatansevasamiti.org/Images/devi-devta-bhajan.png'},
+                {title:'कीर्तन एवं संकीर्तन', img:'https://sanatansevasamiti.org/Images/kirtan-sankirtan.png'},
+                {title:'मंत्र एवं स्तोत्र श्रवण', img:'https://sanatansevasamiti.org/Images/mantra-stotra-shravan.png'},
+                {title:'ध्यान एवं मनःशांति संगीत', img:'https://sanatansevasamiti.org/Images/dhyan-manshanti-sangeet.png'},
+                {title:'ऊर्जा एवं प्रेरणा संगीत', img:'https://sanatansevasamiti.org/Images/urja-prerna-sangeet.png'},
+                {title:'भक्ति वाद्य संगीत', img:'https://sanatansevasamiti.org/Images/bhakti-vadya-sangeet.png'},
+                {title:'आरती एवं मंगल गीत', img:'https://sanatansevasamiti.org/Images/aarti-mangal-geet.png'},
+                {title:'लोक भक्ति एवं क्षेत्रीय संगीत', img:'https://sanatansevasamiti.org/Images/lok-bhakti-sangeet.png'}
             ]
         },
         {
             heading: 'SANATANAM | Sangeet & Bhakti Audio',
-            link: 'https://sanatansevasamiti.org/sangeet-&-bhakti-audio/',
             items: [
-                {title:'सभी धार्मिक भजन एवं संगीत', img:'https://sanatansevasamiti.org/Images/dharmik-bhajan.png', url:'https://sanatansevasamiti.org/sangeet-&-bhakti-audio/bhajan/'},
-                {title:'अखंड भजन एवं संगीत', img:'https://sanatansevasamiti.org/Images/akhand-bhajan-sangeet.png', url:'https://sanatansevasamiti.org/sangeet-&-bhakti-audio/akhand-bhajan/'},
-                {title:'देवी-देवताओं के भजन', img:'https://sanatansevasamiti.org/Images/devi-devta-bhajan.png', url:'https://sanatansevasamiti.org/sangeet-&-bhakti-audio/devi-devta-bhajan/'},
-                {title:'कीर्तन एवं संकीर्तन', img:'https://sanatansevasamiti.org/Images/kirtan-sankirtan.png', url:'https://sanatansevasamiti.org/sangeet-&-bhakti-audio/kirtan/'},
-                {title:'मंत्र एवं स्तोत्र श्रवण', img:'https://sanatansevasamiti.org/Images/mantra-stotra.png', url:'https://sanatansevasamiti.org/sangeet-&-bhakti-audio/mantra-stotra/'},
-                {title:'ध्यान एवं मनःशांति संगीत', img:'https://sanatansevasamiti.org/Images/dhyan-shanti-sangeet.png', url:'https://sanatansevasamiti.org/sangeet-&-bhakti-audio/dhyan-sangeet/'},
-                {title:'ऊर्जा एवं प्रेरणा संगीत', img:'https://sanatansevasamiti.org/Images/urja-prerna-sangeet.png', url:'https://sanatansevasamiti.org/sangeet-&-bhakti-audio/prerna-sangeet/'},
-                {title:'भक्ति वाद्य संगीत', img:'https://sanatansevasamiti.org/Images/bhakti-vadya.png', url:'https://sanatansevasamiti.org/sangeet-&-bhakti-audio/vadya-sangeet/'},
-                {title:'आरती एवं मंगल गीत', img:'https://sanatansevasamiti.org/Images/aarti-mangal-geet.png', url:'https://sanatansevasamiti.org/sangeet-&-bhakti-audio/aarti-mangal-geet/'},
-                {title:'लोक भक्ति एवं क्षेत्रीय संगीत', img:'https://sanatansevasamiti.org/Images/lok-bhakti-geet.png', url:'https://sanatansevasamiti.org/sangeet-&-bhakti-audio/lok-bhakti/'}
+                {title:'सभी धार्मिक भजन एवं संगीत', img:'https://sanatansevasamiti.org/Images/dharmik-bhajan.png'},
+                {title:'अखंड भजन एवं संगीत', img:'https://sanatansevasamiti.org/Images/akhand-bhajan-sangeet.png'},
+                {title:'देवी-देवताओं के भजन', img:'https://sanatansevasamiti.org/Images/devi-devta-bhajan.png'},
+                {title:'कीर्तन एवं संकीर्तन', img:'https://sanatansevasamiti.org/Images/kirtan-sankirtan.png'},
+                {title:'मंत्र एवं स्तोत्र श्रवण', img:'https://sanatansevasamiti.org/Images/mantra-stotra.png'},
+                {title:'ध्यान एवं मनःशांति संगीत', img:'https://sanatansevasamiti.org/Images/dhyan-shanti-sangeet.png'},
+                {title:'ऊर्जा एवं प्रेरणा संगीत', img:'https://sanatansevasamiti.org/Images/urja-prerna-sangeet.png'},
+                {title:'भक्ति वाद्य संगीत', img:'https://sanatansevasamiti.org/Images/bhakti-vadya.png'},
+                {title:'आरती एवं मंगल गीत', img:'https://sanatansevasamiti.org/Images/aarti-mangal-geet.png'},
+                {title:'लोक भक्ति एवं क्षेत्रीय संगीत', img:'https://sanatansevasamiti.org/Images/lok-bhakti-geet.png'}
             ]
         },
         {
             heading: 'SANATANAM | Sadhana & Upasana',
-            link: 'https://sanatansevasamiti.org/sadhana-&-upasana/',
             items: [
-                {title:'मेरी दैनिक साधना', img:'https://sanatansevasamiti.org/Images/dainik-sadhana.png', url:'https://sanatansevasamiti.org/sadhana-&-upasana/dainik-sadhana/'},
-                {title:'मेरे संकल्प एवं साधना लक्ष्य', img:'https://sanatansevasamiti.org/Images/sadhana-sankalp-lakshya.png', url:'https://sanatansevasamiti.org/sadhana-&-upasana/sankalp-lakshya/'},
-                {title:'डिजिटल जप माला', img:'https://sanatansevasamiti.org/Images/digital-jap-mala.png', url:'https://sanatansevasamiti.org/sadhana-&-upasana/digital-jap-mala/'},
-                {title:'मंत्र एवं स्तोत्र पाठ', img:'https://sanatansevasamiti.org/Images/mantra-stotra-path.png', url:'https://sanatansevasamiti.org/sadhana-&-upasana/mantra-stotra/'},
-                {title:'श्रवण के साथ पाठ', img:'https://sanatansevasamiti.org/Images/shravan-ke-sath-path.png', url:'https://sanatansevasamiti.org/sadhana-&-upasana/shravan-path/'},
-                {title:'साधना नियम एवं दिनचर्या', img:'https://sanatansevasamiti.org/Images/sadhana-niyam-dincharya.png', url:'https://sanatansevasamiti.org/sadhana-&-upasana/niyam-dincharya/'},
-                {title:'मेरी साधना प्रगति', img:'https://sanatansevasamiti.org/Images/sadhana-pragati.png', url:'https://sanatansevasamiti.org/sadhana-&-upasana/sadhana-pragati/'}
+                {title:'मेरी दैनिक साधना', img:'https://sanatansevasamiti.org/Images/dainik-sadhana.png'},
+                {title:'मेरे संकल्प एवं साधना लक्ष्य', img:'https://sanatansevasamiti.org/Images/sadhana-sankalp-lakshya.png'},
+                {title:'डिजिटल जप माला', img:'https://sanatansevasamiti.org/Images/digital-jap-mala.png'},
+                {title:'मंत्र एवं स्तोत्र पाठ', img:'https://sanatansevasamiti.org/Images/mantra-stotra-path.png'},
+                {title:'श्रवण के साथ पाठ', img:'https://sanatansevasamiti.org/Images/shravan-ke-sath-path.png'},
+                {title:'साधना नियम एवं दिनचर्या', img:'https://sanatansevasamiti.org/Images/sadhana-niyam-dincharya.png'},
+                {title:'मेरी साधना प्रगति', img:'https://sanatansevasamiti.org/Images/sadhana-pragati.png'}
             ]
         },
         {
             heading: 'SANATANAM | Purohit & Rituals',
-            link: 'https://sanatansevasamiti.org/purohit-&-rituals/',
             items: [
-                {title:'घर एवं स्थान पर पूजा-अनुष्ठान', img:'https://sanatansevasamiti.org/Images/ghar-puja-anushthan.png', url:'https://sanatansevasamiti.org/purohit-&-rituals/ghar-puja/'},
-                {title:'तीर्थ एवं विशेष स्थल अनुष्ठान', img:'https://sanatansevasamiti.org/Images/tirth-vishesh-sthal-anushthan.png', url:'https://sanatansevasamiti.org/purohit-&-rituals/tirth-anushthan/'},
-                {title:'ऑनलाइन पूजा एवं सहभागिता', img:'https://sanatansevasamiti.org/Images/online-puja-sahbhagita.png', url:'https://sanatansevasamiti.org/purohit-&-rituals/online-puja/'},
-                {title:'योग्य पुरोहित एवं ब्राह्मण बुकिंग', img:'https://sanatansevasamiti.org/Images/purohit-brahman-booking.png', url:'https://sanatansevasamiti.org/purohit-&-rituals/purohit-booking/'},
-                {title:'पंडित जी से परामर्श करें', img:'https://sanatansevasamiti.org/Images/pandit-paramarsh.png', url:'https://sanatansevasamiti.org/purohit-&-rituals/pandit-paramarsh/'},
-                {title:'पूजा की विधि एवं रूपरेखा (वैदिक रीति)', img:'https://sanatansevasamiti.org/Images/vaidik-puja-vidhi.png', url:'https://sanatansevasamiti.org/purohit-&-rituals/vaidik-puja-vidhi/'},
-                {title:'पूजा की विधि एवं रूपरेखा (लोक एवं क्षेत्रीय रीति)', img:'https://sanatansevasamiti.org/Images/lok-kshetriya-puja-vidhi.png', url:'https://sanatansevasamiti.org/purohit-&-rituals/lok-puja-vidhi/'},
-                {title:'विशेष धार्मिक सेवा अनुरोध', img:'https://sanatansevasamiti.org/Images/vishesh-dharmik-seva.png', url:'https://sanatansevasamiti.org/purohit-&-rituals/vishesh-seva/'}
+                {title:'घर एवं स्थान पर पूजा-अनुष्ठान', img:'https://sanatansevasamiti.org/Images/ghar-puja-anushthan.png'},
+                {title:'तीर्थ एवं विशेष स्थल अनुष्ठान', img:'https://sanatansevasamiti.org/Images/tirth-vishesh-sthal-anushthan.png'},
+                {title:'ऑनलाइन पूजा एवं सहभागिता', img:'https://sanatansevasamiti.org/Images/online-puja-sahbhagita.png'},
+                {title:'योग्य पुरोहित एवं ब्राह्मण बुकिंग', img:'https://sanatansevasamiti.org/Images/purohit-brahman-booking.png'},
+                {title:'पंडित जी से परामर्श करें', img:'https://sanatansevasamiti.org/Images/pandit-paramarsh.png'},
+                {title:'पूजा की विधि एवं रूपरेखा (वैदिक रीति)', img:'https://sanatansevasamiti.org/Images/vaidik-puja-vidhi.png'},
+                {title:'पूजा की विधि एवं रूपरेखा (लोक एवं क्षेत्रीय रीति)', img:'https://sanatansevasamiti.org/Images/lok-kshetriya-puja-vidhi.png'},
+                {title:'विशेष धार्मिक सेवा अनुरोध', img:'https://sanatansevasamiti.org/Images/vishesh-dharmik-seva.png'}
             ]
         },
         {
             heading: 'SANATANAM | Tark & Satya',
-            link: 'https://sanatansevasamiti.org/tark-&-satya/',
             items: [
-                {title:'सभी तर्क एवं सत्य देखें', img:'https://sanatansevasamiti.org/Images/sabhi-tark-satya.png', url:'https://sanatansevasamiti.org/tark-&-satya/'},
-                {title:'नया तर्क एवं विषय रखें', img:'https://sanatansevasamiti.org/Images/naya-tark-vishay.png', url:'https://sanatansevasamiti.org/tark-&-satya/naya-vishay/'},
-                {title:'जिज्ञासा एवं प्रश्नोत्तर', img:'https://sanatansevasamiti.org/Images/jigyasa-prashnottar.png', url:'https://sanatansevasamiti.org/tark-&-satya/prashnottar/'},
-                {title:'प्रमाण एवं संदर्भ', img:'https://sanatansevasamiti.org/Images/praman-sandarbh.png', url:'https://sanatansevasamiti.org/tark-&-satya/praman-sandarbh/'},
-                {title:'दावों की सत्यता जांचें', img:'https://sanatansevasamiti.org/Images/davon-ki-satyata.png', url:'https://sanatansevasamiti.org/tark-&-satya/fact-check/'},
-                {title:'तर्क एवं शास्त्रार्थ', img:'https://sanatansevasamiti.org/Images/tark-shastrarth.png', url:'https://sanatansevasamiti.org/tark-&-satya/shastrarth/'},
-                {title:'“तर्क एवं सत्य” पुस्तक पढ़ें', img:'https://sanatansevasamiti.org/Images/tark-evam-satya-pustak.png', url:'https://sanatansevasamiti.org/tark-&-satya/pustak/'}
+                {title:'सभी तर्क एवं सत्य देखें', img:'https://sanatansevasamiti.org/Images/sabhi-tark-satya.png'},
+                {title:'नया तर्क एवं विषय रखें', img:'https://sanatansevasamiti.org/Images/naya-tark-vishay.png'},
+                {title:'जिज्ञासा एवं प्रश्नोत्तर', img:'https://sanatansevasamiti.org/Images/jigyasa-prashnottar.png'},
+                {title:'प्रमाण एवं संदर्भ', img:'https://sanatansevasamiti.org/Images/praman-sandarbh.png'},
+                {title:'दावों की सत्यता जांचें', img:'https://sanatansevasamiti.org/Images/davon-ki-satyata.png'},
+                {title:'तर्क एवं शास्त्रार्थ', img:'https://sanatansevasamiti.org/Images/tark-shastrarth.png'},
+                {title:'“तर्क एवं सत्य” पुस्तक पढ़ें', img:'https://sanatansevasamiti.org/Images/tark-evam-satya-pustak.png'}
             ]
         },
         {
             heading: 'SANATANAM | Darshan & Dhwani',
-            link: 'https://sanatansevasamiti.org/darshan-&-dhwani/',
             items: [
-                {title:'धार्मिक वॉलपेपर', img:'https://sanatansevasamiti.org/Images/dharmik-wallpaper.png', url:'https://sanatansevasamiti.org/darshan-&-dhwani/wallpaper/'},
-                {title:'वैदिक रिंगटोन', img:'https://sanatansevasamiti.org/Images/vaidik-ringtone.png', url:'https://sanatansevasamiti.org/darshan-dhwani/ringtone/'},
-                {title:'धार्मिक स्टेटस क्लिप्स', img:'https://sanatansevasamiti.org/Images/dharmik-status-clips.png', url:'https://sanatansevasamiti.org/darshan-&-dhwani/status-clips/'},
-                {title:'अखंड भजन एवं धार्मिक ऑडियो', img:'https://sanatansevasamiti.org/Images/akhand-dharmik-audio.png', url:'https://sanatansevasamiti.org/darshan-&-dhwani/akhand-audio/'},
-                {title:'मंत्र एवं स्तोत्र ऑडियो', img:'https://sanatansevasamiti.org/Images/mantra-stotra-audio.png', url:'https://sanatansevasamiti.org/darshan-&-dhwani/mantra-stotra-audio/'},
-                {title:'धार्मिक अलार्म एवं जागरण ध्वनियाँ', img:'https://sanatansevasamiti.org/Images/dharmik-alarm-jagran.png', url:'https://sanatansevasamiti.org/darshan-&-dhwani/alarm-jagran/'}
+                {title:'धार्मिक वॉलपेपर', img:'https://sanatansevasamiti.org/Images/dharmik-wallpaper.png'},
+                {title:'वैदिक रिंगटोन', img:'https://sanatansevasamiti.org/Images/vaidik-ringtone.png'},
+                {title:'धार्मिक स्टेटस क्लिप्स', img:'https://sanatansevasamiti.org/Images/dharmik-status-clips.png'},
+                {title:'अखंड भजन एवं धार्मिक ऑडियो', img:'https://sanatansevasamiti.org/Images/akhand-dharmik-audio.png'},
+                {title:'मंत्र एवं स्तोत्र ऑडियो', img:'https://sanatansevasamiti.org/Images/mantra-stotra-audio.png'},
+                {title:'धार्मिक अलार्म एवं जागरण ध्वनियाँ', img:'https://sanatansevasamiti.org/Images/dharmik-alarm-jagran.png'}
             ]
         },
         {
             heading: 'SANATANAM | Mandir & Heritage',
-            link: 'https://sanatansevasamiti.org/mandir-&-heritage/',
             items: [
-                {title:'मंदिर एवं तीर्थ खोजें', img:'https://sanatansevasamiti.org/Images/mandir-tirth-khojen.png', url:'https://sanatansevasamiti.org/mandir-&-heritage/search/'},
-                {title:'प्राकृतिक एवं ऐतिहासिक धरोहर', img:'https://sanatansevasamiti.org/Images/prakritik-aitihasik-dharohar.png', url:'https://sanatansevasamiti.org/mandir-&-heritage/dharohar/'},
-                {title:'मानचित्र पर मंदिर एवं तीर्थ', img:'https://sanatansevasamiti.org/Images/map-mandir-tirth.png', url:'https://sanatansevasamiti.org/mandir-&-heritage/map/'},
-                {title:'मेरे आसपास के मंदिर', img:'https://sanatansevasamiti.org/Images/nearby-mandir.png', url:'https://sanatansevasamiti.org/mandir-&-heritage/nearby-mandir/'},
-                {title:'मेरे आसपास की प्राकृतिक एवं ऐतिहासिक धरोहर', img:'https://sanatansevasamiti.org/Images/nearby-dharohar.png', url:'https://sanatansevasamiti.org/mandir-&-heritage/nearby-dharohar/'},
-                {title:'मंदिर का डेटा जोड़ें', img:'https://sanatansevasamiti.org/Images/mandir-data-joden.png', url:'https://sanatansevasamiti.org/mandir-&-heritage/add-mandir/'},
-                {title:'तीर्थ एवं धरोहर का डेटा जोड़ें', img:'https://sanatansevasamiti.org/Images/tirth-dharohar-data.png', url:'https://sanatansevasamiti.org/mandir-&-heritage/add-dharohar/'},
-                {title:'जानकारी में सुधार एवं सुझाव दें', img:'https://sanatansevasamiti.org/Images/jankari-sudhar-sujhav.png', url:'https://sanatansevasamiti.org/mandir-&-heritage/suggestion/'},
-                {title:'मंदिर एवं धरोहर की तस्वीरें साझा करें', img:'https://sanatansevasamiti.org/Images/mandir-dharohar-photo.png', url:'https://sanatansevasamiti.org/mandir-&-heritage/share-photos/'}
+                {title:'मंदिर एवं तीर्थ खोजें', img:'https://sanatansevasamiti.org/Images/mandir-tirth-khojen.png'},
+                {title:'प्राकृतिक एवं ऐतिहासिक धरोहर', img:'https://sanatansevasamiti.org/Images/prakritik-aitihasik-dharohar.png'},
+                {title:'मानचित्र पर मंदिर एवं तीर्थ', img:'https://sanatansevasamiti.org/Images/map-mandir-tirth.png'},
+                {title:'मेरे आसपास के मंदिर', img:'https://sanatansevasamiti.org/Images/nearby-mandir.png'},
+                {title:'मेरे आसपास की प्राकृतिक एवं ऐतिहासिक धरोहर', img:'https://sanatansevasamiti.org/Images/nearby-dharohar.png'},
+                {title:'मंदिर का डेटा जोड़ें', img:'https://sanatansevasamiti.org/Images/mandir-data-joden.png'},
+                {title:'तीर्थ एवं धरोहर का डेटा जोड़ें', img:'https://sanatansevasamiti.org/Images/tirth-dharohar-data.png'},
+                {title:'जानकारी में सुधार एवं सुझाव दें', img:'https://sanatansevasamiti.org/Images/jankari-sudhar-sujhav.png'},
+                {title:'मंदिर एवं धरोहर की तस्वीरें साझा करें', img:'https://sanatansevasamiti.org/Images/mandir-dharohar-photo.png'}
             ]
         },
         {
             heading: 'SANATANAM | Gurukul & Vidya',
-            link: 'https://sanatansevasamiti.org/gurukul-&-vidya/',
             items: [
-                {title:'ऑनलाइन वैदिक शिक्षा', img:'https://sanatansevasamiti.org/Images/online-vaidik-shiksha.png', url:'https://sanatansevasamiti.org/gurukul-&-vidya/vaidik-shiksha/'},
-                {title:'ऑनलाइन आध्यात्मिक शिक्षा', img:'https://sanatansevasamiti.org/Images/adhyatmik-shiksha.png', url:'https://sanatansevasamiti.org/gurukul-&-vidya/adhyatmik-shiksha/'},
-                {title:'ऑनलाइन साधना शिक्षा', img:'https://sanatansevasamiti.org/Images/sadhana-shiksha.png', url:'https://sanatansevasamiti.org/gurukul-&-vidya/sadhana-shiksha/'},
-                {title:'बाल संस्कार एवं धार्मिक शिक्षा', img:'https://sanatansevasamiti.org/Images/bal-sanskar-shiksha.png', url:'https://sanatansevasamiti.org/gurukul-&-vidya/bal-sanskar/'},
-                {title:'शिक्षा हेतु पुस्तकालय', img:'https://sanatansevasamiti.org/Images/shiksha-pustakalaya.png', url:'https://sanatansevasamiti.org/gurukul-&-vidya/pustakalaya/'},
-                {title:'साधना एवं अध्ययन मार्गदर्शन', img:'https://sanatansevasamiti.org/Images/sadhana-adhyayan-margdarshan.png', url:'https://sanatansevasamiti.org/gurukul-&-vidya/margdarshan/'},
-                {title:'व्यक्तिगत मार्गदर्शन एवं परामर्श', img:'https://sanatansevasamiti.org/Images/vyaktigat-margdarshan.png', url:'https://sanatansevasamiti.org/gurukul-&-vidya/vyaktigat-paramarsh/'},
-                {title:'ऑनलाइन एवं ऑफलाइन कक्षाएँ', img:'https://sanatansevasamiti.org/Images/online-offline-classes.png', url:'https://sanatansevasamiti.org/gurukul-&-vidya/classes/'},
-                {title:'पाठ्यक्रम एवं अध्ययन पथ', img:'https://sanatansevasamiti.org/Images/pathyakram-adhyayan-path.png', url:'https://sanatansevasamiti.org/gurukul-&-vidya/pathyakram/'}
+                {title:'ऑनलाइन वैदिक शिक्षा', img:'https://sanatansevasamiti.org/Images/online-vaidik-shiksha.png'},
+                {title:'ऑनलाइन आध्यात्मिक शिक्षा', img:'https://sanatansevasamiti.org/Images/adhyatmik-shiksha.png'},
+                {title:'ऑनलाइन साधना शिक्षा', img:'https://sanatansevasamiti.org/Images/sadhana-shiksha.png'},
+                {title:'बाल संस्कार एवं धार्मिक शिक्षा', img:'https://sanatansevasamiti.org/Images/bal-sanskar-shiksha.png'},
+                {title:'शिक्षा हेतु पुस्तकालय', img:'https://sanatansevasamiti.org/Images/shiksha-pustakalaya.png'},
+                {title:'साधना एवं अध्ययन मार्गदर्शन', img:'https://sanatansevasamiti.org/Images/sadhana-adhyayan-margdarshan.png'},
+                {title:'व्यक्तिगत मार्गदर्शन एवं परामर्श', img:'https://sanatansevasamiti.org/Images/vyaktigat-margdarshan.png'},
+                {title:'ऑनलाइन एवं ऑफलाइन कक्षाएँ', img:'https://sanatansevasamiti.org/Images/online-offline-classes.png'},
+                {title:'पाठ्यक्रम एवं अध्ययन पथ', img:'https://sanatansevasamiti.org/Images/pathyakram-adhyayan-path.png'}
             ]
         },
         {
             heading: 'SANATANAM | Vivah & Sanskar',
-            link: 'https://sanatansevasamiti.org/vivah-&-sanskar/',
             items: [
-                {title:'वर खोजें', img:'https://sanatansevasamiti.org/Images/var-khojen.png', url:'https://sanatansevasamiti.org/vivah-&-sanskar/var-khojen/'},
-                {title:'वधू खोजें', img:'https://sanatansevasamiti.org/Images/vadhu-khojen.png', url:'https://sanatansevasamiti.org/vivah-&-sanskar/vadhu-khojen/'},
-                {title:'अपना वैवाहिक प्रोफाइल बनाएं', img:'https://sanatansevasamiti.org/Images/vaivahik-profile.png', url:'https://sanatansevasamiti.org/vivah-&-sanskar/profile/'},
-                {title:'पारिवारिक बायोडाटा', img:'https://sanatansevasamiti.org/Images/parivarik-biodata.png', url:'https://sanatansevasamiti.org/vivah-&-sanskar/biodata/'},
-                {title:'कुंडली मिलान', img:'https://sanatansevasamiti.org/Images/kundali-milan.png', url:'https://sanatansevasamiti.org/vivah-&-sanskar/kundali-milan/'},
-                {title:'परिवारों के बीच संपर्क', img:'https://sanatansevasamiti.org/Images/parivar-sampark.png', url:'https://sanatansevasamiti.org/vivah-&-sanskar/parivar-sampark/'},
-                {title:'मेरी वैवाहिक गतिविधियाँ', img:'https://sanatansevasamiti.org/Images/vaivahik-gatividhiyan.png', url:'https://sanatansevasamiti.org/vivah-&-sanskar/meri-gatividhiyan/'}
+                {title:'वर खोजें', img:'https://sanatansevasamiti.org/Images/var-khojen.png'},
+                {title:'वधू खोजें', img:'https://sanatansevasamiti.org/Images/vadhu-khojen.png'},
+                {title:'अपना वैवाहिक प्रोफाइल बनाएं', img:'https://sanatansevasamiti.org/Images/vaivahik-profile.png'},
+                {title:'पारिवारिक बायोडाटा', img:'https://sanatansevasamiti.org/Images/parivarik-biodata.png'},
+                {title:'कुंडली मिलान', img:'https://sanatansevasamiti.org/Images/kundali-milan.png'},
+                {title:'परिवारों के बीच संपर्क', img:'https://sanatansevasamiti.org/Images/parivar-sampark.png'},
+                {title:'मेरी वैवाहिक गतिविधियाँ', img:'https://sanatansevasamiti.org/Images/vaivahik-gatividhiyan.png'}
             ]
         },
         {
             heading: 'SANATANAM | Vansh & Kul Vriksha',
-            link: 'https://sanatansevasamiti.org/vansh-&-kul-vriksha/',
             items: [
-                {title:'मेरा कुल वृक्ष', img:'https://sanatansevasamiti.org/Images/mera-kul-vriksha.png', url:'https://sanatansevasamiti.org/vansh-&-kul-vriksha/kul-vriksha/'},
-                {title:'वंशावली', img:'https://sanatansevasamiti.org/Images/vanshavali.png', url:'https://sanatansevasamiti.org/vansh-&-kul-vriksha/vanshavali/'},
-                {title:'सभी सदस्य', img:'https://sanatansevasamiti.org/Images/sabhi-sadasya.png', url:'https://sanatansevasamiti.org/vansh-&-kul-vriksha/sadasya/'},
-                {title:'मेरा कुल', img:'https://sanatansevasamiti.org/Images/mera-kul.png', url:'https://sanatansevasamiti.org/vansh-&-kul-vriksha/mera-kul/'},
-                {title:'नया सदस्य जोड़ें', img:'https://sanatansevasamiti.org/Images/naya-sadasya.png', url:'https://sanatansevasamiti.org/vansh-&-kul-vriksha/naya-sadasya/'},
-                {title:'रिश्तेदार', img:'https://sanatansevasamiti.org/Images/rishtedaar.png', url:'https://sanatansevasamiti.org/vansh-&-kul-vriksha/rishtedaar/'},
-                {title:'परिवार के अवसर', img:'https://sanatansevasamiti.org/Images/parivar-avsar.png', url:'https://sanatansevasamiti.org/vansh-&-kul-vriksha/parivar-avsar/'},
-                {title:'कुल सूचना', img:'https://sanatansevasamiti.org/Images/kul-soochna.png', url:'https://sanatansevasamiti.org/vansh-&-kul-vriksha/kul-soochna/'},
-                {title:'कुल परिचय', img:'https://sanatansevasamiti.org/Images/kul-parichay.png', url:'https://sanatansevasamiti.org/vansh-&-kul-vriksha/kul-parichay/'},
-                {title:'मेरी प्रोफ़ाइल', img:'https://sanatansevasamiti.org/Images/meri-profile.png', url:'https://sanatansevasamiti.org/vansh-&-kul-vriksha/profile/'}
+                {title:'मेरा कुल वृक्ष', img:'https://sanatansevasamiti.org/Images/mera-kul-vriksha.png'},
+                {title:'वंशावली', img:'https://sanatansevasamiti.org/Images/vanshavali.png'},
+                {title:'सभी सदस्य', img:'https://sanatansevasamiti.org/Images/sabhi-sadasya.png'},
+                {title:'मेरा कुल', img:'https://sanatansevasamiti.org/Images/mera-kul.png'},
+                {title:'नया सदस्य जोड़ें', img:'https://sanatansevasamiti.org/Images/naya-sadasya.png'},
+                {title:'रिश्तेदार', img:'https://sanatansevasamiti.org/Images/rishtedaar.png'},
+                {title:'परिवार के अवसर', img:'https://sanatansevasamiti.org/Images/parivar-avsar.png'},
+                {title:'कुल सूचना', img:'https://sanatansevasamiti.org/Images/kul-soochna.png'},
+                {title:'कुल परिचय', img:'https://sanatansevasamiti.org/Images/kul-parichay.png'},
+                {title:'मेरी प्रोफ़ाइल', img:'https://sanatansevasamiti.org/Images/meri-profile.png'}
             ]
         },
         {
             heading: 'SANATANAM | Sant & Sampradaya',
-            link: 'https://sanatansevasamiti.org/sant-&-sampradaya/',
             items: [
-                {title:'संत परंपरा', img:'https://sanatansevasamiti.org/Images/sant-parampara.png', url:'https://sanatansevasamiti.org/sant-&-sampradaya/sant-parampara/'},
-                {title:'गुरु-शिष्य परंपरा', img:'https://sanatansevasamiti.org/Images/guru-shishya-parampara.png', url:'https://sanatansevasamiti.org/sant-&-sampradaya/guru-shishya-parampara/'},
-                {title:'संप्रदाय', img:'https://sanatansevasamiti.org/Images/sampradaya.png', url:'https://sanatansevasamiti.org/sant-&-sampradaya/sampradaya/'},
-                {title:'संत प्रोफ़ाइल', img:'https://sanatansevasamiti.org/Images/sant-profile.png', url:'https://sanatansevasamiti.org/sant-&-sampradaya/sant-profile/'},
-                {title:'गुरु परंपरा वृक्ष', img:'https://sanatansevasamiti.org/Images/guru-parampara-vriksha.png', url:'https://sanatansevasamiti.org/sant-&-sampradaya/guru-vriksha/'},
-                {title:'संत जीवन चरित्र', img:'https://sanatansevasamiti.org/Images/sant-jeevan-charitra.png', url:'https://sanatansevasamiti.org/sant-&-sampradaya/jeevan-charitra/'},
-                {title:'ग्रंथ एवं रचनाएँ', img:'https://sanatansevasamiti.org/Images/granth-rachnayein.png', url:'https://sanatansevasamiti.org/sant-&-sampradaya/granth-rachnayein/'},
-                {title:'मठ एवं पीठ', img:'https://sanatansevasamiti.org/Images/math-peeth.png', url:'https://sanatansevasamiti.org/sant-&-sampradaya/math-peeth/'},
-                {title:'अखाड़ा एवं परंपरा', img:'https://sanatansevasamiti.org/Images/akhada-parampara.png', url:'https://sanatansevasamiti.org/sant-&-sampradaya/akhada-parampara/'},
-                {title:'संत स्थल', img:'https://sanatansevasamiti.org/Images/sant-sthal.png', url:'https://sanatansevasamiti.org/sant-&-sampradaya/sant-sthal/'},
-                {title:'संत खोजें', img:'https://sanatansevasamiti.org/Images/sant-khojen.png', url:'https://sanatansevasamiti.org/sant-&-sampradaya/sant-search/'},
-                {title:'संप्रदाय खोजें', img:'https://sanatansevasamiti.org/Images/sampradaya-khojen.png', url:'https://sanatansevasamiti.org/sant-&-sampradaya/sampradaya-search/'},
-                {title:'प्रमुख संत', img:'https://sanatansevasamiti.org/Images/pramukh-sant.png', url:'https://sanatansevasamiti.org/sant-&-sampradaya/pramukh-sant/'}
+                {title:'संत परंपरा', img:'https://sanatansevasamiti.org/Images/sant-parampara.png'},
+                {title:'गुरु-शिष्य परंपरा', img:'https://sanatansevasamiti.org/Images/guru-shishya-parampara.png'},
+                {title:'संप्रदाय', img:'https://sanatansevasamiti.org/Images/sampradaya.png'},
+                {title:'संत प्रोफ़ाइल', img:'https://sanatansevasamiti.org/Images/sant-profile.png'},
+                {title:'गुरु परंपरा वृक्ष', img:'https://sanatansevasamiti.org/Images/guru-parampara-vriksha.png'},
+                {title:'संत जीवन चरित्र', img:'https://sanatansevasamiti.org/Images/sant-jeevan-charitra.png'},
+                {title:'ग्रंथ एवं रचनाएँ', img:'https://sanatansevasamiti.org/Images/granth-rachnayein.png'},
+                {title:'मठ एवं पीठ', img:'https://sanatansevasamiti.org/Images/math-peeth.png'},
+                {title:'अखाड़ा एवं परंपरा', img:'https://sanatansevasamiti.org/Images/akhada-parampara.png'},
+                {title:'संत स्थल', img:'https://sanatansevasamiti.org/Images/sant-sthal.png'},
+                {title:'संत खोजें', img:'https://sanatansevasamiti.org/Images/sant-khojen.png'},
+                {title:'संप्रदाय खोजें', img:'https://sanatansevasamiti.org/Images/sampradaya-khojen.png'},
+                {title:'प्रमुख संत', img:'https://sanatansevasamiti.org/Images/pramukh-sant.png'}
             ]
         }
     ];
 
-    // Render All Sections dynamically into App (100% Local Routing)
     function renderAppSections() {
         const container = document.getElementById("allSectionsWrapper");
         if(!container) return;
@@ -1273,7 +1242,6 @@
         container.innerHTML = html;
     }
 
-    // Interactive Toast Notification
     function showNotice(msg) {
         const toast = document.getElementById("noticeToast");
         if(!toast) return;
@@ -1284,12 +1252,7 @@
         }, 3000);
     }
 
-    // Section Click Feedback Modal/Toast
     function openSectionModal(title) {
-        if (title === 'आनंद लहरी') {
-            window.location.href = 'anand_lahari.html';
-            return;
-        }
         showNotice(`'${title}' — यह पावन सेवा शीघ्र ही स्थानीय रूप से उपलब्ध होगी।`);
     }
 
@@ -1297,7 +1260,6 @@
         openSectionModal(secName);
     };
 
-    // Header Search Handler
     function handleHeaderSearch(e) {
         if(e) e.preventDefault();
         const query = document.getElementById("searchInput").value.trim();
@@ -1308,7 +1270,6 @@
         }
     }
 
-    // Post & App Sharing Functionality
     function sharePostItem(postId, author) {
         const shareUrl = `https://sanatansevasamiti.org/open.php?target=post&id=${postId}`;
         let authorName = 'सनातन सेवक';
@@ -1348,7 +1309,6 @@
         }
     }
 
-    // Header Scroll Effect
     const header = document.getElementById('mainHeader');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 35) {
@@ -1358,12 +1318,10 @@
         }
     });
 
-    // 2-Side Flip Banner Toggle
     function toggleHeroFlip() {
         document.getElementById('heroFlipper').classList.toggle('flipped');
     }
 
-    // Sidebar Controls
     function openMenu() {
         document.getElementById("sidebar").classList.add("open");
         document.getElementById("overlay").style.display = "block";
@@ -1381,7 +1339,6 @@
         submenu.style.display = (submenu.style.display === "block") ? "none" : "block";
     }
 
-    // Local Session Profile Loader
     function loadLocalUserSession() {
         try {
             const rawUser = localStorage.getItem("sss_user_data");
@@ -1451,5 +1408,6 @@
 </script>
 <script src="image_cache.js"></script>
 <script src="auth_guard.js"></script>
+<script src="app_translator.js"></script>
 </body>
 </html>
