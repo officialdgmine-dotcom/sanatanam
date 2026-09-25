@@ -1,0 +1,1729 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>जीव सेवा - प्रीमियम प्रोफ़ाइल</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --bg:#f5f3ef;
+    --surface:#ffffff;
+    --surface2:#faf8f4;
+    --text:#171717;
+    --muted:#777;
+    --saffron:#ff8a00;
+    --saffron2:#ffb13b;
+    --deep:#7c1608;
+    --red:#a9160b;
+    --gold:#d6a23c;
+    --green:#218b52;
+    --blue:#2477d4;
+    --shadow:0 20px 50px rgba(75,35,5,.12);
+    --radius:26px;
+}
+
+*{
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    background:radial-gradient(circle at top, #fffaf2 0, #f5f3ef 45%, #eeeae3 100%);
+    color:var(--text);
+    font-family:"Noto Sans Devanagari", Inter, sans-serif;
+    padding-bottom:95px;
+}
+
+.page{
+    width:100%;
+    max-width:900px;
+    margin:auto;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+.hero{
+    position:relative;
+    min-height:470px;
+    overflow:hidden;
+    background:#1b0e08;
+    border-radius:0 0 42px 42px;
+    box-shadow:0 25px 70px rgba(65,25,0,.25);
+}
+
+.hero-cover{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    cursor:pointer;
+    opacity:.72;
+}
+
+.hero-overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg, rgba(20,5,0,.10) 0%, rgba(30,7,0,.30) 35%, rgba(25,5,0,.92) 100%);
+}
+
+.hero-top{
+    position:absolute;
+    top:20px;
+    left:20px;
+    right:20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    z-index:5;
+}
+
+.hero-brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:white;
+    font-weight:800;
+    font-size:14px;
+    background:rgba(255,255,255,.14);
+    backdrop-filter:blur(14px);
+    padding:9px 14px;
+    border:1px solid rgba(255,255,255,.25);
+    border-radius:50px;
+}
+
+.brand-dot{
+    width:9px;
+    height:9px;
+    background:var(--saffron2);
+    border-radius:50%;
+    box-shadow:0 0 15px #ff9d00;
+}
+
+.hero-action{
+    width:44px;
+    height:44px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    color:white;
+    background:rgba(255,255,255,.15);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,.25);
+    cursor:pointer;
+    font-size:20px;
+}
+
+.profile-photo-wrap{
+    position:absolute;
+    left:50%;
+    bottom:145px;
+    transform:translateX(-50%);
+    z-index:5;
+    text-align:center;
+}
+
+.profile-ring{
+    width:190px;
+    height:190px;
+    padding:7px;
+    border-radius:50%;
+    background:linear-gradient(135deg, #fff, var(--gold), var(--saffron), #fff);
+    box-shadow:0 0 0 5px rgba(255,255,255,.14), 0 20px 50px rgba(0,0,0,.4);
+    cursor:pointer;
+}
+
+.profile-ring img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:50%;
+    display:block;
+    background:white;
+}
+
+.online-dot{
+    position:absolute;
+    right:13px;
+    bottom:18px;
+    width:25px;
+    height:25px;
+    background:#25d366;
+    border:4px solid white;
+    border-radius:50%;
+}
+
+.hero-content{
+    position:absolute;
+    left:20px;
+    right:20px;
+    bottom:25px;
+    z-index:6;
+    text-align:center;
+    color:white;
+}
+
+.hero-name{
+    font-size:clamp(27px,7vw,42px);
+    line-height:1.15;
+    font-weight:800;
+    margin:0 0 7px;
+    text-shadow:0 3px 20px rgba(0,0,0,.5);
+}
+
+.verified{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:23px;
+    height:23px;
+    margin-left:6px;
+    border-radius:50%;
+    background:linear-gradient(135deg, #ffb52e, #f47b00);
+    color:white;
+    font-size:12px;
+    vertical-align:middle;
+}
+
+.hero-tagline{
+    display:inline-block;
+    padding:7px 17px;
+    border-radius:50px;
+    background:rgba(255,255,255,.14);
+    border:1px solid rgba(255,255,255,.28);
+    backdrop-filter:blur(12px);
+    font-size:14px;
+    font-weight:600;
+    color:#fff;
+}
+
+/* =========================================================
+   SOCIAL MEDIA BAR
+========================================================= */
+.social-bar{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    margin:14px auto 0;
+    flex-wrap:wrap;
+    max-width:650px;
+}
+
+.social-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:8px 15px;
+    border-radius:50px;
+    font-size:12px;
+    font-weight:800;
+    text-decoration:none;
+    color:#fff;
+    transition:0.3s ease;
+    box-shadow:0 4px 14px rgba(0,0,0,.25);
+    border:1px solid rgba(255,255,255,0.4);
+}
+
+.social-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(0,0,0,.35);
+}
+
+.social-insta{ background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
+.social-yt{ background:#ff0000; }
+.social-fb{ background:#1877f2; }
+.social-x{ background:#000000; }
+
+/* =========================================================
+   QUICK ACTIONS
+========================================================= */
+.quick-actions{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    padding:18px 18px 0;
+}
+
+.quick-btn{
+    min-height:62px;
+    border-radius:20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    gap:3px;
+    text-decoration:none;
+    font-weight:800;
+    font-size:12px;
+    border:1px solid #eee;
+    background:white;
+    color:var(--text);
+    box-shadow:0 10px 25px rgba(0,0,0,.07);
+    transition:.25s;
+    cursor:pointer;
+}
+
+.quick-btn span:first-child{
+    font-size:22px;
+}
+
+.quick-btn:active{
+    transform:scale(.96);
+}
+
+.quick-btn.donate{
+    background:linear-gradient(135deg, #a91408, #6f0c04);
+    color:white;
+    border:none;
+}
+
+.quick-btn.contact{
+    background:linear-gradient(135deg, #ff9c1c, #e86600);
+    color:white;
+    border:none;
+}
+
+/* =========================================================
+   ACCORDION BUTTONS (COMMON)
+========================================================= */
+.accordion-toggle{
+    width:100%;
+    border:none;
+    padding:16px 18px;
+    border-radius:20px;
+    font-family:inherit;
+    font-size:15px;
+    font-weight:800;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    cursor:pointer;
+    transition:all .3s ease;
+}
+
+.accordion-toggle.schedule-btn{
+    background:linear-gradient(135deg, #8e160a, #b62910);
+    color:white;
+    box-shadow:0 10px 25px rgba(140,25,5,.20);
+}
+
+.accordion-toggle.info-btn{
+    background:linear-gradient(135deg, #1e140f, #38241b);
+    color:white;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+.accordion-content{
+    display:none;
+    margin-top:12px;
+}
+
+.accordion-content.open{
+    display:block;
+    animation:fadeUp .3s ease;
+}
+
+/* =========================================================
+   PREMIUM INFO CARD (INSIDE ACCORDION)
+========================================================= */
+.info-card{
+    padding:22px;
+    background:linear-gradient(145deg, #fff, #fffaf2);
+    border:1px solid #eee2d1;
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    position:relative;
+    overflow:hidden;
+}
+
+.info-card::before{
+    content:"";
+    position:absolute;
+    width:150px;
+    height:150px;
+    right:-70px;
+    top:-70px;
+    border-radius:50%;
+    background:rgba(255,153,51,.13);
+}
+
+.info-title{
+    font-size:18px;
+    font-weight:800;
+    color:var(--deep);
+    margin:15px 0 8px;
+}
+
+.info-text{
+    color:#555;
+    line-height:1.8;
+    font-size:14px;
+    margin:0;
+    text-align:justify;
+}
+
+.quote{
+    margin:15px 0;
+    padding:14px;
+    border-radius:16px;
+    text-align:center;
+    font-weight:800;
+    color:var(--deep);
+    background:linear-gradient(135deg, #fff4df, #fffaf2);
+    border:1px dashed var(--gold);
+    line-height:1.6;
+}
+
+.lakshya-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(210px, 1fr));
+    gap:10px;
+    margin:18px 0;
+}
+
+.lakshya-card{
+    background:#fffdf9;
+    border:1.5px solid #fed7aa;
+    border-left:4px solid var(--saffron);
+    border-radius:14px;
+    padding:12px 14px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.lakshya-card strong{
+    font-size:13.5px;
+    color:var(--deep);
+    display:block;
+}
+
+.lakshya-card small{
+    font-size:11px;
+    color:#666;
+    display:block;
+    margin-top:2px;
+}
+
+.jeev-sub-box{
+    background:#fffdf9;
+    border:1.5px solid #f2dec4;
+    border-radius:18px;
+    padding:18px;
+    margin:15px 0;
+    border-left:5px solid var(--red);
+}
+
+.jeev-sub-box h4{
+    margin:0 0 8px 0;
+    color:var(--deep);
+    font-size:16px;
+    font-weight:800;
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.jeev-sub-box p{
+    margin:0;
+    font-size:13.5px;
+    color:#555;
+    line-height:1.8;
+    text-align:justify;
+}
+
+.video-wrapper-divine{
+    position:relative;
+    padding-bottom:56.25%;
+    height:0;
+    overflow:hidden;
+    border-radius:20px;
+    border:2.5px solid var(--gold);
+    box-shadow:0 10px 25px rgba(124,22,8,0.15);
+    margin:20px 0 14px;
+    background:#000;
+}
+
+.video-wrapper-divine iframe{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    border:0;
+}
+
+.media-gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
+    gap:12px;
+    margin-top:16px;
+}
+
+.gallery-card-item{
+    background:#fff;
+    border:1.5px solid #fed7aa;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 4px 12px rgba(0,0,0,0.05);
+    text-align:center;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.gallery-card-item:hover{
+    transform:translateY(-3px);
+    box-shadow:0 8px 20px rgba(124,22,8,0.15);
+}
+
+.gallery-card-item img{
+    width:100%;
+    height:140px;
+    object-fit:cover;
+    display:block;
+}
+
+.gallery-card-item span{
+    display:block;
+    padding:8px 6px;
+    font-size:12px;
+    font-weight:800;
+    color:var(--deep);
+    background:#fffaf0;
+}
+
+/* =========================================================
+   SCHEDULE CARDS
+========================================================= */
+.schedule-card{
+    background:white;
+    border-radius:24px;
+    overflow:hidden;
+    margin-bottom:18px;
+    box-shadow:0 12px 35px rgba(0,0,0,.08);
+    border:1px solid #eee;
+}
+
+.schedule-media{
+    background:#171717;
+    position:relative;
+}
+
+.schedule-media img,
+.schedule-media video{
+    width:100%;
+    max-height:330px;
+    object-fit:cover;
+    display:block;
+}
+
+.schedule-details{
+    padding:18px;
+}
+
+.schedule-title{
+    font-size:20px;
+    font-weight:800;
+    color:#861609;
+    margin-bottom:8px;
+}
+
+.schedule-desc{
+    color:#666;
+    font-size:13px;
+    line-height:1.7;
+    margin-bottom:12px;
+}
+
+.schedule-meta{
+    font-size:12px;
+    color:#666;
+    font-weight:700;
+    margin-top:6px;
+}
+
+.schedule-actions{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:8px;
+    margin-top:16px;
+}
+
+.sched-btn{
+    padding:11px 8px;
+    border-radius:12px;
+    color:white;
+    text-decoration:none;
+    text-align:center;
+    font-size:12px;
+    font-weight:800;
+}
+
+.call{ background:#239453; }
+.view{ background:#2878c9; }
+.yt{ background:#e00000; }
+.fb{ background:#1877f2; }
+
+/* =========================================================
+   TABS
+========================================================= */
+.tabs-wrap{
+    position:sticky;
+    top:0;
+    z-index:100;
+    padding:10px 18px;
+    background:rgba(245,243,239,.90);
+    backdrop-filter:blur(18px);
+}
+
+.tabs{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:6px;
+    padding:6px;
+    background:#e9e4dc;
+    border-radius:18px;
+}
+
+.tab-btn{
+    border:none;
+    padding:12px 5px;
+    border-radius:13px;
+    background:transparent;
+    color:#777;
+    font-family:inherit;
+    font-weight:800;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.tab-btn.active{
+    background:white;
+    color:var(--deep);
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.tab-content{
+    display:none;
+    padding:0 18px;
+}
+
+.tab-content.active{
+    display:block;
+    animation:fadeUp .35s ease;
+}
+
+@keyframes fadeUp{
+    from{ opacity:0; transform:translateY(10px); }
+    to{ opacity:1; transform:translateY(0); }
+}
+
+.section-heading{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin:12px 0 16px;
+}
+
+.section-heading h2{
+    margin:0;
+    font-size:21px;
+    color:#222;
+    font-weight:800;
+}
+
+.section-badge{
+    padding:6px 11px;
+    border-radius:30px;
+    background:#fff0dc;
+    color:#a34b00;
+    font-size:11px;
+    font-weight:800;
+}
+
+/* =========================================================
+   POST CARD
+========================================================= */
+.post-card{
+    background:white;
+    border-radius:25px;
+    overflow:hidden;
+    margin-bottom:20px;
+    box-shadow:0 15px 40px rgba(0,0,0,.08);
+    border:1px solid #eee;
+}
+
+.post-header{
+    padding:15px;
+    display:flex;
+    align-items:center;
+    cursor:pointer;
+}
+
+.post-avatar{
+    width:52px;
+    height:52px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid #ff9b25;
+}
+
+.post-user{
+    margin-left:12px;
+}
+
+.post-user h4{
+    margin:0;
+    font-size:15px;
+    font-weight:800;
+}
+
+.post-user p{
+    margin:2px 0 0;
+    font-size:11px;
+    color:#e08000;
+    font-weight:700;
+}
+
+.media-container{
+    background:#111;
+    width:100%;
+}
+
+.yt-frame{
+    width:100%;
+    aspect-ratio:16/9;
+    border:none;
+    display:block;
+}
+
+.yt-shorts{
+    aspect-ratio:9/16 !important;
+    max-height:680px;
+}
+
+.media-content{
+    width:100%;
+    max-height:650px;
+    display:block;
+}
+
+.slider-wrapper{
+    width:100%;
+    overflow:hidden;
+    position:relative;
+    background:#111;
+}
+
+.slides-container{
+    display:flex;
+    transition:transform .35s ease;
+}
+
+.slide-item{
+    min-width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.slide-item img{
+    width:100%;
+    max-height:600px;
+    object-fit:contain;
+    cursor:pointer;
+}
+
+.slider-btn{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:42px;
+    height:42px;
+    border:none;
+    border-radius:50%;
+    background:rgba(0,0,0,.55);
+    color:white;
+    font-size:18px;
+    cursor:pointer;
+    z-index:4;
+}
+
+.prev-btn{ left:12px; }
+.next-btn{ right:12px; }
+
+.caption-box{
+    padding:15px 17px 5px;
+    color:#444;
+    font-size:14px;
+    line-height:1.7;
+}
+
+.hidden-caption{
+    display:-webkit-box;
+    -webkit-line-clamp:3;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+}
+
+.see-more{
+    border:none;
+    background:none;
+    color:#e77b00;
+    font-weight:800;
+    padding:5px 0;
+    cursor:pointer;
+}
+
+.post-actions{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    padding:12px 15px 15px;
+}
+
+.post-action{
+    border:none;
+    background:#f7f4ef;
+    padding:12px;
+    border-radius:13px;
+    font-family:inherit;
+    font-weight:800;
+    color:#555;
+    cursor:pointer;
+}
+
+.post-action.liked{
+    background:#e93434;
+    color:white;
+}
+
+/* =========================================================
+   EXECUTIVE
+========================================================= */
+.executive-card{
+    background:white;
+    padding:25px;
+    border-radius:25px;
+    box-shadow:var(--shadow);
+    text-align:center;
+}
+
+.executive-icon{
+    width:75px;
+    height:75px;
+    margin:0 auto 15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    background:linear-gradient(135deg, #fff1d8, #ffd08a);
+    font-size:35px;
+}
+
+.executive-card h3{
+    margin:0;
+    color:var(--deep);
+    font-size:20px;
+}
+
+.executive-card p{
+    color:#777;
+    font-size:13px;
+    line-height:1.7;
+}
+
+/* =========================================================
+   DONATION
+========================================================= */
+.donation-card{
+    background:white;
+    border-radius:22px;
+    padding:16px;
+    margin-bottom:13px;
+    display:flex;
+    gap:13px;
+    align-items:center;
+    box-shadow:0 8px 25px rgba(0,0,0,.06);
+    border-left:5px solid #2b9b59;
+}
+
+.donation-icon{
+    width:55px;
+    height:55px;
+    flex-shrink:0;
+    border-radius:50%;
+    background:#e9f8ef;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:25px;
+}
+
+.donation-main{
+    flex:1;
+    min-width:0;
+}
+
+.donor-name{
+    font-weight:800;
+    color:#8c170a;
+    font-size:14px;
+}
+
+.donor-id{
+    font-size:10px;
+    color:#888;
+    margin-top:2px;
+}
+
+.donation-amount{
+    color:#25934f;
+    font-size:17px;
+    font-weight:900;
+    margin-top:3px;
+}
+
+.donation-meta{
+    color:#888;
+    font-size:10px;
+    margin-top:3px;
+}
+
+.receipt{
+    padding:9px 11px;
+    border-radius:11px;
+    background:linear-gradient(135deg, #ff9d25, #df6500);
+    color:white;
+    text-decoration:none;
+    font-size:11px;
+    font-weight:800;
+    white-space:nowrap;
+}
+
+.tx-badge{
+    display:inline-block;
+    font-size:9px;
+    padding:3px 7px;
+    border-radius:20px;
+    background:#e8f7ed;
+    color:#21894d;
+    margin-left:3px;
+}
+
+/* =========================================================
+   CONTACT MODAL
+========================================================= */
+.modal-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(20,8,0,.68);
+    backdrop-filter:blur(7px);
+    z-index:999;
+    display:none;
+    align-items:flex-end;
+    justify-content:center;
+}
+
+.modal-overlay.show{
+    display:flex;
+}
+
+.contact-modal{
+    width:100%;
+    max-width:520px;
+    background:white;
+    border-radius:30px 30px 0 0;
+    padding:25px 20px 30px;
+    animation:modalUp .3s ease;
+}
+
+@keyframes modalUp{
+    from{ transform:translateY(100%); }
+    to{ transform:translateY(0); }
+}
+
+.modal-handle{
+    width:45px;
+    height:5px;
+    border-radius:10px;
+    background:#ddd;
+    margin:0 auto 20px;
+}
+
+.contact-modal h2{
+    text-align:center;
+    margin:0 0 20px;
+    color:var(--deep);
+}
+
+.contact-link{
+    display:flex;
+    align-items:center;
+    gap:13px;
+    text-decoration:none;
+    color:#222;
+    background:#f8f5f0;
+    padding:15px;
+    border-radius:16px;
+    margin-bottom:10px;
+    font-weight:800;
+}
+
+.contact-link-icon{
+    width:43px;
+    height:43px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:13px;
+    background:white;
+    font-size:21px;
+}
+
+.close-modal{
+    width:100%;
+    padding:13px;
+    border:none;
+    border-radius:15px;
+    background:#22150f;
+    color:white;
+    font-family:inherit;
+    font-weight:800;
+    margin-top:8px;
+    cursor:pointer;
+}
+
+/* =========================================================
+   LIGHTBOX
+========================================================= */
+.lightbox{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.96);
+    z-index:5000;
+    display:none;
+    align-items:center;
+    justify-content:center;
+}
+
+.lightbox.show{
+    display:flex;
+}
+
+.lightbox img{
+    max-width:94%;
+    max-height:88%;
+    object-fit:contain;
+    border-radius:12px;
+}
+
+.lightbox-close{
+    position:absolute;
+    top:18px;
+    left:18px;
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.3);
+    background:rgba(255,255,255,.15);
+    color:white;
+    font-size:22px;
+    cursor:pointer;
+}
+
+.empty{
+    text-align:center;
+    padding:30px 20px;
+    background:white;
+    border-radius:22px;
+    color:#888;
+    border:1px dashed #d8c9b6;
+    font-size:13px;
+}
+
+/* FOOTER NAVIGATION BAR */
+#sss-nav {
+    position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 900px; height: 75px;
+    background: linear-gradient(180deg, #ff4500, #800000); display: flex; justify-content: space-evenly; align-items: center;
+    border-top: 4px solid #ffcc00; border-radius: 20px 20px 0 0; z-index: 99999; box-shadow: 0 -5px 20px rgba(0,0,0,0.4);
+}
+.sss-item { flex: 1; text-align: center; text-decoration: none; color: #fff; font-size: 10px; font-weight: 800; }
+.sss-item img { width: 28px; height: 28px; display: block; margin: auto; }
+.sss-dash-wrap { margin-top: -30px; }
+.sss-gold-circle {
+    width: 60px; height: 60px; background: linear-gradient(45deg, #ffd700, #ffcc00, #b8860b);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid #800000; box-shadow: 0 0 15px rgba(255,215,0,0.6);
+}
+.sss-gold-circle img { width: 35px; height: 35px; }
+
+@media(max-width:600px){
+    .hero{ min-height:430px; border-radius:0 0 32px 32px; }
+    .profile-ring{ width:165px; height:165px; }
+    .profile-photo-wrap{ bottom:145px; }
+    .hero-name{ font-size:28px; }
+    .social-bar{ gap:6px; }
+    .social-btn{ font-size:11px; padding:7px 11px; }
+    .quick-actions{ padding-left:12px; padding-right:12px; }
+    .quick-btn{ min-height:58px; }
+    .tabs-wrap{ padding-left:10px; padding-right:10px; }
+    .tab-content{ padding-left:12px; padding-right:12px; }
+    .schedule-actions{ grid-template-columns:1fr 1fr; }
+}
+
+@media(max-width:390px){
+    .profile-ring{ width:145px; height:145px; }
+    .profile-photo-wrap{ bottom:150px; }
+    .hero{ min-height:410px; }
+    .hero-name{ font-size:25px; }
+    .quick-btn{ font-size:10px; }
+}
+
+@media(min-width:901px){
+    body{ padding-top:25px; }
+    .page{ margin-bottom:30px; }
+    .hero{ border-radius:35px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+<section class="hero">
+    <img
+        src="https://sanatansevasamiti.org/Images/ss/PRO1781289610_cover.jpg"
+        class="hero-cover"
+        id="heroCover"
+        alt="Cover"
+        onclick="openLightbox(this.src)"
+        onerror="this.style.display='none'"
+    >
+    <div class="hero-overlay"></div>
+
+    <div class="hero-top">
+        <div class="hero-brand">
+            <span class="brand-dot"></span>
+            SANATAN SEVA
+        </div>
+        <button class="hero-action" onclick="shareProfile()" title="Share">↗</button>
+    </div>
+
+    <div class="profile-photo-wrap">
+        <div class="profile-ring" onclick="openLightbox(document.getElementById('profileDpImg').src)">
+            <img
+                id="profileDpImg"
+                src="https://sanatansevasamiti.org/Images/ss/PRO1781289610_dp.jpg"
+                alt="Profile"
+                onerror="this.src='https://sanatansevasamiti.org/public_html/Images/maharaj.jpg'"
+            >
+        </div>
+        <div class="online-dot"></div>
+    </div>
+
+    <div class="hero-content">
+        <h1 class="hero-name">
+            <span id="profileTitle">जीव सेवा</span>
+            <span class="verified">✓</span>
+        </h1>
+        <div class="hero-tagline" id="profileTagline">
+            सनातन सेवा समिति • मूक प्राणियों, पशु-पक्षियों व जलचरों की रक्षा
+        </div>
+        <div class="social-bar">
+            <a href="https://www.instagram.com/sachchidanand.ji_/" target="_blank" class="social-btn social-insta">📸 Instagram</a>
+            <a href="https://youtube.com/@sanatan_sevasamiti?si=CvVOUP5slvqHdRnc" target="_blank" class="social-btn social-yt">▶️ YouTube</a>
+            <a href="https://www.facebook.com/share/1BvUG3NR69/" target="_blank" class="social-btn social-fb">f Facebook</a>
+            <a href="https://x.com/SatySanatanmarg" target="_blank" class="social-btn social-x">𝕏 Twitter</a>
+        </div>
+    </div>
+</section>
+
+<div class="quick-actions">
+    <a href="jeev_seva_daan.html" class="quick-btn donate">
+        <span>🙏</span>
+        <span>अभी दान करें</span>
+    </a>
+    <button class="quick-btn contact" onclick="openContact()">
+        <span>☎</span>
+        <span>संपर्क करें</span>
+    </button>
+    <button class="quick-btn" onclick="shareProfile()">
+        <span>↗</span>
+        <span>प्रोफाइल शेयर</span>
+    </button>
+</div>
+
+<div style="padding: 12px 18px 0;">
+    <button class="accordion-toggle info-btn" onclick="toggleAccordion('specialInfoArea', this)">
+        <span>✨ जीव सेवा : विस्तार से जानें (विशेष जानकारी)</span>
+        <span class="accordion-arrow">↓</span>
+    </button>
+
+    <div id="specialInfoArea" class="accordion-content">
+        <div class="info-card">
+            <div style="text-align:center; margin-bottom:18px;">
+                <img
+                    src="https://sanatansevasamiti.org/public_html/Images/maharaj.jpg"
+                    alt="पूज्य सद्गुरुदेव स्वामी सच्चिदानंद जी महाराज"
+                    style="width:100%; max-width:230px; border-radius:20px; border:3.5px solid var(--gold); box-shadow:0 8px 25px rgba(0,0,0,.2); display:inline-block;"
+                    onclick="openLightbox(this.src)"
+                >
+                <h4 style="color:var(--deep); font-size:16px; margin-top:14px; margin-bottom:4px; line-height:1.4;">
+                    अनंत श्री विभूषित आनंद पीठाधीश्वर पूज्य सच्चिदानंदाचार्य श्री सच्चिदानंद जी महाराज
+                </h4>
+                <p style="color:var(--saffron); font-weight:800; font-size:12.5px; margin:0;">
+                    ⚜️ संस्थापक एवं राष्ट्रीय अध्यक्ष — सनातन सेवा समिति ⚜️
+                </p>
+            </div>
+
+            <h4 style="color:var(--deep); font-size:16px; margin:20px 0 8px; font-weight:900;">
+                🎯 जीव सेवा के पावन संकल्प एवं लक्ष्य (संक्षिप्त रूपरेखा)
+            </h4>
+
+            <div class="lakshya-grid">
+                <div class="lakshya-card">
+                    <span style="font-size:24px;">🐄</span>
+                    <div>
+                        <strong>गौ सेवा एवं सुरभि संवर्धन</strong>
+                        <small>नित्य गौ-ग्रास, चारा, आश्रय व चिकित्सा</small>
+                    </div>
+                </div>
+                <div class="lakshya-card">
+                    <span style="font-size:24px;">🕊️</span>
+                    <div>
+                        <strong>पक्षी दाना-पानी परिंडा सेवा</strong>
+                        <small>ग्रीष्म में जल पात्र व नित्य अन्न व्यवस्था</small>
+                    </div>
+                </div>
+                <div class="lakshya-card">
+                    <span style="font-size:24px;">🐟</span>
+                    <div>
+                        <strong>जलचर रक्षा व नदी-सरोवर शुद्धि</strong>
+                        <small>मछलियों को आहार व प्लास्टिक-कचरा मुक्ति</small>
+                    </div>
+                </div>
+                <div class="lakshya-card">
+                    <span style="font-size:24px;">🐕</span>
+                    <div>
+                        <strong>श्वान व बेसहारा पशु संरक्षण</strong>
+                        <small>सड़क पशुओं हेतु आहार, उपचार व एम्बुलेंस</small>
+                    </div>
+                </div>
+                <div class="lakshya-card">
+                    <span style="font-size:24px;">🐜</span>
+                    <div>
+                        <strong>चींटी व सूक्ष्म जीव अन्नदान</strong>
+                        <small>कण-कण में नारायण भाव व अहिंसा व्रत</small>
+                    </div>
+                </div>
+                <div class="lakshya-card">
+                    <span style="font-size:24px;">🚑</span>
+                    <div>
+                        <strong>आपातकालीन पशु-पक्षी चिकित्सा</strong>
+                        <small>घायल मूक जीवों का तत्काल रेस्क्यू व इलाज</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quote">
+                "सिया राम मय सब जग जानी ।<br>
+                करहुँ प्रनाम जोरि जुग पानी ॥"<br>
+                <small style="font-size:12px; font-weight:600; color:var(--deep);">(ईश्वर केवल मनुष्यों में ही नहीं, अपितु संसार के प्रत्येक मूक व बेजुबान जीव के भीतर साक्षात् विराजमान हैं।)</small>
+            </div>
+
+            <div style="margin-top:20px;">
+                <h4 style="color:var(--deep); font-size:16px; margin-bottom:8px; text-align:center;">
+                    🎥 जीव सेवा महाअभियान परिचय वीडियो दर्शन 🎥
+                </h4>
+                <div class="video-wrapper-divine">
+                    <iframe src="https://www.youtube.com/embed/videoseries?list=PLsomeList" title="जीव सेवा अभियान परिचय वीडियो" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <h3 class="info-title">
+                🚩 पूज्य महाराज जी का महासंकल्प : मूक प्राणियों की रक्षा ही सच्ची पूजा
+            </h3>
+
+            <p class="info-text">
+                वे केवल एक नाम नहीं, अपितु <strong>करुणा, प्राणिमात्र के प्रति अगाध दया और जीव सेवा</strong> के वह दिव्य प्रकाश स्तंभ हैं, जो अपने आचरण, साधना और प्रेरणादायी संदेशों के माध्यम से संपूर्ण समाज को मूक प्राणियों, पशु-पक्षियों और जलचरों की रक्षा व सेवा के मार्ग पर आगे बढ़ने की प्रेरणा प्रदान कर रहे हैं। 
+            </p>
+
+            <p class="info-text" style="margin-top:8px;">
+                <strong>पूज्य महाराज जी का पावन संकल्प :</strong> सनातन सेवा समिति के माध्यम से सृष्टि के हर उस जीव की रक्षा और सेवा करना है जो अपनी पीड़ा बोलकर व्यक्त नहीं कर सकता। समाज में कोई भी पशु, पक्षी या बेजुबान प्राणी भूख, प्यास, गंदगी या क्रूरता का शिकार न हो। आपका जीवन मूक प्राणियों के अधिकार, चिकित्सा, आहार व्यवस्था और सनातन धर्म के दया भाव को जन-जन तक पहुँचाने के लिए समर्पित है।
+            </p>
+
+            <h3 class="info-title" style="margin-top:24px;">
+                🐾 जीव सेवा के प्रमुख आयाम (मूक सृष्टि का संरक्षण)
+            </h3>
+
+            <div class="jeev-sub-box">
+                <h4>🐄 1. गावो विश्वस्य मातरः : गौ माता की निरंतर सेवा व सुरभि संरक्षण</h4>
+                <p>
+                    वेदों का उद्घोष है — <strong>"गावो विश्वस्य मातरः"</strong> अर्थात गौ माता संपूर्ण विश्व की माता हैं। उनके रोम-रोम में तैंतीस कोटि देवी-देवताओं का वास है। समिति का संकल्प है कि सड़कों पर भटकने वाली, वृद्ध, निराश्रित या बीमार गौ माता के लिए निरंतर हरे चारे, शुद्ध जल, सुरक्षित गोशाला और उत्तम चिकित्सा की व्यवस्था की जाए। हर सनातनी को अपने घर की पहली रोटी गौ माता के लिए निकालने के पावन नियम से जोड़ना हमारा कर्तव्य है।
+                </p>
+            </div>
+
+            <div class="jeev-sub-box">
+                <h4>🕊️ 2. पक्षी सेवा : आकाश के सतरंगे पंखों को दाना-पानी व परिंडा संबल</h4>
+                <p>
+                    भयंकर ग्रीष्मकाल और बदलते मौसम में नन्हे पक्षी दाने व एक-एक बूँद पानी के अभाव में दम तोड़ देते हैं। सनातन सेवा समिति प्रत्येक परिवार को यह संस्कार देती है कि वे प्रतिदिन अपने घरों की छतों, बाल्कनी व वृक्षों पर पक्षियों के लिए <strong>अनाज/दाना डालें</strong> और मिट्टी के पात्रों (परिंडों) में <strong>नित्य शीतल व स्वच्छ जल</strong> रखें। पतंग के मांझे या आंधी-तूफान से घायल पक्षियों का तुरंत उपचार कर उन्हें नवजीवन दिया जाता है।
+                </p>
+            </div>
+
+            <div class="jeev-sub-box">
+                <h4>🌊🐟 3. जलचर रक्षा, नदियों-सरोवरों की शुद्धि एवं प्रदूषण मुक्ति</h4>
+                <p>
+                    हमारे शास्त्रों में 'मत्स्य' अवतार को साक्षात् भगवान नारायण का प्रथम स्वरूप माना गया है। आज नदियों, तालाबों और सरोवरों में जिस प्रकार प्लास्टिक, थैलियां, रासायनिक कचरा और अपशिष्ट फेंका जा रहा है, उससे मूक जलचर तड़प-तड़प कर प्राण त्याग रहे हैं। समिति का संकल्प है कि जलाशयों की नियमित स्वच्छता की जाए, नदियों में प्लास्टिक व अपशिष्ट डालने पर रोक लगाने हेतु जनजागरण किया जाए, तथा मछलियों व अन्य जलचरों के लिए नित्य <strong>आटे की गोलियां व पौष्टिक भोजन</strong> अर्पित किया जाए ताकि जल का पारिस्थितिकी तंत्र अक्षुण्ण रहे।
+                </p>
+            </div>
+
+            <div class="jeev-sub-box">
+                <h4>🐕 4. श्वान, नंदी महाराज एवं अन्य बेसहारा जानवरों की सुरक्षा</h4>
+                <p>
+                    सनातन परंपरा में श्वान को साक्षात् भैरव बाबा की सवारी तथा नंदी को देवाधिदेव महादेव का वाहन माना गया है। भीषण ठंड, बरसात या चिलचिलाती धूप में इन बेजुबानों को सुरक्षित आश्रय देना, नित्य भोजन/रोटी उपलब्ध कराना तथा सड़क दुर्घटना या गंभीर बीमारी में तड़प रहे मूक पशुओं के लिए तत्काल प्राथमिक उपचार, दवाइयां व एम्बुलेंस सेवा उपलब्ध कराना इस अभियान की सर्वोच्च प्राथमिकता है।
+                </p>
+            </div>
+
+            <div class="jeev-sub-box">
+                <h4>🐜 5. सूक्ष्म जीव, चींटी आहार एवं प्रकृति में अहिंसा की पुनर्स्थापना</h4>
+                <p>
+                    सनातन संस्कृति सूक्ष्म से सूक्ष्म जीव के प्रति भी संवेदनशील है। वृक्षों की जड़ों में चींटियों के लिए शक्कर मिश्रित आटा (कसार) डालना, खेतों व जंगलों में छोटे प्राणियों के लिए जल-कुंड बनाना और 'अहिंसा परमो धर्मः' के मूलमंत्र को जीवन में उतारना ही जीव सेवा का वास्तविक स्वरूप है। यहाँ 'जीव सेवा' का अर्थ मनुष्य नहीं, अपितु ईश्वर की बनाई वह मूक प्राणि-सृष्टि है जो स्वयं अपना भोजन या दवा नहीं मांग सकती।
+                </p>
+            </div>
+
+            <h4 style="color:var(--deep); font-size:16px; margin:24px 0 8px; font-weight:900;">
+                📸 जीव सेवा पावन चित्र दर्शन दीर्घा
+            </h4>
+            <div class="media-gallery-grid">
+                <div class="gallery-card-item" onclick="openLightbox('https://sanatansevasamiti.org/Images/ss/PRO1781289610_dp.jpg')">
+                    <img src="https://sanatansevasamiti.org/Images/ss/PRO1781289610_dp.jpg" alt="जीव सेवा केंद्र">
+                    <span>🚩 जीव सेवा मुख्य केंद्र</span>
+                </div>
+                <div class="gallery-card-item" onclick="openLightbox('https://sanatansevasamiti.org/public_html/Images/maharaj.jpg')">
+                    <img src="https://sanatansevasamiti.org/public_html/Images/maharaj.jpg" alt="पूज्य सद्गुरुदेव महाराज जी">
+                    <span>🙏 पूज्य गुरुदेव सानिध्य</span>
+                </div>
+                <div class="gallery-card-item" onclick="openLightbox('https://images.unsplash.com/photo-1546445317-29f4545e9d53?auto=format&fit=crop&w=800&q=80')">
+                    <img src="https://images.unsplash.com/photo-1546445317-29f4545e9d53?auto=format&fit=crop&w=800&q=80" alt="गौ माता सेवा">
+                    <span>🐄 नित्य गौ-ग्रास व सेवा</span>
+                </div>
+                <div class="gallery-card-item" onclick="openLightbox('https://images.unsplash.com/photo-1522858547137-f1dcec554f55?auto=format&fit=crop&w=800&q=80')">
+                    <img src="https://images.unsplash.com/photo-1522858547137-f1dcec554f55?auto=format&fit=crop&w=800&q=80" alt="पक्षी दाना पानी सेवा">
+                    <span>🕊️ पक्षी परिंडा व दाना सेवा</span>
+                </div>
+            </div>
+
+            <div class="quote" style="margin-top:20px;">
+                "हर व्यक्ति जीव दया से जुड़े ।<br>
+                हर परिवार पशु-पक्षी सेवा से जुड़े ।<br>
+                हर हृदय बेजुबानों के अधिकार से जुड़े ।"
+            </div>
+
+            <div style="text-align:center; margin-top:20px;">
+                <a href="jeev_seva_daan.html" class="quick-btn donate" style="display:inline-flex; width:auto; padding:15px 35px; border-radius:50px; font-size:15px;">
+                    🚩 बेजुबान जीवों की सेवा हेतु सहयोग करें
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="padding: 16px 18px 0;">
+    <button class="accordion-toggle schedule-btn" onclick="toggleAccordion('scheduleArea', this)">
+        <span>📅 आगामी कार्यक्रम (Schedules)</span>
+        <span class="accordion-arrow">↓</span>
+    </button>
+
+    <div id="scheduleArea" class="accordion-content">
+        <div id="eventsContainer">
+            <p style="text-align:center; color:#777; background:#fff; padding:20px; border-radius:18px;">कार्यक्रम विवरण लोड हो रहा है...</p>
+        </div>
+    </div>
+</div>
+
+<div class="tabs-wrap" style="margin-top:15px;">
+    <div class="tabs">
+        <button class="tab-btn active" onclick="showTab('posts',this)">📰 पोस्ट</button>
+        <button class="tab-btn" onclick="showTab('karyakarini',this)">👥 कार्यकारिणी</button>
+        <button class="tab-btn" onclick="showTab('daan',this)">🙏 दान सूची</button>
+    </div>
+</div>
+
+<div id="posts" class="tab-content active">
+    <div class="section-heading">
+        <h2>नवीनतम पोस्ट</h2>
+        <span class="section-badge">Updates</span>
+    </div>
+    <div id="postsContainer">
+        <p style="text-align:center; color:#777; background:#fff; padding:20px; border-radius:18px;">पोस्ट्स लोड हो रही हैं...</p>
+    </div>
+</div>
+
+<div id="karyakarini" class="tab-content">
+    <div class="section-heading">
+        <h2>कार्यकारिणी</h2>
+        <span class="section-badge">Team</span>
+    </div>
+    <div class="executive-card">
+        <div class="executive-icon">👥</div>
+        <h3>कार्यकारिणी विवरण</h3>
+        <p>जीव सेवा एवं प्राणी संरक्षण महाअभियान — सनातन सेवा समिति के समर्पित गौ-सेवकों, पशु चिकित्सकों एवं पर्यावरण संरक्षकों की कार्यकारिणी सूची।</p>
+    </div>
+</div>
+
+<div id="daan" class="tab-content">
+    <div class="section-heading">
+        <h2>दान विवरण</h2>
+        <span class="section-badge">Transactions</span>
+    </div>
+    <div id="donationsContainer">
+        <p style="text-align:center; color:#777; background:#fff; padding:20px; border-radius:18px;">दान विवरण लोड हो रहा है...</p>
+    </div>
+</div>
+
+</div>
+
+<!-- CONTACT MODAL -->
+<div id="contactOverlay" class="modal-overlay" onclick="closeContact(event)">
+    <div class="contact-modal" onclick="event.stopPropagation()">
+        <div class="modal-handle"></div>
+        <h2>संपर्क करें</h2>
+        <a id="modalCall" href="tel:+919876543210" class="contact-link">
+            <span class="contact-link-icon">📞</span>
+            <span>कॉल करें</span>
+        </a>
+        <a id="modalMail" href="mailto:contact@sanatansevasamiti.org" class="contact-link">
+            <span class="contact-link-icon">📧</span>
+            <span>ईमेल करें</span>
+        </a>
+        <button class="close-modal" onclick="closeContact()">बंद करें</button>
+    </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+    <button class="lightbox-close" onclick="closeLightbox()">←</button>
+    <img id="lightboxImage" src="" alt="Preview">
+</div>
+
+<!-- FOOTER NAVIGATION BAR -->
+<div id="sss-nav">
+    <a href="app_home.html" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341771file_00000000145071fab7ea2e7e30f9dfaa-e1776295057951.png" alt="गृह">
+        <span>गृह</span>
+    </a>
+    <a href="guru_parampara.html" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341317ci.jpg" alt="गुरु">
+        <span>गुरु परंपरा</span>
+    </a>
+    <a href="feed.html" class="sss-item sss-dash-wrap">
+        <div class="sss-gold-circle">
+            <img src="https://sanatansevasamiti.org/uploads/footer/1780341218logo.jpg" alt="फीड">
+        </div>
+        <span></span>
+    </a>
+    <a href="javascript:void(0);" onclick="alert('पुस्तकें — यह अनुभाग शीघ्र ही स्थानीय रूप से उपलब्ध होगा।');" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341270bi.jpg" alt="पुस्तकें">
+        <span>पुस्तकें</span>
+    </a>
+    <a href="app_dashboard.html" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341144ai.jpg" alt="अकाउंट">
+        <span>अकाउंट</span>
+    </a>
+</div>
+
+<script>
+const PROFILE_ID = "PRO1781289610";
+let CURRENT_UID = "";
+
+try {
+    const rawUser = localStorage.getItem("sss_user_data");
+    if(rawUser){
+        const u = JSON.parse(rawUser);
+        CURRENT_UID = u.unique_id || u.id || "";
+    }
+} catch(e){}
+
+async function loadJeevSevaData(){
+    try {
+        const apiUrl = `https://sanatansevasamiti.org/api/get_profile_full.php?action=detail&profile_id=${PROFILE_ID}&user_id=${encodeURIComponent(CURRENT_UID)}`;
+        const res = await fetch(apiUrl);
+        if(!res.ok) throw new Error("नेटवर्क प्रतिक्रिया विफल");
+        const data = await res.json();
+
+        if(data && data.status === 'success'){
+            // 1. Profile Details
+            if(data.profile){
+                const p = data.profile;
+                if(p.name) document.getElementById('profileTitle').innerText = p.name;
+                if(p.tagline) document.getElementById('profileTagline').innerText = p.tagline;
+                if(p.dp_url) document.getElementById('profileDpImg').src = p.dp_url;
+                if(p.cover_url) document.getElementById('heroCover').src = p.cover_url;
+                if(p.mobile) document.getElementById('modalCall').href = "tel:" + p.mobile;
+                if(p.email) document.getElementById('modalMail').href = "mailto:" + p.email;
+            }
+
+            // 2. Render dynamic sections
+            renderPosts(data.posts, data.profile);
+            renderEvents(data.schedules);
+            renderDonations(data.public_donations);
+        }
+    } catch(err){
+        console.error("Jeev Seva Profile Load Error:", err);
+    }
+}
+
+function renderPosts(posts, prof){
+    const container = document.getElementById('postsContainer');
+    if(!posts || posts.length === 0){
+        container.innerHTML = `<div class="empty">📭 इस प्रोफाइल पर अभी कोई पोस्ट उपलब्ध नहीं है।</div>`;
+        return;
+    }
+
+    container.innerHTML = posts.map(post => {
+        const mediaList = post.parsed_media || [];
+        let mediaBlock = '';
+
+        if(post.post_type === 'youtube'){
+            mediaBlock = mediaList.map(m => `
+                <iframe class="yt-frame ${m.is_shorts ? 'yt-shorts' : ''}" src="${m.embed_url}" allowfullscreen loading="lazy"></iframe>
+            `).join("");
+        } else if(post.post_type === 'video'){
+            mediaBlock = mediaList.map(m => `
+                <video class="media-content" controls preload="metadata" src="${m.raw_url}"></video>
+            `).join("");
+        } else if(mediaList.length > 0){
+            const slides = mediaList.map(m => `
+                <div class="slide-item">
+                    <img src="${m.raw_url}" onclick="openLightbox(this.src)" alt="Post Image" loading="lazy">
+                </div>
+            `).join("");
+
+            mediaBlock = `
+                <div class="slider-wrapper" id="slider-${post.id}">
+                    <div class="slides-container" id="slides-${post.id}">
+                        ${slides}
+                    </div>
+                    ${mediaList.length > 1 ? `
+                        <button class="slider-btn prev-btn" onclick="moveSlide(${post.id},-1);event.stopPropagation();">‹</button>
+                        <button class="slider-btn next-btn" onclick="moveSlide(${post.id},1);event.stopPropagation();">›</button>
+                    ` : ''}
+                </div>
+            `;
+        }
+
+        return `
+        <article class="post-card">
+            <div class="post-header">
+                <img class="post-avatar" src="${prof.dp_url || 'https://sanatansevasamiti.org/Images/ss/PRO1781289610_dp.jpg'}" onerror="this.src='https://sanatansevasamiti.org/public_html/Images/maharaj.jpg'" alt="Profile">
+                <div class="post-user">
+                    <h4>${prof.name || 'जीव सेवा'}</h4>
+                    <p>${prof.tagline || 'सनातन सेवा समिति'}</p>
+                </div>
+            </div>
+            <div class="media-container">
+                ${mediaBlock}
+            </div>
+            <div class="caption-box">
+                <div id="text-${post.id}" class="hidden-caption">
+                    ${(post.caption || '').replace(/\n/g, '<br>')}
+                </div>
+                <button class="see-more" onclick="showMore(${post.id},this)">और पढ़ें...</button>
+            </div>
+            <div class="post-actions">
+                <button class="post-action" onclick="toggleLike(this)">❤️ Like</button>
+                <button class="post-action" onclick="sharePost(${post.id})">↗ Share</button>
+            </div>
+        </article>`;
+    }).join("");
+}
+
+function renderEvents(schedules){
+    const container = document.getElementById('eventsContainer');
+    if(!schedules || schedules.length === 0){
+        container.innerHTML = `<div class="empty">📅 फिलहाल कोई कार्यक्रम उपलब्ध नहीं है।</div>`;
+        return;
+    }
+
+    container.innerHTML = schedules.map(sch => {
+        const media = (sch.media_files && sch.media_files.length > 0) ? sch.media_files[0] : '';
+        let mediaHtml = '';
+        if(media){
+            if(media.match(/\.(mp4|webm|ogg)$/i)){
+                mediaHtml = `<video controls src="${media}"></video>`;
+            } else {
+                mediaHtml = `<img src="${media}" alt="Event Poster" loading="lazy" onclick="openLightbox(this.src)">`;
+            }
+        }
+
+        return `
+        <div class="schedule-card">
+            ${mediaHtml ? `<div class="schedule-media">${mediaHtml}</div>` : ''}
+            <div class="schedule-details">
+                <div class="schedule-title">${sch.title || ''}</div>
+                <div class="schedule-desc">${(sch.description || '').replace(/\n/g, '<br>')}</div>
+                <div class="schedule-meta">🗓️ ${sch.event_date || ''} &nbsp; • &nbsp; ⏰ ${sch.time_from || ''} - ${sch.time_to || ''}</div>
+                <div class="schedule-meta">📍 ${sch.address || ''}, ${sch.district || ''}</div>
+                <div class="schedule-actions">
+                    ${sch.mobile ? `<a href="tel:${sch.mobile}" class="sched-btn call">📞 कॉल</a>` : ''}
+                    ${sch.web_url ? `<a href="${sch.web_url}" target="_blank" class="sched-btn view">🌐 विवरण</a>` : ''}
+                    ${sch.yt_link ? `<a href="${sch.yt_link}" target="_blank" class="sched-btn yt">▶ YouTube</a>` : ''}
+                    ${sch.fb_link ? `<a href="${sch.fb_link}" target="_blank" class="sched-btn fb">f Facebook</a>` : ''}
+                </div>
+            </div>
+        </div>`;
+    }).join("");
+}
+
+function renderDonations(donations){
+    const container = document.getElementById('donationsContainer');
+    if(!donations || donations.length === 0){
+        container.innerHTML = `<div class="empty">🙏 अभी कोई दान रिकॉर्ड उपलब्ध नहीं है।</div>`;
+        return;
+    }
+
+    container.innerHTML = donations.map(tx => `
+        <div class="donation-card">
+            <div class="donation-icon">📥</div>
+            <div class="donation-main">
+                <div class="donor-name">${tx.full_name} <span class="tx-badge">जमा</span></div>
+                ${tx.unique_id ? `<div class="donor-id">ID: ${tx.unique_id}</div>` : ''}
+                <div class="donation-amount">+ ${tx.amount_label}</div>
+                <div class="donation-meta">${tx.payment_mode || 'UPI'} • ${tx.tx_date}</div>
+            </div>
+            <a href="${tx.receipt_url}" target="_blank" class="receipt">🧾 रसीद</a>
+        </div>
+    `).join("");
+}
+
+/* ================= TABS ================= */
+function showTab(tabId, btn){
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+
+    const selected = document.getElementById(tabId);
+    if(selected) selected.classList.add('active');
+    btn.classList.add('active');
+
+    window.scrollTo({
+        top: document.querySelector('.tabs-wrap').offsetTop - 5,
+        behavior:'smooth'
+    });
+}
+
+/* ================= ACCORDION ================= */
+function toggleAccordion(contentId, button){
+    const area = document.getElementById(contentId);
+    if(!area) return;
+    area.classList.toggle('open');
+    const arrow = button.querySelector('.accordion-arrow');
+    if(area.classList.contains('open')){
+        if(arrow) arrow.innerHTML = '↑';
+    } else {
+        if(arrow) arrow.innerHTML = '↓';
+    }
+}
+
+/* ================= CONTACT ================= */
+function openContact(){
+    document.getElementById('contactOverlay').classList.add('show');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeContact(){
+    document.getElementById('contactOverlay').classList.remove('show');
+    document.body.style.overflow = '';
+}
+
+/* ================= LIGHTBOX ================= */
+function openLightbox(src){
+    document.getElementById('lightboxImage').src = src;
+    document.getElementById('lightbox').classList.add('show');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox(event){
+    if(event && event.target && event.target.id !== 'lightbox' && !event.target.classList.contains('lightbox-close')){
+        return;
+    }
+    document.getElementById('lightbox').classList.remove('show');
+    document.body.style.overflow = '';
+}
+
+/* ================= POST SLIDER ================= */
+const slideIndexes = {};
+function moveSlide(postId, direction){
+    if(typeof slideIndexes[postId] === 'undefined') slideIndexes[postId] = 0;
+    const container = document.getElementById('slides-' + postId);
+    if(!container) return;
+    const total = container.children.length;
+    if(total <= 1) return;
+    slideIndexes[postId] += direction;
+    if(slideIndexes[postId] >= total) slideIndexes[postId] = 0;
+    if(slideIndexes[postId] < 0) slideIndexes[postId] = total - 1;
+    container.style.transform = 'translateX(-' + (slideIndexes[postId] * 100) + '%)';
+}
+
+/* ================= SHOW MORE ================= */
+function showMore(id, button){
+    const text = document.getElementById('text-' + id);
+    if(!text) return;
+    text.classList.remove('hidden-caption');
+    button.style.display = 'none';
+}
+
+/* ================= LIKE ================= */
+function toggleLike(button){
+    button.classList.toggle('liked');
+    if(button.classList.contains('liked')){
+        button.innerHTML = '❤️ Liked';
+    } else {
+        button.innerHTML = '❤️ Like';
+    }
+}
+
+/* ================= SHARE ================= */
+async function shareProfile(){
+    const url = window.location.href;
+    const title = "जीव सेवा - सनातन सेवा समिति";
+    if(navigator.share){
+        try{ await navigator.share({ title: title, text: 'यह प्रोफाइल देखें', url: url }); }catch(e){}
+    } else {
+        try{ await navigator.clipboard.writeText(url); alert('प्रोफाइल लिंक कॉपी हो गया!'); }catch(e){}
+    }
+}
+
+async function sharePost(postId){
+    const url = 'https://sanatansevasamiti.org/feed.php?postid=' + postId;
+    if(navigator.share){
+        try{ await navigator.share({ title: 'Post', text: 'यह पोस्ट देखें', url: url }); }catch(e){}
+    } else {
+        window.open('https://wa.me/?text=' + encodeURIComponent('देखें: ' + url), '_blank');
+    }
+}
+
+document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){
+        closeContact();
+        document.getElementById('lightbox').classList.remove('show');
+        document.body.style.overflow = '';
+    }
+});
+
+window.addEventListener("DOMContentLoaded", loadJeevSevaData);
+</script>
+
+</body>
+</html>
