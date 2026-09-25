@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>शिव शक्ति शिक्षा केंद्र | शिक्षा एवं संस्कार सेवा</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   MODERN DIVINE GLASSMORPHISM & SAFFRON/GOLD SYSTEM
+============================================================ */
+:root {
+    --primary-orange: #ff7200;
+    --primary-gradient: linear-gradient(135deg, #ff922b 0%, #ff7200 50%, #e8590c 100%);
+    --maroon-deep: #7a1200;
+    --gold: #f59f00;
+    --gold-light: #fff3bf;
+    
+    --bg-main: radial-gradient(circle at 50% 0%, #ffffff 0%, #fff7ed 40%, #ffedd5 100%);
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --border-accent: 2px solid #fed7aa;
+    --border-strong: 2px solid #ff7200;
+    
+    --shadow-soft: 0 10px 30px rgba(234, 88, 12, 0.08);
+    --shadow-prominent: 0 20px 50px rgba(194, 65, 12, 0.15);
+    
+    --radius-xl: 32px;
+    --radius-md: 20px;
+    --radius-sm: 14px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html { scroll-behavior: smooth; }
+
+body {
+    background: var(--bg-main);
+    background-attachment: fixed;
+    color: #331405;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    overflow-x: hidden;
+    padding-bottom: 95px;
+}
+
+.c-container {
+    width: min(1200px, 94%);
+    margin: 0 auto;
+}
+
+/* 1. STICKY TOPBAR */
+.c-topbar {
+    position: sticky;
+    top: 12px;
+    z-index: 999;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(20px);
+    border: var(--border-strong);
+    border-radius: var(--radius-xl);
+    padding: 10px 18px;
+    margin: 12px auto 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: var(--shadow-prominent);
+}
+
+.c-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.c-brand-logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid var(--primary-orange);
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 4px 15px rgba(255, 114, 0, 0.25);
+}
+.c-brand-logo img { width: 100%; height: 100%; object-fit: cover; }
+
+.c-brand-title {
+    font-family: 'Yatra One', cursive;
+    font-size: 20px;
+    color: var(--maroon-deep);
+    line-height: 1.1;
+}
+
+.c-brand-sub {
+    font-size: 10px;
+    color: #7c2d12;
+    font-weight: 700;
+}
+
+.c-wallet-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #fff7ed, #ffedd5);
+    border: 1.5px solid var(--primary-orange);
+    padding: 8px 16px;
+    border-radius: 999px;
+    color: var(--maroon-deep);
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 13px;
+    box-shadow: 0 4px 12px rgba(255, 114, 0, 0.15);
+    transition: all 0.3s ease;
+}
+.c-wallet-badge:hover { transform: scale(1.04); }
+
+/* 2. HERO SHOWCASE */
+.c-hero {
+    position: relative;
+    border-radius: var(--radius-xl);
+    border: var(--border-strong);
+    background: linear-gradient(180deg, #ffffff 0%, #fffbf5 100%);
+    box-shadow: var(--shadow-prominent);
+    overflow: hidden;
+    padding: 45px 30px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.c-hero::after {
+    content: "🕉️";
+    position: absolute;
+    top: -40px;
+    right: -25px;
+    font-size: 200px;
+    opacity: 0.04;
+    pointer-events: none;
+}
+
+.c-hero-avatar {
+    width: 140px;
+    height: 140px;
+    margin: 0 auto 16px;
+    padding: 6px;
+    border-radius: 50%;
+    background: var(--primary-gradient);
+    box-shadow: 0 0 35px rgba(255, 114, 0, 0.35);
+}
+
+.c-hero-avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #fff;
+    background: #fff;
+}
+
+.c-tag-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 18px;
+    background: #fff7ed;
+    border: 1px solid #fed7aa;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 900;
+    color: var(--primary-orange);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.c-hero-h1 {
+    font-family: 'Yatra One', cursive;
+    font-size: clamp(34px, 5.5vw, 62px);
+    line-height: 1.15;
+    color: var(--maroon-deep);
+    margin-bottom: 10px;
+}
+
+.c-hero-tagline {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--primary-orange);
+    margin-bottom: 16px;
+}
+
+.c-hero-p {
+    max-width: 800px;
+    margin: 0 auto 28px;
+    font-size: 15px;
+    line-height: 1.9;
+    color: #6c4735;
+}
+
+.c-hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.btn-primary-action {
+    background: var(--primary-gradient);
+    color: #ffffff;
+    padding: 15px 32px;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(255, 114, 0, 0.35);
+    transition: all 0.3s ease;
+}
+.btn-primary-action:hover { transform: translateY(-2px); box-shadow: 0 15px 35px rgba(255, 114, 0, 0.45); }
+
+.btn-secondary-action {
+    background: #ffffff;
+    color: var(--maroon-deep);
+    border: 1.5px solid var(--primary-orange);
+    padding: 15px 25px;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.btn-secondary-action:hover { background: #fff7ed; }
+
+/* 3. GURUDEV SANKALP BANNER */
+.c-sankalp-banner {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 25px;
+    background: var(--card-bg);
+    border: var(--border-accent);
+    border-radius: var(--radius-xl);
+    padding: 24px;
+    box-shadow: var(--shadow-soft);
+    margin-bottom: 25px;
+    align-items: center;
+}
+
+.c-maharaj-frame {
+    width: 100%;
+    height: 360px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 3px solid #fdba74;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+.c-maharaj-frame img { width: 100%; height: 100%; object-fit: cover; }
+
+.c-sankalp-body h3 {
+    font-family: 'Yatra One', cursive;
+    color: var(--maroon-deep);
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.c-sankalp-quote {
+    background: #fffbf5;
+    border-left: 4px solid var(--primary-orange);
+    padding: 18px;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    font-size: 15px;
+    line-height: 1.8;
+    color: #7c2d12;
+    margin-bottom: 14px;
+    font-style: italic;
+    font-weight: 700;
+}
+
+/* 4. MISSION GRID */
+.c-section-title {
+    text-align: center;
+    margin: 35px 0 20px;
+}
+.c-section-title h2 {
+    font-family: 'Yatra One', cursive;
+    font-size: 30px;
+    color: var(--maroon-deep);
+}
+.c-section-title p { font-size: 13px; color: #7c2d12; margin-top: 4px; font-weight: 600; }
+
+.c-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin-bottom: 30px;
+}
+
+.c-card {
+    background: var(--card-bg);
+    border: var(--border-accent);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    box-shadow: var(--shadow-soft);
+    transition: all 0.3s ease;
+    text-align: center;
+}
+.c-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-orange);
+    box-shadow: var(--shadow-prominent);
+}
+.c-card-icon {
+    font-size: 38px;
+    margin-bottom: 12px;
+}
+.c-card h4 {
+    font-size: 18px;
+    color: var(--maroon-deep);
+    margin-bottom: 8px;
+    font-weight: 800;
+}
+.c-card p {
+    font-size: 13px;
+    color: #6c4735;
+    line-height: 1.7;
+    font-weight: 600;
+}
+
+/* 5. CAMPAIGN SHOWCASE */
+.c-campaign-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-bottom: 30px;
+}
+
+.c-campaign-card {
+    background: #ffffff;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: var(--border-accent);
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.3s ease;
+}
+.c-campaign-card:hover { transform: translateY(-4px); }
+
+.c-campaign-img {
+    height: 180px;
+    overflow: hidden;
+}
+.c-campaign-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s;
+}
+.c-campaign-card:hover .c-campaign-img img { transform: scale(1.08); }
+
+.c-campaign-body {
+    padding: 16px;
+    text-align: center;
+}
+.c-campaign-body h4 {
+    font-size: 17px;
+    color: var(--maroon-deep);
+    margin-bottom: 6px;
+    font-weight: 800;
+}
+.c-campaign-body p {
+    font-size: 12px;
+    color: #6c4735;
+    line-height: 1.6;
+}
+
+/* 6. DONATION PORTAL (WALLET CORE) */
+.c-donation-hub {
+    background: #ffffff;
+    border: var(--border-strong);
+    border-radius: var(--radius-xl);
+    padding: 35px;
+    box-shadow: var(--shadow-prominent);
+    margin-bottom: 35px;
+}
+
+.c-wallet-status-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff7ed;
+    border: 1px solid #fed7aa;
+    border-radius: var(--radius-sm);
+    padding: 16px 20px;
+    margin-bottom: 25px;
+}
+.c-user-meta .u-name { font-weight: 800; font-size: 15px; color: var(--maroon-deep); }
+.c-user-meta .u-id { font-size: 11px; color: #7c2d12; display: block; margin-top: 2px; }
+.c-bal-meta { text-align: right; }
+.c-bal-meta .b-label { font-size: 11px; color: #7c2d12; font-weight: 700; }
+.c-bal-meta .b-val { font-size: 24px; font-weight: 900; color: #16a34a; }
+
+/* TABS */
+.c-tabs-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    background: #f8fafc;
+    padding: 6px;
+    border-radius: var(--radius-sm);
+    border: 1px solid #e2e8f0;
+    margin-bottom: 25px;
+}
+
+.c-tab-btn {
+    padding: 14px 10px;
+    border: none;
+    background: transparent;
+    color: #64748b;
+    font-weight: 800;
+    font-size: 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+.c-tab-btn.active {
+    background: var(--primary-gradient);
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(255, 114, 0, 0.3);
+}
+
+/* QUICK AMOUNTS */
+.c-chips-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin-bottom: 20px;
+}
+.c-chip {
+    background: #fffaf5;
+    border: 1.5px solid #fed7aa;
+    color: #c2410c;
+    padding: 12px 5px;
+    border-radius: var(--radius-sm);
+    font-weight: 800;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.c-chip:hover { background: var(--primary-orange); color: #fff; border-color: var(--primary-orange); }
+
+/* INPUTS */
+.c-field-group { margin-bottom: 20px; }
+.c-field-group label {
+    display: block;
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--maroon-deep);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.c-input-wrap { position: relative; }
+.c-input-wrap span {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--primary-orange);
+    font-size: 22px;
+    font-weight: 900;
+}
+
+.c-input {
+    width: 100%;
+    padding: 15px 18px;
+    background: #fffdfa;
+    border: 1.5px solid #fed7aa;
+    border-radius: var(--radius-sm);
+    color: #331405;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: inherit;
+    outline: none;
+    transition: border 0.3s;
+}
+.c-input:focus { border-color: var(--primary-orange); box-shadow: 0 0 0 4px rgba(255, 114, 0, 0.12); }
+.c-input.amount-pad { padding-left: 45px; font-size: 24px; font-weight: 900; color: var(--maroon-deep); }
+
+.c-submit-btn {
+    width: 100%;
+    padding: 18px;
+    border: none;
+    border-radius: var(--radius-sm);
+    background: var(--primary-gradient);
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(255, 114, 0, 0.35);
+    transition: all 0.3s;
+}
+.c-submit-btn:hover { transform: translateY(-2px); box-shadow: 0 15px 40px rgba(255, 114, 0, 0.45); }
+
+/* ERROR & MODAL */
+.c-error-box {
+    background: #ffe4e6;
+    border: 1px solid #f43f5e;
+    padding: 16px;
+    border-radius: var(--radius-sm);
+    color: #be123c;
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 20px;
+    text-align: center;
+    display: none;
+}
+.c-error-box a {
+    display: inline-block;
+    margin-top: 8px;
+    background: #f43f5e;
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.c-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: rgba(30, 10, 0, 0.85);
+    backdrop-filter: blur(8px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+.c-modal-card {
+    width: 100%;
+    max-width: 440px;
+    background: #ffffff;
+    border: var(--border-strong);
+    border-radius: var(--radius-xl);
+    padding: 30px 24px;
+    text-align: center;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.35);
+}
+.c-modal-icon { font-size: 55px; margin-bottom: 10px; }
+.c-modal-h3 { font-family: 'Yatra One', cursive; color: var(--maroon-deep); font-size: 24px; }
+.c-modal-amt { font-size: 32px; font-weight: 900; color: #16a34a; margin: 10px 0; }
+.c-modal-actions { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+
+/* 8. HISTORY LIST */
+.c-history-list { display: flex; flex-direction: column; gap: 12px; }
+.c-history-item {
+    background: var(--card-bg);
+    border: var(--border-accent);
+    border-radius: var(--radius-sm);
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    box-shadow: var(--shadow-soft);
+}
+.c-h-left .date { font-size: 11px; color: #7c2d12; font-weight: 700; }
+.c-h-left .desc { font-size: 14px; font-weight: 800; color: #331405; margin-top: 2px; }
+.c-h-right { display: flex; align-items: center; gap: 12px; }
+.c-h-amt { font-size: 18px; font-weight: 900; color: var(--maroon-deep); }
+.c-h-badge {
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 800;
+}
+.badge-approved { background: #dcfce7; color: #15803d; border: 1px solid #15803d; }
+.badge-pending { background: #fef9c3; color: #a16207; border: 1px solid #a16207; }
+.c-h-btn {
+    background: #fff7ed;
+    border: 1px solid var(--primary-orange);
+    color: #c2410c;
+    padding: 6px 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+@media (max-width: 900px) {
+    .c-sankalp-banner { grid-template-columns: 1fr; text-align: center; }
+    .c-maharaj-frame { height: 320px; }
+    .c-chips-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 600px) {
+    .c-tabs-wrapper { grid-template-columns: 1fr; }
+    .c-chips-grid { grid-template-columns: repeat(3, 1fr); }
+    .c-hero { padding: 30px 15px; }
+    .c-hero-h1 { font-size: 32px; }
+    .c-donation-hub { padding: 20px 15px; }
+}
+</style>
+</head>
+<body>
+
+<div class="c-container">
+
+    <!-- 1. STICKY TOPBAR -->
+    <header class="c-topbar">
+        <div class="c-brand">
+            <div class="c-brand-logo">
+                <img src="https://sanatansevasamiti.org/public_html/Images/ss/PRO1781367447_dp.jpg" alt="शिव शक्ति शिक्षा केंद्र">
+            </div>
+            <div>
+                <div class="c-brand-title">शिव शक्ति शिक्षा केंद्र</div>
+                <div class="c-brand-sub">सनातन सेवा समिति • शिक्षा महाअभियान</div>
+            </div>
+        </div>
+        <a href="app_wallet.html" class="c-wallet-badge">
+            <span>💳</span> <span id="topWalletBalance">₹0.00</span>
+        </a>
+    </header>
+
+    <!-- 2. HERO SHOWCASE -->
+    <section class="c-hero">
+        <div class="c-hero-avatar">
+            <img src="https://sanatansevasamiti.org/public_html/Images/ss/PRO1781367447_dp.jpg" alt="शिव शक्ति शिक्षा केंद्र">
+        </div>
+        <div class="c-tag-kicker">📚 शिक्षा • संस्कार • आत्मनिर्भरता संकल्प</div>
+        <h1 class="c-hero-h1">शिव शक्ति शिक्षा केंद्र</h1>
+        <div class="c-hero-tagline">“ज्ञान से शक्ति • शिक्षा से संस्कार • कौशल से आत्मनिर्भरता”</div>
+        <p class="c-hero-p">
+            हर बालक, बालिका और जरूरतमंद व्यक्ति तक अच्छी शिक्षा, संस्कार, डिजिटल ज्ञान, कौशल विकास और आत्मनिर्भरता के अवसर पहुँचाने का संकल्प।
+        </p>
+        <div class="c-hero-actions">
+            <a href="#dedication-hub" onclick="switchFormTab('dhan')" class="btn-primary-action">📚 वॉलेट से शिक्षा सेवा दें</a>
+            <a href="#shiksha-sankalp" class="btn-secondary-action">🙏 पूज्य गुरुदेव का संकल्प</a>
+        </div>
+    </section>
+
+    <!-- ERROR NOTIFICATION -->
+    <div class="c-error-box" id="errorBox">
+        <span id="errorMessage">⚠️ त्रुटि</span>
+        <br><a href="app_wallet.html" id="errorWalletLink" style="display:none;">💰 तुरंत वॉलेट रीचार्ज करें</a>
+    </div>
+
+    <!-- 3. GURUDEV SANKALP BANNER -->
+    <section class="c-sankalp-banner" id="shiksha-sankalp">
+        <div class="c-maharaj-frame">
+            <img src="https://sanatansevasamiti.org/public_html/Images/maharaj.jpg" alt="सद्गुरुदेव स्वामी सच्चिदानंद जी महाराज">
+        </div>
+        <div class="c-sankalp-body">
+            <div class="c-tag-kicker">🙏 पूज्य सद्गुरुदेव का पावन संकल्प</div>
+            <h3>श्री श्री 1008 स्वामी सच्चिदानंद जी महाराज</h3>
+            <div class="c-sankalp-quote">
+                “ज्ञान का प्रकाश प्रत्येक जीवन तक पहुँचे, शिक्षा किसी के सपनों की सीमा न बने और संस्कारों से युक्त शिक्षित समाज हमारी आने वाली पीढ़ियों की शक्ति बने।”
+            </div>
+            <p style="font-size: 14px; color: #6c4735; line-height: 1.8;">
+                शिव शक्ति शिक्षा केंद्र पूज्य गुरुदेव के आशीर्वाद से बालक-बालिकाओं, युवाओं एवं जरूरतमंदों को गुणवत्तापूर्ण शिक्षा, संस्कार, डिजिटल ज्ञान एवं हुनर से जोड़कर समाज को स्वावलंबी बनाने का अविरल प्रयास है।
+            </p>
+        </div>
+    </section>
+
+    <!-- 4. CORE MISSION GRID -->
+    <div class="c-section-title">
+        <h2>हमारा शिक्षा संकल्प</h2>
+        <p>शिक्षा के साथ संस्कार, व्यावहारिक ज्ञान और डिजिटल क्षमता का विस्तार</p>
+    </div>
+
+    <div class="c-cards-grid">
+        <div class="c-card">
+            <div class="c-card-icon">🎓</div>
+            <h4>गुणवत्तापूर्ण शिक्षा</h4>
+            <p>विद्यार्थियों को आधुनिक, उपयोगी एवं उच्च स्तरीय शिक्षा के संसाधन उपलब्ध कराना।</p>
+        </div>
+        <div class="c-card">
+            <div class="c-card-icon">💻</div>
+            <h4>डिजिटल साक्षरता</h4>
+            <p>बच्चों, युवाओं एवं बालिकाओं को कंप्यूटर ज्ञान व आधुनिक तकनीकी कौशल से जोड़ना।</p>
+        </div>
+        <div class="c-card">
+            <div class="c-card-icon">🛠️</div>
+            <h4>युवा कौशल विकास</h4>
+            <p>व्यावहारिक प्रशिक्षण द्वारा युवाओं को आत्मनिर्भरता व स्वरोजगार के योग्य बनाना।</p>
+        </div>
+        <div class="c-card">
+            <div class="c-card-icon">🪷</div>
+            <h4>संस्कार शिक्षा</h4>
+            <p>आधुनिक शिक्षा के साथ सनातन संस्कृति, नैतिकता और चरित्र निर्माण का समन्वय।</p>
+        </div>
+    </div>
+
+    <!-- 5. CAMPAIGNS SHOWCASE -->
+    <div class="c-section-title">
+        <h2>📚 हमारे प्रमुख अभियान</h2>
+        <p>आपका सहयोग इन अभियानों को अधिक से अधिक विद्यार्थियों तक पहुँचाने में सहायक है</p>
+    </div>
+
+    <div class="c-campaign-grid">
+        <div class="c-campaign-card">
+            <div class="c-campaign-img">
+                <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=85" alt="शिक्षा अभियान" loading="lazy">
+            </div>
+            <div class="c-campaign-body">
+                <h4>शिक्षा अभियान</h4>
+                <p>हर बच्चे तक शिक्षा पहुँचाने का समर्पित प्रयास</p>
+            </div>
+        </div>
+        <div class="c-campaign-card">
+            <div class="c-campaign-img">
+                <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=85" alt="डिजिटल साक्षरता" loading="lazy">
+            </div>
+            <div class="c-campaign-body">
+                <h4>डिजिटल साक्षरता</h4>
+                <p>नई पीढ़ी को डिजिटल युग व कंप्यूटर से जोड़ना</p>
+            </div>
+        </div>
+        <div class="c-campaign-card">
+            <div class="c-campaign-img">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=85" alt="युवा कौशल विकास" loading="lazy">
+            </div>
+            <div class="c-campaign-body">
+                <h4>युवा कौशल विकास</h4>
+                <p>कौशल, ज्ञान और रोजगार के नए अवसर</p>
+            </div>
+        </div>
+        <div class="c-campaign-card">
+            <div class="c-campaign-img">
+                <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1200&q=85" alt="बालिका शिक्षा" loading="lazy">
+            </div>
+            <div class="c-campaign-body">
+                <h4>बालिका शिक्षा</h4>
+                <p>बेटियों की शिक्षा और सुरक्षित उज्ज्वल भविष्य</p>
+            </div>
+        </div>
+        <div class="c-campaign-card">
+            <div class="c-campaign-img">
+                <img src="https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&w=1200&q=85" alt="संस्कार शिक्षा" loading="lazy">
+            </div>
+            <div class="c-campaign-body">
+                <h4>संस्कार शिक्षा</h4>
+                <p>आधुनिक शिक्षा के साथ भारतीय सनातन संस्कार</p>
+            </div>
+        </div>
+        <div class="c-campaign-card">
+            <div class="c-campaign-img">
+                <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=1200&q=85" alt="ज्ञान का दीप" loading="lazy">
+            </div>
+            <div class="c-campaign-body">
+                <h4>ज्ञान का दीप</h4>
+                <p>पुस्तक, ज्ञान और अध्ययन संस्कृति का विस्तार</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6. MAIN DONATION PORTAL (WALLET INTEGRATED) -->
+    <section class="c-donation-hub" id="dedication-hub">
+        <div class="c-section-title" style="margin-top:0;">
+            <h2>🌺 शिक्षा सेवा में अपना समर्पण दें</h2>
+            <p>श्रद्धा एवं सामर्थ्य अनुसार धन, अन्न अथवा प्रत्यक्ष सेवा चुनें</p>
+        </div>
+
+        <div class="c-wallet-status-bar">
+            <div class="c-user-meta">
+                <span class="u-name">👤 सेवक: <span id="userNameLabel">सनातन सेवक</span></span>
+                <span class="u-id">User ID: <span id="userIdLabel">---</span> • Profile: PRO1781367447</span>
+            </div>
+            <div class="c-bal-meta">
+                <span class="b-label">उपलब्ध वॉलेट बैलेंस</span>
+                <span class="b-val" id="hubWalletBalance">₹0.00</span>
+            </div>
+        </div>
+
+        <div class="c-tabs-wrapper">
+            <button type="button" class="c-tab-btn active" id="tab_dhan" onclick="switchFormTab('dhan')">💰 धन सेवा (Wallet)</button>
+            <button type="button" class="c-tab-btn" id="tab_ann" onclick="switchFormTab('ann')">🌾 अन्न सेवा (Kg)</button>
+            <button type="button" class="c-tab-btn" id="tab_seva" onclick="switchFormTab('seva')">🚩 सेवा समर्पण</button>
+        </div>
+
+        <!-- FORM 1: DHAN DAAN (WALLET) -->
+        <form id="form_dhan" onsubmit="handleShikshaDaan(event, 'dhan')">
+            <div class="c-chips-grid">
+                <button type="button" class="c-chip" onclick="setDhanAmount(101)">₹101</button>
+                <button type="button" class="c-chip" onclick="setDhanAmount(501)">₹501</button>
+                <button type="button" class="c-chip" onclick="setDhanAmount(1100)">₹1,100</button>
+                <button type="button" class="c-chip" onclick="setDhanAmount(2100)">₹2,100</button>
+                <button type="button" class="c-chip" onclick="setDhanAmount(5100)">₹5,100</button>
+            </div>
+
+            <div class="c-field-group">
+                <label>समर्पण राशि (₹)</label>
+                <div class="c-input-wrap">
+                    <span>₹</span>
+                    <input type="number" id="amount_dhan" class="c-input amount-pad" min="1" step="1" placeholder="0" required>
+                </div>
+            </div>
+
+            <div class="c-field-group">
+                <label>शिक्षा सेवा उद्देश्य</label>
+                <select id="seva_desc_dhan" class="c-input">
+                    <option value="विद्यार्थी शिक्षा व पुस्तक सहायता">📚 विद्यार्थी शिक्षा व पुस्तक सहायता</option>
+                    <option value="बालिका शिक्षा उत्थान">👧 बालिका शिक्षा उत्थान</option>
+                    <option value="डिजिटल साक्षरता अभियान">💻 डिजिटल साक्षरता अभियान</option>
+                    <option value="युवा कौशल विकास व स्वरोजगार">🛠️ युवा कौशल विकास व स्वरोजगार</option>
+                    <option value="संस्कार शिक्षा व केंद्र विकास">🏫 संस्कार शिक्षा व केंद्र विकास</option>
+                    <option value="शिव शक्ति सामान्य शिक्षा सेवा" selected>🌺 शिव शक्ति सामान्य शिक्षा सेवा</option>
+                </select>
+            </div>
+
+            <button type="submit" id="btnSubmitDhan" class="c-submit-btn">🙏 वॉलेट से शिक्षा सेवा समर्पित करें</button>
+        </form>
+
+        <!-- FORM 2: ANN DAAN -->
+        <form id="form_ann" style="display:none;" onsubmit="handleShikshaDaan(event, 'ann')">
+            <div class="c-field-group">
+                <label>अन्न की मात्रा (Kg में)</label>
+                <input type="number" step="0.1" id="amount_ann" class="c-input" placeholder="उदा. 25, 50, 100 Kg" required>
+            </div>
+
+            <div class="c-field-group">
+                <label>अन्न / सामग्री का विवरण</label>
+                <input type="text" id="ann_desc" class="c-input" value="विद्यार्थी अन्न सेवा (गेहूं/चावल/दाल/फल)" required>
+            </div>
+
+            <button type="submit" id="btnSubmitAnn" class="c-submit-btn" style="background: linear-gradient(135deg,#16a34a,#15803d);">🌾 अन्न सेवा दर्ज करें</button>
+        </form>
+
+        <!-- FORM 3: SEVA SAMARPAN -->
+        <form id="form_seva" style="display:none;" onsubmit="handleShikshaDaan(event, 'seva')">
+            <div class="c-field-group">
+                <label>आपकी सेवा / श्रम का विस्तृत विवरण</label>
+                <textarea id="seva_desc_only" class="c-input" rows="4" placeholder="उदा. शिक्षण सेवा, कंप्यूटर प्रशिक्षण में समय समर्पण, पुस्तक वितरण, शिक्षा केंद्र निर्माण सामग्री..." required></textarea>
+            </div>
+
+            <button type="submit" id="btnSubmitSeva" class="c-submit-btn" style="background: linear-gradient(135deg,#ea580c,#c2410c);">🚩 सेवा समर्पण दर्ज करें</button>
+        </form>
+    </section>
+
+    <!-- 7. HISTORY LIST -->
+    <div class="c-section-title">
+        <h2>मेरी सेवा यात्रा (इतिहास)</h2>
+        <p>शिव शक्ति शिक्षा केंद्र को समर्पित आपके योगदान का आधिकारिक रिकॉर्ड</p>
+    </div>
+
+    <div id="historyContainer">
+        <div style="text-align:center; padding:30px; background:#ffffff; border-radius:var(--radius-md); border:var(--border-accent); color:#7c2d12; font-weight:600;">
+            📜 सेवा समर्पण इतिहास लोड हो रहा है...
+        </div>
+    </div>
+
+</div>
+
+<!-- 8. SUCCESS POPUP MODAL -->
+<div class="c-modal-overlay" id="successModal">
+    <div class="c-modal-card">
+        <div class="c-modal-icon">📚</div>
+        <div class="c-modal-h3">शिक्षा सेवा समर्पण सफल</div>
+        <div class="c-modal-amt" id="modalAmount">₹0.00</div>
+        <p style="font-size:13px; color:#6c4735; line-height:1.6; font-weight:600;" id="modalNotice">
+            आपके वॉलेट से सेवा राशि सफलतापूर्वक समर्पित हो चुकी है।
+        </p>
+        
+        <div style="margin:15px 0; padding:12px; background:#fff7ed; border:1px solid #fed7aa; border-radius:12px; font-size:12px; text-align:left; color:var(--maroon-deep); font-weight:700;">
+            <div><strong>रसीद संख्या:</strong> <span id="modalReceipt">---</span></div>
+            <div><strong>सेवा:</strong> <span id="modalDesc">---</span></div>
+            <div><strong>दिनांक:</strong> <span id="modalDate">---</span></div>
+        </div>
+
+        <div class="c-modal-actions">
+            <a id="modalReceiptLink" href="#" target="_blank" class="btn-primary-action" style="text-align:center;">📄 आधिकारिक रसीद देखें</a>
+            <a id="modalWhatsappLink" href="#" target="_blank" class="btn-secondary-action" style="text-align:center; background:#25D366; color:#fff; border:none;">📲 WhatsApp शेयर करें</a>
+            <button type="button" class="btn-secondary-action" onclick="closeSuccessModal()">पूर्ण करें</button>
+        </div>
+    </div>
+</div>
+
+<script>
+const PROFILE_ID = "PRO1781367447";
+let currentBalance = 0;
+let currentUserId = "";
+let currentUserName = "सनातन सेवक";
+
+function switchFormTab(type) {
+    document.querySelectorAll('.c-tab-btn').forEach(btn => btn.classList.remove('active'));
+    document.getElementById('form_dhan').style.display = 'none';
+    document.getElementById('form_ann').style.display = 'none';
+    document.getElementById('form_seva').style.display = 'none';
+
+    const tab = document.getElementById('tab_' + type);
+    const form = document.getElementById('form_' + type);
+    if(tab) tab.classList.add('active');
+    if(form) form.style.display = 'block';
+}
+
+function setDhanAmount(val) {
+    const input = document.getElementById('amount_dhan');
+    if(input) {
+        input.value = val;
+        input.focus();
+    }
+}
+
+function showError(msg, isWallet = false){
+    const box = document.getElementById('errorBox');
+    const msgEl = document.getElementById('errorMessage');
+    const wLink = document.getElementById('errorWalletLink');
+    if(box && msgEl){
+        msgEl.innerText = "⚠️ " + msg;
+        box.style.display = 'block';
+        if(wLink) wLink.style.display = isWallet ? 'inline-block' : 'none';
+        box.scrollIntoView({ behavior:'smooth', block:'center' });
+    }
+}
+
+function hideError(){
+    const box = document.getElementById('errorBox');
+    if(box) box.style.display = 'none';
+}
+
+function closeSuccessModal() {
+    document.getElementById('successModal').style.display = 'none';
+    loadUserData();
+}
+
+async function loadUserData(){
+    try {
+        const rawUser = localStorage.getItem("sss_user_data");
+        if(rawUser){
+            const u = JSON.parse(rawUser);
+            currentUserId = u.unique_id || u.id || "";
+            currentUserName = u.full_name || "सनातन सेवक";
+            document.getElementById('userNameLabel').innerText = currentUserName;
+            document.getElementById('userIdLabel').innerText = currentUserId;
+        }
+
+        const res = await fetch(`https://sanatansevasamiti.org/api/get_profile_full.php?action=detail&profile_id=${PROFILE_ID}&user_id=${encodeURIComponent(currentUserId)}`);
+        const data = await res.json();
+
+        if(data && data.status === 'success'){
+            if(data.user_data && data.user_data.is_logged_in){
+                currentBalance = parseFloat(data.user_data.wallet_balance) || 0;
+                document.getElementById('topWalletBalance').innerText = "₹" + currentBalance.toFixed(2);
+                document.getElementById('hubWalletBalance').innerText = "₹" + currentBalance.toFixed(2);
+                localStorage.setItem("sss_wallet_balance", currentBalance);
+
+                renderHistory(data.user_data.user_history);
+            } else {
+                renderHistory([]);
+            }
+        }
+    } catch(e){
+        console.error("Shiksha Kendra Daan Load Error:", e);
+    }
+}
+
+function renderHistory(list){
+    const c = document.getElementById('historyContainer');
+    if(!list || list.length === 0){
+        c.innerHTML = `
+            <div style="text-align:center; padding:30px; background:#ffffff; border-radius:var(--radius-md); border:var(--border-accent); color:#7c2d12; font-weight:600;">
+                📜 अभी इस प्रोफाइल के लिए आपकी कोई पूर्व सेवा दर्ज नहीं है। आज ही अपना प्रथम समर्पण दें।
+            </div>
+        `;
+        return;
+    }
+
+    c.innerHTML = `<div class="c-history-list">${list.map(h => {
+        let amtDisplay = '';
+        if(h.amount_type === 'ann') amtDisplay = "🌾 " + h.amount + " Kg";
+        else if(h.amount_type === 'seva') amtDisplay = "🚩 सेवा";
+        else amtDisplay = "₹" + parseFloat(h.amount).toFixed(2);
+
+        const isPending = (h.status === 'pending');
+
+        return `
+            <div class="c-history-item">
+                <div class="c-h-left">
+                    <div class="date">📅 ${h.tx_date} • TXN: ${h.tx_id}</div>
+                    <div class="desc">${h.seva_desc}</div>
+                </div>
+                <div class="c-h-right">
+                    <div class="c-h-amt">${amtDisplay}</div>
+                    <span class="c-h-badge ${isPending ? 'badge-pending' : 'badge-approved'}">
+                        ${isPending ? '⏳ पेंडिंग' : '✓ स्वीकृत'}
+                    </span>
+                    <a href="${h.receipt_url}" target="_blank" class="c-h-btn">📄 रसीद</a>
+                </div>
+            </div>
+        `;
+    }).join("")}</div>`;
+}
+
+async function handleShikshaDaan(e, type){
+    e.preventDefault();
+    hideError();
+
+    if(!currentUserId){
+        alert("कृपया सेवा के लिए पहले ऐप में लॉगिन करें।");
+        window.location.href = "app_login.html";
+        return;
+    }
+
+    let amount = 0;
+    let desc = "";
+    let btn = null;
+    let originalText = "";
+
+    if(type === 'dhan'){
+        amount = parseFloat(document.getElementById('amount_dhan').value) || 0;
+        desc = document.getElementById('seva_desc_dhan').value;
+        btn = document.getElementById('btnSubmitDhan');
+        originalText = "🙏 वॉलेट से शिक्षा सेवा समर्पित करें";
+
+        if(amount <= 0){
+            showError("कृपया मान्य सेवा राशि दर्ज करें।");
+            return;
+        }
+        if(amount > currentBalance){
+            showError("आपके डिजिटल वॉलेट में इस सेवा के लिए पर्याप्त राशि उपलब्ध नहीं है।", true);
+            return;
+        }
+    } else if(type === 'ann'){
+        amount = parseFloat(document.getElementById('amount_ann').value) || 0;
+        desc = document.getElementById('ann_desc').value.trim();
+        btn = document.getElementById('btnSubmitAnn');
+        originalText = "🌾 अन्न सेवा दर्ज करें";
+
+        if(amount <= 0 || !desc){
+            showError("कृपया मान्य अन्न मात्रा तथा सामग्री दर्ज करें।");
+            return;
+        }
+    } else if(type === 'seva'){
+        desc = document.getElementById('seva_desc_only').value.trim();
+        btn = document.getElementById('btnSubmitSeva');
+        originalText = "🚩 सेवा समर्पण दर्ज करें";
+
+        if(!desc){
+            showError("कृपया अपनी सेवा अथवा श्रम का विवरण लिखें।");
+            return;
+        }
+    }
+
+    btn.disabled = true;
+    btn.innerText = "⏳ सेवा दर्ज हो रही है...";
+
+    try {
+        const payload = {
+            profile_id: PROFILE_ID,
+            user_id: currentUserId,
+            type: type,
+            amount: amount,
+            seva_desc: desc
+        };
+
+        const res = await fetch(`https://sanatansevasamiti.org/api/get_profile_full.php?action=donate`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+
+        const data = await res.json();
+
+        if(data && data.status === 'success'){
+            let displayAmt = (type === 'dhan') ? `₹${amount.toFixed(2)}` : (type === 'ann' ? `${amount} Kg` : `🚩 सेवा समर्पण`);
+            document.getElementById('modalAmount').innerText = displayAmt;
+            document.getElementById('modalReceipt').innerText = data.receipt_no || "---";
+            document.getElementById('modalDesc').innerText = desc;
+            document.getElementById('modalDate').innerText = data.date || "आज";
+            document.getElementById('modalReceiptLink').href = data.receipt_url || "#";
+
+            const waShare = encodeURIComponent(`🚩 सनातन सेवा समिति - शिव शक्ति शिक्षा केंद्र रसीद\nसमर्पण: ${displayAmt}\nविवरण: ${desc}\nरसीद लिंक:\n${data.receipt_url}`);
+            document.getElementById('modalWhatsappLink').href = `https://api.whatsapp.com/send?text=${waShare}`;
+
+            document.getElementById('successModal').style.display = 'flex';
+
+            if(type === 'dhan') document.getElementById('amount_dhan').value = "";
+            if(type === 'ann') document.getElementById('amount_ann').value = "";
+            if(type === 'seva') document.getElementById('seva_desc_only').value = "";
+        } else {
+            showError(data.message || "समर्पण दर्ज करने में समस्या आई।");
+        }
+    } catch(err){
+        showError("सर्वर से संपर्क नहीं हो पाया। इंटरनेट कनेक्शन जाँचें।");
+    } finally {
+        btn.disabled = false;
+        btn.innerText = originalText;
+    }
+}
+
+document.addEventListener("DOMContentLoaded", loadUserData);
+</script>
+
+</body>
+</html>
