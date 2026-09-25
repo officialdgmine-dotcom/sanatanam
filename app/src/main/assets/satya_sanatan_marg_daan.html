@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>सत्य सनातन मार्ग — सनातन धर्म सेवा</title>
+
+<style>
+/* ============================================================
+   SATYA SANATAN MARG — PREMIUM DESIGN
+============================================================ */
+:root{
+    --saffron:#d96d08;
+    --saffron2:#f4a623;
+    --deep:#7b0c16;
+    --deep2:#48040b;
+    --gold:#d2a13c;
+    --gold2:#f6dc99;
+    --cream:#fffaf1;
+    --cream2:#f4e4cc;
+    --brown:#452719;
+    --text:#513629;
+    --muted:#806e61;
+    --green:#188449;
+    --white:#fff;
+    --shadow:0 20px 60px rgba(71,39,11,.11);
+}
+
+*{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html{ scroll-behavior:smooth; }
+
+body{
+    margin:0;
+    color:var(--text);
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, "Noto Sans Devanagari", sans-serif;
+    background:radial-gradient(circle at 50% -10%, #ffe6aa 0, #fffaf1 29%, #f1e3d2 100%);
+    overflow-x:hidden;
+    padding-bottom:95px;
+}
+
+body:before{
+    content:""; position:fixed; inset:0; pointer-events:none; opacity:.22;
+    background-image:radial-gradient(circle at 20% 20%, rgba(212,163,62,.28) 1px, transparent 1px);
+    background-size:32px 32px; z-index:-1;
+}
+
+/* TOPBAR */
+.topbar{
+    position:sticky; top:0; z-index:500; min-height:66px; display:flex; align-items:center;
+    gap:8px; padding:7px 12px; background:rgba(255,255,255,.94); backdrop-filter:blur(20px);
+    border-bottom:1px solid #eadbc5; box-shadow:0 6px 25px rgba(64,38,14,.07);
+}
+.back{
+    width:43px; height:43px; flex:none; display:flex; align-items:center; justify-content:center;
+    border-radius:15px; text-decoration:none; color:var(--deep); background:#fff5df;
+    border:1px solid #ecd7b2; font-size:22px; cursor:pointer;
+}
+.brand{ flex:1; min-width:0; text-align:center; }
+.brand-title{ font-size:16px; font-weight:1000; color:var(--deep); white-space:nowrap; }
+.brand-sub{ margin-top:2px; font-size:8px; color:#927f70; letter-spacing:.4px; white-space:nowrap; }
+.wallet-mini{
+    min-width:78px; padding:9px 7px; border-radius:15px; text-align:center; text-decoration:none;
+    background:#eaf8ef; border:1px solid #c9e8d3; color:#14763d; font-size:11px; font-weight:950;
+}
+
+/* HERO */
+.hero{
+    position:relative; margin:14px; overflow:hidden; border-radius:36px;
+    background:linear-gradient(145deg, #fffefb, #fff4dd 53%, #f6dfb4);
+    border:1px solid #e4cda4; box-shadow:0 25px 70px rgba(82,45,12,.14);
+}
+.hero-top-glow{
+    position:absolute; width:420px; height:420px; right:-190px; top:-200px;
+    border-radius:50%; background:radial-gradient(circle, rgba(214,163,62,.37), transparent 68%);
+}
+.hero-bottom-glow{
+    position:absolute; width:350px; height:350px; left:-190px; bottom:-190px;
+    border-radius:50%; background:radial-gradient(circle, rgba(125,16,24,.14), transparent 68%);
+}
+.om-badge{
+    position:absolute; top:17px; right:17px; z-index:5; width:54px; height:54px; display:flex;
+    align-items:center; justify-content:center; border-radius:18px; color:var(--deep);
+    font-size:28px; font-weight:1000; background:linear-gradient(145deg, #fff8df, #f2d38d);
+    border:1px solid #dfbd70; box-shadow:0 12px 28px rgba(103,57,9,.15);
+}
+.hero-photo-wrap{ position:relative; z-index:3; padding-top:27px; display:flex; align-items:center; justify-content:center; }
+.hero-aura{
+    position:absolute; width:235px; height:235px; border-radius:50%;
+    background:radial-gradient(circle, #fff 0, #ffeab2 42%, rgba(255,225,162,0) 72%);
+}
+.profile-ring{
+    position:relative; width:165px; height:165px; padding:7px; border-radius:50%;
+    background:linear-gradient(145deg, #fff0b4, #b97d1d, #f6d887, #9f6614);
+    box-shadow:0 22px 45px rgba(92,54,10,.27);
+}
+.profile-photo{
+    width:100%; height:100%; display:block; object-fit:cover; border-radius:50%;
+    border:5px solid #fff; background:#fff3d8;
+}
+.verified{
+    position:absolute; z-index:6; width:35px; height:35px; bottom:8px; right:2px; display:flex;
+    align-items:center; justify-content:center; border-radius:50%; background:#168347;
+    border:4px solid #fff; color:#fff; font-weight:950; box-shadow:0 8px 20px rgba(0,0,0,.18);
+}
+.hero-content{ position:relative; z-index:4; padding:16px 18px 15px; text-align:center; }
+.hero-kicker{
+    display:inline-flex; align-items:center; gap:6px; padding:7px 13px; border-radius:50px;
+    background:#fff1cf; border:1px solid #efd49e; color:#8b5515; font-size:10px; font-weight:950;
+}
+.hero-title{ margin:12px 0 5px; font-size:32px; line-height:1.15; font-weight:1000; letter-spacing:-1px; color:#4b2618; }
+.hero-tagline{ color:#8d5618; font-size:13px; font-weight:850; line-height:1.6; }
+.profile-code{ margin-top:7px; color:#9d8872; font-size:9px; letter-spacing:.7px; }
+
+.maharaj-strip{
+    position:relative; z-index:4; margin:0 14px 16px; padding:15px; border-radius:22px; text-align:center;
+    background:rgba(255,255,255,.76); border:1px solid rgba(211,170,92,.45); box-shadow:0 10px 30px rgba(91,52,12,.07);
+}
+.maharaj-small{ color:#9c681d; font-size:9px; font-weight:950; }
+.maharaj-name{ margin-top:6px; color:var(--deep); font-size:13px; line-height:1.65; font-weight:950; }
+.maharaj-role{ margin-top:5px; color:#78675b; font-size:10px; font-weight:800; }
+
+/* SERVICE CHOOSER */
+.choose-box{
+    position:relative; z-index:6; margin:0 14px 18px; padding:17px; border-radius:25px;
+    background:linear-gradient(145deg, #7b0c16, #b51b27); color:#fff;
+    box-shadow:0 20px 50px rgba(99,7,15,.21);
+}
+.choose-head{ text-align:center; margin-bottom:13px; }
+.choose-title{ margin:0; font-size:20px; font-weight:1000; }
+.choose-sub{ margin-top:5px; color:#ffe6c9; font-size:10px; line-height:1.6; }
+.choose-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:7px; }
+.choose-btn{
+    min-height:75px; padding:9px 5px; border:1px solid rgba(255,255,255,.16); border-radius:17px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px;
+    color:#fff; background:rgba(255,255,255,.10); font-family:inherit; font-size:10px;
+    font-weight:950; cursor:pointer; transition:.18s;
+}
+.choose-btn span{ font-size:23px; }
+.choose-btn:active{ transform:translateY(3px); background:rgba(255,255,255,.18); }
+
+/* SECTIONS */
+.section{
+    margin:15px 14px; padding:21px; border-radius:28px; background:rgba(255,255,255,.96);
+    border:1px solid #eadcc8; box-shadow:0 15px 45px rgba(71,41,13,.07);
+}
+.section-head{ display:flex; align-items:center; gap:11px; margin-bottom:14px; }
+.section-icon{
+    width:43px; height:43px; flex:none; display:flex; align-items:center; justify-content:center;
+    border-radius:15px; background:linear-gradient(145deg, #fff3d1, #f6d995); border:1px solid #ecd19b; font-size:21px;
+}
+.section-title{ margin:0; color:#4a291b; font-size:19px; line-height:1.3; font-weight:1000; }
+.section-sub{ margin-top:3px; color:#a08062; font-size:9px; font-weight:800; }
+
+.dharmic-intro{
+    overflow:hidden; padding:0; background:linear-gradient(145deg, #650711, #9e1420);
+    border:none; color:#fff; box-shadow:0 22px 55px rgba(94,7,15,.22);
+}
+.intro-image{ width:100%; height:225px; object-fit:cover; display:block; opacity:.90; }
+.intro-overlay{ padding:22px; background:linear-gradient(180deg, rgba(102,6,16,.05), #670812 35%, #4f050d); }
+.intro-title{ margin:0 0 8px; font-size:24px; line-height:1.35; font-weight:1000; }
+.intro-text{ color:#ffeeda; font-size:13px; line-height:1.9; }
+.quote{
+    margin-top:17px; padding:13px; border-left:3px solid #e5bc5e; background:rgba(255,255,255,.07);
+    color:#ffe9b5; font-size:12px; line-height:1.7; font-weight:850;
+}
+
+.maharaj-card{ overflow:hidden; padding:0; }
+.maharaj-image{ width:100%; height:330px; object-fit:cover; object-position:center top; display:block; }
+.maharaj-content{ padding:20px; }
+.maharaj-label{ color:#a16a18; font-size:10px; font-weight:950; }
+.maharaj-card-name{ margin:7px 0 8px; color:var(--deep); font-size:19px; line-height:1.55; font-weight:1000; }
+.maharaj-description{ color:#706054; font-size:13px; line-height:1.9; text-align:justify; }
+
+/* PROGRAM CARDS GRID */
+.program-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:9px; }
+.program-card{
+    position:relative; overflow:hidden; min-height:210px; padding:0; border-radius:21px;
+    background:#fffaf2; border:1px solid #eadbc5; cursor:pointer; transition:transform .18s, box-shadow .18s;
+}
+.program-card:active{ transform:scale(.985); }
+.program-image{ width:100%; height:125px; object-fit:cover; display:block; }
+.program-body{ padding:12px; }
+.program-icon{ font-size:20px; }
+.program-title{ margin-top:5px; color:#4d2b1d; font-size:13px; line-height:1.4; font-weight:1000; }
+.program-text{ margin-top:4px; color:#806f62; font-size:9px; line-height:1.5; }
+.program-action{ display:inline-block; margin-top:8px; padding:6px 9px; border-radius:10px; background:#fff0d0; color:#9c5a0c; font-size:8px; font-weight:1000; }
+
+.story{ color:#706156; font-size:13px; line-height:1.95; text-align:justify; }
+.story strong{ color:#9c4c09; }
+
+.seva-feature{ overflow:hidden; padding:0; }
+.feature-image{ width:100%; height:200px; display:block; object-fit:cover; }
+.feature-body{ padding:18px; }
+.feature-top{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
+.feature-title{ margin:0; color:#4a2819; font-size:19px; font-weight:1000; }
+.feature-tag{ padding:6px 9px; border-radius:30px; background:#fff1d2; color:#9b5e0d; font-size:9px; font-weight:950; }
+.feature-text{ margin-top:10px; color:#75665a; font-size:13px; line-height:1.85; }
+
+.benefit-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:9px; }
+.benefit{ min-height:105px; padding:14px; border-radius:19px; background:#fffaf2; border:1px solid #eadbc5; }
+.benefit-icon{ font-size:23px; }
+.benefit-title{ margin-top:7px; color:#513022; font-size:12px; font-weight:950; }
+.benefit-text{ margin-top:3px; color:#88766a; font-size:9px; line-height:1.5; }
+
+/* DONATION FORM */
+.donation-card{
+    margin:17px 14px; padding:20px; border-radius:31px;
+    background:linear-gradient(145deg, #fff, #fff3d7); border:1px solid #e4c994;
+    box-shadow:0 24px 65px rgba(91,50,8,.14);
+}
+.donation-heading{ text-align:center; margin-bottom:17px; }
+.donation-heading h2{ margin:0; color:var(--deep); font-size:23px; font-weight:1000; }
+.donation-heading p{ margin:6px 0 0; color:#806e60; font-size:11px; line-height:1.6; }
+
+.form-tabs{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:6px; padding:5px;
+    border-radius:20px; background:#f4e6d0; border:1px solid #ead5b3; margin-bottom:19px;
+}
+.f-tab{
+    border:0; min-height:49px; border-radius:15px; background:transparent; color:#7b5428;
+    font-family:inherit; font-size:10px; font-weight:1000; cursor:pointer; transition:.2s;
+}
+.f-tab.active{
+    color:#fff; background:linear-gradient(135deg, #df7909, #8e3100);
+    box-shadow:0 5px 12px rgba(132,53,0,.18);
+}
+
+.selected-service{
+    display:none; margin-bottom:14px; padding:13px; border-radius:17px; background:#fff4d9;
+    border:1px solid #ecd09a; color:#805116; font-size:11px; line-height:1.6; font-weight:900;
+}
+.selected-service strong{ color:#69101a; }
+
+.field-label{ display:block; margin:14px 0 7px; color:#695548; font-size:11px; font-weight:950; }
+.amount-wrap{ position:relative; }
+.amount-symbol{ position:absolute; left:17px; top:50%; transform:translateY(-50%); color:#c16a0b; font-size:23px; font-weight:1000; }
+.amount-input{
+    width:100%; padding:17px 15px 17px 47px; border:2px solid #e8d4b5; border-radius:19px;
+    outline:none; background:#fff; color:#432718; font-family:inherit; font-size:25px; font-weight:1000;
+}
+.amount-input:focus{ border-color:#d88918; box-shadow:0 0 0 4px rgba(216,137,24,.10); }
+
+.form-input{
+    width:100%; padding:14px 15px; border:2px solid #e8d8c1; border-radius:17px; outline:none;
+    background:#fff; color:#432718; font-family:inherit; font-size:14px; font-weight:700; resize:vertical;
+}
+.form-input:focus{ border-color:#d88918; box-shadow:0 0 0 4px rgba(216,137,24,.09); }
+
+.amount-options{ display:grid; grid-template-columns:repeat(4,1fr); gap:7px; margin:9px 0 15px; }
+.amount-btn{
+    padding:10px 3px; border:1px solid #e3ccaa; border-radius:13px; background:#fffaf1;
+    color:#8c5413; font-family:inherit; font-size:10px; font-weight:1000; cursor:pointer;
+}
+
+.wallet-box{
+    margin-top:16px; padding:16px; border-radius:20px;
+    background:linear-gradient(135deg, #eaf9ef, #f7fff9); border:1px solid #c7e8d2;
+}
+.wallet-head{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
+.wallet-label{ color:#567261; font-size:10px; font-weight:900; }
+.wallet-balance{ color:#11753c; font-size:20px; font-weight:1000; }
+.wallet-note{ margin-top:5px; color:#789184; font-size:9px; line-height:1.5; }
+
+.submit-btn{
+    width:100%; margin-top:18px; padding:17px; border:0; border-radius:19px; color:#fff;
+    font-family:inherit; font-size:14px; font-weight:1000; cursor:pointer; transition:.18s;
+}
+.submit-btn:active{ transform:translateY(5px); box-shadow:none !important; }
+.submit-btn-dhan{ background:linear-gradient(135deg, #df7909, #8f3400); box-shadow:0 7px 0 #612200; }
+.submit-btn-ann{ background:linear-gradient(135deg, #378d3c, #145c20); box-shadow:0 7px 0 #104418; }
+.submit-btn-seva{ background:linear-gradient(135deg, #c62828, #7b0007); box-shadow:0 7px 0 #510005; }
+
+.user-box{ margin-top:17px; padding:14px; border-radius:19px; background:#faf6ef; border:1px solid #eadfce; }
+.user-row{ display:flex; justify-content:space-between; gap:12px; padding:8px 0; border-bottom:1px solid #eee5d9; }
+.user-row:last-child{ border-bottom:0; }
+.user-label{ color:#9a8879; font-size:9px; font-weight:800; }
+.user-value{ max-width:64%; text-align:right; color:#4e3425; font-size:10px; font-weight:950; word-break:break-word; }
+
+/* ERROR & HISTORY */
+.error-box{
+    margin:14px; padding:16px; border-radius:19px; color:#a02121; background:#fff0f0;
+    border:1px solid #efcaca; font-size:12px; line-height:1.6; font-weight:800; display:none;
+}
+.error-box a{ display:block; margin-top:10px; padding:11px; text-align:center; color:#fff; text-decoration:none; border-radius:12px; background:#c66c0a; font-weight:950; }
+
+.history-list{ display:flex; flex-direction:column; gap:10px; }
+.history-item{ position:relative; padding:15px; border-radius:19px; background:#fffaf2; border:1px solid #eadcc8; overflow:hidden; }
+.history-item:before{ content:""; position:absolute; left:0; top:0; bottom:0; width:4px; background:#d68a19; }
+.history-top{ display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.history-date{ color:#998675; font-size:9px; font-weight:800; }
+.history-amount{ font-size:15px; font-weight:1000; }
+.history-desc{ margin:8px 0; color:#503425; font-size:12px; line-height:1.6; font-weight:850; }
+.history-bottom{ display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap; }
+.badge-status{ padding:5px 8px; border-radius:10px; font-size:8px; font-weight:1000; }
+.status-approved{ background:#e8f6ec; color:#258047; }
+.status-pending{ background:#fff1dd; color:#d56a0a; }
+.history-actions{ display:flex; gap:6px; flex-wrap:wrap; }
+.btn-h-receipt, .btn-h-share{ padding:7px 9px; border-radius:9px; text-decoration:none; font-size:9px; font-weight:1000; }
+.btn-h-receipt{ color:#a3570a; background:#fff0d4; border:1px solid #ecd5ad; }
+.btn-h-share{ color:#fff; background:#25D366; }
+
+/* MODAL */
+.modal-overlay{
+    position:fixed; inset:0; z-index:9999; display:none; align-items:center; justify-content:center;
+    padding:13px; background:rgba(30,9,3,.72); backdrop-filter:blur(9px);
+}
+.receipt-modal{
+    width:100%; max-width:410px; max-height:92vh; overflow:auto; border-radius:30px;
+    background:#fff; border:2px solid #dfb752; box-shadow:0 35px 90px rgba(0,0,0,.4);
+}
+.receipt-header{
+    position:relative; overflow:hidden; padding:24px 18px; text-align:center; color:#fff;
+    background:linear-gradient(145deg, #710811, #bb1925);
+}
+.receipt-header:after{ content:"ॐ"; position:absolute; right:15px; top:10px; color:rgba(255,235,174,.18); font-size:70px; }
+.receipt-body{ padding:20px; text-align:center; }
+.r-action-btn{
+    display:block; width:100%; margin-top:9px; padding:14px; border:0; border-radius:15px;
+    text-decoration:none; text-align:center; font-family:inherit; font-size:12px; font-weight:1000; cursor:pointer;
+}
+
+@media(max-width:380px){
+    .hero-title{ font-size:28px; }
+    .choose-btn{ min-height:70px; font-size:9px; }
+    .section{ padding:17px; }
+    .program-grid{ gap:7px; }
+}
+
+@media(min-width:700px){
+    body{ max-width:700px; margin:auto; }
+    .topbar{ max-width:700px; left:50%; transform:translateX(-50%); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+    <a href="satya_sanatan_marg.html" class="back">←</a>
+    <div class="brand">
+        <div class="brand-title">सत्य सनातन मार्ग</div>
+        <div class="brand-sub">धर्म • भक्ति • संस्कार • सेवा</div>
+    </div>
+    <a href="app_wallet.html" class="wallet-mini" id="topWalletBalance">₹0.00</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-top-glow"></div>
+    <div class="hero-bottom-glow"></div>
+    <div class="om-badge">ॐ</div>
+
+    <div class="hero-photo-wrap">
+        <div class="hero-aura"></div>
+        <div class="profile-ring">
+            <img class="profile-photo" id="heroProfilePhoto" src="https://sanatansevasamiti.org/Images/ss/PRO1781285901_dp.jpg" alt="सत्य सनातन मार्ग" onerror="this.src='https://sanatansevasamiti.org/public_html/Images/maharaj.jpg'">
+            <div class="verified">✓</div>
+        </div>
+    </div>
+
+    <div class="hero-content">
+        <div class="hero-kicker">🚩 सनातन सेवा • धर्म जागरण</div>
+        <h1 class="hero-title" id="heroProfileName">सत्य सनातन मार्ग</h1>
+        <div class="hero-tagline" id="heroProfileTagline">🕉️ धर्म • भक्ति • संस्कार • सनातन सेवा</div>
+        <div class="profile-code">सेवा प्रोफाइल • PRO1781285901</div>
+    </div>
+
+    <div class="maharaj-strip">
+        <div class="maharaj-small">🙏 परम पूज्य सद्गुरुदेव</div>
+        <div class="maharaj-name">
+            श्री श्री 1008 अनंत श्री विभूषित परम पूज्य जगद्गुरु सच्चिदानंदाचार्य आनंद पीठाधीश्वर परम पूज्य सद्गुरुदेव स्वामी सच्चिदानंद जी महाराज
+        </div>
+        <div class="maharaj-role">संस्थापक एवं राष्ट्रीय अध्यक्ष — सनातन सेवा समिति</div>
+    </div>
+</section>
+
+<!-- CHOOSE SERVICE -->
+<section class="choose-box">
+    <div class="choose-head">
+        <h2 class="choose-title">🙏 अपनी सेवा चुनें</h2>
+        <div class="choose-sub">
+            जिस धार्मिक कार्यक्रम में आप सहयोग करना चाहते हैं, उसे चुनें — नीचे उसी सेवा का दान/समर्पण फॉर्म खुलेगा।
+        </div>
+    </div>
+
+    <div class="choose-grid">
+        <button type="button" class="choose-btn" onclick="selectService('dhan','🔱 सामूहिक रुद्राभिषेक')">
+            <span>🔱</span><span>रुद्राभिषेक</span>
+        </button>
+        <button type="button" class="choose-btn" onclick="selectService('dhan','🚩 सामूहिक हनुमान चालीसा पाठ')">
+            <span>🚩</span><span>हनुमान चालीसा</span>
+        </button>
+        <button type="button" class="choose-btn" onclick="selectService('dhan','📖 श्रीमद्भागवत कथा')">
+            <span>📖</span><span>भागवत कथा</span>
+        </button>
+        <button type="button" class="choose-btn" onclick="selectService('dhan','🏹 श्री राम कथा')">
+            <span>🏹</span><span>श्री राम कथा</span>
+        </button>
+        <button type="button" class="choose-btn" onclick="selectService('dhan','🌺 देवी कथा')">
+            <span>🌺</span><span>देवी कथा</span>
+        </button>
+        <button type="button" class="choose-btn" onclick="selectService('dhan','🎶 भजन संध्या')">
+            <span>🎶</span><span>भजन संध्या</span>
+        </button>
+        <button type="button" class="choose-btn" onclick="selectService('dhan','🕉️ गोपाल सहस्त्रनाम सामूहिक पाठ')">
+            <span>🕉️</span><span>गोपाल सहस्त्रनाम</span>
+        </button>
+        <button type="button" class="choose-btn" onclick="selectService('dhan','📚 सामूहिक भागवत मूल पाठ')">
+            <span>📚</span><span>भागवत मूल पाठ</span>
+        </button>
+        <button type="button" class="choose-btn" onclick="selectService('dhan','🛕 तीर्थ यात्रा एवं धार्मिक आयोजन')">
+            <span>🛕</span><span>तीर्थ यात्रा</span>
+        </button>
+        <button type="button" class="choose-btn" onclick="selectService('ann','🌾 अन्न एवं प्रसाद सेवा')">
+            <span>🌾</span><span>अन्न सेवा</span>
+        </button>
+        <button type="button" class="choose-btn" onclick="selectService('seva','🚩 प्रत्यक्ष सेवा समर्पण')">
+            <span>🚩</span><span>प्रत्यक्ष सेवा</span>
+        </button>
+        <button type="button" class="choose-btn" onclick="selectService('dhan','🪔 सामान्य सनातन धर्म सेवा')">
+            <span>🪔</span><span>सामान्य सेवा</span>
+        </button>
+    </div>
+</section>
+
+<!-- ERROR BOX -->
+<div class="error-box" id="errorBox">
+    <span id="errorMessage">⚠️ त्रुटि</span>
+    <a href="app_wallet.html" id="errorWalletLink" style="display:none;">💰 वॉलेट में राशि जोड़ें</a>
+</div>
+
+<!-- INTRO -->
+<section class="section dharmic-intro">
+    <img src="https://sanatansevasamiti.org/public_html/Images/katha.jpg" class="intro-image" alt="सनातन धार्मिक कार्यक्रम">
+    <div class="intro-overlay">
+        <h2 class="intro-title">🕉️ धर्म से जुड़ें, सेवा से जुड़ें</h2>
+        <div class="intro-text">
+            <strong>सत्य सनातन मार्ग</strong> के माध्यम से सनातन धर्म, आध्यात्मिक संस्कार एवं धार्मिक चेतना से जुड़े विभिन्न कार्यक्रमों का आयोजन एवं सेवा कार्य किया जाता है।
+            <br><br>
+            श्रीमद्भागवत कथा, श्री राम कथा, देवी कथा, भजन संध्या, सामूहिक रुद्राभिषेक, हनुमान चालीसा पाठ, गोपाल सहस्त्रनाम पाठ, भागवत मूल पाठ तथा तीर्थ यात्राओं में धार्मिक आयोजन — इन सभी सेवाओं में श्रद्धालु अपनी सामर्थ्य एवं श्रद्धा के अनुसार सहभागी बन सकते हैं।
+        </div>
+        <div class="quote">
+            “धर्म की सेवा केवल एक व्यक्ति का कार्य नहीं, यह हम सभी के सामूहिक संस्कार, श्रद्धा और समर्पण की यात्रा है।”
+        </div>
+    </div>
+</section>
+
+<!-- MAHARAJ JI -->
+<section class="section maharaj-card">
+    <img src="https://sanatansevasamiti.org/public_html/Images/maharaj.jpg" class="maharaj-image" alt="परम पूज्य सद्गुरुदेव स्वामी सच्चिदानंद जी महाराज">
+    <div class="maharaj-content">
+        <div class="maharaj-label">🙏 पूज्य गुरुदेव का पावन सान्निध्य</div>
+        <h2 class="maharaj-card-name">
+            श्री श्री 1008 अनंत श्री विभूषित परम पूज्य जगद्गुरु सच्चिदानंदाचार्य आनंद पीठाधीश्वर परम पूज्य सद्गुरुदेव स्वामी सच्चिदानंद जी महाराज
+        </h2>
+        <div class="maharaj-description">
+            संस्थापक एवं राष्ट्रीय अध्यक्ष — सनातन सेवा समिति।
+            <br><br>
+            पूज्य सद्गुरुदेव के मार्गदर्शन एवं आशीर्वाद से सनातन धर्म, धार्मिक संस्कार, भक्ति जागरण, कथा, पाठ, धार्मिक अनुष्ठान, अन्न सेवा एवं समाजोपयोगी सेवा कार्यों को आगे बढ़ाने का निरंतर प्रयास किया जाता है।
+        </div>
+    </div>
+</section>
+
+<!-- PROGRAMS -->
+<section class="section">
+    <div class="section-head">
+        <div class="section-icon">🕉️</div>
+        <div>
+            <h2 class="section-title">हमारे प्रमुख धार्मिक कार्यक्रम</h2>
+            <div class="section-sub">किसी भी कार्यक्रम पर क्लिक करें और सेवा चुनें</div>
+        </div>
+    </div>
+
+    <div class="program-grid">
+        <div class="program-card" onclick="selectService('dhan','🔱 सामूहिक रुद्राभिषेक')">
+            <img src="https://sanatansevasamiti.org/public_html/Images/rudrabhishek.jpg" class="program-image" alt="सामूहिक रुद्राभिषेक">
+            <div class="program-body">
+                <div class="program-icon">🔱</div>
+                <div class="program-title">सामूहिक रुद्राभिषेक</div>
+                <div class="program-text">भगवान शिव के पूजन एवं सामूहिक रुद्राभिषेक आयोजन में सहयोग।</div>
+                <span class="program-action">सेवा चुनें →</span>
+            </div>
+        </div>
+
+        <div class="program-card" onclick="selectService('dhan','🚩 सामूहिक हनुमान चालीसा पाठ')">
+            <img src="https://sanatansevasamiti.org/public_html/Images/chalisa.jpg" class="program-image" alt="सामूहिक हनुमान चालीसा">
+            <div class="program-body">
+                <div class="program-icon">🚩</div>
+                <div class="program-title">सामूहिक हनुमान चालीसा</div>
+                <div class="program-text">सामूहिक पाठ, धार्मिक आयोजन एवं भक्त सहभागिता की सेवा।</div>
+                <span class="program-action">सेवा चुनें →</span>
+            </div>
+        </div>
+
+        <div class="program-card" onclick="selectService('dhan','📖 श्रीमद्भागवत कथा')">
+            <img src="https://sanatansevasamiti.org/public_html/Images/katha.jpg" class="program-image" alt="श्रीमद्भागवत कथा">
+            <div class="program-body">
+                <div class="program-icon">📖</div>
+                <div class="program-title">श्रीमद्भागवत कथा</div>
+                <div class="program-text">कथा आयोजन, संत सेवा, पंडाल एवं धार्मिक व्यवस्था में सहयोग।</div>
+                <span class="program-action">सेवा चुनें →</span>
+            </div>
+        </div>
+
+        <div class="program-card" onclick="selectService('dhan','🏹 श्री राम कथा')">
+            <img src="https://sanatansevasamiti.org/public_html/Images/katha1.jpg" class="program-image" alt="श्री राम कथा">
+            <div class="program-body">
+                <div class="program-icon">🏹</div>
+                <div class="program-title">श्री राम कथा</div>
+                <div class="program-text">मर्यादा पुरुषोत्तम श्रीराम की कथा एवं धार्मिक आयोजन में सेवा।</div>
+                <span class="program-action">सेवा चुनें →</span>
+            </div>
+        </div>
+
+        <div class="program-card" onclick="selectService('dhan','🌺 देवी कथा')">
+            <img src="https://sanatansevasamiti.org/public_html/Images/katha.jpg" class="program-image" alt="देवी कथा">
+            <div class="program-body">
+                <div class="program-icon">🌺</div>
+                <div class="program-title">देवी कथा</div>
+                <div class="program-text">देवी उपासना, कथा आयोजन एवं धार्मिक सेवा व्यवस्था में सहयोग।</div>
+                <span class="program-action">सेवा चुनें →</span>
+            </div>
+        </div>
+
+        <div class="program-card" onclick="selectService('dhan','🎶 भजन संध्या')">
+            <img src="https://sanatansevasamiti.org/public_html/Images/katha1.jpg" class="program-image" alt="भजन संध्या">
+            <div class="program-body">
+                <div class="program-icon">🎶</div>
+                <div class="program-title">भजन संध्या</div>
+                <div class="program-text">भजन, भक्तिगीत, ध्वनि एवं कार्यक्रम व्यवस्था में सहयोग।</div>
+                <span class="program-action">सेवा चुनें →</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- DHAN SEVA EXPLANATION -->
+<section class="section seva-feature">
+    <img src="https://sanatansevasamiti.org/public_html/Images/katha.jpg" class="feature-image" alt="धन सेवा">
+    <div class="feature-body">
+        <div class="feature-top">
+            <h2 class="feature-title">💰 धन दान</h2>
+            <span class="feature-tag">आर्थिक सहयोग</span>
+        </div>
+        <div class="feature-text">
+            आप अपनी श्रद्धा एवं सामर्थ्य के अनुसार आर्थिक सहयोग कर सकते हैं। यह सहयोग श्रीमद्भागवत कथा, श्री राम कथा, रुद्राभिषेक, चालीसा, पाठ व तीर्थ कार्यक्रमों की व्यवस्था हेतु उपयोग किया जाता है।
+        </div>
+    </div>
+</section>
+
+<!-- ANN DAAN EXPLANATION -->
+<section class="section seva-feature">
+    <img src="https://sanatansevasamiti.org/public_html/Images/rudrabhishek.jpg" class="feature-image" alt="अन्न एवं प्रसाद सेवा">
+    <div class="feature-body">
+        <div class="feature-top">
+            <h2 class="feature-title">🌾 अन्न दान एवं प्रसाद सेवा</h2>
+            <span class="feature-tag">अन्न समर्पण</span>
+        </div>
+        <div class="feature-text">
+            धार्मिक कार्यक्रमों, कथा, संत-भक्त समागम एवं भण्डारा सेवा में गेहूँ, चावल, आटा, दाल, तेल, घी एवं अन्य खाद्य सामग्री का समर्पण किया जा सकता है।
+        </div>
+    </div>
+</section>
+
+<!-- DIRECT SEVA EXPLANATION -->
+<section class="section seva-feature">
+    <img src="https://sanatansevasamiti.org/public_html/Images/chalisa.jpg" class="feature-image" alt="प्रत्यक्ष सेवा">
+    <div class="feature-body">
+        <div class="feature-top">
+            <h2 class="feature-title">🚩 सेवा समर्पण</h2>
+            <span class="feature-tag">तन • मन • धन • सामग्री</span>
+        </div>
+        <div class="feature-text">
+            सेवा केवल धन से नहीं होती। आप अपने श्रम, समय, वाहन, ध्वनि व्यवस्था, मंच व्यवस्था, सामग्री अथवा प्रसाद वितरण के माध्यम से भी सहभागी बन सकते हैं।
+        </div>
+    </div>
+</section>
+
+<!-- DONATION FORM -->
+<section class="donation-card" id="donation-form">
+    <div class="donation-heading">
+        <h2>🙏 सेवा में अपना समर्पण दें</h2>
+        <p>ऊपर कोई धार्मिक कार्यक्रम चुनें, या नीचे अपनी सेवा का प्रकार चुनें।</p>
+    </div>
+
+    <div class="form-tabs">
+        <button type="button" class="f-tab active" id="tab_dhan" onclick="switchFormTab('dhan')">💰 धन दान</button>
+        <button type="button" class="f-tab" id="tab_ann" onclick="switchFormTab('ann')">🌾 अन्न दान</button>
+        <button type="button" class="f-tab" id="tab_seva" onclick="switchFormTab('seva')">🚩 सेवा</button>
+    </div>
+
+    <div class="selected-service" id="selectedService">
+        🙏 चयनित सेवा: <strong id="selectedServiceText"></strong>
+    </div>
+
+    <!-- DHAN FORM -->
+    <form id="form_dhan" onsubmit="handleDaanSubmit(event, 'dhan')">
+        <label class="field-label">💰 सेवा हेतु राशि</label>
+        <div class="amount-wrap">
+            <span class="amount-symbol">₹</span>
+            <input type="number" id="amount_dhan" class="amount-input" min="1" step="1" placeholder="0" required>
+        </div>
+
+        <div class="amount-options">
+            <button type="button" class="amount-btn" onclick="setDhanAmount(101)">₹101</button>
+            <button type="button" class="amount-btn" onclick="setDhanAmount(501)">₹501</button>
+            <button type="button" class="amount-btn" onclick="setDhanAmount(1100)">₹1,100</button>
+            <button type="button" class="amount-btn" onclick="setDhanAmount(2100)">₹2,100</button>
+        </div>
+
+        <label class="field-label">🕉️ यह राशि किस धार्मिक सेवा के लिए है?</label>
+        <input type="text" id="seva_desc_dhan" class="form-input" value="सत्य सनातन मार्ग धार्मिक एवं सनातन सेवा" required>
+
+        <div class="wallet-box">
+            <div class="wallet-head">
+                <span class="wallet-label">💳 आपकी उपलब्ध सेवा निधि</span>
+                <span class="wallet-balance" id="formWalletBalance">₹0.00</span>
+            </div>
+            <div class="wallet-note">धन दान की राशि आपके Digital Wallet से सुरक्षित रूप से debit होगी।</div>
+        </div>
+
+        <button type="submit" class="submit-btn submit-btn-dhan" id="btnSubmitDhan">
+            🙏 वॉलेट से धन सेवा समर्पित करें
+        </button>
+    </form>
+
+    <!-- ANN FORM -->
+    <form id="form_ann" style="display:none;" onsubmit="handleDaanSubmit(event, 'ann')">
+        <label class="field-label">🌾 अन्न की मात्रा — Kg में</label>
+        <input type="number" step="0.1" id="amount_ann" class="form-input" placeholder="उदा. 25, 50, 100" required>
+
+        <label class="field-label">🍚 अन्न / खाद्य सामग्री</label>
+        <input type="text" id="ann_desc" class="form-input" placeholder="गेहूँ, चावल, आटा, दाल, तेल, घी आदि..." required>
+
+        <button type="submit" class="submit-btn submit-btn-ann" id="btnSubmitAnn">
+            🌾 अन्न सेवा दर्ज करें
+        </button>
+    </form>
+
+    <!-- SEVA FORM -->
+    <form id="form_seva" style="display:none;" onsubmit="handleDaanSubmit(event, 'seva')">
+        <label class="field-label">🚩 आपकी सेवा / सामग्री का विवरण</label>
+        <textarea id="seva_desc_only" class="form-input" rows="4" placeholder="उदा. रुद्राभिषेक में स्वयंसेवक सेवा, कथा में sound व्यवस्था, प्रसाद वितरण, वाहन सेवा, पंडाल सामग्री आदि..." required></textarea>
+
+        <button type="submit" class="submit-btn submit-btn-seva" id="btnSubmitSeva">
+            🚩 सेवा समर्पण दर्ज करें
+        </button>
+    </form>
+
+    <!-- USER INFO -->
+    <div class="user-box">
+        <div class="user-row">
+            <span class="user-label">🙏 सेवक</span>
+            <span class="user-value" id="boxUserName">लोड हो रहा है...</span>
+        </div>
+        <div class="user-row">
+            <span class="user-label">🆔 User ID</span>
+            <span class="user-value" id="boxUserId">---</span>
+        </div>
+        <div class="user-row">
+            <span class="user-label">🏷️ सेवा प्रोफाइल</span>
+            <span class="user-value">PRO1781285901</span>
+        </div>
+    </div>
+</section>
+
+<!-- HISTORY -->
+<section class="section">
+    <div class="section-head">
+        <div class="section-icon">📜</div>
+        <div>
+            <h2 class="section-title">मेरी सेवा यात्रा</h2>
+            <div class="section-sub">आपके द्वारा किए गए समर्पण का इतिहास</div>
+        </div>
+    </div>
+
+    <div id="historyContainer">
+        <div style="text-align:center; padding:20px 12px; border-radius:18px; background:#faf7f0; color:#8b7969; font-size:11px; line-height:1.7;">
+            📜 सेवा इतिहास लोड हो रहा है...
+        </div>
+    </div>
+</section>
+
+<!-- SUCCESS MODAL -->
+<div class="modal-overlay" id="receiptModal">
+    <div class="receipt-modal">
+        <div class="receipt-header">
+            <div style="font-size:27px; margin-bottom:5px;">ॐ</div>
+            <h2 style="margin:0; font-size:20px;">सनातन सेवा समिति</h2>
+            <p style="margin:5px 0 0; font-size:10px; opacity:.9;">सत्य सनातन मार्ग • धार्मिक सेवा</p>
+        </div>
+
+        <div class="receipt-body">
+            <div style="color:#188249; font-size:14px; font-weight:1000;">✓ सेवा समर्पण सफल</div>
+            <div id="modalAmount" style="margin:9px 0; color:#222; font-size:27px; font-weight:1000;">₹0.00</div>
+            <p id="modalNotice" style="margin:0; padding:11px; border-radius:13px; background:#f7f7f7; color:#666; font-size:10px; line-height:1.7;">
+                आपके वॉलेट से सेवा राशि सफलतापूर्वक समर्पित हो चुकी है।
+            </p>
+
+            <div style="margin:15px 0; padding:11px 0; border-top:1px dashed #ddd; border-bottom:1px dashed #ddd; text-align:left; color:#555; font-size:10px; line-height:1.7;">
+                <div><strong>रसीद संख्या: </strong><span id="modalReceiptNo">---</span></div>
+                <div><strong>सेवा: </strong><span id="modalSevaDesc">---</span></div>
+                <div><strong>दिनांक: </strong><span id="modalDate">---</span></div>
+            </div>
+
+            <a id="modalReceiptLink" href="#" target="_blank" class="r-action-btn" style="background:linear-gradient(135deg, #d97706, #963800); color:#fff;">
+                📄 आधिकारिक रसीद देखें
+            </a>
+
+            <a id="modalWhatsappLink" href="#" target="_blank" class="r-action-btn" style="background:#25D366; color:#fff;">
+                📲 WhatsApp पर रसीद शेयर करें
+            </a>
+
+            <button type="button" class="r-action-btn" style="background:#252525; color:#fff;" onclick="closeReceipt()">
+                पूर्ण करें
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+const PROFILE_ID = "PRO1781285901";
+let currentBalance = 0;
+let currentUserId = "";
+let currentUserName = "सनातन सेवक";
+
+function selectService(type, serviceName){
+    switchFormTab(type);
+    const selected = document.getElementById('selectedService');
+    const selectedText = document.getElementById('selectedServiceText');
+    if(selected && selectedText){
+        selectedText.innerText = serviceName;
+        selected.style.display = 'block';
+    }
+    if(type === 'dhan'){
+        const input = document.getElementById('seva_desc_dhan');
+        if(input) input.value = serviceName;
+    }
+    const form = document.getElementById('donation-form');
+    if(form){
+        setTimeout(() => form.scrollIntoView({ behavior:'smooth', block:'start' }), 120);
+    }
+}
+
+function switchFormTab(type){
+    document.querySelectorAll('.f-tab').forEach(b => b.classList.remove('active'));
+    document.getElementById('form_dhan').style.display = 'none';
+    document.getElementById('form_ann').style.display = 'none';
+    document.getElementById('form_seva').style.display = 'none';
+
+    const tab = document.getElementById('tab_' + type);
+    const form = document.getElementById('form_' + type);
+    if(tab) tab.classList.add('active');
+    if(form) form.style.display = 'block';
+}
+
+function setDhanAmount(val){
+    const inp = document.getElementById('amount_dhan');
+    if(inp){
+        inp.value = val;
+        inp.focus();
+    }
+}
+
+function showError(msg, isWallet = false){
+    const box = document.getElementById('errorBox');
+    const msgEl = document.getElementById('errorMessage');
+    const wLink = document.getElementById('errorWalletLink');
+    if(box && msgEl){
+        msgEl.innerText = "⚠️ " + msg;
+        box.style.display = 'block';
+        if(wLink) wLink.style.display = isWallet ? 'block' : 'none';
+        box.scrollIntoView({ behavior:'smooth', block:'center' });
+    }
+}
+
+function hideError(){
+    const box = document.getElementById('errorBox');
+    if(box) box.style.display = 'none';
+}
+
+function closeReceipt(){
+    const m = document.getElementById('receiptModal');
+    if(m) m.style.display = 'none';
+    loadPageData();
+}
+
+async function loadPageData(){
+    try {
+        const rawUser = localStorage.getItem("sss_user_data");
+        if(rawUser){
+            const u = JSON.parse(rawUser);
+            currentUserId = u.unique_id || u.id || "";
+            currentUserName = u.full_name || "सनातन सेवक";
+            document.getElementById('boxUserName').innerText = currentUserName;
+            document.getElementById('boxUserId').innerText = currentUserId;
+        }
+
+        const res = await fetch(`https://sanatansevasamiti.org/api/get_profile_full.php?action=detail&profile_id=${PROFILE_ID}&user_id=${encodeURIComponent(currentUserId)}`);
+        const data = await res.json();
+
+        if(data && data.status === 'success'){
+            if(data.profile){
+                document.getElementById('heroProfileName').innerText = data.profile.name || "सत्य सनातन मार्ग";
+                document.getElementById('heroProfileTagline').innerText = "🕉️ " + (data.profile.tagline || "धर्म • भक्ति • संस्कार • सनातन सेवा");
+                if(data.profile.dp_url) document.getElementById('heroProfilePhoto').src = data.profile.dp_url;
+            }
+
+            if(data.user_data && data.user_data.is_logged_in){
+                currentBalance = parseFloat(data.user_data.wallet_balance) || 0;
+                document.getElementById('topWalletBalance').innerText = "₹" + currentBalance.toFixed(2);
+                document.getElementById('formWalletBalance').innerText = "₹" + currentBalance.toFixed(2);
+                localStorage.setItem("sss_wallet_balance", currentBalance);
+
+                renderHistory(data.user_data.user_history);
+            } else {
+                renderHistory([]);
+            }
+        }
+    } catch(e){
+        console.error("Data load error:", e);
+    }
+}
+
+function renderHistory(list){
+    const c = document.getElementById('historyContainer');
+    if(!list || list.length === 0){
+        c.innerHTML = `
+            <div style="text-align:center; padding:20px 12px; border-radius:18px; background:#faf7f0; color:#8b7969; font-size:11px; line-height:1.7;">
+                📜 अभी इस सेवा प्रोफाइल के लिए आपकी कोई पिछली सेवा दर्ज नहीं है।<br>🙏 आपकी पहली सनातन सेवा का स्वागत है।
+            </div>
+        `;
+        return;
+    }
+
+    c.innerHTML = `
+        <div class="history-list">
+            ${list.map(h => {
+                let amtHtml = '';
+                if(h.amount_type === 'ann'){
+                    amtHtml = `<span class="history-amount" style="color:#2e7d32;">🌾 ${h.amount} Kg</span>`;
+                } else if(h.amount_type === 'seva'){
+                    amtHtml = `<span class="history-amount" style="color:#c62828;">🚩 सेवा</span>`;
+                } else {
+                    amtHtml = `<span class="history-amount" style="color:#158146;">+ ₹${parseFloat(h.amount).toFixed(2)}</span>`;
+                }
+
+                const isPending = (h.status === 'pending');
+                const shareText = encodeURIComponent(`🚩 सनातन सेवा समिति - सेवा रसीद\nप्रोफाइल: सत्य सनातन मार्ग\nसेवा: ${h.seva_desc}\n\n📄 आधिकारिक रसीद:\n${h.receipt_url}`);
+
+                return `
+                    <div class="history-item">
+                        <div class="history-top">
+                            <span class="history-date">${h.tx_date}</span>${amtHtml}
+                        </div>
+                        <div class="history-desc">🙏 ${h.seva_desc}</div>
+                        <div class="history-bottom">
+                            <span class="badge-status ${isPending ? 'status-pending' : 'status-approved'}">
+                                ${isPending ? '⏳ सत्यापन पेंडिंग' : '✓ सेवा स्वीकृत'}
+                            </span>
+                            <div class="history-actions">
+                                <a href="${h.receipt_url}" target="_blank" class="btn-h-receipt">📄 रसीद</a>
+                                <a href="https://api.whatsapp.com/send?text=${shareText}" target="_blank" class="btn-h-share">📲 शेयर</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join("")}
+        </div>
+    `;
+}
+
+async function handleDaanSubmit(e, type){
+    e.preventDefault();
+    hideError();
+
+    if(!currentUserId){
+        alert("कृपया सेवा के लिए पहले ऐप में लॉगिन करें।");
+        window.location.href = "app_login.html";
+        return;
+    }
+
+    let amount = 0;
+    let desc = "";
+    let submitBtn = null;
+
+    if(type === 'dhan'){
+        amount = parseFloat(document.getElementById('amount_dhan').value) || 0;
+        desc = document.getElementById('seva_desc_dhan').value.trim();
+        submitBtn = document.getElementById('btnSubmitDhan');
+
+        if(amount <= 0){
+            showError("कृपया मान्य सेवा राशि दर्ज करें।");
+            return;
+        }
+        if(amount > currentBalance){
+            showError("आपके वॉलेट में इस सेवा के लिए पर्याप्त राशि उपलब्ध नहीं है।", true);
+            return;
+        }
+    } else if(type === 'ann'){
+        amount = parseFloat(document.getElementById('amount_ann').value) || 0;
+        desc = document.getElementById('ann_desc').value.trim();
+        submitBtn = document.getElementById('btnSubmitAnn');
+
+        if(amount <= 0 || !desc){
+            showError("कृपया मान्य अन्न मात्रा और प्रकार दर्ज करें।");
+            return;
+        }
+    } else if(type === 'seva'){
+        desc = document.getElementById('seva_desc_only').value.trim();
+        submitBtn = document.getElementById('btnSubmitSeva');
+
+        if(!desc){
+            showError("कृपया दी जाने वाली सेवा का विवरण लिखें।");
+            return;
+        }
+    }
+
+    if(submitBtn){
+        submitBtn.disabled = true;
+        submitBtn.style.opacity = ".75";
+        submitBtn.innerText = "⏳ सेवा दर्ज की जा रही है...";
+    }
+
+    try {
+        const payload = {
+            profile_id: PROFILE_ID,
+            user_id: currentUserId,
+            type: type,
+            amount: amount,
+            seva_desc: desc
+        };
+
+        const res = await fetch(`https://sanatansevasamiti.org/api/get_profile_full.php?action=donate`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+
+        const data = await res.json();
+
+        if(data && data.status === 'success'){
+            let displayAmt = (type === 'dhan') ? `₹${amount.toFixed(2)}` : (type === 'ann' ? `${amount} Kg` : `🚩 सेवा समर्पण`);
+            document.getElementById('modalAmount').innerText = displayAmt;
+            document.getElementById('modalReceiptNo').innerText = data.receipt_no || "---";
+            document.getElementById('modalSevaDesc').innerText = desc;
+            document.getElementById('modalDate').innerText = data.date || "आज";
+            document.getElementById('modalReceiptLink').href = data.receipt_url || "#";
+
+            const waText = encodeURIComponent(`🚩 सनातन सेवा समिति - सेवा रसीद 🚩\nसेवा प्रोफाइल: सत्य सनातन मार्ग\nसेवक: ${currentUserName}\nसमर्पण: ${displayAmt}\nविवरण: ${desc}\n\n📄 आधिकारिक रसीद:\n${data.receipt_url}`);
+            document.getElementById('modalWhatsappLink').href = `https://api.whatsapp.com/send?text=${waText}`;
+
+            document.getElementById('receiptModal').style.display = 'flex';
+
+            if(type === 'dhan') document.getElementById('amount_dhan').value = "";
+            if(type === 'ann'){ document.getElementById('amount_ann').value = ""; document.getElementById('ann_desc').value = ""; }
+            if(type === 'seva') document.getElementById('seva_desc_only').value = "";
+        } else {
+            showError(data.message || "सेवा दर्ज करने में समस्या आई।");
+        }
+    } catch(err){
+        showError("सर्वर से संपर्क नहीं हो पाया। इंटरनेट कनेक्शन जाँचें।");
+    } finally {
+        if(submitBtn){
+            submitBtn.disabled = false;
+            submitBtn.style.opacity = "1";
+            if(type === 'dhan') submitBtn.innerText = "🙏 वॉलेट से धन सेवा समर्पित करें";
+            if(type === 'ann') submitBtn.innerText = "🌾 अन्न सेवा दर्ज करें";
+            if(type === 'seva') submitBtn.innerText = "🚩 सेवा समर्पण दर्ज करें";
+        }
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    loadPageData();
+});
+</script>
+
+</body>
+</html>
