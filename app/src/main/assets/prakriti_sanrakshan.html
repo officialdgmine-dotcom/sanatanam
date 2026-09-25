@@ -1,0 +1,1659 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>प्रकृति संरक्षण - सनातन सेवा समिति</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+:root{
+    --bg:#f5f5f7;
+    --card:#ffffff;
+    --text:#171717;
+    --muted:#737373;
+    --saffron:#f47b20;
+    --deep:#8d210e;
+    --gold:#e5a62b;
+    --line:#ececec;
+    --green:#1f9d55;
+    --blue:#3978e8;
+    --red:#e53935;
+}
+
+body{
+    font-family:'Inter','Noto Sans Devanagari',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    padding-bottom:95px !important;
+}
+
+/* ================= COVER ================= */
+
+.profile-shell{
+    max-width:760px;
+    margin:auto;
+    background:var(--bg);
+}
+
+.cover{
+    height:290px;
+    position:relative;
+    overflow:hidden;
+    cursor:pointer;
+    background:var(--saffron);
+}
+
+.cover img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.cover::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        to bottom,
+        rgba(0,0,0,.05),
+        rgba(0,0,0,.15) 50%,
+        rgba(0,0,0,.65)
+    );
+}
+
+.cover-top{
+    position:absolute;
+    top:18px;
+    left:18px;
+    right:18px;
+    z-index:3;
+    display:flex;
+    justify-content:space-between;
+}
+
+.circle-btn{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.5);
+    background:rgba(0,0,0,.35);
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:18px;
+    cursor:pointer;
+    backdrop-filter:blur(8px);
+    text-decoration:none;
+}
+
+.menu-container {
+    position: relative;
+    display: inline-block;
+}
+
+.cover-dropdown {
+    display: none;
+    position: absolute;
+    top: 48px;
+    left: 0;
+    background: white;
+    min-width: 170px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    z-index: 10;
+    overflow: hidden;
+}
+
+.cover-dropdown a {
+    display: block;
+    padding: 10px 14px;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    border-bottom: 1px solid var(--line);
+}
+
+.cover-dropdown a:last-child {
+    border-bottom: none;
+}
+
+.cover-dropdown a:hover {
+    background: #fff5e6;
+    color: var(--deep);
+}
+
+/* ================= PROFILE ================= */
+
+.profile-card{
+    position:relative;
+    margin:-72px 16px 0;
+    z-index:5;
+    background:white;
+    border-radius:28px 28px 20px 20px;
+    padding:0 20px 22px;
+    box-shadow:0 12px 40px rgba(0,0,0,.10);
+}
+
+.profile-photo-wrap{
+    width:118px;
+    height:118px;
+    margin-top:-58px;
+    position:relative;
+}
+
+.profile-photo{
+    width:118px;
+    height:118px;
+    border-radius:50%;
+    object-fit:cover;
+    border:6px solid white;
+    background: white;
+    box-shadow:0 8px 25px rgba(0,0,0,.2);
+    cursor: pointer;
+}
+
+.online{
+    position:absolute;
+    right:7px;
+    bottom:9px;
+    width:20px;
+    height:20px;
+    background:#28c76f;
+    border:4px solid white;
+    border-radius:50%;
+}
+
+.profile-info{
+    margin-top:14px;
+}
+
+.name-line{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:27px;
+    font-weight:800;
+    color: var(--deep);
+}
+
+.verified{
+    width:23px;
+    height:23px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#f5a623,#e05a00);
+    color:white;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    font-size:12px;
+}
+
+.tagline{
+    color:var(--muted);
+    margin-top:5px;
+    font-size:14px;
+    font-weight: 500;
+}
+
+.profile-meta{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-top:13px;
+}
+
+.meta-pill{
+    background:#fafafa;
+    border:1px solid var(--line);
+    padding:7px 11px;
+    border-radius:30px;
+    font-size:12px;
+    color:#555;
+    font-weight: 600;
+}
+
+.social-bar{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-top:14px;
+}
+
+.social-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:8px 14px;
+    border-radius:50px;
+    font-size:12px;
+    font-weight:800;
+    text-decoration:none;
+    color:#fff;
+    transition:0.3s;
+    box-shadow:0 4px 12px rgba(0,0,0,0.12);
+}
+
+.social-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 6px 16px rgba(0,0,0,0.2);
+}
+
+.social-insta{ background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
+.social-yt{ background:#ff0000; }
+.social-fb{ background:#1877f2; }
+.social-x{ background:#000000; }
+
+.actions{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-top:20px;
+}
+
+.action-btn{
+    border:none;
+    min-height:48px;
+    border-radius:15px;
+    font-size:14px;
+    font-weight:700;
+    cursor:pointer;
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:7px;
+    transition:.2s;
+}
+
+.action-btn:active{
+    transform:scale(.97);
+}
+
+.donate{
+    background:linear-gradient(135deg,#f47b20,#a82c12);
+    color:white;
+}
+
+.contact{
+    background:#fff;
+    color:#8d210e;
+    border:1px solid #ead6ce;
+}
+
+/* ================= SPECIAL INFO ================= */
+
+.special{
+    margin:18px 16px;
+}
+
+.special-toggle{
+    width:100%;
+    padding:17px 18px;
+    border:0;
+    border-radius:18px;
+    background:#171717;
+    color:white;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:15px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.special-content{
+    display:none;
+    margin-top:10px;
+    background:white;
+    border-radius:22px;
+    padding:20px;
+    box-shadow:0 8px 30px rgba(0,0,0,.07);
+}
+
+.special-content.show{
+    display:block;
+}
+
+.special-img{
+    width:100%;
+    max-height:280px;
+    object-fit:cover;
+    border-radius:18px;
+}
+
+.special h3{
+    margin:17px 0 8px;
+    color:#8d210e;
+}
+
+.special p{
+    color:#555;
+    line-height:1.75;
+    font-size:14px;
+    text-align:justify;
+}
+
+.quote{
+    margin:15px 0;
+    padding:15px;
+    background:#fff6eb;
+    border-left:4px solid var(--saffron);
+    border-radius:0 12px 12px 0;
+    color:#8d210e;
+    font-weight:700;
+    text-align:center;
+    line-height:1.6;
+}
+
+.lakshya-chips-wrap{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:10px;
+    margin:16px 0;
+}
+
+.lakshya-chip{
+    background:#fffaf2;
+    border:1.5px solid #fed7aa;
+    border-left:4px solid var(--green);
+    border-radius:14px;
+    padding:12px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.lakshya-chip strong{
+    font-size:13px;
+    color:#7c2d12;
+    display:block;
+}
+
+.lakshya-chip small{
+    font-size:11px;
+    color:#666;
+    display:block;
+}
+
+.prakriti-sub-box{
+    background:#fcfcfd;
+    border:1.5px solid #e5e7eb;
+    border-radius:16px;
+    padding:16px;
+    margin:14px 0;
+    border-left:5px solid var(--saffron);
+}
+
+.prakriti-sub-box h4{
+    margin:0 0 6px 0;
+    color:var(--deep);
+    font-size:16px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.prakriti-sub-box p{
+    margin:0;
+    font-size:13.5px;
+    color:#555;
+    line-height:1.75;
+}
+
+.video-box-divine{
+    position:relative;
+    padding-bottom:56.25%;
+    height:0;
+    overflow:hidden;
+    border-radius:18px;
+    border:2.5px solid var(--saffron);
+    box-shadow:0 8px 25px rgba(0,0,0,0.12);
+    margin:18px 0;
+    background:#000;
+}
+
+.video-box-divine iframe{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    border:0;
+}
+
+.media-gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:12px;
+    margin-top:16px;
+}
+
+.gallery-card-item{
+    background:#fff;
+    border:1.5px solid #fed7aa;
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 4px 12px rgba(0,0,0,0.04);
+    cursor:pointer;
+    transition:0.3s;
+    text-align:center;
+}
+
+.gallery-card-item:hover{
+    transform:translateY(-3px);
+    box-shadow:0 8px 20px rgba(0,0,0,0.1);
+}
+
+.gallery-card-item img{
+    width:100%;
+    height:140px;
+    object-fit:cover;
+    display:block;
+}
+
+.gallery-card-item span{
+    display:block;
+    padding:8px 5px;
+    font-size:12px;
+    font-weight:700;
+    color:var(--deep);
+    background:#fffaf0;
+}
+
+/* ================= SCHEDULE ================= */
+
+.section{
+    margin:20px 16px;
+}
+
+.section-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:13px;
+}
+
+.section-title h2{
+    font-size:19px;
+}
+
+.section-title span{
+    color:var(--saffron);
+    font-size:12px;
+    font-weight:700;
+}
+
+.schedule-card{
+    background:white;
+    border-radius:22px;
+    overflow:hidden;
+    margin-bottom:15px;
+    box-shadow:0 7px 25px rgba(0,0,0,.07);
+}
+
+.schedule-img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    display:block;
+}
+
+.schedule-body{
+    padding:17px;
+}
+
+.event-date{
+    display:inline-block;
+    padding:5px 9px;
+    background:#fff2e7;
+    color:#c94f0b;
+    border-radius:8px;
+    font-size:11px;
+    font-weight:800;
+}
+
+.schedule-body h3{
+    margin:9px 0 6px;
+    font-size:18px;
+    color: var(--deep);
+}
+
+.schedule-body p{
+    color:#666;
+    font-size:13px;
+    line-height:1.6;
+}
+
+.event-meta{
+    margin-top:12px;
+    color:#555;
+    font-size:12px;
+    line-height:1.8;
+}
+
+.event-buttons{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:8px;
+    margin-top:14px;
+}
+
+.event-btn{
+    padding:10px 7px;
+    border-radius:11px;
+    text-align:center;
+    text-decoration:none;
+    color:white;
+    font-size:12px;
+    font-weight:700;
+}
+
+.call{background:var(--green);}
+.web{background:var(--blue);}
+.youtube{background:#e53935;}
+.facebook{background:#1877f2;}
+
+/* ================= TABS ================= */
+
+.tabs{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(255,255,255,.94);
+    backdrop-filter:blur(15px);
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+}
+
+.tab{
+    border:0;
+    background:none;
+    padding:16px 5px;
+    font-weight:700;
+    color:#888;
+    cursor:pointer;
+}
+
+.tab.active{
+    color:#8d210e;
+    position:relative;
+}
+
+.tab.active::after{
+    content:"";
+    position:absolute;
+    bottom:0;
+    left:25%;
+    right:25%;
+    height:3px;
+    background:#f47b20;
+    border-radius:5px;
+}
+
+/* ================= POSTS ================= */
+
+.tab-content{
+    display:none;
+    padding:18px 16px;
+}
+
+.tab-content.active{
+    display:block;
+}
+
+.post{
+    background:white;
+    border-radius:22px;
+    overflow:hidden;
+    margin-bottom:18px;
+    box-shadow:0 7px 25px rgba(0,0,0,.07);
+}
+
+.post-head{
+    padding:15px;
+    display:flex;
+    align-items:center;
+    gap:11px;
+    cursor: pointer;
+}
+
+.post-dp{
+    width:43px;
+    height:43px;
+    border-radius:50%;
+    object-fit:cover;
+    border: 2px solid var(--saffron);
+}
+
+.post-user{
+    flex:1;
+}
+
+.post-user strong{
+    display:block;
+    font-size:14px;
+}
+
+.post-user small{
+    color:#999;
+}
+
+.more{
+    font-size:20px;
+    color:#888;
+}
+
+.post-media{
+    width:100%;
+    background:#111;
+    position:relative;
+}
+
+.post-media img{
+    width:100%;
+    max-height:520px;
+    object-fit:contain;
+    display:block;
+    cursor: pointer;
+}
+
+.post-media video{
+    width:100%;
+    display:block;
+}
+
+.yt-frame { 
+    width: 100%; 
+    border: none; 
+    aspect-ratio: 16/9; 
+    display: block;
+}
+
+.yt-shorts { 
+    aspect-ratio: 9/16 !important; 
+    max-height: 650px; 
+}
+
+/* Post Slider Styles */
+.slider-wrapper { 
+    position: relative; 
+    width: 100%; 
+    display: flex; 
+    align-items: center; 
+    overflow: hidden; 
+    background: #000; 
+}
+.slides-container { 
+    display: flex; 
+    width: 100%; 
+    transition: transform 0.3s ease-in-out; 
+}
+.slide-item { 
+    min-width: 100%; 
+    box-sizing: border-box; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+}
+.slider-btn { 
+    position: absolute; 
+    top: 50%; 
+    transform: translateY(-50%); 
+    background: rgba(0,0,0,0.6); 
+    color: white; 
+    border: none; 
+    padding: 10px 14px; 
+    cursor: pointer; 
+    font-size: 18px; 
+    border-radius: 50%; 
+    z-index: 5; 
+}
+.prev-btn { left: 10px; }
+.next-btn { right: 10px; }
+
+.post-caption{
+    padding:15px;
+    color:#444;
+    font-size:14px;
+    line-height:1.65;
+}
+
+.hidden-caption { 
+    display: -webkit-box; 
+    -webkit-line-clamp: 3; 
+    -webkit-box-orient: vertical; 
+    overflow: hidden; 
+}
+
+.see-more { 
+    color: var(--saffron); 
+    cursor: pointer; 
+    font-weight: bold; 
+    border: none; 
+    background: none; 
+    padding: 5px 0; 
+    display: inline-block;
+}
+
+.post-actions{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    padding:10px 12px 14px;
+    gap:8px;
+}
+
+.post-action{
+    border:0;
+    background:#f7f7f7;
+    padding:11px;
+    border-radius:12px;
+    font-weight:700;
+    color:#555;
+    cursor:pointer;
+    transition: 0.2s;
+}
+
+.post-action:hover{
+    background:#fff0e3;
+    color:#a82c12;
+}
+
+/* ================= EXECUTIVE ================= */
+
+.member{
+    background:white;
+    padding:15px;
+    border-radius:18px;
+    display:flex;
+    align-items:center;
+    gap:13px;
+    margin-bottom:10px;
+    box-shadow:0 5px 18px rgba(0,0,0,.05);
+}
+
+.member img{
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+.member strong{
+    display:block;
+}
+
+.member small{
+    color:#888;
+}
+
+/* ================= DONATION ================= */
+
+.transaction{
+    background:white;
+    border-radius:18px;
+    padding:15px;
+    margin-bottom:11px;
+    display:flex;
+    gap:13px;
+    align-items:center;
+    box-shadow:0 5px 18px rgba(0,0,0,.05);
+}
+
+.tx-icon{
+    width:54px;
+    height:54px;
+    border-radius:16px;
+    background:#eaf8ef;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:24px;
+}
+
+.tx-info{
+    flex:1;
+}
+
+.tx-info strong{
+    display:block;
+    font-size:14px;
+}
+
+.tx-info small{
+    color:#888;
+    line-height:1.7;
+}
+
+.amount{
+    color:#1d914d;
+    font-weight:800;
+    margin-top:4px;
+}
+
+.receipt{
+    background:#fff2e7;
+    color:#b3480c;
+    border:0;
+    border-radius:10px;
+    padding:9px 12px;
+    font-size:11px;
+    font-weight:800;
+    cursor:pointer;
+    text-decoration:none;
+    display:inline-block;
+}
+
+.receipt:hover{
+    background:#ffe0c7;
+}
+
+/* ================= MODAL ================= */
+
+.overlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.65);
+    z-index:1000;
+}
+
+.modal{
+    display:none;
+    position:fixed;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    width:calc(100% - 32px);
+    max-width:420px;
+    background:white;
+    border-radius:25px;
+    padding:24px;
+    z-index:1001;
+    text-align:center;
+}
+
+.modal h2{
+    margin-bottom:8px;
+    color: var(--deep);
+}
+
+.modal p{
+    color:#777;
+    font-size:13px;
+    margin-bottom:18px;
+}
+
+.modal-btn{
+    display:block;
+    width:100%;
+    padding:14px;
+    margin-top:9px;
+    border-radius:13px;
+    text-decoration:none;
+    border:0;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.modal-call{
+    background:#eaf8ef;
+    color:#188646;
+}
+
+.modal-email{
+    background:#fff0e6;
+    color:#b54b0b;
+}
+
+.close{
+    background:#f2f2f2;
+    color:#555;
+}
+
+/* ================= LIGHTBOX ================= */
+
+.lightbox{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.95);
+    z-index:2000;
+    align-items:center;
+    justify-content:center;
+}
+
+.lightbox img{
+    max-width:94%;
+    max-height:85%;
+    object-fit:contain;
+}
+
+.lightbox-close{
+    position:absolute;
+    top:20px;
+    left:20px;
+    background:rgba(255,255,255,.15);
+    border:1px solid rgba(255,255,255,.5);
+    color:white;
+    border-radius:30px;
+    padding:9px 16px;
+    cursor:pointer;
+    font-weight: 700;
+}
+
+/* FOOTER NAVIGATION BAR */
+#sss-nav {
+    position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 760px; height: 75px;
+    background: linear-gradient(180deg, #ff4500, #800000); display: flex; justify-content: space-evenly; align-items: center;
+    border-top: 4px solid #ffcc00; border-radius: 20px 20px 0 0; z-index: 99999; box-shadow: 0 -5px 20px rgba(0,0,0,0.4);
+}
+.sss-item { flex: 1; text-align: center; text-decoration: none; color: #fff; font-size: 10px; font-weight: 800; }
+.sss-item img { width: 28px; height: 28px; display: block; margin: auto; }
+.sss-dash-wrap { margin-top: -30px; }
+.sss-gold-circle {
+    width: 60px; height: 60px; background: linear-gradient(45deg, #ffd700, #ffcc00, #b8860b);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid #800000; box-shadow: 0 0 15px rgba(255,215,0,0.6);
+}
+.sss-gold-circle img { width: 35px; height: 35px; }
+
+@media(max-width:500px){
+    .cover{
+        height:240px;
+    }
+
+    .profile-card{
+        margin-left:10px;
+        margin-right:10px;
+        padding-left:15px;
+        padding-right:15px;
+    }
+
+    .name-line{
+        font-size:23px;
+    }
+
+    .social-bar{
+        gap:6px;
+    }
+    
+    .social-btn{
+        font-size:11px;
+        padding:7px 11px;
+    }
+
+    .section,
+    .special{
+        margin-left:10px;
+        margin-right:10px;
+    }
+
+    .tab-content{
+        padding-left:10px;
+        padding-right:10px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="profile-shell">
+
+<div class="cover" id="coverContainer" onclick="openLightbox(this.querySelector('img').src)">
+
+    <div class="cover-top">
+        <div class="menu-container">
+            <button class="circle-btn" onclick="toggleCoverMenu(event)">⋮</button>
+            <div id="coverMenu" class="cover-dropdown">
+                <a href="javascript:void(0)" onclick="openLightbox(document.getElementById('profileDpImg').src)">🖼️ View Profile Photo</a>
+                <a href="javascript:void(0)" onclick="alert('पर्यावरण संरक्षण कथा एवं संदेश दर्शन शीघ्र उपलब्ध होगा।')">📖 View Story</a>
+            </div>
+        </div>
+        <button class="circle-btn" onclick="event.stopPropagation(); openLightbox(document.getElementById('coverImg').src)">⛶</button>
+    </div>
+
+    <img id="coverImg" src="https://sanatansevasamiti.org/Images/ss/PRO1781289469_cover.jpg" onerror="this.src='https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1200&q=80'" alt="Cover">
+</div>
+
+
+<div class="profile-card">
+
+    <div class="profile-photo-wrap">
+        <img
+            class="profile-photo"
+            id="profileDpImg"
+            src="https://sanatansevasamiti.org/Images/ss/PRO1781289469_dp.jpg"
+            onerror="this.src='https://sanatansevasamiti.org/public_html/Images/maharaj.jpg'"
+            onclick="openLightbox(this.src)"
+            alt="Profile">
+        <span class="online"></span>
+    </div>
+
+    <div class="profile-info">
+
+        <div class="name-line">
+            <span id="profileTitle">प्रकृति संरक्षण</span>
+            <span class="verified">✓</span>
+        </div>
+
+        <div class="tagline" id="profileTagline">
+            सनातन सेवा समिति • 11 लाख वृक्षारोपण एवं पंचमहाभूत संरक्षण महाअभियान
+        </div>
+
+        <div class="profile-meta">
+            <span class="meta-pill">🌳 पर्यावरण चेतना</span>
+            <span class="meta-pill">💧 जल संवर्धन</span>
+            <span class="meta-pill">✓ Verified Mission</span>
+        </div>
+
+        <div class="social-bar">
+            <a href="https://www.instagram.com/sachchidanand.ji_/" target="_blank" class="social-btn social-insta">📸 Instagram</a>
+            <a href="https://youtube.com/@sanatan_sevasamiti?si=CvVOUP5slvqHdRnc" target="_blank" class="social-btn social-yt">▶️ YouTube</a>
+            <a href="https://www.facebook.com/share/1BvUG3NR69/" target="_blank" class="social-btn social-fb">f Facebook</a>
+            <a href="https://x.com/SatySanatanmarg" target="_blank" class="social-btn social-x">𝕏 Twitter</a>
+        </div>
+
+        <div class="actions">
+            <a href="prakriti_sanrakshan_daan.html" class="action-btn donate">🙏 अभी दान करें</a>
+            <button class="action-btn contact" onclick="openContact()">📞 संपर्क करें</button>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="special">
+
+    <button class="special-toggle" onclick="toggleSpecial()">
+        <span>✨ प्रकृति संरक्षण : विस्तार से जानें</span>
+        <span id="specialArrow">＋</span>
+    </button>
+
+    <div class="special-content" id="specialContent">
+
+        <div style="text-align: center; margin-bottom: 20px;">
+            <img
+                class="special-img"
+                src="https://sanatansevasamiti.org/public_html/Images/maharaj.jpg"
+                alt="Maharaj Ji">
+
+            <h4 style="color: var(--deep); font-size: 16px; margin-top: 15px; margin-bottom: 5px; line-height: 1.4;">
+                अनंत श्री विभूषित आनंद पीठाधीश्वर पूज्य सच्चिदानंदाचार्य श्री सच्चिदानंद जी महाराज
+            </h4>
+            <p style="color: var(--saffron); font-weight: 700; font-size: 13px;">
+                ( संस्थापक एवं राष्ट्रीय अध्यक्ष - सनातन सेवा समिति )
+            </p>
+        </div>
+
+        <h3>🎯 हमारे प्रमुख लक्ष्य (संक्षिप्त रूपरेखा)</h3>
+        <div class="lakshya-chips-wrap">
+            <div class="lakshya-chip">
+                <span style="font-size:24px;">🌳</span>
+                <div>
+                    <strong>11,00,000+ वृक्षारोपण</strong>
+                    <small>संपूर्ण भारत में सघन वन व वृक्ष संवर्धन</small>
+                </div>
+            </div>
+            <div class="lakshya-chip">
+                <span style="font-size:24px;">💧</span>
+                <div>
+                    <strong>जल संरक्षण व संचयन</strong>
+                    <small>तालाबों की सफाई व Rainwater Harvesting</small>
+                </div>
+            </div>
+            <div class="lakshya-chip">
+                <span style="font-size:24px;">🌱</span>
+                <div>
+                    <strong>हर परिवार - एक वृक्ष</strong>
+                    <small>जन्मदिन व उत्सवों पर पौधरोपण संकल्प</small>
+                </div>
+            </div>
+            <div class="lakshya-chip">
+                <span style="font-size:24px;">🌬️</span>
+                <div>
+                    <strong>प्राणवायु शुद्धि चेतना</strong>
+                    <small>पीपल, नीम, बरगद व तुलसी रोपण महायज्ञ</small>
+                </div>
+            </div>
+            <div class="lakshya-chip">
+                <span style="font-size:24px;">🔕</span>
+                <div>
+                    <strong>ध्वनि प्रदूषण मुक्त समाज</strong>
+                    <small>सात्विक शांति, मौन व संकीर्तन वातावरण</small>
+                </div>
+            </div>
+            <div class="lakshya-chip">
+                <span style="font-size:24px;">🌍</span>
+                <div>
+                    <strong>पंचमहाभूत संतुलन</strong>
+                    <small>धरती माँ का हरित व दिव्य श्रृंगार</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="quote">
+            "माता भूमिः पुत्रोऽहं पृथिव्याः"<br>
+            (पृथ्वी हमारी माता है और हम सब इसके पुत्र हैं)
+        </div>
+
+        <h3>🚩 प्रकृति संरक्षण : सनातन सेवा समिति का विराट महाउद्देश्य</h3>
+        <p>
+            वे केवल एक नाम नहीं, अपितु <strong>सनातन धर्म, संस्कृति और पर्यावरण चेतना</strong> के वह दिव्य प्रकाश स्तंभ हैं, जो अपने ज्ञान, साधना और प्रेरणादायी वाणी के माध्यम से संपूर्ण समाज को प्रकृति की रक्षा और जीव कल्याण के मार्ग पर आगे बढ़ने की प्रेरणा प्रदान कर रहे हैं।
+        </p>
+
+        <div class="quote">
+            दशकूपसमा वापी दशतदसमं ह्रदः ।<br>
+            दशह्रदसमः पुत्रो दशपुत्रसमो द्रुमः ॥
+        </div>
+
+        <p>
+            शास्त्रों में एक वृक्ष को दस पुत्रों के समान पुण्यदायी माना गया है। <strong>पूज्य महाराज जी का महासंकल्प — सनातन सेवा समिति के माध्यम से संपूर्ण भारतवर्ष में 11 लाख वृक्ष लगाने और उनके जीवित रहने तक संरक्षण का पावन संकल्प है।</strong> आपका जीवन पर्यावरण संरक्षण, गौ-सेवा, जल संवर्धन, वैदिक परंपराओं के पुनरुत्थान और समस्त प्राणियों के कल्याण हेतु समर्पित है।
+        </p>
+
+        <h3 style="margin-top:25px;">🎥 प्रकृति संरक्षण पावन परिचय वीडियो</h3>
+        <div class="video-box-divine">
+            <iframe src="https://www.youtube.com/embed/videoseries?list=PLsomeList" title="प्रकृति संरक्षण वीडियो दर्शन" allowfullscreen></iframe>
+        </div>
+
+        <h3 style="margin-top:25px;">🌿 पंचमहाभूत संरक्षण के चार प्रमुख आयाम</h3>
+
+        <div class="prakriti-sub-box">
+            <h4>🌱 1. वृक्ष संरक्षण एवं हरित आवरण संवर्धन</h4>
+            <p>
+                पेड़-पौधों की सुरक्षा करना और कटी हुई भूमि को पुनः हरित आवरण से ढकना हमारा सर्वोपरि कर्तव्य है। फलदार, छायादार एवं औषधीय वृक्षों का रोपण कर धरा को पुनः प्राणवान बनाना ही हमारा लक्ष्य है।
+            </p>
+        </div>
+
+        <div class="prakriti-sub-box">
+            <h4>💧 2. जल संरक्षण : जल ही जीवन और अमृत है</h4>
+            <p>
+                वेदों में जल को साक्षात् देवता माना गया है। घटते भूजल स्तर को रोकने के लिए वर्षा जल संचयन (Rainwater Harvesting), प्राचीन कुओं-बावड़ियों का जीर्णोद्धार एवं नदियों-तालाबों की स्वच्छता हेतु जन-जागरण अभियान चलाया जा रहा है।
+            </p>
+        </div>
+
+        <div class="prakriti-sub-box">
+            <h4>🌬️ 3. वायु संरक्षण : प्राणवायु की शुद्धि</h4>
+            <p>
+                अत्यधिक ऑक्सीजन देने वाले दिव्य पौधों (जैसे पीपल, वटवृक्ष, नीम, शमी, तुलसी) का रोपण और वैदिक यज्ञों के माध्यम से वातावरण की शुद्धि करना ताकि भावी पीढ़ी को प्रदूषण मुक्त स्वच्छ वायु प्राप्त हो सके।
+            </p>
+        </div>
+
+        <div class="prakriti-sub-box">
+            <h4>🔊 4. ध्वनि संरक्षण : शांति और सात्विक ऊर्जा</h4>
+            <p>
+                आधुनिक कोलाहल व ध्वनि प्रदूषण से जीवों व मानव के मानसिक स्वास्थ्य की रक्षा करना, और समाज में शांति, ध्यान तथा हरिनाम संकीर्तन की सात्विक ध्वनियों का वातावरण निर्मित करना।
+            </p>
+        </div>
+
+        <div class="quote">
+            "प्रकृतिः रक्षति रक्षिता"<br>
+            (यदि हम प्रकृति की रक्षा करेंगे, तो प्रकृति हमारी रक्षा करेगी)
+        </div>
+
+        <h3 style="margin-top:25px;">📸 प्रकृति संरक्षण चित्र दर्शन दीर्घा</h3>
+        <div class="media-gallery-grid">
+            <div class="gallery-card-item" onclick="openLightbox('https://sanatansevasamiti.org/Images/ss/PRO1781289469_dp.jpg')">
+                <img src="https://sanatansevasamiti.org/Images/ss/PRO1781289469_dp.jpg" alt="अभियान दर्शन">
+                <span>🚩 प्रकृति संरक्षण केंद्र</span>
+            </div>
+            <div class="gallery-card-item" onclick="openLightbox('https://sanatansevasamiti.org/public_html/Images/maharaj.jpg')">
+                <img src="https://sanatansevasamiti.org/public_html/Images/maharaj.jpg" alt="पूज्य सद्गुरुदेव महाराज जी">
+                <span>🙏 पूज्य सद्गुरुदेव जी</span>
+            </div>
+            <div class="gallery-card-item" onclick="openLightbox('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80')">
+                <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80" alt="वृक्षारोपण अभियान">
+                <span>🌱 11 लाख पौधरोपण</span>
+            </div>
+            <div class="gallery-card-item" onclick="openLightbox('https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=800&q=80')">
+                <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=800&q=80" alt="जल संरक्षण">
+                <span>💧 जल संवर्धन सेवा</span>
+            </div>
+        </div>
+
+        <div style="text-align:center; margin-top:25px;">
+            <a href="prakriti_sanrakshan_daan.html" class="action-btn donate" style="display:inline-flex; width:auto; padding:14px 28px; border-radius:50px; font-size:15px; font-weight:800;">
+                🚩 इस पावन अभियान के सदस्य बनें एवं दान करें
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="section">
+
+    <div class="section-title">
+        <h2>📅 आगामी कार्यक्रम</h2>
+        <span>Schedules</span>
+    </div>
+
+    <div id="eventsContainer">
+        <p style="text-align:center; color:#777; background:#fff; padding:20px; border-radius:18px;">कार्यक्रम विवरण लोड हो रहा है...</p>
+    </div>
+
+</div>
+
+
+<div class="tabs">
+
+    <button class="tab active" onclick="showTab('posts',this)">
+        📰 पोस्ट
+    </button>
+
+    <button class="tab" onclick="showTab('team',this)">
+        👥 कार्यकारिणी
+    </button>
+
+    <button class="tab" onclick="showTab('donation',this)">
+        💰 दान सूची
+    </button>
+
+</div>
+
+
+<div id="posts" class="tab-content active">
+    <div id="postsContainer">
+        <p style="text-align:center; color:#777; background:#fff; padding:20px; border-radius:18px;">पोस्ट्स लोड हो रही हैं...</p>
+    </div>
+</div>
+
+
+<div id="team" class="tab-content">
+
+    <div class="section-title">
+        <h2>कार्यकारिणी विवरण</h2>
+        <span>सदस्य</span>
+    </div>
+
+    <div style="background:white; padding:20px; border-radius:18px; text-align:center; color:#666;">
+        <p>प्रकृति संरक्षण महाअभियान — सनातन सेवा समिति के पर्यावरण रक्षकों एवं समर्पित स्वयंसेवकों की कार्यकारिणी सूची।</p>
+    </div>
+
+</div>
+
+
+<div id="donation" class="tab-content">
+
+    <div class="section-title">
+        <h2>दान विवरण</h2>
+        <span>Transactions</span>
+    </div>
+
+    <div id="donationsContainer">
+        <p style="text-align:center; color:#777; background:#fff; padding:20px; border-radius:18px;">दान विवरण लोड हो रहा है...</p>
+    </div>
+
+</div>
+
+</div>
+
+
+<div class="overlay" id="overlay" onclick="closeContact()"></div>
+
+<div class="modal" id="contactModal">
+
+    <h2>📞 संपर्क करें</h2>
+
+    <p>
+        आप नीचे दिए गए माध्यम से संपर्क कर सकते हैं।
+    </p>
+
+    <a id="modalCall" href="tel:+919876543210" class="modal-btn modal-call">
+        📞 कॉल करें
+    </a>
+
+    <a id="modalMail" href="mailto:contact@sanatansevasamiti.org" class="modal-btn modal-email">
+        📧 ईमेल करें
+    </a>
+
+    <button class="modal-btn close" onclick="closeContact()">
+        बंद करें
+    </button>
+
+</div>
+
+
+<div class="lightbox" id="lightbox">
+
+    <button class="lightbox-close" onclick="closeLightbox()">
+        ← Back
+    </button>
+
+    <img id="lightboxImg" src="" alt="Full Image">
+
+</div>
+
+<!-- FOOTER NAVIGATION BAR -->
+<div id="sss-nav">
+    <a href="app_home.html" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341771file_00000000145071fab7ea2e7e30f9dfaa-e1776295057951.png" alt="गृह">
+        <span>गृह</span>
+    </a>
+    <a href="guru_parampara.html" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341317ci.jpg" alt="गुरु">
+        <span>गुरु परंपरा</span>
+    </a>
+    <a href="feed.html" class="sss-item sss-dash-wrap">
+        <div class="sss-gold-circle">
+            <img src="https://sanatansevasamiti.org/uploads/footer/1780341218logo.jpg" alt="फीड">
+        </div>
+        <span></span>
+    </a>
+    <a href="javascript:void(0);" onclick="alert('पुस्तकें — यह अनुभाग शीघ्र ही स्थानीय रूप से उपलब्ध होगा।');" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341270bi.jpg" alt="पुस्तकें">
+        <span>पुस्तकें</span>
+    </a>
+    <a href="app_dashboard.html" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341144ai.jpg" alt="अकाउंट">
+        <span>अकाउंट</span>
+    </a>
+</div>
+
+<script>
+const PROFILE_ID = "PRO1781289469";
+let CURRENT_UID = "";
+
+try {
+    const rawUser = localStorage.getItem("sss_user_data");
+    if(rawUser){
+        const u = JSON.parse(rawUser);
+        CURRENT_UID = u.unique_id || u.id || "";
+    }
+} catch(e){}
+
+async function loadPrakritiData(){
+    try {
+        const apiUrl = `https://sanatansevasamiti.org/api/get_profile_full.php?action=detail&profile_id=${PROFILE_ID}&user_id=${encodeURIComponent(CURRENT_UID)}`;
+        const res = await fetch(apiUrl);
+        if(!res.ok) throw new Error("नेटवर्क प्रतिक्रिया विफल");
+        const data = await res.json();
+
+        if(data && data.status === 'success'){
+            // 1. Profile Details
+            if(data.profile){
+                const p = data.profile;
+                if(p.name) document.getElementById('profileTitle').innerText = p.name;
+                if(p.tagline) document.getElementById('profileTagline').innerText = p.tagline;
+                if(p.dp_url) document.getElementById('profileDpImg').src = p.dp_url;
+                if(p.cover_url) document.getElementById('coverImg').src = p.cover_url;
+                if(p.mobile) document.getElementById('modalCall').href = "tel:" + p.mobile;
+                if(p.email) document.getElementById('modalMail').href = "mailto:" + p.email;
+            }
+
+            // 2. Render dynamic sections
+            renderPosts(data.posts, data.profile);
+            renderEvents(data.schedules);
+            renderDonations(data.public_donations);
+        }
+    } catch(err){
+        console.error("Prakriti Profile Load Error:", err);
+    }
+}
+
+function renderPosts(posts, prof){
+    const container = document.getElementById('postsContainer');
+    if(!posts || posts.length === 0){
+        container.innerHTML = `<p style="text-align:center; color:#777; background:#fff; padding:20px; border-radius:18px;">इस प्रोफाइल पर अभी कोई पोस्ट नहीं है।</p>`;
+        return;
+    }
+
+    container.innerHTML = posts.map(post => {
+        const mediaList = post.parsed_media || [];
+        let mediaBlock = '';
+
+        if(post.post_type === 'youtube'){
+            mediaBlock = mediaList.map(m => `
+                <div style="width: 100%;">
+                    <iframe class="yt-frame ${m.is_shorts ? 'yt-shorts' : ''}" src="${m.embed_url}" allowfullscreen></iframe>
+                </div>
+            `).join("");
+        } else if(post.post_type === 'video'){
+            mediaBlock = mediaList.map(m => `
+                <div style="width: 100%;">
+                    <video class="media-content" controls src="${m.raw_url}"></video>
+                </div>
+            `).join("");
+        } else if(mediaList.length > 0){
+            const slides = mediaList.map(m => `
+                <div class="slide-item">
+                    <img src="${m.raw_url}" onclick="openLightbox(this.src)" alt="Post Image">
+                </div>
+            `).join("");
+
+            mediaBlock = `
+                <div class="slider-wrapper" id="slider-${post.id}">
+                    <div class="slides-container" id="slides-${post.id}">
+                        ${slides}
+                    </div>
+                    ${mediaList.length > 1 ? `
+                        <button class="slider-btn prev-btn" onclick="moveSlide(${post.id}, -1)">&#10094;</button>
+                        <button class="slider-btn next-btn" onclick="moveSlide(${post.id}, 1)">&#10095;</button>
+                    ` : ''}
+                </div>
+            `;
+        }
+
+        return `
+        <div class="post">
+            <div class="post-head">
+                <img class="post-dp" src="${prof.dp_url || 'https://sanatansevasamiti.org/Images/ss/PRO1781289469_dp.jpg'}" onerror="this.src='https://sanatansevasamiti.org/public_html/Images/maharaj.jpg'">
+                <div class="post-user">
+                    <strong>${prof.name || 'प्रकृति संरक्षण'} ✓</strong>
+                    <small>${prof.tagline || 'सनातन सेवा समिति'}</small>
+                </div>
+                <div class="more">•••</div>
+            </div>
+
+            <div class="post-media">
+                ${mediaBlock}
+            </div>
+
+            <div class="post-caption">
+                <div id="text-${post.id}" class="hidden-caption">
+                    ${(post.caption || '').replace(/\n/g, '<br>')}
+                </div>
+                <button class="see-more" onclick="showMore(${post.id})">और पढ़ें...</button>
+            </div>
+
+            <div class="post-actions">
+                <button class="post-action" onclick="likePost(this)">❤️ Like</button>
+                <button class="post-action" onclick="sharePost('https://sanatansevasamiti.org/feed.php?postid=' + ${post.id})">🔗 Share</button>
+            </div>
+        </div>`;
+    }).join("");
+}
+
+function renderEvents(schedules){
+    const container = document.getElementById('eventsContainer');
+    if(!schedules || schedules.length === 0){
+        container.innerHTML = `<p style="text-align:center; color:#777; background:#fff; padding:20px; border-radius:18px;">फिलहाल कोई कार्यक्रम उपलब्ध नहीं है।</p>`;
+        return;
+    }
+
+    container.innerHTML = schedules.map(sch => {
+        const media = (sch.media_files && sch.media_files.length > 0) ? sch.media_files[0] : '';
+        let mediaHtml = '';
+        if(media){
+            if(media.match(/\.(mp4|webm|ogg)$/i)){
+                mediaHtml = `<video controls src="${media}" style="width:100%; max-height:220px; object-fit:cover; display:block;"></video>`;
+            } else {
+                mediaHtml = `<img class="schedule-img" src="${media}" alt="Event Poster" onclick="openLightbox(this.src)">`;
+            }
+        }
+
+        return `
+        <div class="schedule-card">
+            ${mediaHtml}
+            <div class="schedule-body">
+                <span class="event-date">🗓️ ${sch.event_date || 'आगामी'}</span>
+                <h3>${sch.title || ''}</h3>
+                <p>${(sch.description || '').replace(/\n/g, '<br>')}</p>
+                <div class="event-meta">
+                    ⏰ <b>समय:</b> ${sch.time_from || ''} - ${sch.time_to || ''}<br>
+                    📍 <b>स्थान:</b> ${sch.address || ''}, ${sch.district || ''}<br>
+                    📞 <b>संपर्क:</b> ${sch.mobile || ''}
+                </div>
+                <div class="event-buttons">
+                    ${sch.mobile ? `<a href="tel:${sch.mobile}" class="event-btn call">📞 कॉल</a>` : ''}
+                    ${sch.web_url ? `<a href="${sch.web_url}" class="event-btn web" target="_blank">🌐 देखें</a>` : ''}
+                    ${sch.yt_link ? `<a href="${sch.yt_link}" class="event-btn youtube" target="_blank">▶ YouTube</a>` : ''}
+                    ${sch.fb_link ? `<a href="${sch.fb_link}" class="event-btn facebook" target="_blank">f Facebook</a>` : ''}
+                </div>
+            </div>
+        </div>`;
+    }).join("");
+}
+
+function renderDonations(donations){
+    const container = document.getElementById('donationsContainer');
+    if(!donations || donations.length === 0){
+        container.innerHTML = `<p style="text-align:center; color:#777; background:#fff; padding:20px; border-radius:18px;">इस प्रोफाइल के लिए अभी कोई ट्रांजैक्शन रिकॉर्ड मौजूद नहीं है।</p>`;
+        return;
+    }
+
+    container.innerHTML = donations.map(tx => `
+        <div class="transaction">
+            <div class="tx-icon">📥</div>
+            <div class="tx-info">
+                <strong>${tx.full_name}</strong>
+                <small>
+                    ${tx.unique_id ? `ID: ${tx.unique_id}<br>` : ''}
+                    ${tx.payment_mode || 'UPI'} • ${tx.tx_date}
+                </small>
+                <div class="amount">+ ${tx.amount_label}</div>
+            </div>
+            <a href="${tx.receipt_url}" target="_blank" class="receipt">
+                🧾 रसीद
+            </a>
+        </div>
+    `).join("");
+}
+
+/* ================= TABS ================= */
+
+function showTab(id, button){
+    document.querySelectorAll('.tab-content').forEach(x => x.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+
+    document.getElementById(id).classList.add('active');
+    button.classList.add('active');
+
+    window.scrollTo({
+        top: document.querySelector('.tabs').offsetTop - 10,
+        behavior:'smooth'
+    });
+}
+
+/* ================= SPECIAL ================= */
+
+function toggleSpecial(){
+    const box = document.getElementById('specialContent');
+    const arrow = document.getElementById('specialArrow');
+    box.classList.toggle('show');
+    arrow.innerText = box.classList.contains('show') ? '−' : '＋';
+}
+
+/* ================= COVER MENU ================= */
+
+function toggleCoverMenu(event) {
+    event.stopPropagation();
+    const menu = document.getElementById('coverMenu');
+    menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+}
+
+window.addEventListener('click', function() {
+    const menu = document.getElementById('coverMenu');
+    if (menu) menu.style.display = 'none';
+});
+
+/* ================= CONTACT MODAL ================= */
+
+function openContact(){
+    document.getElementById('overlay').style.display='block';
+    document.getElementById('contactModal').style.display='block';
+}
+
+function closeContact(){
+    document.getElementById('overlay').style.display='none';
+    document.getElementById('contactModal').style.display='none';
+}
+
+/* ================= LIGHTBOX ================= */
+
+function openLightbox(src){
+    document.getElementById('lightboxImg').src = src;
+    document.getElementById('lightbox').style.display = 'flex';
+}
+
+function closeLightbox(){
+    document.getElementById('lightbox').style.display = 'none';
+}
+
+/* ================= POST FUNCTIONS ================= */
+
+function showMore(id) {
+    document.getElementById('text-' + id).classList.remove('hidden-caption');
+    event.target.style.display = 'none';
+}
+
+function likePost(button){
+    if(button.innerText.includes('Liked')){
+        button.innerText = '❤️ Like';
+        button.style.background = '';
+        button.style.color = '';
+    } else {
+        button.innerText = '❤️ Liked';
+        button.style.background = '#ffe7e7';
+        button.style.color = '#d33';
+    }
+}
+
+function sharePost(url){
+    const targetUrl = url || window.location.href;
+    if(navigator.share){
+        navigator.share({
+            title: 'प्रकृति संरक्षण सेवा',
+            text: 'यह पोस्ट देखें:',
+            url: targetUrl
+        }).catch(()=>{});
+    } else {
+        navigator.clipboard.writeText(targetUrl);
+        alert('लिंक कॉपी हो गया है!');
+    }
+}
+
+/* ================= SLIDER LOGIC ================= */
+
+const slideIndexes = {};
+function moveSlide(postId, direction) {
+    if (!slideIndexes[postId]) slideIndexes[postId] = 0;
+    const container = document.getElementById('slides-' + postId);
+    if(!container) return;
+    
+    const totalSlides = container.children.length;
+    slideIndexes[postId] += direction;
+    
+    if (slideIndexes[postId] >= totalSlides) slideIndexes[postId] = 0;
+    else if (slideIndexes[postId] < 0) slideIndexes[postId] = totalSlides - 1;
+    
+    container.style.transform = `translateX(-${slideIndexes[postId] * 100}%)`;
+}
+
+window.addEventListener("DOMContentLoaded", loadPrakritiData);
+</script>
+
+</body>
+</html>
