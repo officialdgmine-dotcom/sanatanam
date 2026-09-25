@@ -1,0 +1,1786 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>संत सेना - संत सेना (सनातन सेवा समिति)</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
+
+<style>
+/* =========================================================
+   ROOT
+   ========================================================= */
+:root{
+    --gold:#d8a83e;
+    --gold2:#f3d17b;
+    --gold3:#fff0bd;
+    --dark:#0b0b0d;
+    --dark2:#111116;
+    --dark3:#19191f;
+    --card:#15151b;
+    --text:#f7f3ea;
+    --muted:#aaa7a0;
+    --red:#b92323;
+    --saffron:#e66a15;
+    --green:#35c477;
+    --blue:#4f9cff;
+    --border:rgba(255,255,255,.08);
+    --shadow:0 25px 70px rgba(0,0,0,.45);
+}
+
+*{
+    box-sizing:border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            #2e1a10 0,
+            #111116 28%,
+            #08080a 70%
+        );
+    color:var(--text);
+    font-family:'Noto Sans Devanagari','Outfit',sans-serif;
+    min-height:100vh;
+    padding-bottom:95px !important;
+}
+
+button, a{
+    font-family:inherit;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+.page{
+    max-width:900px;
+    margin:auto;
+    position:relative;
+    overflow:hidden;
+}
+
+/* =========================================================
+   HERO / COVER
+   ========================================================= */
+.hero{
+    height:350px;
+    position:relative;
+    overflow:hidden;
+    background:#171717;
+    cursor:pointer;
+}
+
+.hero img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    filter:brightness(.68) saturate(1.1);
+}
+
+.hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,.2),
+            rgba(0,0,0,.3) 40%,
+            rgba(8,8,10,.95) 100%
+        );
+}
+
+.hero-top{
+    position:absolute;
+    top:20px;
+    left:20px;
+    right:20px;
+    z-index:3;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.glass-btn{
+    border:1px solid rgba(255,255,255,.18);
+    background:rgba(10,10,10,.45);
+    backdrop-filter:blur(15px);
+    -webkit-backdrop-filter:blur(15px);
+    color:white;
+    padding:9px 16px;
+    border-radius:30px;
+    font-size:13px;
+    font-weight:700;
+    text-decoration:none;
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+}
+
+/* =========================================================
+   PROFILE CORE
+   ========================================================= */
+.profile-core{
+    position:relative;
+    margin-top:-145px;
+    z-index:5;
+    padding:0 24px 30px;
+}
+
+.profile-photo-wrap{
+    width:190px;
+    height:190px;
+    margin:auto;
+    padding:7px;
+    border-radius:50%;
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold),
+            #fff3b1,
+            var(--saffron),
+            #8d6017
+        );
+    box-shadow:
+        0 0 0 8px rgba(216,168,62,.1),
+        0 25px 60px rgba(0,0,0,.65);
+    position:relative;
+}
+
+.profile-photo{
+    width:100%;
+    height:100%;
+    border-radius:50%;
+    object-fit:cover;
+    border:6px solid #101014;
+    display:block;
+    background:#222;
+    cursor:pointer;
+}
+
+.online-dot{
+    position:absolute;
+    width:23px;
+    height:23px;
+    border-radius:50%;
+    background:#32d477;
+    border:4px solid #101014;
+    right:20px;
+    bottom:18px;
+}
+
+.profile-text{
+    text-align:center;
+    padding-top:22px;
+}
+
+.profile-name{
+    margin:0;
+    font-size:34px;
+    line-height:1.25;
+    font-weight:900;
+    letter-spacing:-.5px;
+    color:#fff;
+}
+
+.verified{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:24px;
+    height:24px;
+    border-radius:50%;
+    margin-left:6px;
+    background:
+        linear-gradient(
+            135deg,
+            #f4d06f,
+            #a8751c
+        );
+    color:#111;
+    font-size:12px;
+    vertical-align:middle;
+    box-shadow:0 4px 12px rgba(216,168,62,.35);
+}
+
+.profile-tagline{
+    display:inline-block;
+    margin-top:12px;
+    padding:7px 18px;
+    border-radius:30px;
+    color:var(--gold2);
+    background:rgba(216,168,62,.09);
+    border:1px solid rgba(216,168,62,.28);
+    font-size:14px;
+    font-weight:700;
+}
+
+/* =========================================================
+   ACTIONS
+   ========================================================= */
+.actions-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin-top:25px;
+}
+
+.action{
+    min-height:58px;
+    border-radius:17px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    text-decoration:none;
+    border:1px solid var(--border);
+    background:
+        linear-gradient(
+            145deg,
+            #1c1c23,
+            #111116
+        );
+    color:#fff;
+    font-size:14px;
+    font-weight:800;
+    box-shadow:0 12px 30px rgba(0,0,0,.25);
+    transition:.25s;
+    cursor:pointer;
+}
+
+.action:hover{
+    transform:translateY(-3px);
+    border-color:rgba(216,168,62,.45);
+    box-shadow:0 18px 35px rgba(0,0,0,.35);
+}
+
+.action.gold{
+    color:#111;
+    background:
+        linear-gradient(
+            135deg,
+            #b98123,
+            #f3d17b,
+            #c99532
+        );
+    border:none;
+}
+
+.action.red{
+    background:
+        linear-gradient(
+            135deg,
+            #94251b,
+            #d63f2d
+        );
+    border:none;
+    color:#fff;
+}
+
+/* =========================================================
+   VIP SANT SENA BIO PANEL
+   ========================================================= */
+.special-box{
+    display:none;
+    margin-top:22px;
+    padding:28px 22px;
+    border-radius:28px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(25,25,33,.95),
+            rgba(16,16,22,.98)
+        );
+    border:1px solid rgba(216,168,62,.3);
+    box-shadow:var(--shadow);
+    animation:fadeUp .35s ease;
+}
+
+@keyframes fadeUp{
+    from{ opacity:0; transform:translateY(15px); }
+    to{ opacity:1; transform:translateY(0); }
+}
+
+.maharaj-glow-wrap{
+    width:160px;
+    height:160px;
+    margin:0 auto 16px;
+    padding:6px;
+    border-radius:50%;
+    background:
+        linear-gradient(
+            45deg,
+            var(--gold),
+            var(--saffron),
+            var(--red),
+            var(--gold2)
+        );
+    box-shadow:0 12px 35px rgba(216,168,62,.28);
+}
+
+.special-photo{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    border-radius:50%;
+    border:4px solid #121217;
+    cursor:pointer;
+}
+
+.vip-badge{
+    display:inline-block;
+    padding:6px 20px;
+    border-radius:30px;
+    background:
+        linear-gradient(
+            135deg,
+            var(--red),
+            var(--saffron)
+        );
+    color:#fff;
+    font-size:12px;
+    font-weight:800;
+    border:1px solid rgba(255,215,0,.4);
+    box-shadow:0 4px 15px rgba(185,35,35,.3);
+    margin-bottom:12px;
+}
+
+.special-title{
+    text-align:center;
+    color:var(--gold2);
+    font-size:21px;
+    margin:0 0 10px;
+    font-weight:900;
+    line-height:1.45;
+}
+
+.special-content{
+    color:#d9d6cf;
+    line-height:1.95;
+    font-size:14.5px;
+    text-align:justify;
+}
+
+.special-content strong{
+    color:var(--gold2);
+}
+
+.quote{
+    margin:20px 0;
+    padding:16px 20px;
+    border-left:4px solid var(--gold);
+    border-radius:0 18px 18px 0;
+    background:rgba(216,168,62,.08);
+    text-align:center;
+    color:var(--gold2);
+    font-weight:800;
+    line-height:1.75;
+    font-size:15px;
+}
+
+/* OBJECTIVES GRID */
+.bio-section-box{
+    background:#16161d;
+    border:1px solid rgba(216,168,62,.22);
+    border-radius:20px;
+    padding:20px;
+    margin-top:22px;
+}
+
+.bio-section-title{
+    color:var(--gold2);
+    font-size:17px;
+    font-weight:900;
+    margin-bottom:16px;
+    padding-bottom:8px;
+    border-bottom:1px solid rgba(216,168,62,.2);
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.objectives-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+    gap:12px;
+}
+
+.objective-item{
+    background:#1b1b24;
+    border:1px solid var(--border);
+    border-left:4px solid var(--gold);
+    padding:13px 15px;
+    border-radius:14px;
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+}
+
+.objective-item .icon{
+    font-size:20px;
+    line-height:1;
+    margin-top:2px;
+}
+
+.objective-item .txt{
+    font-size:13px;
+    color:#cfcbc4;
+    line-height:1.6;
+}
+
+.objective-item .txt strong{
+    display:block;
+    color:#fff;
+    margin-bottom:2px;
+}
+
+/* YOUTUBE EMBED VIP BOX */
+.yt-wrapper{
+    position:relative;
+    width:100%;
+    aspect-ratio:16/9;
+    border-radius:18px;
+    overflow:hidden;
+    border:2px solid var(--gold);
+    background:#000;
+    box-shadow:0 10px 30px rgba(0,0,0,.5);
+    margin:14px 0;
+}
+
+.yt-wrapper iframe{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    border:0;
+}
+
+/* MISSION HIGHLIGHTS */
+.mission-card{
+    background:#1a1a23;
+    border:1px solid rgba(255,255,255,.07);
+    padding:16px;
+    border-radius:16px;
+    margin-bottom:14px;
+}
+
+.mission-card h4{
+    margin:0 0 8px 0;
+    color:var(--gold2);
+    font-size:15px;
+    font-weight:800;
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.mission-card p{
+    margin:0;
+    font-size:13.5px;
+    color:#b8b4ab;
+    line-height:1.8;
+    text-align:justify;
+}
+
+.vip-slogan-box{
+    padding:18px;
+    border-radius:18px;
+    color:#fff;
+    background:
+        linear-gradient(
+            135deg,
+            #7e1b1b,
+            #be471b
+        );
+    line-height:1.8;
+    font-size:14px;
+    font-weight:700;
+    text-align:center;
+    box-shadow:0 8px 25px rgba(0,0,0,.35);
+    margin-top:18px;
+}
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+.section{
+    padding:0 24px;
+    margin-top:25px;
+}
+
+.section-title{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:15px;
+}
+
+.section-title h2{
+    margin:0;
+    font-size:19px;
+    font-weight:900;
+}
+
+.section-title span{
+    color:var(--gold);
+    font-size:12px;
+    font-weight:700;
+}
+
+/* SCHEDULE */
+.schedule-toggle{
+    width:100%;
+    border:1px solid var(--border);
+    background:linear-gradient(135deg,#18181f,#101014);
+    color:white;
+    border-radius:20px;
+    padding:18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:800;
+    box-shadow:0 12px 30px rgba(0,0,0,.25);
+}
+
+.schedule-toggle .arrow{
+    color:var(--gold);
+    transition:.3s;
+}
+
+.schedule-toggle.active .arrow{
+    transform:rotate(180deg);
+}
+
+.schedule-content{
+    display:none;
+    margin-top:14px;
+}
+
+.event-card{
+    overflow:hidden;
+    border-radius:23px;
+    background:linear-gradient(145deg,#191920,#101014);
+    border:1px solid var(--border);
+    margin-bottom:16px;
+    box-shadow:0 18px 45px rgba(0,0,0,.3);
+}
+
+.event-image{
+    width:100%;
+    max-height:350px;
+    object-fit:cover;
+    display:block;
+}
+
+.event-video{
+    width:100%;
+    max-height:350px;
+    display:block;
+}
+
+.event-body{
+    padding:20px;
+}
+
+.event-title{
+    font-size:20px;
+    color:#fff;
+    font-weight:900;
+    margin-bottom:9px;
+}
+
+.event-description{
+    color:#aaa;
+    font-size:13px;
+    line-height:1.7;
+    margin-bottom:14px;
+}
+
+.event-meta{
+    color:var(--gold2);
+    font-size:12px;
+    font-weight:700;
+    line-height:1.8;
+}
+
+.event-actions{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:8px;
+    margin-top:18px;
+}
+
+.event-btn{
+    padding:11px;
+    border-radius:12px;
+    text-align:center;
+    text-decoration:none;
+    font-size:12px;
+    font-weight:800;
+    background:#22232a;
+    border:1px solid var(--border);
+}
+
+.event-btn.call{ color:#4ee08c; }
+.event-btn.web{ color:#6faeff; }
+.event-btn.yt{ color:#ff5757; }
+.event-btn.fb{ color:#599bff; }
+
+/* TABS */
+.tabs-wrap{
+    position:sticky;
+    top:0;
+    z-index:100;
+    padding:12px 24px;
+    margin-top:28px;
+    background:rgba(8,8,10,.86);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+}
+
+.tabs{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    background:#15151a;
+    border-radius:15px;
+    padding:4px;
+}
+
+.tab{
+    border:0;
+    background:transparent;
+    color:#8e8c87;
+    padding:12px 7px;
+    border-radius:12px;
+    font-weight:800;
+    cursor:pointer;
+    font-size:12px;
+    transition:.25s;
+}
+
+.tab.active{
+    color:#111;
+    background:linear-gradient(135deg,#bb862b,#f2d078);
+    box-shadow:0 5px 18px rgba(216,168,62,.18);
+}
+
+.tab-content{
+    display:none;
+    padding:0 24px;
+    margin-top:22px;
+}
+
+.tab-content.active{
+    display:block;
+    animation:fadeUp .3s ease;
+}
+
+/* POST CARDS */
+.post-card{
+    background:linear-gradient(145deg,#191920,#101014);
+    border:1px solid var(--border);
+    border-radius:24px;
+    overflow:hidden;
+    margin-bottom:22px;
+    box-shadow:0 18px 50px rgba(0,0,0,.32);
+}
+
+.post-header{
+    padding:17px;
+    display:flex;
+    align-items:center;
+    cursor:pointer;
+}
+
+.post-header img{
+    width:52px;
+    height:52px;
+    object-fit:cover;
+    border-radius:50%;
+    border:2px solid var(--gold);
+    background:#222;
+}
+
+.post-user{
+    margin-left:12px;
+}
+
+.post-user h4{
+    margin:0;
+    font-size:15px;
+    font-weight:800;
+    color:#fff;
+}
+
+.post-user p{
+    margin:3px 0 0;
+    color:var(--gold);
+    font-size:11px;
+    font-weight:700;
+}
+
+.media{
+    width:100%;
+    background:#000;
+    overflow:hidden;
+}
+
+.media img{
+    width:100%;
+    max-height:600px;
+    object-fit:contain;
+    display:block;
+    cursor:pointer;
+}
+
+.media video{
+    width:100%;
+    display:block;
+    max-height:600px;
+}
+
+.yt{
+    width:100%;
+    aspect-ratio:16/9;
+    border:0;
+    display:block;
+}
+
+.yt-short{
+    aspect-ratio:9/16;
+    max-height:700px;
+}
+
+.slider{
+    position:relative;
+    overflow:hidden;
+    background:#000;
+}
+
+.slides{
+    display:flex;
+    transition:.3s ease;
+}
+
+.slide{
+    min-width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.slide img{
+    width:100%;
+    max-height:600px;
+    object-fit:contain;
+}
+
+.slide-btn{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.2);
+    background:rgba(0,0,0,.6);
+    color:white;
+    cursor:pointer;
+    z-index:5;
+}
+
+.slide-prev{ left:12px; }
+.slide-next{ right:12px; }
+
+.caption{
+    padding:17px;
+    color:#c4c1bb;
+    font-size:13px;
+    line-height:1.75;
+}
+
+.caption-text{
+    display:-webkit-box;
+    -webkit-line-clamp:3;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+}
+
+.caption-text.expanded{
+    display:block;
+}
+
+.more{
+    margin-top:7px;
+    border:0;
+    background:none;
+    color:var(--gold);
+    font-weight:800;
+    cursor:pointer;
+    padding:0;
+}
+
+.post-actions{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    padding:0 15px 15px;
+}
+
+.post-action{
+    border:1px solid var(--border);
+    background:#1b1b21;
+    color:#aaa;
+    padding:11px;
+    border-radius:12px;
+    cursor:pointer;
+    font-weight:800;
+}
+
+.post-action.liked{
+    background:#8d2020;
+    color:white;
+}
+
+/* EXECUTIVE */
+.executive{
+    padding:25px;
+    border-radius:23px;
+    background:linear-gradient(145deg,#191920,#101014);
+    border:1px solid var(--border);
+    text-align:center;
+}
+
+.executive-icon{
+    width:75px;
+    height:75px;
+    margin:auto auto 15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:24px;
+    background:rgba(216,168,62,.1);
+    border:1px solid rgba(216,168,62,.25);
+    font-size:34px;
+}
+
+.executive h3{
+    margin:0 0 8px;
+    color:var(--gold2);
+}
+
+.executive p{
+    margin:0;
+    color:#888;
+    font-size:13px;
+    line-height:1.7;
+}
+
+/* DONATIONS */
+.donation-summary{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+    margin-bottom:15px;
+}
+
+.summary-card{
+    padding:17px;
+    border-radius:18px;
+    background:#17171d;
+    border:1px solid var(--border);
+    text-align:center;
+}
+
+.summary-card small{
+    color:#888;
+    display:block;
+    font-size:11px;
+}
+
+.summary-card strong{
+    display:block;
+    margin-top:5px;
+    color:var(--gold2);
+    font-size:18px;
+}
+
+.transaction{
+    display:flex;
+    align-items:center;
+    gap:13px;
+    padding:16px;
+    margin-bottom:12px;
+    border-radius:19px;
+    background:linear-gradient(145deg,#191920,#101014);
+    border:1px solid var(--border);
+}
+
+.tx-icon{
+    width:50px;
+    height:50px;
+    border-radius:16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(53,196,119,.1);
+    border:1px solid rgba(53,196,119,.2);
+    font-size:23px;
+    flex-shrink:0;
+}
+
+.tx-info{
+    flex:1;
+    min-width:0;
+}
+
+.tx-name{
+    color:#fff;
+    font-size:14px;
+    font-weight:800;
+}
+
+.tx-id{
+    color:#777;
+    font-size:10px;
+    margin-top:3px;
+}
+
+.tx-amount{
+    color:var(--green);
+    font-size:15px;
+    font-weight:900;
+    margin-top:5px;
+}
+
+.tx-date{
+    color:#777;
+    font-size:10px;
+    margin-top:3px;
+}
+
+.receipt{
+    padding:9px 11px;
+    border-radius:10px;
+    text-decoration:none;
+    background:linear-gradient(135deg,#b47f22,#e8c464);
+    color:#111;
+    font-size:11px;
+    font-weight:900;
+}
+
+.empty{
+    text-align:center;
+    padding:35px 20px;
+    border-radius:20px;
+    background:#15151b;
+    border:1px dashed rgba(216,168,62,.25);
+    color:#777;
+    font-size:13px;
+}
+
+/* CONTACT POPUP */
+.overlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.75);
+    backdrop-filter:blur(8px);
+    z-index:500;
+}
+
+.contact{
+    display:none;
+    position:fixed;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    width:calc(100% - 40px);
+    max-width:390px;
+    padding:27px;
+    border-radius:27px;
+    background:linear-gradient(145deg,#202026,#101014);
+    border:1px solid rgba(216,168,62,.3);
+    z-index:501;
+    box-shadow:0 30px 100px rgba(0,0,0,.65);
+}
+
+.contact h3{
+    text-align:center;
+    margin-top:0;
+    color:var(--gold2);
+}
+
+.contact-btn{
+    display:block;
+    text-align:center;
+    padding:14px;
+    border-radius:14px;
+    margin-top:10px;
+    text-decoration:none;
+    font-weight:800;
+    background:#1b1b21;
+    border:1px solid var(--border);
+}
+
+.close-btn{
+    width:100%;
+    margin-top:12px;
+    padding:12px;
+    border-radius:13px;
+    border:1px solid var(--border);
+    background:transparent;
+    color:#aaa;
+    cursor:pointer;
+}
+
+/* LIGHTBOX */
+.lightbox{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:1000;
+    background:rgba(0,0,0,.97);
+    align-items:center;
+    justify-content:center;
+    padding:25px;
+}
+
+.lightbox img{
+    max-width:96%;
+    max-height:90vh;
+    object-fit:contain;
+    border-radius:12px;
+}
+
+.lightbox-close{
+    position:absolute;
+    top:18px;
+    left:18px;
+    padding:8px 15px;
+    border-radius:30px;
+    background:rgba(255,255,255,.1);
+    color:white;
+    border:1px solid rgba(255,255,255,.2);
+    cursor:pointer;
+    font-weight:800;
+}
+
+/* FOOTER NAVIGATION BAR */
+#sss-nav {
+    position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 900px; height: 75px;
+    background: linear-gradient(180deg, #ff4500, #800000); display: flex; justify-content: space-evenly; align-items: center;
+    border-top: 4px solid #ffcc00; border-radius: 20px 20px 0 0; z-index: 99999; box-shadow: 0 -5px 20px rgba(0,0,0,0.4);
+}
+.sss-item { flex: 1; text-align: center; text-decoration: none; color: #fff; font-size: 10px; font-weight: 800; }
+.sss-item img { width: 28px; height: 28px; display: block; margin: auto; }
+.sss-dash-wrap { margin-top: -30px; }
+.sss-gold-circle {
+    width: 60px; height: 60px; background: linear-gradient(45deg, #ffd700, #ffcc00, #b8860b);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid #800000; box-shadow: 0 0 15px rgba(255,215,0,0.6);
+}
+.sss-gold-circle img { width: 35px; height: 35px; }
+
+/* RESPONSIVE */
+@media(max-width:600px){
+    .hero{ height:285px; }
+    .profile-core{ margin-top:-105px; padding-left:16px; padding-right:16px; }
+    .profile-photo-wrap{ width:165px; height:165px; }
+    .profile-name{ font-size:27px; }
+    .actions-grid{ grid-template-columns:1fr 1fr; }
+    .action:first-child{ grid-column:span 2; }
+    .section, .tab-content{ padding-left:16px; padding-right:16px; }
+    .tabs-wrap{ padding-left:16px; padding-right:16px; }
+    .event-actions{ grid-template-columns:1fr 1fr; }
+    .transaction{ align-items:flex-start; }
+    .receipt{ padding:8px; font-size:10px; }
+    .objectives-grid{ grid-template-columns:1fr; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+<section
+    class="hero"
+    id="heroCoverContainer"
+    onclick="openLightbox(document.getElementById('heroCoverImg').src)"
+>
+    <img
+        id="heroCoverImg"
+        src="https://sanatansevasamiti.org/Images/ss/PRO1781368186_cover.jpg"
+        alt="Sant Sena Cover"
+        onerror="this.style.opacity='.15'"
+    >
+
+    <div class="hero-top">
+        <span class="glass-btn">
+            🚩 संत सेना • आधिकारिक प्रोफाइल
+        </span>
+
+        <a
+            href="javascript:void(0)"
+            class="glass-btn"
+            onclick="event.stopPropagation(); window.scrollTo({top:0,behavior:'smooth'})"
+        >
+            ↑
+        </a>
+    </div>
+</section>
+
+<section class="profile-core">
+
+    <div class="profile-photo-wrap">
+        <img
+            class="profile-photo"
+            id="profileDpImg"
+            src="https://sanatansevasamiti.org/Images/ss/PRO1781368186_dp.jpg"
+            alt="Sant Sena DP"
+            onclick="openLightbox(this.src)"
+            onerror="this.src='https://sanatansevasamiti.org/public_html/Images/maharaj.jpg'"
+        >
+        <span class="online-dot"></span>
+    </div>
+
+    <div class="profile-text">
+        <h1 class="profile-name">
+            <span id="profileTitle">संत सेना</span>
+            <span class="verified">✓</span>
+        </h1>
+
+        <div class="profile-tagline" id="profileTagline">
+            🪔 संत सुरक्षा • मठ-मंदिर संरक्षण • सनातन सेवा
+        </div>
+
+        <div class="actions-grid">
+            <a
+                href="sant_sena_daan.html"
+                class="action gold"
+            >
+                🙏 संत सेवा हेतु सहयोग
+            </a>
+
+            <button
+                class="action"
+                onclick="openContact()"
+            >
+                📞 आपात संपर्क
+            </button>
+
+            <button
+                class="action red"
+                onclick="toggleSpecial()"
+            >
+                ✨ परिचय एवं महासंकल्प
+            </button>
+        </div>
+    </div>
+
+    <div
+        id="specialBox"
+        class="special-box"
+    >
+        <div style="text-align:center;">
+            <div class="maharaj-glow-wrap">
+                <img
+                    class="special-photo"
+                    src="https://sanatansevasamiti.org/public_html/Images/maharaj.jpg"
+                    alt="पूज्य महाराज जी"
+                    onclick="openLightbox(this.src)"
+                >
+            </div>
+
+            <div class="vip-badge">
+                ⚜️ संस्थापक एवं राष्ट्रीय अध्यक्ष ⚜️<br>।। सनातन सेवा समिति ।।
+            </div>
+
+            <h2 class="special-title">
+                अनंत श्री विभूषित आनंद पीठाधीश्वर<br>
+                पूज्य सच्चिदानंदाचार्य श्री सच्चिदानंद जी महाराज
+            </h2>
+        </div>
+
+        <div class="quote">
+            “संतन के सुखकारी, धर्म के रखवारे।<br>साधु, संत और संन्यासियों का सम्मान ही सनातन की सुरक्षा है।”
+        </div>
+
+        <div class="special-content">
+            <p>
+                पूज्य महाराज श्री केवल एक आध्यात्मिक संत नहीं, अपितु <strong>संत परंपरा के रक्षक, मठ-मंदिरों के प्रहरी एवं सनातन स्वाभिमान के प्रखर संवाहक</strong> हैं। आपके जीवन का प्रत्येक क्षण सनातन धर्म के वास्तविक आधारस्तंभ — हमारे पूज्य साधु, संत, संन्यासी और तपस्वियों के गौरव व सुरक्षा के लिए समर्पित है।
+            </p>
+
+            <p>
+                <strong>पूज्य महाराज जी का पावन महासंकल्प —</strong> सनातन सेवा समिति के अंतर्गत <strong>'संत सेना'</strong> का गठन एक ऐसे अभेद्य सुरक्षा कवच के रूप में किया गया है, जो संपूर्ण भारतवर्ष में भ्रमण करने वाले, वनों, गुफाओं, आश्रमों एवं तीर्थों में साधना करने वाले संतों की रक्षा व सेवा के लिए 24 घंटे तत्पर रहे। महाराज जी का स्पष्ट उद्घोष है कि किसी भी साधु-संत का अपमान, उन पर अत्याचार या धर्म-स्थलों पर अनाधिकार आक्रमण अब सनातन समाज सहन नहीं करेगा।
+            </p>
+
+            <p>
+                महाराज जी का दिव्य दृष्टिकोण समाज में फैले ऊंच-नीच के भेदों को समाप्त कर, प्रत्येक संत को साक्षात् प्रभु का विग्रह मानकर उनकी नित्य सेवा और सुरक्षा को जीवन का सर्वोच्च धर्म बनाना है।
+            </p>
+        </div>
+
+        <div class="bio-section-box">
+            <div class="bio-section-title">
+                🎯 संत सेना के प्रमुख उद्देश्य
+            </div>
+
+            <div class="objectives-grid">
+                <div class="objective-item">
+                    <span class="icon">🛡️</span>
+                    <div class="txt">
+                        <strong>साधु-संतों की सुरक्षा:</strong>
+                        भ्रमणशील एवं एकांतवासी संन्यासियों को उपद्रवियों और अन्यायी तत्वों से पूर्ण सुरक्षा कवच प्रदान करना।
+                    </div>
+                </div>
+
+                <div class="objective-item">
+                    <span class="icon">🛕</span>
+                    <div class="txt">
+                        <strong>मठ-मंदिर व आश्रम संरक्षण:</strong>
+                        प्राचीन मठों, आश्रमों, अखाड़ों एवं तपोभूमियों की भूमि व संपत्तियों को अवैध कब्जों से मुक्त रखना।
+                    </div>
+                </div>
+
+                <div class="objective-item">
+                    <span class="icon">🏥</span>
+                    <div class="txt">
+                        <strong>संत चिकित्सा एवं आहार सेवा:</strong>
+                        वृद्ध, अशक्त एवं बीमार साधु-संतों हेतु उत्तम चिकित्सा, औषधि और नित्य पौष्टिक आहार व्यवस्था सुनिश्चित करना।
+                    </div>
+                </div>
+
+                <div class="objective-item">
+                    <span class="icon">⚖️</span>
+                    <div class="txt">
+                        <strong>त्वरित विधिक व सामाजिक सहायता:</strong>
+                        संतों पर होने वाले झूठे आरोपों या प्रताड़ना के विरुद्ध प्रशासनिक व कानूनी लड़ाई निःशुल्क लड़ना।
+                    </div>
+                </div>
+
+                <div class="objective-item">
+                    <span class="icon">📜</span>
+                    <div class="txt">
+                        <strong>ऋषि-संस्कृति का पुनर्जागरण:</strong>
+                        युवा पीढ़ी को भारतीय संन्यास परंपरा, गुरु-शिष्य मर्यादा और संतों के सम्मान के प्रति जागरूक करना।
+                    </div>
+                </div>
+
+                <div class="objective-item">
+                    <span class="icon">📞</span>
+                    <div class="txt">
+                        <strong>24×7 आपातकालीन संत हेल्पलाइन:</strong>
+                        देश के किसी भी कोने में संकटग्रस्त संत हेतु तत्काल सहायता दल और सुरक्षा प्रतिनिधि भेजना।
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bio-section-box">
+            <div class="bio-section-title">
+                🎥 संत सेना : आधिकारिक परिचय एवं संकल्प वीडियो
+            </div>
+
+            <div class="yt-wrapper">
+                <iframe
+                    src="https://www.youtube.com/embed/videoseries?list=PLsomeList"
+                    title="संत सेना परिचय एवं संकल्प"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                ></iframe>
+            </div>
+
+            <p style="text-align:center; font-size:12px; color:var(--gold2); margin:6px 0 0; font-weight:700;">
+                🚩 पूज्य महाराज जी का पावन संदेश एवं संत सेना की कार्यप्रणाली को समझने हेतु वीडियो अवश्य देखें 🚩
+            </p>
+        </div>
+
+        <div class="bio-section-box">
+            <div class="bio-section-title">
+                🚩 संत सेना का विस्तृत परिचय एवं अखंड संकल्प
+            </div>
+
+            <div class="quote" style="margin-top:10px; margin-bottom:15px;">
+                “साधु गावत साधु बजावत, साधु करत सब काज।<br>
+                साधु हमारे सिर के मुकुट, हम संतन के दास॥”
+            </div>
+
+            <div class="special-content">
+                <p>
+                    <strong>संत सेना</strong> सनातन सेवा समिति के अंतर्गत गठित एक अत्यंत अनुशासित, निष्ठावान और पराक्रमी संगठन है। भारत की धरती संतों और ऋषियों की तपस्या से पवित्र है। जब-जब समाज पर संकट आया है, तब-तब संतों ने धर्म का मार्ग दिखाकर राष्ट्र को बचाया है। परंतु आज के इस कलियुगी दौर में देखने में आ रहा है कि निर्दोष, शांत और तपस्वी संतों को निशाना बनाया जा रहा है, आश्रमों पर अतिक्रमण हो रहे हैं और संन्यासियों के सम्मान पर आघात किया जा रहा है।
+                </p>
+
+                <div class="mission-card">
+                    <h4>🛡️ संतों के मान-सम्मान एवं देह की रक्षा</h4>
+                    <p>
+                        चाहे कोई संत चार धाम की यात्रा पर हों, नर्मदा परिक्रमा में हों या किसी दूरस्थ वन क्षेत्र में कुटिया बनाकर साधनारत हों — संत सेना के सैनिक उनके सम्मान और सुरक्षा के लिए ढाल बनकर खड़े रहेंगे। संतों पर हमला पूरे सनातन धर्म पर हमला माना जाएगा और इसका वैधानिक व सामाजिक रूप से मुंहतोड़ उत्तर दिया जाएगा।
+                    </p>
+                </div>
+
+                <div class="mission-card">
+                    <h4>🛕 तीर्थों एवं आश्रमों की मर्यादा की रक्षा</h4>
+                    <p>
+                        अनेक पवित्र मठों और आश्रमों को व्यावसायिक दृष्टिकोण से हड़पने की कुचेष्टाएं की जाती हैं। संत सेना ऐसे सभी धर्म-विरोधी षड्यंत्रों का पर्दाफाश करेगी और संतों के तपोस्थलों की पवित्रता को अक्षुण्ण बनाए रखेगी।
+                    </p>
+                </div>
+
+                <div class="mission-card">
+                    <h4>📞 संकट के समय त्वरित संपर्क व्यवस्था</h4>
+                    <p>
+                        यदि किसी भी संत, साध्वी, अखाड़े या आश्रम को किसी भी प्रकार का भय, संकट या प्रशासनिक समस्या हो, तो वे <strong>बिना किसी झिझक के सीधे संत सेना हेल्पलाइन पर संपर्क कर सकते हैं</strong>। हमारे समर्पित सेवक तत्काल सहायता हेतु स्थल पर उपस्थित होंगे।
+                    </p>
+                </div>
+
+                <p style="margin-top:16px;">
+                    आइए, संत सेना के इस पवित्र एवं ऐतिहासिक अभियान से जुड़कर पूज्य संतों के चरणों में अपना शीश नवाएं और उनके संरक्षण में अपना योगदान दें।
+                </p>
+
+                <div class="vip-slogan-box">
+                    🪔 हर सनातनी संत सेवा से जुड़े • हर आश्रम सुरक्षित हो 🪔<br>
+                    <strong>“संतों का सम्मान, हमारा स्वाभिमान।”</strong><br>
+                    <small style="font-size:12px; opacity:.9;">— संत सेना, सनातन सेवा समिति</small>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section">
+    <div class="section-title">
+        <h2>📅 आगामी संत समागम एवं कार्यक्रम</h2>
+        <span>EVENTS</span>
+    </div>
+
+    <button
+        class="schedule-toggle"
+        onclick="toggleSchedules(this)"
+    >
+        <span>सभी कार्यक्रम देखें</span>
+        <span class="arrow">▼</span>
+    </button>
+
+    <div
+        id="scheduleContent"
+        class="schedule-content"
+    >
+        <div class="empty">
+            📅 कार्यक्रम विवरण लोड हो रहा है...
+        </div>
+    </div>
+</section>
+
+<div class="tabs-wrap">
+    <div class="tabs">
+        <button
+            class="tab active"
+            onclick="showTab('posts',this)"
+        >
+            📰 पोस्ट
+        </button>
+
+        <button
+            class="tab"
+            onclick="showTab('karyakarini',this)"
+        >
+            👑 कार्यकारिणी
+        </button>
+
+        <button
+            class="tab"
+            onclick="showTab('daan',this)"
+        >
+            💰 सेवा सूची
+        </button>
+    </div>
+</div>
+
+<div id="posts" class="tab-content active">
+    <div id="postsContainer">
+        <div class="empty">
+            📰 पोस्ट्स लोड हो रही हैं...
+        </div>
+    </div>
+</div>
+
+<div id="karyakarini" class="tab-content">
+    <div class="executive">
+        <div class="executive-icon">
+            👑
+        </div>
+        <h3>संत सेना कार्यकारिणी</h3>
+        <p>
+            संत सेना के प्रमुख संरक्षक, पदाधिकारी, सुरक्षा दल प्रभारी एवं क्षेत्रीय संयोजकों की सूची यहाँ प्रदर्शित की जाएगी।
+        </p>
+    </div>
+</div>
+
+<div id="daan" class="tab-content">
+    <div class="section-title">
+        <h2>💰 संत सेवा एवं सहयोग विवरण</h2>
+        <span>TRANSACTIONS</span>
+    </div>
+
+    <div id="donationsContainer">
+        <div class="empty">
+            💰 सेवा रिकॉर्ड लोड हो रहा है...
+        </div>
+    </div>
+</div>
+
+</div>
+
+<div id="overlay" class="overlay" onclick="closeContact()"></div>
+
+<div id="contact" class="contact">
+    <h3>📞 संत सेना आपात सहायता</h3>
+    <p style="font-size:12px; color:#aaa; text-align:center; margin-top:-5px; margin-bottom:15px;">
+        साधु-संतों पर संकट अथवा आश्रम सुरक्षा हेतु तुरंत संपर्क करें
+    </p>
+
+    <a id="modalCall" href="tel:+919876543210" class="contact-btn" style="color:#4ee08c;">
+        📞 सीधे कॉल करें (24x7)
+    </a>
+
+    <a id="modalMail" href="mailto:contact@sanatansevasamiti.org" class="contact-btn" style="color:#6faeff;">
+        📧 ईमेल द्वारा सूचित करें
+    </a>
+
+    <button class="close-btn" onclick="closeContact()">
+        बंद करें
+    </button>
+</div>
+
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">← Back</button>
+    <img id="lightboxImage" src="" alt="Preview" onclick="event.stopPropagation()">
+</div>
+
+<!-- FOOTER NAVIGATION BAR -->
+<div id="sss-nav">
+    <a href="app_home.html" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341771file_00000000145071fab7ea2e7e30f9dfaa-e1776295057951.png" alt="गृह">
+        <span>गृह</span>
+    </a>
+    <a href="guru_parampara.html" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341317ci.jpg" alt="गुरु">
+        <span>गुरु परंपरा</span>
+    </a>
+    <a href="feed.html" class="sss-item sss-dash-wrap">
+        <div class="sss-gold-circle">
+            <img src="https://sanatansevasamiti.org/uploads/footer/1780341218logo.jpg" alt="फीड">
+        </div>
+        <span></span>
+    </a>
+    <a href="javascript:void(0);" onclick="alert('पुस्तकें — यह अनुभाग शीघ्र ही स्थानीय रूप से उपलब्ध होगा।');" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341270bi.jpg" alt="पुस्तकें">
+        <span>पुस्तकें</span>
+    </a>
+    <a href="app_dashboard.html" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341144ai.jpg" alt="अकाउंट">
+        <span>अकाउंट</span>
+    </a>
+</div>
+
+<script>
+const PROFILE_ID = "PRO1781368186";
+let CURRENT_UID = "";
+
+try {
+    const rawUser = localStorage.getItem("sss_user_data");
+    if(rawUser){
+        const u = JSON.parse(rawUser);
+        CURRENT_UID = u.unique_id || u.id || "";
+    }
+} catch(e){}
+
+async function loadSantSenaData(){
+    try {
+        const apiUrl = `https://sanatansevasamiti.org/api/get_profile_full.php?action=detail&profile_id=${PROFILE_ID}&user_id=${encodeURIComponent(CURRENT_UID)}`;
+        const res = await fetch(apiUrl);
+        if(!res.ok) throw new Error("नेटवर्क प्रतिक्रिया विफल");
+        const data = await res.json();
+
+        if(data && data.status === 'success'){
+            if(data.profile){
+                const p = data.profile;
+                if(p.name) document.getElementById('profileTitle').innerText = p.name;
+                if(p.tagline) document.getElementById('profileTagline').innerText = "🪔 " + p.tagline;
+                if(p.dp_url) document.getElementById('profileDpImg').src = p.dp_url;
+                if(p.cover_url) document.getElementById('heroCoverImg').src = p.cover_url;
+                if(p.mobile) document.getElementById('modalCall').href = "tel:" + p.mobile;
+                if(p.email) document.getElementById('modalMail').href = "mailto:" + p.email;
+            }
+
+            renderPosts(data.posts, data.profile);
+            renderEvents(data.schedules);
+            renderDonations(data.public_donations);
+        }
+    } catch(err){
+        console.error("Sant Sena Load Error:", err);
+    }
+}
+
+function renderPosts(posts, prof){
+    const container = document.getElementById('postsContainer');
+    if(!posts || posts.length === 0){
+        container.innerHTML = `<div class="empty">📰 संत सेना प्रोफाइल पर अभी कोई पोस्ट नहीं है।</div>`;
+        return;
+    }
+
+    container.innerHTML = posts.map(post => {
+        const mediaList = post.parsed_media || [];
+        let mediaBlock = '';
+
+        if(post.post_type === 'youtube'){
+            mediaBlock = mediaList.map(m => `
+                <iframe class="yt ${m.is_shorts ? 'yt-short' : ''}" src="${m.embed_url}" allowfullscreen loading="lazy"></iframe>
+            `).join("");
+        } else if(post.post_type === 'video'){
+            mediaBlock = mediaList.map(m => `
+                <video controls class="media-video" src="${m.raw_url}"></video>
+            `).join("");
+        } else if(mediaList.length > 0){
+            const slides = mediaList.map(m => `
+                <div class="slide">
+                    <img src="${m.raw_url}" alt="Post Image" onclick="openLightbox(this.src)">
+                </div>
+            `).join("");
+
+            mediaBlock = `
+                <div class="slider" id="slider-${post.id}">
+                    <div class="slides" id="slides-${post.id}">
+                        ${slides}
+                    </div>
+                    ${mediaList.length > 1 ? `
+                        <button class="slide-btn slide-prev" onclick="event.stopPropagation();moveSlide(${post.id},-1)">‹</button>
+                        <button class="slide-btn slide-next" onclick="event.stopPropagation();moveSlide(${post.id},1)">›</button>
+                    ` : ''}
+                </div>
+            `;
+        }
+
+        return `
+        <article class="post-card">
+            <div class="post-header">
+                <img src="${prof.dp_url || 'https://sanatansevasamiti.org/Images/ss/PRO1781368186_dp.jpg'}" alt="DP" onerror="this.src='https://sanatansevasamiti.org/public_html/Images/maharaj.jpg'">
+                <div class="post-user">
+                    <h4>${prof.name || 'संत सेना'}</h4>
+                    <p>${prof.tagline || 'सनातन सेवा समिति'}</p>
+                </div>
+            </div>
+            <div class="media">
+                ${mediaBlock}
+            </div>
+            <div class="caption">
+                <div id="caption-${post.id}" class="caption-text">
+                    ${(post.caption || '').replace(/\n/g, '<br>')}
+                </div>
+                <button class="more" onclick="showMore(${post.id},this)">और पढ़ें...</button>
+            </div>
+            <div class="post-actions">
+                <button class="post-action" onclick="toggleLike(this)">❤️ Like</button>
+                <button class="post-action" onclick="sharePost(${post.id})">🔗 Share</button>
+            </div>
+        </article>`;
+    }).join("");
+}
+
+function renderEvents(schedules){
+    const container = document.getElementById('scheduleContent');
+    if(!schedules || schedules.length === 0){
+        container.innerHTML = `<div class="empty">📅 फिलहाल कोई कार्यक्रम उपलब्ध नहीं है।</div>`;
+        return;
+    }
+
+    container.innerHTML = schedules.map(sch => {
+        const media = (sch.media_files && sch.media_files.length > 0) ? sch.media_files[0] : '';
+        let mediaHtml = '';
+        if(media){
+            if(media.match(/\.(mp4|webm|ogg)$/i)){
+                mediaHtml = `<video class="event-video" controls src="${media}"></video>`;
+            } else {
+                mediaHtml = `<img class="event-image" src="${media}" alt="Event" onclick="openLightbox(this.src)">`;
+            }
+        }
+
+        return `
+        <article class="event-card">
+            ${mediaHtml}
+            <div class="event-body">
+                <div class="event-title">${sch.title || 'संत समागम'}</div>
+                <div class="event-description">${(sch.description || '').replace(/\n/g, '<br>')}</div>
+                <div class="event-meta">
+                    🗓️ ${sch.event_date || ''} &nbsp; • &nbsp; ⏰ ${sch.time_from || ''} - ${sch.time_to || ''}<br>
+                    📍 ${sch.address || ''}, ${sch.district || ''}, ${sch.state || ''}
+                </div>
+                <div class="event-actions">
+                    ${sch.mobile ? `<a href="tel:${sch.mobile}" class="event-btn call">📞 कॉल</a>` : ''}
+                    ${sch.web_url ? `<a href="${sch.web_url}" target="_blank" class="event-btn web">🌐 कार्यक्रम</a>` : ''}
+                    ${sch.yt_link ? `<a href="${sch.yt_link}" target="_blank" class="event-btn yt">▶ YouTube Live</a>` : ''}
+                    ${sch.fb_link ? `<a href="${sch.fb_link}" target="_blank" class="event-btn fb">f Facebook Live</a>` : ''}
+                </div>
+            </div>
+        </article>`;
+    }).join("");
+}
+
+function renderDonations(donations){
+    const container = document.getElementById('donationsContainer');
+    if(!donations || donations.length === 0){
+        container.innerHTML = `<div class="empty">💰 इस प्रोफाइल के लिए अभी कोई सेवा रिकॉर्ड उपलब्ध नहीं है।</div>`;
+        return;
+    }
+
+    let totalCredits = 0;
+    donations.forEach(tx => {
+        if (tx.amount_type === 'rupees' || tx.amount_type === 'dhan') {
+            totalCredits += parseFloat(tx.amount) || 0;
+        }
+    });
+
+    const summaryHtml = `
+    <div class="donation-summary">
+        <div class="summary-card">
+            <small>कुल समर्पित सेवा</small>
+            <strong>₹${totalCredits.toFixed(2)}</strong>
+        </div>
+        <div class="summary-card">
+            <small>सेवा रिकॉर्ड</small>
+            <strong>${donations.length}</strong>
+        </div>
+    </div>`;
+
+    const txHtml = donations.map(tx => `
+        <div class="transaction">
+            <div class="tx-icon">📥</div>
+            <div class="tx-info">
+                <div class="tx-name">${tx.full_name}</div>
+                ${tx.unique_id ? `<div class="tx-id">ID: ${tx.unique_id}</div>` : ''}
+                <div class="tx-amount">+ ${tx.amount_label}</div>
+                <div class="tx-date">${tx.payment_mode || 'UPI'} &nbsp; • &nbsp; ${tx.tx_date}</div>
+            </div>
+            <a href="${tx.receipt_url}" target="_blank" class="receipt">🧾 रसीद</a>
+        </div>
+    `).join("");
+
+    container.innerHTML = summaryHtml + txHtml;
+}
+
+/* UI INTERACTIONS */
+function showTab(id, btn){
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+    const target = document.getElementById(id);
+    if(target) target.classList.add('active');
+    btn.classList.add('active');
+}
+
+function toggleSpecial(){
+    const box = document.getElementById('specialBox');
+    if(box.style.display === 'block'){
+        box.style.display = 'none';
+    } else {
+        box.style.display = 'block';
+        setTimeout(() => box.scrollIntoView({ behavior:'smooth', block:'nearest' }), 100);
+    }
+}
+
+function toggleSchedules(btn){
+    const content = document.getElementById('scheduleContent');
+    btn.classList.toggle('active');
+    content.style.display = (content.style.display === 'block') ? 'none' : 'block';
+}
+
+function showMore(id, button){
+    const text = document.getElementById('caption-' + id);
+    if(!text) return;
+    text.classList.add('expanded');
+    button.style.display = 'none';
+}
+
+function toggleLike(btn){
+    btn.classList.toggle('liked');
+    btn.innerHTML = btn.classList.contains('liked') ? '❤️ Liked' : '❤️ Like';
+}
+
+function sharePost(id){
+    const url = 'https://sanatansevasamiti.org/feed.php?postid=' + id;
+    if(navigator.share){
+        navigator.share({ title:'संत सेना पोस्ट', text:'संत सेना की आधिकारिक पोस्ट देखें', url:url }).catch(()=>{});
+    } else {
+        window.open('https://wa.me/?text=' + encodeURIComponent('देखें संत सेना पोस्ट: ' + url), '_blank');
+    }
+}
+
+const slideIndexes = {};
+function moveSlide(postId, direction){
+    if(typeof slideIndexes[postId] === 'undefined') slideIndexes[postId] = 0;
+    const container = document.getElementById('slides-' + postId);
+    if(!container) return;
+    const total = container.children.length;
+    if(total <= 1) return;
+    slideIndexes[postId] += direction;
+    if(slideIndexes[postId] >= total) slideIndexes[postId] = 0;
+    if(slideIndexes[postId] < 0) slideIndexes[postId] = total - 1;
+    container.style.transform = 'translateX(-' + (slideIndexes[postId] * 100) + '%)';
+}
+
+function openLightbox(src){
+    const box = document.getElementById('lightbox');
+    const image = document.getElementById('lightboxImage');
+    image.src = src;
+    box.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox(){
+    const box = document.getElementById('lightbox');
+    box.style.display = 'none';
+    document.body.style.overflow = '';
+}
+
+function openContact(){
+    document.getElementById('overlay').style.display = 'block';
+    document.getElementById('contact').style.display = 'block';
+}
+
+function closeContact(){
+    document.getElementById('overlay').style.display = 'none';
+    document.getElementById('contact').style.display = 'none';
+}
+
+document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){
+        closeLightbox();
+        closeContact();
+    }
+});
+
+window.addEventListener("DOMContentLoaded", loadSantSenaData);
+</script>
+
+</body>
+</html>
