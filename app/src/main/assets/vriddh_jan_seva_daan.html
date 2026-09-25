@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#080d1b">
+<title>वृद्ध जन सेवा — सनातन सेवा समिति</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Rozha+One&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --deep:#050816;
+    --deep2:#080d1b;
+    --indigo:#0f172a;
+    --indigo2:#172554;
+    --gold:#d4af37;
+    --gold2:#f4d98b;
+    --gold3:#fff4c7;
+    --goldDark:#8c6916;
+    --cream:#fffdf7;
+    --text:#182033;
+    --muted:#667085;
+    --white:#ffffff;
+    --line:rgba(212,175,55,.24);
+    --shadow:0 30px 90px rgba(7,11,20,.10);
+    --radius:34px;
+    --radius2:24px;
+}
+
+*{ box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
+html{ scroll-behavior:smooth; }
+
+body{
+    color:var(--text);
+    font-family:'Plus Jakarta Sans', system-ui, -apple-system, "Noto Sans Devanagari", sans-serif;
+    background:
+        radial-gradient(circle at 0% 0%, rgba(212,175,55,.12), transparent 30%),
+        radial-gradient(circle at 100% 10%, rgba(23,37,84,.09), transparent 32%),
+        #f7f8fc;
+    padding-bottom:140px;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+}
+
+body:before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    opacity:.35;
+    background-image:
+        linear-gradient(rgba(15,23,42,.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15,23,42,.018) 1px, transparent 1px);
+    background-size:60px 60px;
+    z-index:-1;
+}
+
+button, input, textarea, select{ font:inherit; }
+a{ color:inherit; text-decoration:none; }
+
+.container{
+    width:min(1240px, calc(100% - 32px));
+    margin:auto;
+}
+
+.ambient{
+    position:fixed;
+    width:650px;
+    height:650px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(212,175,55,.075), transparent 70%);
+    top:-260px;
+    right:-220px;
+    pointer-events:none;
+    z-index:-1;
+}
+
+.topbar{
+    position:sticky;
+    top:0;
+    z-index:800;
+    background:rgba(248,250,252,.86);
+    backdrop-filter:blur(28px);
+    -webkit-backdrop-filter:blur(28px);
+    border-bottom:1px solid rgba(212,175,55,.28);
+    box-shadow:0 10px 35px rgba(7,11,20,.035);
+}
+
+.topIn{
+    min-height:84px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:18px;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    min-width:0;
+}
+
+.brandLogo{
+    width:58px;
+    height:58px;
+    flex:0 0 58px;
+    border-radius:20px;
+    object-fit:cover;
+    border:2px solid var(--gold);
+    box-shadow:0 10px 28px rgba(212,175,55,.22);
+}
+
+.brandText{ min-width:0; }
+
+.brandText strong{
+    display:block;
+    font-family:'Rozha One',serif;
+    font-size:19px;
+    color:var(--deep);
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.brandText small{
+    display:block;
+    color:var(--goldDark);
+    font-size:10px;
+    font-weight:800;
+    margin-top:2px;
+    letter-spacing:.06em;
+}
+
+.walletTop{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:10px 14px;
+    border-radius:22px;
+    background:linear-gradient(135deg, #fff, #fffdf4);
+    border:1.5px solid var(--gold);
+    box-shadow:0 12px 30px rgba(212,175,55,.12);
+}
+
+.walletIcon{
+    width:42px;
+    height:42px;
+    display:grid;
+    place-items:center;
+    border-radius:14px;
+    color:var(--gold3);
+    background:linear-gradient(135deg, var(--indigo), var(--deep));
+    font-size:18px;
+}
+
+.walletTop span{
+    display:block;
+    font-size:9px;
+    color:#7b8494;
+    font-weight:900;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+}
+
+.walletTop strong{
+    display:block;
+    color:var(--deep);
+    font-size:16px;
+    margin-top:2px;
+}
+
+.profileIdentity{
+    margin-top:24px;
+    padding:28px;
+    border-radius:30px;
+    background:linear-gradient(135deg, rgba(255,255,255,.96), rgba(255,253,247,.96));
+    border:1px solid rgba(212,175,55,.28);
+    box-shadow:0 20px 55px rgba(15,23,42,.05);
+    display:flex;
+    align-items:center;
+    gap:25px;
+}
+
+.profileIdentityLogo{
+    width:120px;
+    height:120px;
+    flex:0 0 120px;
+    padding:5px;
+    border-radius:34px;
+    background:linear-gradient(135deg, var(--gold3), var(--gold), var(--goldDark));
+    box-shadow:0 18px 45px rgba(212,175,55,.25);
+}
+
+.profileIdentityLogo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:29px;
+    border:4px solid white;
+}
+
+.profileIdentityContent{ flex:1; }
+
+.profileEyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    padding:7px 13px;
+    border-radius:999px;
+    background:#fff8df;
+    color:var(--goldDark);
+    border:1px solid rgba(212,175,55,.25);
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:.08em;
+}
+
+.profileIdentityContent h1{
+    margin-top:10px;
+    font-family:'Rozha One',serif;
+    font-size:42px;
+    line-height:1.05;
+    color:var(--deep);
+}
+
+.profileIdentityContent p{
+    margin-top:8px;
+    max-width:850px;
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.8;
+}
+
+.profileMeta{
+    margin-top:12px;
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+}
+
+.metaChip{
+    padding:7px 11px;
+    border-radius:999px;
+    background:#f7f8fb;
+    border:1px solid #e5e7eb;
+    font-size:10px;
+    font-weight:800;
+    color:#475569;
+}
+
+.hero{
+    position:relative;
+    min-height:700px;
+    margin-top:28px;
+    border-radius:40px;
+    overflow:hidden;
+    color:#fff;
+    background:
+        linear-gradient(105deg, rgba(3,7,18,.98) 0%, rgba(7,13,30,.91) 42%, rgba(15,23,42,.57) 70%, rgba(15,23,42,.25) 100%),
+        url('https://sanatansevasamiti.org/public_html/Images/maharaj.jpg') center 18% / cover no-repeat;
+    border:1px solid rgba(212,175,55,.48);
+    box-shadow:0 40px 110px rgba(7,11,20,.38);
+}
+
+.hero:before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+        radial-gradient(circle at 75% 25%, rgba(212,175,55,.20), transparent 25%),
+        linear-gradient(0deg, rgba(3,7,18,.90), transparent 62%);
+}
+
+.heroContent{
+    position:relative;
+    z-index:3;
+    min-height:700px;
+    display:flex;
+    align-items:center;
+    padding:65px 65px;
+}
+
+.heroCopy{ width:min(800px,100%); }
+
+.heroBadge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:9px 17px;
+    border-radius:999px;
+    color:var(--gold3);
+    background:rgba(212,175,55,.13);
+    border:1px solid rgba(250,229,168,.45);
+    backdrop-filter:blur(12px);
+    font-size:11px;
+    font-weight:900;
+    letter-spacing:.05em;
+}
+
+.hero h2{
+    margin-top:23px;
+    font-family:'Rozha One',serif;
+    font-size:clamp(48px,7vw,86px);
+    line-height:1;
+    letter-spacing:-.02em;
+    text-shadow:0 8px 35px rgba(0,0,0,.55);
+}
+
+.hero h2 span{
+    display:block;
+    margin-top:10px;
+    background:linear-gradient(135deg, #fff, #fae5a8 48%, #d4af37);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.heroDesc{
+    margin-top:22px;
+    max-width:720px;
+    color:#dbe4f0;
+    font-size:15px;
+    line-height:2;
+}
+
+.guruStrip{
+    margin-top:25px;
+    padding:18px 22px;
+    border-left:4px solid var(--gold);
+    border-radius:0 22px 22px 0;
+    background:rgba(3,7,18,.65);
+    backdrop-filter:blur(18px);
+    color:#f9edcf;
+    font-family:'Rozha One',serif;
+    font-size:15px;
+    line-height:1.7;
+    max-width:700px;
+}
+
+.heroButtons{ display:flex; gap:12px; flex-wrap:wrap; margin-top:28px; }
+
+.heroBtn{
+    min-height:54px;
+    padding:0 22px;
+    border-radius:18px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    font-size:12px;
+    font-weight:900;
+    transition:.3s ease;
+    cursor:pointer;
+}
+
+.heroBtn.gold{
+    color:#080d1b;
+    background:linear-gradient(135deg, #fff0bd, #d4af37 52%, #9b7418);
+    box-shadow:0 14px 35px rgba(212,175,55,.34);
+}
+.heroBtn.gold:hover{ transform:translateY(-3px); box-shadow:0 20px 48px rgba(212,175,55,.48); }
+
+.heroBtn.glass{
+    color:#fff;
+    border:1px solid rgba(255,255,255,.25);
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(12px);
+}
+
+.heroStats{
+    margin-top:34px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    max-width:720px;
+}
+
+.heroStat{
+    padding:18px;
+    border-radius:21px;
+    background:rgba(255,255,255,.065);
+    border:1px solid rgba(255,255,255,.13);
+    backdrop-filter:blur(14px);
+}
+
+.heroStat strong{ display:block; color:var(--gold3); font-family:'Rozha One',serif; font-size:22px; }
+.heroStat span{ display:block; margin-top:4px; color:#cbd5e1; font-size:10px; line-height:1.5; }
+
+.divider{
+    margin:38px auto;
+    width:min(620px,80%);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:var(--goldDark);
+    font-size:13px;
+    justify-content:center;
+}
+.divider:before, .divider:after{
+    content:""; height:1px; flex:1;
+    background:linear-gradient(90deg, transparent, rgba(212,175,55,.55));
+}
+.divider:after{ background:linear-gradient(90deg, rgba(212,175,55,.55), transparent); }
+
+.card{
+    margin-top:30px;
+    padding:42px;
+    border-radius:var(--radius);
+    background:rgba(255,255,255,.94);
+    border:1px solid rgba(212,175,55,.25);
+    box-shadow:var(--shadow);
+    position:relative;
+    overflow:hidden;
+}
+
+.sectionHead{
+    display:flex;
+    align-items:center;
+    gap:17px;
+    margin-bottom:25px;
+}
+
+.sectionIcon{
+    width:65px;
+    height:65px;
+    flex:0 0 65px;
+    border-radius:21px;
+    display:grid;
+    place-items:center;
+    font-size:28px;
+    background:linear-gradient(135deg, #fff9e7, #fae5a8);
+    border:1.5px solid var(--gold);
+    box-shadow:0 12px 28px rgba(212,175,55,.16);
+}
+
+.sectionHead small{
+    display:block;
+    color:var(--goldDark);
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+}
+
+.sectionHead h2{
+    margin-top:3px;
+    font-family:'Rozha One',serif;
+    color:var(--deep);
+    font-size:clamp(27px, 4vw, 39px);
+    line-height:1.2;
+}
+
+.sectionIntro{
+    max-width:900px;
+    color:var(--muted);
+    font-size:14px;
+    line-height:2;
+    margin-bottom:28px;
+}
+
+.serviceGrid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:24px;
+}
+
+.serviceCard{
+    position:relative;
+    overflow:hidden;
+    border-radius:28px;
+    background:#fff;
+    border:1px solid rgba(15,23,42,.07);
+    box-shadow:0 15px 40px rgba(15,23,42,.045);
+    transition:.4s cubic-bezier(.16,1,.3,1);
+}
+
+.serviceCard:hover{
+    transform:translateY(-7px);
+    border-color:var(--gold);
+    box-shadow:0 25px 60px rgba(15,23,42,.11);
+}
+
+.serviceImage{
+    height:270px;
+    position:relative;
+    overflow:hidden;
+}
+
+.serviceImage img{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:cover;
+    transition:transform .7s cubic-bezier(.16,1,.3,1);
+}
+
+.serviceCard:hover .serviceImage img{ transform:scale(1.055); }
+
+.serviceImage:after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(0deg, rgba(5,8,22,.52), transparent 55%);
+}
+
+.serviceTag{
+    position:absolute;
+    left:18px;
+    bottom:17px;
+    z-index:2;
+    padding:8px 12px;
+    border-radius:999px;
+    color:#fff;
+    background:rgba(5,8,22,.72);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,.18);
+    font-size:10px;
+    font-weight:900;
+}
+
+.serviceBody{ padding:25px; }
+
+.serviceBody h3{
+    color:var(--deep);
+    font-family:'Rozha One',serif;
+    font-size:23px;
+    line-height:1.25;
+    margin-bottom:8px;
+}
+
+.serviceBody p{ color:var(--muted); font-size:12.5px; line-height:1.85; }
+
+.serviceLink{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    margin-top:16px;
+    color:var(--goldDark);
+    font-size:11px;
+    font-weight:900;
+}
+
+.promiseGrid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+    margin-top:25px;
+}
+
+.promiseCard{
+    padding:24px;
+    border-radius:23px;
+    background:linear-gradient(135deg, #fff, #fffdf5);
+    border:1px solid rgba(212,175,55,.22);
+}
+
+.promiseNumber{
+    color:var(--gold);
+    font-family:'Cinzel',serif;
+    font-size:12px;
+    font-weight:900;
+}
+
+.promiseCard h4{ margin-top:9px; color:var(--deep); font-family:'Rozha One',serif; font-size:20px; }
+.promiseCard p{ margin-top:5px; color:var(--muted); font-size:11px; line-height:1.7; }
+
+.donationCard{
+    border:2px solid var(--gold);
+    background:linear-gradient(180deg, #fff, #fffdf7);
+    box-shadow:0 35px 90px rgba(212,175,55,.13);
+}
+
+.walletHero{
+    padding:25px;
+    margin-bottom:28px;
+    border-radius:26px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:18px;
+    background:linear-gradient(135deg, #050816, #0f172a);
+    border:1px solid rgba(212,175,55,.38);
+    color:#fff;
+}
+
+.walletHeroLabel{
+    color:#aeb9ca;
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+}
+
+.walletHero strong{
+    display:block;
+    margin-top:4px;
+    color:var(--gold3);
+    font-family:'Rozha One',serif;
+    font-size:34px;
+}
+
+.walletHeroUser{ text-align:right; }
+.walletHeroUser span{ display:block; color:#94a3b8; font-size:9px; }
+.walletHeroUser b{ display:block; margin-top:3px; color:#fff; font-size:12px; }
+
+.tabs{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:8px;
+    padding:8px;
+    border-radius:24px;
+    background:#eef1f6;
+    margin-bottom:28px;
+}
+
+.tabBtn{
+    border:0;
+    min-height:52px;
+    padding:8px;
+    border-radius:17px;
+    background:transparent;
+    color:#475569;
+    cursor:pointer;
+    font-size:11px;
+    font-weight:900;
+    transition:.3s ease;
+}
+
+.tabBtn.active{
+    color:var(--gold3);
+    background:linear-gradient(135deg, #0f172a, #020617);
+    box-shadow:0 10px 25px rgba(7,11,20,.25);
+}
+
+.formGrid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.field{ margin-bottom:20px; }
+.field.full{ grid-column:1/-1; }
+label{ display:block; color:var(--deep); font-size:11px; font-weight:900; margin-bottom:9px; }
+
+.input, .textarea{
+    width:100%;
+    min-height:54px;
+    padding:14px 17px;
+    border:1.5px solid #d5dbe5;
+    border-radius:17px;
+    outline:0;
+    background:#fff;
+    color:var(--text);
+    font-size:13px;
+    transition:.25s ease;
+}
+
+.textarea{ resize:vertical; min-height:120px; }
+.input:focus, .textarea:focus{ border-color:var(--gold); box-shadow:0 0 0 4px rgba(212,175,55,.13); }
+
+.amountGrid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:9px;
+    margin-bottom:18px;
+}
+
+.amtBtn{
+    min-height:49px;
+    border-radius:15px;
+    border:1.5px solid #d7dce5;
+    background:#f8fafc;
+    color:var(--deep);
+    cursor:pointer;
+    font-size:11px;
+    font-weight:900;
+    transition:.25s ease;
+}
+.amtBtn:hover{ border-color:var(--gold); background:#fffdf5; }
+.amtBtn.active{
+    color:var(--gold3);
+    border-color:var(--deep);
+    background:linear-gradient(135deg, #0f172a, #020617);
+    box-shadow:0 9px 22px rgba(7,11,20,.22);
+}
+
+.submitBtn{
+    width:100%;
+    min-height:59px;
+    border:0;
+    border-radius:19px;
+    cursor:pointer;
+    color:var(--gold3);
+    background:linear-gradient(135deg, #0f172a, #020617);
+    box-shadow:0 14px 35px rgba(7,11,20,.25);
+    font-size:13px;
+    font-weight:900;
+    transition:.3s ease;
+}
+.submitBtn:hover{ transform:translateY(-2px); box-shadow:0 19px 43px rgba(7,11,20,.34); }
+
+.serviceNote{
+    margin-top:15px;
+    padding:15px 18px;
+    border-radius:17px;
+    text-align:center;
+    color:#64748b;
+    background:#fffdf5;
+    border:1px solid rgba(212,175,55,.22);
+    font-size:10.5px;
+    line-height:1.7;
+}
+
+.alert{
+    margin-top:20px;
+    padding:18px 21px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:800;
+    display:none;
+}
+.alert.error{ color:#991b1b; background:#fff1f1; border:1px solid #fecaca; }
+
+.successBox{
+    border:2px solid var(--gold);
+    background:linear-gradient(135deg, #fff, #fffaf0);
+    display:none;
+}
+
+.successTop{ display:flex; align-items:center; gap:16px; }
+.successIcon{
+    width:65px; height:65px; display:grid; place-items:center; flex:0 0 65px;
+    border-radius:21px; color:#080d1b; background:linear-gradient(135deg, #fff0bc, #d4af37);
+    font-size:27px; box-shadow:0 12px 30px rgba(212,175,55,.22);
+}
+.successTitle{ font-family:'Rozha One',serif; color:var(--deep); font-size:27px; }
+.successSub{ margin-top:3px; color:#64748b; font-size:10px; }
+.successNotice{ margin-top:18px; color:#475569; font-size:12.5px; line-height:1.8; }
+.successActions{ margin-top:21px; display:flex; gap:10px; flex-wrap:wrap; }
+.successActions a{
+    flex:1; min-width:190px; min-height:48px; display:flex; align-items:center;
+    justify-content:center; border-radius:16px; color:#fff;
+    background:linear-gradient(135deg, #0f172a, #020617); font-size:11px; font-weight:900;
+}
+.successActions a.whatsapp{ background:linear-gradient(135deg, #1fa45b, #0d6f38); }
+
+.historyList{ display:grid; gap:11px; }
+.historyItem{
+    display:flex; align-items:center; justify-content:space-between; gap:15px;
+    padding:19px 21px; border-radius:21px; background:linear-gradient(135deg, #fff, #fbfcff);
+    border:1px solid #e9edf3; transition:.25s ease;
+}
+.historyItem:hover{ border-color:var(--gold); transform:translateY(-2px); }
+.historyLeft{ min-width:0; }
+.historyLeft strong{
+    display:block; color:var(--deep); font-size:13px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.historyLeft span{ display:block; margin-top:5px; color:#7b8494; font-size:9.5px; }
+.historyRight{ flex:0 0 auto; text-align:right; }
+.historyAmount{ color:var(--goldDark); font-size:14px; font-weight:900; }
+.historyBtn{
+    display:inline-flex; margin-top:6px; padding:7px 11px; border-radius:11px;
+    color:#475569; background:#f5f7fa; border:1px solid rgba(212,175,55,.24); font-size:9px; font-weight:900;
+}
+
+.finalCta{
+    margin-top:30px; padding:60px 35px; border-radius:var(--radius); text-align:center; color:#fff;
+    background:
+        radial-gradient(circle at 50% 0%, rgba(212,175,55,.22), transparent 38%),
+        linear-gradient(135deg, #050816, #0f172a);
+    border:1px solid rgba(212,175,55,.42); box-shadow:0 35px 90px rgba(7,11,20,.32);
+}
+.finalCta small{ color:var(--gold2); font-size:10px; font-weight:900; letter-spacing:.15em; }
+.finalCta h2{ margin-top:12px; font-family:'Rozha One',serif; font-size:clamp(32px, 5vw, 55px); line-height:1.15; }
+.finalCta p{ max-width:750px; margin:14px auto 25px; color:#cbd5e1; font-size:13px; line-height:1.9; }
+
+.bottomBar{
+    position:fixed; left:16px; right:16px; bottom:16px; z-index:1000; max-width:1080px;
+    margin:auto; padding:9px; display:grid; grid-template-columns:1fr 1fr 1.5fr 1fr;
+    gap:8px; border-radius:28px; background:rgba(5,8,22,.93); backdrop-filter:blur(25px);
+    border:1px solid rgba(212,175,55,.35); box-shadow:0 25px 65px rgba(0,0,0,.45);
+}
+.bottomBar a{
+    min-height:49px; display:flex; align-items:center; justify-content:center;
+    border-radius:18px; color:#e2e8f0; font-size:10px; font-weight:900; transition:.25s ease;
+}
+.bottomBar a:hover{ background:rgba(255,255,255,.08); }
+.bottomBar a.gold{
+    color:#080d1b; background:linear-gradient(135deg, #fff0bc, #d4af37); box-shadow:0 8px 25px rgba(212,175,55,.30);
+}
+</style>
+</head>
+
+<body>
+
+<div class="ambient"></div>
+
+<header class="topbar">
+    <div class="container topIn">
+        <a href="vriddh_jan_seva.html" class="brand">
+            <img class="brandLogo" src="https://sanatansevasamiti.org/public_html/Images/ss/PRO1781313938_dp.jpg" alt="वृद्ध जन सेवा">
+            <div class="brandText">
+                <strong>वृद्ध जन सेवा</strong>
+                <small>SANATAN SEVA SAMITI • SEVA PROFILE</small>
+            </div>
+        </a>
+
+        <div class="walletTop">
+            <div class="walletIcon">💳</div>
+            <div>
+                <span>Wallet Balance</span>
+                <strong id="topWalletBalance">₹0.00</strong>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="container" id="top">
+
+    <div class="alert error" id="alertBox">
+        ⚠️ <span id="alertMsg">त्रुटि</span>
+    </div>
+
+    <!-- SUCCESS -->
+    <section class="card successBox" id="successBox">
+        <div class="successTop">
+            <div class="successIcon">✓</div>
+            <div>
+                <div class="successTitle">🙏 वृद्ध जन सेवा समर्पण सफल हुआ</div>
+                <div class="successSub">रसीद संख्या: <span id="successReceiptNo">---</span></div>
+            </div>
+        </div>
+        <p class="successNotice" id="successNoticeText">
+            आपके वॉलेट से वृद्ध जन सेवा हेतु राशि सफलतापूर्वक समर्पित कर दी गई है।
+        </p>
+        <div class="successActions">
+            <a target="_blank" id="btnViewReceipt" href="#">🧾 आधिकारिक रसीद देखें</a>
+            <a class="whatsapp" target="_blank" id="btnShareWa" href="#">📲 WhatsApp शेयर करें</a>
+        </div>
+    </section>
+
+    <!-- PROFILE IDENTITY -->
+    <section class="profileIdentity">
+        <div class="profileIdentityLogo">
+            <img src="https://sanatansevasamiti.org/public_html/Images/ss/PRO1781313938_dp.jpg" alt="वृद्ध जन सेवा">
+        </div>
+        <div class="profileIdentityContent">
+            <div class="profileEyebrow">✦ DIVYA SEVA PROFILE</div>
+            <h1>वृद्ध जन सेवा</h1>
+            <p>असहाय एवं निराश्रित वृद्धजन सेवा • वृद्धाश्रम सहयोग • औषधि • पोषण • तीर्थ यात्रा एवं सम्मानजनक जीवन</p>
+            <div class="profileMeta">
+                <span class="metaChip">🆔 PRO1781313938</span>
+                <span class="metaChip">🚩 सनातन सेवा समिति</span>
+                <span class="metaChip">🙏 सेवा • सम्मान • संबल</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="heroContent">
+            <div class="heroCopy">
+                <div class="heroBadge">✦ सनातन सेवा समिति • वृद्ध जन सम्मान एवं सेवा संकल्प</div>
+                <h2>वृद्ध जन सेवा<span>मातृ-पितृ देवो भव।</span></h2>
+                <p class="heroDesc">
+                    जीवन की ढलती सांझ में जब अपने भी साथ छोड़ दें, तब उन असहाय बुजुर्गों को भोजन, वस्त्र, औषधि, आश्रय और सबसे बढ़कर सम्मान एवं अपनत्व प्रदान करना ही इस पावन सेवा अभियान का उद्देश्य है।
+                </p>
+                <div class="guruStrip">
+                    श्री श्री 1008 अनंत श्री विभूषित परम पूज्य जगद्गुरु सच्चिदानंदाचार्य, आनंद पीठाधीश्वर परम पूज्य सद्गुरुदेव स्वामी सच्चिदानंद जी महाराज की पावन प्रेरणा से वृद्ध जन सेवा संकल्प।
+                </div>
+                <div class="heroButtons">
+                    <a class="heroBtn gold" href="#daan">🧓 अभी सेवा समर्पित करें</a>
+                    <a class="heroBtn glass" href="#mission">✦ सेवा के आयाम देखें</a>
+                </div>
+                <div class="heroStats">
+                    <div class="heroStat"><strong>पोषण</strong><span>सात्विक एवं पौष्टिक भोजन</span></div>
+                    <div class="heroStat"><strong>चिकित्सा</strong><span>दवा, जाँच एवं देखभाल</span></div>
+                    <div class="heroStat"><strong>सम्मान</strong><span>सुरक्षित एवं सम्मानजनक जीवन</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider">✦ ॐ ✦</div>
+
+    <!-- MISSION -->
+    <section class="card" id="mission">
+        <div class="sectionHead">
+            <div class="sectionIcon">🧓</div>
+            <div>
+                <small>VRIDDH SEVA MISSION</small>
+                <h2>वृद्ध जन सेवा के प्रमुख आयाम</h2>
+            </div>
+        </div>
+        <p class="sectionIntro">
+            सनातन सेवा समिति के अंतर्गत वृद्धजनों के लिए सेवा का उद्देश्य केवल सहायता देना नहीं, बल्कि उनके जीवन में सम्मान, सुरक्षा, स्वास्थ्य, पोषण और अपनत्व को पुनः स्थापित करना है।
+        </p>
+
+        <div class="serviceGrid">
+            <article class="serviceCard">
+                <div class="serviceImage">
+                    <img src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?auto=format&fit=crop&w=1400&q=92" alt="वृद्ध पोषण सेवा" loading="lazy">
+                    <div class="serviceTag">🍲 पोषण सेवा</div>
+                </div>
+                <div class="serviceBody">
+                    <h3>नित्य पौष्टिक भोजन एवं राशन</h3>
+                    <p>बुजुर्गों की आयु और स्वास्थ्य के अनुरूप सुपाच्य, सात्विक एवं पौष्टिक भोजन, राशन सामग्री तथा आवश्यक पोषण व्यवस्था उपलब्ध कराने का पावन प्रयास।</p>
+                    <a href="#daan" class="serviceLink">सेवा में योगदान करें →</a>
+                </div>
+            </article>
+
+            <article class="serviceCard">
+                <div class="serviceImage">
+                    <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=1400&q=92" alt="वृद्ध चिकित्सा सेवा" loading="lazy">
+                    <div class="serviceTag">💊 चिकित्सा सेवा</div>
+                </div>
+                <div class="serviceBody">
+                    <h3>स्वास्थ्य जाँच एवं औषधि सहयोग</h3>
+                    <p>उम्र संबंधी आवश्यकताओं को ध्यान में रखते हुए दवाइयाँ, नेत्र जाँच, चश्मा, डॉक्टर परामर्श और विशेष उपचार सहयोग उपलब्ध कराने का संकल्प।</p>
+                    <a href="#daan" class="serviceLink">औषधि सेवा करें →</a>
+                </div>
+            </article>
+
+            <article class="serviceCard">
+                <div class="serviceImage">
+                    <img src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&w=1400&q=92" alt="वृद्ध आश्रय सेवा" loading="lazy">
+                    <div class="serviceTag">🏠 आश्रय सेवा</div>
+                </div>
+                <div class="serviceBody">
+                    <h3>सुरक्षित आश्रय एवं तीमारदारी</h3>
+                    <p>निराश्रित एवं असहाय वृद्धजनों के लिए स्वच्छ, शांत, सुरक्षित वातावरण तथा दैनिक जीवन में प्रेमपूर्वक सहयोग प्रदान करना।</p>
+                    <a href="#daan" class="serviceLink">आश्रय सहयोग करें →</a>
+                </div>
+            </article>
+
+            <article class="serviceCard">
+                <div class="serviceImage">
+                    <img src="https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?auto=format&fit=crop&w=1400&q=92" alt="वृद्ध तीर्थ सेवा" loading="lazy">
+                    <div class="serviceTag">🚩 आध्यात्मिक संबल</div>
+                </div>
+                <div class="serviceBody">
+                    <h3>तीर्थ दर्शन एवं सत्संग संबल</h3>
+                    <p>वृद्धजनों के मानसिक एवं आध्यात्मिक सुख के लिए भजन, सत्संग, धार्मिक कार्यक्रम तथा पावन तीर्थ दर्शन की सुविधा का प्रयास।</p>
+                    <a href="#daan" class="serviceLink">तीर्थ सेवा सहयोग करें →</a>
+                </div>
+            </article>
+        </div>
+
+        <div class="promiseGrid">
+            <div class="promiseCard">
+                <div class="promiseNumber">01</div>
+                <h4>सम्मान</h4>
+                <p>प्रत्येक वृद्धजन को मातृ-पितृ तुल्य सम्मान एवं आदर।</p>
+            </div>
+            <div class="promiseCard">
+                <div class="promiseNumber">02</div>
+                <h4>स्वास्थ्य</h4>
+                <p>नियमित स्वास्थ्य सहायता, दवा एवं देखभाल।</p>
+            </div>
+            <div class="promiseCard">
+                <div class="promiseNumber">03</div>
+                <h4>पोषण</h4>
+                <p>शुद्ध, सात्विक एवं सुपाच्य आहार।</p>
+            </div>
+            <div class="promiseCard">
+                <div class="promiseNumber">04</div>
+                <h4>अपनत्व</h4>
+                <p>अकेलेपन से मुक्ति, संवाद एवं स्नेह।</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- DONATION SECTION -->
+    <section class="card donationCard" id="daan">
+        <div class="sectionHead">
+            <div class="sectionIcon">🙏</div>
+            <div>
+                <small>DIVYA SEVA SAMARPAN CENTER</small>
+                <h2>वृद्ध जन सेवा समर्पण केंद्र</h2>
+            </div>
+        </div>
+
+        <div class="walletHero">
+            <div>
+                <div class="walletHeroLabel">उपलब्ध डिजिटल वॉलेट</div>
+                <strong id="cardWalletBalance">₹0.00</strong>
+            </div>
+            <div class="walletHeroUser">
+                <span>सेवा साधक</span>
+                <b id="userNameDisplay">सेवा साधक</b>
+                <span id="userIdDisplay" style="margin-top:5px">---</span>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <button type="button" class="tabBtn active" id="btn_dhan" onclick="setTab('dhan')">💰 धन समर्पण</button>
+            <button type="button" class="tabBtn" id="btn_ann" onclick="setTab('ann')">🍲 पोषण / राशन</button>
+            <button type="button" class="tabBtn" id="btn_medical" onclick="setTab('medical')">💊 औषधि सहयोग</button>
+            <button type="button" class="tabBtn" id="btn_seva" onclick="setTab('seva')">🚩 प्रत्यक्ष सेवा</button>
+        </div>
+
+        <!-- DHAN FORM -->
+        <form id="form_dhan" onsubmit="handleVriddhSubmit(event, 'dhan')">
+            <div class="amountGrid">
+                <button type="button" class="amtBtn" onclick="setAmt('amtInput',51,this)">₹51</button>
+                <button type="button" class="amtBtn active" onclick="setAmt('amtInput',101,this)">₹101</button>
+                <button type="button" class="amtBtn" onclick="setAmt('amtInput',501,this)">₹501</button>
+                <button type="button" class="amtBtn" onclick="setAmt('amtInput',1100,this)">₹1,100</button>
+                <button type="button" class="amtBtn" onclick="setAmt('amtInput',2100,this)">₹2,100</button>
+            </div>
+
+            <div class="formGrid">
+                <div class="field">
+                    <label>सेवा समर्पण राशि (₹)</label>
+                    <input class="input" id="amtInput" name="amount_dhan" type="number" min="1" step="0.01" value="101" required>
+                </div>
+
+                <div class="field">
+                    <label>सेवा का पावन उद्देश्य</label>
+                    <select class="input" id="dhanPurpose" name="seva_desc_dhan">
+                        <option value="असहाय एवं निराश्रित वृद्ध जन सामान्य सेवा">असहाय एवं निराश्रित वृद्ध जन सामान्य सेवा</option>
+                        <option value="वृद्धाश्रम नित्य भोजन एवं पोषण व्यवस्था">वृद्धाश्रम नित्य भोजन एवं पोषण व्यवस्था</option>
+                        <option value="बुजुर्गों की मासिक दवा एवं चिकित्सा सहायता">बुजुर्गों की मासिक दवा एवं चिकित्सा सहायता</option>
+                        <option value="वृद्धजन वस्त्र, कंबल एवं बिस्तर सहयोग">वृद्धजन वस्त्र, कंबल एवं बिस्तर सहयोग</option>
+                        <option value="वृद्धजन तीर्थ दर्शन एवं सत्संग यात्रा सहयोग">वृद्धजन तीर्थ दर्शन एवं सत्संग यात्रा सहयोग</option>
+                        <option value="वॉकर, व्हीलचेयर एवं चश्मा सहयोग">वॉकर, व्हीलचेयर एवं चश्मा सहयोग</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="submitBtn" id="btnSubmitDhan" type="submit">🧓 वॉलेट से वृद्ध सेवा समर्पित करें</button>
+            <div class="serviceNote">
+                🔐 आपका सहयोग सुरक्षित डिजिटल वॉलेट प्रणाली से समर्पित होगा और आधिकारिक रसीद जारी होगी।
+            </div>
+        </form>
+
+        <!-- ANN FORM -->
+        <form id="form_ann" style="display:none" onsubmit="handleVriddhSubmit(event, 'ann')">
+            <div class="formGrid">
+                <div class="field">
+                    <label>अन्न / राशन की मात्रा (Kg में)</label>
+                    <input class="input" id="annAmount" name="amount_ann" type="number" min="1" step="0.1" placeholder="उदा. 10, 25, 50, 100" required>
+                </div>
+                <div class="field">
+                    <label>सामग्री का विवरण</label>
+                    <input class="input" id="annDesc" name="ann_desc" placeholder="उदा. आटा, दाल, चावल, घी, फल, पोषण किट" required>
+                </div>
+            </div>
+            <button class="submitBtn" id="btnSubmitAnn" type="submit">🍲 वृद्ध जन पोषण सेवा संकल्प दर्ज करें</button>
+        </form>
+
+        <!-- MEDICAL FORM -->
+        <form id="form_medical" style="display:none" onsubmit="handleVriddhSubmit(event, 'medical')">
+            <div class="amountGrid">
+                <button type="button" class="amtBtn" onclick="setAmt('medInput',101,this)">₹101</button>
+                <button type="button" class="amtBtn active" onclick="setAmt('medInput',501,this)">₹501</button>
+                <button type="button" class="amtBtn" onclick="setAmt('medInput',1100,this)">₹1,100</button>
+                <button type="button" class="amtBtn" onclick="setAmt('medInput',2100,this)">₹2,100</button>
+                <button type="button" class="amtBtn" onclick="setAmt('medInput',5100,this)">₹5,100</button>
+            </div>
+
+            <div class="formGrid">
+                <div class="field">
+                    <label>औषधि एवं उपचार राशि (₹)</label>
+                    <input class="input" id="medInput" name="amount_medical" type="number" min="1" step="0.01" value="501" required>
+                </div>
+                <div class="field">
+                    <label>उपचार सहयोग का उद्देश्य</label>
+                    <select class="input" id="medDesc" name="med_desc">
+                        <option value="मासिक आवश्यक दवा सहयोग">मासिक आवश्यक दवा सहयोग</option>
+                        <option value="नेत्र जाँच एवं चश्मा वितरण">नेत्र जाँच एवं चश्मा वितरण</option>
+                        <option value="फिजियोथेरेपी एवं विशेष देखभाल">फिजियोथेरेपी एवं विशेष देखभाल</option>
+                        <option value="आपातकालीन चिकित्सा एवं अस्पताल सहयोग">आपातकालीन चिकित्सा एवं अस्पताल सहयोग</option>
+                    </select>
+                </div>
+            </div>
+            <button class="submitBtn gold" id="btnSubmitMed" type="submit">💊 औषधि सेवा समर्पित करें</button>
+        </form>
+
+        <!-- DIRECT SEVA FORM -->
+        <form id="form_seva" style="display:none" onsubmit="handleVriddhSubmit(event, 'seva')">
+            <div class="field">
+                <label>प्रत्यक्ष सेवा / सहयोग का विवरण</label>
+                <textarea class="textarea" id="sevaDescOnly" name="seva_desc_only" rows="5" placeholder="उदाहरण: वृद्धाश्रम में समय दान, बुजुर्गों की सेवा, वस्त्र वितरण, फल वितरण आदि..." required></textarea>
+            </div>
+            <button class="submitBtn" id="btnSubmitSeva" type="submit">🚩 प्रत्यक्ष सेवा संकल्प दर्ज करें</button>
+        </form>
+    </section>
+
+    <!-- HISTORY -->
+    <section class="card" id="history">
+        <div class="sectionHead">
+            <div class="sectionIcon">📜</div>
+            <div>
+                <small>SEVA HISTORY</small>
+                <h2>आपकी पूर्व वृद्ध जन सेवा</h2>
+            </div>
+        </div>
+        <p class="sectionIntro">इस प्रोफाइल के अंतर्गत आपके पिछले सेवा समर्पण एवं सहयोग का विवरण।</p>
+        <div class="historyList" id="historyContainer">
+            <div style="text-align:center; padding:20px; color:#888; font-size:12px;">
+                📜 सेवा इतिहास लोड हो रहा है...
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="finalCta">
+        <small>✦ वृद्ध सेवा • नारायण सेवा • मातृ-पितृ सेवा ✦</small>
+        <h2>आइए, किसी बेसहारा बुजुर्ग की लाठी बनें</h2>
+        <p>
+            आपका छोटा सा सहयोग किसी वृद्ध माता-पिता के चेहरे पर मुस्कान, भोजन, औषधि और सम्मानजनक जीवन का कारण बन सकता है। आज ही इस पावन सेवा संकल्प का हिस्सा बनें।
+        </p>
+        <a href="#daan" class="heroBtn gold">🧓 अभी वृद्ध सेवा समर्पित करें</a>
+    </section>
+
+</main>
+
+<div class="bottomBar">
+    <a href="#top">🔝 ऊपर</a>
+    <a href="#mission">📜 सेवाएँ</a>
+    <a href="#daan" class="gold">🙏 अभी सेवा करें</a>
+    <a href="#history">📖 इतिहास</a>
+</div>
+
+<script>
+const PROFILE_ID = "PRO1781313938";
+let currentBalance = 0;
+let currentUserId = "";
+let currentUserName = "सेवा साधक";
+
+function setTab(type){
+    ['dhan','ann','medical','seva'].forEach(function(t){
+        const form = document.getElementById('form_' + t);
+        const button = document.getElementById('btn_' + t);
+        if(form) form.style.display = (t === type ? 'block' : 'none');
+        if(button) button.classList.toggle('active', t === type);
+    });
+}
+
+function setAmt(inputId, value, el){
+    const input = document.getElementById(inputId);
+    if(input) input.value = value;
+    const parent = el.closest('.amountGrid');
+    if(parent){
+        parent.querySelectorAll('.amtBtn').forEach(btn => btn.classList.remove('active'));
+    }
+    el.classList.add('active');
+}
+
+function showAlert(msg){
+    const box = document.getElementById('alertBox');
+    document.getElementById('alertMsg').innerText = msg;
+    box.style.display = 'block';
+    box.scrollIntoView({ behavior:'smooth', block:'center' });
+}
+
+function hideAlert(){
+    document.getElementById('alertBox').style.display = 'none';
+}
+
+function money(v){
+    return "₹" + Number(v || 0).toLocaleString('en-IN', { minimumFractionDigits:2, maximumFractionDigits:2 });
+}
+
+async function loadUserData(){
+    try {
+        const rawUser = localStorage.getItem("sss_user_data");
+        if(rawUser){
+            const u = JSON.parse(rawUser);
+            currentUserId = u.unique_id || u.id || "";
+            currentUserName = u.full_name || "सेवा साधक";
+            document.getElementById('userNameDisplay').innerText = currentUserName;
+            document.getElementById('userIdDisplay').innerText = currentUserId;
+        }
+
+        const res = await fetch(`https://sanatansevasamiti.org/api/get_profile_full.php?action=detail&profile_id=${PROFILE_ID}&user_id=${encodeURIComponent(currentUserId)}`);
+        const data = await res.json();
+
+        if(data && data.status === 'success'){
+            if(data.user_data && data.user_data.is_logged_in){
+                currentBalance = parseFloat(data.user_data.wallet_balance) || 0;
+                document.getElementById('topWalletBalance').innerText = money(currentBalance);
+                document.getElementById('cardWalletBalance').innerText = money(currentBalance);
+                localStorage.setItem("sss_wallet_balance", currentBalance);
+
+                renderHistory(data.user_data.user_history);
+            } else {
+                renderHistory([]);
+            }
+        }
+    } catch(e){
+        console.error("Vriddh Daan Load Error:", e);
+    }
+}
+
+function renderHistory(list){
+    const c = document.getElementById('historyContainer');
+    if(!list || list.length === 0){
+        c.innerHTML = `<div style="text-align:center; padding:15px; color:#888; font-size:12px;">🙏 अभी आपका कोई पूर्व वृद्ध जन सेवा रिकॉर्ड उपलब्ध नहीं है।</div>`;
+        return;
+    }
+
+    c.innerHTML = list.map(h => {
+        let amtDisplay = '';
+        if(h.amount_type === 'ann') amtDisplay = h.amount + " Kg";
+        else if(h.amount_type === 'medical' || h.amount_type === 'dhan') amtDisplay = money(h.amount);
+        else amtDisplay = "🚩 सेवा";
+
+        return `
+            <div class="historyItem">
+                <div class="historyLeft">
+                    <strong>${h.seva_desc}</strong>
+                    <span>📅 ${h.tx_date} • ID: ${h.tx_id} • ${h.status || 'स्वीकृत'}</span>
+                </div>
+                <div class="historyRight">
+                    <div class="historyAmount">${amtDisplay}</div>
+                    <a class="historyBtn" target="_blank" href="${h.receipt_url}">🧾 रसीद देखें</a>
+                </div>
+            </div>
+        `;
+    }).join("");
+}
+
+async function handleVriddhSubmit(e, type){
+    e.preventDefault();
+    hideAlert();
+
+    if(!currentUserId){
+        alert("कृपया सेवा के लिए पहले ऐप में लॉगिन करें।");
+        window.location.href = "app_login.html";
+        return;
+    }
+
+    let amount = 0;
+    let desc = "";
+    let btn = null;
+    let originalText = "";
+
+    if(type === 'dhan'){
+        amount = parseFloat(document.getElementById('amtInput').value) || 0;
+        desc = document.getElementById('dhanPurpose').value;
+        btn = document.getElementById('btnSubmitDhan');
+        originalText = "🧓 वॉलेट से वृद्ध सेवा समर्पित करें";
+
+        if(amount < 1){
+            showAlert("दान राशि कम से कम ₹1 होनी चाहिए।");
+            return;
+        }
+        if(amount > currentBalance){
+            showAlert("आपके वॉलेट में इस सेवा के लिए पर्याप्त राशि नहीं है।");
+            return;
+        }
+    } else if(type === 'ann'){
+        amount = parseFloat(document.getElementById('annAmount').value) || 0;
+        const itemName = document.getElementById('annDesc').value.trim();
+        desc = `वृद्ध पोषण सेवा: ${itemName}`;
+        btn = document.getElementById('btnSubmitAnn');
+        originalText = "🍲 वृद्ध जन पोषण सेवा संकल्प दर्ज करें";
+
+        if(amount <= 0 || !itemName){
+            showAlert("कृपया मान्य मात्रा व सामग्री दर्ज करें।");
+            return;
+        }
+    } else if(type === 'medical'){
+        amount = parseFloat(document.getElementById('medInput').value) || 0;
+        desc = "वृद्ध औषधि एवं उपचार: " + document.getElementById('medDesc').value;
+        btn = document.getElementById('btnSubmitMed');
+        originalText = "💊 औषधि सेवा समर्पित करें";
+
+        if(amount < 1){
+            showAlert("कम से कम ₹1 की सेवा राशि दर्ज करें।");
+            return;
+        }
+        if(amount > currentBalance){
+            showAlert("आपके वॉलेट में पर्याप्त राशि नहीं है।");
+            return;
+        }
+    } else if(type === 'seva'){
+        desc = document.getElementById('sevaDescOnly').value.trim();
+        btn = document.getElementById('btnSubmitSeva');
+        originalText = "🚩 प्रत्यक्ष सेवा संकल्प दर्ज करें";
+
+        if(!desc){
+            showAlert("कृपया अपनी सेवा / सहयोग का विवरण लिखें।");
+            return;
+        }
+    }
+
+    btn.disabled = true;
+    btn.innerText = "⏳ सेवा दर्ज हो रही है...";
+
+    try {
+        const payload = {
+            profile_id: PROFILE_ID,
+            user_id: currentUserId,
+            type: (type === 'ann' ? 'ann' : (type === 'seva' ? 'seva' : 'dhan')),
+            amount: amount,
+            seva_desc: desc
+        };
+
+        const res = await fetch(`https://sanatansevasamiti.org/api/get_profile_full.php?action=donate`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+
+        const data = await res.json();
+
+        if(data && data.status === 'success'){
+            document.getElementById('successReceiptNo').innerText = data.receipt_no || "---";
+            document.getElementById('btnViewReceipt').href = data.receipt_url || "#";
+            const waShare = encodeURIComponent(`🙏 वृद्ध जन सेवा रसीद: ${data.receipt_url}`);
+            document.getElementById('btnShareWa').href = `https://api.whatsapp.com/send?text=${waShare}`;
+
+            const box = document.getElementById('successBox');
+            box.style.display = 'block';
+            box.scrollIntoView({ behavior:'smooth', block:'center' });
+
+            loadUserData();
+        } else {
+            showAlert(data.message || "समर्पण दर्ज करने में समस्या आई।");
+        }
+    } catch(err){
+        showAlert("सर्वर से संपर्क नहीं हो पाया। इंटरनेट कनेक्शन जाँचें।");
+    } finally {
+        btn.disabled = false;
+        btn.innerText = originalText;
+    }
+}
+
+document.addEventListener("DOMContentLoaded", loadUserData);
+</script>
+
+</body>
+</html>
