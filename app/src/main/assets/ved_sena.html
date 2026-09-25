@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>वेद सेना - सनातन सेवा समिति</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+/* =========================================================
+   ROOT COLORS & THEME
+========================================================= */
+:root {
+    --saffron: #f47b20;
+    --saffron2: #ff9d32;
+    --saffron-light: #fff3e5;
+    --gold: #d89b21;
+    --gold2: #ffd166;
+    --gold-light: #fff9e6;
+    --red: #a91919;
+    --red-dark: #741010;
+    --cream: #fffdf8;
+    --text: #2f251e;
+    --muted: #756a61;
+    --border: #eed5b7;
+    --green: #168347;
+    --blue: #286ed6;
+    --shadow: 0 15px 45px rgba(100,40,0,.12);
+    --shadow2: 0 8px 24px rgba(100,40,0,.08);
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html { scroll-behavior: smooth; }
+
+body {
+    margin: 0;
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    background: radial-gradient(circle at top left, rgba(244,123,32,.12), transparent 35%),
+                radial-gradient(circle at top right, rgba(216,155,33,.10), transparent 30%),
+                linear-gradient(180deg, var(--cream), #fff5e8);
+    color: var(--text);
+    padding-bottom: 95px !important;
+}
+
+button, a { font-family: inherit; }
+
+/* =========================================================
+   TOP BRAND STRIP
+========================================================= */
+.top-brand {
+    position: relative;
+    background: linear-gradient(135deg, var(--red-dark), var(--red), var(--saffron));
+    color: white;
+    padding: 14px 18px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(116,16,16,.25);
+}
+
+.brand-title {
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: .6px;
+}
+
+.brand-sub {
+    font-size: 11.5px;
+    opacity: .95;
+    margin-top: 2px;
+    color: var(--gold-light);
+}
+
+/* =========================================================
+   COVER & PROFILE HEADER
+========================================================= */
+.cover-wrap {
+    position: relative;
+    width: 100%;
+    height: 270px;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--saffron), var(--red));
+    cursor: pointer;
+}
+
+.cover-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.cover-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(70,10,0,.1), rgba(70,10,0,.65));
+}
+
+.cover-badge {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    background: rgba(255,255,255,.95);
+    color: var(--red);
+    border: 1px solid var(--gold);
+    padding: 7px 15px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 800;
+    box-shadow: var(--shadow2);
+}
+
+.profile-shell {
+    max-width: 760px;
+    margin: -85px auto 0;
+    position: relative;
+    z-index: 10;
+    padding: 0 16px;
+}
+
+.dp-holder {
+    width: 175px;
+    height: 175px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.dp-ring {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    padding: 6px;
+    background: linear-gradient(135deg, var(--gold), #fff099, var(--saffron), var(--red));
+    box-shadow: 0 16px 40px rgba(116,16,16,.28);
+}
+
+.dp-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: white;
+    padding: 4px;
+}
+
+.dp-inner img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    cursor: pointer;
+}
+
+.verified {
+    position: absolute;
+    right: 6px;
+    bottom: 12px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--saffron), var(--red));
+    color: white;
+    border: 3px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    font-weight: 900;
+    box-shadow: var(--shadow2);
+}
+
+.profile-card {
+    background: rgba(255,255,255,.98);
+    border-radius: 30px;
+    padding: 85px 20px 24px;
+    margin-top: -85px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    text-align: center;
+}
+
+.profile-name {
+    margin: 0;
+    font-size: 30px;
+    line-height: 1.25;
+    font-weight: 900;
+    color: var(--red);
+}
+
+.profile-name:after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 4px;
+    margin: 10px auto;
+    border-radius: 10px;
+    background: linear-gradient(90deg, var(--saffron), var(--gold), var(--red));
+}
+
+.profile-tagline {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--saffron-light), var(--gold-light));
+    color: var(--red-dark);
+    padding: 8px 18px;
+    border: 1px solid var(--gold);
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+/* =========================================================
+   SOCIAL MEDIA STRIP
+========================================================= */
+.social-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-top: 18px;
+}
+
+.social-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 9px 5px;
+    border-radius: 14px;
+    text-decoration: none;
+    color: white;
+    font-size: 11px;
+    font-weight: 800;
+    transition: transform .2s ease;
+}
+
+.social-btn:hover { transform: translateY(-2px); }
+.social-icon { font-size: 18px; margin-bottom: 2px; }
+
+.soc-yt { background: linear-gradient(135deg, #cc0000, #880000); }
+.soc-wa { background: linear-gradient(135deg, #25d366, #128c7e); }
+.soc-fb { background: linear-gradient(135deg, #1877f2, #0d47a1); }
+.soc-ig { background: linear-gradient(135deg, #e1306c, #833ab4); }
+
+/* MAIN ACTIONS */
+.action-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.action-btn {
+    min-height: 50px;
+    border-radius: 16px;
+    border: none;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(100,20,0,.15);
+}
+
+.donate-btn {
+    background: linear-gradient(135deg, var(--red), var(--red-dark));
+    color: #fff6bd;
+}
+
+.contact-btn {
+    background: linear-gradient(135deg, var(--saffron), #d65b0c);
+    color: white;
+}
+
+/* =========================================================
+   VIP MAHARAJ JI CARD & ACCORDION
+========================================================= */
+.expand-area {
+    margin-top: 20px;
+}
+
+.expand-trigger {
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    padding: 16px 20px;
+    border-radius: 20px;
+    color: white;
+    font-size: 15px;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--red-dark), var(--red), var(--saffron));
+    box-shadow: 0 8px 24px rgba(150,30,0,.22);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.expand-trigger .left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.expand-trigger .icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,.2);
+}
+
+.expand-arrow { transition: .3s; font-size: 13px; }
+.expand-trigger.active .expand-arrow { transform: rotate(180deg); }
+
+.expand-content {
+    display: none;
+    margin-top: 12px;
+    padding: 22px 18px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    box-shadow: var(--shadow);
+    text-align: left;
+    animation: dropdown .3s ease;
+}
+
+@keyframes dropdown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.maharaj-vip-box {
+    text-align: center;
+    background: linear-gradient(145deg, #fffaf2, var(--gold-light));
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    padding: 22px 16px;
+    margin-bottom: 22px;
+}
+
+.maharaj-img-wrap {
+    width: 160px;
+    height: 160px;
+    margin: 0 auto 14px;
+    padding: 5px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), var(--saffron), var(--red));
+    box-shadow: 0 10px 25px rgba(150,40,0,.2);
+}
+
+.maharaj-img-wrap img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid white;
+    display: block;
+}
+
+.maharaj-post {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--red), var(--red-dark));
+    color: #fff2a8;
+    padding: 6px 18px;
+    border-radius: 40px;
+    font-size: 13px;
+    font-weight: 900;
+    margin-bottom: 10px;
+    border: 1px solid var(--gold);
+}
+
+.maharaj-name {
+    color: var(--red);
+    font-size: 20px;
+    font-weight: 900;
+    line-height: 1.4;
+    margin-bottom: 12px;
+}
+
+.maharaj-p {
+    font-size: 14px;
+    line-height: 1.85;
+    color: #44372e;
+    text-align: justify;
+    margin: 0 0 10px;
+}
+
+/* =========================================================
+   CONCISE OBJECTIVES
+========================================================= */
+.subhead-title {
+    color: var(--red);
+    font-size: 18px;
+    font-weight: 900;
+    margin: 24px 0 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.objectives-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+.obj-card {
+    background: #fffbf5;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--saffron);
+    padding: 12px 14px;
+    border-radius: 14px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #4b3d32;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.obj-card strong { color: var(--red); }
+
+/* =========================================================
+   YOUTUBE INTRO BOX
+========================================================= */
+.yt-box {
+    background: #1a0f0a;
+    border: 2px solid var(--gold);
+    border-radius: 20px;
+    padding: 16px;
+    margin: 22px 0;
+    box-shadow: var(--shadow2);
+}
+
+.yt-head {
+    color: #ffe094;
+    font-size: 15px;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.yt-frame-holder {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    height: 0;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.yt-frame-holder iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: 0;
+}
+
+/* =========================================================
+   DETAILED VEDIC BIO SECTION
+========================================================= */
+.detail-mission-box {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 20px 16px;
+    margin-top: 18px;
+}
+
+.shloka-banner {
+    padding: 14px;
+    background: linear-gradient(135deg, var(--saffron-light), var(--gold-light));
+    border-left: 5px solid var(--red);
+    border-radius: 0 16px 16px 0;
+    color: var(--red-dark);
+    font-weight: 900;
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+.mission-heading {
+    color: var(--red);
+    font-size: 18px;
+    font-weight: 900;
+    text-align: center;
+    margin: 0 0 14px;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 10px;
+}
+
+.mission-p {
+    font-size: 14px;
+    line-height: 1.85;
+    text-align: justify;
+    color: #4b4038;
+    margin-bottom: 14px;
+}
+
+.mission-block {
+    background: #fffdf9;
+    border: 1px solid #f2e3ce;
+    border-radius: 14px;
+    padding: 14px;
+    margin-bottom: 12px;
+}
+
+.mission-block-title {
+    color: var(--red);
+    font-size: 15px;
+    font-weight: 900;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.mission-block-desc {
+    font-size: 13.5px;
+    line-height: 1.75;
+    color: #4a3e35;
+    margin: 0;
+    text-align: justify;
+}
+
+.sankalp-banner {
+    padding: 16px;
+    border-radius: 16px;
+    color: white;
+    background: linear-gradient(135deg, var(--red-dark), var(--red), var(--saffron));
+    text-align: center;
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 1.8;
+    margin-top: 18px;
+}
+
+/* =========================================================
+   TABS, POSTS, SCHEDULES, GALLERY
+========================================================= */
+.tabs-wrap {
+    max-width: 760px;
+    margin: 18px auto 0;
+    padding: 0 16px;
+}
+
+.tabs {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 5px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    box-shadow: var(--shadow2);
+    position: sticky;
+    top: 8px;
+    z-index: 50;
+}
+
+.tab-btn {
+    border: none;
+    background: transparent;
+    padding: 12px 3px;
+    border-radius: 13px;
+    color: var(--muted);
+    font-weight: 800;
+    font-size: 12px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.tab-btn.active {
+    color: white;
+    background: linear-gradient(135deg, var(--red), var(--saffron));
+    box-shadow: 0 4px 12px rgba(140,30,0,.20);
+}
+
+.tab-content {
+    display: none;
+    max-width: 760px;
+    margin: 14px auto 0;
+    padding: 0 16px;
+}
+
+.tab-content.active { display: block; }
+
+.post-card {
+    background: white;
+    border: 1px solid #eadfd7;
+    border-radius: 22px;
+    overflow: hidden;
+    margin-bottom: 18px;
+    box-shadow: var(--shadow2);
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    padding: 14px;
+    cursor: pointer;
+}
+
+.post-header img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--gold);
+}
+
+.user-info { margin-left: 11px; }
+.user-info h4 { margin: 0; font-size: 14.5px; color: var(--red); font-weight: 900; }
+.user-info p { margin: 2px 0 0; color: var(--saffron); font-size: 10.5px; font-weight: 700; }
+
+.media-container { width: 100%; background: #151515; }
+.yt-frame { width: 100%; border: none; aspect-ratio: 16/9; display: block; }
+.yt-shorts { aspect-ratio: 9/16 !important; max-height: 650px; }
+.media-content { width: 100%; display: block; }
+
+.slider-wrapper { position: relative; width: 100%; overflow: hidden; background: #000; }
+.slides-container { display: flex; width: 100%; transition: transform .35s ease; }
+.slide-item { min-width: 100%; display: flex; justify-content: center; align-items: center; }
+.slide-item img { width: 100%; max-height: 550px; object-fit: contain; cursor: pointer; }
+
+.slider-btn {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 40px; height: 40px; border: none; border-radius: 50%;
+    background: rgba(120,20,0,.75); color: white; font-size: 18px; cursor: pointer; z-index: 5;
+}
+.prev-btn { left: 10px; }
+.next-btn { right: 10px; }
+
+.caption-box { padding: 14px 16px; font-size: 13.5px; line-height: 1.7; color: #4b443f; }
+.hidden-caption { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.see-more { border: none; background: none; color: var(--red); font-weight: 900; cursor: pointer; padding: 5px 0; }
+.actions { display: flex; gap: 8px; padding: 10px 14px 14px; border-top: 1px solid #f6eee6; }
+.btn-act {
+    flex: 1; border: 1px solid var(--border); background: var(--saffron-light);
+    color: var(--red-dark); border-radius: 12px; padding: 10px; font-weight: 800; cursor: pointer;
+}
+.btn-act.liked { background: #ffe2e2; color: var(--red); }
+
+.schedule-head {
+    background: linear-gradient(135deg, #fff, var(--saffron-light));
+    border: 1px solid var(--gold); border-radius: 18px;
+    padding: 15px 17px; display: flex; align-items: center; justify-content: space-between;
+    color: var(--red); font-weight: 900; cursor: pointer; box-shadow: var(--shadow2);
+}
+.schedule-head .arrow { transition: .3s; }
+.schedule-head.active .arrow { transform: rotate(180deg); }
+.schedule-content { display: none; margin-top: 12px; }
+
+.schedule-card {
+    overflow: hidden; background: white; border-radius: 20px;
+    border: 1px solid var(--border); margin-bottom: 16px; box-shadow: var(--shadow2);
+}
+.schedule-media img, .schedule-media video { width: 100%; max-height: 330px; object-fit: cover; display: block; }
+.schedule-details { padding: 16px; }
+.schedule-title { color: var(--red); font-size: 18px; font-weight: 900; margin-bottom: 6px; }
+.schedule-desc { font-size: 13px; color: #554c46; line-height: 1.6; margin-bottom: 10px; }
+.schedule-meta { font-size: 12px; color: #80501d; font-weight: 700; margin-top: 5px; }
+.schedule-actions { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 14px; }
+.sched-btn { text-decoration: none; text-align: center; padding: 10px 5px; border-radius: 12px; font-size: 12px; font-weight: 900; color: white; }
+.call { background: var(--green); }
+.web { background: var(--blue); }
+.youtube { background: #e60000; }
+.facebook { background: #2166d1; }
+
+.media-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+}
+.media-card {
+    background: #fff; border-radius: 15px; overflow: hidden;
+    border: 2px solid var(--border); cursor: pointer; transition: .25s; box-shadow: var(--shadow2);
+}
+.media-card:hover { transform: translateY(-3px); }
+.media-card img, .media-card video { width: 100%; height: 200px; object-fit: cover; display: block; }
+.media-title { padding: 8px; font-weight: 800; text-align: center; color: var(--red); background: var(--gold-light); font-size: 12px; }
+
+.daan-card {
+    display: flex; align-items: flex-start; gap: 12px; background: white;
+    border: 1px solid var(--border); border-left: 5px solid var(--green);
+    border-radius: 17px; padding: 14px; margin-bottom: 12px; box-shadow: var(--shadow2);
+}
+.daan-icon {
+    width: 48px; height: 48px; flex-shrink: 0; border-radius: 50%;
+    background: #e9f7ee; border: 2px solid #aadbbd; display: flex;
+    align-items: center; justify-content: center; font-size: 22px;
+}
+.daan-body { flex: 1; }
+.mname { color: var(--red); font-size: 14px; font-weight: 900; }
+.tx-badge { display: inline-block; padding: 2px 7px; border-radius: 20px; font-size: 9px; margin-left: 4px; }
+.tx-badge-credit { background: #e5f7eb; color: #18783f; }
+.amount { color: var(--green); font-weight: 900; font-size: 16px; margin-top: 4px; }
+.tx-info { font-size: 10.5px; color: var(--muted); margin-top: 3px; }
+.btn-receipt {
+    display: inline-block; text-decoration: none;
+    background: linear-gradient(135deg, var(--saffron), var(--red));
+    color: white; padding: 7px 10px; border-radius: 10px; font-size: 10px; font-weight: 900;
+}
+
+.overlay { display: none; position: fixed; inset: 0; background: rgba(90,20,0,.6); backdrop-filter: blur(5px); z-index: 900; }
+.contact-popup {
+    display: none; position: fixed; left: 50%; top: 50%; transform: translate(-50%,-50%);
+    width: calc(100% - 35px); max-width: 400px; background: white; border-radius: 26px;
+    padding: 24px; border: 2px solid var(--gold); z-index: 901; box-shadow: 0 25px 60px rgba(70,10,0,.3); text-align: center;
+}
+.contact-popup h3 { margin-top: 0; color: var(--red); font-size: 20px; }
+.contact-link { display: block; padding: 13px; margin-top: 9px; border-radius: 14px; text-decoration: none; font-weight: 900; font-size: 13px; }
+.contact-call { background: var(--saffron); color: white; }
+.contact-mail { background: var(--red); color: white; }
+.contact-close { background: #f0e6df; color: var(--red-dark); border: none; cursor: pointer; width: 100%; margin-top: 10px; padding: 12px; border-radius: 14px; font-weight: 800; }
+
+#lightbox-modal {
+    display: none; position: fixed; inset: 0; z-index: 9999;
+    background: rgba(40,10,0,.96); align-items: center; justify-content: center; padding: 20px;
+}
+#lightbox-img { max-width: 95%; max-height: 88%; object-fit: contain; border-radius: 12px; }
+.lightbox-back {
+    position: absolute; top: 18px; left: 18px; border: 1px solid white;
+    color: white; background: rgba(255,255,255,.15); padding: 8px 16px; border-radius: 30px; cursor: pointer; font-weight: 800;
+}
+
+.empty-box {
+    background: white; border: 1px dashed var(--gold);
+    border-radius: 18px; padding: 24px; text-align: center; color: var(--muted); font-size: 13px;
+}
+.premium-footer { max-width: 760px; margin: 30px auto 0; padding: 0 16px; text-align: center; }
+.footer-line { height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+.footer-text { margin-top: 10px; font-size: 11px; color: #9b8170; font-weight: 700; }
+
+/* FOOTER NAVIGATION BAR */
+#sss-nav {
+    position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 760px; height: 75px;
+    background: linear-gradient(180deg, #ff4500, #800000); display: flex; justify-content: space-evenly; align-items: center;
+    border-top: 4px solid #ffcc00; border-radius: 20px 20px 0 0; z-index: 99999; box-shadow: 0 -5px 20px rgba(0,0,0,0.4);
+}
+.sss-item { flex: 1; text-align: center; text-decoration: none; color: #fff; font-size: 10px; font-weight: 800; }
+.sss-item img { width: 28px; height: 28px; display: block; margin: auto; }
+.sss-dash-wrap { margin-top: -30px; }
+.sss-gold-circle {
+    width: 60px; height: 60px; background: linear-gradient(45deg, #ffd700, #ffcc00, #b8860b);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid #800000; box-shadow: 0 0 15px rgba(255,215,0,0.6);
+}
+.sss-gold-circle img { width: 35px; height: 35px; }
+
+@media(max-width: 600px){
+    .cover-wrap { height: 210px; }
+    .profile-shell { margin-top: -65px; }
+    .dp-holder { width: 145px; height: 145px; }
+    .profile-card { padding-top: 75px; }
+    .profile-name { font-size: 24px; }
+    .action-grid { grid-template-columns: 1fr 1fr; }
+    .tabs { grid-template-columns: repeat(4, 1fr); }
+    .tab-btn { font-size: 11px; padding: 10px 1px; }
+    .social-btn { font-size: 10px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="top-brand">
+    <div class="brand-title">🚩 वेद सेना 🚩</div>
+    <div class="brand-sub">वेदोऽखिलो धर्ममूलम् • विप्र गौरव • शास्त्र-पुराण प्रमाणन महाअभियान</div>
+</div>
+
+<div class="cover-wrap" id="coverContainer" onclick="openLightbox(document.getElementById('coverImg').src)">
+    <img id="coverImg" src="https://sanatansevasamiti.org/Images/ss/PRO1781319711_cover.jpg" alt="Cover" onerror="this.src='https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1200&q=80';">
+    <div class="cover-overlay"></div>
+    <div class="cover-badge">🚩 वैदिक वाङ्मय संरक्षण</div>
+</div>
+
+<div class="profile-shell">
+    <div class="dp-holder">
+        <div class="dp-ring">
+            <div class="dp-inner">
+                <img id="profileDpImg" src="https://sanatansevasamiti.org/Images/ss/PRO1781319711_dp.jpg" alt="Profile Photo" onclick="event.stopPropagation();openLightbox(this.src)" onerror="this.src='https://sanatansevasamiti.org/public_html/Images/maharaj.jpg';">
+            </div>
+        </div>
+        <div class="verified">✓</div>
+    </div>
+
+    <div class="profile-card">
+        <h1 class="profile-name" id="profileTitle">वेद सेना</h1>
+        <div class="profile-tagline" id="profileTagline">⚜️ वेदोऽखिलो धर्ममूलम् • विप्र गौरव • शास्त्र प्रमाणन ⚜️</div>
+
+        <div class="social-grid">
+            <a href="https://youtube.com/@sanatan_sevasamiti" target="_blank" class="social-btn soc-yt">
+                <span class="social-icon">▶</span>
+                <span>यूट्यूब</span>
+            </a>
+            <a id="socWaBtn" href="https://wa.me/" target="_blank" class="social-btn soc-wa">
+                <span class="social-icon">💬</span>
+                <span>व्हाट्सएप</span>
+            </a>
+            <a href="https://facebook.com" target="_blank" class="social-btn soc-fb">
+                <span class="social-icon">f</span>
+                <span>फेसबुक</span>
+            </a>
+            <a href="https://instagram.com/sachchidanand.ji_/" target="_blank" class="social-btn soc-ig">
+                <span class="social-icon">📸</span>
+                <span>इंस्टाग्राम</span>
+            </a>
+        </div>
+
+        <div class="action-grid">
+            <a href="ved_sena_daan.html" class="action-btn donate-btn">
+                🙏 विप्र सेवा व सहयोग
+            </a>
+            <button class="action-btn contact-btn" onclick="openContact()">
+                📞 यज्ञानुष्ठान संपर्क
+            </button>
+        </div>
+
+        <div class="expand-area">
+            <button class="expand-trigger" onclick="toggleExpand(this)">
+                <span class="left">
+                    <span class="icon">📜</span>
+                    <span>विस्तार से जानें (परिचय, उद्देश्य व प्रमाणन)</span>
+                </span>
+                <span class="expand-arrow">▼</span>
+            </button>
+
+            <div class="expand-content" id="expandContent">
+                
+                <div class="maharaj-vip-box">
+                    <div class="maharaj-img-wrap" onclick="openLightbox('https://sanatansevasamiti.org/public_html/Images/maharaj.jpg')">
+                        <img src="https://sanatansevasamiti.org/public_html/Images/maharaj.jpg" alt="सद्गुरुदेव जी महाराज">
+                    </div>
+
+                    <div class="maharaj-post">⚜️ राष्ट्रीय अध्यक्ष • सनातन सेवा समिति ⚜️</div>
+                    
+                    <div class="maharaj-name">
+                        अनंत श्री विभूषित आनंद पीठाधीश्वर पूज्य सच्चिदानंदाचार्य श्री सच्चिदानंद जी महाराज
+                    </div>
+
+                    <p class="maharaj-p">
+                        वे केवल एक नाम नहीं, अपितु <strong>वैदिक वाङ्मय, श्रुति-स्मृति परंपरा, कर्मकांड और प्रकांड ब्रह्मतेज</strong> के वह दिव्य प्रकाश स्तंभ हैं, जो अपने अगाध शास्त्र ज्ञान और साधना के माध्यम से संपूर्ण भूमंडल पर वेदों के संरक्षण और पुनरुत्थान के लिए संकल्पित हैं।
+                    </p>
+                    <p class="maharaj-p">
+                        <strong>पूज्य महाराज जी का महासंकल्प —</strong> सनातन सेवा समिति के अंतर्गत <strong>'वेद सेना'</strong> के माध्यम से श्रेष्ठ कर्मकांडी वैदिक ब्राह्मणों को संगठित करना और उनके माध्यम से ईश्वरीय वाणी वेदों, पुराणों व उपनिषदों की ऋचाओं को अक्षुण्ण बनाए रखना है। आधुनिकता के इस युग में हमारी वैदिक धरोहर मंद न पड़े, बल्कि हर एक सनातनी सत्य को शास्त्रों और पुराणों के अकाट्य प्रमाणों द्वारा पूरी तार्किकता के साथ विश्व पटल पर स्थापित किया जाए।
+                    </p>
+                </div>
+
+                <div class="subhead-title">
+                    <span>🎯</span> संक्षिप्त उद्देश्य एवं मुख्य लक्ष्य
+                </div>
+
+                <div class="objectives-grid">
+                    <div class="obj-card">
+                        <span>📖</span>
+                        <div><strong>वेदों व पुराणों का संरक्षण:</strong> चारों वेद, १८ महापुराण व उपनिषदों की मूल शाखाओं की रक्षा।</div>
+                    </div>
+                    <div class="obj-card">
+                        <span>🔬</span>
+                        <div><strong>शास्त्र-प्रमाणन अभियान:</strong> सनातनी मान्यताओं व रीति-रिवाजों को तार्किक व प्रामाणिक सिद्ध करना।</div>
+                    </div>
+                    <div class="obj-card">
+                        <span>🔱</span>
+                        <div><strong>शुद्ध कर्मकांड प्रशिक्षण:</strong> युवा विप्रों को उच्चस्तरीय पौरोहित्य, व्याकरण व ज्योतिष का ज्ञान।</div>
+                    </div>
+                    <div class="obj-card">
+                        <span>👑</span>
+                        <div><strong>विप्र गौरव संवर्धन:</strong> कर्मनिष्ठ ब्राह्मणों को समाज में यथोचित मान-सम्मान व सुरक्षा प्रदान करना।</div>
+                    </div>
+                    <div class="obj-card">
+                        <span>🔥</span>
+                        <div><strong>यज्ञ व षोडश संस्कार:</strong> घर-घर तक शुद्ध वैदिक अनुष्ठानों और संस्कारों का पुनरुद्धार।</div>
+                    </div>
+                    <div class="obj-card">
+                        <span>🌐</span>
+                        <div><strong>वैदिक हेल्पलाइन:</strong> धर्म, कर्मकांड, पंचांग व शास्त्रार्थ मार्गदर्शन हेतु 24x7 सेवा।</div>
+                    </div>
+                </div>
+
+                <div class="yt-box">
+                    <div class="yt-head">🎥 वेद सेना परिचय एवं शास्त्र प्रमाणन वीडियो 🎥</div>
+                    <div class="yt-frame-holder">
+                        <iframe 
+                            src="https://www.youtube.com/embed/videoseries?list=PLsomeList" 
+                            title="वेद सेना परिचय" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+
+                <div class="detail-mission-box">
+                    <div class="shloka-banner">
+                        🚩 "वेदोऽखिलो धर्ममूलम्" 🚩<br>
+                        <small style="font-size:13px; font-weight:600;">(अर्थात: संपूर्ण वेद ही समस्त धर्म, ज्ञान और ब्रह्मांडीय सत्यों का मूल आधार हैं)</small>
+                    </div>
+
+                    <h2 class="mission-heading">
+                        वेद सेना : कर्मकांडी वैदिक ब्राह्मणों का संगठन एवं शास्त्र-पुराण प्रमाणन महाअभियान
+                    </h2>
+
+                    <p class="mission-p">
+                        <strong>वेद सेना</strong> सनातन सेवा समिति के अंतर्गत गठित प्रकांड, निपुण और निष्ठावान <strong>कर्मकांडी वैदिक ब्राह्मणों का एक अत्यंत पवित्र संगठन</strong> है। हमारे ऋषियों ने वेदों को अपौरुषेय और साक्षात् परमात्मा का वाङ्मय स्वरूप माना है। वर्तमान युग में जहाँ भ्रांतियों और कुतर्कों के कारण सनातन धर्म के मूल्यों को धूमिल करने का षड्यंत्र रचा जाता है, वहाँ वेद सेना धर्म की सर्वोच्च बौद्धिक और आध्यात्मिक रक्षा पंक्ति बनकर खड़ी है।
+                    </p>
+
+                    <div class="mission-block">
+                        <div class="mission-block-title">
+                            <span>📚</span> 1. वेदों, पुराणों एवं शास्त्रों का मूल संरक्षण
+                        </div>
+                        <p class="mission-block-desc">
+                            वेद सेना का सर्वोपरि दायित्व देववाणी संस्कृत और चारों वेदों (ऋग्वेद, यजुर्वेद, सामवेद, अथर्ववेद) की समस्त शाखाओं, अठारह महापुराणों, उपनिषदों और स्मृति ग्रंथों का अक्षुण्ण संरक्षण करना है। विप्र जनों का यह समूह प्राचीन काल की श्रुति और स्मृति परंपरा को पुनर्जीवित करते हुए शुद्ध मंत्रोच्चारण, यज्ञ-याग, अनुष्ठान और षोडश संस्कारों की वैदिक पद्धतियों को घर-घर तक पहुँचाने के लिए निरंतर कार्यरत है।
+                        </p>
+                    </div>
+
+                    <div class="mission-block">
+                        <div class="mission-block-title">
+                            <span>🔬</span> 2. शास्त्रों के द्वारा हर सत्य को प्रमाणित करना
+                        </div>
+                        <p class="mission-block-desc">
+                            आज के वैज्ञानिक और तार्किक युग में सनातन धर्म की हर एक परंपरा, रीति-रिवाज, त्योहार और अनुष्ठान के पीछे छुपे आध्यात्मिक व वैज्ञानिक सत्य को उजागर करना हमारी प्राथमिकता है। वेद सेना के विद्वान ब्राह्मण समाज में फैले हर एक भ्रम को दूर करने के लिए <strong>वेदों, पुराणों और शास्त्रों के अकाट्य प्रमाणों, श्लोकों और तार्किक संदर्भों के द्वारा सनातनी सत्यों को सिद्ध</strong> करते हैं।
+                        </p>
+                    </div>
+
+                    <div class="mission-block">
+                        <div class="mission-block-title">
+                            <span>🔱</span> 3. कर्मकांडी विप्र देवों का सुदृढ़ संगठन व उत्थान
+                        </div>
+                        <p class="mission-block-desc">
+                            * <strong>शुद्ध कर्मकांड का प्रशिक्षण:</strong> युवा ब्राह्मणों को प्रामाणिक पौरोहित्य, ज्योतिष, वास्तु और यज्ञ संपादन का उच्चस्तरीय प्रशिक्षण देना ताकि समाज को योग्य आचार्य मिल सकें।<br>
+                            * <strong>विप्र गौरव की पुनर्स्थापना:</strong> स्वाध्यायी और तपोनिष्ठ ब्राह्मणों को समाज में उनका आदरयुक्त स्थान दिलाना तथा विप्र परिवारों की सुरक्षा व संवर्धन की व्यवस्था करना।<br>
+                            * <strong>वैश्विक विस्तार:</strong> डिजिटल और प्रत्यक्ष माध्यमों से वेदों और पुराणों की ऋचाओं का दिव्य संदेश संपूर्ण विश्व के कोने-कोने तक पहुँचाना।
+                        </p>
+                    </div>
+
+                    <div class="sankalp-banner">
+                        हर विप्र देव वेदों के संरक्षण से जुड़े।<br>
+                        हर सनातनी सत्य शास्त्रों के प्रमाणों से जुड़े।<br>
+                        हर घर वैदिक मंत्रों की दिव्य गूंज से जुड़े।<br>
+                        <strong>— वेद सेना (सनातन सेवा समिति)</strong>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="tabs-wrap">
+    <div class="tabs">
+        <button class="tab-btn active" onclick="showTab('posts',this)">📝 पोस्ट</button>
+        <button class="tab-btn" onclick="showTab('karyakarini',this)">👥 कार्यकारिणी</button>
+        <button class="tab-btn" onclick="showTab('daan',this)">🙏 विप्र दान</button>
+        <button class="tab-btn" onclick="showTab('gallery',this)">📸 दर्शन गैलरी</button>
+    </div>
+</div>
+
+<div id="posts" class="tab-content active">
+    <div id="postsContainer">
+        <div class="empty-box">वेद सेना प्रोफाइल की पोस्ट्स लोड हो रही हैं...</div>
+    </div>
+</div>
+
+<div id="karyakarini" class="tab-content">
+    <div class="empty-box">
+        <h3 style="color:var(--red); margin-top:0;">👥 वेद सेना विप्र कार्यकारिणी</h3>
+        <p>प्रांतीय, जिला एवं मंडल स्तर पर शास्त्रविद् धर्माचार्यों व कर्मकांडी ब्राह्मणों की सूची यहाँ उपलब्ध होगी।</p>
+    </div>
+</div>
+
+<div id="daan" class="tab-content">
+    <h2 style="color:var(--red); text-align:center; font-size:19px; margin-top:0;">🙏 विप्र सेवा एवं वेद संरक्षण सहयोग</h2>
+    <div id="donationsContainer">
+        <div class="empty-box">सहयोग विवरण लोड हो रहा है...</div>
+    </div>
+</div>
+
+<div id="gallery" class="tab-content">
+    <div class="media-grid">
+        <div class="media-card" onclick="openLightbox('https://sanatansevasamiti.org/Images/ss/PRO1781319711_dp.jpg')">
+            <img src="https://sanatansevasamiti.org/Images/ss/PRO1781319711_dp.jpg" alt="वेद सेना मुख्य ध्वज">
+            <div class="media-title">🚩 वेद सेना ध्वज दर्शन</div>
+        </div>
+        <div class="media-card" onclick="openLightbox('https://sanatansevasamiti.org/public_html/Images/maharaj.jpg')">
+            <img src="https://sanatansevasamiti.org/public_html/Images/maharaj.jpg" alt="पूज्य सद्गुरुदेव महाराज जी">
+            <div class="media-title">🙏 पूज्य गुरुदेव सानिध्य</div>
+        </div>
+        <div class="media-card" onclick="openLightbox('https://sanatansevasamiti.org/public_html/Images/bhoomi-poojan.jpg')">
+            <img src="https://sanatansevasamiti.org/public_html/Images/bhoomi-poojan.jpg" alt="यज्ञानुष्ठान">
+            <div class="media-title">🔥 वैदिक महायज्ञ दर्शन</div>
+        </div>
+        <div class="media-card" onclick="openLightbox('https://sanatansevasamiti.org/public_html/Images/future-aashram.jpg')">
+            <img src="https://sanatansevasamiti.org/public_html/Images/future-aashram.jpg" alt="वेद अध्ययन">
+            <div class="media-title">📖 वेद स्वाध्याय केंद्र</div>
+        </div>
+    </div>
+</div>
+
+<div style="max-width:760px; margin:20px auto 0; padding:0 16px;">
+    <div class="schedule-head" onclick="toggleSchedules(this)">
+        <span>📅 आगामी वैदिक यज्ञ, सम्मेलन व कार्यक्रम</span>
+        <span class="arrow">▼</span>
+    </div>
+
+    <div id="scheduleContainer" class="schedule-content">
+        <div class="empty-box">फिलहाल कोई नया यज्ञ या सम्मेलन निर्धारित नहीं है।</div>
+    </div>
+</div>
+
+<div id="overlay" class="overlay" onclick="closeContact()"></div>
+
+<div id="contact-popup" class="contact-popup">
+    <h3>📞 वेद सेना संपर्क केंद्र</h3>
+    <p style="color:#777; font-size:12px; margin-top:0;">यज्ञानुष्ठान, पौरोहित्य एवं शास्त्र मार्गदर्शन</p>
+
+    <a id="modalCall" href="tel:+919876543210" class="contact-link contact-call">📞 कॉल करें</a>
+    <a id="modalMail" href="mailto:contact@sanatansevasamiti.org" class="contact-link contact-mail">📧 ईमेल भेजें</a>
+
+    <button onclick="closeContact()" class="contact-link contact-close">बंद करें</button>
+</div>
+
+<div id="lightbox-modal" onclick="closeLightbox()">
+    <button class="lightbox-back" onclick="closeLightbox()">← वापस</button>
+    <img id="lightbox-img" src="" alt="Full View" onclick="event.stopPropagation()">
+</div>
+
+<div class="premium-footer">
+    <div class="footer-line"></div>
+    <div class="footer-text">
+        🚩 "वेदोऽखिलो धर्ममूलम्" • वेद सेना • सनातन सेवा समिति 🚩
+    </div>
+</div>
+
+<!-- FOOTER NAVIGATION BAR -->
+<div id="sss-nav">
+    <a href="app_home.html" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341771file_00000000145071fab7ea2e7e30f9dfaa-e1776295057951.png" alt="गृह">
+        <span>गृह</span>
+    </a>
+    <a href="guru_parampara.html" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341317ci.jpg" alt="गुरु">
+        <span>गुरु परंपरा</span>
+    </a>
+    <a href="feed.html" class="sss-item sss-dash-wrap">
+        <div class="sss-gold-circle">
+            <img src="https://sanatansevasamiti.org/uploads/footer/1780341218logo.jpg" alt="फीड">
+        </div>
+        <span></span>
+    </a>
+    <a href="javascript:void(0);" onclick="alert('पुस्तकें — यह अनुभाग शीघ्र ही स्थानीय रूप से उपलब्ध होगा।');" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341270bi.jpg" alt="पुस्तकें">
+        <span>पुस्तकें</span>
+    </a>
+    <a href="app_dashboard.html" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341144ai.jpg" alt="अकाउंट">
+        <span>अकाउंट</span>
+    </a>
+</div>
+
+<script>
+const PROFILE_ID = "PRO1781319711";
+let CURRENT_UID = "";
+
+try {
+    const rawUser = localStorage.getItem("sss_user_data");
+    if(rawUser){
+        const u = JSON.parse(rawUser);
+        CURRENT_UID = u.unique_id || u.id || "";
+    }
+} catch(e){}
+
+async function loadVedSenaData(){
+    try {
+        const apiUrl = `https://sanatansevasamiti.org/api/get_profile_full.php?action=detail&profile_id=${PROFILE_ID}&user_id=${encodeURIComponent(CURRENT_UID)}`;
+        const res = await fetch(apiUrl);
+        if(!res.ok) throw new Error("नेटवर्क प्रतिक्रिया विफल");
+        const data = await res.json();
+
+        if(data && data.status === 'success'){
+            if(data.profile){
+                const p = data.profile;
+                if(p.name) document.getElementById('profileTitle').innerText = p.name;
+                if(p.tagline) document.getElementById('profileTagline').innerText = "⚜️ " + p.tagline + " ⚜️";
+                if(p.dp_url) document.getElementById('profileDpImg').src = p.dp_url;
+                if(p.cover_url) document.getElementById('coverImg').src = p.cover_url;
+                if(p.mobile){
+                    document.getElementById('modalCall').href = "tel:" + p.mobile;
+                    document.getElementById('socWaBtn').href = "https://wa.me/" + p.mobile.replace(/[^0-9]/g, '');
+                }
+                if(p.email) document.getElementById('modalMail').href = "mailto:" + p.email;
+            }
+
+            renderPosts(data.posts, data.profile);
+            renderEvents(data.schedules);
+            renderDonations(data.public_donations);
+        }
+    } catch(err){
+        console.error("Ved Sena Load Error:", err);
+    }
+}
+
+function renderPosts(posts, prof){
+    const container = document.getElementById('postsContainer');
+    if(!posts || posts.length === 0){
+        container.innerHTML = `<div class="empty-box">वेद सेना प्रोफाइल पर अभी कोई नई पोस्ट उपलब्ध नहीं है।</div>`;
+        return;
+    }
+
+    container.innerHTML = posts.map(post => {
+        const mediaList = post.parsed_media || [];
+        let mediaBlock = '';
+
+        if(post.post_type === 'youtube'){
+            mediaBlock = mediaList.map(m => `
+                <iframe class="yt-frame ${m.is_shorts ? 'yt-shorts' : ''}" src="${m.embed_url}" allowfullscreen></iframe>
+            `).join("");
+        } else if(post.post_type === 'video'){
+            mediaBlock = mediaList.map(m => `
+                <video class="media-content" controls src="${m.raw_url}"></video>
+            `).join("");
+        } else if(mediaList.length > 0){
+            const slides = mediaList.map(m => `
+                <div class="slide-item">
+                    <img src="${m.raw_url}" onclick="openLightbox(this.src)" alt="Post Image">
+                </div>
+            `).join("");
+
+            mediaBlock = `
+                <div class="slider-wrapper" id="slider-${post.id}">
+                    <div class="slides-container" id="slides-${post.id}">
+                        ${slides}
+                    </div>
+                    ${mediaList.length > 1 ? `
+                        <button class="slider-btn prev-btn" onclick="event.stopPropagation();moveSlide(${post.id}, -1)">❮</button>
+                        <button class="slider-btn next-btn" onclick="event.stopPropagation();moveSlide(${post.id}, 1)">❯</button>
+                    ` : ''}
+                </div>
+            `;
+        }
+
+        return `
+        <div class="post-card">
+            <div class="post-header">
+                <img src="${prof.dp_url || 'https://sanatansevasamiti.org/Images/ss/PRO1781319711_dp.jpg'}" alt="Profile" onerror="this.src='https://sanatansevasamiti.org/public_html/Images/maharaj.jpg';">
+                <div class="user-info">
+                    <h4>${prof.name || 'वेद सेना'}</h4>
+                    <p>${prof.tagline || 'वेदोऽखिलो धर्ममूलम्'}</p>
+                </div>
+            </div>
+            <div class="media-container">
+                ${mediaBlock}
+            </div>
+            <div class="caption-box">
+                <div id="text-${post.id}" class="hidden-caption">
+                    ${(post.caption || '').replace(/\n/g, '<br>')}
+                </div>
+                <button class="see-more" onclick="showMore(${post.id}, this)">और पढ़ें...</button>
+            </div>
+            <div class="actions">
+                <button class="btn-act" onclick="toggleLike(this)">❤️ Like</button>
+                <button class="btn-act" onclick="sharePost(${post.id})">🔗 Share</button>
+            </div>
+        </div>`;
+    }).join("");
+}
+
+function renderEvents(schedules){
+    const container = document.getElementById('scheduleContainer');
+    if(!schedules || schedules.length === 0){
+        container.innerHTML = `<div class="empty-box">फिलहाल कोई नया यज्ञ या सम्मेलन निर्धारित नहीं है।</div>`;
+        return;
+    }
+
+    container.innerHTML = schedules.map(sch => {
+        const media = (sch.media_files && sch.media_files.length > 0) ? sch.media_files[0] : '';
+        let mediaHtml = '';
+        if(media){
+            if(media.match(/\.(mp4|webm|ogg)$/i)){
+                mediaHtml = `<video controls src="${media}"></video>`;
+            } else {
+                mediaHtml = `<img src="${media}" alt="Event Poster" onclick="openLightbox(this.src)">`;
+            }
+        }
+
+        return `
+        <div class="schedule-card">
+            ${mediaHtml ? `<div class="schedule-media">${mediaHtml}</div>` : ''}
+            <div class="schedule-details">
+                <div class="schedule-title">${sch.title || ''}</div>
+                <div class="schedule-desc">${(sch.description || '').replace(/\n/g, '<br>')}</div>
+                <div class="schedule-meta">
+                    🗓️ ${sch.event_date || ''} | ⏰ ${sch.time_from || ''} - ${sch.time_to || ''}
+                </div>
+                <div class="schedule-meta">
+                    📍 ${sch.address || ''}, ${sch.district || ''}, ${sch.state || ''}
+                </div>
+                <div class="schedule-actions">
+                    ${sch.mobile ? `<a href="tel:${sch.mobile}" class="sched-btn call">📞 कॉल</a>` : ''}
+                    ${sch.web_url ? `<a href="${sch.web_url}" target="_blank" class="sched-btn web">🌐 विवरण</a>` : ''}
+                    ${sch.yt_link ? `<a href="${sch.yt_link}" target="_blank" class="sched-btn youtube">▶️ YouTube</a>` : ''}
+                    ${sch.fb_link ? `<a href="${sch.fb_link}" target="_blank" class="sched-btn facebook">f Facebook</a>` : ''}
+                </div>
+            </div>
+        </div>`;
+    }).join("");
+}
+
+function renderDonations(donations){
+    const container = document.getElementById('donationsContainer');
+    if(!donations || donations.length === 0){
+        container.innerHTML = `<div class="empty-box">इस प्रोफाइल के लिए अभी कोई सहयोग विवरण दर्ज नहीं है।</div>`;
+        return;
+    }
+
+    container.innerHTML = donations.map(tx => `
+        <div class="daan-card">
+            <div class="daan-icon">📥</div>
+            <div class="daan-body">
+                <div class="mname">
+                    ${tx.full_name}
+                    <span class="tx-badge tx-badge-credit">जमा</span>
+                </div>
+                ${tx.unique_id ? `<div class="tx-info">ID: ${tx.unique_id}</div>` : ''}
+                <div class="amount">+ ${tx.amount_label}</div>
+                <div class="tx-info">
+                    माध्यम: ${tx.payment_mode || 'UPI'} | 🗓️ ${tx.tx_date}
+                </div>
+            </div>
+            <div>
+                <a href="${tx.receipt_url}" target="_blank" class="btn-receipt">🧾 रसीद</a>
+            </div>
+        </div>
+    `).join("");
+}
+
+/* UI INTERACTIONS */
+function showTab(tabId, btn){
+    document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(button => button.classList.remove('active'));
+    const selected = document.getElementById(tabId);
+    if(selected){ selected.classList.add('active'); }
+    if(btn){ btn.classList.add('active'); }
+}
+
+function toggleExpand(button){
+    const box = document.getElementById('expandContent');
+    button.classList.toggle('active');
+    box.style.display = (box.style.display === 'block') ? 'none' : 'block';
+}
+
+function toggleSchedules(header){
+    const content = document.getElementById('scheduleContainer');
+    header.classList.toggle('active');
+    content.style.display = (content.style.display === 'block') ? 'none' : 'block';
+}
+
+function toggleLike(btn){
+    btn.classList.toggle('liked');
+    btn.innerHTML = btn.classList.contains('liked') ? '❤️ Liked' : '❤️ Like';
+}
+
+function showMore(id, button){
+    const text = document.getElementById('text-' + id);
+    if(text){ text.classList.remove('hidden-caption'); }
+    if(button){ button.style.display = 'none'; }
+}
+
+const slideIndexes = {};
+function moveSlide(postId, direction){
+    if(typeof slideIndexes[postId] === 'undefined'){ slideIndexes[postId] = 0; }
+    const container = document.getElementById('slides-' + postId);
+    if(!container) return;
+    const totalSlides = container.children.length;
+    if(totalSlides <= 1) return;
+
+    slideIndexes[postId] += direction;
+    if(slideIndexes[postId] >= totalSlides){ slideIndexes[postId] = 0; }
+    if(slideIndexes[postId] < 0){ slideIndexes[postId] = totalSlides - 1; }
+    container.style.transform = 'translateX(-' + (slideIndexes[postId] * 100) + '%)';
+}
+
+function sharePost(postId){
+    const url = 'https://sanatansevasamiti.org/feed.php?postid=' + postId;
+    const text = 'वेद सेना की पोस्ट देखें: ' + url;
+    if(navigator.share){
+        navigator.share({ title:'वेद सेना', text:text, url:url }).catch(function(){});
+    } else {
+        window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
+    }
+}
+
+function openContact(){
+    document.getElementById('contact-popup').style.display = 'block';
+    document.getElementById('overlay').style.display = 'block';
+}
+
+function closeContact(){
+    document.getElementById('contact-popup').style.display = 'none';
+    document.getElementById('overlay').style.display = 'none';
+}
+
+function openLightbox(src){
+    const modal = document.getElementById('lightbox-modal');
+    const image = document.getElementById('lightbox-img');
+    image.src = src;
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox(){
+    document.getElementById('lightbox-modal').style.display = 'none';
+    document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', function(event){
+    if(event.key === 'Escape'){
+        closeLightbox();
+        closeContact();
+    }
+});
+
+window.addEventListener("DOMContentLoaded", loadVedSenaData);
+</script>
+
+</body>
+</html>
