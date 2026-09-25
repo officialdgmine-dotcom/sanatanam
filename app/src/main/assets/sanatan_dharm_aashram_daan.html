@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>सनातन धर्म आश्रम — भव्य केंद्रीय धाम निर्माण एवं आश्रम पुनरुद्धार</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+    --gold-primary: #d4af37;
+    --gold-bright: #f59e0b;
+    --gold-light: #fff5db;
+    --maroon-deep: #5b030b;
+    --maroon-royal: #780612;
+    --maroon-light: #991b1b;
+    --saffron-sacred: #ea580c;
+    --saffron-soft: #fff7ed;
+    --cream-bg: #fffdfa;
+    --text-dark: #2d1806;
+    --text-muted: #6b5544;
+    --green-sacred: #15803d;
+    --border-gold: rgba(212,175,55,0.4);
+    --shadow-divine: 0 20px 60px rgba(91,3,11,0.14);
+}
+*{ box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html{ scroll-behavior: smooth; }
+body{
+    margin: 0; font-family: "Noto Sans Devanagari", system-ui, sans-serif;
+    color: var(--text-dark);
+    background: radial-gradient(circle at 50% -5%, #ffe6c7 0%, #fffbf2 30%, #f4e6d4 100%);
+    padding-bottom: 95px; min-height: 100vh;
+}
+
+/* ROYAL TOPBAR */
+.topbar{
+    position: sticky; top: 0; z-index: 1000; height: 72px; display: flex;
+    align-items: center; justify-content: space-between; padding: 0 16px;
+    background: rgba(255, 255, 255, 0.94); backdrop-filter: blur(20px);
+    border-bottom: 2px solid #ecd8b9; box-shadow: 0 8px 30px rgba(91,3,11,0.08);
+}
+.topbar-left{ display: flex; align-items: center; gap: 12px; }
+.back-btn{
+    width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center;
+    justify-content: center; text-decoration: none; color: var(--maroon-royal);
+    background: #fff4e5; border: 1px solid #fed7aa; font-size: 20px; font-weight: 900; transition: .2s;
+    cursor: pointer;
+}
+.back-btn:active{ transform: scale(0.92); }
+.topbar-logo{
+    width: 48px; height: 48px; border-radius: 50%; object-fit: cover;
+    border: 2px solid var(--gold-bright); box-shadow: 0 4px 12px rgba(212,175,55,0.35);
+}
+.brand-title{ font-size: 16px; font-weight: 900; color: var(--maroon-deep); line-height: 1.2; }
+.brand-sub{ font-size: 10.5px; color: #9a3412; font-weight: 800; letter-spacing: 0.2px; }
+.wallet-badge{
+    padding: 8px 14px; text-decoration: none; color: var(--green-sacred); background: #ebfaef;
+    border: 1.5px solid #bbf7d0; border-radius: 16px; font-size: 13px; font-weight: 900;
+    box-shadow: 0 4px 14px rgba(21,128,61,0.12); white-space: nowrap;
+}
+
+/* GRAND HERO */
+.grand-hero{
+    margin: 16px 14px; padding: 34px 18px 28px; border-radius: 38px;
+    background: linear-gradient(165deg, #ffffff 0%, #fff8eb 50%, #ffedd5 100%);
+    border: 2px solid #ecd7b7; box-shadow: var(--shadow-divine); text-align: center;
+    position: relative; overflow: hidden;
+}
+.grand-hero::before{
+    content: "ॐ"; position: absolute; top: -20px; right: -15px; font-size: 140px;
+    color: rgba(217,119,6,0.05); font-weight: 900; pointer-events: none; font-family: serif;
+}
+.grand-hero::after{
+    content: "卐"; position: absolute; bottom: -25px; left: -10px; font-size: 110px;
+    color: rgba(120,6,18,0.04); font-weight: 900; pointer-events: none;
+}
+.logo-halo-container{
+    position: relative; width: 146px; height: 146px; margin: 0 auto 16px;
+    display: flex; align-items: center; justify-content: center;
+}
+.logo-aura-ring{
+    position: absolute; inset: -8px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(245,158,11,0.4) 0%, rgba(212,175,55,0.15) 70%, transparent 100%);
+    animation: rotateAura 12s linear infinite;
+}
+@keyframes rotateAura{ 0%{ transform: rotate(0deg); } 100%{ transform: rotate(360deg); } }
+.main-grand-logo{
+    width: 138px; height: 138px; border-radius: 50%; object-fit: cover; position: relative; z-index: 2;
+    border: 4.5px solid #d4af37; box-shadow: 0 15px 40px rgba(120,6,18,0.3), 0 0 25px rgba(245,158,11,0.5);
+}
+.hero-om-badge{
+    display: inline-block; font-size: 13px; font-weight: 900; color: #9a3412;
+    background: #fff0d4; padding: 4px 16px; border-radius: 20px; border: 1px solid #fed7aa; margin-bottom: 8px;
+}
+.hero-maintitle{
+    font-size: 28px; font-weight: 950; color: var(--maroon-royal); margin: 4px 0 8px;
+    letter-spacing: -0.6px; line-height: 1.25;
+}
+.hero-tagline-pill{
+    font-size: 13px; color: #7c2d12; font-weight: 800; background: rgba(255,255,255,0.85);
+    display: inline-block; padding: 8px 18px; border-radius: 30px; margin-top: 4px;
+    border: 1.5px solid #fbd38d; box-shadow: 0 4px 15px rgba(180,83,9,0.08); line-height: 1.6;
+}
+.hero-location-badge{
+    margin-top: 14px; font-size: 12.5px; color: #573c24; font-weight: 800;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+
+/* MAHARAJ JI CARD */
+.maharaj-card{
+    margin: 18px 14px; border-radius: 32px; overflow: hidden; background: #fff;
+    border: 2px solid #ecd8b9; box-shadow: var(--shadow-divine); position: relative;
+}
+.maharaj-img-wrap{ position: relative; width: 100%; height: 350px; overflow: hidden; }
+.maharaj-img{ width: 100%; height: 100%; object-fit: cover; object-position: center 15%; display: block; }
+.maharaj-gradient-overlay{
+    position: absolute; bottom: 0; inset-inline: 0; height: 100px;
+    background: linear-gradient(to top, #fff 15%, transparent 100%);
+}
+.maharaj-details{ padding: 10px 22px 24px; text-align: center; }
+.guru-badge{
+    font-size: 11.5px; color: #a16207; font-weight: 900; letter-spacing: 0.5px;
+    background: #fef3c7; padding: 4px 14px; border-radius: 20px; display: inline-block; margin-bottom: 6px;
+}
+.guru-title-name{ font-size: 18px; font-weight: 950; color: var(--maroon-royal); margin: 6px 0; line-height: 1.45; }
+.guru-subline{ font-size: 12.5px; color: #6b5544; font-weight: 700; line-height: 1.6; }
+
+/* ERROR & ALERTS */
+.error-box{
+    margin: 15px 14px; padding: 16px; background: #fff0f0; border: 1.5px solid #efc6c6;
+    border-radius: 20px; color: #a52222; text-align: center; font-weight: bold; display: none;
+}
+.error-box a{ color: #c96b09; text-decoration: underline; margin-left: 6px; }
+
+/* SECTION BOX */
+.section-box{
+    margin: 18px 14px; padding: 24px 20px; border-radius: 32px; background: #ffffff;
+    border: 1.5px solid #ecd9bf; box-shadow: 0 12px 35px rgba(91,3,11,0.06); position: relative;
+}
+.sec-header{ display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.sec-icon{
+    width: 44px; height: 44px; border-radius: 14px; display: flex; align-items: center;
+    justify-content: center; background: linear-gradient(135deg, #fff3dc, #ffe0a3);
+    border: 1.5px solid #f6cf83; font-size: 22px; flex-shrink: 0; box-shadow: 0 4px 12px rgba(212,175,55,0.2);
+}
+.sec-title{ margin: 0; font-size: 20px; font-weight: 950; color: var(--maroon-royal); }
+
+.mission-card{
+    background: linear-gradient(145deg, #fffaf2, #fff4e1); border: 1.5px solid #eedbc1;
+    border-radius: 22px; padding: 18px 16px; margin-bottom: 12px; border-left: 5px solid var(--saffron-sacred);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+}
+.mission-card h3{ margin: 0 0 6px; font-size: 16px; color: var(--maroon-deep); font-weight: 900; display: flex; align-items: center; gap: 8px; }
+.mission-card p{ margin: 0; font-size: 13px; color: #5a4537; line-height: 1.7; }
+
+/* SHASTRIYA MAHIMA */
+.mahima-divine-card{
+    margin: 20px 14px; padding: 26px 20px; border-radius: 34px;
+    background: linear-gradient(150deg, #5b030b 0%, #780612 60%, #400106 100%);
+    color: #fff; box-shadow: 0 20px 60px rgba(91,3,11,0.3); border: 2px solid #d4af37;
+    position: relative; overflow: hidden;
+}
+.mahima-divine-card::before{
+    content:""; position: absolute; inset: 0; border: 1px dashed rgba(212,175,55,0.4); margin: 7px; border-radius: 26px; pointer-events: none;
+}
+.mahima-tophead{ text-align: center; margin-bottom: 20px; }
+.mahima-pill{
+    background: #d4af37; color: #430107; font-size: 11px; font-weight: 950;
+    padding: 4px 14px; border-radius: 20px; display: inline-block; margin-bottom: 6px; text-transform: uppercase;
+}
+.mahima-maintitle{ font-size: 22px; font-weight: 950; margin: 4px 0; color: #fff3d4; }
+.mahima-subtitle{ font-size: 12px; color: #fde68a; margin: 0; font-style: italic; }
+
+.mahima-item-row{
+    background: rgba(255,255,255,0.08); backdrop-filter: blur(10px); border: 1px solid rgba(212,175,55,0.3);
+    border-radius: 20px; padding: 15px; margin-bottom: 12px;
+}
+.mahima-item-row:last-child{ margin-bottom: 0; }
+.mir-head{ font-size: 14.5px; font-weight: 900; color: #fed7aa; display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.mir-text{ font-size: 12.5px; color: #fef2f2; line-height: 1.7; opacity: 0.95; }
+
+/* BRICK SEVA */
+.brick-grand-card{
+    margin: 20px 14px; padding: 26px 20px; border-radius: 34px;
+    background: linear-gradient(150deg, #fff7ed 0%, #ffedd5 60%, #fed7aa 100%);
+    border: 2.5px solid #fb923c; box-shadow: 0 20px 50px rgba(194,65,12,0.16);
+}
+.brick-tag-divine{
+    background: var(--saffron-sacred); color: #fff; font-size: 11px; font-weight: 950;
+    padding: 5px 14px; border-radius: 20px; display: inline-block; margin-bottom: 8px; box-shadow: 0 4px 12px rgba(234,88,12,0.3);
+}
+.brick-title-main{ font-size: 23px; font-weight: 950; color: #9a3412; margin: 0 0 6px; }
+.brick-counter-container{
+    background: #ffffff; padding: 22px 16px; border-radius: 26px; border: 2px solid #fdba74;
+    box-shadow: 0 8px 25px rgba(194,65,12,0.08); text-align: center; margin: 18px 0;
+}
+.brick-controller{ display: flex; align-items: center; justify-content: center; gap: 16px; margin: 12px 0 8px; }
+.brick-btn-ctrl{
+    width: 52px; height: 52px; border-radius: 16px; border: 2px solid #ea580c;
+    background: #fff; color: #ea580c; font-size: 26px; font-weight: 950; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 15px rgba(234,88,12,0.15);
+}
+.brick-btn-ctrl:active{ transform: scale(0.92); }
+.brick-input-count{
+    width: 120px; height: 52px; text-align: center; font-size: 26px; font-weight: 950;
+    border: 2.5px solid #fed7aa; border-radius: 16px; outline: none; color: #9a3412; background: #fffaf0;
+}
+.brick-total-display{
+    margin-top: 15px; font-size: 16px; font-weight: 800; color: #7c2d12;
+    padding: 12px; background: #ffedd5; border-radius: 16px; border: 1px solid #fed7aa;
+}
+.brick-total-display strong{ font-size: 24px; color: #c2410c; margin-left: 6px; }
+
+.brick-packages-grid{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 14px 0 18px; }
+.bpkg-btn{
+    padding: 12px 4px; border-radius: 16px; border: 1.5px solid #f97316; background: #fff;
+    color: #c2410c; font-size: 11.5px; font-weight: 900; cursor: pointer; text-align: center; transition: .2s;
+}
+.bpkg-btn strong{ display: block; font-size: 14.5px; margin-top: 4px; color: #9a3412; }
+.bpkg-btn:hover{ background: #fff7ed; transform: translateY(-2px); }
+
+/* GENERAL DONATION SECTION */
+.donation-box{
+    margin: 20px 14px; padding: 26px 20px; border-radius: 34px;
+    background: linear-gradient(150deg, #ffffff 0%, #fffbf2 60%, #fff4e5 100%);
+    border: 2px solid #ecd8b9; box-shadow: var(--shadow-divine);
+}
+.donation-tabs-row{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 22px; }
+.d-tab-btn{
+    padding: 14px 6px; border-radius: 16px; border: 1.5px solid #d9ad62; background: #fff;
+    color: #75420e; font-size: 12px; font-weight: 900; cursor: pointer; text-align: center; transition: .25s;
+}
+.d-tab-btn.active{
+    background: linear-gradient(135deg, #d97706 0%, #780612 100%); color: #fff; border-color: #780612;
+    box-shadow: 0 6px 18px rgba(120,6,18,0.25);
+}
+.form-group-label{ display: block; margin: 14px 0 6px; color: #5a3c26; font-size: 13px; font-weight: 800; }
+.divine-input{
+    width: 100%; padding: 15px 16px; border: 2px solid #ead6ba; border-radius: 18px;
+    outline: none; font-size: 15px; font-family: inherit; font-weight: 700; color: #3a1c06; background: #fff;
+}
+.divine-input:focus{ border-color: #d97706; }
+.quick-amt-grid{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin: 10px 0 16px; }
+.q-amt-pill{
+    padding: 11px 4px; border-radius: 14px; border: 1.5px solid #edd5b2; background: #fffaf2;
+    color: #895016; font-weight: 900; cursor: pointer; font-size: 13px; text-align: center;
+}
+.q-amt-pill:hover{ background: #fed7aa; }
+
+.divine-submit-btn{
+    width: 100%; border: 0; margin-top: 18px; padding: 17px; border-radius: 20px;
+    color: #fff; font-size: 16px; font-weight: 950; cursor: pointer; transition: .25s;
+    background: linear-gradient(135deg, #d97706 0%, #b45309 50%, #780612 100%);
+    box-shadow: 0 8px 25px rgba(120,6,18,0.3); border: 1px solid #fed7aa;
+}
+.divine-submit-btn:active{ transform: translateY(3px); box-shadow: none; }
+.btn-brick-theme{ background: linear-gradient(135deg, #ea580c 0%, #c2410c 50%, #7c2d12 100%); box-shadow: 0 8px 25px rgba(194,65,12,0.3); }
+
+/* GALLERY 8-SLOT EXPANDED GRID */
+.gallery-8-grid{ display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 12px; }
+.gal-card{
+    background: #fffdf8; border: 1.5px solid #ecd8bd; border-radius: 20px; overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.04); text-align: center;
+}
+.gal-card img{ width: 100%; height: 140px; object-fit: cover; display: block; }
+.gal-title{ font-size: 12px; font-weight: 800; padding: 10px 6px; color: #5a3517; line-height: 1.4; }
+
+/* VIDEO WRAPPER */
+.video-box-divine{
+    position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
+    border-radius: 24px; border: 2.5px solid #ecd7b7; box-shadow: 0 12px 35px rgba(0,0,0,0.15); background: #000;
+}
+.video-box-divine iframe{ position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+/* MODAL */
+.modal-overlay{
+    position: fixed; inset: 0; z-index: 99999; display: none; align-items: center;
+    justify-content: center; padding: 14px; background: rgba(0,0,0,0.78); backdrop-filter: blur(8px);
+}
+.receipt-modal-box{
+    width: 100%; max-width: 430px; background: #fff; border-radius: 32px;
+    border: 2.5px solid #d4af37; overflow: hidden; text-align: center; box-shadow: 0 25px 80px rgba(0,0,0,0.6);
+}
+.rm-head{ background: linear-gradient(135deg, #780612, #991b1b); color: #fff; padding: 22px; }
+.rm-body{ padding: 22px; }
+.rm-btn{
+    display: block; width: 100%; padding: 14px; border-radius: 16px; text-decoration: none;
+    font-weight: 900; font-size: 13.5px; margin-top: 10px; border: 0; cursor: pointer;
+}
+
+@media(min-width:700px){
+    body{ max-width:700px; margin:auto; }
+    .topbar{ max-width:700px; left:50%; transform:translateX(-50%); }
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+    <div class="topbar-left">
+        <a href="sanatan_dharm_aashram.html" class="back-btn">←</a>
+        <img src="https://sanatansevasamiti.org/public_html/Images/ss/PRO1781287765_dp.jpg" alt="Ashram Logo" class="topbar-logo">
+        <div>
+            <div class="brand-title">सनातन धर्म आश्रम</div>
+            <div class="brand-sub">मुरैना केंद्रीय धाम एवं सनातन धर्म आश्रम जीर्णोद्धार</div>
+        </div>
+    </div>
+    <a href="app_wallet.html" class="wallet-badge" id="topNavWallet">₹0.00</a>
+</div>
+
+<!-- GRAND HERO WITH GLOWING LOGO -->
+<section class="grand-hero">
+    <div class="logo-halo-container">
+        <div class="logo-aura-ring"></div>
+        <img src="https://sanatansevasamiti.org/public_html/Images/ss/PRO1781287765_dp.jpg" alt="सनातन धर्म आश्रम मुख्य दिव्य लोगो" class="main-grand-logo">
+    </div>
+
+    <div class="hero-om-badge">🚩 पावन निर्माण एवं जीर्णोद्धार महायज्ञ 🚩</div>
+    <h1 class="hero-maintitle">सनातन धर्म आश्रम</h1>
+    <div class="hero-tagline-pill">🏛️ सनातन धर्म आश्रम जीर्णोद्धार, भव्य केंद्रीय धाम निर्माण, नित्य अन्नक्षेत्र, सुरभि गौसेवा एवं धर्म जागरण महायज्ञ</div>
+    
+    <div class="hero-location-badge">
+        <span>📍 प्रधान निर्माण तीर्थ: <strong>मुरैना (मध्य प्रदेश) — प्रधान केंद्रीय तपोभूमि</strong></span>
+    </div>
+</section>
+
+<!-- MAHARAJ JI DIVINE INSPIRATION CARD -->
+<section class="maharaj-card">
+    <div class="maharaj-img-wrap">
+        <img src="https://sanatansevasamiti.org/public_html/Images/maharaj.jpg" class="maharaj-img" alt="पूज्य सद्गुरुदेव महाराज जी">
+        <div class="maharaj-gradient-overlay"></div>
+    </div>
+    <div class="maharaj-details">
+        <span class="guru-badge">🙏 दिव्य संरक्षण एवं प्रेरणा</span>
+        <h2 class="guru-title-name">
+            श्री श्री 1008 अनंत श्री विभूषित परम पूज्य जगद्गुरु सच्चिदानंदाचार्य आनंद पीठाधीश्वर सद्गुरुदेव स्वामी सच्चिदानंद जी महाराज
+        </h2>
+        <div class="guru-subline">संस्थापक एवं राष्ट्रीय अध्यक्ष — सनातन सेवा समिति</div>
+    </div>
+</section>
+
+<!-- WALLET ALERTS -->
+<div class="error-box" id="errorBox">
+    <span id="errorMessage">⚠️ त्रुटि</span>
+    <a href="app_wallet.html" id="errorWalletLink" style="display:none;">वॉलेट रिचार्ज करें</a>
+</div>
+
+<!-- 1. VAST MASTERPLAN & ALL-INDIA ASHRAM JIRNODDHAR VISION -->
+<section class="section-box">
+    <div class="sec-header">
+        <div class="sec-icon">🚩</div>
+        <h2 class="sec-title">सनातन धर्म आश्रम का विराट उद्देश्य</h2>
+    </div>
+    
+    <p style="font-size: 13.8px; color: #503927; line-height: 1.85; margin-bottom: 16px;">
+        <strong>सनातन धर्म आश्रम</strong> केवल एक भवन निर्माण का कार्य नहीं, बल्कि लुप्तप्राय एवं उपेक्षित आश्रम व्यवस्था को पुनर्जीवित करने का राष्ट्रव्यापी महायज्ञ है। <strong>मुरैना (मध्य प्रदेश)</strong> में केंद्रीय मुख्य धाम की स्थापना के साथ-साथ, संपूर्ण भारत में स्थित प्राचीन, ऐतिहासिक एवं आर्थिक अभावों से जूझ रहे आश्रमों, तपोस्थलियों व संत कुटीरों का कायाकल्प, सुरक्षा व्यवस्था तथा धर्म रक्षा प्रबंधन इसी महासंकल्प के अंतर्गत संचालित किया जा रहा है।
+    </p>
+
+    <div class="mission-card">
+        <h3>🏛️ 1. मुरैना केंद्रीय धाम का महा-निर्माण</h3>
+        <p>मुरैना की पावन धरा पर एक विशाल एवं सुसज्जित आध्यात्मिक परिसर का निर्माण, जिसमें 1000+ क्षमता का भव्य सत्संग भवन, वातानुकूलित/सात्विक संत निवास कक्ष, ध्यान-साधना केंद्र एवं प्रशासनिक भवन सम्मिलित हैं।</p>
+    </div>
+
+    <div class="mission-card">
+        <h3>🔄 2. देश भर के उपेक्षित आश्रमों का जीर्णोद्धार</h3>
+        <p>ग्रामीण व वनवासी अंचलों में स्थित जर्जर आश्रमों की चारदीवारी (बाउंड्री वॉल), छत, रंग-रोगन, सोलर विद्युत व्यवस्था, स्वच्छ पेयजल तथा संत-महात्माओं की दैनिक जीवन रक्षा व्यवस्था का स्थायी प्रबंधन।</p>
+    </div>
+
+    <div class="mission-card">
+        <h3>🍲 3. अखंड नित्य अन्नक्षेत्र एवं भंडारा</h3>
+        <p>आश्रम परिसरों में संतों, तपस्वियों, तीर्थयात्रियों तथा दीन-दुखियों के लिए 365 दिन 24 घंटे निःशुल्क, शुद्ध एवं पौष्टिक महाप्रसाद का अटूट संचालन।</p>
+    </div>
+
+    <div class="mission-card">
+        <h3>🐄 4. सुरभि गौसेवा, संरक्षण एवं गुरुकुल</h3>
+        <p>असहाय, वृद्ध एवं निराश्रित गोवंश के संवर्धन हेतु वृहद गौशालाओं का निर्माण तथा नई पीढ़ी में सनातन संस्कारों के बीजारोपण हेतु निःशुल्क वैदिक गुरुकुल का संचालन।</p>
+    </div>
+</section>
+
+<!-- 2. SHASTRIYA DAAN KI MAHIMA SECTION -->
+<section class="mahima-divine-card">
+    <div class="mahima-tophead">
+        <span class="mahima-pill">शास्त्र सम्मत शाश्वत पुण्य</span>
+        <h2 class="mahima-maintitle">आश्रम सेवा एवं दान की अनुपम महिमा</h2>
+        <p class="mahima-subtitle">"दानं दुर्गतिनाशनम् — धर्मार्थ दिया गया एक कण, परलोक में मेरु पर्वत समान फल देता है।"</p>
+    </div>
+
+    <div class="mahima-item-row">
+        <div class="mir-head">🧱 ईंट, शिला एवं निर्माण दान का महत्व</div>
+        <div class="mir-text">
+            शास्त्रों में उल्लेख है कि आश्रम, देवालय या सत्संग भवन के निर्माण में जितनी ईंटें और शिलाएं लगती हैं, जब तक वे वहां विद्यमान रहती हैं, तब तक दानदाता और उसके पूर्वजों (पितरों) को उस स्थान पर होने वाले नित्य वेदपाठ, हरि-संकीर्तन और तपस्या का अनंत पुण्य फल निरंतर मिलता रहता है।
+        </div>
+    </div>
+
+    <div class="mahima-item-row">
+        <div class="mir-head">🌾 अन्नदान — साक्षात परब्रह्म की तृप्ति</div>
+        <div class="mir-text">
+            अन्नदान को सभी दानों में 'महादान' कहा गया है। संतों और अभ्यागतों को भोजन कराने से साक्षात भगवान नारायण तृप्त होते हैं। अन्नदान से घर में अन्नपूर्णा माता का नित्य वास होता है और दरिद्रता का समूल नाश होता है।
+        </div>
+    </div>
+
+    <div class="mahima-item-row">
+        <div class="mir-head">🏗️ सामग्री दान एवं कायिक श्रमदान</div>
+        <div class="mir-text">
+            सीमेंट, रेत, सरिया जैसी भौतिक सामग्री अथवा अपने हाथों से किया गया शारीरिक श्रमदान मनुष्य के संचित पाप-कर्मों का क्षय करता है तथा अंतःकरण को निर्मल बनाकर मोक्ष का मार्ग प्रशस्त करता है।
+        </div>
+    </div>
+</section>
+
+<!-- 3. SPECIAL BRICK DONATION (ईंट दान विशेष समर्पण) -->
+<section class="brick-grand-card" id="eet-seva">
+    <div style="text-align:center;">
+        <span class="brick-tag-divine">🧱 आश्रम निर्माण महासंकल्प</span>
+        <h2 class="brick-title-main">एक ईंट से करें पुण्य निर्माण की शुरुआत</h2>
+        <p style="font-size: 13.5px; color: #7c2d12; margin: 0; line-height: 1.65;">
+            सनातन धर्म आश्रम निर्माण में प्रत्येक ईंट आपकी श्रद्धा और भक्ति का अमर आधार बनेगी।
+            <strong>न्यूनतम सेवा मात्र ₹11 (1 ईंट)</strong> से प्रारंभ करें।
+        </p>
+    </div>
+
+    <!-- Live Multiplier Counter -->
+    <div class="brick-counter-container">
+        <label style="font-size: 13.5px; font-weight: 800; color: #9a3412; display: block;">
+            ईंटों की संख्या चुनें या टाइप करें (1 ईंट = ₹11):
+        </label>
+        
+        <div class="brick-controller">
+            <button type="button" class="brick-btn-ctrl" onclick="adjustBricks(-1)">−</button>
+            <input type="number" id="brick_count" class="brick-input-count" value="11" min="1" oninput="calculateBrickTotal()">
+            <button type="button" class="brick-btn-ctrl" onclick="adjustBricks(1)">+</button>
+        </div>
+
+        <div class="brick-total-display">
+            कुल समर्पण राशि: <strong id="brick_total_text">₹121</strong>
+        </div>
+    </div>
+
+    <!-- Quick Packages -->
+    <label style="font-size: 12.5px; font-weight: 800; color: #9a3412; display: block; text-align: center;">
+        🌟 लोकप्रिय ईंट संकल्प पैकेज (क्लिक करें):
+    </label>
+    <div class="brick-packages-grid">
+        <button type="button" class="bpkg-btn" onclick="setBrickPackage(11, 121)">
+            11 ईंट <strong>₹121</strong>
+        </button>
+        <button type="button" class="bpkg-btn" onclick="setBrickPackage(11, 231)">
+            11 ईंट (विशेष) <strong>₹231</strong>
+        </button>
+        <button type="button" class="bpkg-btn" onclick="setBrickPackage(51, 551)">
+            51 ईंट <strong>₹551</strong>
+        </button>
+        <button type="button" class="bpkg-btn" onclick="setBrickPackage(51, 1100)">
+            51 ईंट (विशेष) <strong>₹1,100</strong>
+        </button>
+        <button type="button" class="bpkg-btn" onclick="setBrickPackage(101, 1100)">
+            101 ईंट <strong>₹1,100</strong>
+        </button>
+        <button type="button" class="bpkg-btn" onclick="setBrickPackage(101, 2100)">
+            101 ईंट (विशेष) <strong>₹2,100</strong>
+        </button>
+    </div>
+
+    <!-- Direct Submit Form -->
+    <form id="form_brick_submit" onsubmit="handleBrickDaan(event)">
+        <input type="hidden" id="brick_form_desc" value="11 ईंट समर्पण (आश्रम निर्माण सेवा)">
+        <input type="hidden" id="brick_form_amount" value="121">
+
+        <button type="submit" id="btnSubmitBrick" class="divine-submit-btn btn-brick-theme">
+            🧱 ईंट सेवा वॉलेट से समर्पित करें
+        </button>
+    </form>
+</section>
+
+<!-- 4. VIDEO VISION PLAYER -->
+<section class="section-box">
+    <div class="sec-header">
+        <div class="sec-icon">🎥</div>
+        <h2 class="sec-title">आश्रम का मास्टरप्लान व वीडियो विजन</h2>
+    </div>
+    <p style="font-size: 13px; color: #6b5544; line-height: 1.7; margin: -5px 0 14px;">
+        पूज्य महाराज जी के पावन मार्गदर्शन में मुरैना केंद्रीय धाम एवं अन्य आश्रमों के पुनरुद्धार की संपूर्ण रूपरेखा इस वीडियो में देखें:
+    </p>
+    <div class="video-box-divine">
+        <iframe src="https://www.youtube.com/embed/videoseries?list=PLsomeList" title="Ashram Vision Video" allowfullscreen></iframe>
+    </div>
+</section>
+
+<!-- 5. EXPANDED 8-SLOT PHOTO GALLERY -->
+<section class="section-box">
+    <div class="sec-header">
+        <div class="sec-icon">🏛️</div>
+        <h2 class="sec-title">आश्रम निर्माण एवं भावी दर्शन दीर्घा</h2>
+    </div>
+    <p style="font-size: 13px; color: #6b5544; line-height: 1.7; margin: -5px 0 12px;">
+        आश्रम के प्रस्तावित 3D मॉडल, भूमि पूजन समारोह, वर्तमान प्रगति एवं होने वाले धार्मिक आयोजनों की पावन झलकियां:
+    </p>
+
+    <div class="gallery-8-grid">
+        <div class="gal-card">
+            <img src="https://sanatansevasamiti.org/public_html/Images/future-aashram.jpg" alt="मुख्य आश्रम स्वरूप">
+            <div class="gal-title">प्रस्तावित मुख्य आश्रम मॉडल</div>
+        </div>
+        <div class="gal-card">
+            <img src="https://sanatansevasamiti.org/public_html/Images/future-aashram1.jpg" alt="सत्संग भवन">
+            <div class="gal-title">भव्य सत्संग एवं ध्यान केंद्र</div>
+        </div>
+        <div class="gal-card">
+            <img src="https://sanatansevasamiti.org/public_html/Images/future-aashram2.jpg" alt="संत कुटीर">
+            <div class="gal-title">संत कुटीर एवं गौशाला विजन</div>
+        </div>
+        <div class="gal-card">
+            <img src="https://sanatansevasamiti.org/public_html/Images/aashram.jpg" alt="वर्तमान आश्रम">
+            <div class="gal-title">आश्रम वर्तमान निर्माण स्थिति</div>
+        </div>
+        <div class="gal-card">
+            <img src="https://sanatansevasamiti.org/public_html/Images/bhoomi-poojan.jpg" alt="भूमि पूजन">
+            <div class="gal-title">पावन भूमि पूजन समारोह</div>
+        </div>
+        <div class="gal-card">
+            <img src="https://sanatansevasamiti.org/public_html/Images/varshik-utsav.jpg" alt="वार्षिकोत्सव">
+            <div class="gal-title">वार्षिकोत्सव एवं विशाल भंडारा</div>
+        </div>
+        <div class="gal-card">
+            <img src="https://sanatansevasamiti.org/public_html/Images/bhoomi-poojan.jpg" alt="निर्माण कार्य 1">
+            <div class="gal-title">नींव एवं पिलर निर्माण प्रगति</div>
+        </div>
+        <div class="gal-card">
+            <img src="https://sanatansevasamiti.org/public_html/Images/aashram.jpg" alt="निर्माण कार्य 2">
+            <div class="gal-title">परिसर संवर्धन एवं श्रमदान</div>
+        </div>
+    </div>
+</section>
+
+<!-- 6. GENERAL SEVA & DONATION FORMS -->
+<section class="donation-box" id="daan-form">
+    <div class="sec-header">
+        <div class="sec-icon">🙏</div>
+        <h2 class="sec-title">समर्पण एवं सेवा संकल्प फॉर्म</h2>
+    </div>
+    <p style="font-size: 12.5px; color: #785e49; margin: -5px 0 18px;">
+        आप ₹1 से लेकर अपनी श्रद्धानुसार किसी भी प्रकल्प या आश्रम सेवा में अपना पावन सहयोग अर्पित कर सकते हैं।
+    </p>
+
+    <div class="donation-tabs-row">
+        <button type="button" class="d-tab-btn active" id="tab_dhan" onclick="switchTab('dhan')">💰 धन दान (खुली राशि)</button>
+        <button type="button" class="d-tab-btn" id="tab_ann" onclick="switchTab('ann')">🌾 अन्न दान</button>
+        <button type="button" class="d-tab-btn" id="tab_seva" onclick="switchTab('seva')">🚩 सामग्री / श्रमदान</button>
+    </div>
+
+    <!-- 1. GENERAL DHAN FORM -->
+    <form id="form_dhan" onsubmit="handleGeneralDaan(event, 'dhan')">
+        <label class="form-group-label">सहयोग का मुख्य प्रकल्प चुनें:</label>
+        <select id="seva_category" class="divine-input">
+            <option value="मुरैना केंद्रीय धाम निर्माण">🏛️ मुरैना केंद्रीय धाम निर्माण (पिलर, कक्ष, छत)</option>
+            <option value="सनातन धर्म आश्रम जीर्णोद्धार">🔄 सनातन धर्म आश्रम जीर्णोद्धार एवं व्यवस्था</option>
+            <option value="वार्षिकोत्सव एवं संत समागम">🔥 वार्षिकोत्सव महायज्ञ एवं संत समागम</option>
+            <option value="नित्य अन्नक्षेत्र भंडारा">🍲 नित्य अन्नक्षेत्र एवं साधु सेवा</option>
+            <option value="सुरभि गौशाला निर्माण">🐄 सुरभि गौशाला निर्माण एवं गोसेवा</option>
+            <option value="सामान्य आश्रम सेवा">🚩 सामान्य सनातन धर्म आश्रम सेवा</option>
+        </select>
+
+        <label class="form-group-label">समर्पण राशि (₹) — (न्यूनतम ₹1 से प्रारंभ):</label>
+        <input type="number" id="amount_dhan" class="divine-input" min="1" step="1" placeholder="उदा. ₹51, ₹101, ₹501, ₹1,100..." required>
+
+        <div class="quick-amt-grid">
+            <button type="button" class="q-amt-pill" onclick="setGeneralAmt(101)">₹101</button>
+            <button type="button" class="q-amt-pill" onclick="setGeneralAmt(501)">₹501</button>
+            <button type="button" class="q-amt-pill" onclick="setGeneralAmt(1100)">₹1,100</button>
+            <button type="button" class="q-amt-pill" onclick="setGeneralAmt(5100)">₹5,100</button>
+        </div>
+
+        <label class="form-group-label">विवरण / संकल्प संदेश:</label>
+        <input type="text" id="seva_desc_dhan" class="divine-input" value="सनातन धर्म आश्रम निर्माण एवं संपूर्ण आश्रम व्यवस्था सहयोग">
+
+        <button type="submit" id="btnSubmitDhan" class="divine-submit-btn">🔐 वॉलेट से राशि समर्पित करें</button>
+    </form>
+
+    <!-- 2. ANN DAAN FORM -->
+    <form id="form_ann" style="display:none;" onsubmit="handleGeneralDaan(event, 'ann')">
+        <label class="form-group-label">अन्न की मात्रा (Kg में):</label>
+        <input type="number" step="0.1" id="amount_ann" class="divine-input" placeholder="उदा. 25, 50, 100, 500 Kg" required>
+
+        <label class="form-group-label">अन्न / राशन सामग्री का प्रकार:</label>
+        <input type="text" id="ann_desc" class="divine-input" placeholder="गेहूँ, चावल, आटा, दाल, तेल, घी, मसाले आदि..." required>
+
+        <button type="submit" id="btnSubmitAnn" class="divine-submit-btn" style="background: linear-gradient(135deg,#15803d,#14532d);">
+            🌾 अन्नदान संकल्प दर्ज करें
+        </button>
+    </form>
+
+    <!-- 3. MATERIAL / LABOR SEVA FORM -->
+    <form id="form_seva" style="display:none;" onsubmit="handleGeneralDaan(event, 'seva')">
+        <label class="form-group-label">दी जाने वाली निर्माण सामग्री या श्रमदान का विवरण:</label>
+        <textarea id="seva_desc_only" class="divine-input" rows="3" placeholder="उदा. 10 बोरी सीमेंट, 1 ट्रॉली रेत/बजरी, सरिया, पेंट अथवा आश्रम परिसर में 5 दिन का श्रमदान..." required></textarea>
+
+        <button type="submit" id="btnSubmitSeva" class="divine-submit-btn" style="background: linear-gradient(135deg,#b91c1c,#7f1d1d);">
+            🚩 सामग्री / श्रम सेवा संकल्प दर्ज करें
+        </button>
+    </form>
+</section>
+
+<!-- 7. USER CONTRIBUTIONS HISTORY -->
+<section class="section-box">
+    <div class="sec-header">
+        <div class="sec-icon">📜</div>
+        <h2 class="sec-title">आपका सेवा समर्पण इतिहास</h2>
+    </div>
+
+    <div id="historyContainer">
+        <div style="text-align: center; font-size: 13px; color: #887665; padding: 18px;">
+            📜 सेवा समर्पण इतिहास लोड हो रहा है...
+        </div>
+    </div>
+</section>
+
+<!-- SUCCESS RECEIPT MODAL -->
+<div class="modal-overlay" id="receiptModal">
+    <div class="receipt-modal-box">
+        <div class="rm-head">
+            <h2 style="margin:0; font-size:20px; font-weight:950;">सनातन धर्म आश्रम</h2>
+            <p style="margin:4px 0 0; font-size:12px; opacity:.9;">आधिकारिक सेवा समर्पण पावती</p>
+        </div>
+        <div class="rm-body">
+            <div style="color:var(--green-sacred); font-weight:950; font-size:17px;">समर्पण सफल रहा ✓</div>
+            <div id="modalAmount" style="font-size:28px; font-weight:950; margin:10px 0; color:var(--maroon-royal);">₹0.00</div>
+            <p id="modalNotice" style="font-size:12.5px; color:#555; background:#f9fafb; padding:10px; border-radius:14px; line-height:1.6;">
+                सनातन धर्म आश्रम हेतु आपका पावन समर्पण वॉलेट से सफलतापूर्वक प्राप्त हो गया है।
+            </p>
+            <div style="text-align:left; font-size:11.5px; border-top:1px dashed #cbd5e1; border-bottom:1px dashed #cbd5e1; padding:10px 0; margin:12px 0;">
+                <div><strong>रसीद क्र.:</strong> <span id="modalReceipt">---</span></div>
+                <div style="margin-top:4px;"><strong>विवरण:</strong> <span id="modalDesc">---</span></div>
+                <div style="margin-top:4px;"><strong>दिनांक:</strong> <span id="modalDate">---</span></div>
+            </div>
+            <a id="modalReceiptLink" href="#" target="_blank" class="rm-btn" style="background:#d97706; color:#fff;">📄 आधिकारिक रसीद देखें</a>
+            <a id="modalWhatsappLink" href="#" target="_blank" class="rm-btn" style="background:#25D366; color:#fff;">📲 WhatsApp पर साझा करें</a>
+            <button type="button" class="rm-btn" style="background:#334155; color:#fff;" onclick="closeModal()">पूर्ण करें</button>
+        </div>
+    </div>
+</div>
+
+<script>
+const PROFILE_ID = "PRO1781287765";
+let currentBalance = 0;
+let currentUserId = "";
+let currentUserName = "सनातन सेवक";
+const BRICK_PRICE = 11;
+
+function switchTab(type){
+    document.querySelectorAll('.d-tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('form_dhan').style.display = 'none';
+    document.getElementById('form_ann').style.display = 'none';
+    document.getElementById('form_seva').style.display = 'none';
+
+    document.getElementById('tab_' + type).classList.add('active');
+    document.getElementById('form_' + type).style.display = 'block';
+}
+
+function setGeneralAmt(val){
+    const el = document.getElementById('amount_dhan');
+    if(el){ el.value = val; el.focus(); }
+}
+
+function adjustBricks(change){
+    const input = document.getElementById('brick_count');
+    let count = parseInt(input.value) || 1;
+    count += change;
+    if(count < 1) count = 1;
+    input.value = count;
+    calculateBrickTotal();
+}
+
+function calculateBrickTotal(){
+    const input = document.getElementById('brick_count');
+    let count = parseInt(input.value) || 1;
+    if(count < 1) count = 1;
+
+    let total = count * BRICK_PRICE;
+    document.getElementById('brick_total_text').innerText = '₹' + total;
+    document.getElementById('brick_form_amount').value = total;
+    document.getElementById('brick_form_desc').value = count + ' ईंट समर्पण (आश्रम निर्माण सेवा)';
+}
+
+function setBrickPackage(count, customAmount){
+    document.getElementById('brick_count').value = count;
+    document.getElementById('brick_total_text').innerText = '₹' + customAmount;
+    document.getElementById('brick_form_amount').value = customAmount;
+    document.getElementById('brick_form_desc').value = count + ' ईंट समर्पण (विशेष पैकेज)';
+}
+
+function showError(msg, isWallet = false){
+    const box = document.getElementById('errorBox');
+    const msgEl = document.getElementById('errorMessage');
+    const wLink = document.getElementById('errorWalletLink');
+    if(box && msgEl){
+        msgEl.innerText = "⚠️ " + msg;
+        box.style.display = 'block';
+        if(wLink) wLink.style.display = isWallet ? 'inline-block' : 'none';
+        box.scrollIntoView({ behavior:'smooth', block:'center' });
+    }
+}
+
+function hideError(){
+    const box = document.getElementById('errorBox');
+    if(box) box.style.display = 'none';
+}
+
+function closeModal(){
+    document.getElementById('receiptModal').style.display = 'none';
+    loadUserData();
+}
+
+async function loadUserData(){
+    try {
+        const rawUser = localStorage.getItem("sss_user_data");
+        if(rawUser){
+            const u = JSON.parse(rawUser);
+            currentUserId = u.unique_id || u.id || "";
+            currentUserName = u.full_name || "सनातन सेवक";
+        }
+
+        const res = await fetch(`https://sanatansevasamiti.org/api/get_profile_full.php?action=detail&profile_id=${PROFILE_ID}&user_id=${encodeURIComponent(currentUserId)}`);
+        const data = await res.json();
+
+        if(data && data.status === 'success'){
+            if(data.user_data && data.user_data.is_logged_in){
+                currentBalance = parseFloat(data.user_data.wallet_balance) || 0;
+                document.getElementById('topNavWallet').innerText = "₹" + currentBalance.toFixed(2);
+                localStorage.setItem("sss_wallet_balance", currentBalance);
+
+                renderHistory(data.user_data.user_history);
+            } else {
+                renderHistory([]);
+            }
+        }
+    } catch(e){
+        console.error("Ashram Daan Load Error:", e);
+    }
+}
+
+function renderHistory(list){
+    const c = document.getElementById('historyContainer');
+    if(!list || list.length === 0){
+        c.innerHTML = `
+            <div style="text-align: center; font-size: 13px; color: #887665; padding: 18px;">
+                अभी तक आपकी कोई पिछली सेवा दर्ज नहीं है। आपके प्रथम धर्म संकल्प का स्वागत है। 🙏
+            </div>
+        `;
+        return;
+    }
+
+    c.innerHTML = list.map(h => {
+        let amtDisplay = '';
+        if(h.amount_type === 'dhan') amtDisplay = "₹" + parseFloat(h.amount).toFixed(2);
+        else if(h.amount_type === 'ann') amtDisplay = h.amount + " Kg";
+        else amtDisplay = "🚩 सामग्री/श्रम";
+
+        const isPending = (h.status === 'pending');
+        const waText = encodeURIComponent(`सनातन धर्म आश्रम - सेवा रसीद\nविवरण: ${h.seva_desc}\nरसीद लिंक: ${h.receipt_url}`);
+
+        return `
+            <div style="padding: 14px; background: #fffbf5; border: 1.5px solid #ecd8bd; border-radius: 18px; margin-bottom: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
+                <div style="display: flex; justify-content: space-between; font-size: 11.5px; color: #786251;">
+                    <span>📅 ${h.tx_date}</span>
+                    <span style="font-weight: 900; color: ${isPending ? '#ea580c' : '#15803d'};">
+                        ${isPending ? '⏳ सत्यापन लंबित' : '✓ स्वीकृत'}
+                    </span>
+                </div>
+                <div style="font-size: 14.5px; font-weight: 900; margin: 8px 0 6px; color: #3d2410;">
+                    ${amtDisplay} — ${h.seva_desc}
+                </div>
+                <div style="display: flex; gap: 8px; margin-top: 8px;">
+                    <a href="${h.receipt_url}" target="_blank" style="padding: 5px 12px; font-size: 11.5px; background: #fff0d6; color: #9a3412; text-decoration: none; border-radius: 8px; font-weight: 900; border: 1px solid #fbd38d;">📄 रसीद देखें</a>
+                    <a href="https://api.whatsapp.com/send?text=${waText}" target="_blank" style="padding: 5px 12px; font-size: 11.5px; background: #25D366; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 900;">📲 WhatsApp</a>
+                </div>
+            </div>
+        `;
+    }).join("");
+}
+
+// BRICK DAAN SUBMIT
+async function handleBrickDaan(e){
+    e.preventDefault();
+    hideError();
+
+    if(!currentUserId){
+        alert("कृपया सेवा के लिए पहले ऐप में लॉगिन करें।");
+        window.location.href = "app_login.html";
+        return;
+    }
+
+    const amount = parseFloat(document.getElementById('brick_form_amount').value) || 0;
+    const desc = document.getElementById('brick_form_desc').value;
+
+    if(amount > currentBalance){
+        showError("वॉलेट में पर्याप्त समर्पण राशि उपलब्ध नहीं है।", true);
+        return;
+    }
+
+    const btn = document.getElementById('btnSubmitBrick');
+    btn.disabled = true;
+    btn.innerText = "⏳ ईंट सेवा समर्पित हो रही है...";
+
+    await submitDaanAPI("dhan", amount, `[🧱 ईंट दान] ${desc}`, btn, "🧱 ईंट सेवा वॉलेट से समर्पित करें");
+}
+
+// GENERAL DAAN SUBMIT
+async function handleGeneralDaan(e, type){
+    e.preventDefault();
+    hideError();
+
+    if(!currentUserId){
+        alert("कृपया सेवा के लिए पहले ऐप में लॉगिन करें।");
+        window.location.href = "app_login.html";
+        return;
+    }
+
+    let amount = 0;
+    let desc = "";
+    let btn = null;
+    let originalText = "";
+
+    if(type === 'dhan'){
+        amount = parseFloat(document.getElementById('amount_dhan').value) || 0;
+        const category = document.getElementById('seva_category').value;
+        const message = document.getElementById('seva_desc_dhan').value;
+        desc = `[${category}] ${message}`;
+        btn = document.getElementById('btnSubmitDhan');
+        originalText = "🔐 वॉलेट से राशि समर्पित करें";
+
+        if(amount <= 0){
+            showError("कृपया मान्य समर्पण राशि दर्ज करें।");
+            return;
+        }
+        if(amount > currentBalance){
+            showError("वॉलेट में पर्याप्त समर्पण राशि उपलब्ध नहीं है।", true);
+            return;
+        }
+    } else if(type === 'ann'){
+        amount = parseFloat(document.getElementById('amount_ann').value) || 0;
+        const annType = document.getElementById('ann_desc').value.trim();
+        desc = `[नित्य अन्नक्षेत्र] ${annType}`;
+        btn = document.getElementById('btnSubmitAnn');
+        originalText = "🌾 अन्नदान संकल्प दर्ज करें";
+
+        if(amount <= 0 || !annType){
+            showError("कृपया अन्न की मात्रा तथा प्रकार दर्ज करें।");
+            return;
+        }
+    } else if(type === 'seva'){
+        const shramDesc = document.getElementById('seva_desc_only').value.trim();
+        desc = `[निर्माण सामग्री / श्रमदान] ${shramDesc}`;
+        btn = document.getElementById('btnSubmitSeva');
+        originalText = "🚩 सामग्री / श्रम सेवा संकल्प दर्ज करें";
+
+        if(!shramDesc){
+            showError("कृपया सामग्री अथवा श्रमदान का विवरण दर्ज करें।");
+            return;
+        }
+    }
+
+    btn.disabled = true;
+    btn.innerText = "⏳ सेवा दर्ज की जा रही है...";
+
+    await submitDaanAPI(type, amount, desc, btn, originalText);
+}
+
+async function submitDaanAPI(type, amount, desc, btn, originalText){
+    try {
+        const payload = {
+            profile_id: PROFILE_ID,
+            user_id: currentUserId,
+            type: type,
+            amount: amount,
+            seva_desc: desc
+        };
+
+        const res = await fetch(`https://sanatansevasamiti.org/api/get_profile_full.php?action=donate`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+
+        const data = await res.json();
+
+        if(data && data.status === 'success'){
+            let displayAmt = (type === 'dhan') ? `₹${amount.toFixed(2)}` : (type === 'ann' ? `${amount} Kg` : `🚩 सामग्री/श्रम सेवा`);
+            document.getElementById('modalAmount').innerText = displayAmt;
+            document.getElementById('modalReceipt').innerText = data.receipt_no || "---";
+            document.getElementById('modalDesc').innerText = desc;
+            document.getElementById('modalDate').innerText = data.date || "आज";
+            document.getElementById('modalReceiptLink').href = data.receipt_url || "#";
+
+            const waShare = encodeURIComponent(`🚩 सनातन धर्म आश्रम (मुरैना केंद्रीय धाम एवं सनातन धर्म आश्रम सेवा) 🚩\nदानकर्ता: ${currentUserName}\nसमर्पण: ${displayAmt}\nविवरण: ${desc}\n\n📄 आधिकारिक रसीद देखें:\n${data.receipt_url}`);
+            document.getElementById('modalWhatsappLink').href = `https://api.whatsapp.com/send?text=${waShare}`;
+
+            document.getElementById('receiptModal').style.display = 'flex';
+
+            if(type === 'dhan') document.getElementById('amount_dhan').value = "";
+            if(type === 'ann'){ document.getElementById('amount_ann').value = ""; document.getElementById('ann_desc').value = ""; }
+            if(type === 'seva') document.getElementById('seva_desc_only').value = "";
+        } else {
+            showError(data.message || "समर्पण दर्ज करने में समस्या आई।");
+        }
+    } catch(err){
+        showError("सर्वर से संपर्क नहीं हो पाया। इंटरनेट कनेक्शन जाँचें।");
+    } finally {
+        btn.disabled = false;
+        btn.innerText = originalText;
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    calculateBrickTotal();
+    loadUserData();
+});
+</script>
+
+</body>
+</html>
