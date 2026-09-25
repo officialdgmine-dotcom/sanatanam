@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>शिव शक्ति शिक्षा केंद्र | सनातन सेवा समिति</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+/* ================= ROYAL VEDIC & GOLDEN PALETTE ================= */
+:root {
+    --swarna: #d4af37;
+    --swarna-light: #fff5c0;
+    --swarna-subtle: #fcf8eb;
+    --swarna-dark: #9e7016;
+    --kesariya: #ff6a00;
+    --kesariya-glow: rgba(255, 106, 0, 0.28);
+    --maroon-shahi: #590d08;
+    --maroon-deep: #320204;
+    --canvas-bg: #fdfaf3;
+    --card-bg: #ffffff;
+    --text-dark: #221815;
+    --text-muted: #5b4d49;
+    --royal-border: 1px solid rgba(212, 175, 55, 0.45);
+    --royal-shadow: 0 10px 30px rgba(89, 13, 8, 0.08);
+    --royal-shadow-hover: 0 18px 40px rgba(89, 13, 8, 0.16);
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+body {
+    background-color: var(--canvas-bg);
+    color: var(--text-dark);
+    font-family: 'Poppins', 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    margin: 0;
+    padding: 0 0 95px 0;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+.main-wrap {
+    max-width: 1260px;
+    margin: auto;
+    padding: 16px 20px 50px 20px;
+}
+
+/* 3D ULTRA-SMOOTH FLIP HERO */
+.flip-stage {
+    perspective: 2200px;
+    width: 100%;
+    height: 380px;
+    margin: 15px 0 30px 0;
+}
+.flip-body {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.85s cubic-bezier(0.2, 0.85, 0.32, 1.15);
+    border-radius: 22px;
+    box-shadow: 0 16px 36px rgba(56, 0, 4, 0.18);
+    cursor: pointer;
+}
+.flip-stage:hover .flip-body,
+.flip-body.is-flipped {
+    transform: rotateY(180deg);
+}
+.flip-panel {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 22px;
+    overflow: hidden;
+    border: 2.5px solid var(--swarna);
+    background: #110202;
+}
+.flip-panel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.flip-panel-back {
+    transform: rotateY(180deg);
+}
+.flip-tag {
+    position: absolute;
+    bottom: 16px;
+    right: 18px;
+    background: rgba(50, 2, 4, 0.88);
+    color: var(--swarna-light);
+    border: 1px solid var(--swarna);
+    font-size: 0.82rem;
+    padding: 7px 16px;
+    border-radius: 30px;
+    backdrop-filter: blur(10px);
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+/* SAMITI PROFILE BAR */
+.samiti-crest-card {
+    background: linear-gradient(135deg, #ffffff 0%, #fffdf8 60%, var(--swarna-subtle) 100%);
+    border: 1.5px solid var(--swarna);
+    border-radius: 22px;
+    padding: 24px 32px;
+    margin-bottom: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    box-shadow: var(--royal-shadow);
+}
+.crest-info {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+.crest-img {
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+    object-fit: contain;
+    background: #fff;
+    border: 3px double var(--swarna);
+    padding: 5px;
+    box-shadow: 0 6px 18px rgba(212, 175, 55, 0.35);
+    flex-shrink: 0;
+}
+.crest-text h1 {
+    font-size: 1.7rem;
+    color: var(--maroon-shahi);
+    margin: 0 0 6px 0;
+    font-weight: 800;
+    letter-spacing: -0.2px;
+}
+.crest-text p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.94rem;
+    line-height: 1.55;
+    max-width: 680px;
+}
+.btn-royal-about {
+    background: linear-gradient(135deg, var(--maroon-shahi), var(--maroon-deep));
+    color: var(--swarna-light);
+    border: 1.5px solid var(--swarna);
+    padding: 13px 26px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+    box-shadow: 0 6px 18px rgba(89, 13, 8, 0.28);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.btn-royal-about:hover {
+    background: linear-gradient(135deg, var(--kesariya), var(--maroon-shahi));
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(255, 106, 0, 0.35);
+}
+
+/* SECTION HEADINGS */
+.shahi-heading {
+    margin: 48px 0 22px 0;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 2px solid rgba(212, 175, 55, 0.32);
+    padding-bottom: 12px;
+}
+.shahi-heading::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100px;
+    height: 3.5px;
+    border-radius: 4px;
+    background: linear-gradient(90deg, var(--kesariya), var(--swarna));
+}
+.shahi-title {
+    font-size: 1.5rem;
+    color: var(--maroon-shahi);
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: -0.2px;
+}
+.shahi-sub {
+    font-size: 0.88rem;
+    color: var(--kesariya);
+    font-weight: 700;
+    background: #fff5eb;
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 106, 0, 0.25);
+}
+
+/* HORIZONTAL CARD SCROLLER (SEVA PRAKALP) */
+.scroller-rail {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding: 10px 4px 24px 4px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--swarna) #fff;
+}
+.scroller-rail::-webkit-scrollbar { height: 8px; }
+.scroller-rail::-webkit-scrollbar-thumb { background: var(--swarna); border-radius: 10px; }
+.scroller-rail::-webkit-scrollbar-track { background: #f5eedc; border-radius: 10px; }
+
+.seva-item-card {
+    min-width: 255px;
+    max-width: 255px;
+    background: var(--card-bg);
+    border: 1.5px solid rgba(212, 175, 55, 0.38);
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: var(--royal-shadow);
+    transition: all 0.35s ease;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+}
+.seva-item-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--kesariya);
+    box-shadow: 0 16px 32px var(--kesariya-glow);
+}
+.seva-pic-link {
+    display: block;
+    height: 185px;
+    background: linear-gradient(180deg, #fffcf5 0%, #f7eed8 100%);
+    overflow: hidden;
+    position: relative;
+}
+.seva-pic-link img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 10px;
+    transition: transform 0.45s ease;
+}
+.seva-item-card:hover .seva-pic-link img {
+    transform: scale(1.06);
+}
+.seva-card-body {
+    padding: 16px 14px;
+    text-align: center;
+    background: #fff;
+}
+.seva-card-body h3 {
+    font-size: 1.02rem;
+    color: var(--maroon-shahi);
+    margin: 0 0 14px 0;
+    font-weight: 700;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.35;
+}
+.btn-seva-action {
+    display: block;
+    background: linear-gradient(135deg, var(--kesariya), var(--swarna-dark));
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 14px;
+    border-radius: 14px;
+    font-size: 0.86rem;
+    font-weight: 700;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.25);
+    cursor: pointer;
+}
+.btn-seva-action:hover {
+    background: linear-gradient(135deg, var(--maroon-shahi), var(--maroon-deep));
+    color: #ffffff;
+    box-shadow: 0 6px 16px rgba(89, 13, 8, 0.35);
+}
+
+/* SENA GRID (4 COLUMNS) */
+.sena-matrix {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
+    gap: 24px;
+    margin-bottom: 45px;
+}
+.sena-box {
+    background: var(--card-bg);
+    border: 1.5px solid rgba(212, 175, 55, 0.42);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: var(--royal-shadow);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.35s ease;
+}
+.sena-box:hover {
+    transform: translateY(-5px);
+    border-color: var(--kesariya);
+    box-shadow: 0 16px 35px rgba(255, 106, 0, 0.2);
+}
+.sena-head-flex {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 14px;
+}
+.sena-avatar-link {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    border: 2.5px solid var(--swarna);
+    overflow: hidden;
+    flex-shrink: 0;
+    display: block;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+.sena-avatar-link img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.sena-head-flex h3 {
+    font-size: 1.12rem;
+    color: var(--maroon-shahi);
+    margin: 0;
+    font-weight: 800;
+    line-height: 1.3;
+}
+.sena-desc-text {
+    font-size: 0.89rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+    margin: 0 0 18px 0;
+}
+
+/* SANATANAM LUXURY VAULTS */
+.sanatanam-vault {
+    background: var(--card-bg);
+    border: 1.5px solid rgba(212, 175, 55, 0.45);
+    border-radius: 24px;
+    box-shadow: var(--royal-shadow);
+    padding: 28px 30px;
+    margin-bottom: 35px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+.sanatanam-vault:hover {
+    border-color: var(--kesariya);
+    box-shadow: var(--royal-shadow-hover);
+}
+.vault-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+.vault-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.vault-brand-logo {
+    width: 65px;
+    height: 65px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, var(--swarna-light), #fff);
+    border: 1.5px solid var(--swarna);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.85rem;
+    flex-shrink: 0;
+    box-shadow: 0 5px 14px rgba(212, 175, 55, 0.28);
+}
+.vault-name-box h2 {
+    font-size: 1.36rem;
+    color: var(--maroon-shahi);
+    margin: 0 0 4px 0;
+    font-weight: 800;
+    letter-spacing: -0.2px;
+}
+.vault-authority {
+    display: inline-block;
+    font-size: 0.8rem;
+    color: var(--maroon-shahi);
+    font-weight: 700;
+    background: #fff6eb;
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 106, 0, 0.25);
+}
+.vault-para {
+    font-size: 0.94rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin: 0 0 20px 0;
+}
+
+/* SUB-SECTION TRAYS & BADGES */
+.shastric-tray {
+    background: linear-gradient(180deg, #fffdfa 0%, #fff9ec 100%);
+    border: 1px dashed rgba(212, 175, 55, 0.65);
+    border-radius: 18px;
+    padding: 18px 20px;
+    margin-top: 15px;
+}
+.tray-caption {
+    font-size: 0.96rem;
+    font-weight: 700;
+    color: var(--maroon-shahi);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.shastric-pill-cluster {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+.shastric-pill {
+    background: #ffffff;
+    border: 1px solid rgba(212, 175, 55, 0.42);
+    padding: 7px 15px;
+    border-radius: 25px;
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+    cursor: default;
+}
+.shastric-pill:hover {
+    background: var(--swarna-light);
+    border-color: var(--kesariya);
+    color: var(--maroon-deep);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(212, 175, 55, 0.25);
+}
+
+/* FOOTER NAVIGATION BAR */
+#sss-nav {
+    position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 1260px; height: 75px;
+    background: linear-gradient(180deg, #ff4500, #800000); display: flex; justify-content: space-evenly; align-items: center;
+    border-top: 4px solid #ffcc00; border-radius: 20px 20px 0 0; z-index: 99999; box-shadow: 0 -5px 20px rgba(0,0,0,0.4);
+}
+.sss-item { flex: 1; text-align: center; text-decoration: none; color: #fff; font-size: 10px; font-weight: 800; }
+.sss-item img { width: 28px; height: 28px; display: block; margin: auto; }
+.sss-dash-wrap { margin-top: -30px; }
+.sss-gold-circle {
+    width: 60px; height: 60px; background: linear-gradient(45deg, #ffd700, #ffcc00, #b8860b);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid #800000; box-shadow: 0 0 15px rgba(255,215,0,0.6);
+}
+.sss-gold-circle img { width: 35px; height: 35px; }
+
+/* RESPONSIVE DESIGN BREAKPOINTS */
+@media (max-width: 900px) {
+    .samiti-crest-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 22px;
+    }
+    .crest-info {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-wrap { padding: 12px 14px 40px 14px; }
+    .flip-stage { height: 230px; margin: 10px 0 22px 0; }
+    .flip-tag { font-size: 0.72rem; padding: 5px 12px; bottom: 12px; right: 12px; }
+    .shahi-heading { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .vault-top-row { flex-direction: column; align-items: flex-start; }
+    .vault-brand { flex-direction: row; text-align: left; }
+    .sanatanam-vault { padding: 20px 16px; }
+    .shastric-tray { padding: 14px 12px; }
+    .crest-text h1 { font-size: 1.45rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="main-wrap">
+
+    <!-- 1. MAHARAJ JI FLIP HERO -->
+    <div class="flip-stage" onclick="this.querySelector('.flip-body').classList.toggle('is-flipped')" role="button" aria-label="चित्र पलटें">
+        <div class="flip-body">
+            <!-- फ्रंट: पूज्य महाराज जी / मुख्य बैनर -->
+            <div class="flip-panel flip-panel-front">
+                <img src="https://sanatansevasamiti.org/uploads/file_00000000b5447207af241f52a9137425.png" alt="पूज्य महाराज जी">
+                <div class="flip-tag">🔄 स्पर्श करें (Palat Kar Dekhein)</div>
+            </div>
+            <!-- बैक: समिति पावन संकल्प -->
+            <div class="flip-panel flip-panel-back">
+                <img src="https://sanatansevasamiti.org/uploads/pc.jpg" alt="श्री सनातन सेवा समिति संकल्प">
+                <div class="flip-tag">🔄 पुनः पलटें (Back to Front)</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. SAMITI BRAND & ABOUT CTA -->
+    <section class="samiti-crest-card">
+        <div class="crest-info">
+            <img class="crest-img" src="https://sanatansevasamiti.org/uploads/file_00000000b5447207af241f52a9137425.png" alt="श्री सनातन सेवा समिति लोगो">
+            <div class="crest-text">
+                <h1>श्री सनातन सेवा समिति</h1>
+                <p>पंजीकृत धर्मार्थ न्यास — वैदिक संस्कृति, धर्म रक्षा, शास्त्र सम्मत संस्कार, गुरुकुल पुनरुत्थान एवं मानव कल्याण को समर्पित अखंड राष्ट्रीय संस्थान।</p>
+            </div>
+        </div>
+        <a href="about.html" class="btn-royal-about">
+            <span>🚩</span> समिति के बारे में जानें
+        </a>
+    </section>
+
+    <!-- 3. पंजीकृत सेवा प्रकल्प -->
+    <section>
+        <div class="shahi-heading">
+            <h2 class="shahi-title">पंजीकृत सेवा प्रकल्प</h2>
+            <span class="shahi-sub">धर्मार्थ एवं ज़मीनी सेवाएँ</span>
+        </div>
+        <div class="scroller-rail" id="prakalpContainer">
+            <!-- Dynamic / Preserved Seva Cards -->
+            <article class="seva-item-card">
+                <a href="anand_lahari.html" class="seva-pic-link" title="आनंद लहरी">
+                    <img src="https://sanatansevasamiti.org/public_html/Images/ss/PRO1781011341_dp.jpg" alt="आनंद लहरी" loading="lazy">
+                </a>
+                <div class="seva-card-body">
+                    <h3>आनंद लहरी</h3>
+                    <a href="anand_lahari.html" class="btn-seva-action">सेवा विवरण देखें</a>
+                </div>
+            </article>
+
+            <article class="seva-item-card">
+                <a href="satya_sanatan_marg.html" class="seva-pic-link" title="सत्य सनातन मार्ग">
+                    <img src="https://sanatansevasamiti.org/public_html/Images/ss/PRO1781285901_dp.jpg" alt="सत्य सनातन मार्ग" loading="lazy">
+                </a>
+                <div class="seva-card-body">
+                    <h3>सत्य सनातन मार्ग</h3>
+                    <a href="satya_sanatan_marg.html" class="btn-seva-action">सेवा विवरण देखें</a>
+                </div>
+            </article>
+
+            <article class="seva-item-card">
+                <a href="sanatan_dharm_aashram.html" class="seva-pic-link" title="सनातन धर्म आश्रम">
+                    <img src="https://sanatansevasamiti.org/public_html/Images/ss/PRO1781287765_dp.jpg" alt="सनातन धर्म आश्रम" loading="lazy">
+                </a>
+                <div class="seva-card-body">
+                    <h3>सनातन धर्म आश्रम</h3>
+                    <a href="sanatan_dharm_aashram.html" class="btn-seva-action">सेवा विवरण देखें</a>
+                </div>
+            </article>
+
+            <article class="seva-item-card">
+                <a href="shri_shiv_shakti_vaidic_gurukulam.html" class="seva-pic-link" title="श्री शिवशक्ति वैदिक गुरुकुलम">
+                    <img src="https://sanatansevasamiti.org/public_html/Images/ss/PRO1781288688_dp.jpg" alt="श्री शिवशक्ति वैदिक गुरुकुलम" loading="lazy">
+                </a>
+                <div class="seva-card-body">
+                    <h3>श्री शिवशक्ति वैदिक गुरुकुलम</h3>
+                    <a href="shri_shiv_shakti_vaidic_gurukulam.html" class="btn-seva-action">सेवा विवरण देखें</a>
+                </div>
+            </article>
+
+            <article class="seva-item-card">
+                <a href="shiksha_kendra_daan.html" class="seva-pic-link" title="शिवशक्ति शिक्षा केंद्र">
+                    <img src="https://sanatansevasamiti.org/public_html/Images/ss/PRO1781367447_dp.jpg" alt="शिवशक्ति शिक्षा केंद्र" loading="lazy">
+                </a>
+                <div class="seva-card-body">
+                    <h3>शिवशक्ति शिक्षा केंद्र</h3>
+                    <a href="shiksha_kendra_daan.html" class="btn-seva-action">सेवा विवरण देखें</a>
+                </div>
+            </article>
+
+            <article class="seva-item-card">
+                <a href="yogeshwaranand.html" class="seva-pic-link" title="श्री योगेश्वरानंद जी महाराज">
+                    <img src="https://sanatansevasamiti.org/uploads/1788411053_p_3360.jpg" alt="श्री योगेश्वरानंद जी महाराज" loading="lazy">
+                </a>
+                <div class="seva-card-body">
+                    <h3>श्री योगेश्वरानंद जी महाराज</h3>
+                    <a href="yogeshwaranand.html" class="btn-seva-action">विस्तार से जानें</a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- 4. संगठनात्मक सेनाएँ -->
+    <section>
+        <div class="shahi-heading">
+            <h2 class="shahi-title">पंजीकृत संगठनात्मक सेनाएँ</h2>
+            <span class="shahi-sub">संगठन की 4 मुख्य शाखाएं</span>
+        </div>
+        <div class="sena-matrix">
+            <div class="sena-box">
+                <div>
+                    <div class="sena-head-flex">
+                        <a href="javascript:void(0)" class="sena-avatar-link">
+                            <img src="https://sanatansevasamiti.org/public_html/Images/ss/PRO1781318323_dp.jpg" alt="राष्ट्रीय सनातन रक्षा सेना" loading="lazy">
+                        </a>
+                        <h3>राष्ट्रीय सनातन रक्षा सेना</h3>
+                    </div>
+                    <p class="sena-desc-text">धर्म रक्षा, सामाजिक सुरक्षा, मैदानी मोर्चा एवं जनहित कार्य।</p>
+                </div>
+                <a href="javascript:void(0)" class="btn-seva-action" onclick="alert('राष्ट्रीय सनातन रक्षा सेना प्रकोष्ठ विवरण लोड हो रहा है...')">शाखा से जुड़ें / विवरण</a>
+            </div>
+
+            <div class="sena-box">
+                <div>
+                    <div class="sena-head-flex">
+                        <a href="javascript:void(0)" class="sena-avatar-link">
+                            <img src="https://sanatansevasamiti.org/public_html/Images/ss/PRO1781368186_dp.jpg" alt="संत सेना" loading="lazy">
+                        </a>
+                        <h3>संत सेना</h3>
+                    </div>
+                    <p class="sena-desc-text">पूज्य संतों का सान्निध्य, मार्गदर्शन, धर्म संसद एवं आध्यात्मिक नेतृत्व।</p>
+                </div>
+                <a href="javascript:void(0)" class="btn-seva-action" onclick="alert('संत सेना प्रकोष्ठ विवरण लोड हो रहा है...')">शाखा से जुड़ें / विवरण</a>
+            </div>
+
+            <div class="sena-box">
+                <div>
+                    <div class="sena-head-flex">
+                        <a href="javascript:void(0)" class="sena-avatar-link">
+                            <img src="https://sanatansevasamiti.org/public_html/Images/ss/PRO1781318500_dp.jpg" alt="भवानी सेना" loading="lazy">
+                        </a>
+                        <h3>भवानी सेना</h3>
+                    </div>
+                    <p class="sena-desc-text">मातृशक्ति जागरण, नारी सम्मान, महिला सशक्तिकरण एवं कन्या संस्कार।</p>
+                </div>
+                <a href="javascript:void(0)" class="btn-seva-action" onclick="alert('भवानी सेना प्रकोष्ठ विवरण लोड हो रहा है...')">शाखा से जुड़ें / विवरण</a>
+            </div>
+
+            <div class="sena-box">
+                <div>
+                    <div class="sena-head-flex">
+                        <a href="javascript:void(0)" class="sena-avatar-link">
+                            <img src="https://sanatansevasamiti.org/public_html/Images/ss/PRO1781319711_dp.jpg" alt="वेद सेना" loading="lazy">
+                        </a>
+                        <h3>वेद सेना</h3>
+                    </div>
+                    <p class="sena-desc-text">युवा वर्ग, वेद प्रचार, गुरुकुल सेवा एवं बौद्धिक जागरण।</p>
+                </div>
+                <a href="javascript:void(0)" class="btn-seva-action" onclick="alert('वेद सेना प्रकोष्ठ विवरण लोड हो रहा है...')">शाखा से जुड़ें / विवरण</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. SANATANAM डिजिटल इकोसिस्टम -->
+    <div class="shahi-heading" style="margin-top: 50px;">
+        <h2 class="shahi-title">SANATANAM डिजिटल इकोसिस्टम</h2>
+        <span class="shahi-sub">समिति के वृहद डिजिटल आयाम एवं सेवाएँ</span>
+    </div>
+
+    <!-- 1. Astro & Vastu Solutions -->
+    <article class="sanatanam-vault">
+        <div class="vault-top-row">
+            <div class="vault-brand">
+                <div class="vault-brand-logo">🔮</div>
+                <div class="vault-name-box">
+                    <h2>SANATANAM | Astro & Vastu Solutions</h2>
+                    <span class="vault-authority">स्वायत्त वैदिक परामर्श केंद्र</span>
+                </div>
+            </div>
+        </div>
+        <p class="vault-para">
+            जन्म कुंडली विश्लेषण, अंक ज्योतिष, गृह/व्यापार वास्तु नक्शा व दोष निवारण। यह संस्थान का स्वतंत्र एवं वैज्ञानिक ज्योतिषीय व वास्तु मार्गदर्शन मंच है जहाँ प्रामाणिक आचार्यों द्वारा व्यक्तिगत समाधान प्रदान किया जाता है।
+        </p>
+        <div class="shastric-tray" style="margin-bottom: 15px;">
+            <div class="tray-caption">🪐 समस्त ज्योतिषीय सेवाएँ</div>
+            <div class="shastric-pill-cluster">
+                <span class="shastric-pill">जन्म कुंडली विश्लेषण</span>
+                <span class="shastric-pill">सनातन पंचांग</span>
+                <span class="shastric-pill">प्रश्न कुंडली</span>
+                <span class="shastric-pill">अंक ज्योतिष</span>
+                <span class="shastric-pill">मुहूर्त दिखवाएं</span>
+                <span class="shastric-pill">पूजा एवं उपाय</span>
+                <span class="shastric-pill">रत्न परामर्श</span>
+                <span class="shastric-pill">कुण्डली बनवाएं</span>
+                <span class="shastric-pill">ज्योतिष परामर्श बुकिंग</span>
+            </div>
+        </div>
+        <div class="shastric-tray">
+            <div class="tray-caption">🧭 समस्त वास्तु सेवाएं</div>
+            <div class="shastric-pill-cluster">
+                <span class="shastric-pill">घर का वास्तु</span>
+                <span class="shastric-pill">वास्तु नक्शा सेवा</span>
+                <span class="shastric-pill">प्लॉट एवं भूमि वास्तु</span>
+                <span class="shastric-pill">व्यावसायिक वास्तु</span>
+                <span class="shastric-pill">मुख्य द्वार एवं कक्ष वास्तु</span>
+                <span class="shastric-pill">दिशा परीक्षण</span>
+                <span class="shastric-pill">वास्तु दोष जांच</span>
+                <span class="shastric-pill">वास्तु दोष निवारण</span>
+                <span class="shastric-pill">वास्तु पूजा</span>
+                <span class="shastric-pill">वास्तु शुभ मुहूर्त</span>
+                <span class="shastric-pill">वास्तु रिपोर्ट</span>
+                <span class="shastric-pill">वास्तु परामर्श बुकिंग</span>
+            </div>
+        </div>
+    </article>
+
+    <!-- 2. Books & Publications -->
+    <article class="sanatanam-vault">
+        <div class="vault-top-row">
+            <div class="vault-brand">
+                <div class="vault-brand-logo">📚</div>
+                <div class="vault-name-box">
+                    <h2>SANATANAM | Books & Publications</h2>
+                    <span class="vault-authority">स्वतंत्र प्रकाशन प्रकोष्ठ</span>
+                </div>
+            </div>
+        </div>
+        <p class="vault-para">
+            सनातन धर्म का प्रामाणिक साहित्य, दुर्लभ ग्रंथ, स्तोत्र, व्रत कथाएँ और शोध पत्र। यह किसी अन्य विंग पर निर्भर नहीं है, अपितु समिति का स्वतंत्र एवं स्वायत्त प्रकाशन केंद्र है।
+        </p>
+        <div class="shastric-tray">
+            <div class="shastric-pill-cluster">
+                <span class="shastric-pill">सनातन प्रश्नोत्तरी</span>
+                <span class="shastric-pill">सनातन व्रत कथा</span>
+                <span class="shastric-pill">स्वप्न सरोवर</span>
+                <span class="shastric-pill">सनातन पूजन पद्धति</span>
+                <span class="shastric-pill">सनातन आरती संग्रह</span>
+                <span class="shastric-pill">अन्य धार्मिक ग्रंथ एवं ई-बुक्स संग्रह</span>
+            </div>
+        </div>
+    </article>
+
+    <!-- 3. Vedic Essentials -->
+    <article class="sanatanam-vault">
+        <div class="vault-top-row">
+            <div class="vault-brand">
+                <div class="vault-brand-logo">🪔</div>
+                <div class="vault-name-box">
+                    <h2>SANATANAM | Vedic Essentials</h2>
+                    <span class="vault-authority">विशुद्ध सामग्री केंद्र</span>
+                </div>
+            </div>
+        </div>
+        <p class="vault-para">
+            शुद्ध पूजन सामग्री, असली रुद्राक्ष, प्रामाणिक रत्न, वस्त्र, धूप-दीप व अगरबत्ती। यह सनातन सेवा समिति का वह क्षेत्र है जहां पर जन-जन तक शत-प्रतिशत शुद्ध, अभिमंत्रित और शास्त्रीय सामग्री पहुंचाई जाती है।
+        </p>
+        <div class="shastric-tray">
+            <div class="shastric-pill-cluster">
+                <span class="shastric-pill">1. प्रामाणिक रत्न</span>
+                <span class="shastric-pill">2. रुद्राक्ष, मालाएँ एवं जप सामग्री</span>
+                <span class="shastric-pill">3. पवित्र जड़ी-बूटियाँ एवं प्राकृतिक सामग्री</span>
+                <span class="shastric-pill">4. ज्योतिषीय उत्पाद</span>
+                <span class="shastric-pill">5. वास्तु उत्पाद</span>
+                <span class="shastric-pill">6. पूजन एवं हवन सामग्री</span>
+                <span class="shastric-pill">7. धार्मिक वस्त्र एवं पूजन परिधान</span>
+                <span class="shastric-pill">8. धूप, दीप एवं सुगंधित धार्मिक सामग्री</span>
+                <span class="shastric-pill">9. प्रोफाइल सत्यापन</span>
+            </div>
+        </div>
+    </article>
+
+    <!-- 4. Drishti & Pravah -->
+    <article class="sanatanam-vault">
+        <div class="vault-top-row">
+            <div class="vault-brand">
+                <div class="vault-brand-logo">📺</div>
+                <div class="vault-name-box">
+                    <h2>SANATANAM | Drishti & Pravah</h2>
+                    <span class="vault-authority">संचालन: सत्य सनातन मार्ग</span>
+                </div>
+            </div>
+        </div>
+        <p class="vault-para">
+            सत्य सनातन मार्ग के अंतर्गत 24x7 धार्मिक लाइव टीवी, प्रमुख आयोजनों का सीधा प्रसारण, धार्मिक सिनेमा, धारावाहिक और सांस्कृतिक वृत्तचित्रों का अविरल प्रसारण मंच।
+        </p>
+        <div class="shastric-tray">
+            <div class="shastric-pill-cluster">
+                <span class="shastric-pill">1. लाइव धार्मिक टीवी</span>
+                <span class="shastric-pill">2. लाइव आयोजन एवं प्रसारण</span>
+                <span class="shastric-pill">3. धार्मिक कथाएँ एवं धारावाहिक</span>
+                <span class="shastric-pill">4. धार्मिक सिनेमा</span>
+                <span class="shastric-pill">5. भजन एवं संगीत</span>
+                <span class="shastric-pill">6. कथा एवं प्रवचन</span>
+                <span class="shastric-pill">7. ऑडियो कथाएँ एवं धार्मिक श्रवण</span>
+                <span class="shastric-pill">8. धार्मिक कहानियाँ पढ़ें</span>
+                <span class="shastric-pill">9. बाल धार्मिक मनोरंजन</span>
+                <span class="shastric-pill">10. लोकप्रिय एवं विशेष सामग्री</span>
+            </div>
+        </div>
+    </article>
+
+    <!-- 5. Katha & Sangeet -->
+    <article class="sanatanam-vault">
+        <div class="vault-top-row">
+            <div class="vault-brand">
+                <div class="vault-brand-logo">📖</div>
+                <div class="vault-name-box">
+                    <h2>SANATANAM | Katha & Sangeet</h2>
+                    <span class="vault-authority">संचालन: सत्य सनातन मार्ग</span>
+                </div>
+            </div>
+        </div>
+        <p class="vault-para">
+            सत्य सनातन मार्ग द्वारा संचालित दिव्य कथा एवं संगीत सागर। यहाँ भारत के प्रख्यात कथावाचकों, संतों की वाणी और शास्त्रीय भक्ति संगीत का विशाल भंडार उपलब्ध है।
+        </p>
+        <div class="shastric-tray" style="margin-bottom: 15px;">
+            <div class="tray-caption">📖 कथा प्रवाह</div>
+            <div class="shastric-pill-cluster">
+                <span class="shastric-pill">सभी कथावाचकों की कथाएँ</span>
+                <span class="shastric-pill">श्रीमद्भागवत कथा</span>
+                <span class="shastric-pill">राम कथा</span>
+                <span class="shastric-pill">श्रीकृष्ण कथा</span>
+                <span class="shastric-pill">शिव कथा</span>
+                <span class="shastric-pill">देवी कथा</span>
+                <span class="shastric-pill">श्रीगणेश कथा</span>
+                <span class="shastric-pill">भक्त चरित्र एवं भक्तमाल</span>
+                <span class="shastric-pill">संत एवं महापुरुष चरित्र</span>
+                <span class="shastric-pill">अन्य पौराणिक एवं धार्मिक कथाएँ</span>
+                <span class="shastric-pill">सभी लिखित कथाएँ</span>
+                <span class="shastric-pill">सभी ऑडियो कथाएँ</span>
+                <span class="shastric-pill">सभी वीडियो कथाएँ</span>
+            </div>
+        </div>
+        <div class="shastric-tray">
+            <div class="tray-caption">🎵 संगीत</div>
+            <div class="shastric-pill-cluster">
+                <span class="shastric-pill">सभी धार्मिक भजन एवं संगीत</span>
+                <span class="shastric-pill">अखंड भजन एवं संगीत</span>
+                <span class="shastric-pill">देवी-देवताओं के भजन</span>
+                <span class="shastric-pill">कीर्तन एवं संकीर्तन</span>
+                <span class="shastric-pill">मंत्र एवं स्तोत्र श्रवण</span>
+                <span class="shastric-pill">ध्यान एवं मनःशांति संगीत</span>
+                <span class="shastric-pill">ऊर्जा एवं प्रेरणा संगीत</span>
+                <span class="shastric-pill">भक्ति वाद्य संगीत</span>
+                <span class="shastric-pill">आरती एवं मंगल गीत</span>
+                <span class="shastric-pill">लोक भक्ति एवं क्षेत्रीय संगीत</span>
+            </div>
+        </div>
+    </article>
+
+    <!-- 6. Sadhana & Upasana -->
+    <article class="sanatanam-vault">
+        <div class="vault-top-row">
+            <div class="vault-brand">
+                <div class="vault-brand-logo">📿</div>
+                <div class="vault-name-box">
+                    <h2>SANATANAM | Sadhana & Upasana</h2>
+                    <span class="vault-authority">संचालन: सत्य सनातन मार्ग</span>
+                </div>
+            </div>
+        </div>
+        <p class="vault-para">
+            वॉइस-डिटेक्ट डिजिटल जप माला, ऑडियो-सिंक स्तोत्र पाठ, नित्य नियम व संकल्प ट्रैकर। साधक को प्रतिदिन अपनी साधना के प्रति समर्पित रखने हेतु पूर्ण डिजिटल व्यवस्था।
+        </p>
+        <div class="shastric-tray">
+            <div class="shastric-pill-cluster">
+                <span class="shastric-pill">1. मेरी दैनिक साधना</span>
+                <span class="shastric-pill">2. मेरे संकल्प एवं साधना लक्ष्य</span>
+                <span class="shastric-pill">3. डिजिटल जप माला</span>
+                <span class="shastric-pill">4. मंत्र एवं स्तोत्र पाठ</span>
+                <span class="shastric-pill">5. श्रवण के साथ पाठ</span>
+                <span class="shastric-pill">6. साधना नियम एवं दिनचर्या</span>
+                <span class="shastric-pill">7. मेरी साधना प्रगति</span>
+            </div>
+        </div>
+    </article>
+
+    <!-- 7. Purohit & Rituals -->
+    <article class="sanatanam-vault">
+        <div class="vault-top-row">
+            <div class="vault-brand">
+                <div class="vault-brand-logo">🙏</div>
+                <div class="vault-name-box">
+                    <h2>SANATANAM | Purohit & Rituals</h2>
+                    <span class="vault-authority">संचालन: वेद सेना</span>
+                </div>
+            </div>
+        </div>
+        <p class="vault-para">
+            योग्य ब्राह्मण बुकिंग, ऑनलाइन रुद्राभिषेक, हवन, 16 संस्कार व व्यक्तिगत अनुष्ठान। इसका संपूर्ण नियंत्रण वेद सेना के विद्वानों द्वारा वैदिक मर्यादा के अनुरूप किया जाता है।
+        </p>
+        <div class="shastric-tray">
+            <div class="shastric-pill-cluster">
+                <span class="shastric-pill">घर एवं स्थान पर पूजा-अनुष्ठान</span>
+                <span class="shastric-pill">तीर्थ एवं विशेष स्थल अनुष्ठान</span>
+                <span class="shastric-pill">ऑनलाइन पूजा एवं सहभागिता</span>
+                <span class="shastric-pill">योग्य पुरोहित एवं ब्राह्मण बुकिंग</span>
+                <span class="shastric-pill">पंडित जी से परामर्श करें</span>
+                <span class="shastric-pill">पूजा की विधि एवं रूपरेखा (वैदिक रीति)</span>
+                <span class="shastric-pill">पूजा की विधि एवं रूपरेखा (लोक एवं क्षेत्रीय रीति)</span>
+                <span class="shastric-pill">विशेष धार्मिक सेवा अनुरोध</span>
+            </div>
+        </div>
+    </article>
+
+    <!-- 8. Tark & Satya -->
+    <article class="sanatanam-vault">
+        <div class="vault-top-row">
+            <div class="vault-brand">
+                <div class="vault-brand-logo">⚖️</div>
+                <div class="vault-name-box">
+                    <h2>SANATANAM | Tark & Satya</h2>
+                    <span class="vault-authority">संचालन: वेद सेना</span>
+                </div>
+            </div>
+        </div>
+        <p class="vault-para">
+            सनातन फैक्ट-चेक, सोशल मीडिया के झूठे दावों का खंडन, प्रमाण एवं शास्त्रार्थ। वेद सेना द्वारा संचालित यह मंच धर्म विरोधी दुष्प्रचार का शास्त्रीय उत्तर प्रदान करता है।
+        </p>
+        <div class="shastric-tray">
+            <div class="shastric-pill-cluster">
+                <span class="shastric-pill">सभी तर्क एवं सत्य देखें</span>
+                <span class="shastric-pill">नया तर्क एवं विषय रखें</span>
+                <span class="shastric-pill">जिज्ञासा एवं प्रश्नोत्तर</span>
+                <span class="shastric-pill">प्रमाण एवं संदर्भ</span>
+                <span class="shastric-pill">दावों की सत्यता जांचें</span>
+                <span class="shastric-pill">तर्क एवं शास्त्रार्थ</span>
+                <span class="shastric-pill">“तर्क एवं सत्य” पुस्तक पढ़ें</span>
+            </div>
+        </div>
+    </article>
+
+    <!-- 9. Darshan & Dhwani -->
+    <article class="sanatanam-vault">
+        <div class="vault-top-row">
+            <div class="vault-brand">
+                <div class="vault-brand-logo">🔔</div>
+                <div class="vault-name-box">
+                    <h2>SANATANAM | Darshan & Dhwani</h2>
+                    <span class="vault-authority">संचालन: सत्य सनातन मार्ग</span>
+                </div>
+            </div>
+        </div>
+        <p class="vault-para">
+            वैदिक रिंगटोन्स, 4K वॉलपेपर्स, 30-सेकंड स्टेटस क्लिप्स, अखंड भजन ऑडियो। मोबाइल और डिजिटल उपकरणों के लिए पवित्र सनातन ध्वनियों का भंडार।
+        </p>
+        <div class="shastric-tray">
+            <div class="shastric-pill-cluster">
+                <span class="shastric-pill">धार्मिक वॉलपेपर</span>
+                <span class="shastric-pill">वैदिक रिंगटोन</span>
+                <span class="shastric-pill">धार्मिक स्टेटस क्लिप्स</span>
+                <span class="shastric-pill">अखंड भजन एवं धार्मिक ऑडियो</span>
+                <span class="shastric-pill">मंत्र एवं स्तोत्र ऑडियो</span>
+                <span class="shastric-pill">धार्मिक अलार्म एवं जागरण ध्वनियाँ</span>
+            </div>
+        </div>
+    </article>
+
+    <!-- 10. Mandir & Heritage -->
+    <article class="sanatanam-vault">
+        <div class="vault-top-row">
+            <div class="vault-brand">
+                <div class="vault-brand-logo">🚩</div>
+                <div class="vault-name-box">
+                    <h2>SANATANAM | Mandir & Heritage</h2>
+                    <span class="vault-authority">संचालन: सनातन दर्शन</span>
+                </div>
+            </div>
+        </div>
+        <p class="vault-para">
+            मंदिर विग्रह दर्शन, इंटरैक्टिव भारत मैप, GPS नेविगेशन व मंदिर इतिहास। सनातन दर्शन के अंतर्गत भारत की दिव्य धरोहरों और मंदिरों का विस्तृत पुरालेख।
+        </p>
+        <div class="shastric-tray">
+            <div class="shastric-pill-cluster">
+                <span class="shastric-pill">मंदिर एवं तीर्थ खोजें</span>
+                <span class="shastric-pill">प्राकृतिक एवं ऐतिहासिक धरोहर</span>
+                <span class="shastric-pill">मानचित्र पर मंदिर एवं तीर्थ</span>
+                <span class="shastric-pill">मेरे आसपास के मंदिर</span>
+                <span class="shastric-pill">मेरे आसपास की प्राकृतिक एवं ऐतिहासिक धरोहर</span>
+                <span class="shastric-pill">मंदिर का डेटा जोड़ें</span>
+                <span class="shastric-pill">तीर्थ एवं धरोहर का डेटा जोड़ें</span>
+                <span class="shastric-pill">जानकारी में सुधार एवं सुझाव दें</span>
+                <span class="shastric-pill">मंदिर एवं धरोहर की तस्वीरें साझा करें</span>
+            </div>
+        </div>
+    </article>
+
+    <!-- 11. Gurukul & Vidya -->
+    <article class="sanatanam-vault">
+        <div class="vault-top-row">
+            <div class="vault-brand">
+                <div class="vault-brand-logo">📖</div>
+                <div class="vault-name-box">
+                    <h2>SANATANAM | Gurukul & Vidya</h2>
+                    <span class="vault-authority">संचालन: शिव शक्ति वैदिक गुरुकुलम</span>
+                </div>
+            </div>
+        </div>
+        <p class="vault-para">
+            ऑनलाइन/ऑफलाइन वैदिक कक्षाएं, संस्कृत शिक्षण, गीता पाठ, बाल संस्कार। शिव शक्ति वैदिक गुरुकुलम के मार्गदर्शन में प्राचीन ऋषिकुल परंपरा का आधुनिक विस्तार।
+        </p>
+        <div class="shastric-tray">
+            <div class="shastric-pill-cluster">
+                <span class="shastric-pill">ऑनलाइन वैदिक शिक्षा</span>
+                <span class="shastric-pill">ऑनलाइन आध्यात्मिक शिक्षा</span>
+                <span class="shastric-pill">ऑनलाइन साधना शिक्षा</span>
+                <span class="shastric-pill">बाल संस्कार एवं धार्मिक शिक्षा</span>
+                <span class="shastric-pill">शिक्षा हेतु पुस्तकालय</span>
+                <span class="shastric-pill">साधना एवं अध्ययन मार्गदर्शन</span>
+                <span class="shastric-pill">व्यक्तिगत मार्गदर्शन एवं परामर्श</span>
+                <span class="shastric-pill">ऑनलाइन एवं ऑफलाइन कक्षाएँ</span>
+                <span class="shastric-pill">पाठ्यक्रम एवं अध्ययन पथ</span>
+            </div>
+        </div>
+    </article>
+
+    <!-- 12. Vivah & Sanskar -->
+    <article class="sanatanam-vault">
+        <div class="vault-top-row">
+            <div class="vault-brand">
+                <div class="vault-brand-logo">🤝</div>
+                <div class="vault-name-box">
+                    <h2>SANATANAM | Vivah & Sanskar</h2>
+                    <span class="vault-authority">स्वायत्त वैवाहिक मंच</span>
+                </div>
+            </div>
+        </div>
+        <p class="vault-para">
+            प्रामाणिक सनातनी वैवाहिक मंच, मर्यादित पारिवारिक बायोडाटा, कुंडली मिलान। यह पूर्णतः स्वायत्त व्यवस्था है जहाँ सनातन मूल्यों के अनुसार योग्य वर-वधू का चयन संभव होता है।
+        </p>
+        <div class="shastric-tray">
+            <div class="shastric-pill-cluster">
+                <span class="shastric-pill">1. वर खोजें</span>
+                <span class="shastric-pill">2. वधू खोजें</span>
+                <span class="shastric-pill">3. अपना वैवाहिक प्रोफाइल बनाएं</span>
+                <span class="shastric-pill">4. पारिवारिक बायोडाटा</span>
+                <span class="shastric-pill">5. कुंडली मिलान</span>
+                <span class="shastric-pill">6. परिवारों के बीच संपर्क</span>
+                <span class="shastric-pill">7. मेरी वैवाहिक गतिविधियाँ</span>
+            </div>
+        </div>
+    </article>
+
+    <!-- 13. Vansh & Kul Vriksha -->
+    <article class="sanatanam-vault">
+        <div class="vault-top-row">
+            <div class="vault-brand">
+                <div class="vault-brand-logo">🌳</div>
+                <div class="vault-name-box">
+                    <h2>SANATANAM | Vansh & Kul Vriksha</h2>
+                    <span class="vault-authority">पारिवारिक पुरालेख एवं वंशावली</span>
+                </div>
+            </div>
+        </div>
+        <p class="vault-para">
+            अपनी पीढ़ियों, गोत्र, कुलदेवी एवं कुलदेवता का सुरक्षित डिजिटल कुलवृक्ष। आने वाली पीढ़ियों को उनके सनातन मूल और संस्कारों से जोड़ने का ऐतिहासिक डिजिटल अभिलेखागार।
+        </p>
+        <div class="shastric-tray">
+            <div class="shastric-pill-cluster">
+                <span class="shastric-pill">🌳 मेरा कुल वृक्ष</span>
+                <span class="shastric-pill">📜 वंशावली</span>
+                <span class="shastric-pill">👥 सभी सदस्य</span>
+                <span class="shastric-pill">🏛️ मेरा कुल</span>
+                <span class="shastric-pill">➕ नया सदस्य जोड़ें</span>
+                <span class="shastric-pill">🔗 रिश्तेदार</span>
+                <span class="shastric-pill">🎉 परिवार के अवसर</span>
+                <span class="shastric-pill">📢 कुल सूचना</span>
+                <span class="shastric-pill">📊 कुल परिचय</span>
+                <span class="shastric-pill">⚙️ मेरी प्रोफ़ाइल</span>
+            </div>
+        </div>
+    </article>
+
+    <!-- 14. Sant & Sampradaya -->
+    <article class="sanatanam-vault">
+        <div class="vault-top-row">
+            <div class="vault-brand">
+                <div class="vault-brand-logo">🔱</div>
+                <div class="vault-name-box">
+                    <h2>SANATANAM | Sant & Sampradaya</h2>
+                    <span class="vault-authority">संचालन: संत सेना</span>
+                </div>
+            </div>
+        </div>
+        <p class="vault-para">
+            संत सेना के सानिध्य में 13 अखाड़ों, सभी प्रमुख संप्रदायों, गुरु-शिष्य परंपरा और सिद्ध पीठों का प्रामाणिक दिग्दर्शन। संतों के जीवन चरित्र और अमृत वचनों का महासंग्रह।
+        </p>
+        <div class="shastric-tray">
+            <div class="shastric-pill-cluster">
+                <span class="shastric-pill">🕉️ संत परंपरा</span>
+                <span class="shastric-pill">📿 गुरु-शिष्य परंपरा</span>
+                <span class="shastric-pill">🛕 संप्रदाय</span>
+                <span class="shastric-pill">👤 संत प्रोफ़ाइल</span>
+                <span class="shastric-pill">🌳 गुरु परंपरा वृक्ष</span>
+                <span class="shastric-pill">📜 संत जीवन चरित्र</span>
+                <span class="shastric-pill">📚 ग्रंथ एवं रचनाएँ</span>
+                <span class="shastric-pill">🛕 मठ एवं पीठ</span>
+                <span class="shastric-pill">🚩 अखाड़ा एवं परंपरा</span>
+                <span class="shastric-pill">📍 संत स्थल</span>
+                <span class="shastric-pill">🔎 संत खोजें</span>
+                <span class="shastric-pill">🧭 संप्रदाय खोजें</span>
+                <span class="shastric-pill">⭐ प्रमुख संत</span>
+            </div>
+        </div>
+    </article>
+
+</div>
+
+<!-- FOOTER NAVIGATION BAR -->
+<div id="sss-nav">
+    <a href="app_home.html" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341771file_00000000145071fab7ea2e7e30f9dfaa-e1776295057951.png" alt="गृह">
+        <span>गृह</span>
+    </a>
+    <a href="guru_parampara.html" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341317ci.jpg" alt="गुरु">
+        <span>गुरु परंपरा</span>
+    </a>
+    <a href="feed.html" class="sss-item sss-dash-wrap">
+        <div class="sss-gold-circle">
+            <img src="https://sanatansevasamiti.org/uploads/footer/1780341218logo.jpg" alt="फीड">
+        </div>
+        <span></span>
+    </a>
+    <a href="javascript:void(0);" onclick="alert('पुस्तकें — यह अनुभाग शीघ्र ही स्थानीय रूप से उपलब्ध होगा।');" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341270bi.jpg" alt="पुस्तकें">
+        <span>पुस्तकें</span>
+    </a>
+    <a href="app_dashboard.html" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341144ai.jpg" alt="अकाउंट">
+        <span>अकाउंट</span>
+    </a>
+</div>
+
+</body>
+</html>
