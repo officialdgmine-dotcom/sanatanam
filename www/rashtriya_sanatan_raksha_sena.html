@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>राष्ट्रीय सनातन रक्षा सेना - प्रोफाइल</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --saffron: #f47b20;
+    --saffron2: #ff9d42;
+    --gold: #c9952e;
+    --gold2: #f1c76b;
+    --maroon: #8d1d17;
+    --maroon2: #64110e;
+    --cream: #fffaf2;
+    --cream2: #fff4df;
+    --white: #ffffff;
+    --text: #292929;
+    --muted: #6f6f6f;
+    --shadow: 0 18px 55px rgba(91,49,10,.13);
+    --shadow2: 0 8px 25px rgba(91,49,10,.10);
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html { scroll-behavior: smooth; }
+
+body {
+    margin: 0;
+    font-family: "Noto Sans Devanagari", "DM Sans", sans-serif;
+    color: var(--text);
+    background: radial-gradient(circle at 10% 0%, rgba(244,123,32,.12), transparent 30%),
+                radial-gradient(circle at 90% 20%, rgba(201,149,46,.10), transparent 28%),
+                var(--cream);
+    min-height: 100vh;
+    padding-bottom: 95px !important;
+}
+
+button, a { font-family: inherit; }
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; }
+
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 500;
+    height: 62px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 18px;
+    background: rgba(255,255,255,.95);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(201,149,46,.22);
+    box-shadow: 0 4px 20px rgba(0,0,0,.06);
+}
+
+.brand-mini {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 800;
+    color: var(--maroon);
+    font-size: 15px;
+}
+
+.brand-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background: linear-gradient(145deg, var(--saffron), var(--maroon));
+    box-shadow: 0 5px 14px rgba(141,29,23,.25);
+    font-weight: 900;
+}
+
+.top-action {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ead9b7;
+    border-radius: 50%;
+    background: white;
+    color: var(--maroon);
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.hero {
+    position: relative;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 14px 20px;
+}
+
+.cover {
+    height: 290px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0 0 34px 34px;
+    cursor: pointer;
+    background: linear-gradient(135deg, #fff0d9, #f7c98e);
+    box-shadow: var(--shadow);
+}
+
+.cover::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 40%, rgba(52,17,4,.65));
+}
+
+.cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.cover-label {
+    position: absolute;
+    z-index: 3;
+    right: 18px;
+    bottom: 18px;
+    color: white;
+    background: rgba(72,22,7,.75);
+    backdrop-filter: blur(10px);
+    padding: 8px 15px;
+    border-radius: 30px;
+    font-size: 12px;
+    border: 1px solid rgba(255,255,255,.35);
+}
+
+.profile-main {
+    position: relative;
+    margin-top: -90px;
+    z-index: 10;
+    text-align: center;
+}
+
+.avatar-wrap {
+    display: inline-block;
+    position: relative;
+    padding: 7px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #fff, var(--gold2), var(--saffron));
+    box-shadow: 0 15px 35px rgba(96,45,5,.22);
+}
+
+.avatar {
+    width: 175px;
+    height: 175px;
+    display: block;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 6px solid white;
+    background: white;
+    cursor: pointer;
+}
+
+.verified {
+    position: absolute;
+    right: 8px;
+    bottom: 16px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background: linear-gradient(145deg, #f6ad35, #b86b0d);
+    border: 4px solid white;
+    box-shadow: 0 6px 15px rgba(0,0,0,.20);
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.profile-name {
+    margin: 18px 10px 6px;
+    font-size: 30px;
+    line-height: 1.25;
+    font-weight: 900;
+    color: var(--maroon);
+    letter-spacing: -.4px;
+}
+
+.profile-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 18px;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #fff, #fff2db);
+    color: #7a3a12;
+    border: 1px solid #e5c17e;
+    box-shadow: 0 6px 20px rgba(130,76,16,.08);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.detail-area {
+    max-width: 760px;
+    margin: 22px auto 0;
+    padding: 0 14px;
+}
+
+.detail-button {
+    width: 100%;
+    border: 0;
+    cursor: pointer;
+    color: white;
+    padding: 17px 22px;
+    border-radius: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(110deg, var(--maroon2), var(--maroon), var(--saffron));
+    box-shadow: 0 12px 32px rgba(111,29,12,.24);
+    font-weight: 800;
+    font-size: 16px;
+    transition: .25s;
+}
+
+.detail-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 17px 35px rgba(111,29,12,.28);
+}
+
+.detail-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.detail-icon {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,.18);
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 12px;
+    font-size: 18px;
+}
+
+.detail-arrow {
+    transition: .3s;
+    font-size: 14px;
+}
+
+.detail-button.active .detail-arrow {
+    transform: rotate(180deg);
+}
+
+.detail-panel {
+    display: none;
+    margin-top: 14px;
+    background: #ffffff;
+    border: 2px solid #ecd7ae;
+    border-radius: 28px;
+    padding: 26px 22px;
+    box-shadow: 0 15px 40px rgba(91,49,10,.10);
+    animation: openPanel .35s ease;
+}
+
+@keyframes openPanel {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.maharaj-vip-box {
+    text-align: center;
+    background: linear-gradient(145deg, #fffdf8, #fff5e2);
+    border: 1px solid #ebd4a8;
+    border-radius: 24px;
+    padding: 24px 18px;
+    margin-bottom: 22px;
+    box-shadow: 0 8px 24px rgba(141,29,23,.06);
+}
+
+.maharaj-img-container {
+    position: relative;
+    width: 170px;
+    height: 170px;
+    margin: 0 auto 16px;
+    padding: 6px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), var(--saffron), var(--maroon));
+    box-shadow: 0 12px 28px rgba(110,54,5,.22);
+}
+
+.maharaj-img-container img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #ffffff;
+    display: block;
+}
+
+.vip-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--maroon), var(--maroon2));
+    color: #fff2b2;
+    padding: 6px 18px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: .5px;
+    border: 1px solid #e7bf6e;
+    margin-bottom: 12px;
+}
+
+.maharaj-name {
+    color: var(--maroon);
+    font-size: 21px;
+    font-weight: 900;
+    line-height: 1.45;
+    margin-bottom: 14px;
+}
+
+.maharaj-desc {
+    color: #463426;
+    font-size: 14px;
+    line-height: 1.85;
+    text-align: justify;
+    margin: 0;
+}
+
+.vip-section-sub {
+    margin: 22px 0 12px;
+    color: var(--maroon);
+    font-size: 17px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.objectives-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 10px;
+    margin-bottom: 22px;
+}
+
+.obj-card {
+    background: #fff8eb;
+    border: 1px solid #f2dab2;
+    border-left: 4px solid var(--saffron);
+    padding: 12px 14px;
+    border-radius: 14px;
+    font-size: 13px;
+    color: #4a3420;
+    font-weight: 600;
+    line-height: 1.6;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.obj-card strong { color: var(--maroon); }
+
+.vip-video-card {
+    background: #190c06;
+    border-radius: 20px;
+    padding: 15px;
+    margin: 22px 0;
+    border: 2px solid #dfb96c;
+    box-shadow: 0 10px 30px rgba(0,0,0,.15);
+}
+
+.video-header-title {
+    color: #ffd88a;
+    font-weight: 800;
+    font-size: 15px;
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.vip-iframe-box {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 14px;
+}
+
+.vip-iframe-box iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.detail-mission-box {
+    background: #ffffff;
+    border: 1px solid #ebd8b6;
+    border-radius: 20px;
+    padding: 20px 18px;
+    margin-top: 18px;
+    box-shadow: 0 6px 20px rgba(100,40,10,.04);
+}
+
+.mission-heading {
+    color: var(--maroon);
+    font-size: 18px;
+    font-weight: 900;
+    line-height: 1.4;
+    margin: 0 0 14px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f5dfbe;
+    text-align: center;
+}
+
+.shloka-banner {
+    padding: 14px;
+    background: linear-gradient(135deg, #fff7eb, #ffeccb);
+    border-left: 5px solid var(--maroon);
+    border-radius: 0 16px 16px 0;
+    color: var(--maroon2);
+    font-weight: 800;
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+.mission-p {
+    color: #474747;
+    font-size: 14px;
+    line-height: 1.9;
+    text-align: justify;
+    margin-bottom: 15px;
+}
+
+.mission-point {
+    background: #fffbf3;
+    border: 1px solid #f2e3cb;
+    border-radius: 14px;
+    padding: 14px;
+    margin-bottom: 12px;
+}
+
+.mission-point-title {
+    color: var(--maroon);
+    font-size: 15px;
+    font-weight: 800;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.mission-point-text {
+    color: #4c4c4c;
+    font-size: 13.5px;
+    line-height: 1.8;
+    margin: 0;
+    text-align: justify;
+}
+
+.highlight-sankalp {
+    padding: 16px;
+    border-radius: 16px;
+    color: white;
+    background: linear-gradient(135deg, var(--maroon), var(--saffron));
+    line-height: 1.8;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 18px;
+    box-shadow: 0 8px 22px rgba(141,29,23,.22);
+}
+
+.cta-grid {
+    max-width: 760px;
+    margin: 18px auto 22px;
+    padding: 0 14px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.cta {
+    min-height: 60px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: 18px;
+    font-weight: 800;
+    font-size: 14px;
+    transition: .22s;
+    border: 1px solid transparent;
+}
+
+.cta:hover { transform: translateY(-3px); }
+.cta-donate {
+    color: white;
+    background: linear-gradient(135deg, var(--maroon), var(--saffron));
+    box-shadow: 0 10px 25px rgba(139,43,10,.18);
+}
+.cta-contact {
+    color: var(--maroon);
+    background: white;
+    border-color: #dfc18b;
+    box-shadow: 0 7px 20px rgba(96,55,10,.08);
+    cursor: pointer;
+}
+
+.quick-row {
+    max-width: 760px;
+    margin: 0 auto 25px;
+    padding: 0 14px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.quick {
+    background: white;
+    border: 1px solid #ecdcbf;
+    border-radius: 18px;
+    padding: 14px 8px;
+    text-align: center;
+    box-shadow: 0 5px 18px rgba(90,45,10,.06);
+}
+
+.quick-icon { font-size: 20px; margin-bottom: 5px; }
+.quick-text { color: #6b5743; font-size: 11.5px; font-weight: 700; }
+
+.content {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 14px;
+}
+
+.section { margin-bottom: 20px; }
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.section-title-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #fff, #ffe5bb);
+    border: 1px solid #e5c17e;
+}
+
+.section-title-text {
+    flex: 1;
+    color: var(--maroon);
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.section-title-line {
+    width: 35px;
+    height: 3px;
+    border-radius: 10px;
+    background: linear-gradient(90deg, var(--saffron), var(--gold));
+}
+
+.schedule-toggle {
+    width: 100%;
+    border: 0;
+    cursor: pointer;
+    background: white;
+    border: 1px solid #e6d2ad;
+    border-radius: 21px;
+    padding: 17px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 7px 22px rgba(90,45,10,.07);
+    color: var(--maroon);
+    font-weight: 800;
+    font-size: 15px;
+}
+
+.schedule-toggle-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.schedule-toggle-icon {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff2dc;
+    border-radius: 12px;
+}
+
+.schedule-arrow { transition: .3s; }
+.schedule-toggle.active .schedule-arrow { transform: rotate(180deg); }
+.schedule-content { display: none; padding-top: 12px; }
+
+.schedule-card {
+    background: white;
+    overflow: hidden;
+    border: 1px solid #ead7b7;
+    border-radius: 23px;
+    margin-bottom: 15px;
+    box-shadow: 0 9px 28px rgba(90,45,10,.08);
+}
+
+.schedule-media { position: relative; background: #fff8ec; }
+.schedule-media img, .schedule-media video {
+    width: 100%;
+    max-height: 380px;
+    object-fit: cover;
+    display: block;
+}
+
+.schedule-details { padding: 18px; }
+.schedule-title { color: var(--maroon); font-size: 18px; font-weight: 800; margin-bottom: 8px; }
+.schedule-desc { color: #5b5b5b; font-size: 13px; line-height: 1.7; margin-bottom: 12px; }
+.schedule-meta { color: #795329; font-size: 12px; font-weight: 700; line-height: 1.7; margin-top: 5px; }
+
+.schedule-actions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.sched-btn {
+    text-decoration: none;
+    text-align: center;
+    padding: 11px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 800;
+    transition: .2s;
+}
+
+.sched-btn:hover { transform: translateY(-2px); }
+.call { background: #e8f7ef; color: #177444; }
+.view { background: #eaf2ff; color: #205cae; }
+.youtube { background: #fff0f0; color: #d00000; }
+.facebook { background: #edf3ff; color: #1558bd; }
+
+.tabs {
+    position: sticky;
+    top: 62px;
+    z-index: 300;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 760px;
+    margin: 0 auto 20px;
+    padding: 6px;
+    background: rgba(255,255,255,.94);
+    backdrop-filter: blur(18px);
+    border: 1px solid #e7d6b6;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(80,45,10,.08);
+}
+
+.tab-btn {
+    border: 0;
+    background: transparent;
+    color: #765e42;
+    border-radius: 14px;
+    padding: 12px 5px;
+    cursor: pointer;
+    font-weight: 800;
+    font-size: 13px;
+    transition: .25s;
+}
+
+.tab-btn.active {
+    color: white;
+    background: linear-gradient(135deg, var(--maroon), var(--saffron));
+    box-shadow: 0 6px 15px rgba(116,36,9,.18);
+}
+
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+.post-card {
+    background: white;
+    border: 1px solid #eadbc2;
+    border-radius: 25px;
+    overflow: hidden;
+    margin-bottom: 18px;
+    box-shadow: 0 10px 35px rgba(70,35,5,.08);
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    cursor: pointer;
+}
+
+.post-header img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #efc675;
+}
+
+.user-info { margin-left: 12px; flex: 1; }
+.user-info h4 { margin: 0; color: var(--maroon); font-size: 15px; }
+.user-info p { margin: 3px 0 0; color: #a36c29; font-size: 11px; font-weight: 700; }
+.post-menu {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #9b7545;
+    background: #fff7e9;
+    border-radius: 50%;
+}
+
+.media-container { width: 100%; background: #151515; overflow: hidden; }
+.yt-frame { width: 100%; aspect-ratio: 16/9; border: 0; display: block; }
+.yt-shorts { aspect-ratio: 9/16 !important; max-height: 700px; }
+.media-content { width: 100%; max-height: 650px; display: block; object-fit: contain; }
+
+.slider-wrapper { position: relative; overflow: hidden; background: #161616; }
+.slides-container { display: flex; width: 100%; transition: transform .35s ease; }
+.slide-item { min-width: 100%; display: flex; justify-content: center; align-items: center; }
+.slide-item img { width: 100%; max-height: 600px; object-fit: contain; cursor: pointer; }
+
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255,255,255,.35);
+    background: rgba(0,0,0,.55);
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 5;
+    font-size: 17px;
+}
+.prev-btn { left: 12px; }
+.next-btn { right: 12px; }
+
+.caption-box { padding: 15px 17px 7px; font-size: 13px; line-height: 1.8; color: #4b4b4b; }
+.hidden-caption { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.see-more { color: var(--saffron); background: none; border: 0; cursor: pointer; font-weight: 800; padding: 5px 0; }
+
+.actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 12px 15px 15px; border-top: 1px solid #f0e8db; }
+.btn-act {
+    border: 0; border-radius: 13px; padding: 11px; background: #fff6e9; color: #705b42; font-weight: 800; cursor: pointer; transition: .2s;
+}
+.btn-act:hover { background: #ffe2b8; }
+.btn-act.liked { background: #ffe1df; color: #c92720; }
+
+.executive-box {
+    background: white; border: 1px solid #ead9bb; border-radius: 24px; padding: 24px; box-shadow: 0 9px 28px rgba(90,45,10,.07); text-align: center;
+}
+.executive-symbol {
+    width: 76px; height: 76px; margin: 0 auto 13px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 32px; background: linear-gradient(135deg, #fff1d8, #f7cf88); border: 2px solid #d9a83e;
+}
+.executive-box h3 { margin: 0 0 8px; color: var(--maroon); }
+.executive-box p { margin: 0; color: #777; font-size: 13px; line-height: 1.7; }
+
+.donation-title { color: var(--maroon); text-align: center; font-size: 19px; margin: 0 0 16px; }
+.daan-card {
+    background: white; border: 1px solid #eadbc2; border-left: 5px solid var(--saffron); padding: 15px; margin-bottom: 12px;
+    border-radius: 18px; display: flex; align-items: flex-start; gap: 12px; box-shadow: 0 7px 20px rgba(90,45,10,.06);
+}
+.daan-icon {
+    width: 52px; height: 52px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; border-radius: 50%;
+    background: #fff3df; border: 2px solid #e0b75d; font-size: 22px;
+}
+.daan-info { flex: 1; }
+.mname { color: var(--maroon); font-weight: 800; font-size: 14px; margin-bottom: 4px; }
+.tx-badge { display: inline-block; margin-left: 4px; padding: 2px 7px; border-radius: 10px; font-size: 9px; font-weight: 800; }
+.tx-badge-credit { background: #e4f6eb; color: #20814c; }
+.tx-amount { color: #238b57; font-size: 17px; font-weight: 900; margin-top: 4px; }
+.tx-meta { color: #8a6b43; font-size: 10.5px; font-weight: 600; margin-top: 4px; line-height: 1.6; }
+
+.btn-receipt {
+    text-decoration: none; display: inline-block; white-space: nowrap; padding: 8px 10px; border-radius: 10px; color: white;
+    background: linear-gradient(135deg, var(--saffron), var(--maroon)); font-size: 10px; font-weight: 800;
+}
+
+.overlay { display: none; position: fixed; inset: 0; background: rgba(54,20,5,.58); backdrop-filter: blur(7px); z-index: 900; }
+.contact-popup {
+    display: none; position: fixed; z-index: 901; width: min(92%, 420px); left: 50%; top: 50%; transform: translate(-50%, -50%);
+    background: white; border-radius: 28px; padding: 25px; box-shadow: 0 25px 70px rgba(0,0,0,.25); text-align: center;
+}
+.contact-logo {
+    width: 70px; height: 70px; margin: 0 auto 12px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 30px; background: linear-gradient(135deg, #fff0d8, #f1c169); border: 2px solid #dca846;
+}
+.contact-popup h3 { margin: 0 0 5px; color: var(--maroon); font-size: 21px; }
+.contact-popup p { color: #777; font-size: 12px; margin-bottom: 18px; }
+.contact-link {
+    display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; text-decoration: none; padding: 13px;
+    border-radius: 14px; margin-top: 9px; font-weight: 800; font-size: 13px;
+}
+.contact-call { background: #e7f7ee; color: #177444; }
+.contact-email { background: #fff0e0; color: #9a5414; }
+.contact-close {
+    width: 100%; margin-top: 12px; padding: 11px; border: 1px solid #e3d4ba; background: white; border-radius: 13px;
+    color: var(--maroon); font-weight: 800; cursor: pointer;
+}
+
+#lightbox-modal {
+    display: none; position: fixed; z-index: 2000; inset: 0; background: rgba(24,12,4,.96); align-items: center; justify-content: center;
+}
+#lightbox-img { max-width: 94%; max-height: 86%; object-fit: contain; border-radius: 12px; box-shadow: 0 20px 70px rgba(0,0,0,.5); }
+.lightbox-close {
+    position: absolute; top: 18px; left: 18px; color: white; background: rgba(255,255,255,.13); border: 1px solid rgba(255,255,255,.35);
+    padding: 8px 15px; border-radius: 25px; font-weight: 800; cursor: pointer;
+}
+
+.premium-footer {
+    max-width: 680px; margin: 35px auto 0; padding: 22px 15px; text-align: center; color: #927654; font-size: 11.5px;
+}
+.footer-line { width: 80px; height: 2px; margin: 0 auto 12px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+
+#sss-nav {
+    position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 760px; height: 75px;
+    background: linear-gradient(180deg, #ff4500, #800000); display: flex; justify-content: space-evenly; align-items: center;
+    border-top: 4px solid #ffcc00; border-radius: 20px 20px 0 0; z-index: 99999; box-shadow: 0 -5px 20px rgba(0,0,0,0.4);
+}
+.sss-item { flex: 1; text-align: center; text-decoration: none; color: #fff; font-size: 10px; font-weight: 800; }
+.sss-item img { width: 28px; height: 28px; display: block; margin: auto; }
+.sss-dash-wrap { margin-top: -30px; }
+.sss-gold-circle {
+    width: 60px; height: 60px; background: linear-gradient(45deg, #ffd700, #ffcc00, #b8860b);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid #800000; box-shadow: 0 0 15px rgba(255,215,0,0.6);
+}
+.sss-gold-circle img { width: 35px; height: 35px; }
+
+@media(max-width: 600px) {
+    .cover { height: 235px; }
+    .avatar { width: 155px; height: 155px; }
+    .profile-main { margin-top: -75px; }
+    .profile-name { font-size: 24px; }
+    .profile-tag { font-size: 12px; }
+    .detail-panel { padding: 18px 14px; }
+    .maharaj-img-container { width: 145px; height: 145px; }
+    .maharaj-name { font-size: 18px; }
+    .objectives-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+    <div class="brand-mini">
+        <div class="brand-icon">ॐ</div>
+        <span>राष्ट्रीय सनातन रक्षा सेना</span>
+    </div>
+    <button class="top-action" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+</header>
+
+<section class="hero">
+    <div class="cover" id="coverContainer" onclick="openLightbox(document.getElementById('coverImg').src)">
+        <img id="coverImg" src="https://sanatansevasamiti.org/Images/ss/PRO1781318323_cover.jpg" alt="Cover Photo" onerror="this.src='https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1200&q=80';">
+        <div class="cover-label">🖼️ कवर फोटो देखें</div>
+    </div>
+
+    <div class="profile-main">
+        <div class="avatar-wrap">
+            <img class="avatar" id="profileDpImg" src="https://sanatansevasamiti.org/Images/ss/PRO1781318323_dp.jpg" alt="Profile Photo" onclick="openLightbox(this.src)" onerror="this.src='https://sanatansevasamiti.org/public_html/Images/maharaj.jpg'">
+            <div class="verified">✓</div>
+        </div>
+
+        <h1 class="profile-name" id="profileTitle">राष्ट्रीय सनातन रक्षा सेना</h1>
+        <div class="profile-tag" id="profileTagline">🪔 सनातन धर्म • सेवा • संस्कृति • सुरक्षा</div>
+    </div>
+</section>
+
+<div class="detail-area">
+    <button id="detailButton" class="detail-button" onclick="toggleDetails()">
+        <span class="detail-left">
+            <span class="detail-icon">🔱</span>
+            <span>विस्तार से जानें (परिचय व उद्देश्य)</span>
+        </span>
+        <span id="detailArrow" class="detail-arrow">▼</span>
+    </button>
+
+    <div id="detailPanel" class="detail-panel">
+        <div class="maharaj-vip-box">
+            <div class="maharaj-img-container" onclick="openLightbox('https://sanatansevasamiti.org/public_html/Images/maharaj.jpg')">
+                <img src="https://sanatansevasamiti.org/public_html/Images/maharaj.jpg" alt="पूज्य सद्गुरुदेव स्वामी सच्चिदानंद जी महाराज">
+            </div>
+
+            <div class="vip-badge">⚜️ राष्ट्रीय अध्यक्ष • सनातन सेवा समिति ⚜️</div>
+            
+            <div class="maharaj-name">
+                अनंत श्री विभूषित पूज्य सच्चिदानंदाचार्य श्री सच्चिदानंद जी महाराज
+            </div>
+
+            <p class="maharaj-desc">
+                पूज्य महाराज जी केवल एक नाम नहीं, अपितु <strong>धर्म रक्षा, सांस्कृतिक राष्ट्रवाद, शौर्य और सनातनी एकजुटता</strong> के प्रखर प्रकाश स्तंभ हैं। वे अपने आध्यात्मिक तेज और निर्भीक वाणी से संपूर्ण समाज में धर्म की रक्षा और आत्मसम्मान जगाने की अलख निरंतर जगा रहे हैं।
+            </p>
+            <br>
+            <p class="maharaj-desc">
+                <strong>पूज्य महाराज जी का महासंकल्प —</strong> सनातन सेवा समिति के अंतर्गत <strong>'राष्ट्रीय सनातन रक्षा सेना'</strong> के माध्यम से एक ऐसे सशक्त, संगठित समाज का निर्माण करना है जो अपने अधिकारों, अपने ग्रंथों और अपनी आस्था के केंद्रों की रक्षा के लिए सदैव तत्पर रहे।
+            </p>
+        </div>
+
+        <div class="vip-section-sub">
+            <span>🎯</span> मुख्य उद्देश्य एवं संकल्प (संक्षिप्त विवरण)
+        </div>
+
+        <div class="objectives-grid">
+            <div class="obj-card">
+                <span>🛡️</span>
+                <div><strong>धर्म व संस्कृति रक्षा:</strong> संतों, मंदिरों व ग्रंथों की मर्यादा पर आंच न आने देना।</div>
+            </div>
+            <div class="obj-card">
+                <span>📜</span>
+                <div><strong>भ्रम निवारण:</strong> सनातन पर हो रहे कुप्रचारों का शास्त्रीय व वैज्ञानिक प्रमाणों से खंडन।</div>
+            </div>
+            <div class="obj-card">
+                <span>⚖️</span>
+                <div><strong>जातिवाद का अंत:</strong> जन्म के स्थान पर मनुष्य को केवल 'कर्म की दृष्टि' से देखना।</div>
+            </div>
+            <div class="obj-card">
+                <span>🛕</span>
+                <div><strong>पुजारी व भक्त सम्मान:</strong> मंदिरों के पुजारियों व भक्तों की सुरक्षा में ढाल बनना।</div>
+            </div>
+            <div class="obj-card">
+                <span>🤝</span>
+                <div><strong>संकटकालीन सहायता:</strong> पीड़ित सनातनी बंधुओं को 24 घंटे त्वरित सहयोग।</div>
+            </div>
+            <div class="obj-card">
+                <span>🚩</span>
+                <div><strong>अखंड स्वाभिमान:</strong> जन-जन में राष्ट्रनिष्ठा, संस्कार व शौर्य भाव जागृत करना।</div>
+            </div>
+        </div>
+
+        <div class="vip-video-card">
+            <div class="video-header-title">
+                🎥 राष्ट्रीय सनातन रक्षा सेना परिचय वीडियो 🎥
+            </div>
+            <div class="vip-iframe-box">
+                <iframe 
+                    src="https://www.youtube.com/embed/videoseries?list=PLsomeList" 
+                    title="राष्ट्रीय सनातन रक्षा सेना परिचय" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+
+        <div class="detail-mission-box">
+            <div class="shloka-banner">
+                🚩 "धर्मो रक्षति रक्षितः" 🚩<br>
+                <small style="font-weight:600; font-size:13px;">(अर्थात: जो धर्म की रक्षा करते हैं, धर्म उनकी रक्षा करता है)</small>
+            </div>
+
+            <h2 class="mission-heading">
+                राष्ट्रीय सनातन रक्षा सेना : भ्रम निवारण, धर्म रक्षा और स्वाभिमान का जीवंत महाअभियान
+            </h2>
+
+            <p class="mission-p">
+                <strong>राष्ट्रीय सनातन रक्षा सेना</strong> सनातन सेवा समिति के अंतर्गत गठित एक अत्यंत अनुशासित, निष्ठावान और प्रखर संगठन है। आज के समय में जब चारों ओर हमारी प्राचीन और महान सनातन संस्कृति के बारे में तरह-तरह के कुप्रचार किए जा रहे हैं और समाज में गहरा भ्रम फैलाया जा रहा है, तब इस सेना का उदय हुआ है। हमारा यह पावन संकल्प है कि हम प्रत्येक सनातनी भाई-बहन और संपूर्ण समाज के सामने सनातन धर्म के वास्तविक सत्यों, वैज्ञानिक प्रमाणों और ग्रंथों की मूल शिक्षाओं को पूरी प्रामाणिकता के साथ रखेंगे ताकि अज्ञानता का अंधकार सदा के लिए समाप्त हो सके।
+            </p>
+
+            <div class="mission-point">
+                <div class="mission-point-title">
+                    <span>🛡️</span> मंदिरों, पुजारी गणों एवं भक्तों के सम्मान की रक्षा
+                </div>
+                <p class="mission-point-text">
+                    यह सेना धर्म और उसकी मर्यादा की रक्षा के लिए हर क्षण कटिबद्ध है। देश के किसी भी कोने में, किसी भी पवित्र मंदिर पर कोई संकट आए, हमारे आदरणीय पुजारियों या संतों का कहीं अपमान हो रहा हो, या किसी सीधे-साधे सनातनी भक्त को प्रताड़ित या उपहास का पात्र बनाया जा रहा हो — वहाँ राष्ट्रीय सनातन रक्षा सेना तत्परता से खड़ी होगी। अन्याय को रोकना, मर्यादा की रक्षा करना और पीड़ितों को न्याय दिलाना हमारा सर्वोपरि कर्तव्य है। धर्म की रक्षा के लिए हमारे सैनिक और सेवक हर समय ढाल बनकर खड़े रहेंगे।
+                </p>
+            </div>
+
+            <div class="mission-point">
+                <div class="mission-point-title">
+                    <span>⚖️</span> जातिवाद का अंत : कर्म की दृष्टि से देखना ही हमारा धर्म
+                </div>
+                <p class="mission-point-text">
+                    हमारे शास्त्रों का मूल सिद्धांत है कि मनुष्य अपने जन्म से नहीं, बल्कि अपने श्रेष्ठ कर्मों से महान बनता है। राष्ट्रीय सनातन रक्षा सेना समाज में फैले ऊंच-नीच और जाति-पाति के भेदभाव को पूरी तरह से नकारती है। लोगों को किसी संकीर्ण जातिगत दृष्टि से नहीं, बल्कि केवल और केवल उनके <strong>'कर्म की दृष्टि'</strong> से देखना ही हमारा परम धर्म है। समाज के हर वर्ग, हर सनातनी को एक समान अधिकार, सम्मान और आत्मीयता देना ही इस सेना का मूल आधार है। जब संपूर्ण समाज एक होकर सोचेगा, तभी सनातन अजेय बनेगा।
+                </p>
+            </div>
+
+            <div class="mission-point">
+                <div class="mission-point-title">
+                    <span>📞</span> संकट के समय सीधे संपर्क व सुरक्षा की व्यवस्था
+                </div>
+                <p class="mission-point-text">
+                    यदि कहीं पर भी अधर्म हो रहा हो, धर्म स्थलों का अतिक्रमण हो रहा हो, सनातन संस्कृति का उपहास उड़ाया जा रहा हो या किसी भी सनातनी भाई-बहन को न्याय व सहायता की आवश्यकता हो, तो वह <strong>बिना किसी संकोच के सीधे राष्ट्रीय सनातन रक्षा सेना से संपर्क कर सकता है</strong>। हमारी टोलियाँ और प्रतिनिधि आपकी सहायता के लिए, धर्म की ध्वजा को थामकर हर समय तत्पर मिलेंगे।
+                </p>
+            </div>
+
+            <p class="mission-p" style="margin-top:16px;">
+                आइए, राष्ट्रीय सनातन रक्षा सेना के इस गौरवमयी और पराक्रमी अभियान से जुड़ें। अपने भीतर के सुप्त स्वाभिमान को जगाएं, भ्रमों को तोड़कर सनातन के वास्तविक स्वरूप को अपनाएं, और एक अखंड, सुसंस्कृत व सुरक्षित सनातनी समाज के निर्माण में अपना अमूल्य योगदान दें।
+            </p>
+
+            <div class="highlight-sankalp">
+                हर व्यक्ति सनातन की रक्षा से जुड़े।<br>
+                हर समाज भ्रम मुक्त प्रमाणों से जुड़े।<br>
+                हर हृदय कर्म प्रधान धर्म की शक्ति से जुड़े।<br>
+                <strong>— राष्ट्रीय सनातन रक्षा सेना</strong>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="cta-grid">
+    <a href="rashtriya_sanatan_raksha_sena_daan.html" class="cta cta-donate">
+        🤝 सहयोग / सदस्यता लें
+    </a>
+    <button onclick="openContact()" class="cta cta-contact">
+        📞 संकट में संपर्क करें
+    </button>
+</div>
+
+<div class="quick-row">
+    <div class="quick">
+        <div class="quick-icon">🪔</div>
+        <div class="quick-text">सनातन संस्कृति</div>
+    </div>
+    <div class="quick">
+        <div class="quick-icon">🤝</div>
+        <div class="quick-text">समाज सेवा</div>
+    </div>
+    <div class="quick">
+        <div class="quick-icon">🛡️</div>
+        <div class="quick-text">धर्म रक्षा</div>
+    </div>
+</div>
+
+<main class="content">
+
+<section class="section">
+    <div class="section-title">
+        <div class="section-title-icon">📅</div>
+        <div class="section-title-text">आगामी कार्यक्रम</div>
+        <div class="section-title-line"></div>
+    </div>
+
+    <button id="scheduleToggle" class="schedule-toggle" onclick="toggleSchedules()">
+        <span class="schedule-toggle-left">
+            <span class="schedule-toggle-icon">📆</span>
+            कार्यक्रम सूची देखें
+        </span>
+        <span id="scheduleArrow" class="schedule-arrow">▼</span>
+    </button>
+
+    <div id="scheduleContent" class="schedule-content">
+        <div class="executive-box">
+            <div class="executive-symbol">📅</div>
+            <h3>कार्यक्रम विवरण लोड हो रहा है...</h3>
+        </div>
+    </div>
+</section>
+
+<div class="tabs">
+    <button class="tab-btn active" onclick="showTab('posts',this)">📝 पोस्ट</button>
+    <button class="tab-btn" onclick="showTab('karyakarini',this)">👥 कार्यकारिणी</button>
+    <button class="tab-btn" onclick="showTab('daan',this)">🤝 दान सूची</button>
+</div>
+
+<div id="posts" class="tab-content active">
+    <div id="postsContainer">
+        <div class="executive-box">
+            <div class="executive-symbol">📝</div>
+            <h3>पोस्ट्स लोड हो रही हैं...</h3>
+        </div>
+    </div>
+</div>
+
+<div id="karyakarini" class="tab-content">
+    <div class="executive-box">
+        <div class="executive-symbol">👥</div>
+        <h3>संगठनात्मक कार्यकारिणी</h3>
+        <p>राष्ट्रीय सनातन रक्षा सेना के केंद्रीय, प्रांतीय एवं जिला स्तरीय पदाधिकारियों की सूची यहाँ उपलब्ध होगी।</p>
+    </div>
+</div>
+
+<div id="daan" class="tab-content">
+    <h2 class="donation-title">🤝 समर्पण एवं सहयोग विवरण</h2>
+    <div id="donationsContainer">
+        <div class="executive-box">
+            <div class="executive-symbol">🤝</div>
+            <h3>सहयोग विवरण लोड हो रहा है...</h3>
+        </div>
+    </div>
+</div>
+
+</main>
+
+<div id="overlay" class="overlay" onclick="closeContact()"></div>
+
+<div id="contact-popup" class="contact-popup">
+    <div class="contact-logo">🛡️</div>
+    <h3>राष्ट्रीय सनातन रक्षा सेना</h3>
+    <p>धर्म रक्षा एवं आपातकालीन सहायता केंद्र</p>
+    <a id="modalCall" href="tel:+919876543210" class="contact-link contact-call">📞 हेल्पलाइन कॉल करें</a>
+    <a id="modalMail" href="mailto:contact@sanatansevasamiti.org" class="contact-link contact-email">📧 ईमेल द्वारा संपर्क करें</a>
+    <button onclick="closeContact()" class="contact-close">बंद करें</button>
+</div>
+
+<div id="lightbox-modal" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">← वापस</button>
+    <img id="lightbox-img" src="" alt="Full View" onclick="event.stopPropagation()">
+</div>
+
+<footer class="premium-footer">
+    <div class="footer-line"></div>
+    🪔 धर्मो रक्षति रक्षितः • सत्यमेव जयते 🪔<br><br>
+    <strong>राष्ट्रीय सनातन रक्षा सेना</strong><br>
+    (सनातन सेवा समिति)
+</footer>
+
+<div id="sss-nav">
+    <a href="app_home.html" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341771file_00000000145071fab7ea2e7e30f9dfaa-e1776295057951.png" alt="गृह">
+        <span>गृह</span>
+    </a>
+    <a href="guru_parampara.html" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341317ci.jpg" alt="गुरु">
+        <span>गुरु परंपरा</span>
+    </a>
+    <a href="feed.html" class="sss-item sss-dash-wrap">
+        <div class="sss-gold-circle">
+            <img src="https://sanatansevasamiti.org/uploads/footer/1780341218logo.jpg" alt="फीड">
+        </div>
+        <span></span>
+    </a>
+    <a href="javascript:void(0);" onclick="alert('पुस्तकें — यह अनुभाग शीघ्र ही स्थानीय रूप से उपलब्ध होगा।');" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341270bi.jpg" alt="पुस्तकें">
+        <span>पुस्तकें</span>
+    </a>
+    <a href="app_dashboard.html" class="sss-item">
+        <img src="https://sanatansevasamiti.org/uploads/footer/1780341144ai.jpg" alt="अकाउंट">
+        <span>अकाउंट</span>
+    </a>
+</div>
+
+<script>
+const PROFILE_ID = "PRO1781318323";
+let CURRENT_UID = "";
+
+try {
+    const rawUser = localStorage.getItem("sss_user_data");
+    if(rawUser){
+        const u = JSON.parse(rawUser);
+        CURRENT_UID = u.unique_id || u.id || "";
+    }
+} catch(e){}
+
+async function loadRakshaSenaData(){
+    try {
+        const apiUrl = `https://sanatansevasamiti.org/api/get_profile_full.php?action=detail&profile_id=${PROFILE_ID}&user_id=${encodeURIComponent(CURRENT_UID)}`;
+        const res = await fetch(apiUrl);
+        if(!res.ok) throw new Error("नेटवर्क प्रतिक्रिया विफल");
+        const data = await res.json();
+
+        if(data && data.status === 'success'){
+            if(data.profile){
+                const p = data.profile;
+                if(p.name) document.getElementById('profileTitle').innerText = p.name;
+                if(p.tagline) document.getElementById('profileTagline').innerText = "🪔 " + p.tagline;
+                if(p.dp_url) document.getElementById('profileDpImg').src = p.dp_url;
+                if(p.cover_url) document.getElementById('coverImg').src = p.cover_url;
+                if(p.mobile) document.getElementById('modalCall').href = "tel:" + p.mobile;
+                if(p.email) document.getElementById('modalMail').href = "mailto:" + p.email;
+            }
+
+            renderPosts(data.posts, data.profile);
+            renderEvents(data.schedules);
+            renderDonations(data.public_donations);
+        }
+    } catch(err){
+        console.error("Raksha Sena Load Error:", err);
+    }
+}
+
+function renderPosts(posts, prof){
+    const container = document.getElementById('postsContainer');
+    if(!posts || posts.length === 0){
+        container.innerHTML = `
+            <div class="executive-box">
+                <div class="executive-symbol">📝</div>
+                <h3>अभी कोई पोस्ट प्रकाशित नहीं हुई है</h3>
+                <p>राष्ट्रीय सनातन रक्षा सेना की आगामी पोस्ट यहाँ दिखाई देंगी।</p>
+            </div>
+        `;
+        return;
+    }
+
+    container.innerHTML = posts.map(post => {
+        const mediaList = post.parsed_media || [];
+        let mediaBlock = '';
+
+        if(post.post_type === 'youtube'){
+            mediaBlock = mediaList.map(m => `
+                <iframe class="yt-frame ${m.is_shorts ? 'yt-shorts' : ''}" src="${m.embed_url}" allowfullscreen></iframe>
+            `).join("");
+        } else if(post.post_type === 'video'){
+            mediaBlock = mediaList.map(m => `
+                <video class="media-content" controls src="${m.raw_url}"></video>
+            `).join("");
+        } else if(mediaList.length > 0){
+            const slides = mediaList.map(m => `
+                <div class="slide-item">
+                    <img src="${m.raw_url}" onclick="openLightbox(this.src)" alt="Post Media">
+                </div>
+            `).join("");
+
+            mediaBlock = `
+                <div class="slider-wrapper" id="slider-${post.id}">
+                    <div class="slides-container" id="slides-${post.id}">
+                        ${slides}
+                    </div>
+                    ${mediaList.length > 1 ? `
+                        <button class="slider-btn prev-btn" onclick="moveSlide(${post.id}, -1)">❮</button>
+                        <button class="slider-btn next-btn" onclick="moveSlide(${post.id}, 1)">❯</button>
+                    ` : ''}
+                </div>
+            `;
+        }
+
+        return `
+        <article class="post-card">
+            <div class="post-header">
+                <img src="${prof.dp_url || 'https://sanatansevasamiti.org/Images/ss/PRO1781318323_dp.jpg'}" alt="Profile" onerror="this.src='https://sanatansevasamiti.org/public_html/Images/maharaj.jpg'">
+                <div class="user-info">
+                    <h4>${prof.name || 'राष्ट्रीय सनातन रक्षा सेना'}</h4>
+                    <p>${prof.tagline || 'सनातन धर्म • सेवा • संस्कृति'}</p>
+                </div>
+                <div class="post-menu">⋮</div>
+            </div>
+
+            <div class="media-container">
+                ${mediaBlock}
+            </div>
+
+            <div class="caption-box">
+                <div id="text-${post.id}" class="hidden-caption">
+                    ${(post.caption || '').replace(/\n/g, '<br>')}
+                </div>
+                <button class="see-more" onclick="showMore(${post.id}, this)">और पढ़ें...</button>
+            </div>
+
+            <div class="actions">
+                <button class="btn-act" onclick="toggleLike(this)">❤️ Like</button>
+                <button class="btn-act" onclick="sharePost(${post.id})">🔗 Share</button>
+            </div>
+        </article>`;
+    }).join("");
+}
+
+function renderEvents(schedules){
+    const container = document.getElementById('scheduleContent');
+    if(!schedules || schedules.length === 0){
+        container.innerHTML = `
+            <div class="executive-box">
+                <div class="executive-symbol">📅</div>
+                <h3>फिलहाल कोई नया कार्यक्रम निर्धारित नहीं है</h3>
+                <p>नवीनतम आयोजनों की सूचना जल्द ही यहाँ प्रकाशित की जाएगी।</p>
+            </div>
+        `;
+        return;
+    }
+
+    container.innerHTML = schedules.map(sch => {
+        const media = (sch.media_files && sch.media_files.length > 0) ? sch.media_files[0] : '';
+        let mediaHtml = '';
+        if(media){
+            if(media.match(/\.(mp4|webm|ogg)$/i)){
+                mediaHtml = `<video controls src="${media}"></video>`;
+            } else {
+                mediaHtml = `<img src="${media}" alt="Event Poster" onclick="openLightbox(this.src)">`;
+            }
+        }
+
+        return `
+        <article class="schedule-card">
+            ${mediaHtml ? `<div class="schedule-media">${mediaHtml}</div>` : ''}
+            <div class="schedule-details">
+                <div class="schedule-title">${sch.title || ''}</div>
+                <div class="schedule-desc">${(sch.description || '').replace(/\n/g, '<br>')}</div>
+                <div class="schedule-meta">
+                    🗓️ ${sch.event_date || ''} &nbsp; • &nbsp; ⏰ ${sch.time_from || ''} - ${sch.time_to || ''}
+                </div>
+                <div class="schedule-meta">
+                    📍 ${sch.address || ''}, ${sch.district || ''}, ${sch.state || ''}
+                </div>
+                <div class="schedule-actions">
+                    ${sch.mobile ? `<a href="tel:${sch.mobile}" class="sched-btn call">📞 कॉल</a>` : ''}
+                    ${sch.web_url ? `<a href="${sch.web_url}" class="sched-btn view" target="_blank">🌐 विवरण</a>` : ''}
+                    ${sch.yt_link ? `<a href="${sch.yt_link}" class="sched-btn youtube" target="_blank">▶️ YouTube</a>` : ''}
+                    ${sch.fb_link ? `<a href="${sch.fb_link}" class="sched-btn facebook" target="_blank">f Facebook</a>` : ''}
+                </div>
+            </div>
+        </article>`;
+    }).join("");
+}
+
+function renderDonations(donations){
+    const container = document.getElementById('donationsContainer');
+    if(!donations || donations.length === 0){
+        container.innerHTML = `
+            <div class="executive-box">
+                <div class="executive-symbol">🤝</div>
+                <h3>अभी कोई सहयोग विवरण दर्ज नहीं है</h3>
+                <p>राष्ट्रीय सनातन रक्षा सेना में प्राप्त सहयोग का विवरण यहाँ प्रदर्शित होगा।</p>
+            </div>
+        `;
+        return;
+    }
+
+    container.innerHTML = donations.map(tx => `
+        <div class="daan-card">
+            <div class="daan-icon">📥</div>
+            <div class="daan-info">
+                <div class="mname">
+                    ${tx.full_name}
+                    <span class="tx-badge tx-badge-credit">प्राप्त</span>
+                </div>
+                ${tx.unique_id ? `<div class="tx-meta">ID: ${tx.unique_id}</div>` : ''}
+                <div class="tx-amount">+ ${tx.amount_label}</div>
+                <div class="tx-meta">
+                    माध्यम: ${tx.payment_mode || 'UPI'} &nbsp; • &nbsp; 🗓️ ${tx.tx_date}
+                </div>
+            </div>
+            <div>
+                <a href="${tx.receipt_url}" target="_blank" class="btn-receipt">🧾 रसीद</a>
+            </div>
+        </div>
+    `).join("");
+}
+
+function toggleDetails(){
+    const panel = document.getElementById("detailPanel");
+    const button = document.getElementById("detailButton");
+    if (panel.style.display === "block") {
+        panel.style.display = "none";
+        button.classList.remove("active");
+    } else {
+        panel.style.display = "block";
+        button.classList.add("active");
+    }
+}
+
+function toggleSchedules(){
+    const content = document.getElementById("scheduleContent");
+    const button = document.getElementById("scheduleToggle");
+    if (content.style.display === "block") {
+        content.style.display = "none";
+        button.classList.remove("active");
+    } else {
+        content.style.display = "block";
+        button.classList.add("active");
+    }
+}
+
+function showTab(tabId, btn){
+    document.querySelectorAll(".tab-content").forEach(tab => tab.classList.remove("active"));
+    document.querySelectorAll(".tab-btn").forEach(button => button.classList.remove("active"));
+    document.getElementById(tabId).classList.add("active");
+    btn.classList.add("active");
+    setTimeout(() => {
+        document.querySelector(".tabs").scrollIntoView({behavior: "smooth", block: "start"});
+    }, 50);
+}
+
+function showMore(id, btn){
+    const text = document.getElementById("text-" + id);
+    text.classList.remove("hidden-caption");
+    btn.style.display = "none";
+}
+
+function toggleLike(btn){
+    btn.classList.toggle("liked");
+}
+
+const slideIndexes = {};
+function moveSlide(postId, direction){
+    if (typeof slideIndexes[postId] === "undefined") {
+        slideIndexes[postId] = 0;
+    }
+    const container = document.getElementById("slides-" + postId);
+    if (!container) return;
+    const totalSlides = container.children.length;
+    slideIndexes[postId] += direction;
+    if (slideIndexes[postId] >= totalSlides) {
+        slideIndexes[postId] = 0;
+    } else if (slideIndexes[postId] < 0) {
+        slideIndexes[postId] = totalSlides - 1;
+    }
+    container.style.transform = "translateX(-" + (slideIndexes[postId] * 100) + "%)";
+}
+
+function sharePost(postId){
+    const url = 'https://sanatansevasamiti.org/feed.php?postid=' + postId;
+    const text = "राष्ट्रीय सनातन रक्षा सेना की पोस्ट देखें:\n" + url;
+    if (navigator.share) {
+        navigator.share({title: "राष्ट्रीय सनातन रक्षा सेना", text: text, url: url}).catch(() => {});
+    } else {
+        window.open("https://wa.me/?text=" + encodeURIComponent(text), "_blank");
+    }
+}
+
+function openContact(){
+    document.getElementById("contact-popup").style.display = "block";
+    document.getElementById("overlay").style.display = "block";
+    document.body.style.overflow = "hidden";
+}
+function closeContact(){
+    document.getElementById("contact-popup").style.display = "none";
+    document.getElementById("overlay").style.display = "none";
+    document.body.style.overflow = "";
+}
+
+function openLightbox(src){
+    const modal = document.getElementById("lightbox-modal");
+    const image = document.getElementById("lightbox-img");
+    image.src = src;
+    modal.style.display = "flex";
+    document.body.style.overflow = "hidden";
+}
+function closeLightbox(){
+    document.getElementById("lightbox-modal").style.display = "none";
+    document.body.style.overflow = "";
+}
+
+document.addEventListener("keydown", function(e){
+    if (e.key === "Escape") {
+        closeLightbox();
+        closeContact();
+    }
+});
+
+window.addEventListener("DOMContentLoaded", loadRakshaSenaData);
+</script>
+
+</body>
+</html>
