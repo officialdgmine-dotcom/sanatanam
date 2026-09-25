@@ -1,0 +1,898 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#103d2d">
+<title>प्रकृति संरक्षण सेवा | वृक्षारोपण • जल संरक्षण</title>
+
+<style>
+:root{
+    --forest:#103d2d;
+    --forest2:#17563e;
+    --leaf:#3c8b54;
+    --mint:#e8f5e9;
+    --cream:#fffaf0;
+    --gold:#c99b3b;
+    --gold2:#efd48a;
+    --ink:#14261f;
+    --muted:#64736c;
+    --line:rgba(16,61,45,.12);
+    --white:#fff;
+    --shadow:0 24px 70px rgba(10,50,35,.13);
+    --radius:28px;
+}
+*{box-sizing:border-box; -webkit-tap-highlight-color: transparent;}
+html{scroll-behavior:smooth}
+body{
+    margin:0;color:var(--ink);
+    background:
+        radial-gradient(circle at 5% 0%,rgba(201,155,59,.13),transparent 27%),
+        linear-gradient(180deg,#f5fbf6 0%,#fffdf7 48%,#edf7ef 100%);
+    font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans Devanagari",sans-serif;
+    padding-bottom:95px;
+}
+button,input,select{font:inherit}
+button{cursor:pointer}
+a{text-decoration:none;color:inherit}
+.container{width:min(1180px,calc(100% - 26px));margin:auto}
+
+.top{
+    position:sticky;top:0;z-index:1000;
+    background:rgba(255,255,255,.90);
+    backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--line);
+}
+.topIn{
+    min-height:72px;display:flex;align-items:center;gap:12px;
+}
+.brand{display:flex;align-items:center;gap:11px;min-width:0;flex:1}
+.brand img{
+    width:48px;height:48px;border-radius:16px;object-fit:cover;
+    border:2px solid var(--gold);background:#fff
+}
+.brand b{display:block;font-size:15px;color:var(--forest)}
+.brand small{display:block;font-size:9px;color:var(--muted);margin-top:2px}
+.wallet{
+    padding:10px 13px;border-radius:17px;
+    background:#e9f7ed;border:1px solid #cce6d3;
+    color:#14683a;text-align:center;min-width:105px;
+}
+.wallet span{display:block;font-size:9px;font-weight:800}
+.wallet strong{display:block;font-size:15px;margin-top:2px}
+
+.hero{
+    margin:14px 0 0;border-radius:36px;overflow:hidden;
+    background:
+      linear-gradient(115deg,rgba(6,42,29,.94),rgba(14,78,48,.72)),
+      url('https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=1500&q=88') center/cover;
+    box-shadow:var(--shadow);color:#fff;
+}
+.heroInner{padding:56px 38px 48px;max-width:850px}
+.pill{
+    display:inline-flex;gap:8px;align-items:center;padding:8px 13px;
+    border-radius:999px;background:rgba(255,255,255,.11);
+    border:1px solid rgba(255,255,255,.18);font-size:11px;font-weight:900
+}
+.hero h1{
+    font-size:clamp(40px,6vw,72px);line-height:1.02;
+    letter-spacing:-.045em;margin:18px 0 17px
+}
+.hero h1 span{color:#f2d17b}
+.hero p{max-width:770px;color:#d8eee0;line-height:1.9;font-size:17px}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:25px}
+.btn{
+    border:0;border-radius:16px;padding:14px 18px;font-weight:950;
+    display:inline-flex;justify-content:center;align-items:center;gap:8px;
+    transition:.18s
+}
+.btn:hover{transform:translateY(-2px)}
+.primary{background:var(--gold);color:#261c08}
+.light{background:#fff;color:var(--forest)}
+.dark{background:var(--forest);color:#fff}
+.outline{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.28)}
+
+.stats{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:25px
+}
+.stat{
+    padding:15px;border-radius:18px;background:rgba(255,255,255,.09);
+    border:1px solid rgba(255,255,255,.12)
+}
+.stat b{display:block;font-size:21px;color:#fff}
+.stat span{font-size:10px;color:#cce4d5}
+
+.section{padding:72px 0}
+.head{max-width:800px;margin-bottom:28px}
+.kicker{
+    color:var(--leaf);font-size:11px;font-weight:1000;
+    letter-spacing:.12em;text-transform:uppercase
+}
+h2{font-size:clamp(29px,4vw,48px);line-height:1.08;margin:8px 0 13px;letter-spacing:-.035em}
+.head p{color:var(--muted);line-height:1.85}
+
+.mission{
+    background:var(--forest);color:#fff;border-radius:34px;
+    padding:35px;display:grid;grid-template-columns:1.15fr .85fr;gap:25px;
+    box-shadow:var(--shadow)
+}
+.mission p{color:#cfe5d7;line-height:1.9}
+.list{display:grid;gap:9px}
+.list div{
+    padding:14px;border-radius:15px;background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.1);color:#eaf6ed;font-size:13px
+}
+
+.treeArea{background:#edf7ef}
+.treeGrid{display:grid;grid-template-columns:.9fr 1.1fr;gap:22px}
+.photo{
+    min-height:550px;border-radius:34px;overflow:hidden;position:relative;
+    box-shadow:var(--shadow)
+}
+.photo img{width:100%;height:100%;object-fit:cover}
+.photoText{
+    position:absolute;left:17px;right:17px;bottom:17px;padding:21px;
+    border-radius:23px;background:rgba(7,45,30,.88);color:#fff;
+    backdrop-filter:blur(10px)
+}
+.photoText b{font-size:24px}
+.panel{
+    background:#fff;border:1px solid var(--line);border-radius:34px;
+    padding:30px;box-shadow:var(--shadow)
+}
+.price{
+    margin:17px 0;padding:19px;border-radius:22px;
+    background:linear-gradient(135deg,#fff4d5,#fffaf0);
+    border:1px solid rgba(201,155,59,.3);
+    display:flex;justify-content:space-between;align-items:center;gap:15px
+}
+.price strong{font-size:36px;color:#87651d}
+.price span{display:block;font-size:11px;color:#75633e}
+.field{margin-top:15px}
+label{display:block;font-size:12px;font-weight:900;color:#405049;margin-bottom:7px}
+.input,.select{
+    width:100%;padding:14px 15px;border:1px solid #d9e5dc;
+    border-radius:14px;background:#fbfdfb;outline:0
+}
+.input:focus,.select:focus{
+    border-color:var(--leaf);box-shadow:0 0 0 4px rgba(60,139,84,.1)
+}
+.qty{display:grid;grid-template-columns:50px 1fr 50px;gap:7px}
+.qty button{
+    border:0;border-radius:14px;background:var(--forest);color:#fff;font-size:23px;font-weight:900
+}
+.qty input{text-align:center;font-weight:950;font-size:19px}
+.total{
+    margin-top:17px;padding:17px 18px;border-radius:20px;
+    background:var(--forest);color:#fff;display:flex;justify-content:space-between
+}
+.total strong{font-size:24px;color:#f0d178}
+.nameCards{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px
+}
+.nameCard{
+    padding:15px;border-radius:17px;background:#fff;border:1px solid var(--line);
+    text-align:left; cursor:pointer;
+}
+.nameCard.active{border-color:var(--leaf);background:#eef8f0;box-shadow:0 0 0 3px rgba(60,139,84,.08)}
+.nameCard b{display:block}.nameCard small{color:var(--muted)}
+
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.card{
+    background:rgba(255,255,255,.9);border:1px solid var(--line);
+    border-radius:26px;padding:25px;box-shadow:0 10px 35px rgba(15,55,38,.06)
+}
+.icon{
+    width:52px;height:52px;border-radius:17px;background:var(--mint);
+    display:grid;place-items:center;font-size:26px;margin-bottom:16px
+}
+.card h3{margin:0 0 8px;font-size:20px}
+.card p{margin:0;color:var(--muted);line-height:1.75;font-size:14px}
+
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.galleryCard{border-radius:27px;overflow:hidden;background:#fff;border:1px solid var(--line)}
+.galleryCard img{width:100%;height:230px;object-fit:cover;display:block}
+.galleryCard div{padding:19px}
+.galleryCard h3{margin:0 0 6px}.galleryCard p{margin:0;color:var(--muted);font-size:13px;line-height:1.7}
+
+.donationGrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.donate{
+    background:#fff;border:1px solid var(--line);border-radius:31px;
+    padding:28px;box-shadow:var(--shadow)
+}
+.amounts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
+.amount{
+    padding:11px 5px;border-radius:13px;border:1px solid #dce7df;
+    background:#f8fbf8;color:var(--forest);font-weight:950; cursor:pointer;
+}
+.amount.active{background:var(--forest);color:#fff;border-color:var(--forest)}
+.services{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:14px}
+.service{
+    padding:15px;border-radius:17px;background:#fbfdfb;
+    border:1px solid var(--line);text-align:left; cursor:pointer;
+}
+.service.active{border-color:var(--leaf);background:#eef8f0}
+.service b{display:block;font-size:13px}.service small{color:var(--muted)}
+
+.notice{
+    padding:15px;border-radius:17px;background:#f1f8f2;
+    border:1px solid #d6e9d9;color:#52645a;font-size:12px;line-height:1.7
+}
+
+.cta{
+    border-radius:36px;padding:55px 25px;text-align:center;color:#fff;
+    background:linear-gradient(rgba(7,47,32,.9),rgba(7,47,32,.94)),url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1500&q=88') center/cover;
+    box-shadow:var(--shadow)
+}
+.cta p{max-width:750px;margin:10px auto 23px;color:#d3e9db;line-height:1.85}
+
+.footer{text-align:center;padding:30px 0 105px;color:var(--muted);font-size:12px}
+.footer img{width:48px;height:48px;border-radius:15px;object-fit:cover;margin-bottom:7px}
+
+.bottom{
+    position:fixed;left:10px;right:10px;bottom:10px;z-index:900;
+    display:flex;gap:8px;padding:8px;border-radius:21px;
+    background:rgba(16,61,45,.95);backdrop-filter:blur(18px);
+    box-shadow:0 15px 45px rgba(0,0,0,.22);
+    max-width:740px; margin:0 auto;
+}
+.bottom a{flex:1;text-align:center;color:#fff;padding:12px 7px;border-radius:14px;font-size:11px;font-weight:950}
+.bottom a:last-child{background:linear-gradient(135deg,#c99b3b,#efd48a);color:#2b2009}
+
+.alert{
+    margin:14px 0;padding:16px;border-radius:18px;font-weight:800; display:none;
+}
+.alert.error{background:#fff0f0;color:#8a2020;border:1px solid #f0caca}
+
+.receiptBox{
+    max-width:760px;margin:20px auto;padding:27px;border-radius:28px;
+    background:#fff;border:1px solid #cfe4d3;box-shadow:var(--shadow); display:none;
+}
+.receiptBox h2{font-size:30px;color:var(--forest)}
+.receiptGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:18px 0}
+.receiptRow{padding:13px;border-radius:13px;background:#f5faf6}
+.receiptRow span{display:block;color:var(--muted);font-size:10px}
+.receiptRow b{display:block;margin-top:3px;font-size:13px}
+.receiptActions{display:flex;gap:8px;flex-wrap:wrap}
+.receiptActions a,.receiptActions button{flex:1}
+
+@media(max-width:900px){
+    .mission,.treeGrid,.donationGrid{grid-template-columns:1fr}
+    .cards,.gallery{grid-template-columns:1fr 1fr}
+    .photo{min-height:390px}
+}
+@media(max-width:600px){
+    .container{width:calc(100% - 18px)}
+    .topIn{min-height:64px}
+    .brand img{width:42px;height:42px}
+    .brand b{font-size:13px}
+    .wallet{min-width:88px;padding:8px 7px}
+    .hero{border-radius:28px}
+    .heroInner{padding:38px 21px}
+    .hero h1{font-size:42px}
+    .hero p{font-size:14px}
+    .stats{grid-template-columns:1fr 1fr 1fr}
+    .stat{padding:11px 8px}.stat b{font-size:16px}
+    .section{padding:52px 0}
+    .mission,.panel,.donate{padding:21px;border-radius:26px}
+    .cards,.gallery{grid-template-columns:1fr}
+    .nameCards{grid-template-columns:1fr 1fr}
+    .amounts{grid-template-columns:1fr 1fr}
+    .services{grid-template-columns:1fr}
+    .receiptGrid{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<header class="top">
+    <div class="container topIn">
+        <a class="brand" href="prakriti_sanrakshan.html">
+            <img src="https://sanatansevasamiti.org/Images/ss/PRO1781289469_dp.jpg" alt="प्रकृति संरक्षण सेवा">
+            <div>
+                <b>प्रकृति संरक्षण सेवा</b>
+                <small>सेवा • संकल्प • संरक्षण</small>
+            </div>
+        </a>
+
+        <a href="app_wallet.html" class="wallet">
+            <span>💳 आपका वॉलेट</span>
+            <strong id="topWalletBalance">₹0.00</strong>
+        </a>
+    </div>
+</header>
+
+<main id="top">
+
+    <div class="container">
+        <div class="alert error" id="errorBox">
+            ⚠️ <span id="errorMsg">त्रुटि</span>
+        </div>
+    </div>
+
+    <!-- RECEIPT SUCCESS BOX -->
+    <div class="container">
+        <div class="receiptBox" id="receiptSuccessBox">
+            <div class="kicker">WALLET SEVA SUCCESS</div>
+            <h2>🌿 सेवा समर्पण सफल हुआ</h2>
+            <p style="color:var(--muted);line-height:1.8">
+                आपकी सेवा राशि आपके वॉलेट से सफलतापूर्वक डेबिट होकर
+                <b>प्रकृति संरक्षण सेवा</b> के प्रोफाइल लेजर में क्रेडिट दर्ज की गई है।
+            </p>
+
+            <div class="receiptGrid">
+                <div class="receiptRow"><span>सेवक</span><b id="rcpName">सनातन सेवक</b></div>
+                <div class="receiptRow"><span>राशि</span><b id="rcpAmount">₹0.00</b></div>
+                <div class="receiptRow"><span>सेवा</span><b id="rcpDesc">प्रकृति सेवा</b></div>
+                <div class="receiptRow"><span>Receipt No.</span><b id="rcpNo">---</b></div>
+                <div class="receiptRow"><span>Payment Mode</span><b>Digital Wallet</b></div>
+                <div class="receiptRow"><span>नया वॉलेट बैलेंस</span><b id="rcpWallet">₹0.00</b></div>
+            </div>
+
+            <div class="receiptActions">
+                <a class="btn dark" id="rcpLink" target="_blank" href="#">🧾 रसीद देखें</a>
+                <button type="button" class="btn light" onclick="document.getElementById('receiptSuccessBox').style.display='none';">पूर्ण करें</button>
+            </div>
+        </div>
+    </div>
+
+    <section class="hero">
+        <div class="heroInner">
+            <div class="pill">🌿 वॉलेट से सुरक्षित प्रकृति सेवा समर्पण</div>
+            <h1>प्रकृति बचेगी,<br><span>तो भविष्य बचेगा।</span></h1>
+            <p>
+                वृक्ष केवल हरियाली नहीं हैं। वे स्वच्छ वायु, मिट्टी, जलचक्र,
+                पक्षियों और जीव-जगत के लिए जीवन का आधार हैं। इसी भावना के साथ
+                वृक्षारोपण, जल संरक्षण, वृक्ष संरक्षण, स्वच्छता और हरित क्षेत्र
+                निर्माण को सेवा का रूप दिया गया है।
+            </p>
+
+            <div class="actions">
+                <a class="btn primary" href="#vriksh">🌳 ₹1,100 में वृक्ष संकल्प</a>
+                <a class="btn light" href="#daan">🤲 धन / सेवा दान</a>
+            </div>
+
+            <div class="stats">
+                <div class="stat"><b>1.25 लाख+</b><span>वृक्षारोपण संकल्प</span></div>
+                <div class="stat"><b>₹1,100</b><span>एक वृक्ष सेवा</span></div>
+                <div class="stat"><b>₹1+</b><span>खुला धन दान</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="mission">
+    <div class="container">
+        <div class="head">
+            <div class="kicker">हमारा संकल्प</div>
+            <h2>केवल पौधा लगाना नहीं,<br>उसे जीवन देना है।</h2>
+            <p>
+                वृक्षारोपण का उद्देश्य केवल पौधा रोपना नहीं, बल्कि उसकी देखभाल,
+                पानी, सुरक्षा और विकास के लिए दीर्घकालिक सहयोग की भावना बनाना है।
+            </p>
+        </div>
+
+        <div class="mission">
+            <div>
+                <h2 style="margin-top:0">सवा लाख वृक्षों का हरित संकल्प</h2>
+                <p>
+                    एक ऐसा हरित वातावरण विकसित करने का संकल्प जहाँ अधिक से अधिक
+                    वृक्षों के माध्यम से स्वच्छ वायु, पक्षियों के आश्रय, मिट्टी की
+                    सुरक्षा और प्रकृति के संतुलन को सहयोग मिले।
+                </p>
+                <p>
+                    आप एक वृक्ष, दो वृक्ष, तीन वृक्ष या अपनी सामर्थ्य के अनुसार
+                    अनेक वृक्षों का संकल्प ले सकते हैं।
+                </p>
+            </div>
+
+            <div class="list">
+                <div>🌳 <b>वृक्षारोपण</b> — हरित क्षेत्र निर्माण</div>
+                <div>💧 <b>जल संरक्षण</b> — जल व्यवस्था एवं संवर्धन</div>
+                <div>🛡️ <b>वृक्ष संरक्षण</b> — देखभाल एवं सुरक्षा</div>
+                <div>🌬️ <b>वायु संरक्षण</b> — स्वच्छ वातावरण</div>
+                <div>🐦 <b>जीव-जगत</b> — पक्षियों एवं छोटे जीवों के लिए आश्रय</div>
+                <div>🧹 <b>स्वच्छता सेवा</b> — प्राकृतिक क्षेत्र की स्वच्छता</div>
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <section class="section treeArea" id="vriksh">
+    <div class="container">
+        <div class="head">
+            <div class="kicker">विशेष वृक्षारोपण सेवा</div>
+            <h2>अपने नाम, माता-पिता या परिवार की स्मृति में वृक्ष लगवाएँ।</h2>
+            <p>
+                प्रति वृक्ष सेवा समर्पण ₹1,100 है। एक से अधिक वृक्ष चुनने पर
+                कुल राशि अपने आप गणना होगी और समर्पण सीधे आपके वॉलेट से होगा।
+            </p>
+        </div>
+
+        <div class="treeGrid">
+
+            <div class="photo">
+                <img src="https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=1500&q=88" alt="वृक्षारोपण">
+                <div class="photoText">
+                    <b>🌳 आपका हरित संकल्प</b>
+                    <div style="margin-top:5px;color:#cfe5d7">
+                        एक पौधा • एक स्मृति • एक बेहतर भविष्य
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="kicker">TREE DEDICATION</div>
+                <h2 style="font-size:32px">कितने वृक्ष?</h2>
+
+                <div class="price">
+                    <div>
+                        <span>प्रति वृक्ष सेवा समर्पण</span>
+                        <strong>₹1,100</strong>
+                    </div>
+                    <span>वॉलेट से भुगतान</span>
+                </div>
+
+                <form id="treeForm" onsubmit="submitTreeForm(event)">
+                    <div class="field">
+                        <label>वृक्षों की संख्या</label>
+                        <div class="qty">
+                            <button type="button" onclick="changeTree(-1)">−</button>
+                            <input class="input" id="treeQty" name="tree_qty" type="number" min="1" max="10000" value="1" oninput="updateTree()">
+                            <button type="button" onclick="changeTree(1)">+</button>
+                        </div>
+                    </div>
+
+                    <div class="total">
+                        <span>कुल वृक्ष सेवा</span>
+                        <strong id="treeTotal">₹1,100.00</strong>
+                    </div>
+
+                    <div class="field">
+                        <label>वृक्ष किसके नाम से समर्पित हो?</label>
+                        <select class="select" id="dedication" name="dedication">
+                            <option>मेरे नाम से</option>
+                            <option>माता-पिता के नाम से</option>
+                            <option>परिवार के नाम से</option>
+                            <option>प्रियजन की स्मृति में</option>
+                            <option>पूर्वजों की स्मृति में</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label>नाम / परिवार का नाम</label>
+                        <input class="input" id="treeName" name="tree_name" required placeholder="जैसे — शर्मा परिवार / श्री रामलाल जी">
+                    </div>
+
+                    <button class="btn dark" id="btnTreeSubmit" style="width:100%;margin-top:17px" type="submit">
+                        🌱 वॉलेट से वृक्ष संकल्प समर्पित करें
+                    </button>
+
+                    <div class="notice" style="margin-top:12px">
+                        🔐 भुगतान सीधे लॉगिन किए हुए खाते के <b>Digital Wallet</b> से होगा।
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="nameCards">
+            <button type="button" class="nameCard active" onclick="pickDedication('मेरे नाम से',this)">
+                <b>🙋 मेरा वृक्ष</b><small>अपने नाम से</small>
+            </button>
+            <button type="button" class="nameCard" onclick="pickDedication('माता-पिता के नाम से',this)">
+                <b>🙏 माता-पिता</b><small>आशीर्वाद की स्मृति</small>
+            </button>
+            <button type="button" class="nameCard" onclick="pickDedication('परिवार के नाम से',this)">
+                <b>👨‍👩‍👧‍👦 परिवार</b><small>परिवार की ओर से</small>
+            </button>
+            <button type="button" class="nameCard" onclick="pickDedication('प्रियजन की स्मृति में',this)">
+                <b>🕊️ स्मृति वृक्ष</b><small>प्रियजन की स्मृति</small>
+            </button>
+        </div>
+    </div>
+    </section>
+
+    <section class="section">
+    <div class="container">
+        <div class="head">
+            <div class="kicker">प्रकृति के प्रहरी</div>
+            <h2>जल, वायु और धरती —<br>तीनों की रक्षा।</h2>
+            <p>
+                वृक्षारोपण के साथ जल संरक्षण, वृक्ष संरक्षण, हरित क्षेत्र और
+                स्वच्छता जैसे प्रयासों में भी वॉलेट से सेवा समर्पित की जा सकती है।
+            </p>
+        </div>
+
+        <div class="cards">
+            <div class="card">
+                <div class="icon">💧</div>
+                <h3>जल संरक्षण</h3>
+                <p>जल-स्रोतों, वर्षा जल, सिंचाई और पानी की उपलब्धता से जुड़े संरक्षण प्रयासों में सहयोग।</p>
+            </div>
+            <div class="card">
+                <div class="icon">🌬️</div>
+                <h3>वायु संरक्षण</h3>
+                <p>अधिक हरियाली और वृक्षों की देखभाल के माध्यम से स्वच्छ प्राकृतिक वातावरण की दिशा में सहयोग।</p>
+            </div>
+            <div class="card">
+                <div class="icon">🌱</div>
+                <h3>हरित क्षेत्र</h3>
+                <p>पौधों की देखभाल, भूमि संरक्षण और हरित क्षेत्र के विकास से जुड़े कार्यों में सेवा।</p>
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <section class="section" style="padding-top:0">
+    <div class="container">
+        <div class="gallery">
+            <article class="galleryCard">
+                <img src="https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=1500&q=88" alt="वृक्षारोपण">
+                <div><h3>🌳 वृक्षारोपण</h3><p>हरित क्षेत्र निर्माण और पौधों के संरक्षण की दिशा में सेवा।</p></div>
+            </article>
+            <article class="galleryCard">
+                <img src="https://images.unsplash.com/photo-1468421870903-4df1664ac249?auto=format&fit=crop&w=1500&q=88" alt="जल संरक्षण">
+                <div><h3>💧 जल संरक्षण</h3><p>जल की बचत, उपलब्धता और पौधों के लिए आवश्यक जल व्यवस्था में सहयोग।</p></div>
+            </article>
+            <article class="galleryCard">
+                <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1500&q=88" alt="हरित क्षेत्र">
+                <div><h3>🌿 हरित भविष्य</h3><p>आज का छोटा संकल्प आने वाली पीढ़ियों के लिए बेहतर वातावरण की दिशा में प्रयास है।</p></div>
+            </article>
+        </div>
+    </div>
+    </section>
+
+    <section class="section" id="daan">
+    <div class="container">
+        <div class="head">
+            <div class="kicker">वॉलेट सेवा समर्पण</div>
+            <h2>वृक्ष संकल्प के अलावा<br>धन दान और सेवा दान करें।</h2>
+            <p>
+                ₹1 से धन दान शुरू करें। सेवा का उद्देश्य चुनें और भुगतान अपने
+                लॉगिन किए हुए Digital Wallet से सीधे करें।
+            </p>
+        </div>
+
+        <div class="donationGrid">
+
+            <div class="donate">
+                <div class="kicker">DHAN DAAN</div>
+                <h2 style="font-size:31px">जितनी श्रद्धा, उतना समर्पण।</h2>
+                <p style="color:var(--muted);line-height:1.8">
+                    अपनी सामर्थ्य के अनुसार राशि चुनें या स्वयं राशि लिखें। न्यूनतम ₹1 है।
+                </p>
+
+                <form id="moneyForm" onsubmit="submitMoneyForm(event)">
+                    <div class="amounts">
+                        <button type="button" class="amount" onclick="setMoney(51,this)">₹51</button>
+                        <button type="button" class="amount active" onclick="setMoney(101,this)">₹101</button>
+                        <button type="button" class="amount" onclick="setMoney(501,this)">₹501</button>
+                        <button type="button" class="amount" onclick="setMoney(1100,this)">₹1,100</button>
+                    </div>
+
+                    <div class="field">
+                        <label>दान राशि</label>
+                        <input class="input" id="moneyAmount" name="amount" type="number" min="1" step="0.01" value="101" required>
+                    </div>
+
+                    <div class="field">
+                        <label>सेवा का उद्देश्य</label>
+                        <select class="select" name="purpose" id="moneyPurpose">
+                            <option>प्रकृति संरक्षण सामान्य सेवा</option>
+                            <option>जल संरक्षण</option>
+                            <option>वृक्ष संरक्षण</option>
+                            <option>वृक्षारोपण अभियान</option>
+                            <option>हरित क्षेत्र विकास</option>
+                            <option>स्वच्छता एवं पर्यावरण सेवा</option>
+                        </select>
+                    </div>
+
+                    <button class="btn dark" id="btnMoneySubmit" style="width:100%;margin-top:17px" type="submit">
+                        🤲 वॉलेट से धन दान करें
+                    </button>
+                </form>
+            </div>
+
+            <div class="donate">
+                <div class="kicker">SEVA DAAN</div>
+                <h2 style="font-size:31px">विशेष प्रकृति सेवा चुनें।</h2>
+                <p style="color:var(--muted);line-height:1.8">
+                    किसी विशेष प्रकृति कार्य के लिए राशि के साथ अपना सेवा समर्पण दर्ज करें।
+                </p>
+
+                <form id="serviceForm" onsubmit="submitServiceForm(event)">
+                    <div class="services">
+                        <button type="button" class="service active" onclick="pickService('वृक्षारोपण सेवा',this)">
+                            <b>🌱 वृक्षारोपण</b><small>पौधे लगाने में सहयोग</small>
+                        </button>
+                        <button type="button" class="service" onclick="pickService('वृक्ष संरक्षण सेवा',this)">
+                            <b>🛡️ वृक्ष संरक्षण</b><small>देखभाल एवं सुरक्षा</small>
+                        </button>
+                        <button type="button" class="service" onclick="pickService('जल संरक्षण सेवा',this)">
+                            <b>💧 जल संरक्षण</b><small>जल व्यवस्था में सहयोग</small>
+                        </button>
+                        <button type="button" class="service" onclick="pickService('स्वच्छता सेवा',this)">
+                            <b>🧹 स्वच्छता</b><small>पर्यावरण स्वच्छता</small>
+                        </button>
+                        <button type="button" class="service" onclick="pickService('श्रम सेवा',this)">
+                            <b>🤲 श्रम सेवा</b><small>अभियान सहयोग</small>
+                        </button>
+                        <button type="button" class="service" onclick="pickService('प्रकृति जागरूकता सेवा',this)">
+                            <b>📣 जागरूकता</b><small>प्रकृति संदेश विस्तार</small>
+                        </button>
+                    </div>
+
+                    <input type="hidden" id="servicePurpose" name="purpose" value="वृक्षारोपण सेवा">
+
+                    <div class="field">
+                        <label>सेवा राशि</label>
+                        <input class="input" id="serviceAmount" name="amount" type="number" min="1" step="0.01" value="101" required>
+                    </div>
+
+                    <button class="btn primary" id="btnServiceSubmit" style="width:100%;margin-top:17px" type="submit">
+                        🌿 वॉलेट से सेवा समर्पित करें
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    </section>
+
+    <section class="section">
+    <div class="container">
+        <div class="cta">
+            <div class="kicker" style="color:#efd48a">एक संकल्प • एक पौधा • एक भविष्य</div>
+            <h2 style="margin-top:10px">आज प्रकृति के लिए कुछ कीजिए।</h2>
+            <p>
+                आपका सहयोग वृक्षारोपण, जल संरक्षण, वृक्ष संरक्षण और हरित वातावरण
+                से जुड़े प्रयासों को आगे बढ़ाने में सहभागी बन सकता है।
+            </p>
+            <a class="btn primary" href="#vriksh">🌳 ₹1,100 में वृक्ष संकल्प</a>
+            <a class="btn light" style="margin-left:6px" href="#daan">🤲 धन / सेवा दान</a>
+        </div>
+    </div>
+    </section>
+
+</main>
+
+<footer class="footer">
+    <img src="https://sanatansevasamiti.org/Images/ss/PRO1781289469_dp.jpg" alt="लोगो">
+    <div><b>प्रकृति संरक्षण सेवा</b></div>
+    <div style="margin-top:4px">Profile ID: PRO1781289469</div>
+    <div style="margin-top:10px">वृक्षारोपण • जल संरक्षण • वायु संरक्षण • हरित भविष्य</div>
+</footer>
+
+<div class="bottom">
+    <a href="#vriksh">🌳 वृक्ष ₹1,100</a>
+    <a href="#daan">🤲 दान / सेवा</a>
+</div>
+
+<script>
+const PROFILE_ID = "PRO1781289469";
+let currentBalance = 0;
+let currentUserId = "";
+let currentUserName = "सनातन सेवक";
+
+function fmt(n){
+    return '₹' + Number(n || 0).toLocaleString('en-IN',{
+        minimumFractionDigits:2,
+        maximumFractionDigits:2
+    });
+}
+
+function updateTree(){
+    let q = parseInt(document.getElementById('treeQty').value || 1);
+    q = Math.max(1, Math.min(10000, q));
+    document.getElementById('treeQty').value = q;
+    document.getElementById('treeTotal').textContent = fmt(q * 1100);
+}
+
+function changeTree(v){
+    let q = parseInt(document.getElementById('treeQty').value || 1);
+    q = Math.max(1, Math.min(10000, q + v));
+    document.getElementById('treeQty').value = q;
+    updateTree();
+}
+
+function pickDedication(v, el){
+    document.getElementById('dedication').value = v;
+    document.querySelectorAll('.nameCard').forEach(x=>x.classList.remove('active'));
+    el.classList.add('active');
+}
+
+function setMoney(v, el){
+    document.getElementById('moneyAmount').value = v;
+    document.querySelectorAll('.amount').forEach(x=>x.classList.remove('active'));
+    el.classList.add('active');
+}
+
+function pickService(v, el){
+    document.getElementById('servicePurpose').value = v;
+    document.querySelectorAll('.service').forEach(x=>x.classList.remove('active'));
+    el.classList.add('active');
+}
+
+function showError(msg){
+    const box = document.getElementById('errorBox');
+    document.getElementById('errorMsg').innerText = msg;
+    box.style.display = 'block';
+    box.scrollIntoView({ behavior:'smooth', block:'center' });
+}
+
+function hideError(){
+    document.getElementById('errorBox').style.display = 'none';
+}
+
+async function loadUserData(){
+    try {
+        const rawUser = localStorage.getItem("sss_user_data");
+        if(rawUser){
+            const u = JSON.parse(rawUser);
+            currentUserId = u.unique_id || u.id || "";
+            currentUserName = u.full_name || "सनातन सेवक";
+        }
+
+        const res = await fetch(`https://sanatansevasamiti.org/api/get_profile_full.php?action=detail&profile_id=${PROFILE_ID}&user_id=${encodeURIComponent(currentUserId)}`);
+        const data = await res.json();
+
+        if(data && data.status === 'success'){
+            if(data.user_data && data.user_data.is_logged_in){
+                currentBalance = parseFloat(data.user_data.wallet_balance) || 0;
+                document.getElementById('topWalletBalance').innerText = fmt(currentBalance);
+                localStorage.setItem("sss_wallet_balance", currentBalance);
+            }
+        }
+    } catch(e){
+        console.error("Prakriti Daan Load Error:", e);
+    }
+}
+
+async function submitTreeForm(e){
+    e.preventDefault();
+    hideError();
+
+    if(!currentUserId){
+        alert("कृपया सेवा के लिए पहले ऐप में लॉगिन करें।");
+        window.location.href = "app_login.html";
+        return;
+    }
+
+    const q = Math.max(1, parseInt(document.getElementById('treeQty').value || 1));
+    const name = document.getElementById('treeName').value.trim();
+    const dedication = document.getElementById('dedication').value;
+    const amount = q * 1100;
+
+    if(!name){
+        showError('कृपया वृक्ष के लिए नाम / परिवार का नाम दर्ज करें।');
+        return;
+    }
+
+    if(amount > currentBalance){
+        showError('आपके वॉलेट में पर्याप्त राशि नहीं है। आवश्यक: ' + fmt(amount) + ' | उपलब्ध: ' + fmt(currentBalance));
+        return;
+    }
+
+    const btn = document.getElementById('btnTreeSubmit');
+    btn.disabled = true;
+    btn.innerText = "⏳ वृक्ष संकल्प समर्पित हो रहा है...";
+
+    const sevaDesc = `🌳 वृक्षारोपण संकल्प — ${q} वृक्ष | ${dedication} | नाम: ${name}`;
+
+    await executeDaanAPI(amount, sevaDesc, btn, "🌱 वॉलेट से वृक्ष संकल्प समर्पित करें");
+}
+
+async function submitMoneyForm(e){
+    e.preventDefault();
+    hideError();
+
+    if(!currentUserId){
+        alert("कृपया सेवा के लिए पहले ऐप में लॉगिन करें।");
+        window.location.href = "app_login.html";
+        return;
+    }
+
+    const amount = parseFloat(document.getElementById('moneyAmount').value) || 0;
+    const purpose = document.getElementById('moneyPurpose').value;
+
+    if(amount < 1){
+        showError('न्यूनतम धन दान ₹1 है।');
+        return;
+    }
+
+    if(amount > currentBalance){
+        showError('आपके वॉलेट में पर्याप्त राशि नहीं है। आवश्यक: ' + fmt(amount) + ' | उपलब्ध: ' + fmt(currentBalance));
+        return;
+    }
+
+    const btn = document.getElementById('btnMoneySubmit');
+    btn.disabled = true;
+    btn.innerText = "⏳ धन दान समर्पित हो रहा है...";
+
+    const sevaDesc = `🤲 धन दान — ${purpose}`;
+
+    await executeDaanAPI(amount, sevaDesc, btn, "🤲 वॉलेट से धन दान करें");
+}
+
+async function submitServiceForm(e){
+    e.preventDefault();
+    hideError();
+
+    if(!currentUserId){
+        alert("कृपया सेवा के लिए पहले ऐप में लॉगिन करें।");
+        window.location.href = "app_login.html";
+        return;
+    }
+
+    const amount = parseFloat(document.getElementById('serviceAmount').value) || 0;
+    const purpose = document.getElementById('servicePurpose').value;
+
+    if(amount < 1){
+        showError('न्यूनतम सेवा राशि ₹1 है।');
+        return;
+    }
+
+    if(amount > currentBalance){
+        showError('आपके वॉलेट में पर्याप्त राशि नहीं है। आवश्यक: ' + fmt(amount) + ' | उपलब्ध: ' + fmt(currentBalance));
+        return;
+    }
+
+    const btn = document.getElementById('btnServiceSubmit');
+    btn.disabled = true;
+    btn.innerText = "⏳ सेवा समर्पित हो रही है...";
+
+    const sevaDesc = `🌿 सेवा दान — ${purpose}`;
+
+    await executeDaanAPI(amount, sevaDesc, btn, "🌿 वॉलेट से सेवा समर्पित करें");
+}
+
+async function executeDaanAPI(amount, sevaDesc, btn, originalText){
+    try {
+        const payload = {
+            profile_id: PROFILE_ID,
+            user_id: currentUserId,
+            type: "dhan",
+            amount: amount,
+            seva_desc: sevaDesc
+        };
+
+        const res = await fetch(`https://sanatansevasamiti.org/api/get_profile_full.php?action=donate`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+
+        const data = await res.json();
+
+        if(data && data.status === 'success'){
+            document.getElementById('rcpName').innerText = currentUserName;
+            document.getElementById('rcpAmount').innerText = fmt(amount);
+            document.getElementById('rcpDesc').innerText = sevaDesc;
+            document.getElementById('rcpNo').innerText = data.receipt_no || "---";
+            document.getElementById('rcpWallet').innerText = fmt(data.new_balance || (currentBalance - amount));
+            document.getElementById('rcpLink').href = data.receipt_url || "#";
+
+            const successBox = document.getElementById('receiptSuccessBox');
+            successBox.style.display = 'block';
+            successBox.scrollIntoView({ behavior:'smooth', block:'center' });
+
+            loadUserData();
+        } else {
+            showError(data.message || "समर्पण दर्ज करने में समस्या आई।");
+        }
+    } catch(err){
+        showError("सर्वर से संपर्क नहीं हो पाया। इंटरनेट कनेक्शन जाँचें।");
+    } finally {
+        btn.disabled = false;
+        btn.innerText = originalText;
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    updateTree();
+    loadUserData();
+});
+</script>
+
+</body>
+</html>
