@@ -317,23 +317,22 @@
     </style>
 </head>
 <body>
-
 <!-- कवर फोटो -->
 <div class="cover" id="coverContainer" onclick="openLightbox(document.getElementById('coverImg').src)">
-    <img id="coverImg" src="https://sanatansevasamiti.org/Images/ss/PRO1781011341_cover.jpg" onerror="this.src='https://sanatansevasamiti.org/public_html/Images/kirtan.jpg';" alt="Cover Photo">
-</div>
-
-<!-- डीपी और विशेष विकल्प बटन -->
+    <img id="coverImg" src="Images/ss/PRO1781011341_cover.jpg" onerror="this.onerror=null; this.src='https://sanatansevasamiti.org/Images/kirtan.jpg';" alt="Cover Photo">
+</div><!-- डीपी और विशेष विकल्प बटन -->
 <div class="profile-header-bar">
     <div class="dp-area">
-        <img class="dp" id="profileDpImg" src="https://sanatansevasamiti.org/Images/ss/PRO1781011341_dp.jpg" onerror="this.src='https://sanatansevasamiti.org/public_html/Images/maharaj.jpg';" alt="Profile Photo" onclick="openLightbox(this.src)">
+        <img class="dp" id="profileDpImg" src="Images/ss/PRO1781011341_dp.jpg" onerror="this.onerror=null; this.src='https://sanatansevasamiti.org/Images/maharaj.jpg';" alt="Profile Photo" onclick="openLightbox(this.src)">
         <span class="fb-menu-trigger" onclick="toggleFbMenu(event)">विकल्प ▼</span>
         <div id="fbDropdown" class="fb-dropdown-menu">
             <a href="javascript:void(0)" onclick="openLightbox(document.getElementById('profileDpImg').src)">🖼️ View Profile Photo</a>
             <a href="javascript:void(0)" onclick="alert('कथा एवं संकीर्तन दर्शन शीघ्र उपलब्ध होगा।')">📖 View Story</a>
         </div>
     </div>
+</div>
 
+    
     <a href="javascript:void(0);" class="under-cover-btn" onclick="toggleVishesh()">
         🌟 विस्तार से जानें 
     </a>
@@ -501,7 +500,92 @@
 <div id="posts" class="tab-content" style="display:block;">
     <p style="text-align:center; color:#777; background:#fff; padding:15px; border-radius:10px;">पोस्ट्स लोड हो रही हैं...</p>
 </div>
+<!-- 1. पोस्ट्स टैब -->
+<div id="posts" class="tab-content" style="display:block;">
+    <?php if(mysqli_num_rows($posts) > 0) { 
+        while($post = mysqli_fetch_assoc($posts)) { 
+            // प्रोफाइल का विवरण प्राप्त करें
+            $post_prof_q = mysqli_query($conn, "SELECT * FROM profiles WHERE profile_id='".$post['profile_id']."'");
+            $post_prof = mysqli_fetch_assoc($post_prof_q);
+            $links = json_decode($post['links'], true);
+    ?>
+    <div class="post-card">
+        <!-- पोस्ट हेडर (यूजर DP और नाम) -->
+        <div class="post-header" onclick="window.location='<?php echo $post_prof['profile_url'] ?? '#'; ?>'">
+            <img src="Images/ss/<?php echo htmlspecialchars($post['profile_id']); ?>_dp.jpg" 
+                 onerror="this.onerror=null; this.src='Images/maharaj.jpg';" 
+                 alt="User DP">
+            <div class="user-info">
+                <h4><?php echo htmlspecialchars($post_prof['name'] ?? 'सनातन सेवक'); ?></h4>
+                <p><?php echo htmlspecialchars($post_prof['tagline'] ?? 'सनातन सेवा समिति'); ?></p>
+            </div>
+        </div>
 
+        <!-- मीडिया कंटेनर (YouTube / Video / Images Slider) -->
+        <div class="media-container">
+            <?php if(!empty($links) && is_array($links)) { 
+                if($post['post_type'] == 'youtube') { 
+                    foreach($links as $link) { 
+                        $isShort = isShorts($link); ?>
+                        <div style="width: 100%;">
+                            <iframe class="yt-frame <?php echo $isShort ? 'yt-shorts' : ''; ?>" 
+                                    src="<?php echo htmlspecialchars(getEmbedUrl($link)); ?>" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                    <?php } 
+                } elseif($post['post_type'] == 'video') { 
+                    foreach($links as $link) { ?>
+                        <div style="width: 100%;">
+                            <video class="media-content" controls src="<?php echo htmlspecialchars($link); ?>"></video>
+                        </div>
+                    <?php } 
+                } else { ?>
+                    <!-- इमेज और स्लाइडर -->
+                    <div class="slider-wrapper" id="slider-<?php echo $post['id']; ?>">
+                        <div class="slides-container" id="slides-<?php echo $post['id']; ?>">
+                            <?php foreach($links as $link) { ?>
+                                <div class="slide-item">
+                                    <img src="<?php echo htmlspecialchars($link); ?>" 
+                                         onclick="openLightbox(this.src)" 
+                                         alt="Post Image" 
+                                         loading="lazy">
+                                </div>
+                            <?php } ?>
+                        </div>
+                        <?php if(count($links) > 1) { ?>
+                            <button type="button" class="slider-btn prev-btn" onclick="moveSlide(<?php echo $post['id']; ?>, -1)">&#10094;</button>
+                            <button type="button" class="slider-btn next-btn" onclick="moveSlide(<?php echo $post['id']; ?>, 1)">&#10095;</button>
+                        <?php } ?>
+                    </div>
+                <?php } 
+            } ?>
+        </div>
+
+        <!-- कैप्शन / विवरण -->
+        <div class="caption-box">
+            <div id="text-<?php echo $post['id']; ?>" class="hidden-caption">
+                <?php echo nl2br(htmlspecialchars($post['caption'])); ?>
+            </div>
+            <?php if(mb_strlen($post['caption']) > 120) { ?>
+                <button type="button" class="see-more" onclick="showMore(<?php echo $post['id']; ?>)">और पढ़ें...</button>
+            <?php } ?>
+        </div>
+
+        <!-- एक्शन बटन (Like और Share) -->
+        <div class="actions">
+            <button type="button" class="btn-act" onclick="toggleLike(this)">❤️ Like</button>
+            <button type="button" class="btn-act" onclick="window.open('https://wa.me/?text=' + encodeURIComponent('देखें: https://sanatansevasamiti.org/feed.php?postid=<?php echo $post['id']; ?>'), '_blank')">🔗 Share</button>
+        </div>
+    </div>
+    <?php } 
+    } else { ?>
+        <p style="text-align:center; color:#777; background:#fff; padding:20px; border-radius:12px; border: 1px dashed var(--bhagwa);">
+            इस प्रोफाइल पर अभी कोई पोस्ट उपलब्ध नहीं है।
+        </p>
+    <?php } ?>
+</div>
 <!-- 2. कार्यकारिणी टैब -->
 <div id="karyakarini" class="tab-content">
     <div style="background:#fff; padding:20px; border-radius:12px; border:2px solid var(--red);">
@@ -509,19 +593,85 @@
         <p style="text-align:center; color:#555;">श्री आनन्द लहरी - परम पूज्य सद्गुरुदेव स्वामी सच्चिदानंद जी महाराज के पावन सान्निध्य में संचालित भक्ति एवं संकीर्तन सेवा प्रकल्प।</p>
     </div>
 </div>
-
-<!-- 3. दान सूची टैब -->
+<!-- 3. दान सूची (रियल ट्रांजैक्शन विवरण) टैब -->
 <div id="daan" class="tab-content">
     <h3 style="color:var(--red); text-align:center; border-bottom: 2px solid var(--bhagwa); padding-bottom: 10px; margin-top: 0; margin-bottom: 15px;">
         दान विवरण
     </h3>
 
-    <a href="anand_lahari_daan.html" class="btn-daan-full">
+    <!-- दान करने का 3D बटन -->
+    <a href="https://sanatansevasamiti.org/samiti/anand_lahari_daan.php" class="btn-daan-full">
         🔱 अभी दान करें (Donate Now) 🔱
     </a>
 
     <div id="daanContainer">
-        <p style="text-align:center; color:#777; background:#fff; padding:20px; border-radius:10px;">दान सूची लोड हो रही है...</p>
+        <?php
+        // प्रोफाइल के अनुसार दान/ट्रांजैक्शन का डेटा निकालना
+        $tx_query = mysqli_query($conn, "
+            SELECT pt.*, u.full_name, u.unique_id 
+            FROM profile_transactions pt 
+            LEFT JOIN sss_users u ON pt.user_id = u.unique_id 
+            WHERE pt.profile_id = '$pid' 
+            ORDER BY pt.tx_date DESC, pt.id DESC
+        ");
+
+        if($tx_query && mysqli_num_rows($tx_query) > 0) {
+            while($tx = mysqli_fetch_assoc($tx_query)) { 
+                
+                // राशि या सेवा विवरण सेट करना
+                $amt_display = "";
+                if(isset($tx['amount_type']) && $tx['amount_type'] == 'rupees') {
+                    $amt_display = "₹" . number_format($tx['amount'], 2);
+                } elseif(isset($tx['amount_type']) && $tx['amount_type'] == 'seva') {
+                    $amt_display = htmlspecialchars($tx['seva_desc'] ?? '');
+                } else {
+                    $amt_display = "₹" . number_format($tx['amount'] ?? 0, 2) . " + " . htmlspecialchars($tx['seva_desc'] ?? '');
+                }
+
+                // केवल क्रेडिट (प्राप्त दान) दिखाना
+                if(isset($tx['type']) && $tx['type'] == 'credit') { ?>
+                    <div class="daan-card" style="border-left: 6px solid #28a745; align-items: flex-start;">
+                       
+                        <div style="width: 60px; height: 60px; border-radius: 50%; background: #e8f5e9; border: 2px solid var(--bhagwa); display: flex; align-items: center; justify-content: center; font-size: 28px; flex-shrink: 0; box-shadow: 0 3px 6px rgba(0,0,0,0.1);">
+                            📥
+                        </div>
+
+                        <div style="flex: 1; margin-left: 12px;">
+                            <div class="mname">
+                                <?php echo !empty($tx['full_name']) ? htmlspecialchars($tx['full_name']) : 'अज्ञात दानी'; ?>
+                                <span class="tx-badge tx-badge-credit">जमा (Credit)</span>
+                            </div>
+                            
+                            <?php if(!empty($tx['unique_id'])) { ?>
+                                <div style="font-size: 12px; color: #666; font-weight: bold; margin-bottom: 2px;">
+                                    ID: <?php echo htmlspecialchars($tx['unique_id']); ?>
+                                </div>
+                            <?php } ?>
+
+                            <div style="color: #28a745; font-weight: 800; font-size: 17px; margin-top: 2px;">
+                                + <?php echo $amt_display; ?>
+                            </div>
+
+                            <small style="color: var(--dark-bhagwa); font-weight: 600; display: block; margin-top: 4px;">
+                                मोड: <?php echo strtoupper($tx['payment_mode'] ?? 'UPI'); ?> | 🗓️ <?php echo !empty($tx['tx_date']) ? date("d M, Y", strtotime($tx['tx_date'])) : ''; ?>
+                            </small>
+                        </div>
+
+                        <!-- रसीद बटन -->
+                        <div style="margin-left: 10px; align-self: center;">
+                            <a href="view_receipt.php?tx_id=<?php echo urlencode($tx['tx_id'] ?? ''); ?>" target="_blank" class="btn-receipt">
+                                🧾 रसीद
+                            </a>
+                        </div>
+                    </div>
+
+                <?php } 
+            } 
+        } else { ?>
+            <p style="text-align: center; color: #777; background: #fff; padding: 20px; border-radius: 10px; border: 2px dashed var(--bhagwa);">
+                इस प्रोफाइल के लिए अभी कोई दान रिकॉर्ड मौजूद नहीं है।
+            </p>
+        <?php } ?>
     </div>
 </div>
 
