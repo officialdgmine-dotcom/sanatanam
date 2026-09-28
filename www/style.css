@@ -1,0 +1,1319 @@
+/**
+ * ==========================================================================
+ * SANATANAM DESIGN SYSTEM — style.css
+ * Authentic 'Sanatana' Aesthetic for Welcome, Onboarding & Registration
+ * Traditional Palette: Saffron (भगवा), Gold (स्वर्ण), Deep Red (रक्त/कुमकुम)
+ * Mobile-First, Highly Responsive & Accessible
+ * ==========================================================================
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+    /* ----------------------------------------------------------------------
+       1. TRADITIONAL SANATANA COLOR PALETTE
+       ---------------------------------------------------------------------- */
+    /* Saffron (भगवा / केसरिया) */
+    --saffron-vibrant: #FF7A00;
+    --saffron-primary: #FF8800;
+    --saffron-deep:    #D44000;
+    --saffron-dark:    #B82E00;
+    --saffron-amber:   #FFA726;
+    --saffron-light:   #FFB74D;
+    --saffron-soft:    #FFE0B2;
+    --saffron-glow:    rgba(255, 122, 0, 0.35);
+
+    /* Gold (स्वर्ण / पीताम्बरी) */
+    --gold-royal:      #D4AF37;
+    --gold-primary:    #D7A83E;
+    --gold-border:     #D4A017;
+    --gold-light:      #FFD54F;
+    --gold-shimmer:    #FFE69B;
+    --gold-cream:      #FFF4C9;
+    --gold-dark:       #A86B12;
+    --gold-glow:       rgba(255, 213, 79, 0.32);
+
+    /* Deep Red (रक्त / कुमकुम / सिंदूर / रुद्राक्ष वर्ण) */
+    --red-deep:        #8A0000;
+    --red-crimson:     #7B2107;
+    --red-wine:        #651805;
+    --red-dark:        #421006;
+    --red-temple:      #350802;
+    --red-mahogany:    #240502;
+
+    /* Chandan & Sacred Ivory (चन्दन / श्वेत) */
+    --chandan-bg:      #FFFDF7;
+    --chandan-card:    #FFF9EE;
+    --chandan-soft:    #FFF3E0;
+    --chandan-text:    #4A1604;
+    --text-primary:    #2A0A02;
+    --text-secondary:  #6D4C41;
+    --text-muted:      rgba(255, 249, 238, 0.72);
+    --text-gold:       #FFE6A0;
+
+    /* Glassmorphic & Structural */
+    --glass-amber:     rgba(255, 220, 150, 0.08);
+    --glass-border:    rgba(255, 225, 145, 0.28);
+    --glass-white:     rgba(255, 255, 255, 0.96);
+    --card-radius:     26px;
+    --element-radius:  14px;
+    --min-touch-target: 48px;
+
+    /* Legacy & Cross-Page Compatibility Aliases */
+    --bhagwa:          var(--saffron-primary);
+    --bhagwa-deep:     var(--saffron-deep);
+    --lava:            var(--red-deep);
+    --gold:            var(--gold-light);
+    --saffron:         var(--saffron-vibrant);
+    --saffron2:        var(--saffron-amber);
+    --deep:            var(--red-dark);
+    --deep2:           var(--red-wine);
+    --wine:            var(--red-crimson);
+    --glass:           var(--glass-amber);
+    --white:           #FFF9EE;
+    --muted:           var(--text-muted);
+    --radius:          var(--card-radius);
+
+    /* ----------------------------------------------------------------------
+       2. SACRED GRADIENTS
+       ---------------------------------------------------------------------- */
+    /* Temple Atmosphere Background */
+    --grad-sanatana-dark:
+        radial-gradient(circle at 50% 5%, rgba(255, 218, 105, 0.42) 0%, rgba(255, 157, 36, 0.30) 13%, rgba(255, 122, 0, 0.17) 28%, transparent 50%),
+        radial-gradient(circle at 0% 100%, rgba(255, 91, 0, 0.42), transparent 42%),
+        radial-gradient(circle at 100% 70%, rgba(255, 188, 54, 0.24), transparent 38%),
+        linear-gradient(145deg, #4B1005 0%, #681805 28%, #7A2107 55%, #541206 78%, #3B0C05 100%);
+
+    --grad-sanatana-light:
+        radial-gradient(circle at 50% 0%, #FF8800 0%, #B82E00 45%, #4A0000 100%);
+
+    --bg-grad: var(--grad-sanatana-light);
+
+    /* Traditional Button & Interactive Gradients */
+    --grad-btn-bhagwa:
+        linear-gradient(135deg, #FF7A00 0%, #D44000 50%, #8A0000 100%);
+
+    --grad-btn-gold:
+        linear-gradient(135deg, #FFF0B0 0%, #F3C65E 40%, #D4A017 75%, #FFE49A 100%);
+
+    --grad-gold-text:
+        linear-gradient(100deg, #FFF0B8 0%, #E7AF42 45%, #FFF4C9 70%, #D89B2E 100%);
+
+    --grad-sacred-trim:
+        linear-gradient(90deg, #FF7A00 0%, #FFD54F 35%, #D44000 70%, #8A0000 100%);
+
+    --grad-halo:
+        radial-gradient(circle, rgba(255, 236, 158, 0.48), rgba(255, 173, 42, 0.28) 28%, rgba(255, 112, 0, 0.14) 48%, transparent 70%);
+}
+
+/* --------------------------------------------------------------------------
+   3. UNIVERSAL RESET & FOUNDATIONS
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+body {
+    width: 100%;
+    min-height: 100%;
+    min-height: 100dvh;
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans Devanagari', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--text-primary);
+    background-color: var(--red-dark);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   4. LAYOUT & RESPONSIVE CARD CONTAINERS
+   -------------------------------------------------------------------------- */
+/* Full-screen immersive container (Welcome Flow / Onboarding) */
+.welcome-page-body {
+    width: 100%;
+    height: 100%;
+    height: 100dvh;
+    overflow: hidden;
+    color: #FFF9EE;
+    background: var(--red-dark);
+}
+
+.welcome-page-body .app-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    height: 100dvh;
+    min-height: 100dvh;
+    overflow: hidden;
+    background: var(--grad-sanatana-dark);
+    isolation: isolate;
+}
+
+/* Aura glowing effect behind divine logos in welcome flow */
+.welcome-page-body .app-card::before {
+    content: "";
+    position: absolute;
+    width: 90vw;
+    height: 90vw;
+    max-width: 520px;
+    max-height: 520px;
+    border-radius: 50%;
+    left: 50%;
+    top: -280px;
+    transform: translateX(-50%);
+    background: var(--grad-halo);
+    filter: blur(6px);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Micro sacred dot pattern overlay */
+.welcome-page-body .app-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(255, 235, 165, 0.26) 1px, transparent 1.5px);
+    background-size: 42px 42px;
+    opacity: 0.16;
+    mask-image: linear-gradient(to bottom, black, transparent 82%);
+    -webkit-mask-image: linear-gradient(to bottom, black, transparent 82%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Scrollable Form Container (Registration, Welcome Letter & Account Pages) */
+.form-page-body {
+    background: var(--grad-sanatana-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: max(16px, env(safe-area-inset-top)) 12px max(30px, env(safe-area-inset-bottom));
+}
+
+.form-page-body .app-card {
+    width: 100%;
+    max-width: 440px;
+    background: var(--glass-white);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-radius: var(--card-radius);
+    border: 2px solid var(--gold-border);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+    padding: 24px 18px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* Sacred tricolor ornamental header ribbon (Saffron - Gold - Crimson) */
+.form-page-body .app-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    border-radius: var(--card-radius) var(--card-radius) 0 0;
+    background: var(--grad-sacred-trim);
+}
+
+/* --------------------------------------------------------------------------
+   5. BRANDING & HEADER DECORATIONS
+   -------------------------------------------------------------------------- */
+.brand-box {
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+.brand-logo-wrap,
+.logo-wrap {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 10px;
+    border-radius: 50%;
+    padding: 3.5px;
+    background: linear-gradient(135deg, var(--gold-light), var(--saffron-vibrant));
+    box-shadow: 0 8px 24px rgba(138, 0, 0, 0.35);
+    transition: transform 0.3s ease;
+}
+
+.brand-logo,
+.logo-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #FFFFFF;
+    display: block;
+}
+
+.brand-title,
+.title {
+    color: var(--red-deep);
+    font-size: clamp(19px, 5vw, 23px);
+    font-weight: 900;
+    margin: 4px 0;
+    letter-spacing: 0.5px;
+    text-shadow: 0 1px 2px rgba(212, 160, 23, 0.25);
+}
+
+.brand-sub {
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 700;
+    margin-top: 3px;
+    letter-spacing: 0.4px;
+}
+
+/* Welcome Flow Top Brand Bar */
+.top-brand {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: max(18px, env(safe-area-inset-top)) 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 20;
+}
+
+.brand-lockup {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.brand-mark {
+    width: 40px;
+    height: 40px;
+    border-radius: 13px;
+    object-fit: cover;
+    border: 1px solid rgba(255, 230, 157, 0.68);
+    box-shadow: 0 0 25px rgba(255, 174, 43, 0.32), 0 0 50px rgba(255, 121, 0, 0.13), inset 0 0 15px rgba(255, 255, 255, 0.10);
+}
+
+.top-brand .brand-name {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    color: var(--text-gold);
+    text-shadow: 0 0 16px rgba(255, 207, 93, 0.28);
+}
+
+.top-brand .brand-sub {
+    margin-top: 2px;
+    font-size: 8.5px;
+    letter-spacing: 1.8px;
+    color: rgba(255, 249, 238, 0.65);
+    text-transform: uppercase;
+}
+
+.step-count {
+    min-width: 56px;
+    padding: 7px 11px;
+    text-align: center;
+    border: 1px solid rgba(255, 224, 142, 0.35);
+    border-radius: 50px;
+    background: rgba(119, 30, 5, 0.42);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    color: rgba(255, 249, 238, 0.85);
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.stepper-dots {
+    position: absolute;
+    top: 78px;
+    left: 20px;
+    right: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    z-index: 20;
+}
+
+.stepper-dots span {
+    height: 3.5px;
+    border-radius: 10px;
+    background: rgba(255, 229, 161, 0.22);
+    transition: background 0.35s ease, box-shadow 0.35s ease;
+}
+
+.stepper-dots .active,
+.stepper-dots .completed {
+    background: linear-gradient(90deg, var(--saffron-vibrant), var(--gold-shimmer), var(--saffron-amber));
+    box-shadow: 0 0 14px rgba(255, 174, 45, 0.65);
+}
+
+/* --------------------------------------------------------------------------
+   6. SACRED SECTION HEADERS & NOTICES
+   -------------------------------------------------------------------------- */
+.sec-title,
+.sanatana-sec-title {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--red-deep);
+    background: #FFF7E6;
+    padding: 8px 12px;
+    border-radius: 10px;
+    border-left: 4.5px solid var(--saffron-vibrant);
+    margin: 16px 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    box-shadow: 0 1px 3px rgba(212, 160, 23, 0.12);
+}
+
+.mantra,
+.sanatana-mantra-chip {
+    margin: 10px auto 16px;
+    padding: 10px 16px;
+    display: inline-block;
+    border: 1px solid rgba(255, 224, 142, 0.35);
+    border-radius: 50px;
+    background: rgba(255, 194, 73, 0.085);
+    color: #FFE19A;
+    font-size: clamp(10.5px, 3vw, 12px);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 12px rgba(255, 208, 92, 0.3);
+}
+
+.alert-box {
+    display: none;
+    padding: 11px 14px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    text-align: center;
+    line-height: 1.4;
+}
+
+.alert-error {
+    background: #FFF0F0;
+    color: var(--red-deep);
+    border: 1.5px solid #FFCDD2;
+}
+
+.alert-success {
+    background: #F1F8E9;
+    color: #2E7D32;
+    border: 1.5px solid #C8E6C9;
+}
+
+/* --------------------------------------------------------------------------
+   7. FORM INPUTS & ACCESSIBLE CONTROLS
+   -------------------------------------------------------------------------- */
+.form-group {
+    margin-bottom: 13px;
+    text-align: left;
+}
+
+.field-label {
+    display: block;
+    font-size: 12.5px;
+    font-weight: 800;
+    color: var(--chandan-text);
+    margin-bottom: 5px;
+    letter-spacing: 0.2px;
+}
+
+.input-box,
+.select-box,
+.textarea-box {
+    width: 100%;
+    min-height: var(--min-touch-target);
+    padding: 0 14px;
+    border: 1.5px solid #E0C9A6;
+    background: var(--chandan-bg);
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    color: var(--text-primary);
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    box-sizing: border-box;
+}
+
+.select-box {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23D44000'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 20px 20px;
+    padding-right: 36px;
+    cursor: pointer;
+}
+
+.textarea-box {
+    min-height: 72px;
+    padding: 10px 14px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+.input-box:focus,
+.select-box:focus,
+.textarea-box:focus {
+    border-color: var(--saffron-vibrant);
+    background: #FFFFFF;
+    box-shadow: 0 0 0 3px rgba(255, 122, 0, 0.18);
+}
+
+.input-box::placeholder,
+.textarea-box::placeholder {
+    color: #A1887F;
+    font-weight: 500;
+}
+
+/* Responsive 2-column Form Grid */
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+/* User Profile Photo Upload Area */
+.photo-upload-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #FFFBF2;
+    border: 1.5px dashed var(--gold-border);
+    padding: 9px 13px;
+    border-radius: 12px;
+}
+
+.preview-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--saffron-vibrant);
+    background: #EEE;
+    box-shadow: 0 2px 8px rgba(212, 64, 0, 0.2);
+}
+
+.upload-info {
+    flex: 1;
+    font-size: 11.5px;
+}
+
+.upload-btn-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 34px;
+    padding: 6px 14px;
+    background: linear-gradient(135deg, var(--saffron-vibrant), var(--saffron-deep));
+    color: #FFFFFF;
+    border-radius: 8px;
+    font-size: 11.5px;
+    font-weight: 800;
+    cursor: pointer;
+    margin-top: 4px;
+    box-shadow: 0 2px 8px rgba(212, 64, 0, 0.25);
+    transition: transform 0.15s ease;
+}
+
+.upload-btn-label:active {
+    transform: scale(0.97);
+}
+
+/* --------------------------------------------------------------------------
+   8. SACRED SANATANA BUTTONS
+   -------------------------------------------------------------------------- */
+/* Primary Action Button (Saffron to Deep Red) */
+.btn-register-main,
+.sanatana-btn-primary {
+    width: 100%;
+    min-height: 50px;
+    margin-top: 18px;
+    background: var(--grad-btn-bhagwa);
+    border: 1px solid rgba(255, 213, 79, 0.4);
+    border-radius: 14px;
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: 900;
+    font-family: inherit;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(184, 46, 0, 0.38);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-shadow: 0 1px 2px rgba(66, 16, 6, 0.5);
+}
+
+.btn-register-main:hover,
+.sanatana-btn-primary:hover {
+    box-shadow: 0 8px 24px rgba(184, 46, 0, 0.48);
+}
+
+.btn-register-main:active,
+.sanatana-btn-primary:active {
+    transform: scale(0.98);
+}
+
+.btn-register-main:disabled,
+.sanatana-btn-primary:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Secondary Button (Gold Trim & Chandan Background) */
+.btn-login-footer,
+.sanatana-btn-secondary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    width: 100%;
+    margin-top: 12px;
+    background: #FFF8E1;
+    border: 1.5px solid var(--gold-border);
+    color: #7A3E00;
+    font-size: 13.5px;
+    font-weight: 800;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.btn-login-footer:hover,
+.sanatana-btn-secondary:hover {
+    background: #FFECB3;
+}
+
+.btn-login-footer:active,
+.sanatana-btn-secondary:active {
+    transform: scale(0.98);
+}
+
+/* Member Action Buttons (Welcome Flow Step 4) */
+.member-actions {
+    display: grid;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.member-btn {
+    width: 100%;
+    min-height: 52px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 224, 142, 0.35);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.member-btn.primary {
+    color: #4A1604;
+    background: var(--grad-btn-gold);
+    border-color: var(--gold-shimmer);
+    box-shadow: 0 4px 18px rgba(255, 180, 42, 0.3);
+}
+
+.member-btn.secondary {
+    color: #FFE19A;
+    background: rgba(255, 210, 110, 0.08);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+}
+
+.member-btn:active {
+    transform: scale(0.98);
+}
+
+/* Bottom Navigation Bar (Welcome Flow) */
+.bottom-nav {
+    position: absolute;
+    left: 18px;
+    right: 18px;
+    bottom: 0;
+    padding: 10px 0 max(14px, env(safe-area-inset-bottom));
+    display: grid;
+    grid-template-columns: 54px 1fr;
+    gap: 10px;
+    z-index: 30;
+}
+
+.nav-btn {
+    min-height: 50px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 224, 142, 0.25);
+    background: rgba(108, 29, 5, 0.55);
+    color: rgba(255, 249, 238, 0.85);
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+}
+
+.nav-btn:active {
+    transform: scale(0.97);
+}
+
+#btnNext {
+    background: var(--grad-btn-gold);
+    border-color: #FFE49A;
+    color: #4A1605;
+    box-shadow: 0 4px 18px rgba(255, 180, 42, 0.3);
+}
+
+/* --------------------------------------------------------------------------
+   9. STEP CARDS & VISUAL ASSETS (WELCOME FLOW)
+   -------------------------------------------------------------------------- */
+.step {
+    position: absolute;
+    inset: 106px 20px 88px;
+    display: none;
+    flex-direction: column;
+    animation: screenIn 0.45s cubic-bezier(0.22, 0.8, 0.24, 1);
+}
+
+.step.active {
+    display: flex;
+}
+
+@keyframes screenIn {
+    from { opacity: 0; transform: translateY(16px) scale(0.985); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.hero-visual {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.hero-orbit {
+    position: absolute;
+    width: min(76vw, 310px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 226, 145, 0.30);
+    box-shadow: 0 0 75px rgba(255, 150, 24, 0.20), 0 0 120px rgba(255, 201, 82, 0.08);
+    animation: rotateSlow 25s linear infinite;
+}
+
+.hero-orbit::before,
+.hero-orbit::after {
+    content: "";
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #FFE49A;
+    box-shadow: 0 0 18px #FFD15C, 0 0 32px rgba(255, 137, 0, 0.75);
+}
+
+.hero-orbit::before { top: 14%; left: 7%; }
+.hero-orbit::after { bottom: 13%; right: 7%; }
+
+@keyframes rotateSlow {
+    to { transform: rotate(360deg); }
+}
+
+.hero-ring {
+    width: min(57vw, 230px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    padding: 8px;
+    background: linear-gradient(145deg, #FFF0B4, #DDAA3D, #FF7900, #FFE69B, #C47D16);
+    box-shadow: 0 0 35px rgba(255, 180, 42, 0.42), 0 0 75px rgba(255, 122, 0, 0.18), 0 20px 55px rgba(79, 22, 3, 0.30);
+    position: relative;
+    z-index: 2;
+}
+
+.hero-ring-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle, #8B2708, #651705 65%, #4A1005);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 2px solid rgba(255, 240, 181, 0.22);
+}
+
+.hero-logo {
+    width: 88%;
+    height: 88%;
+    object-fit: cover;
+    border-radius: 50%;
+    filter: drop-shadow(0 0 18px rgba(255, 208, 92, 0.55));
+}
+
+.divine-image {
+    width: min(61vw, 245px);
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 50%;
+    padding: 5px;
+    background: linear-gradient(145deg, #FFF0B0, #FF9D24, #FF6F00, #D79525, #FFE69B);
+    box-shadow: 0 0 50px rgba(255, 174, 38, 0.40), 0 0 100px rgba(255, 109, 0, 0.18), 0 25px 70px rgba(83, 22, 2, 0.30);
+}
+
+.member-visual {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.member-logo {
+    width: min(52vw, 200px);
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2.5px solid rgba(255, 225, 145, 0.75);
+    box-shadow: 0 0 65px rgba(255, 153, 27, 0.35);
+}
+
+.content-block {
+    flex-shrink: 0;
+    text-align: center;
+    padding: 0 6px 8px;
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--gold-light);
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 2.2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    text-shadow: 0 0 15px rgba(255, 188, 65, 0.25);
+}
+
+.eyebrow::before,
+.eyebrow::after {
+    content: "";
+    width: 22px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #FFD66D);
+}
+
+.eyebrow::after {
+    transform: rotate(180deg);
+}
+
+h1 {
+    margin: 0;
+    font-family: 'Cinzel', 'Noto Sans Devanagari', serif;
+    font-size: clamp(23px, 6.5vw, 32px);
+    line-height: 1.2;
+    font-weight: 600;
+    color: #FFF8E8;
+}
+
+.gold-title {
+    background: var(--grad-gold-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+}
+
+.description {
+    max-width: 410px;
+    margin: 10px auto 0;
+    color: var(--text-muted);
+    font-size: 12.5px;
+    line-height: 1.65;
+}
+
+/* Fast Cache & Impact Stats Chips */
+.cache-indicator-pill {
+    display: none;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    background: rgba(220, 167, 47, 0.18);
+    border: 1px solid rgba(220, 167, 47, 0.45);
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 700;
+    color: #FFD866;
+    letter-spacing: 0.3px;
+}
+
+.cache-pulse-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #52C41A;
+    box-shadow: 0 0 6px #52C41A;
+    animation: cachePulse 1.8s infinite;
+}
+
+@keyframes cachePulse {
+    0% { transform: scale(0.9); opacity: 0.7; }
+    50% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(0.9); opacity: 0.7; }
+}
+
+.welcome-stats-chip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 12px 0 6px;
+    padding: 9px 14px;
+    background: rgba(255, 215, 105, 0.08);
+    border: 1px solid rgba(255, 215, 105, 0.25);
+    border-radius: 12px;
+    font-size: 11.5px;
+    color: #FFD866;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   10. STEP 3: SEARCHABLE LANGUAGE SELECTOR
+   -------------------------------------------------------------------------- */
+.language-header {
+    flex-shrink: 0;
+    text-align: left;
+    margin-bottom: 12px;
+}
+
+.language-header h1 {
+    font-size: 24px;
+}
+
+.language-header .description {
+    margin: 6px 0 0;
+    font-size: 11.5px;
+    text-align: left;
+}
+
+.language-search {
+    position: relative;
+    flex-shrink: 0;
+}
+
+#langSearchInput {
+    width: 100%;
+    min-height: 48px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 222, 141, 0.28);
+    outline: none;
+    padding: 0 44px;
+    background: rgba(255, 208, 110, 0.08);
+    color: #FFFFFF;
+    font-family: inherit;
+    font-size: 13.5px;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+#langSearchInput::placeholder {
+    color: rgba(255, 249, 238, 0.55);
+}
+
+.search-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #FFE29A;
+    font-size: 17px;
+}
+
+#searchClearBtn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255, 220, 132, 0.12);
+    color: rgba(255, 255, 255, 0.75);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+#quickLangSection {
+    flex-shrink: 0;
+    margin-top: 12px;
+}
+
+.quick-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.quick-title {
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    color: rgba(255, 249, 238, 0.65);
+    text-transform: uppercase;
+}
+
+#langCounterBadge {
+    font-size: 9.5px;
+    color: #FFE19A;
+}
+
+#quickChipsWrap {
+    display: flex;
+    gap: 7px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+}
+
+#quickChipsWrap::-webkit-scrollbar {
+    display: none;
+}
+
+.quick-chip {
+    flex: 0 0 auto;
+    min-height: 34px;
+    padding: 7px 13px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 222, 142, 0.25);
+    background: rgba(255, 196, 73, 0.07);
+    color: rgba(255, 249, 238, 0.82);
+    font-size: 10.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.quick-chip.active {
+    color: #4A1605;
+    background: var(--grad-btn-gold);
+    border-color: #FFE49A;
+    box-shadow: 0 0 18px rgba(255, 190, 67, 0.25);
+}
+
+#langGridContainer {
+    flex: 1;
+    min-height: 0;
+    margin-top: 12px;
+    overflow-y: auto;
+    padding-right: 2px;
+    padding-bottom: 6px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 194, 72, 0.55) transparent;
+}
+
+#langGridContainer::-webkit-scrollbar {
+    width: 3px;
+}
+
+#langGridContainer::-webkit-scrollbar-thumb {
+    background: rgba(255, 194, 72, 0.55);
+    border-radius: 10px;
+}
+
+.lang-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+}
+
+.lang-card {
+    min-height: 60px;
+    padding: 10px 11px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 225, 145, 0.15);
+    background: linear-gradient(145deg, rgba(255, 217, 130, 0.09), rgba(255, 160, 25, 0.04));
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.lang-card.active {
+    border-color: rgba(255, 226, 148, 0.75);
+    background: linear-gradient(145deg, rgba(255, 164, 38, 0.25), rgba(255, 218, 117, 0.09));
+    box-shadow: 0 0 24px rgba(255, 157, 24, 0.16);
+}
+
+.lang-icon {
+    width: 32px;
+    height: 32px;
+    flex: 0 0 32px;
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(145deg, rgba(255, 180, 45, 0.24), rgba(255, 221, 124, 0.08));
+    color: #FFE29A;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.lang-name {
+    min-width: 0;
+    text-align: left;
+}
+
+.lang-native {
+    display: block;
+    color: #FFF8E8;
+    font-size: 11.5px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.lang-english {
+    display: block;
+    margin-top: 2px;
+    color: rgba(255, 249, 238, 0.5);
+    font-size: 8.5px;
+}
+
+/* --------------------------------------------------------------------------
+   11. WELCOME LETTER & SPECIALIZED CARD EXTENSIONS
+   -------------------------------------------------------------------------- */
+.letter-card {
+    background: #FFFDF7;
+    border: 1.5px solid #E2CCAB;
+    border-radius: 16px;
+    padding: 16px 14px;
+    margin: 14px 0;
+    text-align: left;
+    box-shadow: 0 4px 12px rgba(212, 160, 23, 0.08);
+}
+
+.user-info-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed #D8C2A3;
+}
+
+.user-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--saffron-vibrant);
+    background: #EEEEEE;
+    box-shadow: 0 2px 8px rgba(212, 64, 0, 0.2);
+}
+
+.user-name {
+    font-size: 16px;
+    font-weight: 900;
+    color: var(--red-deep);
+}
+
+.user-id {
+    font-size: 12px;
+    font-weight: 800;
+    color: #7A3E00;
+}
+
+.letter-body {
+    font-size: 13px;
+    color: #442A15;
+    line-height: 1.6;
+    font-weight: 600;
+}
+
+.btn-action {
+    width: 100%;
+    min-height: 48px;
+    background: var(--grad-btn-bhagwa);
+    border: 1px solid rgba(255, 213, 79, 0.35);
+    border-radius: 14px;
+    color: #FFFFFF;
+    font-size: 14.5px;
+    font-weight: 900;
+    font-family: inherit;
+    cursor: pointer;
+    margin-top: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+    box-shadow: 0 6px 20px rgba(184, 46, 0, 0.35);
+    transition: transform 0.15s ease;
+}
+
+.btn-action:active {
+    transform: scale(0.98);
+}
+
+.btn-secondary {
+    background: #FFF8E1;
+    border: 1.5px solid var(--gold-border);
+    color: #7A3E00;
+    box-shadow: none;
+    margin-top: 8px;
+}
+
+/* --------------------------------------------------------------------------
+   12. MOBILE RESPONSIVENESS & BREAKPOINTS
+   -------------------------------------------------------------------------- */
+/* Extra Small Mobile Devices (Screen width < 360px) */
+@media (max-width: 359px) {
+    .form-page-body .app-card {
+        padding: 18px 12px;
+        border-radius: 20px;
+    }
+    .grid-2 {
+        grid-template-columns: 1fr;
+        gap: 6px;
+    }
+    .brand-title, .title {
+        font-size: 18px;
+    }
+    .brand-logo-wrap, .logo-wrap {
+        width: 70px;
+        height: 70px;
+    }
+    .top-brand {
+        padding: max(12px, env(safe-area-inset-top)) 14px 0;
+    }
+    .stepper-dots {
+        top: 72px;
+        left: 14px;
+        right: 14px;
+    }
+    .step {
+        inset: 98px 14px 84px;
+    }
+    .bottom-nav {
+        left: 14px;
+        right: 14px;
+    }
+    .btn-register-main,
+    .sanatana-btn-primary {
+        font-size: 14px;
+    }
+}
+
+/* Standard Mobile Devices (360px - 599px) */
+@media (min-width: 360px) and (max-width: 599px) {
+    .form-page-body {
+        padding: max(16px, env(safe-area-inset-top)) 14px max(28px, env(safe-area-inset-bottom));
+    }
+}
+
+/* Tablets and Wide Screens (>= 600px) */
+@media (min-width: 600px) {
+    .welcome-page-body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #200402;
+    }
+    .welcome-page-body .app-card {
+        max-width: 480px;
+        height: 92vh;
+        max-height: 880px;
+        border-radius: 32px;
+        border: 2px solid rgba(255, 215, 105, 0.45);
+        box-shadow: 0 0 100px rgba(85, 25, 3, 0.65), 0 25px 60px rgba(0, 0, 0, 0.7);
+    }
+    .form-page-body {
+        min-height: 100vh;
+        background: radial-gradient(circle at center, #7A1C00 0%, #420A02 60%, #200402 100%);
+    }
+    .form-page-body .app-card {
+        max-width: 460px;
+        margin: auto;
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55), 0 0 50px rgba(212, 160, 23, 0.2);
+    }
+}
+
+/* ==========================================================================
+   IMAGELOADER — ZERO REFLOW & CSS CONTAINMENT SYSTEM
+   ========================================================================== */
+.image-loader-img {
+    contain: layout paint;
+    content-visibility: auto;
+    object-fit: cover;
+    transition: opacity 0.25s ease-in-out;
+}
+
+.image-loader-container {
+    contain: layout paint;
+    position: relative;
+    overflow: hidden;
+    background: rgba(43, 4, 10, 0.4);
+    display: inline-block;
+}
+
+.image-loader-img[data-src] {
+    opacity: 0.95;
+}
+
+.image-loader-img.image-loaded {
+    opacity: 1;
+}
+
+/* Explicit aspect ratios to prevent Cumulative Layout Shift (reflow) */
+.avatar-contain {
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    contain: layout paint;
+}
+
+.cover-contain {
+    aspect-ratio: 16 / 9;
+    contain: layout paint;
+    width: 100%;
+}
+
+.banner-contain {
+    aspect-ratio: 21 / 9;
+    contain: layout paint;
+    width: 100%;
+}
+

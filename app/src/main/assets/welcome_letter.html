@@ -5,130 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>सनातन सेवा समिति — अभिनंदन पत्र</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-<style>
-    :root {
-        --bhagwa: #FF7700;
-        --bhagwa-deep: #D44000;
-        --lava: #8A0000;
-        --gold: #FFD54F;
-        --gold-border: #D4A017;
-        --bg-grad: radial-gradient(circle at top, #FF8800 0%, #B82E00 45%, #4A0000 100%);
-    }
-    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-    html, body {
-        margin: 0; padding: 0; width: 100%; min-height: 100%;
-        background: var(--bg-grad);
-        font-family: 'Noto Sans Devanagari', sans-serif;
-        color: #222;
-    }
-    body {
-        padding: 16px 12px 30px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .app-card {
-        width: 100%;
-        max-width: 440px;
-        background: rgba(255, 255, 255, 0.97);
-        backdrop-filter: blur(18px);
-        -webkit-backdrop-filter: blur(18px);
-        border-radius: 28px;
-        border: 2px solid var(--gold-border);
-        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
-        padding: 24px 18px;
-        position: relative;
-        text-align: center;
-    }
-    .app-card::before {
-        content: "";
-        position: absolute;
-        top: 0; left: 0; right: 0;
-        height: 6px;
-        border-radius: 28px 28px 0 0;
-        background: linear-gradient(90deg, var(--bhagwa), var(--gold), var(--lava));
-    }
-    .logo-wrap {
-        width: 80px;
-        height: 80px;
-        margin: 0 auto 10px;
-        border-radius: 50%;
-        padding: 3px;
-        background: linear-gradient(135deg, var(--gold), var(--bhagwa));
-        box-shadow: 0 8px 20px rgba(138, 0, 0, 0.3);
-    }
-    .logo-img {
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        object-fit: cover;
-        background: #fff;
-    }
-    .title { color: var(--lava); font-size: 21px; font-weight: 900; margin: 4px 0; }
-    .mantra { color: var(--bhagwa-deep); font-size: 14px; font-weight: 800; margin-bottom: 12px; }
-    .letter-card {
-        background: #fffdf7;
-        border: 1.5px solid #e2ccab;
-        border-radius: 16px;
-        padding: 16px 14px;
-        margin: 14px 0;
-        text-align: left;
-    }
-    .user-info-row {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        margin-bottom: 12px;
-        padding-bottom: 12px;
-        border-bottom: 1px dashed #d8c2a3;
-    }
-    .user-avatar {
-        width: 52px;
-        height: 52px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 2px solid var(--bhagwa);
-        background: #eee;
-    }
-    .user-name { font-size: 16px; font-weight: 900; color: var(--lava); }
-    .user-id { font-size: 12px; font-weight: 800; color: #7a3e00; }
-    .letter-body {
-        font-size: 13px;
-        color: #442a15;
-        line-height: 1.6;
-        font-weight: 600;
-    }
-    .btn-action {
-        width: 100%;
-        height: 48px;
-        background: linear-gradient(135deg, var(--bhagwa), var(--lava));
-        border: none;
-        border-radius: 14px;
-        color: #fff;
-        font-size: 14.5px;
-        font-weight: 900;
-        font-family: inherit;
-        cursor: pointer;
-        margin-top: 10px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        text-decoration: none;
-        box-shadow: 0 6px 20px rgba(184, 46, 0, 0.35);
-    }
-    .btn-secondary {
-        background: #fff8e1;
-        border: 1.5px solid var(--gold-border);
-        color: #7a3e00;
-        box-shadow: none;
-        margin-top: 8px;
-    }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="form-page-body">
 
-<div class="app-card">
+<div class="app-card" style="text-align: center;">
     <div class="logo-wrap">
         <img src="Images/jpg/logo.jpg" class="logo-img" alt="Logo" onerror="this.src='https://sanatansevasamiti.org/Images/jpg/logo.jpg';">
     </div>
@@ -161,8 +42,20 @@ window.addEventListener("DOMContentLoaded", () => {
             if (user.full_name) document.getElementById("userName").textContent = user.full_name;
             if (user.unique_id) document.getElementById("userIdBadge").textContent = "सदस्य ID: " + user.unique_id;
             if (user.profile_photo) {
-                const p = user.profile_photo.startsWith("http") ? user.profile_photo : ("https://sanatansevasamiti.org/" + user.profile_photo);
-                document.getElementById("userPhoto").src = p;
+                let p = "Images/jpg/logo.jpg";
+                if (user.profile_photo.startsWith("data:image/") || user.profile_photo.startsWith("Images/")) {
+                    p = user.profile_photo;
+                } else if (typeof getUserProfileMediaUrl === "function") {
+                    p = getUserProfileMediaUrl(user.profile_photo);
+                } else {
+                    const clean = user.profile_photo.replace(/^.*[\\\/]/, '').trim();
+                    p = user.profile_photo.startsWith("http") ? user.profile_photo : `https://sanatansevasamiti.org/api/get_media.php?file=${encodeURIComponent(clean)}`;
+                }
+                const photoEl = document.getElementById("userPhoto");
+                if (photoEl) {
+                    photoEl.src = p;
+                    photoEl.onerror = function() { this.src = "Images/jpg/logo.jpg"; };
+                }
             }
         }
     } catch(e) {}
@@ -174,15 +67,20 @@ function goHome() {
 
 function logoutUser() {
     try {
-        localStorage.removeItem("sss_user_token");
-        localStorage.removeItem("sss_user_data");
-        localStorage.removeItem("sss_wallet_balance");
+        if (window.indexedDB) {
+            try { window.indexedDB.deleteDatabase("sanatanam_img_cache_db"); } catch(e) {}
+        }
         localStorage.clear();
         sessionStorage.clear();
+        if (window.AndroidBridge && typeof window.AndroidBridge.clearUserSession === "function") {
+            window.AndroidBridge.clearUserSession();
+        }
     } catch(e) {}
-    window.location.href = "welcome_flow.html";
+    window.location.replace("welcome_flow.html");
 }
 </script>
+<script src="image_cache.js"></script>
+<script src="auth_guard.js"></script>
 <script src="footer_nav.js"></script>
 
 </body>

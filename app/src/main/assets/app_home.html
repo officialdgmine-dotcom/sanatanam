@@ -714,10 +714,10 @@
         </form>
 
         <div class="user-avatar-btn" onclick="openMenu()" title="मेनू व प्रोफ़ाइल खोलें">
-            <img id="headerUserAvatar" src="Images/jpg/logo.jpg" 
+            <img id="headerUserAvatar" class="image-loader-img avatar-contain" width="40" height="40" src="Images/jpg/logo.jpg" 
                  crossorigin="anonymous"
                  onerror="this.src='Images/jpg/logo.jpg';" 
-                 alt="यूज़र प्रोफ़ाइल" />
+                 alt="यूज़र प्रोफ़ाइल" loading="lazy" decoding="async" />
         </div>
     </header>
 
@@ -725,7 +725,7 @@
     <div class="hero-container" onclick="toggleHeroFlip()">
         <div class="hero-flip" id="heroFlipper">
             <div class="hero-poster">
-                <img src="https://sanatansevasamiti.org/uploads/file_00000000b5447207af241f52a9137425.png" alt="Front Banner">
+                <img class="image-loader-img banner-contain" width="360" height="154" src="https://sanatansevasamiti.org/uploads/file_00000000b5447207af241f52a9137425.png" alt="Front Banner" loading="lazy" decoding="async">
                 <div class="hero-overlay"></div>
                 <div class="hero-badge">
                     <i class="fa-solid fa-om"></i> धर्मो रक्षति रक्षितः
@@ -1368,8 +1368,13 @@
                 headerAvatar.src = photo;
                 headerAvatar.onerror = function() { this.src = photoOnlineFallback; };
 
+                const userDpKey = `user_dp_${user.unique_id || user.id || 'me'}`;
+                if (window.ImageLoader && typeof window.ImageLoader.applyContainment === 'function') {
+                    window.ImageLoader.applyContainment(headerAvatar, 40, 40, '1/1');
+                }
+
                 if (typeof getOfflineImage === "function") {
-                    getOfflineImage("user_profile_dp", photo).then(b64 => {
+                    getOfflineImage(userDpKey, photo).then(b64 => {
                         if (b64) {
                             headerAvatar.src = b64;
                             const sideImg = document.getElementById("sidebarAvatarImg");
@@ -1380,7 +1385,7 @@
 
                 sideBox.innerHTML = `
                     <div class="sidebar-user-box">
-                        <img id="sidebarAvatarImg" src="${photo}" crossorigin="anonymous" onerror="this.src='${photoOnlineFallback}';" />
+                        <img id="sidebarAvatarImg" class="image-loader-img avatar-contain" width="48" height="48" src="${photo}" crossorigin="anonymous" onerror="this.src='${photoOnlineFallback}';" />
                         <div>
                             <h4 style="color:#FFD700; font-size:14px;">${user.full_name || 'सनातन सेवक'}</h4>
                             <p style="font-size:11px; color:#eee;">ID: <b>${user.unique_id || 'सत्यापित'}</b></p>
@@ -1388,6 +1393,10 @@
                         </div>
                     </div>
                 `;
+                const sideImg = document.getElementById("sidebarAvatarImg");
+                if (sideImg && window.ImageLoader && typeof window.ImageLoader.applyContainment === 'function') {
+                    window.ImageLoader.applyContainment(sideImg, 48, 48, '1/1');
+                }
                 logoutBtn.style.display = "block";
             }
         } catch (e) {
@@ -1406,6 +1415,7 @@
         loadLocalUserSession();
     });
 </script>
+<script src="image_loader.js"></script>
 <script src="image_cache.js"></script>
 <script src="auth_guard.js"></script>
 <script src="app_translator.js"></script>

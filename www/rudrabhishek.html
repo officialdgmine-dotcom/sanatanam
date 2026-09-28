@@ -709,16 +709,21 @@ async function loadRudraData() {
             document.getElementById('userIdLabel').innerText = currentUserId;
         }
 
-        // Live Wallet Balance Fetch
+        // Live Wallet Balance Fetch with User Isolation
+        const savedBalUid = localStorage.getItem("sss_wallet_uid");
         const savedBal = localStorage.getItem("sss_wallet_balance");
-        if (savedBal !== null) {
+        if (savedBalUid === String(currentUserId) && savedBal !== null) {
             currentBalance = parseFloat(savedBal) || 0;
             document.getElementById('topNavWallet').innerText = `💳 वॉलेट: ₹${currentBalance.toFixed(2)}`;
             document.getElementById('userWalletDisplay').innerText = `₹${currentBalance.toFixed(2)}`;
+        } else {
+            currentBalance = 0;
+            document.getElementById('topNavWallet').innerText = `💳 वॉलेट: ₹0.00`;
+            document.getElementById('userWalletDisplay').innerText = `₹0.00`;
         }
 
         // Live API Sync for Rudrabhishek
-        const res = await fetch(`https://sanatansevasamiti.org/api/get_profile_full.php?action=detail&profile_id=PRO1781285901&user_id=${encodeURIComponent(currentUserId)}`);
+        const res = await fetch(`https://sanatansevasamiti.org/api/get_profile_full.php?action=detail&profile_id=PRO1781285901&user_id=${encodeURIComponent(currentUserId)}&_t=${Date.now()}`);
         const data = await res.json();
 
         if (data && data.status === 'success') {
@@ -726,6 +731,7 @@ async function loadRudraData() {
                 currentBalance = parseFloat(data.user_data.wallet_balance) || 0;
                 document.getElementById('topNavWallet').innerText = `💳 वॉलेट: ₹${currentBalance.toFixed(2)}`;
                 document.getElementById('userWalletDisplay').innerText = `₹${currentBalance.toFixed(2)}`;
+                localStorage.setItem("sss_wallet_uid", String(currentUserId));
                 localStorage.setItem("sss_wallet_balance", currentBalance);
             }
 

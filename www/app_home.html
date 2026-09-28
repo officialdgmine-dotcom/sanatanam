@@ -1368,8 +1368,9 @@
                 headerAvatar.src = photo;
                 headerAvatar.onerror = function() { this.src = photoOnlineFallback; };
 
+                const userDpKey = `user_dp_${user.unique_id || user.id || 'me'}`;
                 if (typeof getOfflineImage === "function") {
-                    getOfflineImage("user_profile_dp", photo).then(b64 => {
+                    getOfflineImage(userDpKey, photo).then(b64 => {
                         if (b64) {
                             headerAvatar.src = b64;
                             const sideImg = document.getElementById("sidebarAvatarImg");

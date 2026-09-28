@@ -107,28 +107,28 @@
     navContainer.id = "sss-nav";
     navContainer.innerHTML = `
         <a href="app_home.html" class="sss-item">
-            <img src="https://sanatansevasamiti.org/uploads/footer/1780341771file_00000000145071fab7ea2e7e30f9dfaa-e1776295057951.png" alt="गृह">
+            <img width="25" height="25" loading="lazy" decoding="async" src="https://sanatansevasamiti.org/uploads/footer/1780341771file_00000000145071fab7ea2e7e30f9dfaa-e1776295057951.png" alt="गृह">
             <span>गृह</span>
         </a>
 
         <a href="guru_parampara.html" class="sss-item">
-            <img src="https://sanatansevasamiti.org/uploads/footer/1780341317ci.jpg" alt="गुरु परंपरा">
+            <img width="25" height="25" loading="lazy" decoding="async" src="https://sanatansevasamiti.org/uploads/footer/1780341317ci.jpg" alt="गुरु परंपरा">
             <span>गुरु परंपरा</span>
         </a>
 
         <a href="feed.html" class="sss-item sss-dash-wrap">
             <div class="sss-gold-circle">
-                <img src="https://sanatansevasamiti.org/uploads/footer/1780341218logo.jpg" alt="फीड">
+                <img width="38" height="38" loading="lazy" decoding="async" src="https://sanatansevasamiti.org/uploads/footer/1780341218logo.jpg" alt="फीड">
             </div>
         </a>
 
         <a href="javascript:void(0);" onclick="if(window.showAppNotice){window.showAppNotice('सनातन पुस्तक संग्रह');}else{alert('पुस्तकें — यह अनुभाग शीघ्र ही स्थानीय रूप से उपलब्ध होगा।');}" class="sss-item">
-            <img src="https://sanatansevasamiti.org/uploads/footer/1780341270bi.jpg" alt="पुस्तकें">
+            <img width="25" height="25" loading="lazy" decoding="async" src="https://sanatansevasamiti.org/uploads/footer/1780341270bi.jpg" alt="पुस्तकें">
             <span>पुस्तकें</span>
         </a>
 
         <a href="app_dashboard.html" class="sss-item">
-            <img src="https://sanatansevasamiti.org/uploads/footer/1780341144ai.jpg" alt="अकाउंट">
+            <img width="25" height="25" loading="lazy" decoding="async" src="https://sanatansevasamiti.org/uploads/footer/1780341144ai.jpg" alt="अकाउंट">
             <span>अकाउंट</span>
         </a>
     `;

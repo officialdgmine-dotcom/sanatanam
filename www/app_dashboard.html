@@ -6,6 +6,7 @@
 <title>सनातन सेवा समिति — डिजिटल पहचान, सेवा व वॉलेट</title>
 
 <!-- External Scripts for Canvas & Zip -->
+<script src="image_loader.js"></script>
 <script src="image_cache.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
@@ -387,11 +388,11 @@ body {
     <!-- 1. प्रोफाइल कार्ड (डायनामिक कवर, फोटो, नाम व पद/रोल) -->
     <div class="profile-container">
         <div class="cover">
-            <img id="dashCoverImg" src="uploads/pc.jpg" alt="Cover" onerror="this.src='Images/jpg/logo.jpg';">
+            <img id="dashCoverImg" width="100%" height="180" src="uploads/pc.jpg" alt="Cover" class="image-loader-img" style="contain: layout paint; content-visibility: auto; aspect-ratio: 16/9; object-fit: cover;" onerror="this.src='Images/jpg/logo.jpg';">
         </div>
         <div class="profile-body">
             <div class="avatar-wrapper">
-                <img id="dashAvatarImg" src="Images/jpg/logo.jpg" class="avatar" alt="Profile Photo" onerror="this.src='Images/jpg/logo.jpg';">
+                <img id="dashAvatarImg" width="100" height="100" src="Images/jpg/logo.jpg" class="avatar image-loader-img" alt="Profile Photo" style="contain: layout paint; content-visibility: auto; aspect-ratio: 1/1; object-fit: cover;" onerror="this.src='Images/jpg/logo.jpg';">
             </div>
             
             <h2 id="dashUserName" class="user-name">सनातन सेवक</h2>
@@ -694,9 +695,10 @@ function loadDashboardUserData() {
         const u = JSON.parse(raw);
         renderUserInterface(u);
 
-        // Load cached metrics if available
+        // Load cached metrics if strictly belonging to current user
+        const cachedMetricsUid = localStorage.getItem("sss_metrics_uid");
         const cachedMetrics = localStorage.getItem("sss_user_metrics");
-        if (cachedMetrics) {
+        if (cachedMetrics && cachedMetricsUid === String(u.unique_id || u.id)) {
             try {
                 const m = JSON.parse(cachedMetrics);
                 if (m.wallet_balance !== undefined) document.getElementById("liveWalletAmount").innerText = "₹" + parseFloat(m.wallet_balance).toFixed(2);
@@ -706,9 +708,10 @@ function loadDashboardUserData() {
             } catch(e) {}
         }
 
-        // Load cached transactions if available
+        // Load cached transactions if strictly belonging to current user
+        const cachedTxnsUid = localStorage.getItem("sss_txns_uid");
         const cachedTxns = localStorage.getItem("sss_user_txns");
-        if (cachedTxns) {
+        if (cachedTxns && cachedTxnsUid === String(u.unique_id || u.id)) {
             try {
                 const txns = JSON.parse(cachedTxns);
                 if (Array.isArray(txns) && txns.length > 0) {
@@ -776,16 +779,14 @@ function renderUserInterface(u) {
 
     const coverEl = document.getElementById("dashCoverImg");
     if (sevaKshetra) {
-        const localCover = `Images/ss/${sevaKshetra}_cover.jpg`;
-        const onlineCover = `https://sanatansevasamiti.org/public_html/Images/ss/${sevaKshetra}_cover.jpg`;
+        let coverUrl = (typeof getCoverMediaUrl === 'function')
+            ? getCoverMediaUrl(sevaKshetra, u.cover_photo)
+            : `Images/ss/${sevaKshetra}_cover.jpg`;
         const apiCover = `https://sanatansevasamiti.org/api/get_media.php?pid=${encodeURIComponent(sevaKshetra)}&type=cover`;
-        coverEl.src = localCover;
+        coverEl.src = coverUrl;
         coverEl.onerror = function() {
             if (!this.dataset.fallbackTried) {
                 this.dataset.fallbackTried = "1";
-                this.src = onlineCover;
-            } else if (this.dataset.fallbackTried === "1") {
-                this.dataset.fallbackTried = "2";
                 this.src = apiCover;
             } else {
                 this.src = "uploads/pc.jpg";
@@ -793,16 +794,14 @@ function renderUserInterface(u) {
         };
 
         const kshLogoEl = document.getElementById("idKshetraLogo");
-        const localDp = `Images/ss/${sevaKshetra}_dp.jpg`;
-        const onlineDp = `https://sanatansevasamiti.org/public_html/Images/ss/${sevaKshetra}_dp.jpg`;
+        let dpUrl = (typeof getKshetraDpMediaUrl === 'function')
+            ? getKshetraDpMediaUrl(sevaKshetra)
+            : `Images/ss/${sevaKshetra}_dp.jpg`;
         const apiDp = `https://sanatansevasamiti.org/api/get_media.php?pid=${encodeURIComponent(sevaKshetra)}&type=dp`;
-        kshLogoEl.src = localDp;
+        kshLogoEl.src = dpUrl;
         kshLogoEl.onerror = function() {
             if (!this.dataset.fallbackTried) {
                 this.dataset.fallbackTried = "1";
-                this.src = onlineDp;
-            } else if (this.dataset.fallbackTried === "1") {
-                this.dataset.fallbackTried = "2";
                 this.src = apiDp;
             } else {
                 this.src = "Images/jpg/logo.jpg";
@@ -937,7 +936,10 @@ async function fetchLiveUserData(uid) {
             document.getElementById("statAnn").innerText = parseFloat(data.total_ann || 0).toFixed(1) + " Kg";
             document.getElementById("statSeva").innerText = (data.total_seva || 0) + " बार";
 
-            // Local cache to retain fallback metrics seamlessly
+            // Local cache to retain fallback metrics seamlessly for this specific user
+            localStorage.setItem("sss_metrics_uid", String(uid));
+            localStorage.setItem("sss_wallet_uid", String(uid));
+            localStorage.setItem("sss_wallet_balance", data.wallet_balance || 0);
             localStorage.setItem("sss_user_metrics", JSON.stringify({
                 wallet_balance: data.wallet_balance,
                 total_dhan: data.total_dhan,
@@ -947,6 +949,7 @@ async function fetchLiveUserData(uid) {
 
             // 3. Render Real Transactions
             if (Array.isArray(data.transactions) && data.transactions.length > 0) {
+                localStorage.setItem("sss_txns_uid", String(uid));
                 localStorage.setItem("sss_user_txns", JSON.stringify(data.transactions));
                 document.getElementById("txnCountBadge").innerText = `कुल: ${data.transactions.length} लेन-देन`;
                 let txHtml = "";
@@ -1129,14 +1132,20 @@ if(document.getElementById('frontDownload')) {
 
 function logoutUser() {
     if (confirm("क्या आप वाकई लॉगआउट करना चाहते हैं?")) {
-        if (typeof window.handleSanatanamLogout === "function") {
-            window.handleSanatanamLogout();
-        } else {
-            localStorage.removeItem("sanatanam_app_lang");
-            localStorage.removeItem("sss_user_token");
-            localStorage.removeItem("sss_user_data");
-            window.location.href = "welcome.html";
-        }
+        try {
+            if (window.ImageLoader && typeof window.ImageLoader.clearMemoryCache === "function") {
+                try { window.ImageLoader.clearMemoryCache(); } catch(e) {}
+            }
+            if (window.indexedDB) {
+                try { window.indexedDB.deleteDatabase("sanatanam_img_cache_db"); } catch(e) {}
+            }
+            localStorage.clear();
+            sessionStorage.clear();
+            if (window.AndroidBridge && typeof window.AndroidBridge.clearUserSession === "function") {
+                window.AndroidBridge.clearUserSession();
+            }
+        } catch(e) {}
+        window.location.replace("welcome_flow.html");
     }
 }
 
@@ -1144,6 +1153,7 @@ window.addEventListener("DOMContentLoaded", () => {
     loadDashboardUserData();
 });
 </script>
-<script src="app_translator.js"></script>
+<script src="image_cache.js"></script>
+<script src="auth_guard.js"></script>
 </body>
 </html>

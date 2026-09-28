@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>SANATANAM App Login</title>
+<link rel="stylesheet" href="style.css">
 <style>
     :root {
         --bhagwa: #FF7700;
@@ -231,9 +232,29 @@ async function handleAppLogin(e) {
 
         if (data.status) {
             try {
+                // पुराने किसी भी यूज़र का डेटा, कैश व सेशन 100% साफ़ करें
+                localStorage.clear();
+                sessionStorage.clear();
+                if (window.indexedDB) {
+                    try { window.indexedDB.deleteDatabase("sanatanam_img_cache_db"); } catch(dbE) {}
+                }
+                if (window.AndroidBridge && typeof window.AndroidBridge.clearUserSession === "function") {
+                    try { window.AndroidBridge.clearUserSession(); } catch(bE) {}
+                }
+
+                // केवल नए लॉग-इन यूज़र का डेटा स्टोर करें
                 localStorage.setItem("sss_user_token", data.token);
                 localStorage.setItem("sss_user_data", JSON.stringify(data.user));
-                // बैकग्राउंड में सभी आवश्यक इमेजेस को बेस64 में प्री-कैश करें
+
+                // पुराने वॉलेट और मीट्रिक्स को पूरी तरह रीसेट करें
+                localStorage.removeItem("sss_wallet_balance");
+                localStorage.removeItem("sss_wallet_uid");
+                localStorage.removeItem("sss_user_metrics");
+                localStorage.removeItem("sss_metrics_uid");
+                localStorage.removeItem("sss_user_txns");
+                localStorage.removeItem("sss_txns_uid");
+
+                // नए यूज़र की तस्वीरें बैकग्राउंड में सुरक्षित कैश करें
                 if (typeof preCacheUserAssets === "function") {
                     preCacheUserAssets(data.user);
                 }

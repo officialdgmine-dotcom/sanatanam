@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#210207">
+    <title>SANATANAM</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&family=Poppins:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+
+/* ============================================================
+   SANATANAM — CINEMATIC ROYAL SPLASH
+   Premium App Launch Experience
+============================================================ */
+
+:root {
+    --deep: #170105;
+    --maroon: #39040b;
+    --royal: #650711;
+    --bhagwa: #a92808;
+
+    --gold: #dca72f;
+    --gold2: #ffd866;
+    --gold3: #fff0a8;
+
+    --white: #ffffff;
+}
+
+/* ============================================================
+   RESET
+============================================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    position: relative;
+
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            ellipse at 50% 38%,
+            #b3360a 0%,
+            #820b13 20%,
+            #55060d 43%,
+            #2c0208 70%,
+            #130104 100%
+        );
+
+    color: var(--white);
+
+    font-family:
+        'Poppins',
+        'Noto Sans Devanagari',
+        sans-serif;
+}
+
+/* ============================================================
+   CINEMATIC BACKGROUND
+============================================================ */
+
+.background-core {
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 50% 43%,
+            rgba(255, 185, 47, .18) 0%,
+            rgba(216, 65, 9, .10) 24%,
+            transparent 55%
+        );
+
+    pointer-events: none;
+}
+
+/* giant atmospheric glow */
+
+.ambient-glow {
+    position: absolute;
+
+    width: 90vw;
+    height: 90vw;
+
+    max-width: 700px;
+    max-height: 700px;
+
+    left: 50%;
+    top: 43%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 192, 55, .12) 0%,
+            rgba(255, 104, 10, .07) 25%,
+            transparent 68%
+        );
+
+    filter: blur(10px);
+
+    animation:
+        ambientPulse 4s ease-in-out infinite alternate;
+}
+
+/* ============================================================
+   ROYAL RINGS
+============================================================ */
+
+.ring-system {
+    position: absolute;
+
+    width: 520px;
+    height: 520px;
+
+    max-width: 120vw;
+    max-height: 120vw;
+
+    left: 50%;
+    top: 43%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    border:
+        1px solid rgba(255, 215, 108, .075);
+
+    box-shadow:
+        0 0 80px rgba(255, 170, 30, .035),
+        inset 0 0 80px rgba(255, 170, 30, .025);
+
+    animation:
+        slowRotate 35s linear infinite;
+}
+
+.ring-system::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 42px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid rgba(255, 220, 120, .065);
+
+    box-shadow:
+        0 0 35px rgba(255, 190, 60, .025);
+}
+
+.ring-system::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 92px;
+
+    border-radius: 50%;
+
+    border:
+        1px dashed rgba(255, 220, 120, .07);
+}
+
+/* ============================================================
+   RADIAL LIGHT BEAMS
+============================================================ */
+
+.light-rays {
+    position: absolute;
+
+    width: 430px;
+    height: 430px;
+
+    max-width: 105vw;
+    max-height: 105vw;
+
+    left: 50%;
+    top: 43%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        conic-gradient(
+            from 0deg,
+            transparent 0deg,
+            rgba(255,214,100,.045) 8deg,
+            transparent 17deg,
+            transparent 32deg,
+            rgba(255,214,100,.035) 40deg,
+            transparent 49deg,
+            transparent 74deg,
+            rgba(255,214,100,.04) 83deg,
+            transparent 92deg,
+            transparent 125deg,
+            rgba(255,214,100,.035) 135deg,
+            transparent 145deg,
+            transparent 180deg,
+            rgba(255,214,100,.04) 190deg,
+            transparent 202deg,
+            transparent 235deg,
+            rgba(255,214,100,.035) 245deg,
+            transparent 257deg,
+            transparent 300deg,
+            rgba(255,214,100,.045) 309deg,
+            transparent 319deg,
+            transparent 360deg
+        );
+
+    opacity: .75;
+
+    animation:
+        slowRotateReverse 42s linear infinite;
+}
+
+/* ============================================================
+   GOLD PARTICLES
+============================================================ */
+
+.particle {
+    position: absolute;
+
+    width: 2px;
+    height: 2px;
+
+    border-radius: 50%;
+
+    background: var(--gold2);
+
+    box-shadow:
+        0 0 6px rgba(255,216,102,.95),
+        0 0 15px rgba(255,180,40,.55);
+
+    opacity: 0;
+
+    animation:
+        particleFloat 4s ease-in-out infinite;
+}
+
+.p1 { left: 13%; top: 28%; animation-delay: .1s; }
+.p2 { left: 82%; top: 23%; animation-delay: .7s; }
+.p3 { left: 19%; top: 64%; animation-delay: 1.3s; }
+.p4 { left: 87%; top: 69%; animation-delay: 2s; }
+.p5 { left: 28%; top: 17%; animation-delay: 2.5s; }
+.p6 { left: 72%; top: 16%; animation-delay: 3s; }
+.p7 { left: 9%; top: 48%; animation-delay: 1.8s; }
+.p8 { left: 91%; top: 45%; animation-delay: 2.8s; }
+
+/* ============================================================
+   MAIN CONTENT
+============================================================ */
+
+.splash {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    z-index: 20;
+
+    padding:
+        max(25px, env(safe-area-inset-top))
+        24px
+        max(25px, env(safe-area-inset-bottom))
+        24px;
+}
+
+/* ============================================================
+   LOGO EXPERIENCE
+============================================================ */
+
+.logo-zone {
+    position: relative;
+
+    width: 220px;
+    height: 220px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 15px;
+
+    animation:
+        logoEntrance 1.45s
+        cubic-bezier(.16,1,.3,1)
+        both;
+}
+
+/* giant aura */
+
+.logo-zone::before {
+    content: "";
+
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 215, 105, .24) 0%,
+            rgba(255, 160, 25, .12) 28%,
+            rgba(255, 100, 10, .04) 48%,
+            transparent 70%
+        );
+
+    filter: blur(5px);
+
+    animation:
+        auraBreath 2.8s ease-in-out infinite alternate;
+}
+
+/* outer gold orbit */
+
+.orbit {
+    position: absolute;
+
+    width: 198px;
+    height: 198px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid rgba(255, 220, 120, .45);
+
+    box-shadow:
+        0 0 18px rgba(255, 200, 65, .14);
+
+    animation:
+        orbitSpin 8s linear infinite;
+}
+
+.orbit::before {
+    content: "";
+
+    position: absolute;
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    top: -3px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background: #fff1a6;
+
+    box-shadow:
+        0 0 8px #ffd95d,
+        0 0 18px rgba(255,190,45,.8);
+}
+
+/* second orbit */
+
+.orbit-two {
+    position: absolute;
+
+    width: 184px;
+    height: 184px;
+
+    border-radius: 50%;
+
+    border:
+        1px dashed rgba(255, 221, 128, .19);
+
+    animation:
+        orbitSpinReverse 12s linear infinite;
+}
+
+/* logo gold frame */
+
+.logo-frame {
+    position: relative;
+
+    width: 158px;
+    height: 158px;
+
+    padding: 5px;
+
+    border-radius: 50%;
+
+    background:
+        conic-gradient(
+            from 20deg,
+            #8d5a0e,
+            #ffe48a,
+            #bd801a,
+            #fff0a9,
+            #9c650e,
+            #ffd85c,
+            #8d5a0e
+        );
+
+    box-shadow:
+        0 0 0 1px rgba(255,255,255,.09),
+        0 0 22px rgba(255,205,75,.35),
+        0 0 55px rgba(255,165,25,.22),
+        0 0 90px rgba(255,125,10,.08);
+
+    z-index: 5;
+
+    animation:
+        logoFloat 3.5s ease-in-out infinite alternate;
+}
+
+.logo-frame-inner {
+    width: 100%;
+    height: 100%;
+
+    padding: 3px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #fff4bb,
+            #d39a25,
+            #fff0a4
+        );
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.splash-logo {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    background: white;
+
+    box-shadow:
+        inset 0 0 20px rgba(0,0,0,.16);
+}
+
+/* ============================================================
+   CENTER LIGHT FLASH
+============================================================ */
+
+.logo-flash {
+    position: absolute;
+
+    width: 320px;
+    height: 2px;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,231,151,.05),
+            rgba(255,231,151,.9),
+            rgba(255,231,151,.05),
+            transparent
+        );
+
+    filter: blur(.5px);
+
+    opacity: 0;
+
+    z-index: 6;
+
+    animation:
+        cinematicFlash 1.7s
+        cubic-bezier(.16,1,.3,1)
+        .25s
+        both;
+}
+
+/* ============================================================
+   BRAND REVEAL
+============================================================ */
+
+.brand-area {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    text-align: center;
+
+    animation:
+        brandReveal 1.25s
+        cubic-bezier(.16,1,.3,1)
+        .28s
+        both;
+}
+
+/* premium badge */
+
+.motto-badge {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    min-height: 34px;
+
+    padding: 6px 20px;
+
+    margin-bottom: 15px;
+
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(112,9,17,.88),
+            rgba(34,2,7,.94)
+        );
+
+    border:
+        1px solid rgba(255,214,103,.34);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.07),
+        0 8px 25px rgba(0,0,0,.24),
+        0 0 20px rgba(255,183,43,.06);
+
+    color: var(--gold3);
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    letter-spacing: .7px;
+}
+
+.motto-star {
+    color: var(--gold2);
+
+    font-size: 10px;
+
+    text-shadow:
+        0 0 8px rgba(255,215,100,.8);
+}
+
+/* SANATANAM */
+
+.brand-title {
+    font-family: 'Poppins', sans-serif;
+
+    font-size:
+        clamp(43px, 11vw, 55px);
+
+    line-height: .94;
+
+    font-weight: 900;
+
+    letter-spacing: -2.5px;
+
+    color: #ffffff;
+
+    text-transform: lowercase;
+
+    text-shadow:
+        0 3px 0 rgba(0,0,0,.25),
+        0 8px 25px rgba(0,0,0,.35),
+        0 0 30px rgba(255,255,255,.07);
+
+    margin-bottom: 10px;
+}
+
+/* Hindi */
+
+.brand-hindi {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+
+    font-size:
+        clamp(20px, 5.3vw, 25px);
+
+    line-height: 1.25;
+
+    font-weight: 900;
+
+    color: var(--gold2);
+
+    letter-spacing: .4px;
+
+    text-shadow:
+        0 2px 12px rgba(0,0,0,.42),
+        0 0 25px rgba(255,192,55,.17);
+
+    margin-bottom: 7px;
+}
+
+/* English subbrand */
+
+.brand-sub {
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 9px;
+
+    font-weight: 600;
+
+    letter-spacing: 3.4px;
+
+    color: rgba(255,255,255,.52);
+
+    text-transform: uppercase;
+}
+
+/* ============================================================
+   CINEMATIC LOADER
+============================================================ */
+
+.loading-system {
+    position: relative;
+
+    width: 86px;
+    height: 3px;
+
+    margin-top: 25px;
+
+    border-radius: 99px;
+
+    overflow: hidden;
+
+    background:
+        rgba(255,214,100,.13);
+
+    box-shadow:
+        0 0 10px rgba(255,190,50,.07);
+}
+
+.loading-system::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,216,100,.55),
+            transparent
+        );
+
+    animation:
+        loadingSweep 1.2s ease-in-out infinite;
+}
+
+.loading-system::after {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -30%;
+
+    width: 30%;
+    height: 100%;
+
+    border-radius: 99px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #fff2b0,
+            #ffd14d,
+            transparent
+        );
+
+    box-shadow:
+        0 0 9px rgba(255,208,73,.9);
+
+    animation:
+        loaderTravel 1.15s ease-in-out infinite;
+}
+
+/* ============================================================
+   FOOTER
+============================================================ */
+
+.footer {
+    position: absolute;
+
+    left: 18px;
+    right: 18px;
+
+    bottom:
+        max(28px, env(safe-area-inset-bottom));
+
+    z-index: 30;
+
+    text-align: center;
+
+    animation:
+        footerReveal 1.3s
+        cubic-bezier(.16,1,.3,1)
+        .65s
+        both;
+}
+
+.footer-main {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    margin-bottom: 6px;
+}
+
+.footer-main::before,
+.footer-main::after {
+    content: "";
+
+    width: 25px;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,214,100,.55)
+        );
+}
+
+.footer-main::after {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255,214,100,.55),
+            transparent
+        );
+}
+
+.footer-title {
+    font-family:
+        'Noto Sans Devanagari',
+        sans-serif;
+
+    color: var(--gold2);
+
+    font-size: 12.5px;
+
+    font-weight: 800;
+
+    letter-spacing: .5px;
+
+    text-shadow:
+        0 0 13px rgba(255,200,55,.16);
+}
+
+.footer-sub {
+    font-family:
+        'Noto Sans Devanagari',
+        sans-serif;
+
+    color: rgba(255,255,255,.53);
+
+    font-size: 10px;
+
+    font-weight: 500;
+
+    letter-spacing: .15px;
+}
+
+/* ============================================================
+   ANIMATIONS
+============================================================ */
+
+@keyframes ambientPulse {
+
+    0% {
+        transform: translate(-50%, -50%) scale(.90);
+        opacity: .55;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1.08);
+        opacity: 1;
+    }
+}
+
+@keyframes slowRotate {
+
+    from {
+        transform:
+            translate(-50%, -50%)
+            rotate(0deg);
+    }
+
+    to {
+        transform:
+            translate(-50%, -50%)
+            rotate(360deg);
+    }
+}
+
+@keyframes slowRotateReverse {
+
+    from {
+        transform:
+            translate(-50%, -50%)
+            rotate(360deg);
+    }
+
+    to {
+        transform:
+            translate(-50%, -50%)
+            rotate(0deg);
+    }
+}
+
+@keyframes logoEntrance {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            scale(.55)
+            rotate(-12deg);
+
+        filter:
+            blur(12px)
+            brightness(.65);
+    }
+
+    55% {
+        opacity: 1;
+
+        transform:
+            scale(1.04)
+            rotate(2deg);
+
+        filter:
+            blur(0)
+            brightness(1.18);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            scale(1)
+            rotate(0deg);
+
+        filter:
+            blur(0)
+            brightness(1);
+    }
+}
+
+@keyframes auraBreath {
+
+    from {
+        transform: scale(.82);
+        opacity: .45;
+    }
+
+    to {
+        transform: scale(1.15);
+        opacity: 1;
+    }
+}
+
+@keyframes orbitSpin {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes orbitSpinReverse {
+
+    from {
+        transform: rotate(360deg);
+    }
+
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes logoFloat {
+
+    from {
+        transform: translateY(2px);
+    }
+
+    to {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes cinematicFlash {
+
+    0% {
+        opacity: 0;
+        transform:
+            translate(-50%, -50%)
+            scaleX(.15);
+    }
+
+    45% {
+        opacity: 1;
+        transform:
+            translate(-50%, -50%)
+            scaleX(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform:
+            translate(-50%, -50%)
+            scaleX(1.4);
+    }
+}
+
+@keyframes brandReveal {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translateY(24px)
+            scale(.92);
+
+        filter: blur(9px);
+    }
+
+    65% {
+        opacity: 1;
+        filter: blur(0);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+        filter: blur(0);
+    }
+}
+
+@keyframes loadingSweep {
+
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes loaderTravel {
+
+    0% {
+        left: -30%;
+    }
+
+    100% {
+        left: 100%;
+    }
+}
+
+@keyframes particleFloat {
+
+    0%,
+    100% {
+        opacity: 0;
+
+        transform:
+            translateY(15px)
+            scale(.4);
+    }
+
+    35% {
+        opacity: .9;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+    65% {
+        opacity: .35;
+
+        transform:
+            translateY(-15px)
+            scale(.7);
+    }
+}
+
+@keyframes footerReveal {
+
+    0% {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================================
+   SHORT DISPLAY OPTIMIZATION
+============================================================ */
+
+@media (max-height: 680px) {
+
+    .logo-zone {
+        transform: scale(.86);
+        margin-bottom: -4px;
+    }
+
+    .brand-title {
+        font-size: 39px;
+    }
+
+    .brand-hindi {
+        font-size: 18px;
+    }
+
+    .motto-badge {
+        margin-bottom: 10px;
+    }
+
+    .loading-system {
+        margin-top: 17px;
+    }
+}
+
+/* ============================================================
+   REDUCED MOTION
+============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+    <!-- ========================================================
+         CINEMATIC BACKGROUND
+    ========================================================= -->
+
+    <div class="background-core"></div>
+    <div class="ambient-glow"></div>
+
+    <div class="ring-system"></div>
+    <div class="light-rays"></div>
+
+    <!-- Floating Gold Particles -->
+
+    <span class="particle p1"></span>
+    <span class="particle p2"></span>
+    <span class="particle p3"></span>
+    <span class="particle p4"></span>
+    <span class="particle p5"></span>
+    <span class="particle p6"></span>
+    <span class="particle p7"></span>
+    <span class="particle p8"></span>
+
+
+    <!-- ========================================================
+         MAIN SPLASH
+    ========================================================= -->
+
+    <main class="splash">
+
+        <section>
+
+            <!-- =================================================
+                 LOGO
+            ================================================== -->
+
+            <div class="logo-zone">
+
+                <div class="orbit"></div>
+                <div class="orbit-two"></div>
+
+                <div class="logo-flash"></div>
+
+                <div class="logo-frame">
+
+                    <div class="logo-frame-inner">
+
+                        <img
+                            src="Images/jpg/logo.jpg"
+                            onerror="this.src='https://sanatansevasamiti.org/Images/jpg/logo.jpg';"
+                            alt="Sanatan Seva Samiti"
+                            class="splash-logo"
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 BRAND
+            ================================================== -->
+
+            <div class="brand-area">
+
+                <!-- जय भवानी -->
+
+                <div class="motto-badge">
+
+                    <span class="motto-star">✦</span>
+
+                    <span>जय भवानी</span>
+
+                    <span class="motto-star">✦</span>
+
+                </div>
+
+
+                <!-- SANATANAM -->
+
+                <div class="brand-title">
+                    sanatanam
+                </div>
+
+
+                <!-- संस्था -->
+
+                <div class="brand-hindi">
+                    सनातन सेवा समिति
+                </div>
+
+
+                <!-- English -->
+
+                <div class="brand-sub">
+                    SANATAN SEVA SAMITI
+                </div>
+
+
+                <!-- Premium Loading -->
+
+                <div class="loading-system"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             FOOTER
+        ====================================================== -->
+
+        <footer class="footer">
+
+            <div class="footer-main">
+
+                <div class="footer-title">
+                    सेवा ही परमो धर्मः
+                </div>
+
+            </div>
+
+            <div class="footer-sub">
+                समर्पित राष्ट्र एवं सनातन धर्म सेवा
+            </div>
+
+        </footer>
+
+    </main>
+
+
+    <!-- ========================================================
+         SPLASH → APP HOME
+         1.8 SECOND
+    ========================================================= -->
+
+    <script>
+
+        setTimeout(() => {
+
+            window.location.replace("app_home.html");
+
+        }, 1800);
+
+    </script>
+
+</body>
+</html>

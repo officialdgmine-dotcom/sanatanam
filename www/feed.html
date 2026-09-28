@@ -10,6 +10,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="image_loader.js"></script>
+    <script src="image_cache.js"></script>
 
     <style>
         :root {
@@ -587,7 +589,7 @@
             </a>
             <span class="header-title">दैनिक फ़ीड एवं गतिविधियाँ</span>
         </div>
-        <img src="Images/jpg/logo.jpg" alt="Logo" class="header-logo" onerror="this.src='https://sanatansevasamiti.org/Images/jpg/logo.jpg';">
+        <img src="Images/jpg/logo.jpg" width="36" height="36" alt="Logo" class="header-logo image-loader-img" style="contain: layout paint; content-visibility: auto; aspect-ratio: 1/1; object-fit: cover;" onerror="this.src='https://sanatansevasamiti.org/Images/jpg/logo.jpg';">
     </header>
 
     <!-- Feed Container (Dynamic Posts rendered via JavaScript) -->
@@ -757,7 +759,8 @@
             <article class="post-card" id="post-${postId}">
                 <div class="post-header" onclick="window.location.href='app_dashboard.html'">
                     <div class="author-box">
-                        <img src="${getProfileDp(pid)}" alt="${author}" class="author-avatar" 
+                        <img src="${getProfileDp(pid)}" width="42" height="42" alt="${author}" class="author-avatar image-loader-img" 
+                             style="contain: layout paint; content-visibility: auto; aspect-ratio: 1/1; object-fit: cover;"
                              onerror="handleDpFallback(this, '${pid}')">
                         <div class="author-meta">
                             <h4>${author}</h4>
@@ -803,7 +806,8 @@
                 links.forEach(imgUrl => {
                     html += `
                         <div class="slide-item">
-                            <img src="${imgUrl}" alt="Post Media" loading="lazy" 
+                            <img src="${imgUrl}" width="100%" height="auto" alt="Post Media" loading="lazy" decoding="async" 
+                                 class="image-loader-img" style="contain: layout paint; content-visibility: auto; aspect-ratio: 16/9; object-fit: cover;"
                                  onclick="openLightbox('${imgUrl}')" 
                                  onerror="this.src='Images/jpg/logo.jpg';">
                         </div>

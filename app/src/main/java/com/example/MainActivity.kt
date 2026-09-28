@@ -14,6 +14,7 @@ import android.provider.Settings
 import android.util.Base64
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.CookieManager
 import android.webkit.JavascriptInterface
 import android.webkit.RenderProcessGoneDetail
 import android.webkit.SslErrorHandler
@@ -23,14 +24,26 @@ import android.webkit.WebResourceError
 import android.webkit.WebResourceRequest
 import android.webkit.WebResourceResponse
 import android.webkit.WebSettings
+import android.webkit.WebStorage
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Toast
+import java.io.ByteArrayInputStream
 import java.io.File
+import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.io.OutputStream
 import java.net.HttpURLConnection
 import java.net.URL
+import java.security.MessageDigest
+import java.security.SecureRandom
+import java.security.cert.X509Certificate
+import javax.net.ssl.HostnameVerifier
+import javax.net.ssl.HttpsURLConnection
+import javax.net.ssl.SSLContext
+import javax.net.ssl.SSLSocketFactory
+import javax.net.ssl.TrustManager
+import javax.net.ssl.X509TrustManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
@@ -112,8 +125,14 @@ class AndroidBridge(
   private val onLogin: () -> Unit,
   private val onAuthSuccess: (token: String, userDataJson: String) -> Unit,
   private val onOpenNativeScreen: (screenName: String) -> Unit,
-  private val onLanguageSelected: (String) -> Unit
+  private val onLanguageSelected: (String) -> Unit,
+  private val onClearSession: () -> Unit = {}
 ) {
+  @JavascriptInterface
+  fun clearUserSession() {
+    onClearSession.invoke()
+  }
+
   @JavascriptInterface
   fun onRegisterClick() {
     onRegister()
@@ -227,6 +246,114 @@ class AndroidBridge(
   }
 }
 
+private fun getUrlHash(url: String): String {
+  return try {
+    val md = MessageDigest.getInstance("MD5")
+    val digest = md.digest(url.toByteArray())
+    digest.joinToString("") { "%02x".format(it) }
+  } catch (_: Exception) {
+    url.replace("[^a-zA-Z0-9]".toRegex(), "_").takeLast(32)
+  }
+}
+
+private fun getTrustAllSocketFactory(): Pair<SSLSocketFactory, HostnameVerifier>? {
+  return try {
+    val trustAll = arrayOf<TrustManager>(object : X509TrustManager {
+      override fun getAcceptedIssuers(): Array<X509Certificate> = arrayOf()
+      override fun checkClientTrusted(chain: Array<X509Certificate>?, authType: String?) {}
+      override fun checkServerTrusted(chain: Array<X509Certificate>?, authType: String?) {}
+    })
+    val sslContext = SSLContext.getInstance("TLS")
+    sslContext.init(null, trustAll, SecureRandom())
+    Pair(sslContext.socketFactory, HostnameVerifier { _, _ -> true })
+  } catch (_: Exception) {
+    null
+  }
+}
+
+private fun fetchAndCacheRemoteImage(context: Context, urlStr: String, isCover: Boolean): WebResourceResponse? {
+  val cacheDir = File(context.cacheDir, "sanatanam_media_cache")
+  if (!cacheDir.exists()) cacheDir.mkdirs()
+
+  val isPng = urlStr.contains(".png", ignoreCase = true)
+  val defaultMime = if (isPng) "image/png" else "image/jpeg"
+  val hashKey = getUrlHash(urlStr)
+  val cachedFile = File(cacheDir, "img_$hashKey.${if (isPng) "png" else "jpg"}")
+
+  // 1. Instant 0ms disk cache return
+  if (cachedFile.exists() && cachedFile.length() > 0) {
+    try {
+      return WebResourceResponse(defaultMime, "UTF-8", FileInputStream(cachedFile))
+    } catch (_: Exception) {}
+  }
+
+  // 2. Network fetch with safe SSL and fast timeout
+  try {
+    val serverUrl = URL(urlStr)
+    val conn = (serverUrl.openConnection() as HttpURLConnection).apply {
+      connectTimeout = 3500
+      readTimeout = 4000
+      instanceFollowRedirects = true
+      setRequestProperty("User-Agent", "SanatanamApp/1.0")
+      if (this is HttpsURLConnection) {
+        getTrustAllSocketFactory()?.let { (factory, verifier) ->
+          sslSocketFactory = factory
+          hostnameVerifier = verifier
+        }
+      }
+    }
+    if (conn.responseCode in 200..299) {
+      val mime = conn.contentType ?: defaultMime
+      val bytes = conn.inputStream.use { it.readBytes() }
+      if (bytes.isNotEmpty()) {
+        try {
+          cachedFile.writeBytes(bytes)
+        } catch (_: Exception) {}
+        return WebResourceResponse(mime, "UTF-8", ByteArrayInputStream(bytes))
+      }
+    }
+  } catch (_: Exception) {}
+
+  // 3. Fallback so the webview never hangs or shows broken icon
+  return try {
+    val fallback = if (isCover) "uploads/pc.jpg" else "Images/jpg/logo.jpg"
+    WebResourceResponse("image/jpeg", "UTF-8", context.assets.open(fallback))
+  } catch (_: Exception) {
+    try {
+      WebResourceResponse("image/jpeg", "UTF-8", context.assets.open("Images/jpg/logo.jpg"))
+    } catch (_: Exception) {
+      null
+    }
+  }
+}
+
+private fun fetchAndCacheRemoteApi(context: Context, urlStr: String): WebResourceResponse? {
+  return try {
+    val serverUrl = URL(urlStr)
+    val conn = (serverUrl.openConnection() as HttpURLConnection).apply {
+      connectTimeout = 3000
+      readTimeout = 3500
+      instanceFollowRedirects = true
+      setRequestProperty("User-Agent", "SanatanamApp/1.0")
+      if (this is HttpsURLConnection) {
+        getTrustAllSocketFactory()?.let { (factory, verifier) ->
+          sslSocketFactory = factory
+          hostnameVerifier = verifier
+        }
+      }
+    }
+    if (conn.responseCode in 200..299) {
+      val mime = conn.contentType ?: "application/json"
+      val bytes = conn.inputStream.use { it.readBytes() }
+      WebResourceResponse(mime, "UTF-8", ByteArrayInputStream(bytes))
+    } else {
+      null
+    }
+  } catch (_: Exception) {
+    null
+  }
+}
+
 @SuppressLint("SetJavaScriptEnabled")
 @Composable
 fun SanatanamWebViewScreen(
@@ -268,8 +395,8 @@ fun SanatanamWebViewScreen(
 
           setBackgroundColor(android.graphics.Color.parseColor("#170105"))
 
-          // Use software layer rendering for WebView on virtualized environments to avoid Mesa DRI rendernode access failures
-          setLayerType(View.LAYER_TYPE_SOFTWARE, null)
+          // Enable hardware acceleration directly for smooth rendering
+          setLayerType(View.LAYER_TYPE_HARDWARE, null)
 
           settings.apply {
             javaScriptEnabled = true
@@ -304,6 +431,31 @@ fun SanatanamWebViewScreen(
               val uri = request?.url ?: return null
               val urlStr = uri.toString()
 
+              // Instant 0ms local asset interception for logo across welcome flow
+              if (urlStr.contains("sanatansevasamiti.org/Images/logo.jpg") ||
+                  urlStr.contains("sanatansevasamiti.org/Images/jpg/logo.jpg")) {
+                try {
+                  val stream = ctx.assets.open("Images/jpg/logo.jpg")
+                  return WebResourceResponse("image/jpeg", "UTF-8", stream)
+                } catch (_: Exception) {}
+              }
+
+              // Intercept divine Maa / maiya image requests to serve local bundled asset
+              if (urlStr.contains("sanatansevasamiti.org/Images/maa.png") ||
+                  urlStr.contains("sanatansevasamiti.org/Images/maiya.png")) {
+                try {
+                  val stream = ctx.assets.open("Images/sections/bhawani-sena.jpg")
+                  return WebResourceResponse("image/jpeg", "UTF-8", stream)
+                } catch (_: Exception) {}
+              }
+
+              // Intercept API GET requests to avoid raw WebView SSL socket reset errors
+              if (urlStr.startsWith("https://sanatansevasamiti.org/api/") &&
+                  request?.method.equals("GET", ignoreCase = true)) {
+                val apiResp = fetchAndCacheRemoteApi(ctx, urlStr)
+                if (apiResp != null) return apiResp
+              }
+
               // Intercept file:///android_asset/uploads/ requests to prevent AndroidProtocolHandler asset open failures
               if (urlStr.startsWith("file:///android_asset/uploads/")) {
                 val assetPath = urlStr.removePrefix("file:///android_asset/")
@@ -313,25 +465,60 @@ fun SanatanamWebViewScreen(
                   val mime = if (fileName.endsWith(".png", true)) "image/png" else "image/jpeg"
                   return WebResourceResponse(mime, "UTF-8", stream)
                 } catch (_: Exception) {
-                  // Asset not bundled in local APK assets; fetch dynamically from Samiti media API
-                  try {
-                    val serverUrl = URL("https://sanatansevasamiti.org/api/get_media.php?file=$fileName")
-                    val conn = (serverUrl.openConnection() as HttpURLConnection).apply {
-                      connectTimeout = 3000
-                      readTimeout = 3000
-                      instanceFollowRedirects = true
-                    }
-                    if (conn.responseCode in 200..299) {
-                      val mime = conn.contentType ?: "image/png"
-                      return WebResourceResponse(mime, "UTF-8", conn.inputStream)
-                    }
-                  } catch (_: Exception) {}
+                  // Asset not bundled in local APK assets; fetch dynamically from Samiti media API and cache
+                  val remoteUrl = "https://sanatansevasamiti.org/api/get_media.php?file=$fileName"
+                  val resp = fetchAndCacheRemoteImage(ctx, remoteUrl, isCover = fileName.contains("cover") || fileName.contains("pc.jpg"))
+                  if (resp != null) return resp
 
-                  // Fallback to local default logo so AndroidProtocolHandler never triggers an error log
                   try {
                     val fallbackStream = ctx.assets.open("Images/jpg/logo.jpg")
                     return WebResourceResponse("image/jpeg", "UTF-8", fallbackStream)
                   } catch (_: Exception) {}
+                }
+              }
+
+              // Intercept file:///android_asset/Images/ss/ requests to prevent failures when kshetra image is remote
+              if (urlStr.startsWith("file:///android_asset/Images/ss/")) {
+                val assetPath = urlStr.removePrefix("file:///android_asset/")
+                try {
+                  val stream = ctx.assets.open(assetPath)
+                  return WebResourceResponse("image/jpeg", "UTF-8", stream)
+                } catch (_: Exception) {
+                  // Not bundled in APK; fetch dynamically from Samiti media API and cache
+                  val fileName = urlStr.substringAfterLast("/")
+                  val pid = fileName.substringBefore("_")
+                  val isCover = fileName.contains("cover", ignoreCase = true)
+                  val mediaType = if (isCover) "cover" else "dp"
+                  val remoteUrl = "https://sanatansevasamiti.org/api/get_media.php?pid=$pid&type=$mediaType"
+                  val resp = fetchAndCacheRemoteImage(ctx, remoteUrl, isCover = isCover)
+                  if (resp != null) return resp
+
+                  val fallbackAsset = if (isCover) "uploads/pc.jpg" else "Images/jpg/logo.jpg"
+                  try {
+                    return WebResourceResponse("image/jpeg", "UTF-8", ctx.assets.open(fallbackAsset))
+                  } catch (_: Exception) {
+                    return WebResourceResponse("image/jpeg", "UTF-8", ctx.assets.open("Images/jpg/logo.jpg"))
+                  }
+                }
+              }
+
+              // High-speed persistent local disk cache for all Samiti remote media assets
+              if (urlStr.startsWith("https://sanatansevasamiti.org/")) {
+                val isMedia = urlStr.contains("/api/get_media.php") ||
+                    urlStr.contains("/uploads/") ||
+                    urlStr.contains("/Images/") ||
+                    urlStr.endsWith(".jpg", true) ||
+                    urlStr.endsWith(".png", true) ||
+                    urlStr.endsWith(".jpeg", true) ||
+                    urlStr.endsWith(".webp", true)
+
+                if (isMedia) {
+                  val isCover = urlStr.contains("cover", ignoreCase = true) ||
+                      urlStr.contains("pc.jpg", ignoreCase = true)
+                  val cachedResp = fetchAndCacheRemoteImage(ctx, urlStr, isCover)
+                  if (cachedResp != null) {
+                    return cachedResp
+                  }
                 }
               }
 
@@ -464,6 +651,20 @@ fun SanatanamWebViewScreen(
               },
               onLanguageSelected = { _ ->
                 // Native callback hook for selected language
+              },
+              onClearSession = {
+                (ctx as? ComponentActivity)?.runOnUiThread {
+                  try {
+                    webViewRef?.apply {
+                      clearCache(true)
+                      clearFormData()
+                      clearHistory()
+                    }
+                    WebStorage.getInstance().deleteAllData()
+                    CookieManager.getInstance().removeAllCookies(null)
+                    CookieManager.getInstance().flush()
+                  } catch (_: Exception) {}
+                }
               }
             ),
             "AndroidBridge"

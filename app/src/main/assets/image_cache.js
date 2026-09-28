@@ -1,8 +1,18 @@
 /**
- * Zero-Latency Offline Image Cache Engine (IndexedDB)
+ * Zero-Latency Offline Image Cache Engine (IndexedDB + Native Disk Cache)
  * High-speed caching for all DPs, Covers, Post media, and UI assets.
- * 0-second instant load from local memory (Base64/Blob), stale-free background sync.
+ * 0-second instant load from local memory (Base64/Blob/Disk), stale-free background sync.
  */
+
+// Ensure ImageLoader is available on all pages
+if (typeof document !== 'undefined' && typeof window !== 'undefined' && !window.ImageLoader) {
+    if (!document.querySelector('script[src*="image_loader.js"]')) {
+        const _imgLoaderScript = document.createElement('script');
+        _imgLoaderScript.src = 'image_loader.js';
+        _imgLoaderScript.async = false;
+        document.head.appendChild(_imgLoaderScript);
+    }
+}
 
 const SSS_CACHE_DB = 'sanatanam_img_cache_db';
 const SSS_CACHE_STORE = 'images';
@@ -30,7 +40,11 @@ function getDB() {
         try {
             if (!window.indexedDB) return resolve(null);
             const req = indexedDB.open(SSS_CACHE_DB, 1);
-            req.onupgradeneeded = () => req.result.createObjectStore(SSS_CACHE_STORE);
+            req.onupgradeneeded = () => {
+                if (!req.result.objectStoreNames.contains(SSS_CACHE_STORE)) {
+                    req.result.createObjectStore(SSS_CACHE_STORE);
+                }
+            };
             req.onsuccess = () => resolve(req.result);
             req.onerror = () => resolve(null);
         } catch (e) {
@@ -39,8 +53,22 @@ function getDB() {
     });
 }
 
+/**
+ * Clear the entire image cache (called on logout)
+ */
+async function clearAllImageCache() {
+    try {
+        if (window.ImageLoader && typeof window.ImageLoader.clearMemoryCache === 'function') {
+            try { window.ImageLoader.clearMemoryCache(); } catch(_) {}
+        }
+        if (window.indexedDB) {
+            indexedDB.deleteDatabase(SSS_CACHE_DB);
+        }
+    } catch(e) {}
+}
+
 async function getOfflineImage(cacheKey, preferredLocalUrl, fallbackRemoteUrl) {
-    // 1. स्थानीय एसेट प्राथमिकता
+    // 1. स्थानीय एसेट प्राथमिकता (0-देरी)
     if (preferredLocalUrl && !preferredLocalUrl.startsWith('http')) {
         return preferredLocalUrl;
     }
@@ -48,36 +76,46 @@ async function getOfflineImage(cacheKey, preferredLocalUrl, fallbackRemoteUrl) {
     const key = cacheKey || preferredLocalUrl || fallbackRemoteUrl;
     if (!key) return 'Images/jpg/logo.jpg';
 
+    // 2. लोकल IndexedDB से त्वरित डेटा लुकअप
     try {
         const db = await getDB();
         if (db) {
             const cachedData = await new Promise((res) => {
-                const tx = db.transaction(SSS_CACHE_STORE, 'readonly');
-                const store = tx.objectStore(SSS_CACHE_STORE);
-                const req = store.get(key);
-                req.onsuccess = () => res(req.result);
-                req.onerror = () => res(null);
+                try {
+                    const tx = db.transaction(SSS_CACHE_STORE, 'readonly');
+                    const store = tx.objectStore(SSS_CACHE_STORE);
+                    const req = store.get(key);
+                    req.onsuccess = () => res(req.result);
+                    req.onerror = () => res(null);
+                } catch(txErr) {
+                    res(null);
+                }
             });
 
             if (cachedData) {
-                return cachedData; // 0 सेकंड में लोकल कैश से रिटर्न
+                return cachedData;
             }
         }
     } catch(e) {}
 
-    // 2. बैकग्राउंड में फ़ेच व लोकल सेव
+    // 3. बैकग्राउंड में फ़ेच व लोकल सेव
     const targetUrl = fallbackRemoteUrl || preferredLocalUrl;
     if (targetUrl && targetUrl.startsWith('http')) {
-        fetch(targetUrl)
-            .then(res => res.blob())
+        fetch(targetUrl, { mode: 'cors' })
+            .then(res => {
+                if (!res.ok) throw new Error("fetch status not ok");
+                return res.blob();
+            })
             .then(blob => {
                 const reader = new FileReader();
                 reader.onloadend = async () => {
                     const b64 = reader.result;
                     const db = await getDB();
                     if (db) {
-                        const tx = db.transaction(SSS_CACHE_STORE, 'readwrite');
-                        tx.objectStore(SSS_CACHE_STORE).put(b64, key);
+                        try {
+                            const tx = db.transaction(SSS_CACHE_STORE, 'readwrite');
+                            tx.objectStore(SSS_CACHE_STORE).put(b64, key);
+                        } catch(putErr) {}
                     }
                 };
                 reader.readAsDataURL(blob);
@@ -102,8 +140,10 @@ function getUserProfileMediaUrl(photoPath) {
     }
     
     if (photoPath.includes("get_media.php")) return photoPath;
+    if (photoPath.startsWith("http://") || photoPath.startsWith("https://")) return photoPath;
+    
     const cleanName = photoPath.replace(/^.*[\\\/]/, '').trim();
-    if (!cleanName) return "Images/jpg/logo.jpg";
+    if (!cleanName || cleanName === "pc.jpg") return "Images/jpg/logo.jpg";
     return `https://sanatansevasamiti.org/api/get_media.php?file=${encodeURIComponent(cleanName)}`;
 }
 
@@ -142,22 +182,28 @@ function getCoverMediaUrl(sevaKshetra, customCover) {
     if (k && LOCAL_SS_MAP[k] && LOCAL_SS_MAP[k].cover) {
         return LOCAL_SS_MAP[k].cover;
     }
+    if (k && k !== 'PRO1781011172') {
+        return `https://sanatansevasamiti.org/api/get_media.php?pid=${encodeURIComponent(k)}&type=cover`;
+    }
     return "uploads/pc.jpg";
 }
 
 /**
- * Pre-cache all essential images in background
+ * Pre-cache all essential images in background for the active user
+ * NOTE: User DP is uniquely keyed by user UID to guarantee complete data isolation between accounts
  */
 async function preCacheUserAssets(user) {
     if (!user) return;
     try {
+        const uid = user.unique_id || user.id || "me";
         const promises = [];
         promises.push(getOfflineImage("samiti_main_logo", "Images/jpg/logo.jpg"));
         promises.push(getOfflineImage("samiti_signature", null, "https://sanatansevasamiti.org/uploads/signature.jpg"));
 
         if (user.profile_photo) {
             const userPhotoUrl = getUserProfileMediaUrl(user.profile_photo);
-            promises.push(getOfflineImage("user_profile_dp", userPhotoUrl.startsWith("http") ? null : userPhotoUrl, userPhotoUrl));
+            // यूज़र-विशिष्ट कुंजी - कभी भी दूसरे यूज़र के साथ कॉलिज़न नहीं होगा
+            promises.push(getOfflineImage(`user_dp_${uid}`, userPhotoUrl.startsWith("http") ? null : userPhotoUrl, userPhotoUrl));
         }
 
         const sevaKshetra = (user.seva_kshetra || "").trim();
@@ -176,43 +222,19 @@ async function preCacheUserAssets(user) {
 
 // ऑटोमैटिक सभी <img> टैग्स को सुपरफ़ास्ट लोड कराने का ग्लोबल ऑब्ज़र्वर
 window.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('img[data-cache-key]').forEach(async (img) => {
-        const key = img.getAttribute('data-cache-key');
-        const fallback = img.getAttribute('data-fallback') || img.src;
-        const fastSrc = await getOfflineImage(key, img.src, fallback);
-        if (fastSrc) img.src = fastSrc;
-    });
-
-    // Auto-cache observer for remote images loaded across feeds/cards
-    const optimizeImg = async (img) => {
-        if (!img || img.dataset.cacheEngineChecked) return;
-        img.dataset.cacheEngineChecked = "1";
-        const key = img.getAttribute('data-cache-key') || img.src;
-        const fallback = img.getAttribute('data-fallback') || img.src;
-        if (key && fallback && fallback.startsWith('http')) {
-            const fastSrc = await getOfflineImage(key, img.src.startsWith('http') ? null : img.src, fallback);
-            if (fastSrc && fastSrc !== img.src) {
-                img.src = fastSrc;
-            }
-        }
-    };
-
-    if ('MutationObserver' in window) {
-        const observer = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
-                mutation.addedNodes.forEach((node) => {
-                    if (node.nodeType === 1) {
-                        if (node.tagName === 'IMG') {
-                            optimizeImg(node);
-                        } else if (node.querySelectorAll) {
-                            node.querySelectorAll('img').forEach(optimizeImg);
-                        }
-                    }
-                });
-            });
-        });
-        observer.observe(document.body || document.documentElement, { childList: true, subtree: true });
+    if (window.ImageLoader && typeof window.ImageLoader.scanAndUpgrade === 'function') {
+        window.ImageLoader.scanAndUpgrade(document);
     }
+    document.querySelectorAll('img[data-cache-key]').forEach(async (img) => {
+        if (window.ImageLoader && typeof window.ImageLoader.attach === 'function') {
+            window.ImageLoader.attach(img);
+        } else {
+            const key = img.getAttribute('data-cache-key');
+            const fallback = img.getAttribute('data-fallback') || img.src;
+            const fastSrc = await getOfflineImage(key, img.src, fallback);
+            if (fastSrc && fastSrc !== img.src) img.src = fastSrc;
+        }
+    });
 });
 
 // Global exports
@@ -224,3 +246,4 @@ window.getUserProfileMediaUrl = getUserProfileMediaUrl;
 window.getKshetraDpMediaUrl = getKshetraDpMediaUrl;
 window.getCoverMediaUrl = getCoverMediaUrl;
 window.preCacheUserAssets = preCacheUserAssets;
+window.clearAllImageCache = clearAllImageCache;

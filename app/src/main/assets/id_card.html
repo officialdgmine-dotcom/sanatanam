@@ -8,6 +8,7 @@
 <!-- HTML2CANVAS & JSZIP -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="image_loader.js"></script>
 <script src="image_cache.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
@@ -483,20 +484,20 @@ body{
                         <div class="front-header">
                             <!-- डबल लोगो रो (सहयोगी विंग्स हेतु: बाएँ क्षेत्र लोगो, दाएँ समिति लोगो) -->
                             <div class="logo-row-double" id="idLogoRowDouble">
-                                <img id="kshetraLogo" src="Images/jpg/logo.jpg" class="card-logo" crossorigin="anonymous" alt="Kshetra" onerror="this.src='https://sanatansevasamiti.org/Images/jpg/logo.jpg';">
-                                <img id="samitiMainLogoDouble" src="Images/jpg/logo.jpg" class="card-logo" crossorigin="anonymous" alt="Samiti" onerror="this.src='https://sanatansevasamiti.org/Images/jpg/logo.jpg';">
+                                <img id="kshetraLogo" width="42" height="42" src="Images/jpg/logo.jpg" class="card-logo image-loader-img" style="contain: layout paint; content-visibility: auto; aspect-ratio: 1/1;" crossorigin="anonymous" alt="Kshetra" onerror="this.src='https://sanatansevasamiti.org/Images/jpg/logo.jpg';">
+                                <img id="samitiMainLogoDouble" width="42" height="42" src="Images/jpg/logo.jpg" class="card-logo image-loader-img" style="contain: layout paint; content-visibility: auto; aspect-ratio: 1/1;" crossorigin="anonymous" alt="Samiti" onerror="this.src='https://sanatansevasamiti.org/Images/jpg/logo.jpg';">
                             </div>
 
                             <!-- सिंगल लोगो रो (मुख्य समिति PRO1781011172 हेतु केंद्र में) -->
                             <div class="logo-row-single" id="idLogoRowSingle" style="display:none;">
-                                <img id="samitiMainLogoSingle" src="Images/jpg/logo.jpg" class="card-logo single-logo" crossorigin="anonymous" alt="Samiti" onerror="this.src='https://sanatansevasamiti.org/Images/jpg/logo.jpg';">
+                                <img id="samitiMainLogoSingle" width="42" height="42" src="Images/jpg/logo.jpg" class="card-logo single-logo image-loader-img" style="contain: layout paint; content-visibility: auto; aspect-ratio: 1/1;" crossorigin="anonymous" alt="Samiti" onerror="this.src='https://sanatansevasamiti.org/Images/jpg/logo.jpg';">
                             </div>
 
                             <div id="cardKshetraTitle" class="ksh-title">सनातन सेवा समिति</div>
                         </div>
 
                         <div class="member-photo-wrap">
-                            <img id="cardMemberPhoto" src="https://sanatansevasamiti.org/Images/jpg/logo.jpg" class="member-photo" crossorigin="anonymous" alt="Member Photo" onerror="this.src='https://sanatansevasamiti.org/Images/jpg/logo.jpg';">
+                            <img id="cardMemberPhoto" width="95" height="95" src="https://sanatansevasamiti.org/Images/jpg/logo.jpg" class="member-photo image-loader-img" style="contain: layout paint; content-visibility: auto; aspect-ratio: 1/1; object-fit: cover;" crossorigin="anonymous" alt="Member Photo" onerror="this.src='https://sanatansevasamiti.org/Images/jpg/logo.jpg';">
                         </div>
 
                         <div id="cardMemberName" class="member-name">सदस्य नाम</div>
@@ -536,13 +537,13 @@ body{
                         <div class="qr-title">SCAN FOR PROFILE</div>
 
                         <div class="qr-box">
-                            <img id="cardQrImg" src="https://api.qrserver.com/v1/create-qr-code/?size=350x350&data=https://sanatansevasamiti.org" class="qr-image" crossorigin="anonymous" alt="Profile QR">
+                            <img id="cardQrImg" width="80" height="80" src="https://api.qrserver.com/v1/create-qr-code/?size=350x350&data=https://sanatansevasamiti.org" class="qr-image image-loader-img" style="contain: layout paint; content-visibility: auto; aspect-ratio: 1/1;" crossorigin="anonymous" alt="Profile QR">
                         </div>
 
                         <div id="cardProfileUrl" class="profile-url">https://sanatansevasamiti.org</div>
                         <div class="president-label">संस्थापक एवं राष्ट्रीय अध्यक्ष</div>
                         <div class="president-name">सनातन सेवा समिति</div>
-                        <img id="cardPresidentSignature" src="https://sanatansevasamiti.org/uploads/signature.jpg" class="signature" crossorigin="anonymous" alt="Signature">
+                        <img id="cardPresidentSignature" width="100" height="40" src="https://sanatansevasamiti.org/uploads/signature.jpg" class="signature image-loader-img" style="contain: layout paint; content-visibility: auto; aspect-ratio: 5/2; object-fit: contain;" crossorigin="anonymous" alt="Signature">
                         <div class="back-footer">SANATAN SEVA SAMITI &nbsp;•&nbsp; sanatansevasamiti.org</div>
                     </div>
 
@@ -723,8 +724,9 @@ function loadUserData() {
         }
         const memberPhotoEl = document.getElementById("cardMemberPhoto");
         memberPhotoEl.src = photo;
+        const userDpKey = `user_dp_${currentUser.unique_id || currentUser.id || 'me'}`;
         if (typeof getOfflineImage === 'function') {
-            getOfflineImage('user_profile_dp', photo).then(cached => {
+            getOfflineImage(userDpKey, photo).then(cached => {
                 if (cached && memberPhotoEl) memberPhotoEl.src = cached;
             });
         }

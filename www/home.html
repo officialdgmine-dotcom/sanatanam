@@ -10,6 +10,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <script src="image_loader.js"></script>
+    <script src="image_cache.js"></script>
 
     <style>
         :root {
@@ -714,7 +716,7 @@
         </form>
 
         <div class="user-avatar-btn" onclick="openMenu()" title="मेनू व प्रोफ़ाइल खोलें">
-            <img id="headerUserAvatar" src="Images/jpg/logo.jpg" 
+            <img id="headerUserAvatar" width="40" height="40" class="image-loader-img avatar-contain" style="contain: layout paint; content-visibility: auto; aspect-ratio: 1/1; object-fit: cover;" src="Images/jpg/logo.jpg" 
                  crossorigin="anonymous"
                  onerror="this.src='Images/jpg/logo.jpg';" 
                  alt="यूज़र प्रोफ़ाइल" />
@@ -726,7 +728,7 @@
         <div class="hero-flip" id="heroFlipper">
             <!-- फ्रंट इमेज -->
             <div class="hero-poster">
-                <img src="https://sanatansevasamiti.org/uploads/file_00000000b5447207af241f52a9137425.png" alt="Front Banner">
+                <img width="360" height="154" class="image-loader-img banner-contain" style="contain: layout paint; content-visibility: auto; aspect-ratio: 180/77; object-fit: cover;" src="https://sanatansevasamiti.org/uploads/file_00000000b5447207af241f52a9137425.png" alt="Front Banner" loading="lazy" decoding="async">
                 <div class="hero-overlay"></div>
                 <div class="hero-badge">
                     <i class="fa-solid fa-om"></i> धर्मो रक्षति रक्षितः
@@ -735,7 +737,7 @@
             
             <!-- बैक इमेज -->
             <div class="hero-back">
-                <img src="uploads/pc.jpg" onerror="this.src='https://sanatansevasamiti.org/uploads/pc.jpg';" alt="Back Banner">
+                <img width="360" height="154" class="image-loader-img banner-contain" style="contain: layout paint; content-visibility: auto; aspect-ratio: 180/77; object-fit: cover;" src="uploads/pc.jpg" onerror="this.src='https://sanatansevasamiti.org/uploads/pc.jpg';" alt="Back Banner" loading="lazy" decoding="async">
                 <div class="hero-overlay"></div>
                 <div class="hero-badge">
                     <i class="fa-solid fa-hands-praying"></i> सर्वे भवन्तु सुखिनः
@@ -1411,8 +1413,13 @@
                 headerAvatar.src = photo;
                 headerAvatar.onerror = function() { this.src = photoOnlineFallback; };
 
+                if (window.ImageLoader && typeof window.ImageLoader.applyContainment === 'function') {
+                    window.ImageLoader.applyContainment(headerAvatar, 40, 40, '1/1');
+                }
+
+                const userDpKey = `user_dp_${user.unique_id || user.id || 'me'}`;
                 if (typeof getOfflineImage === "function") {
-                    getOfflineImage("user_profile_dp", photo).then(b64 => {
+                    getOfflineImage(userDpKey, photo).then(b64 => {
                         if (b64) {
                             headerAvatar.src = b64;
                             const sideImg = document.getElementById("sidebarAvatarImg");
@@ -1423,7 +1430,7 @@
 
                 sideBox.innerHTML = `
                     <div class="sidebar-user-box">
-                        <img id="sidebarAvatarImg" src="${photo}" crossorigin="anonymous" onerror="this.src='${photoOnlineFallback}';" />
+                        <img id="sidebarAvatarImg" width="48" height="48" class="image-loader-img avatar-contain" style="contain: layout paint; content-visibility: auto; aspect-ratio: 1/1; object-fit: cover;" src="${photo}" crossorigin="anonymous" onerror="this.src='${photoOnlineFallback}';" />
                         <div>
                             <h4 style="color:#FFD700; font-size:14px;">${user.full_name || 'सनातन सेवक'}</h4>
                             <p style="font-size:11px; color:#eee;">ID: <b>${user.unique_id || 'सत्यापित'}</b></p>
@@ -1431,6 +1438,10 @@
                         </div>
                     </div>
                 `;
+                const sideImg = document.getElementById("sidebarAvatarImg");
+                if (sideImg && window.ImageLoader && typeof window.ImageLoader.applyContainment === 'function') {
+                    window.ImageLoader.applyContainment(sideImg, 48, 48, '1/1');
+                }
                 logoutBtn.style.display = "block";
             }
         } catch (e) {
@@ -1451,6 +1462,5 @@
 </script>
 <script src="image_cache.js"></script>
 <script src="auth_guard.js"></script>
-<script src="app_translator.js"></script>
 </body>
 </html>

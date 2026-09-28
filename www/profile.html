@@ -6,6 +6,7 @@
 <title>मेरा प्रोफाइल — सनातन सेवा समिति</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+<script src="image_loader.js"></script>
 <script src="image_cache.js"></script>
 
 <style>
@@ -314,7 +315,7 @@
 
     <div class="profile-header">
         <div class="avatar-box">
-            <img id="viewUserPhoto" class="profile-photo" src="Images/jpg/logo.jpg" alt="Profile" onerror="this.src='https://sanatansevasamiti.org/Images/jpg/logo.jpg';">
+            <img id="viewUserPhoto" width="90" height="90" class="profile-photo image-loader-img" src="Images/jpg/logo.jpg" alt="Profile" style="contain: layout paint; content-visibility: auto; aspect-ratio: 1/1; object-fit: cover;" onerror="this.src='https://sanatansevasamiti.org/Images/jpg/logo.jpg';">
             <label for="profile_photo_file" class="upload-icon-badge" title="फोटो बदलें">
                 <i class="fa-solid fa-camera"></i>
             </label>
@@ -405,14 +406,14 @@
             <label style="font-size:11.5px; font-weight:700; color:var(--secondary); display:block;">📄 पहचान दस्तावेज़ (आगे का भाग)</label>
             <label for="doc_front_file" class="doc-btn-upload">📁 दस्तावेज़ चुनें</label>
             <input type="file" id="doc_front_file" accept="image/*" style="display:none;" onchange="handleDocUpload(event, 'front')">
-            <img id="previewDocFront" src="https://via.placeholder.com/300x150?text=Identity+Doc+Front" alt="Front Document">
+            <img id="previewDocFront" width="300" height="150" class="image-loader-img" style="contain: layout paint; content-visibility: auto; aspect-ratio: 2/1; object-fit: cover;" src="https://via.placeholder.com/300x150?text=Identity+Doc+Front" alt="Front Document" loading="lazy" decoding="async">
         </div>
 
         <div class="doc-box" id="grp_aadhar_back">
             <label style="font-size:11.5px; font-weight:700; color:var(--secondary); display:block;">📄 पहचान दस्तावेज़ (पीछे का भाग)</label>
             <label for="doc_back_file" class="doc-btn-upload">📁 दस्तावेज़ चुनें</label>
             <input type="file" id="doc_back_file" accept="image/*" style="display:none;" onchange="handleDocUpload(event, 'back')">
-            <img id="previewDocBack" src="https://via.placeholder.com/300x150?text=Identity+Doc+Back" alt="Back Document">
+            <img id="previewDocBack" width="300" height="150" class="image-loader-img" style="contain: layout paint; content-visibility: auto; aspect-ratio: 2/1; object-fit: cover;" src="https://via.placeholder.com/300x150?text=Identity+Doc+Back" alt="Back Document" loading="lazy" decoding="async">
         </div>
 
         <button type="submit" id="btnSaveProfile" class="btn-submit">💾 प्रोफ़ाइल सुरक्षित करें</button>
@@ -478,6 +479,7 @@ let docBackBase64 = "";
 
 window.addEventListener("DOMContentLoaded", () => {
     loadLocalUserProfile();
+    syncLiveProfileData();
 });
 
 // संरक्षण सदस्य एवं पदनाम प्राथमिकता नियम (Sanrakshan Sadasya Designation Rule)
@@ -521,11 +523,23 @@ function loadLocalUserProfile() {
         document.getElementById("viewUserId").innerText = "ID: " + (currentUserData.unique_id || "Pending");
         document.getElementById("viewUserRole").innerText = "🏵️ " + resolveDisplayDesignation(currentUserData);
 
+        let photoUrl = "Images/jpg/logo.jpg";
         if (currentUserData.profile_photo) {
-            const photoUrl = currentUserData.profile_photo.startsWith("http")
-                ? currentUserData.profile_photo
-                : "https://sanatansevasamiti.org/" + currentUserData.profile_photo.replace(/^\/+/, "");
-            document.getElementById("viewUserPhoto").src = photoUrl;
+            if (currentUserData.profile_photo.startsWith("data:image/") || currentUserData.profile_photo.startsWith("Images/")) {
+                photoUrl = currentUserData.profile_photo;
+            } else if (typeof getUserProfileMediaUrl === "function") {
+                photoUrl = getUserProfileMediaUrl(currentUserData.profile_photo);
+            } else {
+                const clean = currentUserData.profile_photo.replace(/^.*[\\\/]/, '').trim();
+                photoUrl = currentUserData.profile_photo.startsWith("http")
+                    ? currentUserData.profile_photo
+                    : (clean ? `https://sanatansevasamiti.org/api/get_media.php?file=${encodeURIComponent(clean)}` : "Images/jpg/logo.jpg");
+            }
+        }
+        const userImg = document.getElementById("viewUserPhoto");
+        if (userImg) {
+            userImg.src = photoUrl;
+            userImg.onerror = function() { this.src = "Images/jpg/logo.jpg"; };
         }
 
         document.getElementById("inp_full_name").value = currentUserData.full_name || "";
@@ -760,19 +774,47 @@ async function handlePasswordChange(e) {
     }
 }
 
+async function syncLiveProfileData() {
+    try {
+        const uid = currentUserData.unique_id || currentUserData.id;
+        if (!uid) return;
+        const res = await fetch(`https://sanatansevasamiti.org/api/get_user_dashboard.php?user_id=${encodeURIComponent(uid)}&_t=${Date.now()}`);
+        if (!res.ok) return;
+        const data = await res.json();
+        if (data && data.status && data.user) {
+            currentUserData = { ...currentUserData, ...data.user };
+            localStorage.setItem("sss_user_data", JSON.stringify(currentUserData));
+            loadLocalUserProfile();
+        }
+    } catch(err) {
+        console.warn("Live profile sync notice:", err);
+    }
+}
+
 function logoutFromApp() {
     if (confirm("क्या आप वाकई लॉगआउट करना चाहते हैं?")) {
-        if (typeof window.handleSanatanamLogout === "function") {
-            window.handleSanatanamLogout();
+        if (typeof logoutUser === "function") {
+            logoutUser();
         } else {
-            localStorage.removeItem("sanatanam_app_lang");
-            localStorage.removeItem("sss_user_token");
-            localStorage.removeItem("sss_user_data");
-            window.location.href = "welcome.html";
+            try {
+                if (window.ImageLoader && typeof window.ImageLoader.clearMemoryCache === "function") {
+                    try { window.ImageLoader.clearMemoryCache(); } catch(e) {}
+                }
+                if (window.indexedDB) {
+                    try { window.indexedDB.deleteDatabase("sanatanam_img_cache_db"); } catch(e) {}
+                }
+                localStorage.clear();
+                sessionStorage.clear();
+                if (window.AndroidBridge && typeof window.AndroidBridge.clearUserSession === "function") {
+                    window.AndroidBridge.clearUserSession();
+                }
+            } catch(e) {}
+            window.location.replace("welcome_flow.html");
         }
     }
 }
 </script>
-<script src="app_translator.js"></script>
+<script src="image_cache.js"></script>
+<script src="auth_guard.js"></script>
 </body>
 </html>
