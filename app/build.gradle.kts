@@ -28,13 +28,13 @@ android {
   productFlavors {
     create("user") {
       dimension = "role"
-      // User APK standard ID ke sath banega
+      manifestPlaceholders["appName"] = "SANATANAM - Sanatan seva samiti"
     }
     create("admin") {
       dimension = "role"
-      // Admin APK ka alag ID hoga taaki dono app ek sath phone me chal sakein
       applicationIdSuffix = ".admin"
       versionNameSuffix = "-admin"
+      manifestPlaceholders["appName"] = "SANATANAM - admin"
     }
   }
 
