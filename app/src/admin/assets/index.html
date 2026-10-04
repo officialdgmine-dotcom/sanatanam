@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ð₲ AI Labs — Sovereign Intelligence Ecosystem</title>
+  <style>
+    /* RESET & CORE VARIABLES */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    :root {
+      --bg-dark: #0a0104;
+      --card-bg: #140308;
+      --card-border: rgba(201, 151, 56, 0.25);
+      --gold-primary: #c99738;
+      --gold-light: #ffe180;
+      --text-main: #f5ecd8;
+      --text-muted: #bfa895;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* BACKGROUND GLOWS */
+    .glow-top {
+      position: fixed;
+      top: -150px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(201, 151, 56, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .glow-side {
+      position: fixed;
+      top: 40%;
+      left: -200px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(89, 13, 27, 0.25) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: rgba(18, 2, 7, 0.85);
+      border-bottom: 1px solid var(--card-border);
+      padding: 14px 24px;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: #21050b;
+      border: 1px solid var(--gold-primary);
+      padding: 4px;
+      object-contain: contain;
+    }
+
+    .brand-text h1 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      background: linear-gradient(90deg, #fff3b0, var(--gold-primary), #996d19);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-text p {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #a89078;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    /* 9-DOTS APPS MENU ICON */
+    .apps-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 6px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    .apps-btn:hover {
+      color: var(--gold-light);
+      background: #25070e;
+    }
+
+    .apps-btn svg {
+      width: 22px;
+      height: 22px;
+      fill: currentColor;
+    }
+
+    .login-btn {
+      background: linear-gradient(135deg, var(--gold-primary), #996d19);
+      color: #000;
+      border: none;
+      padding: 8px 18px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 0 15px rgba(201, 151, 56, 0.3);
+      transition: transform 0.2s ease, filter 0.2s ease;
+    }
+
+    .login-btn:hover {
+      filter: brightness(1.15);
+      transform: scale(1.02);
+    }
+
+    /* MAIN CONTAINER */
+    main {
+      position: relative;
+      z-index: 10;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px 20px 80px 20px;
+    }
+
+    /* HERO SECTION */
+    .hero-section {
+      text-align: center;
+      padding: 50px 0 30px 0;
+    }
+
+    .crest-visual {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 25px rgba(201, 151, 56, 0.5));
+      margin-bottom: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .crest-visual:hover {
+      transform: scale(1.05);
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 20px;
+      background: #25060d;
+      border: 1px solid var(--card-border);
+      color: var(--gold-light);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+
+    .hero-title {
+      font-size: 2.8rem;
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 18px;
+    }
+
+    .hero-title span {
+      background: linear-gradient(90deg, #fff3ba, var(--gold-primary), #805810);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 780px;
+      margin: 0 auto 36px auto;
+      font-weight: 300;
+    }
+
+    /* LEADERSHIP CARD */
+    .leadership-card {
+      background: linear-gradient(180deg, #170308 0%, #0d0105 100%);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 60px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .section-eyebrow {
+      font-size: 0.75rem;
+      color: var(--gold-primary);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .lead-heading {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .lead-text {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .leader-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(201, 151, 56, 0.15);
+    }
+
+    .leader-box {
+      background: rgba(33, 5, 11, 0.4);
+      border: 1px solid rgba(201, 151, 56, 0.2);
+      border-radius: 12px;
+      padding: 16px 20px;
+    }
+
+    .leader-box h3 {
+      font-size: 1.15rem;
+      color: var(--gold-light);
+      margin-top: 4px;
+    }
+
+    .leader-sub {
+      font-size: 0.8rem;
+      color: var(--gold-primary);
+      font-style: italic;
+      margin-bottom: 6px;
+    }
+
+    /* 22 ENGINES SECTION */
+    .engines-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .engines-header h2 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-top: 4px;
+    }
+
+    .engines-header p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      max-width: 650px;
+      margin: 10px auto 0 auto;
+    }
+
+    .engines-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .engine-card {
+      background: linear-gradient(180deg, #1b050d 0%, #100206 100%);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.3s ease;
+    }
+
+    .engine-card:hover {
+      border-color: var(--gold-primary);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px rgba(201, 151, 56, 0.15);
+    }
+
+    .engine-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .engine-logo-box {
+      width: 58px;
+      height: 58px;
+      background: #260710;
+      border: 1px solid rgba(201, 151, 56, 0.3);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px;
+      overflow: hidden;
+    }
+
+    .engine-logo-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .engine-status-badge {
+      font-size: 0.68rem;
+      padding: 4px 10px;
+      border-radius: 12px;
+      background: #2b0811;
+      border: 1px solid rgba(201, 151, 56, 0.35);
+      color: #ffe082;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .engine-tag {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #a88d76;
+      margin-bottom: 2px;
+    }
+
+    .engine-card h3 {
+      font-size: 1.25rem;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .engine-headline {
+      font-size: 0.82rem;
+      color: var(--gold-primary);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .engine-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .engine-footer {
+      margin-top: 20px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(201, 151, 56, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .engine-footer span {
+      font-size: 0.68rem;
+      color: #7d6857;
+      text-transform: uppercase;
+      font-family: monospace;
+    }
+
+    .btn-coming-soon {
+      background: #24050d;
+      border: 1px solid rgba(201, 151, 56, 0.35);
+      color: var(--gold-light);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-coming-soon:hover {
+      background: var(--gold-primary);
+      color: #000;
+      border-color: var(--gold-primary);
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--card-border);
+      background: #060103;
+      padding: 30px 24px;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.8rem;
+      color: #8c7664;
+    }
+
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.1rem;
+      }
+      .engines-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- AMBIENT GLOWS -->
+  <div class="glow-top"></div>
+  <div class="glow-side"></div>
+
+  <!-- STICKY HEADER -->
+  <header>
+    <div class="nav-container">
+      <div class="brand-box">
+        <img src="assets/branding/core/labs.png" alt="Ð₲ AI Labs Icon" class="brand-icon" onerror="this.style.display='none'" />
+        <div class="brand-text">
+          <h1>Ð₲ AI LABS</h1>
+          <p>Deep Group AI Ecosystem</p>
+        </div>
+      </div>
+
+      <div class="nav-actions">
+        <!-- 9-Dots Google Style Apps Button -->
+        <button class="apps-btn" title="Ð₲ Engine Ecosystem" onclick="alert('Ð₲ Engine Ecosystem: 22 Modules Mapped')">
+          <svg viewBox="0 0 24 24">
+            <circle cx="5" cy="5" r="2" />
+            <circle cx="12" cy="5" r="2" />
+            <circle cx="19" cy="5" r="2" />
+            <circle cx="5" cy="12" r="2" />
+            <circle cx="12" cy="12" r="2" />
+            <circle cx="19" cy="12" r="2" />
+            <circle cx="5" cy="19" r="2" />
+            <circle cx="12" cy="19" r="2" />
+            <circle cx="19" cy="19" r="2" />
+          </svg>
+        </button>
+
+        <!-- Login Button -->
+        <button class="login-btn" onclick="alert('Trainer / Staff Gateway: Public login currently restricted.')">
+          Login
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN BODY -->
+  <main>
+
+    <!-- HERO SECTION: THE CORE Ð₲ AI -->
+    <section class="hero-section">
+      <img src="assets/branding/core/dg_crest_master.png" alt="Ð₲ Master Crest" class="crest-visual" onerror="this.style.display='none'" />
+      <br />
+      <div class="status-badge">Sovereign Intelligence of Bharat</div>
+      <h2 class="hero-title">The Future Begins with <span>Ð₲ AI</span></h2>
+      <p class="hero-desc">
+        Deep Group ka swatantra, proprietary neural ecosystem jo shastriya maryada, vinamrata aur bilingual intelligence ke saath Bharat se vishwa star par taiyar ho raha hai.
+      </p>
+    </section>
+
+    <!-- DEEP GROUP LEADERSHIP & MISSION -->
+    <section class="leadership-card">
+      <div class="section-eyebrow">Institutional Governance</div>
+      <div class="lead-heading">Deep Group Vision & Massive AI Architecture</div>
+      <p class="lead-text">
+        Hamara lakshya kewal ek sadharan chat window banana nahi hai. Deep Group ke netritva mein ek vishal AI platform khada kiya ja raha hai, jisme creative visual, coding, enterprise strategy, shastriya darshan se lekar advanced multi-agent workflows tak sabhi visheshataayein shamil hain.
+      </p>
+
+      <div class="leader-grid">
+        <div class="leader-box">
+          <div class="section-eyebrow">Founder & Spiritual Guide</div>
+          <h3>Mr. Pradeep Mishra</h3>
+          <div class="leader-sub">Jagadguru Sachchidanandachary Anand Peethadheeswar Param Pujya Sadgurudev Swami Sachichidanand Ji Maharaj</div>
+          <p style="font-size: 0.8rem; color: #a6917e;">
+            Sanatana sanskaron, maryadit aacharan aur manav-kalyan ke moolbhoot mulya AI ke antarmann mein nirdharit karne ka margdarshan.
+          </p>
+        </div>
+
+        <div class="leader-box">
+          <div class="section-eyebrow">Executive Chairman</div>
+          <h3>Mr. Jay Deep Mishra</h3>
+          <div class="leader-sub">Deep Group Strategic Command & Engineering Oversight</div>
+          <p style="font-size: 0.8rem; color: #a6917e;">
+            Ð₲ AI Labs, autonomous computational architecture aur 22 neural engines ko aadhunik global standards par sthapit karne ka netritva.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 22 ENGINES COMPLETE MATRIX -->
+    <section>
+      <div class="engines-header">
+        <div class="section-eyebrow">The Complete Pantheon</div>
+        <h2>Humare Aane Wale Sabhi 22 Engines</h2>
+        <p>
+          Har ek engine apne karyakshetra ka sarvochha visheshagya hoga. Ye sabhi vistarit roop se develop ho rahe hain aur scheduled roadmap ke mutabiq live honge.
+        </p>
+      </div>
+
+      <div class="engines-grid">
+
+        <!-- 1. VYORA -->
+        <div class="engine-card">
+          <div>
+            <div class="engine-top">
+              <div class="engine-logo-box"><img src="assets/branding/engines/vyora.png" alt="Ð₲ VYORA" onerror="this.style.display='none'"></div>
+              <span class="engine-status-badge">Coming Soon</span>
+            </div>
+            <div class="engine-tag">Creative & Media</div>
+            <h3>Ð₲ VYORA</h3>
+            <div class="engine-headline">Visual & Generative Imagery</div>
+            <p class="engine-desc">Ultra-photorealistic visual synthesis engine jo complex artistic prompts, Indian aesthetics aur futuristic graphic perception ko autonomously render karega.</p>
+          </div>
+          <div class="engine-footer">
+            <span>NODE 01</span>
+            <button class="btn-coming-soon" onclick="alert('Ð₲ VYORA: Image generation module training stage par hai.')">Coming Soon</button>
+          </div>
+        </div>
+
+        <!-- 2. MOVIRA -->
+        <div class="engine-card">
+          <div>
+            <div class="engine-top">
+              <div class="engine-logo-box"><img src="assets/branding/engines/movira.png" alt="Ð₲ MOVIRA" onerror="this.style.display='none'"></div>
+              <span class="engine-status-badge">Coming Soon</span>
+            </div>
+            <div class="engine-tag">Creative & Media</div>
+            <h3>Ð₲ MOVIRA</h3>
+            <div class="engine-headline">Video Synthesis & Motion</div>
+            <p class="engine-desc">High-definition neural video rendering aur cinematic camera generation system, jo prompts ko dynamic motion video sequences mein badalta hai.</p>
+          </div>
+          <div class="engine-footer">
+            <span>NODE 02</span>
+            <button class="btn-coming-soon" onclick="alert('Ð₲ MOVIRA: Video rendering architecture under progress.')">Coming Soon</button>
+          </div>
+        </div>
+
+        <!-- 3. SONARA -->
+        <div class="engine-card">
+          <div>
+            <div class="engine-top">
+              <div class="engine-logo-box"><img src="assets/branding/engines/sonara.png" alt="Ð₲ SONARA" onerror="this.style.display='none'"></div>
+              <span class="engine-status-badge">Coming Soon</span>
+            </div>
+            <div class="engine-tag">Creative & Media</div>
+            <h3>Ð₲ SONARA</h3>
+            <div class="engine-headline">Music & Vocal Synthesis</div>
+            <p class="engine-desc">Sangeet, swar aur voice synthesis ka specialised neural model jo Bharatiya classical notes, shlokas aur emotional voice-overs generate karega.</p>
+          </div>
+          <div class="engine-footer">
+            <span>NODE 03</span>
+            <button class="btn-coming-soon" onclick="alert('Ð₲ SONARA: Audio neural engine scheduled.')">Coming Soon</button>
+          </div>
+        </div>
+
+        <!-- 4. DESIGNA -->
+        <div class="engine-card">
+          <div>
+            <div class="engine-top">
+              <div class="engine-logo-box"><img src="assets/branding/engines/designa.png" alt="Ð₲ DESIGNA" onerror="this.style.display='none'"></div>
+              <span class="engine-status-badge">Coming Soon</span>
+            </div>
+            <div class="engine-tag">Creative & Media</div>
+            <h3>Ð₲ DESIGNA</h3>
+            <div class="engine-headline">UI/UX & Graphic Intelligence</div>
+            <p class="engine-desc">Autonomous digital UI wireframes, vector assets, branding components aur futuristic design system pipelines ka generator.</p>
+          </div>
+          <div class="engine-footer">
+            <span>NODE 04</span>
+            <button class="btn-coming-soon" onclick="alert('Ð₲ DESIGNA: Generative UI pipeline under development.')">Coming Soon</button>
+          </div>
+        </div>
+
+        <!-- 5. CODARA -->
+        <div class="engine-card">
+          <div>
+            <div class="engine-top">
+              <div class="engine-logo-box"><img src="assets/branding/engines/codara.png" alt="Ð₲ CODARA" onerror="this.style.display='none'"></div>
+              <span class="engine-status-badge">Coming Soon</span>
+            </div>
+            <div class="engine-tag">Technical Engineering</div>
+            <h3>Ð₲ CODARA</h3>
+            <div class="engine-headline">Autonomous Code Synthesis</div>
+            <p class="engine-desc">Fullstack source code generation, debugging, low-level compilers, algorithms aur backend API system designing ka specialist engine.</p>
+          </div>
+          <div class="engine-footer">
+            <span>NODE 05</span>
+            <button class="btn-coming-soon" onclick="alert('Ð₲ CODARA: Software synthesis engine planned.')">Coming Soon</button>
+          </div>
+        </div>
+
+        <!-- 6. APPORA -->
+        <div class="engine-card">
+          <div>
+            <div class="engine-top">
+              <div class="engine-logo-box"><img src="assets/branding/engines/appora.png" alt="Ð₲ APPORA" onerror="this.style.display='none'"></div>
+              <span class="engine-status-badge">Coming Soon</span>
+            </div>
+            <div class="engine-tag">Technical Engineering</div>
+            <h3>Ð₲ APPORA</h3>
+            <div class="engine-headline">Mobile App Engineering</div>
+            <p class="engine-desc">Android APKs, iOS frameworks aur modern cross-platform applications ke architecture aur build automation ka specialized model.</p>
+          </div>
+          <div class="engine-footer">
+            <span>NODE 06</span>
+            <button class="btn-coming-soon" onclick="alert('Ð₲ APPORA: Mobile compilation builder under staging.')">Coming Soon</button>
+          </div>
+        </div>
+
+        <!-- 7. WEBRA -->
+        <div class="engine-card">
+          <div>
+            <div class="engine-top">
+              <div class="engine-logo-box"><img src="assets/branding/engines/webra.png" alt="Ð₲ WEBRA" onerror="this.style.display='none'"></div>
+              <span class="engine-status-badge">Coming Soon</span>
+            </div>
+            <div class="engine-tag">Technical Engineering</div>
+            <h3>Ð₲ WEBRA</h3>
+            <div class="engine-headline">Autonomous Web Architecture</div>
+            <p class="engine-desc">Modern reactive websites, scalable web microservices, dynamic routing aur fullstack web layouts automate karne wala engine.</p>
+          </div>
+          <div class="engine-footer">
+            <span>NODE 07</span>
+            <button class="btn-coming-soon" onclick="alert('Ð₲ WEBRA: Web systems module in progress.')">Coming Soon</button>
+          </div>
+        </div>
+
+        <!-- 8. AUTOMIA -->
+        <div class="engine-card">
+          <div>
+            <div class="engine-top">
+              <div class="engine-logo-box"><img src="assets/branding/engines/automia.png" alt="Ð₲ AUTOMIA" onerror="this.style.display='none'"></div>
+              <span class="engine-status-badge">Coming Soon</span>
+            </div>
+            <div class="engine-tag">Technical Engineering</div>
+            <h3>Ð₲ AUTOMIA</h3>
+            <div class="engine-headline">Multi-Agent Automation</div>
+            <p class="engine-desc">Autonomous AI agents ka group jo multi-step workflows, business logistics aur complex operational tasks ko bina human intervention execute karta hai.</p>
+          </div>
+          <div class="engine-footer">
+            <span>NODE 08</span>
+            <button class="btn-coming-soon" onclick="alert('Ð₲ AUTOMIA: Agent network architecture scheduled.')">Coming Soon</button>
+          </div>
+        </div>
+
+        <!-- 9. NEXIA -->
+        <div class="engine-card">
+          <div>
+            <div class="engine-top">
+              <div class="engine-logo-box"><img src="assets/branding/engines/nexia.png" alt="Ð₲ NEXIA" onerror="this.style.display='none'"></div>
+              <span class="engine-status-badge" style="color: #6ee7b7; border-color: rgba(16, 185, 129, 0.4);">In Active Lab</span>
+            </div>
+            <div class="engine-tag">Core Intelligence</div>
+            <h3>Ð₲ NEXIA</h3>
+            <div class="engine-headline">Conversational Dialogue Core</div>
+            <p class="engine-desc">Mukhya user chatbot engine jo shanti, maryada, sahanoobhooti aur bilingual (Hindi/English) fluency ke sath human teachers ke dwara calibrated ho raha hai.</p>
+          </div>
+          <div class="engine-footer">
+            <span>NODE 09</span>
+            <button class="btn-coming-soon" onclick="alert('Ð₲ NEXIA: Controlled Behaviour Training currently active in Labs.')">In Lab</button>
+          </div>
+        </div>
+
+        <!-- 10. SAPIEN -->
+        <div class="engine-card">
+          <div>
+            <div class="engine-top">
+              <div class="engine-logo-box"><img src="assets/branding/engines/sapien.png" alt="Ð₲ SAPIEN" onerror="this.style.display='none'"></div>
+              <span class="engine-status-badge">Coming Soon</span>
+            </div>
+            <div class="engine-tag">Core Intelligence</div>
+            <h3>Ð₲ SAPIEN</h3>
+            <div class="engine-headline">Universal Knowledge Expert</div>
+            <p class="engine-desc">Universal encyclopedic intelligence jo Physics, Mathematics, Biology, History aur cross-disciplinary scientific theorems ka factual master hai.</p>
+          </div>
+          <div class="engine-footer">
+            <span>NODE 10</span>
+            <button class="btn-coming-soon" onclick="alert('Ð₲ SAPIEN: Fact knowledge datasets under curation.')">Coming Soon</button>
+          </div>
+        </div>
+
+        <!-- 11. RESEARCH -->
+        <div class="engine-card">
+          <div>
+            <div class="engine-top">
+              <div class="engine-logo-box"><img src="assets/branding/engines/research.png" alt="Ð₲ RESEARCH" onerror="this.style.display='none'"></div>
+              <span class="engine-status-badge">Coming Soon</span>
+            </div>
+            <div class="engine-tag">Core Intelligence</div>
+            <h3>Ð₲ RESEARCH</h3>
+            <div class="engine-headline">Deep Search & Citations</div>
+            <p class="engine-desc">Complex technical whitepapers aur authentic resources ko scan karke verified factual summaries, scientific papers aur authentic citations provide karne wala engine.</p>
+          </div>
+          <div class="engine-footer">
+            <span>NODE 11</span>
+            <button class="btn-coming-soon" onclick="alert('Ð₲ RESEARCH: Deep reasoning index under design.')">Coming Soon</button>
+          </div>
+        </div>
+
+        <!-- 12. DATARA -->
+        <div class="engine-card">
+          <div>
+            <div class="engine-top">
+              <div class="engine-logo-box"><img src="assets/branding/engines/datara.png" alt="Ð₲ DATARA" onerror="this.style.display='none'"></div>
+              <span class="engine-status-badge">Coming Soon</span>
+            </div>
+            <div class="engine-tag">Technical Engineering</div>
+            <h3>Ð₲ DATARA</h3>
+            <div class="engine-headline">Big Data & Neural Analytics</div>
+            <p class="engine-desc">Bade enterprise datasets ka statistical pattern recognition, automated forecasting, metric dashboards aur predictive insights create karne ka infrastructure.</p>
+          </div>
+          <div class="engine-footer">
+            <span>NODE 12</span>
+            <button class="btn-coming-soon" onclick="alert('Ð₲ DATARA: Data processing engine scheduled.')">Coming Soon</button>
+          </div>
+        </div>
+
+        <!-- 13. DHARMA -->
+        <div class="engine-card">
+          <div>
+            <div class="engine-top">
+              <div class="engine-logo-box"><img src="assets/branding/engines/dharma.png" alt="Ð₲ DHARMA" onerror="this.style.display='none'"></div>
+              <span class="engine-status-badge">Coming Soon</span>
+            </div>
+            <div class="engine-tag">Culture & Heritage</div>
+            <h3>Ð₲ DHARMA</h3>
+            <div class="engine-headline">Vedic Wisdom & Shastras</div>
+            <p class="engine-desc">Vedas, Upanishads, Bhagavad Gita, Puranas aur Bharatiya darshan ka pramanit aadhyaatmik repository, jo maryadit aur satya-nishth margdarshan deta hai.</p>
+          </div>
+          <div class="engine-footer">
+            <span>NODE 13</span>
+            <button class="btn-coming-soon" onclick="alert('Ð₲ DHARMA: Scriptural ontology under curation.')">Coming Soon</button>
+          </div>
+        </div>
+
+        <!-- 14. ASTRA -->
+        <div class="engine-card">
+          <div>
+            <div class="engine-top">
+              <div class="engine-logo-box"><img src="assets/branding/engines/astra.jpg" alt="Ð₲ ASTRA" onerror="this.style.display='none'"></div>
+              <span class="engine-status-badge">Coming Soon</span>
+            </div>
+            <div class="engine-tag">Culture & Heritage</div>
+            <h3>Ð₲ ASTRA</h3>
+            <div class="engine-headline">Vedic Astrology & Planetary Math</div>
+            <p class="engine-desc">Ganit-Jyotish, Kundli chakra calculations, panchang ganana aur graha-drishti ke vedic niyamavali par aadharit computational intelligence engine.</p>
+          </div>
+          <div class="engine-footer">
+            <span>NODE 14</span>
+            <button class="btn-coming-soon" onclick="alert('Ð₲ ASTRA: Planetary ephemeris algorithms under preparation.')">Coming Soon</button>
+          </div>
+        </div>
+
+        <!-- 15. ARCHIA -->
+        <div class="engine-card">
+          <div>
+            <div class="engine-top">
+              <div class="engine-logo-box"><img src="assets/branding/engines/archia.png" alt="Ð₲ ARCHIA" onerror="this.style.display='none'"></div>
+              <span class="engine-status-badge">Coming Soon</span>
+            </div>
+            <div class="engine-tag">Culture & Heritage</div>
+            <h3>Ð₲ ARCHIA</h3>
+            <div class="engine-headline">Archaeology & Historic Heritage</div>
+            <p class="engine-desc">Prachin sabhyataon, shilpakala, sthapatya, puratatva aur pramanik Bharatiya itihas ki digital preservation aur research repository.</p>
+          </div>
+          <div class="engine-footer">
+            <span>NODE 15</span>
+            <button class="btn-coming-soon" onclick="alert('Ð₲ ARCHIA: Historical lineage records under setup.')">Coming Soon</button>
+          </div>
+        </div>
+
+        <!-- 16. LEXORA -->
+        <div class="engine-card">
+          <div>
+            <div class="engine-top">
+              <div class="engine-logo-box"><img src="assets/branding/engines/lexora.png" alt="Ð₲ LEXORA" onerror="this.style.display='none'"></div>
+              <span class="engine-status-badge">Coming Soon</span>
+            </div>
+            <div class="engine-tag">Language & Learning</div>
+            <h3>Ð₲ LEXORA</h3>
+            <div class="engine-headline">Linguistic Nuances & Sanskrit Core</div>
+            <p class="engine-desc">Deep Indic multilingual translation, Sanskrit vyakarana rules, bhashai shuddhata aur bina bhedbhav bhashaon ka sahityik anuvad karne wala engine.</p>
+          </div>
+          <div class="engine-footer">
+            <span>NODE 16</span>
+            <button class="btn-coming-soon" onclick="alert('Ð₲ LEXORA: Multilingual linguistics under development.')">Coming Soon</button>
+          </div>
+        </div>
+
+        <!-- 17. EDUVIA -->
+        <div class="engine-card">
+          <div>
+            <div class="engine-top">
+              <div class="engine-logo-box"><img src="assets/branding/engines/eduvia.png" alt="Ð₲ EDUVIA" onerror="this.style.display='none'"></div>
+              <span class="engine-status-badge">Coming Soon</span>
+            </div>
+            <div class="engine-tag">Language & Learning</div>
+            <h3>Ð₲ EDUVIA</h3>
+            <div class="engine-headline">Personalized Cognitive Tutoring</div>
+            <p class="engine-desc">Vidhyarthiyon ke liye vyaktigat adhyayan roadmap, subject-wise samadhan aur saral shaikshik paddhati par taiyar customized pedagogical tutor.</p>
+          </div>
+          <div class="engine-footer">
+            <span>NODE 17</span>
+            <button class="btn-coming-soon" onclick="alert('Ð₲ EDUVIA: Adaptive learning module under roadmap.')">Coming Soon</button>
+          </div>
+        </div>
+
+        <!-- 18. DOCERA -->
+        <div class="engine-card">
+          <div>
+            <div class="engine-top">
+              <div class="engine-logo-box"><img src="assets/branding/engines/docera.png" alt="Ð₲ DOCERA" onerror="this.style.display='none'"></div>
+              <span class="engine-status-badge">Coming Soon</span>
+            </div>
+            <div class="engine-tag">Language & Learning</div>
+            <h3>Ð₲ DOCERA</h3>
+            <div class="engine-headline">Document Vault & PDF Intelligence</div>
+            <p class="engine-desc">Jatil technical documents, contracts, reports aur multi-page files ko scan karke mahatvapurna factual insights aur tabular data nikalne wala model.</p>
+          </div>
+          <div class="engine-footer">
+            <span>NODE 18</span>
+            <button class="btn-coming-soon" onclick="alert('Ð₲ DOCERA: Document OCR & parser in queue.')">Coming Soon</button>
+          </div>
+        </div>
+
+        <!-- 19. VENTRA -->
+        <div class="engine-card">
+          <div>
+            <div class="engine-top">
+              <div class="engine-logo-box"><img src="assets/branding/engines/ventra.png" alt="Ð₲ VENTRA" onerror="this.style.display='none'"></div>
+              <span class="engine-status-badge">Coming Soon</span>
+            </div>
+            <div class="engine-tag">Enterprise & Domain</div>
+            <h3>Ð₲ VENTRA</h3>
+            <div class="engine-headline">Enterprise Strategy & Commerce</div>
+            <p class="engine-desc">Corporate unit economics, startup roadmaps, commercial forecasting aur business operations ka strategic analysis copilot.</p>
+          </div>
+          <div class="engine-footer">
+            <span>NODE 19</span>
+            <button class="btn-coming-soon" onclick="alert('Ð₲ VENTRA: Enterprise intelligence module planned.')">Coming Soon</button>
+          </div>
+        </div>
+
+        <!-- 20. LEGORA -->
+        <div class="engine-card">
+          <div>
+            <div class="engine-top">
+              <div class="engine-logo-box"><img src="assets/branding/engines/legora.png" alt="Ð₲ LEGORA" onerror="this.style.display='none'"></div>
+              <span class="engine-status-badge">Coming Soon</span>
+            </div>
+            <div class="engine-tag">Enterprise & Domain</div>
+            <h3>Ð₲ LEGORA</h3>
+            <div class="engine-headline">Legal Informatics & Compliance</div>
+            <p class="engine-desc">Bharatiya Nyaya Sanhita, statutory rules, corporate compliances aur regulatory frameworks ki formal jankari pradan karne wala informative engine.</p>
+          </div>
+          <div class="engine-footer">
+            <span>NODE 20</span>
+            <button class="btn-coming-soon" onclick="alert('Ð₲ LEGORA: Compliance informatics scheduled.')">Coming Soon</button>
+          </div>
+        </div>
+
+        <!-- 21. MEDORA -->
+        <div class="engine-card">
+          <div>
+            <div class="engine-top">
+              <div class="engine-logo-box"><img src="assets/branding/engines/medora.png" alt="Ð₲ MEDORA" onerror="this.style.display='none'"></div>
+              <span class="engine-status-badge">Coming Soon</span>
+            </div>
+            <div class="engine-tag">Enterprise & Domain</div>
+            <h3>Ð₲ MEDORA</h3>
+            <div class="engine-headline">Health Literacy & Wellness Science</div>
+            <p class="engine-desc">Sharirik poshan, holistic swasthya, aahar-vigyan aur medical awareness literature par focus karne wala factual health literacy node.</p>
+          </div>
+          <div class="engine-footer">
+            <span>NODE 21</span>
+            <button class="btn-coming-soon" onclick="alert('Ð₲ MEDORA: Health literacy research node scheduled.')">Coming Soon</button>
+          </div>
+        </div>
+
+        <!-- 22. TRAVIA -->
+        <div class="engine-card">
+          <div>
+            <div class="engine-top">
+              <div class="engine-logo-box"><img src="assets/branding/engines/travia.png" alt="Ð₲ TRAVIA" onerror="this.style.display='none'"></div>
+              <span class="engine-status-badge">Coming Soon</span>
+            </div>
+            <div class="engine-tag">Enterprise & Domain</div>
+            <h3>Ð₲ TRAVIA</h3>
+            <div class="engine-headline">Travel Routing & Global Logistics</div>
+            <p class="engine-desc">Tirth-kshetras, cultural circuits, global travel logistics aur optimized day-by-day travel itineraries generate karne wala autonomous planner.</p>
+          </div>
+          <div class="engine-footer">
+            <span>NODE 22</span>
+            <button class="btn-coming-soon" onclick="alert('Ð₲ TRAVIA: Travel planning model scheduled.')">Coming Soon</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <div style="font-weight: 700; color: #f5ecd8; font-size: 0.95rem; letter-spacing: 1px;">
+        Ð₲ AI LABS
+      </div>
+      <div>
+        Deep Group Sovereign AI Initiative • Engineered by <strong style="color: var(--gold-primary);">Ð₲ Developers</strong>
+      </div>
+      <div style="font-size: 0.72rem; color: #6a5747; max-width: 600px;">
+        Public Chat, Billing/Subscriptions aur External APIs aane wale milestones ke liye reserved hain. Sabhi 22 engines internal roadmap ke anusar launch honge.
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
