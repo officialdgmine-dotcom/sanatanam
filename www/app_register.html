@@ -3,225 +3,1695 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>SANATANAM — नया सदस्य पंजीकरण</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+
+<title>SANATANAM — Membership Registration</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* =========================================================
+   SANATANAM — ULTRA ROYAL REGISTRATION
+   LIGHT ORANGE • LEMON GOLD • WHITE • MAROON
+   MOBILE FIRST
+   ========================================================= */
+
+:root{
+    --maroon:#741321;
+    --deep-maroon:#54101b;
+    --red:#9d1b2a;
+
+    --orange:#ff8a24;
+    --light-orange:#fff0dc;
+    --soft-orange:#fff7ed;
+
+    --lemon:#fff3a6;
+    --gold:#d9a72d;
+    --gold-dark:#9d7415;
+
+    --white:#ffffff;
+    --cream:#fffdf8;
+    --text:#3d2023;
+    --muted:#80696b;
+    --border:#ecd7c0;
+
+    --shadow:0 20px 55px rgba(116,19,33,.13);
+    --soft-shadow:0 8px 25px rgba(116,19,33,.10);
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html{
+    min-height:100%;
+    background:#fff8ee;
+}
+
+body{
+    min-height:100vh;
+    font-family:"Inter",sans-serif;
+    color:var(--text);
+    background:
+        radial-gradient(circle at 10% 5%, rgba(255,243,166,.65), transparent 28%),
+        radial-gradient(circle at 95% 15%, rgba(255,138,36,.18), transparent 30%),
+        linear-gradient(145deg,#fffdf9 0%,#fff6e9 45%,#fffdf8 100%);
+    overflow-x:hidden;
+}
+
+/* Decorative royal background */
+body::before{
+    content:"";
+    position:fixed;
+    width:280px;
+    height:280px;
+    border-radius:50%;
+    border:1px solid rgba(157,27,42,.08);
+    top:-150px;
+    right:-110px;
+    pointer-events:none;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    width:230px;
+    height:230px;
+    border-radius:50%;
+    border:1px solid rgba(217,167,45,.12);
+    bottom:-130px;
+    left:-120px;
+    pointer-events:none;
+}
+
+/* =========================================================
+   APP SHELL
+   ========================================================= */
+
+.app-card{
+    width:100%;
+    max-width:620px;
+    min-height:100vh;
+    margin:0 auto;
+    position:relative;
+    overflow:hidden;
+    background:
+        linear-gradient(180deg,
+            rgba(255,255,255,.97) 0%,
+            rgba(255,250,243,.98) 100%);
+}
+
+/* =========================================================
+   ROYAL HEADER
+   ========================================================= */
+
+.royal-header{
+    position:relative;
+    padding:24px 18px 22px;
+    background:
+        radial-gradient(circle at 50% -70%,rgba(255,243,166,.9),transparent 55%),
+        linear-gradient(135deg,#fffaf0,#ffffff 52%,#fff2df);
+    border-bottom:1px solid rgba(116,19,33,.10);
+}
+
+.header-glow{
+    position:absolute;
+    width:190px;
+    height:190px;
+    border-radius:50%;
+    background:rgba(255,243,166,.35);
+    filter:blur(20px);
+    top:-130px;
+    left:50%;
+    transform:translateX(-50%);
+    pointer-events:none;
+}
+
+.brand-row{
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:13px;
+    z-index:2;
+}
+
+.app-logo-wrap{
+    width:62px;
+    height:62px;
+    border-radius:19px;
+    padding:4px;
+    background:linear-gradient(145deg,#fff,#fff0cf);
+    border:1px solid rgba(157,116,21,.28);
+    box-shadow:
+        0 7px 20px rgba(116,19,33,.12),
+        inset 0 0 0 1px rgba(255,255,255,.9);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.app-logo{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    border-radius:15px;
+}
+
+.brand-copy{
+    text-align:left;
+}
+
+.brand-name{
+    font-family:"Cinzel",serif;
+    color:var(--maroon);
+    font-size:23px;
+    font-weight:800;
+    letter-spacing:1.8px;
+    line-height:1.1;
+}
+
+.brand-tagline{
+    margin-top:5px;
+    color:#9b7370;
+    font-size:10px;
+    letter-spacing:1.4px;
+    text-transform:uppercase;
+    font-weight:700;
+}
+
+/* =========================================================
+   COMMITTEE IDENTITY STRIP
+   ========================================================= */
+
+.identity-panel{
+    position:relative;
+    margin:18px 16px 0;
+    padding:15px 14px;
+    border-radius:20px;
+    background:
+        linear-gradient(135deg,
+            rgba(255,243,166,.65),
+            rgba(255,255,255,.95) 48%,
+            rgba(255,224,192,.65));
+    border:1px solid rgba(157,116,21,.22);
+    box-shadow:var(--soft-shadow);
+    display:flex;
+    align-items:center;
+    gap:13px;
+}
+
+.committee-logo-wrap{
+    flex:0 0 54px;
+    width:54px;
+    height:54px;
+    border-radius:15px;
+    background:#fff;
+    border:1px solid rgba(116,19,33,.15);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:5px;
+    box-shadow:0 5px 14px rgba(116,19,33,.09);
+}
+
+.committee-logo{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    border-radius:11px;
+}
+
+.identity-text{
+    min-width:0;
+}
+
+.identity-kicker{
+    font-size:9px;
+    text-transform:uppercase;
+    letter-spacing:1.3px;
+    color:var(--gold-dark);
+    font-weight:800;
+    margin-bottom:3px;
+}
+
+.identity-title{
+    font-family:"Cinzel",serif;
+    font-size:14px;
+    line-height:1.3;
+    color:var(--maroon);
+    font-weight:800;
+}
+
+.identity-sub{
+    margin-top:3px;
+    color:#866c6e;
+    font-size:10px;
+    line-height:1.4;
+}
+
+/* =========================================================
+   ROYAL DIVIDER
+   ========================================================= */
+
+.royal-divider{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    padding:16px 22px 4px;
+}
+
+.royal-divider span{
+    height:1px;
+    flex:1;
+    background:linear-gradient(90deg,transparent,#dfc68c,transparent);
+}
+
+.royal-divider b{
+    color:var(--gold-dark);
+    font-size:13px;
+}
+
+/* =========================================================
+   FORM AREA
+   ========================================================= */
+
+.form-content{
+    padding:8px 16px 35px;
+}
+
+.form-intro{
+    text-align:center;
+    padding:8px 12px 20px;
+}
+
+.form-intro h1{
+    font-family:"Cinzel",serif;
+    color:var(--maroon);
+    font-size:24px;
+    line-height:1.25;
+    font-weight:800;
+}
+
+.form-intro p{
+    margin:8px auto 0;
+    max-width:470px;
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.6;
+}
+
+/* =========================================================
+   ALERT
+   ========================================================= */
+
+.alert-box{
+    display:none;
+    margin:0 0 15px;
+    padding:13px 14px;
+    border-radius:14px;
+    font-size:12px;
+    font-weight:700;
+    line-height:1.5;
+}
+
+.alert-error{
+    color:#8d1b2a;
+    background:#fff0f1;
+    border:1px solid #f1b9bf;
+}
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+
+.form-section{
+    position:relative;
+    margin-bottom:17px;
+    padding:18px 14px 14px;
+    border-radius:22px;
+    background:rgba(255,255,255,.92);
+    border:1px solid var(--border);
+    box-shadow:0 7px 25px rgba(116,19,33,.065);
+}
+
+.form-section::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:24px;
+    right:24px;
+    height:2px;
+    border-radius:0 0 5px 5px;
+    background:linear-gradient(90deg,transparent,var(--orange),var(--gold),transparent);
+}
+
+.section-heading{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:16px;
+}
+
+.section-number{
+    width:31px;
+    height:31px;
+    flex:0 0 31px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:11px;
+    background:linear-gradient(145deg,var(--maroon),var(--red));
+    color:#fff;
+    font-family:"Cinzel",serif;
+    font-size:12px;
+    font-weight:800;
+    box-shadow:0 5px 12px rgba(116,19,33,.18);
+}
+
+.section-heading-text{
+    min-width:0;
+}
+
+.section-heading h2{
+    color:var(--maroon);
+    font-size:14px;
+    font-weight:800;
+    letter-spacing:.1px;
+}
+
+.section-heading p{
+    color:#a17d78;
+    font-size:9px;
+    margin-top:2px;
+}
+
+/* =========================================================
+   FIELDS
+   ========================================================= */
+
+.form-group{
+    margin-bottom:13px;
+}
+
+.form-group:last-child{
+    margin-bottom:0;
+}
+
+.field-label{
+    display:block;
+    margin:0 0 6px 3px;
+    color:#5b3337;
+    font-size:11px;
+    font-weight:800;
+}
+
+.required{
+    color:var(--red);
+}
+
+.input-box,
+.select-box,
+.textarea-box{
+    width:100%;
+    border:1px solid #ead8c7;
+    border-radius:13px;
+    background:#fffdfa;
+    color:#3e292b;
+    font-family:"Inter",sans-serif;
+    font-size:13px;
+    outline:none;
+    transition:.2s ease;
+    box-shadow:inset 0 1px 2px rgba(116,19,33,.025);
+}
+
+.input-box,
+.select-box{
+    height:48px;
+    padding:0 13px;
+}
+
+.textarea-box{
+    min-height:92px;
+    resize:vertical;
+    padding:12px 13px;
+    line-height:1.5;
+}
+
+.input-box::placeholder,
+.textarea-box::placeholder{
+    color:#b6a09c;
+}
+
+.input-box:focus,
+.select-box:focus,
+.textarea-box:focus{
+    border-color:var(--orange);
+    background:#fff;
+    box-shadow:
+        0 0 0 3px rgba(255,138,36,.10),
+        0 5px 18px rgba(116,19,33,.06);
+}
+
+.select-box{
+    appearance:none;
+    -webkit-appearance:none;
+    background-image:
+        linear-gradient(45deg,transparent 50%,var(--maroon) 50%),
+        linear-gradient(135deg,var(--maroon) 50%,transparent 50%);
+    background-position:
+        calc(100% - 17px) 20px,
+        calc(100% - 12px) 20px;
+    background-size:5px 5px,5px 5px;
+    background-repeat:no-repeat;
+    padding-right:38px;
+}
+
+.grid-2{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+
+/* =========================================================
+   PHOTO UPLOAD
+   ========================================================= */
+
+.photo-card{
+    padding:14px;
+    border-radius:17px;
+    background:
+        linear-gradient(135deg,#fffdf8,#fff4e5);
+    border:1px dashed #d9b778;
+}
+
+.photo-layout{
+    display:flex;
+    align-items:center;
+    gap:13px;
+}
+
+.preview-frame{
+    width:76px;
+    height:76px;
+    flex:0 0 76px;
+    border-radius:19px;
+    background:#fff;
+    border:2px solid rgba(157,116,21,.28);
+    padding:4px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    box-shadow:0 5px 16px rgba(116,19,33,.10);
+}
+
+.preview-avatar{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    border-radius:14px;
+    background:#fffaf2;
+}
+
+.photo-info{
+    flex:1;
+    min-width:0;
+}
+
+.photo-title{
+    color:var(--maroon);
+    font-size:12px;
+    font-weight:800;
+    margin-bottom:4px;
+}
+
+.photo-hint{
+    color:#927876;
+    font-size:9px;
+    line-height:1.5;
+    margin-bottom:8px;
+}
+
+.upload-btn-label{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:34px;
+    padding:0 12px;
+    border-radius:10px;
+    color:#fff;
+    background:linear-gradient(135deg,var(--maroon),var(--red));
+    font-size:10px;
+    font-weight:800;
+    cursor:pointer;
+    box-shadow:0 5px 13px rgba(116,19,33,.16);
+}
+
+/* =========================================================
+   PASSWORD
+   ========================================================= */
+
+.password-wrap{
+    position:relative;
+}
+
+.password-wrap .input-box{
+    padding-right:48px;
+}
+
+.password-toggle{
+    position:absolute;
+    right:8px;
+    top:7px;
+    width:34px;
+    height:34px;
+    border:0;
+    border-radius:9px;
+    background:#fff1dd;
+    color:var(--maroon);
+    font-size:14px;
+    cursor:pointer;
+}
+
+/* =========================================================
+   MAIN REGISTER BUTTON
+   ========================================================= */
+
+.btn-register-main{
+    width:100%;
+    min-height:57px;
+    margin-top:4px;
+    border:0;
+    border-radius:17px;
+    cursor:pointer;
+    color:#fff;
+    font-family:"Cinzel",serif;
+    font-size:13px;
+    font-weight:800;
+    letter-spacing:.4px;
+    background:
+        linear-gradient(135deg,
+            #68111f 0%,
+            #8f1729 48%,
+            #6b101e 100%);
+    box-shadow:
+        0 12px 27px rgba(116,19,33,.23),
+        inset 0 1px 0 rgba(255,255,255,.2);
+    position:relative;
+    overflow:hidden;
+    transition:.2s ease;
+}
+
+.btn-register-main::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-120%;
+    width:80%;
+    height:100%;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,243,166,.25),
+        transparent
+    );
+    transform:skewX(-20deg);
+    transition:.7s ease;
+}
+
+.btn-register-main:active{
+    transform:scale(.985);
+}
+
+.btn-register-main:active::before{
+    left:140%;
+}
+
+.btn-register-main:disabled{
+    opacity:.65;
+    cursor:not-allowed;
+}
+
+/* =========================================================
+   LOGIN FOOTER
+   ========================================================= */
+
+.login-footer{
+    text-align:center;
+    padding:5px 10px 25px;
+}
+
+.btn-login-footer{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:7px;
+    color:var(--maroon);
+    text-decoration:none;
+    font-size:11px;
+    font-weight:800;
+    padding:12px 17px;
+    border-radius:12px;
+    background:#fff4df;
+    border:1px solid #ecd4a9;
+}
+
+/* =========================================================
+   FOOTER BRAND
+   ========================================================= */
+
+.app-footer{
+    padding:20px 18px 28px;
+    text-align:center;
+    background:
+        linear-gradient(180deg,
+            rgba(255,248,235,.3),
+            rgba(255,240,215,.75));
+    border-top:1px solid rgba(116,19,33,.08);
+}
+
+.footer-brand{
+    font-family:"Cinzel",serif;
+    font-size:11px;
+    color:var(--maroon);
+    font-weight:800;
+    letter-spacing:1px;
+}
+
+.footer-text{
+    margin-top:5px;
+    color:#9c7c78;
+    font-size:9px;
+    line-height:1.5;
+}
+
+/* =========================================================
+   DESKTOP
+   ========================================================= */
+
+@media(min-width:700px){
+
+    body{
+        padding:30px 0;
+    }
+
+    .app-card{
+        min-height:auto;
+        border-radius:32px;
+        box-shadow:
+            0 30px 90px rgba(116,19,33,.15),
+            0 0 0 1px rgba(116,19,33,.06);
+    }
+
+    .royal-header{
+        padding-top:30px;
+        border-radius:32px 32px 0 0;
+    }
+
+    .form-content{
+        padding-left:28px;
+        padding-right:28px;
+    }
+
+    .identity-panel{
+        margin-left:24px;
+        margin-right:24px;
+    }
+}
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media(max-width:380px){
+
+    .brand-name{
+        font-size:20px;
+    }
+
+    .app-logo-wrap{
+        width:56px;
+        height:56px;
+    }
+
+    .identity-panel{
+        padding:12px;
+    }
+
+    .identity-title{
+        font-size:12px;
+    }
+
+    .form-section{
+        padding:17px 12px 13px;
+    }
+
+    .grid-2{
+        grid-template-columns:1fr;
+        gap:0;
+    }
+
+    .form-intro h1{
+        font-size:21px;
+    }
+}
+
+/* Prevent browser autofill from destroying the royal appearance */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+select:-webkit-autofill{
+    -webkit-text-fill-color:#3e292b;
+    -webkit-box-shadow:0 0 0 1000px #fffdfa inset;
+    transition:background-color 9999s ease-in-out 0s;
+}
+</style>
 </head>
+
 <body class="form-page-body">
 
 <div class="app-card">
-    <div class="brand-box">
-        <div class="brand-logo-wrap">
-            <img src="https://sanatansevasamiti.org/Images/logo.jpg" alt="Logo" class="brand-logo" onerror="this.src='https://via.placeholder.com/84';">
-        </div>
-        <h1 class="brand-title">सनातन सेवा समिति</h1>
-        <div class="brand-sub">SANATANAM • नया सदस्य पंजीकरण</div>
-    </div>
 
-    <div id="alertMsg" class="alert-box alert-error"></div>
+    <!-- =====================================================
+         HEADER — APP IDENTITY FIRST
+         ===================================================== -->
+    <header class="royal-header">
 
-    <form id="registerForm" onsubmit="handleRegistration(event)">
-        
-        <!-- SECTION 1: सेवा क्षेत्र व नाम -->
-        <div class="sec-title">🚩 1. सेवा क्षेत्र एवं नाम</div>
+        <div class="header-glow"></div>
 
-        <div class="form-group">
-            <label class="field-label">सेवा क्षेत्र चुनें *</label>
-            <select id="seva_kshetra" class="select-box" required>
-                <option value="">-- सेवा क्षेत्र लोड हो रहा है... --</option>
-            </select>
-        </div>
+        <div class="brand-row">
 
-        <div class="form-group">
-            <label class="field-label">पूरा नाम (Full Name) *</label>
-            <input type="text" id="full_name" class="input-box" placeholder="उदा. राहुल शर्मा" required>
-        </div>
-
-        <div class="grid-2">
-            <div class="form-group">
-                <label class="field-label">लिंग (Gender)</label>
-                <select id="gender" class="select-box">
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                </select>
+            <!-- SANATANAM APP LOGO -->
+            <div class="app-logo-wrap">
+                <img
+                    src="Images/logo.jpg"
+                    class="app-logo"
+                    alt="SANATANAM App Logo"
+                    loading="eager"
+                    onerror="this.onerror=null;this.src='Images/jpg/logo.jpg';"
+                >
             </div>
-            <div class="form-group">
-                <label class="field-label">जन्म तिथि (DOB)</label>
-                <input type="date" id="dob" class="input-box">
+
+            <div class="brand-copy">
+                <div class="brand-name">SANATANAM</div>
+                <div class="brand-tagline">A Living Spiritual Experience</div>
             </div>
+
         </div>
 
-        <!-- SECTION 2: संपर्क एवं स्थान -->
-        <div class="sec-title">📍 2. संपर्क एवं निवास विवरण</div>
+        <!-- =================================================
+             COMMITTEE IDENTITY BELOW APP IDENTITY
+             ================================================= -->
+        <div class="identity-panel">
 
-        <div class="grid-2">
-            <div class="form-group">
-                <label class="field-label">देश (Country)</label>
-                <select id="country" class="select-box">
-                    <option value="India">India</option>
-                    <option value="Nepal">Nepal</option>
-                    <option value="Bangladesh">Bangladesh</option>
-                    <option value="Sri Lanka">Sri Lanka</option>
-                </select>
+            <!-- SANATAN SEVA SAMITI LOGO -->
+            <div class="committee-logo-wrap">
+                <img
+                    src="Images/logo.png"
+                    class="committee-logo"
+                    alt="Sanatan Seva Samiti Logo"
+                    loading="eager"
+                >
             </div>
-            <div class="form-group">
-                <label class="field-label">मोबाइल नंबर *</label>
-                <input type="tel" id="mobile" class="input-box" placeholder="10 अंकों का मोबाइल" maxlength="10" required>
-            </div>
-        </div>
 
-        <div class="form-group">
-            <label class="field-label">ईमेल पता (Email)</label>
-            <input type="email" id="email" class="input-box" placeholder="name@example.com">
-        </div>
-
-        <div class="grid-2">
-            <div class="form-group">
-                <label class="field-label">राज्य (State)</label>
-                <input type="text" id="state" class="input-box" placeholder="उदा. मध्य प्रदेश">
-            </div>
-            <div class="form-group">
-                <label class="field-label">जिला (District)</label>
-                <input type="text" id="district" class="input-box" placeholder="उदा. मुरैना">
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="field-label">स्थायी पता (Full Address)</label>
-            <textarea id="address" class="textarea-box" placeholder="गाँव / वार्ड, पोस्ट, पिन कोड..."></textarea>
-        </div>
-
-        <!-- SECTION 3: फोटो एवं पासवर्ड -->
-        <div class="sec-title">📸 3. प्रोफाइल फोटो व सुरक्षा</div>
-
-        <div class="form-group">
-            <label class="field-label">प्रोफाइल फोटो</label>
-            <div class="photo-upload-wrap">
-                <img id="avatarPreview" src="https://via.placeholder.com/55?text=Photo" class="preview-avatar" alt="Avatar">
-                <div class="upload-info">
-                    <span style="color:#666; font-weight:700;">स्पष्ट पासपोर्ट साइज़ फोटो चुनें</span><br>
-                    <label for="profile_photo" class="upload-btn-label">📁 फोटो गैलरी खोलें</label>
-                    <input type="file" id="profile_photo" accept="image/*" style="display:none;" onchange="previewUserPhoto(event)">
+            <div class="identity-text">
+                <div class="identity-kicker">Presented By</div>
+                <div class="identity-title">
+                    Sanatan Seva Samiti
+                </div>
+                <div class="identity-sub">
+                    A dedicated initiative for Sanatana Dharma, service, culture and spiritual community.
                 </div>
             </div>
+
         </div>
 
-        <div class="form-group">
-            <label class="field-label">लॉगिन पासवर्ड बनाएं *</label>
-            <input type="password" id="password" class="input-box" placeholder="कम से कम 6 अक्षरों का पासवर्ड" minlength="6" required>
+    </header>
+
+
+    <div class="royal-divider">
+        <span></span>
+        <b>✦</b>
+        <span></span>
+    </div>
+
+
+    <!-- =====================================================
+         FORM
+         ===================================================== -->
+
+    <main class="form-content">
+
+        <div class="form-intro">
+            <h1>Create Your SANATANAM Account</h1>
+            <p>
+                Join the SANATANAM spiritual community and create your
+                personal digital membership profile.
+            </p>
         </div>
 
-        <button type="submit" id="btnSubmit" class="btn-register-main">।। सदस्य पंजीकरण पूर्ण करें ।।</button>
-    </form>
+        <div id="alertMsg" class="alert-box alert-error"></div>
 
-    <a href="app_login.html" class="btn-login-footer">🚀 पहले से खाता है? लॉगिन करें</a>
+
+        <form id="registerForm" onsubmit="handleRegistration(event)">
+
+
+            <!-- =================================================
+                 SECTION 01 — PERSONAL IDENTITY
+                 ================================================= -->
+
+            <section class="form-section">
+
+                <div class="section-heading">
+                    <div class="section-number">01</div>
+
+                    <div class="section-heading-text">
+                        <h2>Personal Identity</h2>
+                        <p>Your basic membership information</p>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+
+                    <label class="field-label" for="seva_kshetra">
+                        Service Area <span class="required">*</span>
+                    </label>
+
+                    <select
+                        id="seva_kshetra"
+                        class="select-box"
+                        required
+                    >
+                        <option value="">
+                            Loading service areas...
+                        </option>
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label class="field-label" for="full_name">
+                        Full Name <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="full_name"
+                        class="input-box"
+                        placeholder="Enter your full name"
+                        autocomplete="name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="grid-2">
+
+                    <div class="form-group">
+
+                        <label class="field-label" for="gender">
+                            Gender
+                        </label>
+
+                        <select id="gender" class="select-box">
+
+                            <option value="Male">
+                                Male
+                            </option>
+
+                            <option value="Female">
+                                Female
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label class="field-label" for="dob">
+                            Date of Birth
+                        </label>
+
+                        <input
+                            type="date"
+                            id="dob"
+                            class="input-box"
+                        >
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 SECTION 02 — CONTACT
+                 ================================================= -->
+
+            <section class="form-section">
+
+                <div class="section-heading">
+                    <div class="section-number">02</div>
+
+                    <div class="section-heading-text">
+                        <h2>Contact & Residence</h2>
+                        <p>Your communication and location details</p>
+                    </div>
+                </div>
+
+
+                <div class="grid-2">
+
+                    <div class="form-group">
+
+                        <label class="field-label" for="country">
+                            Country
+                        </label>
+
+                        <select id="country" class="select-box">
+
+                            <option value="India">
+                                India
+                            </option>
+
+                            <option value="Nepal">
+                                Nepal
+                            </option>
+
+                            <option value="Bangladesh">
+                                Bangladesh
+                            </option>
+
+                            <option value="Sri Lanka">
+                                Sri Lanka
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label class="field-label" for="mobile">
+                            Mobile Number <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="mobile"
+                            class="input-box"
+                            placeholder="10-digit mobile number"
+                            maxlength="10"
+                            inputmode="numeric"
+                            autocomplete="tel"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label class="field-label" for="email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        class="input-box"
+                        placeholder="name@example.com"
+                        autocomplete="email"
+                    >
+
+                </div>
+
+
+                <div class="grid-2">
+
+                    <div class="form-group">
+
+                        <label class="field-label" for="state">
+                            State
+                        </label>
+
+                        <input
+                            type="text"
+                            id="state"
+                            class="input-box"
+                            placeholder="Enter state"
+                            autocomplete="address-level1"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label class="field-label" for="district">
+                            District
+                        </label>
+
+                        <input
+                            type="text"
+                            id="district"
+                            class="input-box"
+                            placeholder="Enter district"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label class="field-label" for="address">
+                        Permanent Address
+                    </label>
+
+                    <textarea
+                        id="address"
+                        class="textarea-box"
+                        placeholder="Village / Ward, Post Office, PIN Code..."
+                        autocomplete="street-address"
+                    ></textarea>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 SECTION 03 — PROFILE
+                 ================================================= -->
+
+            <section class="form-section">
+
+                <div class="section-heading">
+                    <div class="section-number">03</div>
+
+                    <div class="section-heading-text">
+                        <h2>Profile & Security</h2>
+                        <p>Complete your digital membership profile</p>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+
+                    <label class="field-label">
+                        Profile Photo
+                    </label>
+
+                    <div class="photo-card">
+
+                        <div class="photo-layout">
+
+                            <div class="preview-frame">
+
+                                <img
+                                    id="avatarPreview"
+                                    src="Images/logo.jpg"
+                                    class="preview-avatar"
+                                    alt="Profile Photo Preview"
+                                >
+
+                            </div>
+
+
+                            <div class="photo-info">
+
+                                <div class="photo-title">
+                                    Add Your Profile Photo
+                                </div>
+
+                                <div class="photo-hint">
+                                    Choose a clear personal photograph.
+                                    The image will automatically fit inside
+                                    the preview without cropping.
+                                </div>
+
+                                <label
+                                    for="profile_photo"
+                                    class="upload-btn-label"
+                                >
+                                    Choose Photo
+                                </label>
+
+                                <input
+                                    type="file"
+                                    id="profile_photo"
+                                    accept="image/*"
+                                    style="display:none;"
+                                    onchange="previewUserPhoto(event)"
+                                >
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label class="field-label" for="password">
+                        Create Login Password <span class="required">*</span>
+                    </label>
+
+                    <div class="password-wrap">
+
+                        <input
+                            type="password"
+                            id="password"
+                            class="input-box"
+                            placeholder="Minimum 6 characters"
+                            minlength="6"
+                            autocomplete="new-password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            onclick="togglePassword()"
+                            id="passwordToggle"
+                            aria-label="Show password"
+                        >
+                            ◉
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 REGISTER
+                 ================================================= -->
+
+            <button
+                type="submit"
+                id="btnSubmit"
+                class="btn-register-main"
+            >
+                Create My SANATANAM Membership
+            </button>
+
+
+        </form>
+
+
+        <div class="login-footer">
+
+            <a
+                href="app_login.html"
+                class="btn-login-footer"
+            >
+                Already have an account?
+                <span>Sign In</span>
+                →
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <footer class="app-footer">
+
+        <div class="footer-brand">
+            SANATANAM
+        </div>
+
+        <div class="footer-text">
+            A Living Spiritual Experience<br>
+            Presented by Sanatan Seva Samiti
+        </div>
+
+    </footer>
+
 </div>
 
+
 <script>
-const API_URL = "https://sanatansevasamiti.org/api/register.php";
+/* =========================================================
+   API CONFIGURATION
+   ========================================================= */
+
+const API_URL =
+    "https://sanatansevasamiti.org/api/register.php";
+
 let photoBase64 = "";
+
+
+/* =========================================================
+   LOAD SERVICE AREAS
+   ========================================================= */
 
 window.addEventListener("load", loadSevaKshetra);
 
-async function loadSevaKshetra() {
-    const sel = document.getElementById("seva_kshetra");
-    try {
-        const res = await fetch(API_URL);
-        const data = await res.json();
-        if (data.status && data.profiles && data.profiles.length > 0) {
-            sel.innerHTML = '<option value="">-- अपना सेवा क्षेत्र चुनें --</option>';
-            data.profiles.forEach(p => {
-                const opt = document.createElement("option");
-                opt.value = p.profile_id;
-                opt.textContent = p.name;
+async function loadSevaKshetra(){
+
+    const sel =
+        document.getElementById("seva_kshetra");
+
+    try{
+
+        const res =
+            await fetch(API_URL);
+
+        const data =
+            await res.json();
+
+        if(
+            data.status &&
+            data.profiles &&
+            data.profiles.length > 0
+        ){
+
+            sel.innerHTML =
+                '<option value="">Select your service area</option>';
+
+            data.profiles.forEach(function(p){
+
+                const opt =
+                    document.createElement("option");
+
+                opt.value =
+                    p.profile_id;
+
+                opt.textContent =
+                    p.name;
+
                 sel.appendChild(opt);
+
             });
-        } else {
-            sel.innerHTML = '<option value="">कोई सेवा क्षेत्र उपलब्ध नहीं</option>';
+
+        }else{
+
+            sel.innerHTML =
+                '<option value="">No service area available</option>';
+
         }
-    } catch(err) {
-        sel.innerHTML = '<option value="">सेवा क्षेत्र लोड करने में त्रुटि</option>';
+
+    }catch(err){
+
+        sel.innerHTML =
+            '<option value="">Unable to load service areas</option>';
+
     }
 }
 
-function previewUserPhoto(e) {
-    const file = e.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = function(evt) {
-        photoBase64 = evt.target.result;
-        document.getElementById("avatarPreview").src = photoBase64;
-    };
-    reader.readAsDataURL(file);
-}
 
-async function handleRegistration(e) {
-    e.preventDefault();
-    const btn = document.getElementById("btnSubmit");
-    const alertBox = document.getElementById("alertMsg");
-    alertBox.style.display = "none";
+/* =========================================================
+   PHOTO PREVIEW
+   NO CROPPING
+   ========================================================= */
 
-    const payload = {
-        full_name: document.getElementById("full_name").value.trim(),
-        seva_kshetra: document.getElementById("seva_kshetra").value,
-        gender: document.getElementById("gender").value,
-        dob: document.getElementById("dob").value,
-        country: document.getElementById("country").value,
-        mobile: document.getElementById("mobile").value.trim(),
-        email: document.getElementById("email").value.trim(),
-        state: document.getElementById("state").value.trim(),
-        district: document.getElementById("district").value.trim(),
-        address: document.getElementById("address").value.trim(),
-        pass: document.getElementById("password").value,
-        profile_photo_base64: photoBase64
-    };
+function previewUserPhoto(e){
 
-    if (payload.mobile.length !== 10) {
-        alertBox.innerText = "कृपया सही 10 अंकों का मोबाइल नंबर दर्ज करें!";
-        alertBox.style.display = "block";
+    const file =
+        e.target.files[0];
+
+    if(!file) return;
+
+
+    /* Basic image validation */
+    if(!file.type.startsWith("image/")){
+
+        alert("Please select a valid image file.");
+
+        e.target.value = "";
+
         return;
     }
 
-    btn.innerText = "⏳ पंजीकरण हो रहा है...";
-    btn.disabled = true;
 
-    try {
-        const res = await fetch(API_URL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload)
-        });
-        const data = await res.json();
+    const reader =
+        new FileReader();
 
-        if (data.status) {
-            try {
-                localStorage.setItem("sss_user_token", data.token);
-                localStorage.setItem("sss_user_data", JSON.stringify(data.user));
-            } catch(storageErr) {}
 
-            if (window.AndroidBridge && window.AndroidBridge.onAuthSuccess) {
-                window.AndroidBridge.onAuthSuccess(data.token, JSON.stringify(data.user));
-            }
+    reader.onload =
+        function(evt){
 
-            alert("✅ " + data.message);
-            if (window.AndroidBridge && window.AndroidBridge.openNativeScreen) {
-                window.AndroidBridge.openNativeScreen("app_home");
-            } else {
-                window.location.href = "app_home.html";
-            }
-        } else {
-            alertBox.innerText = data.message;
-            alertBox.style.display = "block";
-        }
-    } catch(err) {
-        alertBox.innerText = "सर्वर से कनेक्ट नहीं हो सका। कृपया इंटरनेट जांचें।";
-        alertBox.style.display = "block";
-    } finally {
-        btn.innerText = "।। सदस्य पंजीकरण पूर्ण करें ।।";
-        btn.disabled = false;
+            photoBase64 =
+                evt.target.result;
+
+            const preview =
+                document.getElementById(
+                    "avatarPreview"
+                );
+
+            /*
+             * CSS object-fit: contain keeps
+             * the complete image visible.
+             * No cropping is performed.
+             */
+
+            preview.src =
+                photoBase64;
+        };
+
+
+    reader.readAsDataURL(file);
+}
+
+
+/* =========================================================
+   PASSWORD VISIBILITY
+   ========================================================= */
+
+function togglePassword(){
+
+    const input =
+        document.getElementById("password");
+
+    const toggle =
+        document.getElementById("passwordToggle");
+
+
+    if(input.type === "password"){
+
+        input.type = "text";
+
+        toggle.textContent = "◎";
+
+        toggle.setAttribute(
+            "aria-label",
+            "Hide password"
+        );
+
+    }else{
+
+        input.type = "password";
+
+        toggle.textContent = "◉";
+
+        toggle.setAttribute(
+            "aria-label",
+            "Show password"
+        );
+
     }
 }
+
+
+/* =========================================================
+   REGISTRATION
+   ========================================================= */
+
+async function handleRegistration(e){
+
+    e.preventDefault();
+
+
+    const btn =
+        document.getElementById("btnSubmit");
+
+    const alertBox =
+        document.getElementById("alertMsg");
+
+
+    alertBox.style.display =
+        "none";
+
+
+    const payload = {
+
+        full_name:
+            document
+            .getElementById("full_name")
+            .value
+            .trim(),
+
+        seva_kshetra:
+            document
+            .getElementById("seva_kshetra")
+            .value,
+
+        gender:
+            document
+            .getElementById("gender")
+            .value,
+
+        dob:
+            document
+            .getElementById("dob")
+            .value,
+
+        country:
+            document
+            .getElementById("country")
+            .value,
+
+        mobile:
+            document
+            .getElementById("mobile")
+            .value
+            .trim(),
+
+        email:
+            document
+            .getElementById("email")
+            .value
+            .trim(),
+
+        state:
+            document
+            .getElementById("state")
+            .value
+            .trim(),
+
+        district:
+            document
+            .getElementById("district")
+            .value
+            .trim(),
+
+        address:
+            document
+            .getElementById("address")
+            .value
+            .trim(),
+
+        pass:
+            document
+            .getElementById("password")
+            .value,
+
+        profile_photo_base64:
+            photoBase64
+
+    };
+
+
+    /* =====================================================
+       MOBILE VALIDATION
+       ===================================================== */
+
+    if(!/^[0-9]{10}$/.test(payload.mobile)){
+
+        alertBox.innerText =
+            "Please enter a valid 10-digit mobile number.";
+
+        alertBox.style.display =
+            "block";
+
+        document
+            .getElementById("mobile")
+            .focus();
+
+        return;
+    }
+
+
+    if(payload.pass.length < 6){
+
+        alertBox.innerText =
+            "Password must contain at least 6 characters.";
+
+        alertBox.style.display =
+            "block";
+
+        return;
+    }
+
+
+    /* =====================================================
+       LOADING STATE
+       ===================================================== */
+
+    btn.innerText =
+        "Creating Your Membership...";
+
+    btn.disabled =
+        true;
+
+
+    try{
+
+        const res =
+            await fetch(
+                API_URL,
+                {
+                    method:"POST",
+
+                    headers:{
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:
+                        JSON.stringify(payload)
+                }
+            );
+
+
+        const data =
+            await res.json();
+
+
+        /* =================================================
+           SUCCESS
+           ================================================= */
+
+        if(data.status){
+
+            try{
+
+                localStorage.setItem(
+                    "sss_user_token",
+                    data.token
+                );
+
+                localStorage.setItem(
+                    "sss_user_data",
+                    JSON.stringify(data.user)
+                );
+
+            }catch(storageErr){}
+
+
+            /* Android WebView Bridge */
+
+            if(
+                window.AndroidBridge &&
+                window.AndroidBridge.onAuthSuccess
+            ){
+
+                window.AndroidBridge.onAuthSuccess(
+                    data.token,
+                    JSON.stringify(data.user)
+                );
+
+            }
+
+
+            alert(
+                "Registration successful. Welcome to SANATANAM."
+            );
+
+
+            if(
+                window.AndroidBridge &&
+                window.AndroidBridge.openNativeScreen
+            ){
+
+                window.AndroidBridge.openNativeScreen(
+                    "app_home"
+                );
+
+            }else{
+
+                window.location.href =
+                    "app_home.html";
+
+            }
+
+
+        }else{
+
+            alertBox.innerText =
+                data.message ||
+                "Registration could not be completed.";
+
+            alertBox.style.display =
+                "block";
+
+        }
+
+
+    }catch(err){
+
+        alertBox.innerText =
+            "Unable to connect to the server. Please check your internet connection and try again.";
+
+        alertBox.style.display =
+            "block";
+
+    }finally{
+
+        btn.innerText =
+            "Create My SANATANAM Membership";
+
+        btn.disabled =
+            false;
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE NUMBER — NUMBERS ONLY
+   ========================================================= */
+
+document
+.getElementById("mobile")
+.addEventListener(
+    "input",
+    function(){
+
+        this.value =
+            this.value
+            .replace(/\D/g,"")
+            .slice(0,10);
+
+    }
+);
+
+
+/* =========================================================
+   EXISTING TRANSLATOR HOOK
+   ========================================================= */
+
 </script>
+
 <script src="app_translator.js"></script>
 
 </body>
