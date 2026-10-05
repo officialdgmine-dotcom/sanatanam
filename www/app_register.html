@@ -10,10 +10,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<!-- Firebase App & Auth SDKs (Compat v9) -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-
 <style>
 :root{
     --maroon-950:#28050b;
@@ -67,7 +63,6 @@ body{
     overflow-x:hidden;
 }
 
-/* APP SHELL */
 .app-shell{
     width:100%;
     max-width:520px;
@@ -84,7 +79,6 @@ body{
         );
 }
 
-/* TOP ROYAL HEADER */
 .royal-header{
     position:relative;
     padding: calc(env(safe-area-inset-top) + 18px) 20px 30px;
@@ -96,30 +90,6 @@ body{
     border-bottom-right-radius:38px;
     box-shadow:0 15px 40px rgba(49,5,12,.28);
     overflow:hidden;
-}
-
-.royal-header::before{
-    content:"";
-    position:absolute;
-    width:240px;
-    height:240px;
-    border:1px solid rgba(255,222,133,.18);
-    border-radius:50%;
-    top:-135px;
-    left:50%;
-    transform:translateX(-50%);
-}
-
-.royal-header::after{
-    content:"";
-    position:absolute;
-    width:330px;
-    height:330px;
-    border:1px solid rgba(255,222,133,.09);
-    border-radius:50%;
-    top:-180px;
-    left:50%;
-    transform:translateX(-50%);
 }
 
 .header-topline{
@@ -139,10 +109,8 @@ body{
     border-radius:50px;
     background:rgba(255,255,255,.09);
     border:1px solid rgba(255,227,146,.25);
-    backdrop-filter:blur(12px);
     font-size:10px;
     font-weight:700;
-    letter-spacing:.7px;
     color:#fff3c5;
 }
 
@@ -152,13 +120,6 @@ body{
     border-radius:50%;
     background:#baff77;
     box-shadow:0 0 10px #baff77;
-}
-
-.step-badge{
-    font-size:10px;
-    font-weight:800;
-    color:#ffe69a;
-    letter-spacing:1px;
 }
 
 .brand-area{
@@ -185,14 +146,12 @@ body{
     width:100%;
     height:100%;
     object-fit:contain;
-    display:block;
     border-radius:18px;
 }
 
 .app-name{
     font-family:Cinzel,serif;
     font-size:24px;
-    line-height:1.1;
     letter-spacing:2.5px;
     font-weight:800;
     color:#fff;
@@ -207,94 +166,10 @@ body{
     text-transform:uppercase;
 }
 
-.brand-divider{
-    width:90px;
-    height:2px;
-    margin:16px auto 13px;
-    background:linear-gradient(90deg,transparent,#ffd866,transparent);
-}
-
-.committee-row{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:10px;
-}
-
-.committee-logo{
-    width:42px;
-    height:42px;
-    padding:4px;
-    background:white;
-    border-radius:12px;
-    border:1px solid rgba(255,217,109,.65);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-.committee-logo img{
-    width:100%;
-    height:100%;
-    object-fit:contain;
-}
-
-.committee-info{
-    text-align:left;
-}
-
-.committee-label{
-    font-size:8px;
-    text-transform:uppercase;
-    letter-spacing:1.5px;
-    color:#ffd979;
-    font-weight:800;
-}
-
-.committee-name{
-    margin-top:2px;
-    font-family:Cinzel,serif;
-    font-size:13px;
-    color:#fff;
-    font-weight:700;
-}
-
-/* MAIN */
 .main-content{
     padding:22px 16px 38px;
 }
 
-.registration-heading{
-    text-align:center;
-    margin-bottom:21px;
-}
-
-.registration-heading .eyebrow{
-    color:var(--orange-700);
-    font-size:10px;
-    font-weight:800;
-    text-transform:uppercase;
-    letter-spacing:1.8px;
-    margin-bottom:7px;
-}
-
-.registration-heading h1{
-    margin:0;
-    font-family:Cinzel,serif;
-    font-size:24px;
-    line-height:1.25;
-    color:var(--maroon-900);
-}
-
-.registration-heading p{
-    margin:8px auto 0;
-    max-width:330px;
-    color:var(--muted);
-    font-size:11px;
-    line-height:1.55;
-}
-
-/* FORM CARD */
 .form-card{
     background:rgba(255,255,255,.94);
     border:1px solid rgba(111,16,29,.10);
@@ -317,7 +192,6 @@ body{
 .section-icon{
     width:35px;
     height:35px;
-    flex:none;
     border-radius:12px;
     display:flex;
     align-items:center;
@@ -325,7 +199,6 @@ body{
     background:linear-gradient(145deg,var(--maroon-800),var(--orange-700));
     color:#ffe994;
     font-size:15px;
-    box-shadow:0 7px 17px rgba(112,16,28,.18);
 }
 
 .section-title strong{
@@ -352,7 +225,6 @@ body{
     color:#54101b;
     font-size:10px;
     font-weight:800;
-    letter-spacing:.15px;
 }
 
 .input-box,
@@ -366,39 +238,12 @@ body{
     min-height:49px;
     padding:0 14px;
     outline:none;
-    font-family:Inter,sans-serif;
     font-size:12px;
     font-weight:600;
-    transition:.22s ease;
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.8);
 }
 
 .select-box{
     appearance:none;
-    -webkit-appearance:none;
-    padding-right:42px;
-    background-image:
-        linear-gradient(45deg,transparent 50%,#7a1726 50%),
-        linear-gradient(135deg,#7a1726 50%,transparent 50%);
-    background-position:
-        calc(100% - 19px) 21px,
-        calc(100% - 14px) 21px;
-    background-size:5px 5px,5px 5px;
-    background-repeat:no-repeat;
-}
-
-.textarea-box{
-    padding:13px 14px;
-    min-height:86px;
-    resize:vertical;
-}
-
-.input-box:focus,
-.select-box:focus,
-.textarea-box:focus{
-    border-color:var(--orange);
-    background:#fff;
-    box-shadow: 0 0 0 3px rgba(244,119,18,.10), 0 8px 20px rgba(80,10,20,.06);
 }
 
 .grid-2{
@@ -407,76 +252,46 @@ body{
     gap:10px;
 }
 
-/* =========================================================
-   PHONE & OTP BAR
-   ========================================================= */
 .phone-composite-wrap{
     display:flex;
-    align-items:stretch;
     gap:7px;
     width:100%;
 }
 
 .country-select-compact{
-    width:105px;
-    flex:0 0 105px;
-    padding:0 10px;
+    width:100px;
+    flex:0 0 100px;
+    padding:0 8px;
     font-size:11px;
     font-weight:700;
     border-radius:14px;
     border:1px solid #ead8ca;
     background:#fff7ee;
-    color:#4a0f18;
-}
-
-.phone-input-field{
-    flex:1;
-    min-width:0;
-    font-size:13px;
-    font-weight:700;
-    letter-spacing:1px;
 }
 
 .btn-send-otp-royal{
     flex:0 0 auto;
     padding:0 16px;
-    min-height:49px;
     border:0;
     border-radius:14px;
     background:linear-gradient(135deg, var(--maroon-800), var(--orange-700));
     color:#fff;
     font-size:11px;
     font-weight:800;
-    letter-spacing:.3px;
     cursor:pointer;
-    box-shadow:0 6px 16px rgba(111,16,29,.22);
-    transition:.2s;
-    white-space:nowrap;
 }
 
 .btn-send-otp-royal:disabled{
     opacity:.55;
-    background:#856f67;
     cursor:not-allowed;
-    box-shadow:none;
 }
 
-/* ROYAL OTP CARD */
 .otp-card-expanded{
     margin-top:14px;
     padding:16px 14px;
     border-radius:20px;
-    background:
-        radial-gradient(circle at 50% 0%, rgba(244,119,18,.08), transparent 70%),
-        linear-gradient(180deg, #fffdf8, #fff7eb);
+    background:linear-gradient(180deg, #fffdf8, #fff7eb);
     border:1.5px solid rgba(217,90,0,.28);
-    box-shadow:0 8px 24px rgba(111,16,29,.06);
-    animation:cardSlideDown .35s ease both;
-}
-
-@keyframes cardSlideDown{
-    from{ opacity:0; transform:translateY(-8px); }
-    to{ opacity:1; transform:translateY(0); }
 }
 
 .otp-card-header{
@@ -484,15 +299,6 @@ body{
     justify-content:space-between;
     align-items:center;
     margin-bottom:12px;
-}
-
-.otp-card-title{
-    color:var(--maroon-900);
-    font-size:11px;
-    font-weight:800;
-    display:flex;
-    align-items:center;
-    gap:6px;
 }
 
 .otp-digits-grid{
@@ -507,20 +313,15 @@ body{
     height:50px;
     border-radius:12px;
     border:1.5px solid #e5c9b6;
-    background:#ffffff;
+    background:#fff;
     text-align:center;
     font-size:18px;
     font-weight:800;
-    color:var(--maroon-950);
     outline:none;
-    transition:.2s;
-    box-shadow:inset 0 1px 3px rgba(0,0,0,.04);
 }
 
 .digit-box:focus{
     border-color:var(--orange-700);
-    box-shadow:0 0 0 3px rgba(244,119,18,.15);
-    background:#fffbf2;
 }
 
 .btn-verify-otp-full{
@@ -532,14 +333,8 @@ body{
     color:#fff;
     font-size:12px;
     font-weight:800;
-    letter-spacing:.5px;
     cursor:pointer;
-    box-shadow:0 6px 18px rgba(40,167,69,.25);
-    transition:.2s;
 }
-
-.btn-verify-otp-full:active{ transform:scale(.98); }
-.btn-verify-otp-full:disabled{ opacity:.55; cursor:not-allowed; }
 
 .verified-banner{
     display:none;
@@ -555,7 +350,6 @@ body{
     margin-top:10px;
 }
 
-/* PHOTO */
 .photo-card{
     border-radius:18px;
     padding:13px;
@@ -569,26 +363,11 @@ body{
 .preview-avatar{
     width:67px;
     height:67px;
-    flex:none;
     border-radius:18px;
     object-fit:contain;
     background:#fff;
     border:2px solid #e3ae42;
     padding:3px;
-    box-shadow:0 6px 17px rgba(92,21,10,.13);
-}
-
-.upload-title{
-    font-size:11px;
-    font-weight:800;
-    color:#50101a;
-}
-
-.upload-description{
-    margin-top:4px;
-    color:#9a7767;
-    font-size:9px;
-    line-height:1.4;
 }
 
 .upload-btn-label{
@@ -606,20 +385,6 @@ body{
     cursor:pointer;
 }
 
-input[type="file"]{
-    display:none;
-}
-
-.password-note{
-    display:flex;
-    align-items:center;
-    gap:7px;
-    margin-top:6px;
-    color:#8b6c62;
-    font-size:8px;
-}
-
-/* ALERT */
 .alert-box{
     display:none;
     margin:12px 17px 0;
@@ -630,19 +395,9 @@ input[type="file"]{
     font-weight:700;
 }
 
-.alert-error{
-    background:#fff0f0;
-    border:1px solid #f0b8b8;
-    color:#9c1e2c;
-}
+.alert-error{ background:#fff0f0; border:1px solid #f0b8b8; color:#9c1e2c; }
+.alert-success{ background:#f0fff4; border:1px solid #b8f0ca; color:#197a38; }
 
-.alert-success{
-    background:#f0fff4;
-    border:1px solid #b8f0ca;
-    color:#197a38;
-}
-
-/* SUBMIT */
 .action-area{
     padding:17px;
     background:linear-gradient(180deg,#fffdf8,#fff7e7);
@@ -658,25 +413,14 @@ input[type="file"]{
     font-family:Cinzel,serif;
     font-size:13px;
     font-weight:800;
-    letter-spacing:.7px;
     color:#fff;
     background:linear-gradient(115deg,#570914 0%,#7b1020 36%,#b83f08 70%,#e26b0c 100%);
-    box-shadow: 0 12px 27px rgba(96,12,24,.27), inset 0 1px 0 rgba(255,255,255,.20);
-    position:relative;
-    overflow:hidden;
-    transition:.18s ease;
 }
 
 .btn-register-main:disabled{
     opacity:.65;
     cursor:not-allowed;
     background:#88726b;
-    box-shadow:none;
-}
-
-.login-area{
-    padding:17px 17px 3px;
-    text-align:center;
 }
 
 .btn-login-footer{
@@ -690,32 +434,6 @@ input[type="file"]{
     font-size:10px;
     font-weight:800;
 }
-
-.app-footer{
-    text-align:center;
-    padding:23px 15px calc(24px + env(safe-area-inset-bottom));
-}
-
-.footer-line{
-    width:75px;
-    height:1px;
-    margin:0 auto 12px;
-    background:linear-gradient(90deg,transparent,#d59a2f,transparent);
-}
-
-.footer-main{
-    font-family:Cinzel,serif;
-    color:#721323;
-    font-size:10px;
-    font-weight:700;
-    letter-spacing:.8px;
-}
-
-.footer-sub{
-    margin-top:5px;
-    color:#a68776;
-    font-size:8px;
-}
 </style>
 </head>
 
@@ -723,51 +441,28 @@ input[type="file"]{
 
 <div class="app-shell">
 
-    <!-- ROYAL APP HEADER -->
     <header class="royal-header">
         <div class="header-topline">
             <div class="secure-badge">
                 <span class="secure-dot"></span>
                 SECURE REGISTRATION
             </div>
-            <div class="step-badge">
-                MEMBER • 01
-            </div>
         </div>
 
         <div class="brand-area">
             <div class="logo-stage">
-                <img src="Images/logo.jpg" alt="SANATANAM App Logo" onerror="this.src='https://sanatansevasamiti.org/Images/logo.jpg';">
+                <img src="Images/logo.jpg" alt="Logo" onerror="this.src='https://sanatansevasamiti.org/Images/logo.jpg';">
             </div>
             <div class="app-name">SANATANAM</div>
             <div class="app-caption">A Living Spiritual Experience</div>
-            <div class="brand-divider"></div>
-
-            <div class="committee-row">
-                <div class="committee-logo">
-                    <img src="Images/logo.png" alt="Sanatan Seva Samiti Logo" onerror="this.src='https://sanatansevasamiti.org/Images/logo.jpg';">
-                </div>
-                <div class="committee-info">
-                    <div class="committee-label">Powered &amp; Guided By</div>
-                    <div class="committee-name">Sanatan Seva Samiti</div>
-                </div>
-            </div>
         </div>
     </header>
 
-    <!-- MAIN APP CONTENT -->
     <main class="main-content">
-
-        <div class="registration-heading">
-            <div class="eyebrow">Welcome To SANATANAM</div>
-            <h1>Create Your Spiritual Profile</h1>
-            <p>Join the SANATANAM community and become part of a growing journey of Dharma, Seva, Knowledge and Tradition.</p>
-        </div>
-
         <div class="form-card">
             <div id="alertMsg" class="alert-box"></div>
 
-            <form id="registerForm" onsubmit="handleRegistration(event)">
+            <form id="registerForm">
 
                 <!-- SECTION 01 -->
                 <section class="form-section">
@@ -788,7 +483,7 @@ input[type="file"]{
 
                     <div class="form-group">
                         <label class="field-label">Full Name *</label>
-                        <input type="text" id="full_name" class="input-box" placeholder="Enter your full name" autocomplete="name" required>
+                        <input type="text" id="full_name" class="input-box" placeholder="Enter your full name" required>
                     </div>
 
                     <div class="grid-2">
@@ -806,17 +501,16 @@ input[type="file"]{
                     </div>
                 </section>
 
-                <!-- SECTION 02: CONTACT & SPACIOUS PHONE VERIFICATION -->
+                <!-- SECTION 02: PHONE & REAL OTP -->
                 <section class="form-section">
                     <div class="section-heading">
                         <div class="section-icon">◈</div>
                         <div class="section-title">
                             <strong>Contact &amp; Verification</strong>
-                            <span>Verified Mobile with Live SMS OTP</span>
+                            <span>Live SMS OTP Powered by Firebase</span>
                         </div>
                     </div>
 
-                    <!-- FULL WIDTH MOBILE ROW -->
                     <div class="form-group">
                         <label class="field-label">Mobile Number *</label>
                         <div class="phone-composite-wrap">
@@ -826,60 +520,45 @@ input[type="file"]{
                                 <option value="Bangladesh" data-dial="+880">🇧🇩 +880</option>
                                 <option value="Sri Lanka" data-dial="+94">🇱🇰 +94</option>
                             </select>
-                            <input 
-                                type="tel" 
-                                id="mobile" 
-                                class="input-box phone-input-field" 
-                                placeholder="10 Digit Mobile Number" 
-                                maxlength="10" 
-                                inputmode="numeric" 
-                                autocomplete="tel" 
-                                required
-                            >
-                            <button type="button" id="btnSendOtp" class="btn-send-otp-royal" onclick="sendFirebaseOTP()">
-                                Get OTP
-                            </button>
+                            <input type="tel" id="mobile" class="input-box" placeholder="10 Digit Number" maxlength="10" inputmode="numeric" required>
+                            <button type="button" id="btnSendOtp" class="btn-send-otp-royal">Get OTP</button>
                         </div>
                     </div>
 
-                    <!-- VERIFIED SUCCESS NOTIFICATION -->
                     <div id="otpSuccessBadge" class="verified-banner">
                         <span>✓</span> 
-                        <span>Mobile verified successfully! Your account will be registered with this number.</span>
+                        <span>Mobile number verified successfully!</span>
                     </div>
 
-                    <!-- DEDICATED SPACIOUS OTP SECTION -->
                     <div class="otp-card-expanded" id="otpBoxWrap" style="display:none;">
                         <div class="otp-card-header">
-                            <div class="otp-card-title">
-                                <span>🔑</span> Enter 6-Digit SMS Verification Code
+                            <div style="font-size:11px; font-weight:800; color:var(--maroon-900);">
+                                🔑 Enter 6-Digit SMS Code
                             </div>
                             <div id="resendTimerWrap" style="font-size:9.5px; font-weight:700; color:var(--orange-700);">
                                 <span id="timerCountdown">Resend in 60s</span>
                             </div>
                         </div>
 
-                        <!-- 6 SEPARATE INPUT BOXES -->
                         <div class="otp-digits-grid">
-                            <input type="tel" class="digit-box" maxlength="1" inputmode="numeric" oninput="handleDigitInput(this, 0)" onkeydown="handleDigitDelete(event, 0)">
-                            <input type="tel" class="digit-box" maxlength="1" inputmode="numeric" oninput="handleDigitInput(this, 1)" onkeydown="handleDigitDelete(event, 1)">
-                            <input type="tel" class="digit-box" maxlength="1" inputmode="numeric" oninput="handleDigitInput(this, 2)" onkeydown="handleDigitDelete(event, 2)">
-                            <input type="tel" class="digit-box" maxlength="1" inputmode="numeric" oninput="handleDigitInput(this, 3)" onkeydown="handleDigitDelete(event, 3)">
-                            <input type="tel" class="digit-box" maxlength="1" inputmode="numeric" oninput="handleDigitInput(this, 4)" onkeydown="handleDigitDelete(event, 4)">
-                            <input type="tel" class="digit-box" maxlength="1" inputmode="numeric" oninput="handleDigitInput(this, 5)" onkeydown="handleDigitDelete(event, 5)">
+                            <input type="tel" class="digit-box" maxlength="1" inputmode="numeric">
+                            <input type="tel" class="digit-box" maxlength="1" inputmode="numeric">
+                            <input type="tel" class="digit-box" maxlength="1" inputmode="numeric">
+                            <input type="tel" class="digit-box" maxlength="1" inputmode="numeric">
+                            <input type="tel" class="digit-box" maxlength="1" inputmode="numeric">
+                            <input type="tel" class="digit-box" maxlength="1" inputmode="numeric">
                         </div>
 
-                        <button type="button" id="btnVerifyOtp" class="btn-verify-otp-full" onclick="verifyFirebaseOTP()">
+                        <button type="button" id="btnVerifyOtp" class="btn-verify-otp-full">
                             Verify Code &amp; Continue
                         </button>
                     </div>
 
-                    <!-- Invisible Recaptcha Container -->
                     <div id="recaptcha-container"></div>
 
                     <div class="form-group" style="margin-top:14px;">
                         <label class="field-label">Email Address</label>
-                        <input type="email" id="email" class="input-box" placeholder="name@example.com" autocomplete="email">
+                        <input type="email" id="email" class="input-box" placeholder="name@example.com">
                     </div>
 
                     <div class="grid-2">
@@ -895,7 +574,7 @@ input[type="file"]{
 
                     <div class="form-group">
                         <label class="field-label">Full Address</label>
-                        <textarea id="address" class="textarea-box" placeholder="Village / Ward, Post, PIN Code..."></textarea>
+                        <textarea id="address" class="input-box" style="min-height:75px; padding-top:10px;" placeholder="Village / Ward, Post, PIN..."></textarea>
                     </div>
                 </section>
 
@@ -912,23 +591,17 @@ input[type="file"]{
                     <div class="form-group">
                         <label class="field-label">Profile Photo</label>
                         <div class="photo-card">
-                            <img id="avatarPreview" src="Images/logo.jpg" onerror="this.src='https://sanatansevasamiti.org/Images/logo.jpg';" class="preview-avatar" alt="Profile Preview">
-                            <div class="upload-info">
-                                <div class="upload-title">Add Your Profile Photo</div>
-                                <div class="upload-description">Choose a clear photo from your device.</div>
+                            <img id="avatarPreview" src="Images/logo.jpg" onerror="this.src='https://sanatansevasamiti.org/Images/logo.jpg';" class="preview-avatar" alt="Avatar">
+                            <div>
                                 <label for="profile_photo" class="upload-btn-label">✦ Choose Photo</label>
-                                <input type="file" id="profile_photo" accept="image/*" onchange="previewUserPhoto(event)">
+                                <input type="file" id="profile_photo" accept="image/*" style="display:none;">
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="field-label">Create Login Password *</label>
-                        <input type="password" id="password" class="input-box" placeholder="Minimum 6 characters" minlength="6" autocomplete="new-password" required>
-                        <div class="password-note">
-                            <span>🔐</span>
-                            <span>Your password secures your SANATANAM account across all devices.</span>
-                        </div>
+                        <input type="password" id="password" class="input-box" placeholder="Minimum 6 characters" minlength="6" required>
                     </div>
                 </section>
 
@@ -937,28 +610,23 @@ input[type="file"]{
                     <button type="submit" id="btnSubmit" class="btn-register-main" disabled>
                         VERIFY OTP FIRST TO REGISTER
                     </button>
-
-                    <div class="login-area">
-                        <a href="app_login.html" class="btn-login-footer">
-                            Already have an account? <span>Sign In →</span>
-                        </a>
+                    <div style="text-align:center; margin-top:10px;">
+                        <a href="app_login.html" class="btn-login-footer">Already have an account? Sign In →</a>
                     </div>
                 </div>
             </form>
         </div>
-
-        <footer class="app-footer">
-            <div class="footer-line"></div>
-            <div class="footer-main">SANATANAM • SANATAN SEVA SAMITI</div>
-            <div class="footer-sub">Dharma • Seva • Knowledge • Tradition</div>
-        </footer>
     </main>
 </div>
 
-<script>
-/* =========================================================
-   1. LIVE FIREBASE CONFIGURATION (Verified Exact Keys)
-   ========================================================= */
+<!-- =========================================================
+     FIREBASE MODULAR ESM ENGINE (OFFICIAL SDK v12+)
+========================================================= -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+// आपके प्रोजेक्ट का वास्तविक कॉन्फ़िगरेशन
 const firebaseConfig = {
     apiKey: "AIzaSyBsVPXIn45VzCuKITLY00EzBVxOhyQ33rA",
     authDomain: "deep-group-c3eca.firebaseapp.com",
@@ -968,34 +636,39 @@ const firebaseConfig = {
     appId: "1:288563254052:web:a9c3258d6d1ce18b37ba31"
 };
 
-if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
-}
-const auth = firebase.auth();
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+auth.useDeviceLanguage();
 
-/* State Variables */
 let confirmationResult = null;
 let isPhoneVerified = false;
 let photoBase64 = "";
 let resendInterval = null;
 const API_URL = "https://sanatansevasamiti.org/api/register.php";
 
-/* =========================================================
-   2. RECAPTCHA & REAL OTP HANDLERS
-   ========================================================= */
-function setupRecaptcha() {
+function showAlert(msg, type = "error") {
+    const box = document.getElementById("alertMsg");
+    box.className = "alert-box " + (type === "success" ? "alert-success" : "alert-error");
+    box.innerText = msg;
+    box.style.display = "block";
+    box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+// 1. RECAPTCHA SETUP
+function initRecaptcha() {
     if (!window.recaptchaVerifier) {
-        window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
-            size: 'invisible',
-            callback: () => {},
+        window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
+            'size': 'invisible',
+            'callback': () => {},
             'expired-callback': () => {
-                showAlert("Verification expired. Please tap 'Get OTP' again.", "error");
+                showAlert("सत्यापन समय समाप्त हो गया। कृपया पुनः प्रयास करें।", "error");
             }
         });
     }
 }
 
-async function sendFirebaseOTP() {
+// 2. SEND OTP
+document.getElementById("btnSendOtp").addEventListener("click", async () => {
     const mobileInput = document.getElementById("mobile").value.trim();
     const countrySel = document.getElementById("country");
     const dialCode = countrySel.options[countrySel.selectedIndex].getAttribute("data-dial") || "+91";
@@ -1011,43 +684,28 @@ async function sendFirebaseOTP() {
     btnSend.innerText = "Sending...";
 
     try {
-        setupRecaptcha();
-        const appVerifier = window.recaptchaVerifier;
-        confirmationResult = await auth.signInWithPhoneNumber(fullPhoneNumber, appVerifier);
+        initRecaptcha();
+        confirmationResult = await signInWithPhoneNumber(auth, fullPhoneNumber, window.recaptchaVerifier);
 
         showAlert(`OTP SMS ${fullPhoneNumber} पर भेज दिया गया है।`, "success");
-        
-        // Show OTP Card
-        const otpCard = document.getElementById("otpBoxWrap");
-        otpCard.style.display = "block";
-        otpCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        document.getElementById("otpBoxWrap").style.display = "block";
 
-        // Clear and focus first digit
         const digitInputs = document.querySelectorAll(".digit-box");
-        digitInputs.forEach(input => input.value = "");
-        if(digitInputs[0]) digitInputs[0].focus();
+        digitInputs.forEach(i => i.value = "");
+        digitInputs[0].focus();
 
         startResendTimer();
-
     } catch (error) {
-        console.error("Firebase SMS Error:", error);
-        let errorMsg = "SMS OTP भेजने में विफलता: " + (error.message || "कृपया पुनः प्रयास करें।");
-        if (error.code === 'auth/quota-exceeded') {
-            errorMsg = "दैनिक SMS कोटा समाप्त हो गया है। कृपया बाद में प्रयास करें।";
-        } else if (error.code === 'auth/captcha-check-failed') {
-            errorMsg = "डोमेन ऑथराइज़ेशन या reCAPTCHA विफलता। कृपया Firebase सेटिंग्स देखें।";
-        }
-        showAlert(errorMsg, "error");
+        console.error("Firebase Auth Error:", error);
+        showAlert(error.message || "SMS OTP भेजने में विफलता। कृपया Firebase सेटिंग जांचें।", "error");
         btnSend.disabled = false;
         btnSend.innerText = "Get OTP";
-        
         if (window.recaptchaVerifier) {
-            window.recaptchaVerifier.render().then(widgetId => {
-                if (typeof grecaptcha !== 'undefined') grecaptcha.reset(widgetId);
-            });
+            window.recaptchaVerifier.clear();
+            window.recaptchaVerifier = null;
         }
     }
-}
+});
 
 function startResendTimer() {
     const btnSend = document.getElementById("btnSendOtp");
@@ -1061,41 +719,42 @@ function startResendTimer() {
         timerText.innerText = `Resend in ${secondsLeft}s`;
         if (secondsLeft <= 0) {
             clearInterval(resendInterval);
-            timerText.innerText = "Code not received? Resend available.";
+            timerText.innerText = "Resend available";
             btnSend.disabled = false;
             btnSend.innerText = "Resend OTP";
         }
     }, 1000);
 }
 
-/* 6 DIGIT AUTO-TABBING ENGINE */
-function handleDigitInput(el, idx) {
-    const digits = document.querySelectorAll(".digit-box");
-    el.value = el.value.replace(/[^0-9]/g, '');
+// 3. DIGIT AUTO-TABBING
+const digitBoxes = document.querySelectorAll(".digit-box");
+digitBoxes.forEach((input, index) => {
+    input.addEventListener("input", () => {
+        input.value = input.value.replace(/[^0-9]/g, '');
+        if (input.value.length === 1 && index < 5) {
+            digitBoxes[index + 1].focus();
+        }
+        const fullCode = Array.from(digitBoxes).map(d => d.value).join('');
+        if (fullCode.length === 6) {
+            verifyOTP();
+        }
+    });
 
-    if (el.value.length === 1 && idx < 5) {
-        digits[idx + 1].focus();
-    }
+    input.addEventListener("keydown", (e) => {
+        if (e.key === "Backspace" && !input.value && index > 0) {
+            digitBoxes[index - 1].focus();
+        }
+    });
+});
 
-    const currentCode = Array.from(digits).map(d => d.value).join('');
-    if (currentCode.length === 6) {
-        verifyFirebaseOTP();
-    }
-}
+// 4. VERIFY OTP
+document.getElementById("btnVerifyOtp").addEventListener("click", verifyOTP);
 
-function handleDigitDelete(e, idx) {
-    const digits = document.querySelectorAll(".digit-box");
-    if (e.key === "Backspace" && !digits[idx].value && idx > 0) {
-        digits[idx - 1].focus();
-    }
-}
-
-async function verifyFirebaseOTP() {
-    const digits = document.querySelectorAll(".digit-box");
-    const otpInput = Array.from(digits).map(d => d.value).join('');
+async function verifyOTP() {
+    const otpCode = Array.from(digitBoxes).map(d => d.value).join('');
     const btnVerify = document.getElementById("btnVerifyOtp");
 
-    if (otpInput.length !== 6) {
+    if (otpCode.length !== 6) {
         showAlert("कृपया 6 अंकों का पूरा OTP दर्ज करें।", "error");
         return;
     }
@@ -1106,51 +765,34 @@ async function verifyFirebaseOTP() {
     }
 
     btnVerify.disabled = true;
-    btnVerify.innerText = "Verifying Code...";
+    btnVerify.innerText = "Verifying...";
 
     try {
-        const result = await confirmationResult.confirm(otpInput);
-        const user = result.user;
-
+        await confirmationResult.confirm(otpCode);
         isPhoneVerified = true;
         clearInterval(resendInterval);
 
-        showAlert("मोबाइल नंबर सफलतापूर्वक सत्यापित हो गया है! ✓", "success");
+        showAlert("मोबाइल नंबर सफलतापूर्वक सत्यापित (Verified) हो गया है! ✓", "success");
 
-        // Lock fields cleanly
         document.getElementById("otpSuccessBadge").style.display = "flex";
         document.getElementById("otpBoxWrap").style.display = "none";
         document.getElementById("mobile").readOnly = true;
         document.getElementById("country").disabled = true;
         document.getElementById("btnSendOtp").style.display = "none";
 
-        // Unlock Main Registration Button
         const submitBtn = document.getElementById("btnSubmit");
         submitBtn.disabled = false;
         submitBtn.innerText = "COMPLETE MEMBER REGISTRATION";
-
-    } catch (error) {
-        console.error("OTP verification error:", error);
-        showAlert("अमान्य OTP कोड! कृपया सही कोड जांचकर पुनः दर्ज करें।", "error");
+    } catch (err) {
+        console.error("OTP Verification Error:", err);
+        showAlert("अमान्य OTP कोड! कृपया पुनः प्रयास करें।", "error");
         btnVerify.disabled = false;
         btnVerify.innerText = "Verify Code & Continue";
     }
 }
 
-/* =========================================================
-   3. HELPERS & LOADERS
-   ========================================================= */
-function showAlert(msg, type = "error") {
-    const box = document.getElementById("alertMsg");
-    box.className = "alert-box " + (type === "success" ? "alert-success" : "alert-error");
-    box.innerText = msg;
-    box.style.display = "block";
-    box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-}
-
-window.addEventListener("load", loadSevaKshetra);
-
-async function loadSevaKshetra() {
+// 5. LOAD PROFILES
+window.addEventListener("load", async () => {
     const sel = document.getElementById("seva_kshetra");
     try {
         const res = await fetch(API_URL);
@@ -1163,29 +805,26 @@ async function loadSevaKshetra() {
                 opt.textContent = p.name;
                 sel.appendChild(opt);
             });
-        } else {
-            sel.innerHTML = '<option value="">No seva area available</option>';
         }
-    } catch(err) {
-        sel.innerHTML = '<option value="">Unable to load seva areas</option>';
+    } catch (e) {
+        sel.innerHTML = '<option value="">सेवा क्षेत्र लोड करने में असमर्थ</option>';
     }
-}
+});
 
-function previewUserPhoto(e) {
+// 6. PHOTO PREVIEW
+document.getElementById("profile_photo").addEventListener("change", (e) => {
     const file = e.target.files[0];
     if (!file) return;
     const reader = new FileReader();
-    reader.onload = function(evt) {
+    reader.onload = (evt) => {
         photoBase64 = evt.target.result;
         document.getElementById("avatarPreview").src = photoBase64;
     };
     reader.readAsDataURL(file);
-}
+});
 
-/* =========================================================
-   4. FINAL REGISTRATION SUBMISSION (API CALL)
-   ========================================================= */
-async function handleRegistration(e) {
+// 7. SUBMIT FORM
+document.getElementById("registerForm").addEventListener("submit", async (e) => {
     e.preventDefault();
 
     if (!isPhoneVerified) {
@@ -1194,8 +833,8 @@ async function handleRegistration(e) {
     }
 
     const btn = document.getElementById("btnSubmit");
-    const alertBox = document.getElementById("alertMsg");
-    alertBox.style.display = "none";
+    btn.disabled = true;
+    btn.innerText = "CREATING YOUR ACCOUNT...";
 
     const payload = {
         full_name: document.getElementById("full_name").value.trim(),
@@ -1213,52 +852,36 @@ async function handleRegistration(e) {
         phone_verified: true
     };
 
-    if (payload.pass.length < 6) {
-        showAlert("Password must contain at least 6 characters.", "error");
-        return;
-    }
-
-    btn.innerText = "CREATING YOUR ACCOUNT...";
-    btn.disabled = true;
-
     try {
         const res = await fetch(API_URL, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload)
         });
-
         const data = await res.json();
 
         if (data.status) {
-            try {
-                localStorage.setItem("sss_user_token", data.token);
-                localStorage.setItem("sss_user_data", JSON.stringify(data.user));
-            } catch(storageErr) {}
+            localStorage.setItem("sss_user_token", data.token);
+            localStorage.setItem("sss_user_data", JSON.stringify(data.user));
 
             if (window.AndroidBridge && window.AndroidBridge.onAuthSuccess) {
                 window.AndroidBridge.onAuthSuccess(data.token, JSON.stringify(data.user));
             }
 
-            alert("Registration successful. Welcome to SANATANAM!");
-
-            if (window.AndroidBridge && window.AndroidBridge.openNativeScreen) {
-                window.AndroidBridge.openNativeScreen("app_home");
-            } else {
-                window.location.href = "app_home.html";
-            }
+            alert("Registration successful! Welcome to SANATANAM.");
+            window.location.href = "app_home.html";
         } else {
-            showAlert(data.message || "Registration could not be completed.", "error");
+            showAlert(data.message || "पंजीकरण विफल रहा।", "error");
+            btn.disabled = false;
+            btn.innerText = "COMPLETE MEMBER REGISTRATION";
         }
-    } catch(err) {
-        showAlert("Unable to connect with the server. Please check internet connection.", "error");
-    } finally {
-        btn.innerText = "COMPLETE MEMBER REGISTRATION";
+    } catch (err) {
+        showAlert("सर्वर से कनेक्ट नहीं हो सका। कृपया इंटरनेट जांचें।", "error");
         btn.disabled = false;
+        btn.innerText = "COMPLETE MEMBER REGISTRATION";
     }
-}
+});
 </script>
 
-<script src="app_translator.js"></script>
 </body>
 </html>
