@@ -43,10 +43,11 @@ jobs:
             fi
           fi
 
-      - name: Sync Assets
+      - name: Sync Web Assets
         run: |
-          mkdir -p www/Images www/uploads app/src/main/assets
-          if [ -d "app/src/main/assets" ] && [ -d "www" ]; then
+          echo "=== Syncing Assets including Admin Folder ==="
+          mkdir -p app/src/main/assets
+          if [ -d "www" ]; then
             cp -r www/* app/src/main/assets/ 2>/dev/null || true
           fi
 
@@ -67,19 +68,38 @@ jobs:
 
       - name: Build User and Admin APKs
         run: |
-          echo "=== Building All Product Flavors (User & Admin) ==="
+          echo "=== Building User and Admin Flavors ==="
           if [ -f "./gradlew" ]; then
-            ./gradlew assembleDebug --no-daemon --stacktrace
+            ./gradlew assembleUserDebug assembleAdminDebug --no-daemon --stacktrace
           else
-            gradle assembleDebug --stacktrace
+            gradle assembleUserDebug assembleAdminDebug --stacktrace
           fi
 
-      - name: Locate and Collect Both APKs
+      - name: Locate and Package Output APKs
         run: |
           echo "=== Collecting User and Admin APKs ==="
           mkdir -p build-artifacts
-          find app/build/outputs/apk/ -type f -name "*.apk" -exec cp {} build-artifacts/ \;
-          ls -la build-artifacts/
+          
+          # Find User APK
+          USER_APK=$(find app/build/outputs/apk/user/debug/ -type f -name "*.apk" | head -n 1)
+          if [ -n "$USER_APK" ]; then
+            echo "Found User APK: $USER_APK"
+            cp "$USER_APK" build-artifacts/SANATANAM-User-Debug.apk
+          fi
+
+          # Find Admin APK
+          ADMIN_APK=$(find app/build/outputs/apk/admin/debug/ -type f -name "*.apk" | head -n 1)
+          if [ -n "$ADMIN_APK" ]; then
+            echo "Found Admin APK: $ADMIN_APK"
+            cp "$ADMIN_APK" build-artifacts/SANATANAM-Admin-Debug.apk
+          fi
+
+          # Fallback: Agar upar kisi vajah se path alag ho toh sabhi copy karein
+          if [ ! -f "build-artifacts/SANATANAM-User-Debug.apk" ] && [ ! -f "build-artifacts/SANATANAM-Admin-Debug.apk" ]; then
+            find app/build/outputs/apk/ -type f -name "*.apk" -exec cp {} build-artifacts/ \;
+          fi
+
+          ls -lh build-artifacts/
 
       - name: Upload User and Admin APKs
         uses: actions/upload-artifact@v4
