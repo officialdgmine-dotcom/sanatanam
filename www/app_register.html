@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 
-<title>SANATANAM — Member Registration</title>
+<title>SANATANAM — Membership Registration</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,312 +12,297 @@
 
 <style>
 /* =========================================================
-   SANATANAM — ULTRA ROYAL LIGHT REGISTRATION EXPERIENCE
-   Palette:
-   White • Light Orange • Lemon Gold • Soft Ivory
-   No Maroon / No Dark Background / No Deep Theme
+   SANATANAM — ULTRA ROYAL REGISTRATION
+   LIGHT ORANGE • LEMON GOLD • WHITE • MAROON
+   MOBILE FIRST
    ========================================================= */
 
 :root{
+    --maroon:#741321;
+    --deep-maroon:#54101b;
+    --red:#9d1b2a;
+
+    --orange:#ff8a24;
+    --light-orange:#fff0dc;
+    --soft-orange:#fff7ed;
+
+    --lemon:#fff3a6;
+    --gold:#d9a72d;
+    --gold-dark:#9d7415;
+
     --white:#ffffff;
-    --ivory:#fffdf7;
-    --cream:#fffaf0;
+    --cream:#fffdf8;
+    --text:#3d2023;
+    --muted:#80696b;
+    --border:#ecd7c0;
 
-    --orange:#f59b32;
-    --orange-light:#fff0d8;
-    --orange-soft:#fff7e9;
-
-    --lemon:#f5d75a;
-    --lemon-light:#fff8c9;
-    --gold:#d6a52b;
-    --gold-dark:#a97912;
-
-    --text:#332718;
-    --muted:#776b5c;
-    --border:#f0dfb7;
-
-    --shadow:0 22px 60px rgba(180,125,35,.14);
-    --shadow-soft:0 10px 35px rgba(180,125,35,.10);
-
-    --radius-xl:32px;
-    --radius-lg:22px;
-    --radius-md:16px;
+    --shadow:0 20px 55px rgba(116,19,33,.13);
+    --soft-shadow:0 8px 25px rgba(116,19,33,.10);
 }
 
 *{
     box-sizing:border-box;
+    margin:0;
+    padding:0;
     -webkit-tap-highlight-color:transparent;
 }
 
 html{
     min-height:100%;
-    background:#fffaf0;
+    background:#fff8ee;
 }
 
 body{
-    margin:0;
     min-height:100vh;
     font-family:"Inter",sans-serif;
     color:var(--text);
     background:
-        radial-gradient(circle at 8% 5%,rgba(245,215,90,.20),transparent 27%),
-        radial-gradient(circle at 95% 15%,rgba(245,155,50,.16),transparent 30%),
-        linear-gradient(180deg,#fffdf8 0%,#fff8e9 48%,#ffffff 100%);
+        radial-gradient(circle at 10% 5%, rgba(255,243,166,.65), transparent 28%),
+        radial-gradient(circle at 95% 15%, rgba(255,138,36,.18), transparent 30%),
+        linear-gradient(145deg,#fffdf9 0%,#fff6e9 45%,#fffdf8 100%);
+    overflow-x:hidden;
+}
+
+/* Decorative royal background */
+body::before{
+    content:"";
+    position:fixed;
+    width:280px;
+    height:280px;
+    border-radius:50%;
+    border:1px solid rgba(157,27,42,.08);
+    top:-150px;
+    right:-110px;
+    pointer-events:none;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    width:230px;
+    height:230px;
+    border-radius:50%;
+    border:1px solid rgba(217,167,45,.12);
+    bottom:-130px;
+    left:-120px;
+    pointer-events:none;
 }
 
 /* =========================================================
-   MAIN APP SHELL
+   APP SHELL
    ========================================================= */
-
-.form-page-body{
-    min-height:100vh;
-    padding:
-        max(18px,env(safe-area-inset-top))
-        14px
-        max(22px,env(safe-area-inset-bottom));
-
-    display:flex;
-    justify-content:center;
-    align-items:flex-start;
-}
 
 .app-card{
     width:100%;
-    max-width:520px;
+    max-width:620px;
+    min-height:100vh;
     margin:0 auto;
     position:relative;
-}
-
-/* =========================================================
-   PREMIUM BRAND HEADER
-   ========================================================= */
-
-.brand-box{
-    position:relative;
     overflow:hidden;
-    padding:25px 20px 22px;
-    margin-bottom:16px;
-
     background:
-        linear-gradient(145deg,
-            rgba(255,255,255,.98),
-            rgba(255,250,235,.98));
-
-    border:1px solid rgba(214,165,43,.28);
-    border-radius:32px;
-
-    box-shadow:var(--shadow);
-    text-align:center;
-}
-
-/* decorative glow */
-.brand-box::before{
-    content:"";
-    position:absolute;
-    width:180px;
-    height:180px;
-    border-radius:50%;
-    top:-110px;
-    left:-70px;
-    background:radial-gradient(circle,
-        rgba(245,215,90,.30),
-        rgba(245,215,90,0) 70%);
-    pointer-events:none;
-}
-
-.brand-box::after{
-    content:"";
-    position:absolute;
-    width:200px;
-    height:200px;
-    border-radius:50%;
-    bottom:-140px;
-    right:-80px;
-    background:radial-gradient(circle,
-        rgba(245,155,50,.20),
-        rgba(245,155,50,0) 70%);
-    pointer-events:none;
+        linear-gradient(180deg,
+            rgba(255,255,255,.97) 0%,
+            rgba(255,250,243,.98) 100%);
 }
 
 /* =========================================================
-   TWO LOGO IDENTITY
-   APP ABOVE — COMMITTEE BELOW
+   ROYAL HEADER
    ========================================================= */
 
-.identity-stack{
+.royal-header{
     position:relative;
-    z-index:2;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
+    padding:24px 18px 22px;
+    background:
+        radial-gradient(circle at 50% -70%,rgba(255,243,166,.9),transparent 55%),
+        linear-gradient(135deg,#fffaf0,#ffffff 52%,#fff2df);
+    border-bottom:1px solid rgba(116,19,33,.10);
 }
 
-/* App logo */
-.app-logo-wrap{
-    width:86px;
-    height:86px;
+.header-glow{
+    position:absolute;
+    width:190px;
+    height:190px;
+    border-radius:50%;
+    background:rgba(255,243,166,.35);
+    filter:blur(20px);
+    top:-130px;
+    left:50%;
+    transform:translateX(-50%);
+    pointer-events:none;
+}
 
+.brand-row{
+    position:relative;
     display:flex;
     align-items:center;
     justify-content:center;
+    gap:13px;
+    z-index:2;
+}
 
-    padding:9px;
-
-    background:#fff;
-    border-radius:25px;
-
-    border:1px solid rgba(214,165,43,.30);
-
+.app-logo-wrap{
+    width:62px;
+    height:62px;
+    border-radius:19px;
+    padding:4px;
+    background:linear-gradient(145deg,#fff,#fff0cf);
+    border:1px solid rgba(157,116,21,.28);
     box-shadow:
-        0 8px 24px rgba(214,165,43,.16),
+        0 7px 20px rgba(116,19,33,.12),
         inset 0 0 0 1px rgba(255,255,255,.9);
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
 .app-logo{
     width:100%;
     height:100%;
-    display:block;
-
     object-fit:contain;
-    object-position:center;
-
-    border-radius:18px;
+    border-radius:15px;
 }
 
-/* small connector */
-.identity-connector{
-    width:1px;
-    height:19px;
-    margin:4px 0;
-
-    background:linear-gradient(
-        180deg,
-        transparent,
-        var(--gold),
-        transparent
-    );
+.brand-copy{
+    text-align:left;
 }
 
-/* Committee logo */
+.brand-name{
+    font-family:"Cinzel",serif;
+    color:var(--maroon);
+    font-size:23px;
+    font-weight:800;
+    letter-spacing:1.8px;
+    line-height:1.1;
+}
+
+.brand-tagline{
+    margin-top:5px;
+    color:#9b7370;
+    font-size:10px;
+    letter-spacing:1.4px;
+    text-transform:uppercase;
+    font-weight:700;
+}
+
+/* =========================================================
+   COMMITTEE IDENTITY STRIP
+   ========================================================= */
+
+.identity-panel{
+    position:relative;
+    margin:18px 16px 0;
+    padding:15px 14px;
+    border-radius:20px;
+    background:
+        linear-gradient(135deg,
+            rgba(255,243,166,.65),
+            rgba(255,255,255,.95) 48%,
+            rgba(255,224,192,.65));
+    border:1px solid rgba(157,116,21,.22);
+    box-shadow:var(--soft-shadow);
+    display:flex;
+    align-items:center;
+    gap:13px;
+}
+
 .committee-logo-wrap{
-    width:58px;
-    height:58px;
-
+    flex:0 0 54px;
+    width:54px;
+    height:54px;
+    border-radius:15px;
+    background:#fff;
+    border:1px solid rgba(116,19,33,.15);
     display:flex;
     align-items:center;
     justify-content:center;
-
-    padding:6px;
-
-    background:#fff;
-    border-radius:18px;
-
-    border:1px solid rgba(214,165,43,.28);
-
-    box-shadow:0 7px 20px rgba(214,165,43,.10);
+    padding:5px;
+    box-shadow:0 5px 14px rgba(116,19,33,.09);
 }
 
 .committee-logo{
     width:100%;
     height:100%;
-    display:block;
-
     object-fit:contain;
-    object-position:center;
-
-    border-radius:13px;
+    border-radius:11px;
 }
 
-.brand-title{
-    margin:14px 0 0;
-
-    font-family:"Cinzel",serif;
-    font-size:24px;
-    line-height:1.15;
-    font-weight:800;
-    letter-spacing:1.7px;
-
-    color:#4b3921;
+.identity-text{
+    min-width:0;
 }
 
-.brand-sub{
-    margin-top:7px;
-
-    font-size:10px;
-    font-weight:700;
-    letter-spacing:2.2px;
-    text-transform:uppercase;
-
-    color:#bd8d25;
-}
-
-.committee-title{
-    margin-top:11px;
-
-    font-family:"Cinzel",serif;
-    font-size:13px;
-    font-weight:700;
-    letter-spacing:.8px;
-
-    color:#62491f;
-}
-
-.committee-sub{
-    margin-top:4px;
+.identity-kicker{
     font-size:9px;
-    font-weight:700;
-    letter-spacing:1.4px;
     text-transform:uppercase;
+    letter-spacing:1.3px;
+    color:var(--gold-dark);
+    font-weight:800;
+    margin-bottom:3px;
+}
 
-    color:#a18b68;
+.identity-title{
+    font-family:"Cinzel",serif;
+    font-size:14px;
+    line-height:1.3;
+    color:var(--maroon);
+    font-weight:800;
+}
+
+.identity-sub{
+    margin-top:3px;
+    color:#866c6e;
+    font-size:10px;
+    line-height:1.4;
 }
 
 /* =========================================================
-   GOLD ORNAMENT
+   ROYAL DIVIDER
    ========================================================= */
 
 .royal-divider{
     display:flex;
     align-items:center;
-    justify-content:center;
-    gap:8px;
-
-    margin-top:17px;
+    gap:9px;
+    padding:16px 22px 4px;
 }
 
-.royal-divider::before,
-.royal-divider::after{
-    content:"";
-    width:58px;
+.royal-divider span{
     height:1px;
-    background:linear-gradient(
-        90deg,
-        transparent,
-        #e4bf54
-    );
+    flex:1;
+    background:linear-gradient(90deg,transparent,#dfc68c,transparent);
 }
 
-.royal-divider::after{
-    background:linear-gradient(
-        90deg,
-        #e4bf54,
-        transparent
-    );
+.royal-divider b{
+    color:var(--gold-dark);
+    font-size:13px;
 }
 
-.royal-diamond{
-    width:7px;
-    height:7px;
+/* =========================================================
+   FORM AREA
+   ========================================================= */
 
-    transform:rotate(45deg);
+.form-content{
+    padding:8px 16px 35px;
+}
 
-    background:linear-gradient(
-        135deg,
-        #f7dd72,
-        #c8941e
-    );
+.form-intro{
+    text-align:center;
+    padding:8px 12px 20px;
+}
 
-    box-shadow:0 0 12px rgba(214,165,43,.35);
+.form-intro h1{
+    font-family:"Cinzel",serif;
+    color:var(--maroon);
+    font-size:24px;
+    line-height:1.25;
+    font-weight:800;
+}
+
+.form-intro p{
+    margin:8px auto 0;
+    max-width:470px;
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.6;
 }
 
 /* =========================================================
@@ -326,260 +311,271 @@ body{
 
 .alert-box{
     display:none;
-
     margin:0 0 15px;
-    padding:13px 15px;
-
-    border-radius:15px;
-
-    font-size:13px;
+    padding:13px 14px;
+    border-radius:14px;
+    font-size:12px;
+    font-weight:700;
     line-height:1.5;
-    font-weight:600;
+}
 
-    background:#fff3f0;
-    color:#a94432;
-    border:1px solid #f0c8bd;
+.alert-error{
+    color:#8d1b2a;
+    background:#fff0f1;
+    border:1px solid #f1b9bf;
 }
 
 /* =========================================================
-   FORM CONTAINER
+   SECTIONS
    ========================================================= */
 
-#registerForm{
+.form-section{
     position:relative;
-
-    padding:22px 17px 20px;
-
-    background:rgba(255,255,255,.95);
-
-    border:1px solid rgba(214,165,43,.20);
-    border-radius:28px;
-
-    box-shadow:var(--shadow);
+    margin-bottom:17px;
+    padding:18px 14px 14px;
+    border-radius:22px;
+    background:rgba(255,255,255,.92);
+    border:1px solid var(--border);
+    box-shadow:0 7px 25px rgba(116,19,33,.065);
 }
 
-/* =========================================================
-   SECTION TITLES
-   ========================================================= */
+.form-section::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:24px;
+    right:24px;
+    height:2px;
+    border-radius:0 0 5px 5px;
+    background:linear-gradient(90deg,transparent,var(--orange),var(--gold),transparent);
+}
 
-.sec-title{
-    position:relative;
-
+.section-heading{
     display:flex;
     align-items:center;
     gap:10px;
-
-    margin:5px 0 17px;
-    padding:0 0 11px;
-
-    font-family:"Cinzel",serif;
-    font-size:14px;
-    line-height:1.4;
-    font-weight:800;
-    letter-spacing:.35px;
-
-    color:#604719;
-
-    border-bottom:1px solid #f1e3c3;
+    margin-bottom:16px;
 }
 
-.sec-title::before{
-    content:"";
-    width:5px;
-    min-width:5px;
-    height:25px;
+.section-number{
+    width:31px;
+    height:31px;
+    flex:0 0 31px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:11px;
+    background:linear-gradient(145deg,var(--maroon),var(--red));
+    color:#fff;
+    font-family:"Cinzel",serif;
+    font-size:12px;
+    font-weight:800;
+    box-shadow:0 5px 12px rgba(116,19,33,.18);
+}
 
-    border-radius:8px;
+.section-heading-text{
+    min-width:0;
+}
 
-    background:linear-gradient(
-        180deg,
-        var(--orange),
-        var(--lemon)
-    );
+.section-heading h2{
+    color:var(--maroon);
+    font-size:14px;
+    font-weight:800;
+    letter-spacing:.1px;
+}
 
-    box-shadow:0 3px 10px rgba(245,155,50,.20);
+.section-heading p{
+    color:#a17d78;
+    font-size:9px;
+    margin-top:2px;
 }
 
 /* =========================================================
-   FORM GROUPS
+   FIELDS
    ========================================================= */
 
 .form-group{
-    margin-bottom:17px;
+    margin-bottom:13px;
+}
+
+.form-group:last-child{
+    margin-bottom:0;
 }
 
 .field-label{
     display:block;
-
-    margin-bottom:7px;
-
+    margin:0 0 6px 3px;
+    color:#5b3337;
     font-size:11px;
     font-weight:800;
-    letter-spacing:.25px;
+}
 
-    color:#655641;
+.required{
+    color:var(--red);
 }
 
 .input-box,
 .select-box,
 .textarea-box{
     width:100%;
-
-    border:1px solid #eadcbd;
-    outline:none;
-
-    background:
-        linear-gradient(
-            180deg,
-            #ffffff,
-            #fffdf7
-        );
-
-    color:#3c3021;
-
+    border:1px solid #ead8c7;
+    border-radius:13px;
+    background:#fffdfa;
+    color:#3e292b;
     font-family:"Inter",sans-serif;
-    font-size:14px;
-    font-weight:600;
-
-    border-radius:15px;
-
-    transition:
-        border-color .2s ease,
-        box-shadow .2s ease,
-        background .2s ease,
-        transform .2s ease;
+    font-size:13px;
+    outline:none;
+    transition:.2s ease;
+    box-shadow:inset 0 1px 2px rgba(116,19,33,.025);
 }
 
 .input-box,
 .select-box{
-    height:49px;
-    padding:0 14px;
+    height:48px;
+    padding:0 13px;
 }
 
 .textarea-box{
-    min-height:95px;
-    padding:13px 14px;
+    min-height:92px;
     resize:vertical;
-    line-height:1.55;
+    padding:12px 13px;
+    line-height:1.5;
 }
 
 .input-box::placeholder,
 .textarea-box::placeholder{
-    color:#b4a795;
-    font-weight:500;
+    color:#b6a09c;
 }
 
 .input-box:focus,
 .select-box:focus,
 .textarea-box:focus{
-    border-color:#e4b642;
-
+    border-color:var(--orange);
     background:#fff;
-
     box-shadow:
-        0 0 0 4px rgba(245,215,90,.16),
-        0 7px 20px rgba(214,165,43,.07);
+        0 0 0 3px rgba(255,138,36,.10),
+        0 5px 18px rgba(116,19,33,.06);
 }
 
-/* =========================================================
-   TWO COLUMN GRID
-   ========================================================= */
+.select-box{
+    appearance:none;
+    -webkit-appearance:none;
+    background-image:
+        linear-gradient(45deg,transparent 50%,var(--maroon) 50%),
+        linear-gradient(135deg,var(--maroon) 50%,transparent 50%);
+    background-position:
+        calc(100% - 17px) 20px,
+        calc(100% - 12px) 20px;
+    background-size:5px 5px,5px 5px;
+    background-repeat:no-repeat;
+    padding-right:38px;
+}
 
 .grid-2{
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:11px;
-}
-
-.grid-2 .form-group{
-    min-width:0;
+    gap:10px;
 }
 
 /* =========================================================
    PHOTO UPLOAD
    ========================================================= */
 
-.photo-upload-wrap{
+.photo-card{
+    padding:14px;
+    border-radius:17px;
+    background:
+        linear-gradient(135deg,#fffdf8,#fff4e5);
+    border:1px dashed #d9b778;
+}
+
+.photo-layout{
     display:flex;
     align-items:center;
     gap:13px;
+}
 
-    padding:13px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #fffdf8,
-            #fff8e8
-        );
-
-    border:1px solid #efdfbd;
+.preview-frame{
+    width:76px;
+    height:76px;
+    flex:0 0 76px;
     border-radius:19px;
+    background:#fff;
+    border:2px solid rgba(157,116,21,.28);
+    padding:4px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    box-shadow:0 5px 16px rgba(116,19,33,.10);
 }
 
 .preview-avatar{
-    width:70px;
-    height:70px;
-    min-width:70px;
-
-    display:block;
-
+    width:100%;
+    height:100%;
     object-fit:contain;
-    object-position:center;
-
-    background:#fff;
-
-    border:2px solid #e4bd51;
-    border-radius:18px;
-
-    padding:3px;
-
-    box-shadow:0 7px 18px rgba(180,125,35,.12);
+    border-radius:14px;
+    background:#fffaf2;
 }
 
-.upload-info{
-    min-width:0;
+.photo-info{
     flex:1;
+    min-width:0;
+}
 
-    font-size:11px;
-    line-height:1.55;
+.photo-title{
+    color:var(--maroon);
+    font-size:12px;
+    font-weight:800;
+    margin-bottom:4px;
+}
+
+.photo-hint{
+    color:#927876;
+    font-size:9px;
+    line-height:1.5;
+    margin-bottom:8px;
 }
 
 .upload-btn-label{
     display:inline-flex;
     align-items:center;
     justify-content:center;
-
-    min-height:35px;
-    margin-top:8px;
-    padding:0 13px;
-
-    border-radius:11px;
-
-    cursor:pointer;
-
-    background:linear-gradient(
-        135deg,
-        #fff2b6,
-        #ffe08a
-    );
-
-    border:1px solid #e4bd51;
-
-    color:#76540e;
-
-    font-size:11px;
+    min-height:34px;
+    padding:0 12px;
+    border-radius:10px;
+    color:#fff;
+    background:linear-gradient(135deg,var(--maroon),var(--red));
+    font-size:10px;
     font-weight:800;
-
-    box-shadow:0 5px 14px rgba(214,165,43,.10);
+    cursor:pointer;
+    box-shadow:0 5px 13px rgba(116,19,33,.16);
 }
 
 /* =========================================================
    PASSWORD
    ========================================================= */
 
-#password{
-    letter-spacing:.4px;
+.password-wrap{
+    position:relative;
+}
+
+.password-wrap .input-box{
+    padding-right:48px;
+}
+
+.password-toggle{
+    position:absolute;
+    right:8px;
+    top:7px;
+    width:34px;
+    height:34px;
+    border:0;
+    border-radius:9px;
+    background:#fff1dd;
+    color:var(--maroon);
+    font-size:14px;
+    cursor:pointer;
 }
 
 /* =========================================================
@@ -587,77 +583,53 @@ body{
    ========================================================= */
 
 .btn-register-main{
-    position:relative;
-    overflow:hidden;
-
     width:100%;
-    min-height:56px;
-
-    margin-top:8px;
-
-    border:1px solid #d6a52b;
-    border-radius:18px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #ffd86a 0%,
-            #f6c94f 45%,
-            #f3a93c 100%
-        );
-
-    color:#4b3408;
-
+    min-height:57px;
+    margin-top:4px;
+    border:0;
+    border-radius:17px;
+    cursor:pointer;
+    color:#fff;
     font-family:"Cinzel",serif;
     font-size:13px;
     font-weight:800;
-    letter-spacing:.7px;
-
-    cursor:pointer;
-
+    letter-spacing:.4px;
+    background:
+        linear-gradient(135deg,
+            #68111f 0%,
+            #8f1729 48%,
+            #6b101e 100%);
     box-shadow:
-        0 12px 28px rgba(214,165,43,.23),
-        inset 0 1px 0 rgba(255,255,255,.75);
-
-    transition:
-        transform .18s ease,
-        box-shadow .18s ease,
-        filter .18s ease;
+        0 12px 27px rgba(116,19,33,.23),
+        inset 0 1px 0 rgba(255,255,255,.2);
+    position:relative;
+    overflow:hidden;
+    transition:.2s ease;
 }
 
 .btn-register-main::before{
     content:"";
     position:absolute;
-
     top:0;
-    left:-100%;
-
-    width:60%;
+    left:-120%;
+    width:80%;
     height:100%;
-
     background:linear-gradient(
         90deg,
         transparent,
-        rgba(255,255,255,.38),
+        rgba(255,243,166,.25),
         transparent
     );
-
     transform:skewX(-20deg);
-    transition:left .7s ease;
+    transition:.7s ease;
 }
 
 .btn-register-main:active{
-    transform:scale(.98);
+    transform:scale(.985);
 }
 
-.btn-register-main:hover{
-    box-shadow:
-        0 15px 32px rgba(214,165,43,.30),
-        inset 0 1px 0 rgba(255,255,255,.8);
-}
-
-.btn-register-main:hover::before{
-    left:130%;
+.btn-register-main:active::before{
+    left:140%;
 }
 
 .btn-register-main:disabled{
@@ -669,154 +641,134 @@ body{
    LOGIN FOOTER
    ========================================================= */
 
-.btn-login-footer{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    min-height:50px;
-
-    margin-top:13px;
-    padding:12px 14px;
-
-    border:1px solid #eadcbd;
-    border-radius:17px;
-
-    background:rgba(255,255,255,.88);
-
-    color:#8b651b;
-
-    text-decoration:none;
-
-    font-size:12px;
-    font-weight:800;
-    letter-spacing:.15px;
-
-    box-shadow:0 8px 22px rgba(180,125,35,.07);
+.login-footer{
+    text-align:center;
+    padding:5px 10px 25px;
 }
 
-.btn-login-footer:active{
-    transform:scale(.99);
+.btn-login-footer{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:7px;
+    color:var(--maroon);
+    text-decoration:none;
+    font-size:11px;
+    font-weight:800;
+    padding:12px 17px;
+    border-radius:12px;
+    background:#fff4df;
+    border:1px solid #ecd4a9;
 }
 
 /* =========================================================
-   PREMIUM FOOTER IDENTITY
+   FOOTER BRAND
    ========================================================= */
 
-.royal-footer{
+.app-footer{
+    padding:20px 18px 28px;
     text-align:center;
-    padding:20px 10px 5px;
-}
-
-.footer-line{
-    width:80px;
-    height:1px;
-    margin:0 auto 12px;
-
-    background:linear-gradient(
-        90deg,
-        transparent,
-        #d6a52b,
-        transparent
-    );
+    background:
+        linear-gradient(180deg,
+            rgba(255,248,235,.3),
+            rgba(255,240,215,.75));
+    border-top:1px solid rgba(116,19,33,.08);
 }
 
 .footer-brand{
     font-family:"Cinzel",serif;
-    font-size:10px;
-    font-weight:700;
-    letter-spacing:1.5px;
-    color:#9c7b39;
+    font-size:11px;
+    color:var(--maroon);
+    font-weight:800;
+    letter-spacing:1px;
 }
 
-.footer-copy{
+.footer-text{
     margin-top:5px;
+    color:#9c7c78;
     font-size:9px;
-    color:#aa9b86;
-    letter-spacing:.5px;
+    line-height:1.5;
 }
 
 /* =========================================================
-   RESPONSIVE
+   DESKTOP
    ========================================================= */
 
-@media(max-width:390px){
+@media(min-width:700px){
 
-    .form-page-body{
-        padding-left:10px;
-        padding-right:10px;
-    }
-
-    .brand-box{
-        padding:21px 15px 19px;
-        border-radius:27px;
-    }
-
-    .app-logo-wrap{
-        width:76px;
-        height:76px;
-    }
-
-    .committee-logo-wrap{
-        width:52px;
-        height:52px;
-    }
-
-    .brand-title{
-        font-size:21px;
-        letter-spacing:1.3px;
-    }
-
-    #registerForm{
-        padding:19px 14px;
-        border-radius:24px;
-    }
-
-    .grid-2{
-        gap:8px;
-    }
-
-    .input-box,
-    .select-box{
-        padding-left:11px;
-        padding-right:11px;
-        font-size:13px;
-    }
-
-    .field-label{
-        font-size:10px;
-    }
-}
-
-@media(min-width:600px){
-    .form-page-body{
-        padding-top:35px;
+    body{
+        padding:30px 0;
     }
 
     .app-card{
-        max-width:540px;
+        min-height:auto;
+        border-radius:32px;
+        box-shadow:
+            0 30px 90px rgba(116,19,33,.15),
+            0 0 0 1px rgba(116,19,33,.06);
+    }
+
+    .royal-header{
+        padding-top:30px;
+        border-radius:32px 32px 0 0;
+    }
+
+    .form-content{
+        padding-left:28px;
+        padding-right:28px;
+    }
+
+    .identity-panel{
+        margin-left:24px;
+        margin-right:24px;
     }
 }
 
 /* =========================================================
-   ACCESSIBILITY
+   SMALL PHONES
    ========================================================= */
 
-button,
-input,
-select,
-textarea{
-    -webkit-appearance:none;
-    appearance:none;
+@media(max-width:380px){
+
+    .brand-name{
+        font-size:20px;
+    }
+
+    .app-logo-wrap{
+        width:56px;
+        height:56px;
+    }
+
+    .identity-panel{
+        padding:12px;
+    }
+
+    .identity-title{
+        font-size:12px;
+    }
+
+    .form-section{
+        padding:17px 12px 13px;
+    }
+
+    .grid-2{
+        grid-template-columns:1fr;
+        gap:0;
+    }
+
+    .form-intro h1{
+        font-size:21px;
+    }
 }
 
-button:focus-visible,
-a:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible{
-    outline:3px solid rgba(245,215,90,.45);
-    outline-offset:2px;
+/* Prevent browser autofill from destroying the royal appearance */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+select:-webkit-autofill{
+    -webkit-text-fill-color:#3e292b;
+    -webkit-box-shadow:0 0 0 1000px #fffdfa inset;
+    transition:background-color 9999s ease-in-out 0s;
 }
 </style>
 </head>
@@ -826,361 +778,489 @@ textarea:focus-visible{
 <div class="app-card">
 
     <!-- =====================================================
-         PREMIUM DUAL BRAND HEADER
-         APP NAME / APP LOGO ABOVE
-         COMMITTEE LOGO / COMMITTEE NAME BELOW
+         HEADER — APP IDENTITY FIRST
          ===================================================== -->
+    <header class="royal-header">
 
-    <div class="brand-box">
+        <div class="header-glow"></div>
 
-        <div class="identity-stack">
+        <div class="brand-row">
 
             <!-- SANATANAM APP LOGO -->
             <div class="app-logo-wrap">
                 <img
                     src="Images/logo.jpg"
-                    alt="SANATANAM App Logo"
                     class="app-logo"
+                    alt="SANATANAM App Logo"
                     loading="eager"
-                    decoding="async"
-                    onerror="this.style.display='none';"
+                    onerror="this.onerror=null;this.src='Images/jpg/logo.jpg';"
                 >
             </div>
 
-            <div class="brand-title">
-                SANATANAM
+            <div class="brand-copy">
+                <div class="brand-name">SANATANAM</div>
+                <div class="brand-tagline">A Living Spiritual Experience</div>
             </div>
 
-            <div class="brand-sub">
-                A Living Spiritual Experience
-            </div>
+        </div>
 
-            <div class="identity-connector"></div>
+        <!-- =================================================
+             COMMITTEE IDENTITY BELOW APP IDENTITY
+             ================================================= -->
+        <div class="identity-panel">
 
             <!-- SANATAN SEVA SAMITI LOGO -->
             <div class="committee-logo-wrap">
                 <img
                     src="Images/logo.png"
-                    alt="Sanatan Seva Samiti Logo"
                     class="committee-logo"
+                    alt="Sanatan Seva Samiti Logo"
                     loading="eager"
-                    decoding="async"
-                    onerror="this.style.display='none';"
                 >
             </div>
 
-            <div class="committee-title">
-                Sanatan Seva Samiti
-            </div>
-
-            <div class="committee-sub">
-                Service • Dharma • Culture • Tradition
-            </div>
-
-            <div class="royal-divider">
-                <span class="royal-diamond"></span>
+            <div class="identity-text">
+                <div class="identity-kicker">Presented By</div>
+                <div class="identity-title">
+                    Sanatan Seva Samiti
+                </div>
+                <div class="identity-sub">
+                    A dedicated initiative for Sanatana Dharma, service, culture and spiritual community.
+                </div>
             </div>
 
         </div>
 
+    </header>
+
+
+    <div class="royal-divider">
+        <span></span>
+        <b>✦</b>
+        <span></span>
     </div>
 
-    <!-- ALERT -->
-    <div id="alertMsg" class="alert-box"></div>
 
     <!-- =====================================================
-         REGISTRATION FORM
-         ALL ORIGINAL FIELD IDs & API LOGIC PRESERVED
+         FORM
          ===================================================== -->
 
-    <form id="registerForm" onsubmit="handleRegistration(event)">
+    <main class="form-content">
 
-        <!-- SECTION 1 -->
-        <div class="sec-title">
-            Personal Information
+        <div class="form-intro">
+            <h1>Create Your SANATANAM Account</h1>
+            <p>
+                Join the SANATANAM spiritual community and create your
+                personal digital membership profile.
+            </p>
         </div>
 
-        <div class="form-group">
-            <label class="field-label">
-                Service Area *
-            </label>
+        <div id="alertMsg" class="alert-box alert-error"></div>
 
-            <select id="seva_kshetra" class="select-box" required>
-                <option value="">
-                    Loading service areas...
-                </option>
-            </select>
-        </div>
 
-        <div class="form-group">
-            <label class="field-label">
-                Full Name *
-            </label>
+        <form id="registerForm" onsubmit="handleRegistration(event)">
 
-            <input
-                type="text"
-                id="full_name"
-                class="input-box"
-                placeholder="Enter your full name"
-                autocomplete="name"
-                required
-            >
-        </div>
 
-        <div class="grid-2">
+            <!-- =================================================
+                 SECTION 01 — PERSONAL IDENTITY
+                 ================================================= -->
 
-            <div class="form-group">
-                <label class="field-label">
-                    Gender
-                </label>
+            <section class="form-section">
 
-                <select id="gender" class="select-box">
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                </select>
-            </div>
+                <div class="section-heading">
+                    <div class="section-number">01</div>
 
-            <div class="form-group">
-                <label class="field-label">
-                    Date of Birth
-                </label>
+                    <div class="section-heading-text">
+                        <h2>Personal Identity</h2>
+                        <p>Your basic membership information</p>
+                    </div>
+                </div>
 
-                <input
-                    type="date"
-                    id="dob"
-                    class="input-box"
-                >
-            </div>
 
-        </div>
+                <div class="form-group">
 
-        <!-- SECTION 2 -->
-        <div class="sec-title">
-            Contact & Residence
-        </div>
+                    <label class="field-label" for="seva_kshetra">
+                        Service Area <span class="required">*</span>
+                    </label>
 
-        <div class="grid-2">
-
-            <div class="form-group">
-                <label class="field-label">
-                    Country
-                </label>
-
-                <select id="country" class="select-box">
-
-                    <option value="India">
-                        India
-                    </option>
-
-                    <option value="Nepal">
-                        Nepal
-                    </option>
-
-                    <option value="Bangladesh">
-                        Bangladesh
-                    </option>
-
-                    <option value="Sri Lanka">
-                        Sri Lanka
-                    </option>
-
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label class="field-label">
-                    Mobile Number *
-                </label>
-
-                <input
-                    type="tel"
-                    id="mobile"
-                    class="input-box"
-                    placeholder="10 digit mobile number"
-                    maxlength="10"
-                    inputmode="numeric"
-                    autocomplete="tel"
-                    required
-                >
-            </div>
-
-        </div>
-
-        <div class="form-group">
-
-            <label class="field-label">
-                Email Address
-            </label>
-
-            <input
-                type="email"
-                id="email"
-                class="input-box"
-                placeholder="name@example.com"
-                autocomplete="email"
-            >
-
-        </div>
-
-        <div class="grid-2">
-
-            <div class="form-group">
-                <label class="field-label">
-                    State
-                </label>
-
-                <input
-                    type="text"
-                    id="state"
-                    class="input-box"
-                    placeholder="Your state"
-                    autocomplete="address-level1"
-                >
-            </div>
-
-            <div class="form-group">
-                <label class="field-label">
-                    District
-                </label>
-
-                <input
-                    type="text"
-                    id="district"
-                    class="input-box"
-                    placeholder="Your district"
-                >
-            </div>
-
-        </div>
-
-        <div class="form-group">
-
-            <label class="field-label">
-                Permanent Address
-            </label>
-
-            <textarea
-                id="address"
-                class="textarea-box"
-                placeholder="Village / Ward, Post, PIN Code..."
-                autocomplete="street-address"
-            ></textarea>
-
-        </div>
-
-        <!-- SECTION 3 -->
-        <div class="sec-title">
-            Profile & Account Security
-        </div>
-
-        <div class="form-group">
-
-            <label class="field-label">
-                Profile Photo
-            </label>
-
-            <div class="photo-upload-wrap">
-
-                <img
-                    id="avatarPreview"
-                    src="Images/logo.jpg"
-                    class="preview-avatar"
-                    alt="Profile Preview"
-                >
-
-                <div class="upload-info">
-
-                    <span style="color:#665947;font-weight:800;">
-                        Add your profile photograph
-                    </span>
-
-                    <br>
-
-                    <span style="color:#a2937f;">
-                        Your original aspect ratio will be preserved.
-                    </span>
-
-                    <br>
-
-                    <label
-                        for="profile_photo"
-                        class="upload-btn-label"
+                    <select
+                        id="seva_kshetra"
+                        class="select-box"
+                        required
                     >
-                        Choose Photo
+                        <option value="">
+                            Loading service areas...
+                        </option>
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label class="field-label" for="full_name">
+                        Full Name <span class="required">*</span>
                     </label>
 
                     <input
-                        type="file"
-                        id="profile_photo"
-                        accept="image/*"
-                        style="display:none;"
-                        onchange="previewUserPhoto(event)"
+                        type="text"
+                        id="full_name"
+                        class="input-box"
+                        placeholder="Enter your full name"
+                        autocomplete="name"
+                        required
                     >
 
                 </div>
 
-            </div>
 
-        </div>
+                <div class="grid-2">
 
-        <div class="form-group">
+                    <div class="form-group">
 
-            <label class="field-label">
-                Create Login Password *
-            </label>
+                        <label class="field-label" for="gender">
+                            Gender
+                        </label>
 
-            <input
-                type="password"
-                id="password"
-                class="input-box"
-                placeholder="Minimum 6 characters"
-                minlength="6"
-                autocomplete="new-password"
-                required
+                        <select id="gender" class="select-box">
+
+                            <option value="Male">
+                                Male
+                            </option>
+
+                            <option value="Female">
+                                Female
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label class="field-label" for="dob">
+                            Date of Birth
+                        </label>
+
+                        <input
+                            type="date"
+                            id="dob"
+                            class="input-box"
+                        >
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 SECTION 02 — CONTACT
+                 ================================================= -->
+
+            <section class="form-section">
+
+                <div class="section-heading">
+                    <div class="section-number">02</div>
+
+                    <div class="section-heading-text">
+                        <h2>Contact & Residence</h2>
+                        <p>Your communication and location details</p>
+                    </div>
+                </div>
+
+
+                <div class="grid-2">
+
+                    <div class="form-group">
+
+                        <label class="field-label" for="country">
+                            Country
+                        </label>
+
+                        <select id="country" class="select-box">
+
+                            <option value="India">
+                                India
+                            </option>
+
+                            <option value="Nepal">
+                                Nepal
+                            </option>
+
+                            <option value="Bangladesh">
+                                Bangladesh
+                            </option>
+
+                            <option value="Sri Lanka">
+                                Sri Lanka
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label class="field-label" for="mobile">
+                            Mobile Number <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="mobile"
+                            class="input-box"
+                            placeholder="10-digit mobile number"
+                            maxlength="10"
+                            inputmode="numeric"
+                            autocomplete="tel"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label class="field-label" for="email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        class="input-box"
+                        placeholder="name@example.com"
+                        autocomplete="email"
+                    >
+
+                </div>
+
+
+                <div class="grid-2">
+
+                    <div class="form-group">
+
+                        <label class="field-label" for="state">
+                            State
+                        </label>
+
+                        <input
+                            type="text"
+                            id="state"
+                            class="input-box"
+                            placeholder="Enter state"
+                            autocomplete="address-level1"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label class="field-label" for="district">
+                            District
+                        </label>
+
+                        <input
+                            type="text"
+                            id="district"
+                            class="input-box"
+                            placeholder="Enter district"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label class="field-label" for="address">
+                        Permanent Address
+                    </label>
+
+                    <textarea
+                        id="address"
+                        class="textarea-box"
+                        placeholder="Village / Ward, Post Office, PIN Code..."
+                        autocomplete="street-address"
+                    ></textarea>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 SECTION 03 — PROFILE
+                 ================================================= -->
+
+            <section class="form-section">
+
+                <div class="section-heading">
+                    <div class="section-number">03</div>
+
+                    <div class="section-heading-text">
+                        <h2>Profile & Security</h2>
+                        <p>Complete your digital membership profile</p>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+
+                    <label class="field-label">
+                        Profile Photo
+                    </label>
+
+                    <div class="photo-card">
+
+                        <div class="photo-layout">
+
+                            <div class="preview-frame">
+
+                                <img
+                                    id="avatarPreview"
+                                    src="Images/logo.jpg"
+                                    class="preview-avatar"
+                                    alt="Profile Photo Preview"
+                                >
+
+                            </div>
+
+
+                            <div class="photo-info">
+
+                                <div class="photo-title">
+                                    Add Your Profile Photo
+                                </div>
+
+                                <div class="photo-hint">
+                                    Choose a clear personal photograph.
+                                    The image will automatically fit inside
+                                    the preview without cropping.
+                                </div>
+
+                                <label
+                                    for="profile_photo"
+                                    class="upload-btn-label"
+                                >
+                                    Choose Photo
+                                </label>
+
+                                <input
+                                    type="file"
+                                    id="profile_photo"
+                                    accept="image/*"
+                                    style="display:none;"
+                                    onchange="previewUserPhoto(event)"
+                                >
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label class="field-label" for="password">
+                        Create Login Password <span class="required">*</span>
+                    </label>
+
+                    <div class="password-wrap">
+
+                        <input
+                            type="password"
+                            id="password"
+                            class="input-box"
+                            placeholder="Minimum 6 characters"
+                            minlength="6"
+                            autocomplete="new-password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            onclick="togglePassword()"
+                            id="passwordToggle"
+                            aria-label="Show password"
+                        >
+                            ◉
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 REGISTER
+                 ================================================= -->
+
+            <button
+                type="submit"
+                id="btnSubmit"
+                class="btn-register-main"
             >
+                Create My SANATANAM Membership
+            </button>
+
+
+        </form>
+
+
+        <div class="login-footer">
+
+            <a
+                href="app_login.html"
+                class="btn-login-footer"
+            >
+                Already have an account?
+                <span>Sign In</span>
+                →
+            </a>
 
         </div>
 
-        <button
-            type="submit"
-            id="btnSubmit"
-            class="btn-register-main"
-        >
-            Complete Member Registration
-        </button>
+    </main>
 
-    </form>
 
-    <!-- LOGIN -->
-    <a
-        href="app_login.html"
-        class="btn-login-footer"
-    >
-        Already have an account? &nbsp; Sign In
-    </a>
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
 
-    <!-- FOOTER -->
-    <div class="royal-footer">
-
-        <div class="footer-line"></div>
+    <footer class="app-footer">
 
         <div class="footer-brand">
-            SANATANAM • SANATAN SEVA SAMITI
+            SANATANAM
         </div>
 
-        <div class="footer-copy">
-            A sacred digital journey of Dharma, Knowledge, Service & Culture
+        <div class="footer-text">
+            A Living Spiritual Experience<br>
+            Presented by Sanatan Seva Samiti
         </div>
 
-    </div>
+    </footer>
 
 </div>
 
 
 <script>
 /* =========================================================
-   SANATANAM REGISTRATION ENGINE
-   ORIGINAL API & FUNCTIONALITY PRESERVED
+   API CONFIGURATION
    ========================================================= */
 
 const API_URL =
@@ -1193,10 +1273,7 @@ let photoBase64 = "";
    LOAD SERVICE AREAS
    ========================================================= */
 
-window.addEventListener(
-    "load",
-    loadSevaKshetra
-);
+window.addEventListener("load", loadSevaKshetra);
 
 async function loadSevaKshetra(){
 
@@ -1220,7 +1297,7 @@ async function loadSevaKshetra(){
             sel.innerHTML =
                 '<option value="">Select your service area</option>';
 
-            data.profiles.forEach(p => {
+            data.profiles.forEach(function(p){
 
                 const opt =
                     document.createElement("option");
@@ -1252,7 +1329,8 @@ async function loadSevaKshetra(){
 
 
 /* =========================================================
-   PROFILE PHOTO PREVIEW
+   PHOTO PREVIEW
+   NO CROPPING
    ========================================================= */
 
 function previewUserPhoto(e){
@@ -1262,17 +1340,21 @@ function previewUserPhoto(e){
 
     if(!file) return;
 
+
+    /* Basic image validation */
     if(!file.type.startsWith("image/")){
 
-        alert(
-            "Please select a valid image file."
-        );
+        alert("Please select a valid image file.");
+
+        e.target.value = "";
 
         return;
     }
 
+
     const reader =
         new FileReader();
+
 
     reader.onload =
         function(evt){
@@ -1280,14 +1362,62 @@ function previewUserPhoto(e){
             photoBase64 =
                 evt.target.result;
 
-            document.getElementById(
-                "avatarPreview"
-            ).src =
-                photoBase64;
+            const preview =
+                document.getElementById(
+                    "avatarPreview"
+                );
 
+            /*
+             * CSS object-fit: contain keeps
+             * the complete image visible.
+             * No cropping is performed.
+             */
+
+            preview.src =
+                photoBase64;
         };
 
+
     reader.readAsDataURL(file);
+}
+
+
+/* =========================================================
+   PASSWORD VISIBILITY
+   ========================================================= */
+
+function togglePassword(){
+
+    const input =
+        document.getElementById("password");
+
+    const toggle =
+        document.getElementById("passwordToggle");
+
+
+    if(input.type === "password"){
+
+        input.type = "text";
+
+        toggle.textContent = "◎";
+
+        toggle.setAttribute(
+            "aria-label",
+            "Hide password"
+        );
+
+    }else{
+
+        input.type = "password";
+
+        toggle.textContent = "◉";
+
+        toggle.setAttribute(
+            "aria-label",
+            "Show password"
+        );
+
+    }
 }
 
 
@@ -1299,11 +1429,13 @@ async function handleRegistration(e){
 
     e.preventDefault();
 
+
     const btn =
         document.getElementById("btnSubmit");
 
     const alertBox =
         document.getElementById("alertMsg");
+
 
     alertBox.style.display =
         "none";
@@ -1312,68 +1444,77 @@ async function handleRegistration(e){
     const payload = {
 
         full_name:
-            document.getElementById(
-                "full_name"
-            ).value.trim(),
+            document
+            .getElementById("full_name")
+            .value
+            .trim(),
 
         seva_kshetra:
-            document.getElementById(
-                "seva_kshetra"
-            ).value,
+            document
+            .getElementById("seva_kshetra")
+            .value,
 
         gender:
-            document.getElementById(
-                "gender"
-            ).value,
+            document
+            .getElementById("gender")
+            .value,
 
         dob:
-            document.getElementById(
-                "dob"
-            ).value,
+            document
+            .getElementById("dob")
+            .value,
 
         country:
-            document.getElementById(
-                "country"
-            ).value,
+            document
+            .getElementById("country")
+            .value,
 
         mobile:
-            document.getElementById(
-                "mobile"
-            ).value.trim(),
+            document
+            .getElementById("mobile")
+            .value
+            .trim(),
 
         email:
-            document.getElementById(
-                "email"
-            ).value.trim(),
+            document
+            .getElementById("email")
+            .value
+            .trim(),
 
         state:
-            document.getElementById(
-                "state"
-            ).value.trim(),
+            document
+            .getElementById("state")
+            .value
+            .trim(),
 
         district:
-            document.getElementById(
-                "district"
-            ).value.trim(),
+            document
+            .getElementById("district")
+            .value
+            .trim(),
 
         address:
-            document.getElementById(
-                "address"
-            ).value.trim(),
+            document
+            .getElementById("address")
+            .value
+            .trim(),
 
         pass:
-            document.getElementById(
-                "password"
-            ).value,
+            document
+            .getElementById("password")
+            .value,
 
         profile_photo_base64:
             photoBase64
+
     };
 
 
-    /* MOBILE VALIDATION */
+    /* =====================================================
+       MOBILE VALIDATION
+       ===================================================== */
 
-    if(payload.mobile.length !== 10){
+    if(!/^[0-9]{10}$/.test(payload.mobile)){
 
         alertBox.innerText =
             "Please enter a valid 10-digit mobile number.";
@@ -1381,11 +1522,13 @@ async function handleRegistration(e){
         alertBox.style.display =
             "block";
 
+        document
+            .getElementById("mobile")
+            .focus();
+
         return;
     }
 
-
-    /* PASSWORD VALIDATION */
 
     if(payload.pass.length < 6){
 
@@ -1399,8 +1542,12 @@ async function handleRegistration(e){
     }
 
 
+    /* =====================================================
+       LOADING STATE
+       ===================================================== */
+
     btn.innerText =
-        "Creating Your Account...";
+        "Creating Your Membership...";
 
     btn.disabled =
         true;
@@ -1429,6 +1576,10 @@ async function handleRegistration(e){
             await res.json();
 
 
+        /* =================================================
+           SUCCESS
+           ================================================= */
+
         if(data.status){
 
             try{
@@ -1446,7 +1597,7 @@ async function handleRegistration(e){
             }catch(storageErr){}
 
 
-            /* ANDROID AUTH BRIDGE */
+            /* Android WebView Bridge */
 
             if(
                 window.AndroidBridge &&
@@ -1491,6 +1642,7 @@ async function handleRegistration(e){
 
             alertBox.style.display =
                 "block";
+
         }
 
 
@@ -1505,15 +1657,41 @@ async function handleRegistration(e){
     }finally{
 
         btn.innerText =
-            "Complete Member Registration";
+            "Create My SANATANAM Membership";
 
         btn.disabled =
             false;
+
     }
+
 }
+
+
+/* =========================================================
+   MOBILE NUMBER — NUMBERS ONLY
+   ========================================================= */
+
+document
+.getElementById("mobile")
+.addEventListener(
+    "input",
+    function(){
+
+        this.value =
+            this.value
+            .replace(/\D/g,"")
+            .slice(0,10);
+
+    }
+);
+
+
+/* =========================================================
+   EXISTING TRANSLATOR HOOK
+   ========================================================= */
+
 </script>
 
-<!-- Existing translation system can remain connected -->
 <script src="app_translator.js"></script>
 
 </body>
