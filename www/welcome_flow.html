@@ -282,26 +282,6 @@ button{
     to{ opacity:1; transform:translateX(0); }
 }
 
-/* IMAGES & CENTERING */
-.image-frame{
-    width:100%;
-    height:100%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    overflow:hidden;
-}
-
-.auto-image{
-    display:block;
-    width:auto;
-    height:auto;
-    max-width:100%;
-    max-height:100%;
-    object-fit:contain;
-    object-position:center;
-}
-
 /* STEP 1 */
 .hero-visual{
     position:relative;
@@ -763,7 +743,7 @@ h1{
 }
 
 .member-logo{
-     position:relative;
+    position:relative;
     width:210px;
     height:200px;
     display:flex;
@@ -814,6 +794,7 @@ h1{
     font-size:11px;
     font-weight:700;
     transition:.2s;
+    user-select:none;
 }
 
 .member-btn:active{ transform:scale(.98); }
@@ -844,6 +825,7 @@ h1{
     min-height:47px;
     border-radius:14px;
     transition:.2s;
+    user-select:none;
 }
 
 .nav-btn:active{ transform:scale(.98); }
@@ -1041,10 +1023,10 @@ h1{
             </div>
 
             <div class="member-actions">
-                <button class="member-btn primary" type="button" onclick="triggerAndroidAction('register')">
+                <button class="member-btn primary" id="btnRegisterAction" type="button" onclick="triggerAndroidAction('register')">
                     <span>✦ Create New Account</span>
                 </button>
-                <button class="member-btn secondary" type="button" onclick="triggerAndroidAction('login')">
+                <button class="member-btn secondary" id="btnLoginAction" type="button" onclick="triggerAndroidAction('login')">
                     <span>→ Sign In</span>
                 </button>
             </div>
@@ -1054,7 +1036,7 @@ h1{
     <!-- BOTTOM NAVIGATION -->
     <div class="bottom-nav">
         <button id="btnBack" class="nav-btn" type="button" onclick="navigateStep(-1)" aria-label="Previous">‹</button>
-        <button id="btnNext" class="nav-btn" type="button" onclick="navigateStep(1)">Continue</button>
+        <button id="btnNext" class="nav-btn" type="button" onclick="handleNextClick()">Continue</button>
     </div>
 
 </div>
@@ -1168,23 +1150,21 @@ function clearLangSearch(){
 }
 
 /* =========================================================
-   CRUCIAL: PERMANENT LANGUAGE LOCK ENGINE
+   PERMANENT LANGUAGE LOCK ENGINE
    ========================================================= */
 function selectAppLanguage(code){
     activeLang = code;
 
-    // 1. Permanent Browser Storage
     localStorage.setItem("sanatanam_app_lang", code);
     sessionStorage.setItem("sanatanam_app_lang", code);
-
-    // 2. Cookie Lock (Valid for 1 Year across whole app)
     document.cookie = `sanatanam_app_lang=${code}; path=/; max-age=31536000; SameSite=Lax`;
 
-    // 3. Android Native Bridge Sync
-    if(typeof AndroidBridge !== "undefined" && AndroidBridge.onLanguageSelected){
-        try {
+    try {
+        if(typeof AndroidBridge !== "undefined" && AndroidBridge.onLanguageSelected){
             AndroidBridge.onLanguageSelected(code);
-        } catch(e) {}
+        }
+    } catch(err) {
+        console.warn("AndroidBridge lang error:", err);
     }
 
     renderQuickChips();
@@ -1226,32 +1206,46 @@ function navigateStep(direction){
     }
 }
 
+function handleNextClick(){
+    if(currentStep === totalSteps){
+        triggerAndroidAction('register');
+    } else {
+        navigateStep(1);
+    }
+}
+
 /* =========================================================
-   NAVIGATION TO LOGIN / REGISTER WITH LANGUAGE LOCK
+   BULLETPROOF NAVIGATION TO LOGIN / REGISTER
    ========================================================= */
 function triggerAndroidAction(action){
-    // Hamesha saved language read karein
     const chosenLang = localStorage.getItem("sanatanam_app_lang") || activeLang || "hi";
-    const targetFile = action === "register" ? "app_register.html" : "app_login.html";
 
-    // Native Bridge Trigger
+    // 1. Safe Native Android Bridge Calling
     if(typeof AndroidBridge !== "undefined"){
-        if(action === "register" && AndroidBridge.onRegisterClick){
-            AndroidBridge.onRegisterClick(chosenLang);
-            return;
-        }
-        if(action === "login" && AndroidBridge.onLoginClick){
-            AndroidBridge.onLoginClick(chosenLang);
-            return;
-        }
-        if(AndroidBridge.openNativeScreen){
-            AndroidBridge.openNativeScreen(action === "register" ? "app_register" : "app_login", chosenLang);
-            return;
+        try {
+            if(action === "register" && typeof AndroidBridge.onRegisterClick === "function"){
+                AndroidBridge.onRegisterClick(chosenLang);
+                return;
+            }
+            if(action === "login" && typeof AndroidBridge.onLoginClick === "function"){
+                AndroidBridge.onLoginClick(chosenLang);
+                return;
+            }
+            if(typeof AndroidBridge.openNativeScreen === "function"){
+                AndroidBridge.openNativeScreen(action === "register" ? "app_register" : "app_login", chosenLang);
+                return;
+            }
+        } catch(e) {
+            console.warn("AndroidBridge execution failed, falling back to Web URL:", e);
         }
     }
 
-    // Direct Web Redirect with URL Parameter (Permanent Handover)
-    window.location.href = `${targetFile}?lang=${chosenLang}`;
+    // 2. Direct Web Redirection
+    const targetFile = action === "register" ? "app_register.html" : "app_login.html";
+    const redirectUrl = `${targetFile}?lang=${encodeURIComponent(chosenLang)}`;
+    
+    console.log("Navigating to:", redirectUrl);
+    window.location.href = redirectUrl;
 }
 
 document.addEventListener("DOMContentLoaded", function(){
