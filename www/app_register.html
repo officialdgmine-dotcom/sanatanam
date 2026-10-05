@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<!-- Firebase App & Auth SDKs (v9 Compat Mode for Easy WebView / Web Integration) -->
+<!-- Firebase App & Auth SDKs (Compat Mode v9) -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 
@@ -426,21 +426,36 @@ body{
     cursor:pointer;
     white-space:nowrap;
     box-shadow:0 4px 12px rgba(111,16,29,.2);
+    transition:.2s;
 }
 
 .btn-inline-action:disabled{
     opacity:.55;
     cursor:not-allowed;
+    background:#9e8e89;
+    box-shadow:none;
 }
 
 .verified-badge{
     display:none;
     align-items:center;
-    gap:5px;
-    color:#1b7e3b;
+    gap:6px;
+    color:#197a38;
+    background:#eafcf0;
+    border:1px solid #a3e8b7;
+    padding:8px 12px;
+    border-radius:12px;
     font-size:10px;
     font-weight:800;
-    margin-top:6px;
+    margin-top:8px;
+}
+
+.otp-box-highlight{
+    background:#fffaf0;
+    border:1px dashed #d95a00;
+    padding:12px;
+    border-radius:16px;
+    margin-top:10px;
 }
 
 /* PHOTO */
@@ -558,6 +573,8 @@ input[type="file"]{
 .btn-register-main:disabled{
     opacity:.65;
     cursor:not-allowed;
+    background:#88726b;
+    box-shadow:none;
 }
 
 .login-area{
@@ -698,7 +715,7 @@ input[type="file"]{
                         <div class="section-icon">◈</div>
                         <div class="section-title">
                             <strong>Contact &amp; Phone Verification</strong>
-                            <span>Real-time SMS OTP Verification</span>
+                            <span>Live SMS OTP Powered by Firebase</span>
                         </div>
                     </div>
 
@@ -722,22 +739,27 @@ input[type="file"]{
                         </div>
                     </div>
 
-                    <!-- OTP Input Box (Hidden initially) -->
-                    <div class="form-group" id="otpBoxWrap" style="display:none;">
-                        <label class="field-label">Enter 6-Digit SMS OTP *</label>
+                    <!-- Verified Status Pill -->
+                    <div id="otpSuccessBadge" class="verified-badge">
+                        <span>✓</span> <span>Phone Number Verified Successfully</span>
+                    </div>
+
+                    <!-- Real OTP Verification Box (Pop-out) -->
+                    <div class="form-group otp-box-highlight" id="otpBoxWrap" style="display:none;">
+                        <label class="field-label" style="color:var(--orange-900);">Enter 6-Digit SMS Code *</label>
                         <div class="otp-input-group">
-                            <input type="tel" id="otp_code" class="input-box" placeholder="6 Digit OTP" maxlength="6" inputmode="numeric">
-                            <button type="button" id="btnVerifyOtp" class="btn-inline-action" onclick="verifyFirebaseOTP()">Verify OTP</button>
+                            <input type="tel" id="otp_code" class="input-box" placeholder="• • • • • •" maxlength="6" inputmode="numeric" style="letter-spacing:4px; font-weight:700; text-align:center;">
+                            <button type="button" id="btnVerifyOtp" class="btn-inline-action" onclick="verifyFirebaseOTP()">Verify Code</button>
                         </div>
-                        <div id="otpSuccessBadge" class="verified-badge">
-                            ✓ Mobile Number Successfully Verified
+                        <div style="margin-top:6px; font-size:9px; color:#9c6c59;" id="resendTimerWrap">
+                            Didn't receive SMS? <span id="timerCountdown">Resend in 60s</span>
                         </div>
                     </div>
 
-                    <!-- Invisible Firebase reCAPTCHA Anchor -->
+                    <!-- Invisible Recaptcha Container -->
                     <div id="recaptcha-container"></div>
 
-                    <div class="form-group">
+                    <div class="form-group" style="margin-top:14px;">
                         <label class="field-label">Email Address</label>
                         <input type="email" id="email" class="input-box" placeholder="name@example.com" autocomplete="email">
                     </div>
@@ -817,18 +839,18 @@ input[type="file"]{
 
 <script>
 /* =========================================================
-   1. FIREBASE CONFIGURATION (यहाँ अपनी Firebase Console Keys डालें)
+   1. FIREBASE CONFIGURATION (Aapke Screenshot se Live Keys)
    ========================================================= */
 const firebaseConfig = {
-    apiKey: "AIzaSyYourFirebaseApiKeyHere",
-    authDomain: "your-project-id.firebaseapp.com",
-    projectId: "your-project-id",
-    storageBucket: "your-project-id.appspot.com",
-    messagingSenderId: "1234567890",
-    appId: "1:1234567890:web:abcdef123456"
+    apiKey: "AIzaSyBsVPXIn45VzCuKITLY00EzBVxOhyQ33rA",
+    authDomain: "deep-group-c3eca.firebaseapp.com",
+    projectId: "deep-group-c3eca",
+    storageBucket: "deep-group-c3eca.firebasestorage.app",
+    messagingSenderId: "288563254052",
+    appId: "1:288563254052:web:a9c3258d6d1ce18b37ba31"
 };
 
-// Initialize Firebase
+// Initialize Firebase App
 if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
 }
@@ -838,6 +860,7 @@ const auth = firebase.auth();
 let confirmationResult = null;
 let isPhoneVerified = false;
 let photoBase64 = "";
+let resendInterval = null;
 const API_URL = "https://sanatansevasamiti.org/api/register.php";
 
 /* =========================================================
@@ -848,10 +871,10 @@ function setupRecaptcha() {
         window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
             size: 'invisible',
             callback: (response) => {
-                // reCAPTCHA solved
+                // Invisible reCaptcha verified
             },
             'expired-callback': () => {
-                showAlert("reCAPTCHA expired. Please try again.", "error");
+                showAlert("Verification expired. Please try sending OTP again.", "error");
             }
         });
     }
@@ -878,21 +901,50 @@ async function sendFirebaseOTP() {
         confirmationResult = await auth.signInWithPhoneNumber(fullPhoneNumber, appVerifier);
 
         showAlert(`OTP sent via SMS to ${fullPhoneNumber}`, "success");
+        
+        // Show OTP block
         document.getElementById("otpBoxWrap").style.display = "block";
-        document.getElementById("mobile").readOnly = true;
-        btnSend.innerText = "Resend OTP";
-        btnSend.disabled = false;
+        document.getElementById("otp_code").focus();
+        startResendTimer();
+
     } catch (error) {
         console.error("Firebase SMS Error:", error);
-        showAlert(error.message || "Failed to send OTP. Check Firebase phone settings.", "error");
+        let errorMsg = "SMS OTP भेजने में विफलता: " + (error.message || "कृपया पुनः प्रयास करें।");
+        if (error.code === 'auth/quota-exceeded') {
+            errorMsg = "दैनिक SMS कोटा समाप्त हो गया है। कृपया बाद में प्रयास करें।";
+        } else if (error.code === 'auth/captcha-check-failed') {
+            errorMsg = "डोमेन ऑथराइज़ेशन या reCAPTCHA विफलता। कृपया Firebase सेटिंग्स देखें।";
+        }
+        showAlert(errorMsg, "error");
         btnSend.disabled = false;
         btnSend.innerText = "Send OTP";
+        
+        // Reset reCAPTCHA on failure
         if (window.recaptchaVerifier) {
             window.recaptchaVerifier.render().then(widgetId => {
-                grecaptcha.reset(widgetId);
+                if (typeof grecaptcha !== 'undefined') grecaptcha.reset(widgetId);
             });
         }
     }
+}
+
+function startResendTimer() {
+    const btnSend = document.getElementById("btnSendOtp");
+    const timerText = document.getElementById("timerCountdown");
+    let secondsLeft = 60;
+    btnSend.disabled = true;
+
+    clearInterval(resendInterval);
+    resendInterval = setInterval(() => {
+        secondsLeft--;
+        timerText.innerText = `Resend available in ${secondsLeft}s`;
+        if (secondsLeft <= 0) {
+            clearInterval(resendInterval);
+            timerText.innerText = "You can request a new OTP now.";
+            btnSend.disabled = false;
+            btnSend.innerText = "Resend OTP";
+        }
+    }, 1000);
 }
 
 async function verifyFirebaseOTP() {
@@ -900,12 +952,12 @@ async function verifyFirebaseOTP() {
     const btnVerify = document.getElementById("btnVerifyOtp");
 
     if (otpInput.length !== 6) {
-        showAlert("Please enter 6-digit OTP received via SMS.", "error");
+        showAlert("कृपया SMS में प्राप्त 6 अंकों का सही OTP दर्ज करें।", "error");
         return;
     }
 
     if (!confirmationResult) {
-        showAlert("Please request an OTP first.", "error");
+        showAlert("कृपया पहले OTP भेजें।", "error");
         return;
     }
 
@@ -917,23 +969,26 @@ async function verifyFirebaseOTP() {
         const user = result.user;
 
         isPhoneVerified = true;
-        showAlert("Mobile number successfully verified! ✓", "success");
+        clearInterval(resendInterval);
 
-        // UI Updates
+        showAlert("मोबाइल नंबर सफलतापूर्वक सत्यापित (Verified) हो गया है! ✓", "success");
+
+        // UI Updates: Lock verified fields
         document.getElementById("otpSuccessBadge").style.display = "flex";
-        document.getElementById("otp_code").readOnly = true;
-        btnVerify.style.display = "none";
+        document.getElementById("otpBoxWrap").style.display = "none";
+        document.getElementById("mobile").readOnly = true;
         document.getElementById("btnSendOtp").style.display = "none";
 
-        // Unlock Main Submit Button
+        // Unlock Main Registration Button
         const submitBtn = document.getElementById("btnSubmit");
         submitBtn.disabled = false;
         submitBtn.innerText = "COMPLETE MEMBER REGISTRATION";
+
     } catch (error) {
         console.error("OTP verification error:", error);
-        showAlert("Invalid OTP code. Please check and try again.", "error");
+        showAlert("अमान्य OTP कोड! कृपया सही कोड जांचकर पुनः दर्ज करें।", "error");
         btnVerify.disabled = false;
-        btnVerify.innerText = "Verify OTP";
+        btnVerify.innerText = "Verify Code";
     }
 }
 
@@ -945,6 +1000,7 @@ function showAlert(msg, type = "error") {
     box.className = "alert-box " + (type === "success" ? "alert-success" : "alert-error");
     box.innerText = msg;
     box.style.display = "block";
+    box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
 window.addEventListener("load", loadSevaKshetra);
@@ -988,7 +1044,7 @@ async function handleRegistration(e) {
     e.preventDefault();
 
     if (!isPhoneVerified) {
-        showAlert("Please verify your phone number using SMS OTP before registering.", "error");
+        showAlert("पंजीकरण से पूर्व मोबाइल नंबर को SMS OTP से सत्यापित करना अनिवार्य है।", "error");
         return;
     }
 
