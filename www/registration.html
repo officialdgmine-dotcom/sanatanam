@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>SANATANAM — Member Registration</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --maroon-950:#28050b;
+    --maroon-900:#3a0710;
+    --maroon-800:#520b17;
+    --maroon-700:#6f101d;
+    --orange-700:#d95a00;
+    --orange:#f47712;
+    --white:#ffffff;
+    --cream:#fffaf0;
+    --text:#321217;
+    --muted:#765c61;
+    --radius-xl:26px;
+}
+
+*{
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+}
+
+body{
+    margin:0;
+    min-height:100vh;
+    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    color:var(--text);
+    background:
+        radial-gradient(circle at 50% -5%, rgba(255,164,43,.4), transparent 35%),
+        linear-gradient(150deg,#2a050b 0%,#4d0915 45%,#26050a 100%);
+    overflow-x:hidden;
+}
+
+.app-shell{
+    width:100%;
+    max-width:520px;
+    min-height:100vh;
+    margin:0 auto;
+    background:linear-gradient(180deg, #fffdf8 0%, #fffbf2 100%);
+    box-shadow:0 0 45px rgba(0,0,0,.35);
+}
+
+/* TOP HEADER */
+.royal-header{
+    position:relative;
+    padding: calc(env(safe-area-inset-top) + 24px) 20px 28px;
+    background:radial-gradient(circle at 50% 0%,rgba(255,194,69,.25),transparent 40%),
+               linear-gradient(145deg,#35060d,#620d1b 58%,#861a28);
+    color:white;
+    border-bottom-left-radius:36px;
+    border-bottom-right-radius:36px;
+    box-shadow:0 15px 35px rgba(49,5,12,.25);
+    text-align:center;
+}
+
+.logo-stage{
+    width:84px;
+    height:84px;
+    margin:0 auto 12px;
+    padding:8px;
+    border-radius:24px;
+    background:linear-gradient(145deg, #ffffff, #ffeaa6);
+    border:2px solid #ffd765;
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.logo-stage img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    border-radius:16px;
+}
+
+.app-name{
+    font-family:Cinzel,serif;
+    font-size:24px;
+    letter-spacing:2px;
+    font-weight:800;
+}
+
+.app-caption{
+    margin-top:4px;
+    color:#ffe8a2;
+    font-size:9px;
+    font-weight:700;
+    letter-spacing:1.8px;
+    text-transform:uppercase;
+}
+
+/* MAIN CONTENT */
+.main-content{
+    padding:20px 16px 36px;
+}
+
+.form-card{
+    background:#fff;
+    border:1px solid rgba(111,16,29,.12);
+    border-radius:var(--radius-xl);
+    box-shadow:0 18px 45px rgba(49,5,12,.08);
+    overflow:hidden;
+}
+
+.form-section{
+    padding:18px 16px 4px;
+}
+
+.section-heading{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:15px;
+}
+
+.section-icon{
+    width:34px;
+    height:34px;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(145deg,var(--maroon-800),var(--orange-700));
+    color:#ffe994;
+    font-size:15px;
+}
+
+.section-title strong{
+    display:block;
+    color:var(--maroon-900);
+    font-size:13px;
+    font-weight:800;
+}
+
+.section-title span{
+    display:block;
+    color:#a07659;
+    font-size:9.5px;
+}
+
+.form-group{
+    margin-bottom:14px;
+}
+
+.field-label{
+    display:block;
+    margin:0 0 6px 3px;
+    color:#54101b;
+    font-size:11px;
+    font-weight:700;
+}
+
+.input-box,
+.select-box,
+.textarea-box{
+    width:100%;
+    border:1px solid #ead8ca;
+    background:#fffdf9;
+    color:#351319;
+    border-radius:13px;
+    min-height:48px;
+    padding:0 14px;
+    outline:none;
+    font-size:12px;
+    font-weight:600;
+    transition:.2s;
+}
+
+.input-box:focus,
+.select-box:focus,
+.textarea-box:focus{
+    border-color:var(--orange);
+    background:#fff;
+    box-shadow:0 0 0 3px rgba(244,119,18,.12);
+}
+
+.textarea-box{
+    padding:12px 14px;
+    min-height:75px;
+    resize:vertical;
+}
+
+.grid-2{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+
+/* PHONE & OTP BAR */
+.phone-composite-wrap{
+    display:flex;
+    gap:7px;
+    width:100%;
+}
+
+.country-select-compact{
+    width:100px;
+    flex:0 0 100px;
+    padding:0 10px;
+    font-size:11px;
+    font-weight:700;
+    border-radius:13px;
+    border:1px solid #ead8ca;
+    background:#fff7ee;
+    color:#4a0f18;
+}
+
+.phone-input-field{
+    flex:1;
+    min-width:0;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+.btn-send-otp-royal{
+    flex:0 0 auto;
+    padding:0 15px;
+    min-height:48px;
+    border:0;
+    border-radius:13px;
+    background:linear-gradient(135deg, var(--maroon-800), var(--orange-700));
+    color:#fff;
+    font-size:11px;
+    font-weight:800;
+    cursor:pointer;
+    box-shadow:0 5px 14px rgba(111,16,29,.2);
+    white-space:nowrap;
+}
+
+.btn-send-otp-royal:disabled{
+    opacity:.55;
+    background:#856f67;
+    cursor:not-allowed;
+}
+
+.otp-card-expanded{
+    margin-top:12px;
+    padding:15px 14px;
+    border-radius:18px;
+    background:linear-gradient(180deg, #fffdf8, #fff7eb);
+    border:1.5px solid rgba(217,90,0,.25);
+    display:none;
+}
+
+.otp-card-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:12px;
+}
+
+.otp-digits-grid{
+    display:grid;
+    grid-template-columns:repeat(6, 1fr);
+    gap:7px;
+    margin-bottom:12px;
+}
+
+.digit-box{
+    width:100%;
+    height:48px;
+    border-radius:11px;
+    border:1.5px solid #e5c9b6;
+    background:#fff;
+    text-align:center;
+    font-size:18px;
+    font-weight:800;
+    color:var(--maroon-950);
+    outline:none;
+}
+
+.digit-box:focus{
+    border-color:var(--orange-700);
+    box-shadow:0 0 0 3px rgba(244,119,18,.15);
+}
+
+.btn-verify-otp-full{
+    width:100%;
+    min-height:44px;
+    border:0;
+    border-radius:12px;
+    background:linear-gradient(135deg, #1e7e34, #28a745);
+    color:#fff;
+    font-size:12px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.verified-banner{
+    display:none;
+    align-items:center;
+    gap:8px;
+    background:#eafcf0;
+    border:1.5px solid #6dd98d;
+    padding:10px 14px;
+    border-radius:13px;
+    color:#126c2e;
+    font-size:11px;
+    font-weight:800;
+    margin-top:10px;
+}
+
+/* PHOTO */
+.photo-card{
+    border-radius:16px;
+    padding:12px;
+    background:linear-gradient(135deg,#fffdf7,#fff5dc);
+    border:1px solid #f0dfc3;
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.preview-avatar{
+    width:64px;
+    height:64px;
+    flex:none;
+    border-radius:16px;
+    object-fit:cover;
+    background:#fff;
+    border:2px solid #e3ae42;
+    padding:2px;
+}
+
+.upload-btn-label{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    margin-top:6px;
+    min-height:30px;
+    padding:0 12px;
+    border-radius:9px;
+    background:linear-gradient(135deg,var(--maroon-800),var(--orange-700));
+    color:white;
+    font-size:10px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+/* SUBMIT */
+.action-area{
+    padding:16px;
+    background:linear-gradient(180deg,#fffdf8,#fff7e7);
+    border-top:1px solid #f1e1cf;
+}
+
+.btn-register-main{
+    width:100%;
+    min-height:54px;
+    border:0;
+    border-radius:16px;
+    cursor:pointer;
+    font-family:Cinzel,serif;
+    font-size:13px;
+    font-weight:800;
+    letter-spacing:.7px;
+    color:#fff;
+    background:linear-gradient(115deg,#570914 0%,#7b1020 36%,#b83f08 70%,#e26b0c 100%);
+    box-shadow:0 10px 24px rgba(96,12,24,.25);
+    transition:.2s;
+}
+
+.btn-register-main:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+    background:#88726b;
+    box-shadow:none;
+}
+
+.alert-box{
+    display:none;
+    margin:12px 16px 0;
+    padding:11px 13px;
+    border-radius:12px;
+    font-size:11px;
+    font-weight:700;
+    line-height:1.4;
+}
+
+.alert-error{ background:#fff0f0; border:1px solid #f0b8b8; color:#9c1e2c; }
+.alert-success{ background:#f0fff4; border:1px solid #b8f0ca; color:#197a38; }
+
+.login-area{
+    padding:14px 16px 0;
+    text-align:center;
+}
+
+.btn-login-footer{
+    color:var(--maroon-800);
+    text-decoration:none;
+    font-size:11px;
+    font-weight:700;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app-shell">
+    <header class="royal-header">
+        <div class="logo-stage">
+            <img src="Images/logo.jpg" alt="SANATANAM Logo" onerror="this.src='https://sanatansevasamiti.org/Images/logo.jpg';">
+        </div>
+        <div class="app-name">SANATANAM</div>
+        <div class="app-caption">A Living Spiritual Experience</div>
+    </header>
+
+    <main class="main-content">
+        <div class="form-card">
+            <div id="alertMsg" class="alert-box"></div>
+
+            <form id="regForm" onsubmit="handleRegistration(event)">
+
+                <!-- SECTION 01: IDENTITY -->
+                <section class="form-section">
+                    <div class="section-heading">
+                        <div class="section-icon">✦</div>
+                        <div class="section-title">
+                            <strong>Personal Details</strong>
+                            <span>Basic membership details</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="field-label">Seva Area (सेवा क्षेत्र) *</label>
+                        <select id="seva_kshetra" class="select-box" required>
+                            <option value="">लोड हो रहा है...</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="field-label">Full Name (पूरा नाम) *</label>
+                        <input type="text" id="full_name" class="input-box" placeholder="आपका पूरा नाम" autocomplete="name" required>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label class="field-label">Gender</label>
+                            <select id="gender" class="select-box">
+                                <option value="Male">Male (पुरुष)</option>
+                                <option value="Female">Female (महिला)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="field-label">Date of Birth</label>
+                            <input type="date" id="dob" class="input-box">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION 02: CONTACT & VERIFIED PHONE -->
+                <section class="form-section">
+                    <div class="section-heading">
+                        <div class="section-icon">◈</div>
+                        <div class="section-title">
+                            <strong>Contact &amp; Verification</strong>
+                            <span>Secure Server-Verified OTP</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="field-label">Mobile Number *</label>
+                        <div class="phone-composite-wrap">
+                            <select id="country" class="country-select-compact">
+                                <option value="India" data-dial="+91">🇮🇳 +91</option>
+                                <option value="Nepal" data-dial="+977">🇳🇵 +977</option>
+                                <option value="Bangladesh" data-dial="+880">🇧🇩 +880</option>
+                                <option value="Sri Lanka" data-dial="+94">🇱🇰 +94</option>
+                            </select>
+                            <input type="tel" id="mobile" class="input-box phone-input-field" placeholder="10 Digit Number" maxlength="10" inputmode="numeric" required>
+                            <button type="button" id="btnSendOtp" class="btn-send-otp-royal" onclick="sendServerOTP()">Get OTP</button>
+                        </div>
+                    </div>
+
+                    <!-- VERIFIED BADGE -->
+                    <div id="otpSuccessBadge" class="verified-banner">
+                        <span>✓</span>
+                        <span>मोबाइल नंबर सफलतापूर्वक सत्यापित (Verified) हो गया है!</span>
+                    </div>
+
+                    <!-- SPACIOUS OTP CARD -->
+                    <div class="otp-card-expanded" id="otpBoxWrap">
+                        <div class="otp-card-header">
+                            <div style="font-size:11px; font-weight:800; color:var(--maroon-900);">
+                                🔑 दर्ज करें 6 अंकों का OTP:
+                            </div>
+                            <div id="resendTimerWrap" style="font-size:10px; font-weight:700; color:var(--orange-700);">
+                                <span id="timerCountdown">Resend in 60s</span>
+                            </div>
+                        </div>
+
+                        <div class="otp-digits-grid">
+                            <input type="tel" class="digit-box" maxlength="1" inputmode="numeric" oninput="stepDigit(this,0)" onkeydown="delDigit(event,0)">
+                            <input type="tel" class="digit-box" maxlength="1" inputmode="numeric" oninput="stepDigit(this,1)" onkeydown="delDigit(event,1)">
+                            <input type="tel" class="digit-box" maxlength="1" inputmode="numeric" oninput="stepDigit(this,2)" onkeydown="delDigit(event,2)">
+                            <input type="tel" class="digit-box" maxlength="1" inputmode="numeric" oninput="stepDigit(this,3)" onkeydown="delDigit(event,3)">
+                            <input type="tel" class="digit-box" maxlength="1" inputmode="numeric" oninput="stepDigit(this,4)" onkeydown="delDigit(event,4)">
+                            <input type="tel" class="digit-box" maxlength="1" inputmode="numeric" oninput="stepDigit(this,5)" onkeydown="delDigit(event,5)">
+                        </div>
+
+                        <button type="button" id="btnVerifyOtp" class="btn-verify-otp-full" onclick="verifyServerOTP()">
+                            Verify Code &amp; Continue
+                        </button>
+                    </div>
+
+                    <div class="form-group" style="margin-top:14px;">
+                        <label class="field-label">Email Address</label>
+                        <input type="email" id="email" class="input-box" placeholder="name@example.com">
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label class="field-label">State (राज्य)</label>
+                            <input type="text" id="state" class="input-box" placeholder="आपका राज्य">
+                        </div>
+                        <div class="form-group">
+                            <label class="field-label">District (ज़िला)</label>
+                            <input type="text" id="district" class="input-box" placeholder="आपका ज़िला">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="field-label">Full Address (पूरा पता)</label>
+                        <textarea id="address" class="textarea-box" placeholder="ग्राम / वार्ड, पोस्ट, पिन कोड..."></textarea>
+                    </div>
+                </section>
+
+                <!-- SECTION 03: PHOTO & PASSWORD -->
+                <section class="form-section">
+                    <div class="section-heading">
+                        <div class="section-icon">✧</div>
+                        <div class="section-title">
+                            <strong>Profile &amp; Security</strong>
+                            <span>Profile photo and password</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="field-label">Profile Photo (Auto 15-20 KB WebP)</label>
+                        <div class="photo-card">
+                            <img id="avatarPreview" src="Images/logo.jpg" onerror="this.src='https://sanatansevasamiti.org/Images/logo.jpg';" class="preview-avatar" alt="Avatar">
+                            <div>
+                                <label for="profile_photo" class="upload-btn-label">✦ Choose Photo</label>
+                                <input type="file" id="profile_photo" accept="image/*" style="display:none;" onchange="previewUserPhoto(event)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="field-label">Create Password (पासवर्ड) *</label>
+                        <input type="password" id="password" class="input-box" placeholder="कम से कम 6 अक्षर" minlength="6" autocomplete="new-password" required>
+                    </div>
+                </section>
+
+                <!-- ACTION -->
+                <div class="action-area">
+                    <button type="submit" id="btnSubmit" class="btn-register-main" disabled>
+                        VERIFY OTP FIRST TO REGISTER
+                    </button>
+                    <div class="login-area">
+                        <a href="app_login.html" class="btn-login-footer">Already have an account? Sign In →</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+</div>
+
+<script>
+const OTP_API = "https://sanatansevasamiti.org/api/otp_handler.php";
+const REG_API = "https://sanatansevasamiti.org/api/register.php";
+
+let isPhoneVerified = false;
+let photoBase64 = "";
+let resendInterval = null;
+
+function showAlert(msg, isError = true) {
+    const box = document.getElementById("alertMsg");
+    box.className = "alert-box " + (isError ? "alert-error" : "alert-success");
+    box.innerText = msg;
+    box.style.display = "block";
+    box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+// 1. SEND OTP
+async function sendServerOTP() {
+    const mobileInput = document.getElementById("mobile").value.trim();
+    if (!/^\d{10}$/.test(mobileInput)) {
+        showAlert("कृपया 10 अंकों का सही मोबाइल नंबर दर्ज करें।");
+        return;
+    }
+
+    const btn = document.getElementById("btnSendOtp");
+    btn.disabled = true;
+    btn.innerText = "Sending...";
+
+    try {
+        const res = await fetch(OTP_API, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ action: "send", mobile: mobileInput })
+        });
+        const data = await res.json();
+
+        if (data.status) {
+            showAlert(data.message + (data.debug_otp ? " (Your OTP: " + data.debug_otp + ")" : ""), false);
+            document.getElementById("otpBoxWrap").style.display = "block";
+            
+            const digitInputs = document.querySelectorAll(".digit-box");
+            digitInputs.forEach(i => i.value = "");
+            digitInputs[0].focus();
+            
+            startResendTimer();
+        } else {
+            showAlert(data.message || "OTP भेजने में त्रुटि हुई।");
+            btn.disabled = false;
+            btn.innerText = "Get OTP";
+        }
+    } catch (err) {
+        showAlert("सर्वर से कनेक्शन नहीं हो सका। कृपया इंटरनेट जांचें।");
+        btn.disabled = false;
+        btn.innerText = "Get OTP";
+    }
+}
+
+function startResendTimer() {
+    const btn = document.getElementById("btnSendOtp");
+    const timerText = document.getElementById("timerCountdown");
+    let seconds = 60;
+    btn.disabled = true;
+
+    clearInterval(resendInterval);
+    resendInterval = setInterval(() => {
+        seconds--;
+        timerText.innerText = `Resend in ${seconds}s`;
+        if (seconds <= 0) {
+            clearInterval(resendInterval);
+            timerText.innerText = "OTP नहीं मिला? दोबारा भेजें।";
+            btn.disabled = false;
+            btn.innerText = "Resend OTP";
+        }
+    }, 1000);
+}
+
+// 2. DIGIT AUTO-TABBING
+function stepDigit(el, idx) {
+    const digits = document.querySelectorAll(".digit-box");
+    el.value = el.value.replace(/[^0-9]/g, '');
+    if (el.value.length === 1 && idx < 5) {
+        digits[idx + 1].focus();
+    }
+    const fullCode = Array.from(digits).map(d => d.value).join('');
+    if (fullCode.length === 6) {
+        verifyServerOTP();
+    }
+}
+
+function delDigit(e, idx) {
+    const digits = document.querySelectorAll(".digit-box");
+    if (e.key === "Backspace" && !digits[idx].value && idx > 0) {
+        digits[idx - 1].focus();
+    }
+}
+
+// 3. VERIFY OTP
+async function verifyServerOTP() {
+    const mobileInput = document.getElementById("mobile").value.trim();
+    const digits = document.querySelectorAll(".digit-box");
+    const otpCode = Array.from(digits).map(d => d.value).join('');
+    const btnVerify = document.getElementById("btnVerifyOtp");
+
+    if (otpCode.length !== 6) {
+        showAlert("कृपया 6 अंकों का पूरा OTP दर्ज करें।");
+        return;
+    }
+
+    btnVerify.disabled = true;
+    btnVerify.innerText = "Verifying...";
+
+    try {
+        const res = await fetch(OTP_API, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ action: "verify", mobile: mobileInput, otp: otpCode })
+        });
+        const data = await res.json();
+
+        if (data.status) {
+            isPhoneVerified = true;
+            clearInterval(resendInterval);
+
+            showAlert("मोबाइल नंबर सफलतापूर्वक सत्यापित (Verified) हो गया! ✓", false);
+
+            document.getElementById("otpSuccessBadge").style.display = "flex";
+            document.getElementById("otpBoxWrap").style.display = "none";
+            document.getElementById("mobile").readOnly = true;
+            document.getElementById("country").disabled = true;
+            document.getElementById("btnSendOtp").style.display = "none";
+
+            const submitBtn = document.getElementById("btnSubmit");
+            submitBtn.disabled = false;
+            submitBtn.innerText = "COMPLETE MEMBER REGISTRATION";
+        } else {
+            showAlert(data.message || "गलत OTP कोड! कृपया दोबारा जांचें।");
+            btnVerify.disabled = false;
+            btnVerify.innerText = "Verify Code & Continue";
+        }
+    } catch (err) {
+        showAlert("सत्यापन में त्रुटि आई।");
+        btnVerify.disabled = false;
+        btnVerify.innerText = "Verify Code & Continue";
+    }
+}
+
+// 4. LOAD PROFILES
+window.addEventListener("load", async () => {
+    const sel = document.getElementById("seva_kshetra");
+    try {
+        const res = await fetch(REG_API);
+        const data = await res.json();
+        if (data.status && data.profiles && data.profiles.length > 0) {
+            sel.innerHTML = '<option value="">सेवा क्षेत्र चुनें (Select Seva Area)</option>';
+            data.profiles.forEach(p => {
+                const opt = document.createElement("option");
+                opt.value = p.profile_id;
+                opt.textContent = p.name;
+                sel.appendChild(opt);
+            });
+        } else {
+            sel.innerHTML = '<option value="">कोई सेवा क्षेत्र उपलब्ध नहीं</option>';
+        }
+    } catch (e) {
+        sel.innerHTML = '<option value="">सेवा क्षेत्र लोड करने में असमर्थ</option>';
+    }
+});
+
+// 5. PHOTO BASE64
+function previewUserPhoto(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (evt) => {
+        photoBase64 = evt.target.result;
+        document.getElementById("avatarPreview").src = photoBase64;
+    };
+    reader.readAsDataURL(file);
+}
+
+// 6. FINAL FORM SUBMIT
+async function handleRegistration(e) {
+    e.preventDefault();
+
+    if (!isPhoneVerified) {
+        showAlert("पंजीकरण से पूर्व मोबाइल नंबर को OTP से सत्यापित करना अनिवार्य है।");
+        return;
+    }
+
+    const btn = document.getElementById("btnSubmit");
+    btn.disabled = true;
+    btn.innerText = "CREATING YOUR ACCOUNT...";
+
+    const payload = {
+        full_name: document.getElementById("full_name").value.trim(),
+        seva_kshetra: document.getElementById("seva_kshetra").value,
+        gender: document.getElementById("gender").value,
+        dob: document.getElementById("dob").value,
+        country: document.getElementById("country").value,
+        mobile: document.getElementById("mobile").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        state: document.getElementById("state").value.trim(),
+        district: document.getElementById("district").value.trim(),
+        address: document.getElementById("address").value.trim(),
+        pass: document.getElementById("password").value,
+        profile_photo_base64: photoBase64,
+        phone_verified: true
+    };
+
+    try {
+        const res = await fetch(REG_API, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+
+        if (data.status) {
+            try {
+                localStorage.setItem("sss_user_token", data.token);
+                localStorage.setItem("sss_user_data", JSON.stringify(data.user));
+            } catch (storageErr) {}
+
+            alert("पंजीकरण सफलतापूर्वक संपन्न हुआ! SANATANAM में आपका स्वागत है।");
+            window.location.href = "app_home.html";
+        } else {
+            showAlert(data.message || "पंजीकरण विफल रहा।");
+            btn.disabled = false;
+            btn.innerText = "COMPLETE MEMBER REGISTRATION";
+        }
+    } catch (err) {
+        showAlert("सर्वर से कनेक्ट नहीं हो सका। कृपया पुनः प्रयास करें।");
+        btn.disabled = false;
+        btn.innerText = "COMPLETE MEMBER REGISTRATION";
+    }
+}
+</script>
+</body>
+</html>
