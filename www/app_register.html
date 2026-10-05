@@ -85,22 +85,22 @@ body{
 
                 <div class="form-group">
                     <label class="field-label">Full Name *</label>
-                    <input type="text" id="full_name" class="input-box" placeholder="आपका पूरा नाम" required>
+                    <input type="text" id="full_name" class="input-box" placeholder="Aapka Pura Naam" required>
                 </div>
 
                 <div class="form-group">
                     <label class="field-label">Mobile Number *</label>
                     <div class="phone-row">
-                        <input type="tel" id="mobile" class="input-box" placeholder="10 अंकों का नंबर" maxlength="10" inputmode="numeric" required>
+                        <input type="tel" id="mobile" class="input-box" placeholder="10 Digit Number" maxlength="10" inputmode="numeric" required>
                         <button type="button" id="btnSendOtp" class="btn-otp" onclick="sendServerOTP()">Get OTP</button>
                     </div>
-                    <div id="verifiedBadge" class="verified-tag">✓ मोबाइल नंबर सफलतापूर्वक सत्यापित हो गया!</div>
+                    <div id="verifiedBadge" class="verified-tag">✓ Mobile number verified successfully!</div>
                 </div>
 
                 <!-- OTP BOX -->
                 <div class="otp-box" id="otpSection">
                     <div style="font-size:11px; font-weight:800; color:var(--maroon-900); margin-bottom:10px;">
-                        🔑 दर्ज करें 6 अंकों का OTP:
+                        🔑 Enter 6-Digit OTP:
                     </div>
                     <div class="digits-grid">
                         <input type="tel" class="digit-input" maxlength="1" oninput="stepDigit(this,0)" onkeydown="delDigit(event,0)">
@@ -120,7 +120,7 @@ body{
 
                 <div class="form-group">
                     <label class="field-label">Password *</label>
-                    <input type="password" id="password" class="input-box" placeholder="कम से कम 6 अक्षर" minlength="6" required>
+                    <input type="password" id="password" class="input-box" placeholder="Minimum 6 characters" minlength="6" required>
                 </div>
 
                 <button type="submit" id="btnSubmit" class="btn-submit" disabled>
@@ -145,7 +145,7 @@ function showAlert(msg, isErr=true){
 
 async function sendServerOTP(){
     const m = document.getElementById("mobile").value.trim();
-    if(m.length !== 10) return showAlert("10 अंकों का सही नंबर डालें।");
+    if(m.length !== 10) return showAlert("10 ankon ka sahi number dalein.");
     
     const btn = document.getElementById("btnSendOtp");
     btn.disabled = true; btn.innerText = "...";
@@ -165,7 +165,7 @@ async function sendServerOTP(){
             showAlert(res.message);
         }
     } catch(e){
-        showAlert("सर्वर से कनेक्शन नहीं हो सका।");
+        showAlert("Server se connection nahi ho saka.");
     } finally {
         btn.disabled = false; btn.innerText = "Get OTP";
     }
@@ -184,7 +184,7 @@ function delDigit(e, i){
 async function verifyServerOTP(){
     const m = document.getElementById("mobile").value.trim();
     const otp = Array.from(document.querySelectorAll(".digit-input")).map(i=>i.value).join('');
-    if(otp.length !== 6) return showAlert("6 अंकों का पूरा OTP दर्ज करें।");
+    if(otp.length !== 6) return showAlert("6 ankon ka pura OTP darj karein.");
 
     try{
         const r = await fetch(OTP_API, {
@@ -195,7 +195,7 @@ async function verifyServerOTP(){
         const res = await r.json();
         if(res.status){
             isVerified = true;
-            showAlert("सत्यापन सफल! अब आप रजिस्टर कर सकते हैं।", false);
+            showAlert("Verification successful! Ab aap register kar sakte hain.", false);
             document.getElementById("otpSection").style.display = "none";
             document.getElementById("verifiedBadge").style.display = "block";
             document.getElementById("mobile").readOnly = true;
@@ -207,7 +207,7 @@ async function verifyServerOTP(){
             showAlert(res.message);
         }
     } catch(e){
-        showAlert("OTP सत्यापन में त्रुटि हुई।");
+        showAlert("OTP verify karne me error aaya.");
     }
 }
 
@@ -225,14 +225,14 @@ window.onload = async () => {
         const r = await fetch(REG_API);
         const d = await r.json();
         const s = document.getElementById("seva_kshetra");
-        s.innerHTML = '<option value="">सेवा क्षेत्र चुनें</option>';
+        s.innerHTML = '<option value="">Seva Area Chunein</option>';
         d.profiles.forEach(p => s.innerHTML += `<option value="${p.profile_id}">${p.name}</option>`);
     }catch(e){}
 };
 
 async function handleRegistration(e){
     e.preventDefault();
-    if(!isVerified) return showAlert("कृपया पहले मोबाइल OTP वेरिफाई करें।");
+    if(!isVerified) return showAlert("Kripya pehle mobile OTP verify karein.");
 
     const payload = {
         full_name: document.getElementById("full_name").value.trim(),
@@ -243,7 +243,7 @@ async function handleRegistration(e){
     };
 
     const btn = document.getElementById("btnSubmit");
-    btn.disabled = true; btn.innerText = "पंजीकरण हो रहा है...";
+    btn.disabled = true; btn.innerText = "Registration ho raha hai...";
 
     try{
         const r = await fetch(REG_API, {
@@ -253,14 +253,14 @@ async function handleRegistration(e){
         });
         const res = await r.json();
         if(res.status){
-            alert("पंजीकरण सफलतापूर्वक संपन्न हुआ!");
+            alert("Registration successful!");
             window.location.href = "app_home.html";
         } else {
             showAlert(res.message);
             btn.disabled = false; btn.innerText = "COMPLETE REGISTRATION";
         }
     }catch(e){
-        showAlert("पंजीकरण में त्रुटि आई।");
+        showAlert("Registration me error aaya.");
         btn.disabled = false;
     }
 }
